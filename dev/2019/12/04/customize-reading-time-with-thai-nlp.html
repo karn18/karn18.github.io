@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย | KT</title>
+<meta name="generator" content="Jekyll v4.1.0" />
+<meta property="og:title" content="คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="บทความนี้จะกล่าวถึงการคำนวณเวลาที่ใช้ในการอ่านบทความ ซึ่งในส่วนของ Jekyll จะมีปลักอินที่ชื่อ liquid_reading_time ที่ถูกนำมาใช้ในการคำนวณเวลาโดยเฉลี่ยในการอ่านบทความหนึ่งๆ และแสดงให้ผู้อ่านเห็น" />
+<meta property="og:description" content="บทความนี้จะกล่าวถึงการคำนวณเวลาที่ใช้ในการอ่านบทความ ซึ่งในส่วนของ Jekyll จะมีปลักอินที่ชื่อ liquid_reading_time ที่ถูกนำมาใช้ในการคำนวณเวลาโดยเฉลี่ยในการอ่านบทความหนึ่งๆ และแสดงให้ผู้อ่านเห็น" />
+<link rel="canonical" href="http://localhost:4000/dev/2019/12/04/customize-reading-time-with-thai-nlp.html" />
+<meta property="og:url" content="http://localhost:4000/dev/2019/12/04/customize-reading-time-with-thai-nlp.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="http://localhost:4000/assets/images/posts/2019/customize-reading-time-with-thai-nlp/thumbnail.png" />
+<meta property="og:image:height" content="100" />
+<meta property="og:image:width" content="100" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-04T09:00:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/assets/images/posts/2019/customize-reading-time-with-thai-nlp/thumbnail.png" />
+<meta property="twitter:title" content="คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย" />
+<meta name="twitter:site" content="@karn18" />
+<meta name="twitter:creator" content="@Karn" />
+<script type="application/ld+json">
+{"headline":"คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย","dateModified":"2019-12-04T09:00:00+07:00","datePublished":"2019-12-04T09:00:00+07:00","author":{"@type":"Person","name":"Karn"},"image":{"height":100,"width":100,"url":"http://localhost:4000/assets/images/posts/2019/customize-reading-time-with-thai-nlp/thumbnail.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/dev/2019/12/04/customize-reading-time-with-thai-nlp.html"},"url":"http://localhost:4000/dev/2019/12/04/customize-reading-time-with-thai-nlp.html","description":"บทความนี้จะกล่าวถึงการคำนวณเวลาที่ใช้ในการอ่านบทความ ซึ่งในส่วนของ Jekyll จะมีปลักอินที่ชื่อ liquid_reading_time ที่ถูกนำมาใช้ในการคำนวณเวลาโดยเฉลี่ยในการอ่านบทความหนึ่งๆ และแสดงให้ผู้อ่านเห็น","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="dns-prefetch" href="https://https://karn18-github-io.disqus.com">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><title>คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย</title>
+</head><body>
+    <div class="kz-progress"></div>
+    <div class="kz-main-container"><nav class="kz-navbar">
+  <a href="/" class="kz-navbar__logo">KT</a>
+  <div class="kz-navbar__menu">
+    <a href="/" class="kz-navbar__item kz-navbar__item--active">บทความ</a>
+    <a href="/archive" class="kz-navbar__item">archive</a>
+    <a href="/about" class="kz-navbar__item">เกี่ยวกับเรา</a>
+    <a href="/feed.xml" class="kz-navbar__item">rss</a>
+  </div>
+</nav>
+<div class="kz-content">
+        <div class="kz-blog">
+  <div class="kz-blog__header">
+  <h1 class="kz-blog__title">คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย</h1>
+  <div class="kz-blog__info">
+    <i class="far fa-calendar-alt"></i> 04-12-2019
+    
+      | <i class="fas fa-tag"></i>
+      
+        <span class="tag is-info is-light">ruby</span>
+      
+        <span class="tag is-info is-light">python</span>
+      
+        <span class="tag is-info is-light">thai nlp</span>
+      
+    
+  </div>
+</div>
+<!-- <h1 class="title has-text-blue is-blog-header"><strong class="shadow is-orange">คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย</strong></h1>
+<h6 class="subtitle is-6 is-blog-info">
+  <span class="icon is-small">
+    <i class="far fa-calendar-alt"></i>
+  </span>
+  04-12-2019 |
+  <span class="icon is-small">
+    <i class="fas fa-pen-nib"></i>
+  </span>
+  Karn |
+  <span class="icon is-small">
+    <i class="far fa-clock"></i>
+  </span>
+  0 minutes
+</h6>
+<h6 class="subtitle is-6 is-blog-info">
+  <i class="fas fa-tag"></i>
+  
+    <span class="tag is-info is-light">ruby</span>
+  
+    <span class="tag is-info is-light">python</span>
+  
+    <span class="tag is-info is-light">thai nlp</span>
+  
+</h6> -->
+
+  <figure class="image blog-image-header">
+    <img src="/assets/images/posts/2019/customize-reading-time-with-thai-nlp/thumbnail.png">
+  </figure>
+  <div class="blog-content is-family-secondary">
+    <p>บทความนี้จะกล่าวถึงการคำนวณเวลาที่ใช้ในการอ่านบทความ ซึ่งในส่วนของ <strong>Jekyll</strong> จะมีปลักอินที่ชื่อ <strong>liquid_reading_time</strong> ที่ถูกนำมาใช้ในการคำนวณเวลาโดยเฉลี่ยในการอ่านบทความหนึ่งๆ และแสดงให้ผู้อ่านเห็น <!--more-->โดยมีสูตรที่ว่า</p>
+
+<blockquote>
+  <p>จำนวนคำทั้งหมดในบทความ / ความเร็วเฉลี่ยในการอ่าน = ระยะเวลาในการอ่าน</p>
+</blockquote>
+
+<p>ถ้าดูแล้วการใช้ปลักอินดังกล่าวก็ดูน่าจะตอบโจทย์แล้วใช่หรือไม่ <strong>แต่</strong>อย่าลืมว่าการนับจำนวนคำระหว่างภาษาไทยกับภาษาอังกฤษนั้นแตกต่างกัน กล่าวคือโดยปกติคำหนึ่งๆ ในภาษาอังกฤษจะถูกแยกจากกันด้วยช่องว่าง (whitespace) ส่วนภาษาไทยนั้นการแยกคำออกมานั้นมีความซับซ้อนกว่ามาก ดังนั้นการใช้ปลักอินที่ตัดคำโดยใช้ช่องว่างจึงไม่ตอบโจทย์</p>
+
+<p>เอ๊ะแล้วอย่างงี้จะใช้ปลักอินตัวไหนมาช่วยในการตัดคำไทยดี ซึ่งต้องบอกเลยว่าถ้าหากใช้ <strong>Ruby</strong> อย่างเดียวนั้นคงเป็นไปได้ยาก เนื่องจากไลบราลีที่ใช้สำหรับตัดคำไทย<strong>ไม่มีผู้พัฒนา</strong>ในภาษา <strong>Ruby</strong> ทำให้ต้องไปเพิ่งไลบราลี <a href="https://github.com/PyThaiNLP/pythainlp">pythainlp</a> ในภาษา <strong>Python</strong> แทน ซึ่งไลบราลีตัวนี้มีนักพัฒนาคนไทยช่วยกัน และเผยแพร่ให้นักพัฒนาคนอื่นๆ ได้ใช้งานกัน</p>
+
+<p>ฉะนั้นในบทความนี้จะเป็นการรวมร่างกันทำงานระหว่างไลบราลี <strong>liquid_reading_time</strong> (Ruby) กับ <strong>pythainlp</strong> (Python) โดย</p>
+<ul>
+  <li><strong>pythailnp</strong> นำมาใช้ในการตัดคำภาษาไทยที่มาจากบทความ</li>
+  <li><strong>liquid_reading_time</strong> นำมาใช้ในการคำนวณระยะเวลาในการอ่าน</li>
+</ul>
+
+<h2 id="ลงมือปรับแต่งกันเลย">ลงมือปรับแต่งกันเลย</h2>
+<ul>
+  <li>เริ่มต้นโดยการ fork ปลักอินมาก่อน โดยเข้าไปที่ <a href="https://github.com/bdesham/reading_time">liquid_reading_time</a> แล้วก็ clone project มาไว้ยังเครื่องคอมพิวเตอร์ของเรา</li>
+  <li>เข้าไปยังไฟล์ที่ชื่อ <strong>lib/liquid_reading_time.rb</strong> จากนั้นทำการเพิ่มโค้ดสำหรับเรียกใช้งานโปรแกรม <strong>word_tokenizer.py</strong> ผ่านฟังก์ชันที่ชื่อ <strong>tokenize_words</strong> และเปลี่ยนการเรียกใช้ฟังก์ชัน <strong>count_words</strong> ดังแสดงในโค้ดด้านล่าง</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre>  <span class="k">def</span> <span class="nf">count_words</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+      <span class="n">tokenize_words</span><span class="p">(</span><span class="n">words</span><span class="p">(</span><span class="n">html</span><span class="p">).</span><span class="nf">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">))</span> <span class="c1"># Add this line</span>
+      <span class="c1"># words(html).length # Comment this line</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="o">...</span>
+  <span class="c1"># Add new method</span>
+  <span class="k">def</span> <span class="nf">tokenize_words</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sb">`python word_tokenizer.py "</span><span class="si">#{</span><span class="n">text</span><span class="si">}</span><span class="sb">"`</span>
+    <span class="n">cmd</span><span class="p">.</span><span class="nf">to_i</span>
+  <span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>เข้าไปยังโฟลเดอร์เว็บไซด์ของเรา และทำการสร้างไฟล์ <strong>word_tokenizer.py</strong> ซึ่งเป็นโปรแกรมทีรับฟารามิเตอร์เป็นเนื้อหาของบทความ แล้วจะส่งคืนค่าจำนวนคำที่ตัดได้คืนกลับไป โดยผ่านการแสดงผลทาง stdout</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>  <span class="kn">import</span> <span class="nn">sys</span>
+  <span class="kn">from</span> <span class="nn">pythainlp</span> <span class="kn">import</span> <span class="n">sent_tokenize</span><span class="p">,</span> <span class="n">word_tokenize</span>
+
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="n">content</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">keep_whitespace</span><span class="o">=</span><span class="bp">False</span><span class="p">))))</span>
+  <span class="k">else</span><span class="p">:</span>
+      <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">'0'</span><span class="p">)</span>
+  <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<ul>
+  <li>ทำการแก้ไข Gemfile ของ <strong>liquid_reading_time</strong> ให้โหลดจาก repo ของเราที่ได้ fork ออกมาแทน repo หลัก</li>
+  <li>ทดสอบการประเมินเวลาของบทความกัน ซึ่งปรากฏว่าหลังจากเปลี่ยนมาใช้การตัดคำแบบไทยในการประเมินเวลาการอ่านบทความ จะได้ระยะเวลาในการประเมินที่ค่อนข้างใกล้เคียงกับเวลาที่ใช้อ่านจริง</li>
+</ul>
+
+<p><img src="/assets/images/posts/2019/customize-reading-time-with-thai-nlp/reading_time_default.png" alt="Reading Time" width="400px" />
+<em>ใช้ liquid_reading_time แบบปกติ</em></p>
+
+<p><img src="/assets/images/posts/2019/customize-reading-time-with-thai-nlp/reading_time_with_thai_nlp.png" alt="Custome Reading Time" width="400px" />
+<em>ใช้ pythainlp ร่วมกับ liquid_reading_time</em></p>
+
+<p><em>!!!</em> ทั้งนี้การตัดคำแบบไทยนั้นเหมาะที่จะนำมาใช้กับบทความที่มีเนื้อหาเป็นทั้งภาษาไทย และภาษาอังกฤษ แต่ถ้าในกรณีที่ผู้เขียนบล๊อกที่เน้นใช้เนื้อหาเป็นภาษาอังกฤษแต่เพียงอย่างเดียว ก็ไม่จำเป็นต้องปรับแต่งปลั๊กอินเพิ่มใดๆ</p>
+
+<p><em>!!!</em> ป.ล. การเรียกใช้งานโปรแกรมสำหรับตัดคำไทยจะทำให้ใช้ระยะเวลาในการแปลงไฟล์ Markdown ไปเป็น HTML นานขึ้นด้วย</p>
+
+<h2 id="references">References:</h2>
+<ul>
+  <li><a href="https://github.com/PyThaiNLP/pythainlp">pythainlp</a></li>
+  <li><a href="https://github.com/bdesham/reading_time">liquid_reading_time</a></li>
+</ul>
+
+  </div>
+  <!-- <div class="section field is-grouped">
+  <div class="control">
+    <a class="twitter-share-button"
+      href="https://twitter.com/intent/tweet?text=คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย&url=http://localhost:4000/dev/2019/12/04/customize-reading-time-with-thai-nlp.html&via=karn18&related=karn18"
+      data-size="large">
+      Tweet
+    </a>
+    <div id="fb-root"></div>
+  </div>
+  <div class="control">
+    <div class="fb-share-button" 
+      data-href="http://localhost:4000/dev/2019/12/04/customize-reading-time-with-thai-nlp.html"
+      data-layout="button_count" data-size="large">
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+        Share
+      </a>
+    </div>
+  </div>
+</div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+  
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+ -->
+  <!-- 
+ -->
+  <div class="kz-pagination">
+  <div class="kz-pagination__newer">
+    
+      <a class="kz-pagination__button" href="/dev/2019/12/11/syntax-hightlight-in-jekyll.html">&larr; Newer</a>
+    
+  </div>
+  <div class="kz-pagination__older">
+    
+      <a class="kz-pagination__button" href="/dev/2019/12/03/using-bulma-with-rails.html">Older &rarr;</a>
+    
+  </div>
+</div>
+  <div class="related-blog">
+  
+  
+  
+
+  
+</div>
+
+</div>
+
+
+
+      </div>
+    </div><script>
+  const h = document.documentElement;
+  const b = document.body;
+  const st = 'scrollTop';
+  const sh = 'scrollHeight';
+  const progress = document.querySelector('.kz-progress');
+  let scroll;
+
+  document.addEventListener('scroll', function() {
+    scroll = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+    progress.style.setProperty('--scroll', scroll + '%');
+  });
+</script>
+
+</body>
+</html>
