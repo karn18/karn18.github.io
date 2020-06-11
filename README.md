@@ -1,2 +1,1 @@
-# bookcase
-# karn18.github.io
+# karn's blog
