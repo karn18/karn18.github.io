@@ -1,1042 +1,736 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-06-14T19:35:55+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ</title><link href="https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html" rel="alternate" type="text/html" title="ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ" /><published>2020-06-14T19:35:00+07:00</published><updated>2020-06-14T19:35:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html">&lt;p&gt;❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง &lt;strong&gt;Ruby Application&lt;/strong&gt; โดยลองนึกภาพว่า&lt;strong&gt;แอพตัวที่ 1&lt;/strong&gt;ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยัง&lt;strong&gt;แอพตัวที่ 2&lt;/strong&gt; เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-06-14T19:37:56+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ</title><link href="https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html" rel="alternate" type="text/html" title="ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ" /><published>2020-06-14T19:35:00+07:00</published><updated>2020-06-14T19:35:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html">❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง **Ruby Application** โดยลองนึกภาพว่า**แอพตัวที่ 1**ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยัง**แอพตัวที่ 2** เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log)
 
-&lt;p&gt;💡 สำหรับวิธีแก้ไขโจทย์นี้เราจะใช้ &lt;strong&gt;RabbitMQ&lt;/strong&gt; เป็นตัวกลางในการสื่อสารระหว่างแอพพลิเคชัน ซึ่งมีภาพการเชื่อมต่อดังแสดงในภาพด้านล่าง&lt;/p&gt;
+💡 สำหรับวิธีแก้ไขโจทย์นี้เราจะใช้ **RabbitMQ** เป็นตัวกลางในการสื่อสารระหว่างแอพพลิเคชัน ซึ่งมีภาพการเชื่อมต่อดังแสดงในภาพด้านล่าง
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน-rabbitmq/architecture.png&quot; alt=&quot;architecture design&quot; /&gt;
-&lt;em&gt;แผนภาพการเชื่อมต่อระหว่าง Application กับ RabbitMQ&lt;/em&gt;&lt;/p&gt;
+![architecture design](/assets/images/posts/2020/ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน-rabbitmq/architecture.png)
+*แผนภาพการเชื่อมต่อระหว่าง Application กับ RabbitMQ*
 
-&lt;p&gt;🌱 รูปแบบการพัฒนาเป็นดังนี้&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;แอพตัวที่ 1 (&lt;strong&gt;Rails Application&lt;/strong&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;โมเดล &lt;strong&gt;Post&lt;/strong&gt;  สำหรับเก็บข้อมูล โดยมีการดักจับเหตุการณ์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;after_create&lt;/code&gt; เป็น trigger ในการส่งข้อมูล&lt;/li&gt;
-      &lt;li&gt;สร้างคลาส &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Publisher&lt;/code&gt; เพื่อทำหน้าที่ในการส่งข้อมูลไปยัง &lt;strong&gt;RabbitMQ&lt;/strong&gt; โดยใช้ไลบราลี่ &lt;strong&gt;bunny&lt;/strong&gt; และกำหนด &lt;strong&gt;channel&lt;/strong&gt; เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kz.message&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;เรียกใช้ Active Job ในการส่งข้อมูลผ่าน &lt;strong&gt;background process&lt;/strong&gt; เพื่อให้โปรแกรมทำงานได้ราบรื่นยิ่งขึ้น&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;แอพตัวที่ 2 (&lt;strong&gt;Ruby Application&lt;/strong&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;สร้างเป็น Commandline Application ที่รับคำสั่ง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit&lt;/code&gt; เพื่อปิดโปรแกรมเพียงอย่างเดียว&lt;/li&gt;
-      &lt;li&gt;สร้างคลาส &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Subscriber&lt;/code&gt; เพื่อรอรับข้อมูลจาก &lt;strong&gt;RabbitMQ&lt;/strong&gt; โดยใช้ไลบราลี &lt;strong&gt;bunny&lt;/strong&gt; เช่นเดียวกับ&lt;strong&gt;แอพตัวที่ 1&lt;/strong&gt; และกำหนด &lt;strong&gt;channel&lt;/strong&gt; เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kz.message&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;เมื่อรับข้อมูลเข้าจาก &lt;strong&gt;RabbitMQ&lt;/strong&gt; ก็จะทำการบันเหตุการณ์ลงในไฟล์ชื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my-post.log&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+🌱 รูปแบบการพัฒนาเป็นดังนี้
+1. แอพตัวที่ 1 (**Rails Application**)
+  - โมเดล **Post**  สำหรับเก็บข้อมูล โดยมีการดักจับเหตุการณ์ `after_create` เป็น trigger ในการส่งข้อมูล
+  - สร้างคลาส `Publisher` เพื่อทำหน้าที่ในการส่งข้อมูลไปยัง **RabbitMQ** โดยใช้ไลบราลี่ **bunny** และกำหนด **channel** เป็น `kz.message`
+  - เรียกใช้ Active Job ในการส่งข้อมูลผ่าน **background process** เพื่อให้โปรแกรมทำงานได้ราบรื่นยิ่งขึ้น
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน-rabbitmq/rails-application.png&quot; alt=&quot;Rails Application&quot; width=&quot;420px&quot; /&gt;
-&lt;em&gt;บันทึกโพสผ่าน Rails Application และส่งข้อมูลไปยัง RabbitMQ&lt;/em&gt;&lt;/p&gt;
+2. แอพตัวที่ 2 (**Ruby Application**)
+  - สร้างเป็น Commandline Application ที่รับคำสั่ง `exit` เพื่อปิดโปรแกรมเพียงอย่างเดียว
+  - สร้างคลาส `Subscriber` เพื่อรอรับข้อมูลจาก **RabbitMQ** โดยใช้ไลบราลี **bunny** เช่นเดียวกับ**แอพตัวที่ 1** และกำหนด **channel** เป็น `kz.message`
+  - เมื่อรับข้อมูลเข้าจาก **RabbitMQ** ก็จะทำการบันเหตุการณ์ลงในไฟล์ชื่อ `my-post.log`
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน-rabbitmq/my-post.log.png&quot; alt=&quot;Log&quot; /&gt;
-&lt;em&gt;Ruby Application รับข้อมูลจาก RabbitMQ และบันทึกเหตุการณ์ลงไฟล์&lt;/em&gt;&lt;/p&gt;
+![Rails Application](/assets/images/posts/2020/ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน-rabbitmq/rails-application.png){:width=&quot;420px&quot;}
+*บันทึกโพสผ่าน Rails Application และส่งข้อมูลไปยัง RabbitMQ*
 
-&lt;h2 id=&quot;โค้ดตัวอย่างของ-publisher&quot;&gt;โค้ดตัวอย่างของ Publisher&lt;/h2&gt;
+![Log](/assets/images/posts/2020/ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน-rabbitmq/my-post.log.png)
+*Ruby Application รับข้อมูลจาก RabbitMQ และบันทึกเหตุการณ์ลงไฟล์*
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bunny'&lt;/span&gt;
+## โค้ดตัวอย่างของ Publisher
 
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Publisher&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;publish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chnnl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Publish message to &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chnnl&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; with &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_json&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;kw.&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chnnl&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;publish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+```ruby
+require 'bunny'
 
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;channel&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@channel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create_channel&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+class Publisher
+  class &lt;&lt; self
+    def publish(chnnl, message = {})
+      puts &quot;Publish message to #{chnnl} with #{message.to_json}&quot;
+      stream = channel.queue(&quot;kw.#{chnnl}&quot;)
+      stream.publish(message.to_json)
+    end
 
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;connection&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@connection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bunny&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+    def channel
+      @channel ||= connection.create_channel
+    end
 
-&lt;h2 id=&quot;โค้ดตัวอย่างของ-subscriber&quot;&gt;โค้ดตัวอย่างของ Subscriber&lt;/h2&gt;
+    def connection
+      @connection ||= Bunny.new.tap(&amp;:start)
+    end
+  end
+end
+```
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bunny'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'json'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'logger'&lt;/span&gt;
+## โค้ดตัวอย่างของ Subscriber
 
-&lt;span class=&quot;vi&quot;&gt;@logger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'my-post.log'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+```ruby
+require 'bunny'
+require 'json'
+require 'logger'
 
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Subscriber&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;manual_ack: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delivery_info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;properties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Received &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;, message properties are &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;properties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;inspect&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;block&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+@logger = Logger.new('my-post.log')
 
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;channel&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@channel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create_channel&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+class Subscriber
+  class &lt;&lt; self
+    def subscribe(queue, &amp;block)
+      q = channel.queue(queue)
+      q.subscribe(manual_ack: false) do |delivery_info, properties, payload|
+        puts &quot;Received #{payload}, message properties are #{properties.inspect}&quot;
+        data = JSON.parse(payload)
+        block.call(data) if block
+      end
+    end
 
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;connection&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@connection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bunny&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    def channel
+      @channel ||= connection.create_channel
+    end
 
-&lt;span class=&quot;c1&quot;&gt;# Start subscribe with channel name&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;Subscriber&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;kz.message&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ขณะนี้มีการสร้างโพสชื่อ &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'title'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; โดย &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'author'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; เมื่อเวลา &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'created_at'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    def connection
+      @connection ||= Bunny.new.tap(&amp;:start)
+    end
+  end
+end
 
-&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Type exit to quit&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kp&quot;&gt;loop&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;gets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chomp&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'exit'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+# Start subscribe with channel name
+Subscriber.subscribe(&quot;kz.message&quot;) do |data|
+  @logger.info(&quot;ขณะนี้มีการสร้างโพสชื่อ #{data['title']} โดย #{data['author']} เมื่อเวลา #{data['created_at']}&quot;)
+end
 
-&lt;h2 id=&quot;referecnes&quot;&gt;Referecnes&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.rabbitmq.com&quot;&gt;RabbitMQ&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/ruby-amqp/bunny&quot;&gt;Bunny&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="ruby" /><category term="rabbitmq" /><summary type="html">❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง Ruby Application โดยลองนึกภาพว่าแอพตัวที่ 1ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยังแอพตัวที่ 2 เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log) 💡 สำหรับวิธีแก้ไขโจทย์นี้เราจะใช้ RabbitMQ เป็นตัวกลางในการสื่อสารระหว่างแอพพลิเคชัน ซึ่งมีภาพการเชื่อมต่อดังแสดงในภาพด้านล่าง แผนภาพการเชื่อมต่อระหว่าง Application กับ RabbitMQ 🌱 รูปแบบการพัฒนาเป็นดังนี้ แอพตัวที่ 1 (Rails Application) โมเดล Post สำหรับเก็บข้อมูล โดยมีการดักจับเหตุการณ์ after_create เป็น trigger ในการส่งข้อมูล สร้างคลาส Publisher เพื่อทำหน้าที่ในการส่งข้อมูลไปยัง RabbitMQ โดยใช้ไลบราลี่ bunny และกำหนด channel เป็น kz.message เรียกใช้ Active Job ในการส่งข้อมูลผ่าน background process เพื่อให้โปรแกรมทำงานได้ราบรื่นยิ่งขึ้น แอพตัวที่ 2 (Ruby Application) สร้างเป็น Commandline Application ที่รับคำสั่ง exit เพื่อปิดโปรแกรมเพียงอย่างเดียว สร้างคลาส Subscriber เพื่อรอรับข้อมูลจาก RabbitMQ โดยใช้ไลบราลี bunny เช่นเดียวกับแอพตัวที่ 1 และกำหนด channel เป็น kz.message เมื่อรับข้อมูลเข้าจาก RabbitMQ ก็จะทำการบันเหตุการณ์ลงในไฟล์ชื่อ my-post.log บันทึกโพสผ่าน Rails Application และส่งข้อมูลไปยัง RabbitMQ Ruby Application รับข้อมูลจาก RabbitMQ และบันทึกเหตุการณ์ลงไฟล์ โค้ดตัวอย่างของ Publisher 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 require 'bunny' class Publisher class &amp;lt;&amp;lt; self def publish(chnnl, message = {}) puts &quot;Publish message to #{chnnl} with #{message.to_json}&quot; stream = channel.queue(&quot;kw.#{chnnl}&quot;) stream.publish(message.to_json) end def channel @channel ||= connection.create_channel end def connection @connection ||= Bunny.new.tap(&amp;amp;:start) end end end โค้ดตัวอย่างของ Subscriber 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 require 'bunny' require 'json' require 'logger' @logger = Logger.new('my-post.log') class Subscriber class &amp;lt;&amp;lt; self def subscribe(queue, &amp;amp;block) q = channel.queue(queue) q.subscribe(manual_ack: false) do |delivery_info, properties, payload| puts &quot;Received #{payload}, message properties are #{properties.inspect}&quot; data = JSON.parse(payload) block.call(data) if block end end def channel @channel ||= connection.create_channel end def connection @connection ||= Bunny.new.tap(&amp;amp;:start) end end end # Start subscribe with channel name Subscriber.subscribe(&quot;kz.message&quot;) do |data| @logger.info(&quot;ขณะนี้มีการสร้างโพสชื่อ #{data['title']} โดย #{data['author']} เมื่อเวลา #{data['created_at']}&quot;) end puts(&quot;Type exit to quit&quot;) loop do cmd = gets.chomp exit(0) if (cmd == 'exit') end Referecnes RabbitMQ Bunny</summary></entry><entry><title type="html">Favorite Of the Day #1</title><link href="https://karn18.github.io/fod/2020/06/10/favorite-of-the-day-1.html" rel="alternate" type="text/html" title="Favorite Of the Day #1" /><published>2020-06-10T14:35:00+07:00</published><updated>2020-06-10T14:35:00+07:00</updated><id>https://karn18.github.io/fod/2020/06/10/favorite-of-the-day-1</id><content type="html" xml:base="https://karn18.github.io/fod/2020/06/10/favorite-of-the-day-1.html">&lt;h1 id=&quot;พฤติกรรม-3-อย่าง&quot;&gt;พฤติกรรม 3 อย่าง&lt;/h1&gt;
+puts(&quot;Type exit to quit&quot;)
+loop do
+  cmd = gets.chomp
+  exit(0) if (cmd == 'exit')
+end
+```
 
-&lt;p&gt;พฤติกรรมที่น่าจะนำไปใช้ในการดูแลบริษัท ทีมหรือ startup&lt;/p&gt;
+## Referecnes
+- [RabbitMQ](https://www.rabbitmq.com)
+- [Bunny](https://github.com/ruby-amqp/bunny)</content><author><name>Karn</name></author><category term="rails" /><category term="ruby" /><category term="rabbitmq" /><summary type="html">❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง Ruby Application โดยลองนึกภาพว่าแอพตัวที่ 1ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยังแอพตัวที่ 2 เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log) 💡 สำหรับวิธีแก้ไขโจทย์นี้เราจะใช้ RabbitMQ เป็นตัวกลางในการสื่อสารระหว่างแอพพลิเคชัน ซึ่งมีภาพการเชื่อมต่อดังแสดงในภาพด้านล่าง แผนภาพการเชื่อมต่อระหว่าง Application กับ RabbitMQ 🌱 รูปแบบการพัฒนาเป็นดังนี้ แอพตัวที่ 1 (Rails Application) โมเดล Post สำหรับเก็บข้อมูล โดยมีการดักจับเหตุการณ์ after_create เป็น trigger ในการส่งข้อมูล สร้างคลาส Publisher เพื่อทำหน้าที่ในการส่งข้อมูลไปยัง RabbitMQ โดยใช้ไลบราลี่ bunny และกำหนด channel เป็น kz.message เรียกใช้ Active Job ในการส่งข้อมูลผ่าน background process เพื่อให้โปรแกรมทำงานได้ราบรื่นยิ่งขึ้น แอพตัวที่ 2 (Ruby Application) สร้างเป็น Commandline Application ที่รับคำสั่ง exit เพื่อปิดโปรแกรมเพียงอย่างเดียว สร้างคลาส Subscriber เพื่อรอรับข้อมูลจาก RabbitMQ โดยใช้ไลบราลี bunny เช่นเดียวกับแอพตัวที่ 1 และกำหนด channel เป็น kz.message เมื่อรับข้อมูลเข้าจาก RabbitMQ ก็จะทำการบันเหตุการณ์ลงในไฟล์ชื่อ my-post.log บันทึกโพสผ่าน Rails Application และส่งข้อมูลไปยัง RabbitMQ Ruby Application รับข้อมูลจาก RabbitMQ และบันทึกเหตุการณ์ลงไฟล์ โค้ดตัวอย่างของ Publisher 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 require 'bunny' class Publisher class &amp;lt;&amp;lt; self def publish(chnnl, message = {}) puts &quot;Publish message to #{chnnl} with #{message.to_json}&quot; stream = channel.queue(&quot;kw.#{chnnl}&quot;) stream.publish(message.to_json) end def channel @channel ||= connection.create_channel end def connection @connection ||= Bunny.new.tap(&amp;amp;:start) end end end โค้ดตัวอย่างของ Subscriber 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 require 'bunny' require 'json' require 'logger' @logger = Logger.new('my-post.log') class Subscriber class &amp;lt;&amp;lt; self def subscribe(queue, &amp;amp;block) q = channel.queue(queue) q.subscribe(manual_ack: false) do |delivery_info, properties, payload| puts &quot;Received #{payload}, message properties are #{properties.inspect}&quot; data = JSON.parse(payload) block.call(data) if block end end def channel @channel ||= connection.create_channel end def connection @connection ||= Bunny.new.tap(&amp;amp;:start) end end end # Start subscribe with channel name Subscriber.subscribe(&quot;kz.message&quot;) do |data| @logger.info(&quot;ขณะนี้มีการสร้างโพสชื่อ #{data['title']} โดย #{data['author']} เมื่อเวลา #{data['created_at']}&quot;) end puts(&quot;Type exit to quit&quot;) loop do cmd = gets.chomp exit(0) if (cmd == 'exit') end Referecnes RabbitMQ Bunny</summary></entry><entry><title type="html">Favorite Of the Day #1</title><link href="https://karn18.github.io/fod/2020/06/10/favorite-of-the-day-1.html" rel="alternate" type="text/html" title="Favorite Of the Day #1" /><published>2020-06-10T14:35:00+07:00</published><updated>2020-06-10T14:35:00+07:00</updated><id>https://karn18.github.io/fod/2020/06/10/favorite-of-the-day-1</id><content type="html" xml:base="https://karn18.github.io/fod/2020/06/10/favorite-of-the-day-1.html"># พฤติกรรม 3 อย่าง
 
-&lt;ol&gt;
-  &lt;li&gt;Care like a parent
-    &lt;ul&gt;
-      &lt;li&gt;เราจะต้องใส่ใจเหมือนพ่อแม่ดูแลลูก ยกตัวอย่างเช่น โลกของลูกในแต่ละช่วงอายุเป็นอย่างไร เราจะต้องรู้ให้ได้ว่าเค้าสนใจอะไร&lt;/li&gt;
-      &lt;li&gt;ในยุคที่เทคโนโลยีสามารถเข้าถึงได้ง่าย ไม่มีทางที่เราจะหาทางรู้ไม่ได้
-&lt;!--more--&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Curious like a child
-    &lt;ul&gt;
-      &lt;li&gt;เรียนรู้อยู่ตลอดเวลา สงสัยใคร่รู้เหมือนเด็ก&lt;/li&gt;
-      &lt;li&gt;ต้องรู้จัก &lt;strong&gt;Unlearn&lt;/strong&gt; และ &lt;strong&gt;Relearn&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;หนักแน่นในหลักการ พริ้วไหวในบริบท&lt;/strong&gt;
-        &lt;ul&gt;
-          &lt;li&gt;ดูที่จังหวะ และเวลา&lt;/li&gt;
-          &lt;li&gt;situational awarness&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Courage like a startup
-    &lt;ul&gt;
-      &lt;li&gt;กล้าที่จะลงมือทำอะไรใหม่&lt;/li&gt;
-      &lt;li&gt;Fail fast, fail forward&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+พฤติกรรมที่น่าจะนำไปใช้ในการดูแลบริษัท ทีมหรือ startup
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://open.spotify.com/episode/5iqtOiKEM5yKxeXNt5FhAi?si=bgnlniLORg2zRrZW9JRLrQ&quot;&gt;BW02-บอร์ดยุคโควิด19 เปลี่ยนไปอย่างไร ทำงานร่วมกับซีอีโอแบบไหน&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 
-&lt;hr /&gt;
+1. Care like a parent
+- เราจะต้องใส่ใจเหมือนพ่อแม่ดูแลลูก ยกตัวอย่างเช่น โลกของลูกในแต่ละช่วงอายุเป็นอย่างไร เราจะต้องรู้ให้ได้ว่าเค้าสนใจอะไร
+- ในยุคที่เทคโนโลยีสามารถเข้าถึงได้ง่าย ไม่มีทางที่เราจะหาทางรู้ไม่ได้
+&lt;!--more--&gt;
 
-&lt;h1 id=&quot;fomo-vs-jomo&quot;&gt;FOMO vs JOMO&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;FOMO&lt;/strong&gt; ย่อมาจากคำว่า &lt;strong&gt;Fear Of Missing Out&lt;/strong&gt; หรือความรู้สึกกลัวจะตกข่าวหรือตกกระแส จะต้องรับรู้ข่าวสารใหม่ๆ ก่อนคนอื่น ทำให้คนกลุ่มนี้ฝังตัวติดอยู่ในโลก &lt;strong&gt;social&lt;/strong&gt; คอยเฝ้าดูว่ามีข่าวสารอะไรเกินขึ้นเดี๋ยวนั้นบ้าง เฝ้ารอเสียงตึ๊งๆ ของ &lt;strong&gt;notification&lt;/strong&gt; ไม่ว่าจะเป็น &lt;strong&gt;Chat&lt;/strong&gt; &lt;strong&gt;Facebook&lt;/strong&gt; หรือ &lt;strong&gt;Twitter&lt;/strong&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;JOMO&lt;/strong&gt; ย่อมาจากคำว่า &lt;strong&gt;Joy of Missing Out&lt;/strong&gt; หรือความสุขในการปล่อยวางการรับรู้ข่าวสาร แต่ไม่ใช่ว่าเราจะไม่รับรู้ข่าวสารเลย เพียงแต่มีการจัดระเบียบเวลาในการรับรู้ข่าวสารที่เหมาะสม และเลือกรับข่าวสารที่สำคัญ&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+2. Curious like a child
+- เรียนรู้อยู่ตลอดเวลา สงสัยใคร่รู้เหมือนเด็ก
+- ต้องรู้จัก **Unlearn** และ **Relearn**
+- **หนักแน่นในหลักการ พริ้วไหวในบริบท**
+  - ดูที่จังหวะ และเวลา
+  - situational awarness
 
-&lt;blockquote&gt;
-  &lt;p&gt;ทั้งนี้ในการทำงาน เราควรจะเป็นคนประเภท &lt;strong&gt;JOMO&lt;/strong&gt; โดยการพยายามหลีกเลี่ยงการใช้งาน &lt;strong&gt;social&lt;/strong&gt; หรือเปิดดู &lt;strong&gt;email&lt;/strong&gt; ตลอดเวลา เพื่อให้เรา &lt;strong&gt;focus&lt;/strong&gt; กับงานที่เราทำอยู่&lt;/p&gt;
-&lt;/blockquote&gt;
+3. Courage like a startup
+- กล้าที่จะลงมือทำอะไรใหม่
+- Fail fast, fail forward
 
-&lt;h2 id=&quot;references-1&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://basecamp.com/books/calm&quot;&gt;It doesn’t have to be crazy at work&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="fod" /><category term="podcast" /><category term="book" /><summary type="html">พฤติกรรม 3 อย่าง พฤติกรรมที่น่าจะนำไปใช้ในการดูแลบริษัท ทีมหรือ startup Care like a parent เราจะต้องใส่ใจเหมือนพ่อแม่ดูแลลูก ยกตัวอย่างเช่น โลกของลูกในแต่ละช่วงอายุเป็นอย่างไร เราจะต้องรู้ให้ได้ว่าเค้าสนใจอะไร ในยุคที่เทคโนโลยีสามารถเข้าถึงได้ง่าย ไม่มีทางที่เราจะหาทางรู้ไม่ได้</summary></entry><entry><title type="html">เปลี่ยน id ให้เป็น hash id บน URL</title><link href="https://karn18.github.io/dev/2020/06/09/%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99-id-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99-hash-id-%E0%B8%9A%E0%B8%99-url.html" rel="alternate" type="text/html" title="เปลี่ยน id ให้เป็น hash id บน URL" /><published>2020-06-09T23:04:00+07:00</published><updated>2020-06-09T23:04:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/09/%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99-id-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99-hash-id-%E0%B8%9A%E0%B8%99-url</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/09/%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99-id-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99-hash-id-%E0%B8%9A%E0%B8%99-url.html">&lt;p&gt;ปกติเมื่อเราใช้ &lt;strong&gt;rails generator&lt;/strong&gt; ในการสร้าง &lt;strong&gt;CRUD&lt;/strong&gt; ไม่ว่าจะเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scaffold&lt;/code&gt; หรือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scaffold_controller&lt;/code&gt; จะพบว่า &lt;strong&gt;resources&lt;/strong&gt; ที่ได้จะมีลักษณะคล้ายกับรูปด้านล่าง&lt;/p&gt;
+## References
+- [BW02-บอร์ดยุคโควิด19 เปลี่ยนไปอย่างไร ทำงานร่วมกับซีอีโอแบบไหน](https://open.spotify.com/episode/5iqtOiKEM5yKxeXNt5FhAi?si=bgnlniLORg2zRrZW9JRLrQ)
+
+---
+
+# FOMO vs JOMO
+- **FOMO** ย่อมาจากคำว่า **Fear Of Missing Out** หรือความรู้สึกกลัวจะตกข่าวหรือตกกระแส จะต้องรับรู้ข่าวสารใหม่ๆ ก่อนคนอื่น ทำให้คนกลุ่มนี้ฝังตัวติดอยู่ในโลก **social** คอยเฝ้าดูว่ามีข่าวสารอะไรเกินขึ้นเดี๋ยวนั้นบ้าง เฝ้ารอเสียงตึ๊งๆ ของ **notification** ไม่ว่าจะเป็น **Chat** **Facebook** หรือ **Twitter**
+
+- **JOMO** ย่อมาจากคำว่า **Joy of Missing Out** หรือความสุขในการปล่อยวางการรับรู้ข่าวสาร แต่ไม่ใช่ว่าเราจะไม่รับรู้ข่าวสารเลย เพียงแต่มีการจัดระเบียบเวลาในการรับรู้ข่าวสารที่เหมาะสม และเลือกรับข่าวสารที่สำคัญ
+
+&gt; ทั้งนี้ในการทำงาน เราควรจะเป็นคนประเภท **JOMO** โดยการพยายามหลีกเลี่ยงการใช้งาน **social** หรือเปิดดู **email** ตลอดเวลา เพื่อให้เรา **focus** กับงานที่เราทำอยู่
+
+## References
+- [It doesn't have to be crazy at work](https://basecamp.com/books/calm)</content><author><name>Karn</name></author><category term="fod" /><category term="podcast" /><category term="book" /><summary type="html">พฤติกรรม 3 อย่าง พฤติกรรมที่น่าจะนำไปใช้ในการดูแลบริษัท ทีมหรือ startup Care like a parent เราจะต้องใส่ใจเหมือนพ่อแม่ดูแลลูก ยกตัวอย่างเช่น โลกของลูกในแต่ละช่วงอายุเป็นอย่างไร เราจะต้องรู้ให้ได้ว่าเค้าสนใจอะไร ในยุคที่เทคโนโลยีสามารถเข้าถึงได้ง่าย ไม่มีทางที่เราจะหาทางรู้ไม่ได้</summary></entry><entry><title type="html">เปลี่ยน id ให้เป็น hash id บน URL</title><link href="https://karn18.github.io/dev/2020/06/09/%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99-id-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99-hash-id-%E0%B8%9A%E0%B8%99-url.html" rel="alternate" type="text/html" title="เปลี่ยน id ให้เป็น hash id บน URL" /><published>2020-06-09T23:04:00+07:00</published><updated>2020-06-09T23:04:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/09/%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99-id-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99-hash-id-%E0%B8%9A%E0%B8%99-url</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/09/%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99-id-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99-hash-id-%E0%B8%9A%E0%B8%99-url.html">ปกติเมื่อเราใช้ **rails generator** ในการสร้าง **CRUD** ไม่ว่าจะเป็น `scaffold` หรือ `scaffold_controller` จะพบว่า **resources** ที่ได้จะมีลักษณะคล้ายกับรูปด้านล่าง
 
 &lt;!--more--&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/เปลี่ยน-id-ให้เป็น-hash-id-บน-url/book_resources.jpg&quot; alt=&quot;Book Resources&quot; width=&quot;420px&quot; /&gt;
-&lt;em&gt;Book Resources&lt;/em&gt;&lt;/p&gt;
+![Book Resources](/assets/images/posts/2020/เปลี่ยน-id-ให้เป็น-hash-id-บน-url/book_resources.jpg){:width=&quot;420px&quot;}
+*Book Resources*
 
-&lt;p&gt;กล่าวคือเวลาเข้าถึงหนังสือเล่มหนึ่งจะต้องเรียกผ่าน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/books/1&lt;/code&gt; โดยที่เลข &lt;strong&gt;id&lt;/strong&gt; ที่ถูกสร้างขึ้นก็จะเรียงกันไปเรื่อยๆ แบบนี้มันก็ง่ายในการสุ่มเข้าถึงหนังสือเล่มอื่นๆ วิธีการเช่นนี้อาจจะไม่เหมาะนักสำหรับนำไปใช้งานจริง ทีนี้เรามาลองเปลี่ยน &lt;strong&gt;id&lt;/strong&gt; ให้เป็น &lt;strong&gt;hash id&lt;/strong&gt; กันเพื่อให้การเข้าถึงข้อมูลปลอดภัยมากขึ้น&lt;/p&gt;
+กล่าวคือเวลาเข้าถึงหนังสือเล่มหนึ่งจะต้องเรียกผ่าน `/books/1` โดยที่เลข **id** ที่ถูกสร้างขึ้นก็จะเรียงกันไปเรื่อยๆ แบบนี้มันก็ง่ายในการสุ่มเข้าถึงหนังสือเล่มอื่นๆ วิธีการเช่นนี้อาจจะไม่เหมาะนักสำหรับนำไปใช้งานจริง ทีนี้เรามาลองเปลี่ยน **id** ให้เป็น **hash id** กันเพื่อให้การเข้าถึงข้อมูลปลอดภัยมากขึ้น
 
-&lt;p&gt;ก่อนอื่นเริ่มโดยการติดตั้ง &lt;strong&gt;hashids&lt;/strong&gt; ซึ่งเป็น &lt;strong&gt;gem&lt;/strong&gt; สำหรับสร้าง &lt;strong&gt;hash&lt;/strong&gt; จากตัวเลข&lt;/p&gt;
+ก่อนอื่นเริ่มโดยการติดตั้ง **hashids** ซึ่งเป็น **gem** สำหรับสร้าง **hash** จากตัวเลข
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hashids'&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+gem 'hashids'
+```
 
-&lt;p&gt;สร้าง &lt;strong&gt;Secret Class&lt;/strong&gt; สำหรับจัดการแทนการเรียก &lt;strong&gt;hashids&lt;/strong&gt; ตรงๆ&lt;/p&gt;
+สร้าง **Secret Class** สำหรับจัดการแทนการเรียก **hashids** ตรงๆ
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hashids'&lt;/span&gt;
+```ruby
+require 'hashids'
 
-&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Hashable&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;ClassMethods&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hashids&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@hashids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Hashids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;secret-book&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+module Hashable
+  module ClassMethods
+    def hashids
+      @hashids ||= Hashids.new &quot;secret-book&quot;, 8
+    end
 
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;hashids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    def encode(id)
+      hashids.encode(id)
+    end
 
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;hashids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    def decode(text)
+      hashids.decode(text).first
+    end
+  end
 
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;included&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ClassMethods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  def self.included(base)
+    base.extend(ClassMethods)
+  end
+end
 
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Secret&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Hashable&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+class Secret
+  include Hashable
+end
+```
 
-&lt;p&gt;ทำการ &lt;strong&gt;override&lt;/strong&gt; เมธอด &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;to_param&lt;/code&gt; เพื่อให้ส่งค่า &lt;strong&gt;hash id&lt;/strong&gt; แทน &lt;strong&gt;id&lt;/strong&gt; เมื่อมีการเรียกใช้งานเมธอด &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;url_for&lt;/code&gt;&lt;/p&gt;
+ทำการ **override** เมธอด `to_param` เพื่อให้ส่งค่า **hash id** แทน **id** เมื่อมีการเรียกใช้งานเมธอด `url_for`
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'secret'&lt;/span&gt;
+```ruby
+require 'secret'
 
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Book&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;to_param&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;Secret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+class Book &lt; ApplicationRecord
+  def to_param
+    Secret.encode(id)
+  end
+end
+```
 
-&lt;p&gt;ถอดรหัส &lt;strong&gt;hash id&lt;/strong&gt; ให้กลายเป็น &lt;strong&gt;id&lt;/strong&gt; ก่อนที่จะเรียก query ผ่าน ORM&lt;/p&gt;
+ถอดรหัส **hash id** ให้กลายเป็น **id** ก่อนที่จะเรียก query ผ่าน ORM
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;set_book&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@book&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Book&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Secret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+def set_book
+  @book = Book.find(Secret.decode(params[:id]))
+end
+```
 
-&lt;blockquote&gt;
-  &lt;p&gt;จะสังเกตุเห็นว่า ไม่ได้มีการแก้ไข resources ของ Book เลยแม้แต่น้อย&lt;/p&gt;
-&lt;/blockquote&gt;
+&gt; จะสังเกตุเห็นว่า ไม่ได้มีการแก้ไข resources ของ Book เลยแม้แต่น้อย
 
-&lt;p&gt;ทดสอบการทำงานดูซะหน่อย&lt;/p&gt;
+ทดสอบการทำงานดูซะหน่อย
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/เปลี่ยน-id-ให้เป็น-hash-id-บน-url/book.png&quot; alt=&quot;Book&quot; /&gt;
-&lt;em&gt;ใช้ hash id แทน id&lt;/em&gt;&lt;/p&gt;
+![Book](/assets/images/posts/2020/เปลี่ยน-id-ให้เป็น-hash-id-บน-url/book.png)
+*ใช้ hash id แทน id*
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://hashids.org/&quot;&gt;hashids&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://devdocs.io/rails~6.0/activemodel/conversion#method-i-to_param&quot;&gt;to_param&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="ruby" /><category term="hashids" /><summary type="html">ปกติเมื่อเราใช้ rails generator ในการสร้าง CRUD ไม่ว่าจะเป็น scaffold หรือ scaffold_controller จะพบว่า resources ที่ได้จะมีลักษณะคล้ายกับรูปด้านล่าง</summary></entry><entry><title type="html">ลองพัฒนา markdown preview</title><link href="https://karn18.github.io/dev/2020/06/03/create-markdown-preview.html" rel="alternate" type="text/html" title="ลองพัฒนา markdown preview" /><published>2020-06-03T22:30:00+07:00</published><updated>2020-06-03T22:30:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/03/create-markdown-preview</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/03/create-markdown-preview.html">&lt;p&gt;ลองมาเพิ่มฟีเจอร์ &lt;strong&gt;Markdown Preview&lt;/strong&gt; ให้กับโปรแกรม &lt;strong&gt;Splendid Team&lt;/strong&gt; ดู โดยใช้ &lt;strong&gt;Stimulus&lt;/strong&gt; เป็นต้วจัดการเหตุการณ์ และ UI
-&lt;!--more--&gt;&lt;/p&gt;
+## References
+- [hashids](https://hashids.org/)
+- [to_param](https://devdocs.io/rails~6.0/activemodel/conversion#method-i-to_param)</content><author><name>Karn</name></author><category term="rails" /><category term="ruby" /><category term="hashids" /><summary type="html">ปกติเมื่อเราใช้ rails generator ในการสร้าง CRUD ไม่ว่าจะเป็น scaffold หรือ scaffold_controller จะพบว่า resources ที่ได้จะมีลักษณะคล้ายกับรูปด้านล่าง</summary></entry><entry><title type="html">ลองพัฒนา markdown preview</title><link href="https://karn18.github.io/dev/2020/06/03/create-markdown-preview.html" rel="alternate" type="text/html" title="ลองพัฒนา markdown preview" /><published>2020-06-03T22:30:00+07:00</published><updated>2020-06-03T22:30:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/03/create-markdown-preview</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/03/create-markdown-preview.html">ลองมาเพิ่มฟีเจอร์ **Markdown Preview** ให้กับโปรแกรม **Splendid Team** ดู โดยใช้ **Stimulus** เป็นต้วจัดการเหตุการณ์ และ UI
+&lt;!--more--&gt;
 
-&lt;h2 id=&quot;การทำงานของฟีเจอร์&quot;&gt;การทำงานของฟีเจอร์&lt;/h2&gt;
+## การทำงานของฟีเจอร์
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/create-markdown-preview/flow.jpg&quot; alt=&quot;การไหล&quot; /&gt;&lt;/p&gt;</content><author><name>Karn</name></author><category term="markdown" /><category term="rails" /><category term="ruby" /><category term="stimulus" /><summary type="html">ลองมาเพิ่มฟีเจอร์ Markdown Preview ให้กับโปรแกรม Splendid Team ดู โดยใช้ Stimulus เป็นต้วจัดการเหตุการณ์ และ UI</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/create-markdown-preview/thumbnail.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/create-markdown-preview/thumbnail.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ruby 2.7</title><link href="https://karn18.github.io/dev/2020/01/03/ruby27.html" rel="alternate" type="text/html" title="Ruby 2.7" /><published>2020-01-03T14:39:00+07:00</published><updated>2020-01-03T14:39:00+07:00</updated><id>https://karn18.github.io/dev/2020/01/03/ruby27</id><content type="html" xml:base="https://karn18.github.io/dev/2020/01/03/ruby27.html">&lt;p&gt;นอกจากวันคริสต์มาสจะเป็นวันประสูติของพระเยชูแล้ว เราเหล่า Rubyist ก็ให้ความสำคัญกับวันคริสต์มาสเช่นเดียวกัน เนื่องจากเป็นวันที่มีการปล่อย &lt;strong&gt;Ruby&lt;/strong&gt; เวอร์ชันใหม่ออกมานั้นเอง สำหรับวันคริสต์มาสที่ผ่านมา (25/12/2562) ก็ได้มีการประกาศปล่อย &lt;strong&gt;Ruby&lt;/strong&gt; เวอร์ชัน 2.7 ออกมาอย่างเป็นทางการ ซึ่งน่าเป็นเวอร์ชัน 2 ตัวสุดท้ายก่อนที่จะกลายเป็นเวอร์ชัน 3 ที่ทางทีมพัฒนาได้วางแผนที่จะปล่อยออกมาในวันคริสต์มาสในปีนี้ (แต่ก็แอบเห็นมีเวอร์ชัน 2.8-DEV ในรายการติดตั้งของ &lt;strong&gt;rbenv&lt;/strong&gt;) เกริ่นกันมาพอสมควรแหละ มาดูกันว่าเวอร์ชัน 2.7 นี้มีฟีเจอร์อะไรใหม่ ปรับปรุงแก้ไขอะไรบ้าง&lt;/p&gt;
+![การไหล](/assets/images/posts/2020/create-markdown-preview/flow.jpg)</content><author><name>Karn</name></author><category term="markdown" /><category term="rails" /><category term="ruby" /><category term="stimulus" /><summary type="html">ลองมาเพิ่มฟีเจอร์ Markdown Preview ให้กับโปรแกรม Splendid Team ดู โดยใช้ Stimulus เป็นต้วจัดการเหตุการณ์ และ UI</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/create-markdown-preview/thumbnail.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/create-markdown-preview/thumbnail.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ruby 2.7</title><link href="https://karn18.github.io/dev/2020/01/03/ruby27.html" rel="alternate" type="text/html" title="Ruby 2.7" /><published>2020-01-03T14:39:00+07:00</published><updated>2020-01-03T14:39:00+07:00</updated><id>https://karn18.github.io/dev/2020/01/03/ruby27</id><content type="html" xml:base="https://karn18.github.io/dev/2020/01/03/ruby27.html">นอกจากวันคริสต์มาสจะเป็นวันประสูติของพระเยชูแล้ว เราเหล่า Rubyist ก็ให้ความสำคัญกับวันคริสต์มาสเช่นเดียวกัน เนื่องจากเป็นวันที่มีการปล่อย **Ruby** เวอร์ชันใหม่ออกมานั้นเอง สำหรับวันคริสต์มาสที่ผ่านมา (25/12/2562) ก็ได้มีการประกาศปล่อย **Ruby** เวอร์ชัน 2.7 ออกมาอย่างเป็นทางการ ซึ่งน่าเป็นเวอร์ชัน 2 ตัวสุดท้ายก่อนที่จะกลายเป็นเวอร์ชัน 3 ที่ทางทีมพัฒนาได้วางแผนที่จะปล่อยออกมาในวันคริสต์มาสในปีนี้ (แต่ก็แอบเห็นมีเวอร์ชัน 2.8-DEV ในรายการติดตั้งของ **rbenv**) เกริ่นกันมาพอสมควรแหละ มาดูกันว่าเวอร์ชัน 2.7 นี้มีฟีเจอร์อะไรใหม่ ปรับปรุงแก้ไขอะไรบ้าง
 
 &lt;!--more--&gt;
 
-&lt;h2 id=&quot;ฟีเจอร์ใหม่ใน-ruby-27&quot;&gt;ฟีเจอร์ใหม่ใน &lt;strong&gt;Ruby 2.7&lt;/strong&gt;&lt;/h2&gt;
-&lt;h3 id=&quot;pattern-matching-experimental&quot;&gt;Pattern Matching (Experimental)&lt;/h3&gt;
-&lt;p&gt;Pattern Matching เป็นฟีเจอร์ที่ใช้ตรวจสอบจับคู่เพื่อเปรียบเทียบข้อมูล ในเวอร์ชันนี้เราสามารถนำมาใช้งานในชุดคำสั่งแบบ  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case&lt;/code&gt; ซึ่งโดยปกติเราจะใช้ชุดคำสั่ง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case/when&lt;/code&gt; แต่ในกรณีที่จะใช้งานร่วมกับ Pattern Matching เราจะใช้ชุดคำสั่ง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case/in&lt;/code&gt; แทน นอกจากนี้ยังรับการใช้งานร่วมกับ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; หรือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unless&lt;/code&gt; ด้วยดังแสดงในรูปแบบด้านล่าง&lt;/p&gt;
+## ฟีเจอร์ใหม่ใน **Ruby 2.7**
+### Pattern Matching (Experimental)
+Pattern Matching เป็นฟีเจอร์ที่ใช้ตรวจสอบจับคู่เพื่อเปรียบเทียบข้อมูล ในเวอร์ชันนี้เราสามารถนำมาใช้งานในชุดคำสั่งแบบ  `case` ซึ่งโดยปกติเราจะใช้ชุดคำสั่ง `case/when` แต่ในกรณีที่จะใช้งานร่วมกับ Pattern Matching เราจะใช้ชุดคำสั่ง `case/in` แทน นอกจากนี้ยังรับการใช้งานร่วมกับ `if` หรือ `unless` ด้วยดังแสดงในรูปแบบด้านล่าง
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+case [variable or expression]
+in [pattern] [if|unless condition]
+  ...
+in [pattern] [if|unless condition]
+  ...
+else
+  ...
+end
+```
 
-&lt;ul&gt;
-  &lt;li&gt;ตัวอย่างการใช้งานกับชุดข้อมูล Array&lt;/li&gt;
-&lt;/ul&gt;
+- ตัวอย่างการใช้งานกับชุดข้อมูล Array
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# Simple array&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'John'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Doe'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;27&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lastname&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+```ruby
+# Simple array
+data = ['John', 'Doe', 27]
+case data
+in [name, lastname, age]
+  puts &quot;#{name} #{lastname} #{age}&quot;
+end
 
-&lt;span class=&quot;c1&quot;&gt;# Complex array&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;language&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'python'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;language&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ruby'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Get ruby 2.7.x&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'python'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Get python 3.0.x&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Unknown language&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+# Complex array
+language = ['python', [3, 0, 1]]
+case language
+in ['ruby', [2, 7, *]]
+  puts &quot;Get ruby 2.7.x&quot;
+in ['python', [3, 0, *]]
+  puts &quot;Get python 3.0.x&quot;
+else
+  puts &quot;Unknown language&quot;
+end
+```
 
-&lt;ul&gt;
-  &lt;li&gt;ตัวอย่างการใช้งานกับชุดข้อมูล Hash&lt;/li&gt;
-&lt;/ul&gt;
+- ตัวอย่างการใช้งานกับชุดข้อมูล Hash
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# Hash&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;username: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'bob123'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;nickname: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'bob'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;language: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'th'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;username: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'bob123'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;nickname: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nickname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;language: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;language&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bob123 (&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nickname&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;) uses &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; language&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+# Hash
+user = { username: 'bob123', nickname: 'bob', language: 'th' }
+case user
+in { username: 'bob123', nickname: nickname, language: language }
+  puts &quot;bob123 (#{nickname}) uses #{language} language&quot;
+end
+```
 
-&lt;ul&gt;
-  &lt;li&gt;ตัวอย่างการใช้งานกับชุดข้อมูล JSON&lt;/li&gt;
-&lt;/ul&gt;
+- ตัวอย่างการใช้งานกับชุดข้อมูล JSON
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# JSON&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;ss&quot;&gt;username: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'karn18'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;ss&quot;&gt;profile: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;firstName: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Karn'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;lastName: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tirasoontorn'&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-  &lt;span class=&quot;ss&quot;&gt;age: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;35&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+```ruby
+# JSON
+person = {
+  username: 'karn18',
+  profile: {
+    firstName: 'Karn',
+    lastName: 'Tirasoontorn'
+  },
+  age: 35
+}
 
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'json'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;symbolize_names: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;username: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;karn18&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;profile: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;firstName: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first_name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Username: karn18, First Name: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+require 'json'
+case JSON.parse(person.to_json, symbolize_names: true)
+in { username: &quot;karn18&quot;, profile: { firstName: first_name } }
+  puts &quot;Username: karn18, First Name: #{first_name}&quot;
+end
+```
 
-&lt;p&gt;สำหรับการใช้งาน Pattern Matching นั้นมีความหลากหลาย ดังนั้นสามารถศึกษาเพิ่มเติมได้ที่ &lt;a href=&quot;https://www.toptal.com/ruby/ruby-pattern-matching-tutorial&quot;&gt;https://www.toptal.com/ruby/ruby-pattern-matching-tutorial&lt;/a&gt;&lt;/p&gt;
+สำหรับการใช้งาน Pattern Matching นั้นมีความหลากหลาย ดังนั้นสามารถศึกษาเพิ่มเติมได้ที่ [https://www.toptal.com/ruby/ruby-pattern-matching-tutorial](https://www.toptal.com/ruby/ruby-pattern-matching-tutorial)
 
-&lt;blockquote&gt;
-  &lt;p&gt;อย่างไรก็ตาม &lt;strong&gt;Matz&lt;/strong&gt; ได้บอกว่าการใช้งาน Pattern Matching ใน &lt;strong&gt;Ruby&lt;/strong&gt; นั้นค่อนข้างช้า ดังนั้นควรใช้อย่างระมัดระวังเพื่อประสิทธิภาพความรวดเร็วของโปรแกรม&lt;/p&gt;
-&lt;/blockquote&gt;
+&gt; อย่างไรก็ตาม **Matz** ได้บอกว่าการใช้งาน Pattern Matching ใน **Ruby** นั้นค่อนข้างช้า ดังนั้นควรใช้อย่างระมัดระวังเพื่อประสิทธิภาพความรวดเร็วของโปรแกรม
 
-&lt;h3 id=&quot;numbered-parameters-experimental&quot;&gt;Numbered Parameters (Experimental)&lt;/h3&gt;
-&lt;p&gt;พารามิเตอร์ตัวเลขถูกนำมาใช้เป็นค่ามาตรฐานสำหรับพารามิเตอร์ในบล๊อค ทำให้เราสามารถละการใช้งาน |value| ได้&lt;/p&gt;
+### Numbered Parameters (Experimental)
+พารามิเตอร์ตัวเลขถูกนำมาใช้เป็นค่ามาตรฐานสำหรับพารามิเตอร์ในบล๊อค ทำให้เราสามารถละการใช้งาน |value| ได้
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# Array&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+```ruby
+# Array
+[1, 2, 10].map { puts _1 } =&gt; 1, 2, 10
 
-&lt;span class=&quot;c1&quot;&gt;# Hash&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ruby 101'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;price: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_1&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; - &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_2&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;101&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+# Hash
+{ id: 1, name: 'ruby 101', price: 30 }.map { puts &quot;#{_1} - #{_2}&quot; } =&gt; id - 1, name - ruby 101, price - 30
+```
 
-&lt;h3 id=&quot;separation-of-positional-and-keyword-arguments&quot;&gt;Separation of positional and keyword arguments&lt;/h3&gt;
-&lt;p&gt;ปกติการส่งพารามิเตอร์ที่มีการจัดลำดับตำแหน่ง และแบบคีย์เวิร์ดร่วมกันนั้น &lt;strong&gt;Ruby&lt;/strong&gt; จะทำการตรวจสอบและจัดการให้อัตโนมัติ แต่สำหรับในเวอร์ชัน 3 การส่งพารามิเตอร์เข้าไปในฟังก์ชันจะต้องระบุให้ชัดเจนว่าเป็นการส่งพารามิเตอร์แบบใดเข้าไป ซึ่งในเวอร์ชัน 2.7 นี้จะเพียงแค่แสดงคำเตือนขึ้นมาเมื่อเราไม่ได้มีการระบุรูปแบบที่ถูกต้องเท่านั้น ที่นี้เรามาดูมันแตกต่างจากเดิมอย่างไร&lt;/p&gt;
+### Separation of positional and keyword arguments
+ปกติการส่งพารามิเตอร์ที่มีการจัดลำดับตำแหน่ง และแบบคีย์เวิร์ดร่วมกันนั้น **Ruby** จะทำการตรวจสอบและจัดการให้อัตโนมัติ แต่สำหรับในเวอร์ชัน 3 การส่งพารามิเตอร์เข้าไปในฟังก์ชันจะต้องระบุให้ชัดเจนว่าเป็นการส่งพารามิเตอร์แบบใดเข้าไป ซึ่งในเวอร์ชัน 2.7 นี้จะเพียงแค่แสดงคำเตือนขึ้นมาเมื่อเราไม่ได้มีการระบุรูปแบบที่ถูกต้องเท่านั้น ที่นี้เรามาดูมันแตกต่างจากเดิมอย่างไร
 
-&lt;ul&gt;
-  &lt;li&gt;เมื่อฟังก์ชันนิยามให้รับคีย์เวิร์ดเป็นพารามิเตอร์ตัวสุดท้าย แต่ฟังก์ชันถูกเรียกใช้งานโดยการส่ง Hash เข้าไปจะต้องทำการใส่ ** นำหน้า { } ไว้ด้วย ทั้งนี้โดยเวอร์ชันก่อนหน้า &lt;strong&gt;Ruby&lt;/strong&gt; จะทำการแปลงข้อมูลที่อยู่ใน Hash ให้อยู่ในรูปคีย์เวิร์ดให้อัตโนมัติ&lt;/li&gt;
-&lt;/ul&gt;
+- เมื่อฟังก์ชันนิยามให้รับคีย์เวิร์ดเป็นพารามิเตอร์ตัวสุดท้าย แต่ฟังก์ชันถูกเรียกใช้งานโดยการส่ง Hash เข้าไปจะต้องทำการใส่ ** นำหน้า { } ไว้ด้วย ทั้งนี้โดยเวอร์ชันก่อนหน้า **Ruby** จะทำการแปลงข้อมูลที่อยู่ใน Hash ให้อยู่ในรูปคีย์เวิร์ดให้อัตโนมัติ
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# warned&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# warned&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# OK&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# OK&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+def foo(key: 42); end; foo({key: 42})   # warned
+def foo(**kw);    end; foo({key: 42})   # warned
+def foo(key: 42); end; foo(**{key: 42}) # OK
+def foo(**kw);    end; foo(**{key: 42}) # OK
+```
 
-&lt;ul&gt;
-  &lt;li&gt;เมื่อฟังก์ชันนิยามให้รับพารามิเตอร์แบบลำดับ และคีย์เวิร์ดแบบไม่จำกัดจำนวน เมื่อมีการเรียกใช้ฟังก์ชันโดยไม่ได้ระบุพารามิเตอร์แบบลำดับ แต่ระบุพารามิเตอร์แบบคีย์เวิร์ดเท่านั้น ซึ่งปกติพารามิเตอร์แบบคียเวิร์ดจะถูกว่าเป็นพารามิเตอร์ตัวสุดท้าย เมื่อรันโปรแกรม &lt;strong&gt;Ruby&lt;/strong&gt; จะแสดงคำเตือนขึ้นมา ดังนั้นถ้าจะการเรียกใช้งานทำได้ถูกต้องจะต้องใส่ { } คลอบไว้ด้วย&lt;/li&gt;
-&lt;/ul&gt;
+- เมื่อฟังก์ชันนิยามให้รับพารามิเตอร์แบบลำดับ และคีย์เวิร์ดแบบไม่จำกัดจำนวน เมื่อมีการเรียกใช้ฟังก์ชันโดยไม่ได้ระบุพารามิเตอร์แบบลำดับ แต่ระบุพารามิเตอร์แบบคีย์เวิร์ดเท่านั้น ซึ่งปกติพารามิเตอร์แบบคียเวิร์ดจะถูกว่าเป็นพารามิเตอร์ตัวสุดท้าย เมื่อรันโปรแกรม **Ruby** จะแสดงคำเตือนขึ้นมา ดังนั้นถ้าจะการเรียกใช้งานทำได้ถูกต้องจะต้องใส่ { } คลอบไว้ด้วย
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;# warned&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# warned&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;# OK&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# OK&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+def foo(h, **kw); end; foo(key: 42)      # warned
+def foo(h, key: 42); end; foo(key: 42)   # warned
+def foo(h, **kw); end; foo({key: 42})    # OK
+def foo(h, key: 42); end; foo({key: 42}) # OK
+```
 
-&lt;ul&gt;
-  &lt;li&gt;เมื่อฟังก์ชันนิยามให้รับพารามิเตอร์ที่เป็น Hash และคีย์เวิร์ดร่วมกัน และมีการส่งพารามิเตอร์ที่เป็น Hash มีคีย์ที่เป็นทั้ง Symbol และไม่เป็น Symbol ถ้าไม่ได้ระบุประเภทที่ชัดเจน &lt;strong&gt;Ruby&lt;/strong&gt; จะแสดงคำเตือนขึ้นมา ดังนั้นเวลาใช้งานควรระบุประเภทให้ชัดเจนว่าเป็น Hash หรือคีย์เวิร์ด&lt;/li&gt;
-&lt;/ul&gt;
+- เมื่อฟังก์ชันนิยามให้รับพารามิเตอร์ที่เป็น Hash และคีย์เวิร์ดร่วมกัน และมีการส่งพารามิเตอร์ที่เป็น Hash มีคีย์ที่เป็นทั้ง Symbol และไม่เป็น Symbol ถ้าไม่ได้ระบุประเภทที่ชัดเจน **Ruby** จะแสดงคำเตือนขึ้นมา ดังนั้นเวลาใช้งานควรระบุประเภทให้ชัดเจนว่าเป็น Hash หรือคีย์เวิร์ด
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;key&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;43&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# warned&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;key&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;43&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# warned&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;key&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;43&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# OK&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+def foo(h={}, key: 42); end; foo(&quot;key&quot; =&gt; 43, key: 42)   # warned
+def foo(h={}, key: 42); end; foo({&quot;key&quot; =&gt; 43, key: 42}) # warned
+def foo(h={}, key: 42); end; foo({&quot;key&quot; =&gt; 43}, key: 42) # OK
+```
 
-&lt;ul&gt;
-  &lt;li&gt;เมื่อฟังก์ชันนิยามให้รับพารามิเตอร์ที่เป็น Hash เมื่อมีการเรียกใช้งานฟังก์ชันโดยส่งพารามิเตอร์แบบคีย์เวิร์ด &lt;strong&gt;Ruby&lt;/strong&gt; ยังคงทำงานได้ถูกต้องไม่แสดงคำเตือนขึ้นมา&lt;/li&gt;
-&lt;/ul&gt;
+- เมื่อฟังก์ชันนิยามให้รับพารามิเตอร์ที่เป็น Hash เมื่อมีการเรียกใช้งานฟังก์ชันโดยส่งพารามิเตอร์แบบคีย์เวิร์ด **Ruby** ยังคงทำงานได้ถูกต้องไม่แสดงคำเตือนขึ้นมา
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;opt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{});&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# OK&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+def foo(opt={});  end; foo( key: 42 )   # OK
+```
 
-&lt;ul&gt;
-  &lt;li&gt;ไม่อนุญาตให้ส่งพารามิเตอร์แบบคีย์เวิร์ดที่ไม่เป็น Symbol ในกรณีที่ฟังก์ชันนิยามพารามิเตอร์แบบคีย์เวิร์ดไม่จำกัดจำนวน&lt;/li&gt;
-&lt;/ul&gt;
+- ไม่อนุญาตให้ส่งพารามิเตอร์แบบคีย์เวิร์ดที่ไม่เป็น Symbol ในกรณีที่ฟังก์ชันนิยามพารามิเตอร์แบบคีย์เวิร์ดไม่จำกัดจำนวน
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;str&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; {&quot;str&quot;=&amp;gt;1}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+def foo(**kw); p kw; end; foo(&quot;str&quot; =&gt; 1) #=&gt; {&quot;str&quot;=&gt;1}
+```
 
-&lt;ul&gt;
-  &lt;li&gt;อนุญาตให้ประกาศ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;**nil&lt;/code&gt; ในฟังก์ชัน เพื่อระบุว่าฟังก์ชันไม่รับพารามิเตอร์แบบคีย์เวิร์ด ถ้าหากมีการเรียกฟังก์ชันโดยการส่งพารามิเตอร์เป็นแบบคีย์เวิร์ดเข้าไปจะแแสดง &lt;strong&gt;ArgumentError&lt;/strong&gt; ออกมา&lt;/li&gt;
-&lt;/ul&gt;
+- อนุญาตให้ประกาศ `**nil` ในฟังก์ชัน เพื่อระบุว่าฟังก์ชันไม่รับพารามิเตอร์แบบคีย์เวิร์ด ถ้าหากมีการเรียกฟังก์ชันโดยการส่งพารามิเตอร์เป็นแบบคีย์เวิร์ดเข้าไปจะแแสดง **ArgumentError** ออกมา
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;       &lt;span class=&quot;c1&quot;&gt;# ArgumentError&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# ArgumentError&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;str&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# ArgumentError&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# OK&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;str&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# OK&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+def foo(h, **nil); end; foo(key: 1)       # ArgumentError
+def foo(h, **nil); end; foo(**{key: 1})   # ArgumentError
+def foo(h, **nil); end; foo(&quot;str&quot; =&gt; 1)   # ArgumentError
+def foo(h, **nil); end; foo({key: 1})     # OK
+def foo(h, **nil); end; foo({&quot;str&quot; =&gt; 1}) # OK
+```
 
-&lt;h3 id=&quot;argument-forwarding&quot;&gt;Argument Forwarding&lt;/h3&gt;
-&lt;p&gt;เราสามารถส่งต่อพารามิเตอร์จากฟังก์ชันที่ถูกเรียกไปยังฟังก์ชันอื่นได้ด้วย  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;...&lt;/code&gt;&lt;/p&gt;
+### Argument Forwarding
+เราสามารถส่งต่อพารามิเตอร์จากฟังก์ชันที่ถูกเรียกไปยังฟังก์ชันอื่นได้ด้วย  `...`
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+def foo(...)
+  bar(...)
+end
+```
 
-&lt;h3 id=&quot;ฟังก์ชันใหม่ใน-array&quot;&gt;ฟังก์ชันใหม่ใน Array&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#intersection&lt;/code&gt; เป็นฟังก์ชันที่หาข้อมูลที่เหมือนกันระหว่าง Array 2 ตัว หรือจะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;amp;&lt;/code&gt; แทนได้เหมือนกัน&lt;/li&gt;
-&lt;/ul&gt;
+### ฟังก์ชันใหม่ใน Array
+- `#intersection` เป็นฟังก์ชันที่หาข้อมูลที่เหมือนกันระหว่าง Array 2 ตัว หรือจะใช้ `&amp;` แทนได้เหมือนกัน
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;intersection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+[1, 2, 3].intersection([2, 3, 4]) =&gt; [2, 3]
+[1, 2, 3] &amp; [2, 3, 4] =&gt; [2, 3]
+```
 
-&lt;h3 id=&quot;ฟังก์ชันใหม่ใน-enumerable&quot;&gt;ฟังก์ชันใหม่ใน Enumerable&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#tally&lt;/code&gt; ส่งคืนผลลัพท์เป็น Hash ของข้อมูลพร้อมจำนวน&lt;/li&gt;
-&lt;/ul&gt;
+### ฟังก์ชันใหม่ใน Enumerable
+- `#tally` ส่งคืนผลลัพท์เป็น Hash ของข้อมูลพร้อมจำนวน
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;sx&quot;&gt;%w(a a a b b c)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tally&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+%w(a a a b b c).tally =&gt; { &quot;a&quot;=&gt;3, &quot;b&quot;=&gt;2, &quot;c&quot;=&gt;1 }
+```
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#filter_map&lt;/code&gt; จากการที่ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#select&lt;/code&gt; และ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#map&lt;/code&gt; ถูกใช้งานบ่อยในการแปลงข้อมูลเป็น Array ขณะที่มีการกรองข้อมูลบางอย่างด้วย ดังนั้นจึงได้มีการเพิ่มฟังก์ชัน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filter_map&lt;/code&gt; ขึ้นมาเพื่อทำให้ใช้งานได้ง่ายขึ้น&lt;/li&gt;
-&lt;/ul&gt;
+- `#filter_map` จากการที่ `#select` และ `#map` ถูกใช้งานบ่อยในการแปลงข้อมูลเป็น Array ขณะที่มีการกรองข้อมูลบางอย่างด้วย ดังนั้นจึงได้มีการเพิ่มฟังก์ชัน `filter_map` ขึ้นมาเพื่อทำให้ใช้งานได้ง่ายขึ้น
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;filter_map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;odd?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [&quot;1&quot;, &quot;3&quot;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+[1, 2, 3].filter_map {|x| x.odd? ? x.to_s : nil } #=&gt; [&quot;1&quot;, &quot;3&quot;]
+```
 
-&lt;h3 id=&quot;ฟังก์ชันใหม่ใน-enumerator&quot;&gt;ฟังก์ชันใหม่ใน Enumerator&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;#produce
-เป็นฟังก์ชันสำหรับการสร้างลำดับที่ไม่สิ้นสุด โดยการส่งค่าล่าสุดที่ได้ไปในบล๊อคถัดไป&lt;/li&gt;
-&lt;/ul&gt;
+### ฟังก์ชันใหม่ใน Enumerator
+- #produce
+เป็นฟังก์ชันสำหรับการสร้างลำดับที่ไม่สิ้นสุด โดยการส่งค่าล่าสุดที่ได้ไปในบล๊อคถัดไป
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;Enumerator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;produce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+Enumerator.produce(1, &amp;:next).take(5)
+```
 
-&lt;p&gt;สำหรับฟีเจอร์ในเวอร์ชัน 2.7 นั้นยังมีอีก แต่ในบทความนี้จะขอสรุปไว้เพียงเท่านี้ หากต้องการศึกษาเพิ่มเติมสามารถค้นหาได้จากลิงค์ด้านล่าง&lt;/p&gt;
+สำหรับฟีเจอร์ในเวอร์ชัน 2.7 นั้นยังมีอีก แต่ในบทความนี้จะขอสรุปไว้เพียงเท่านี้ หากต้องการศึกษาเพิ่มเติมสามารถค้นหาได้จากลิงค์ด้านล่าง
 
-&lt;h2 id=&quot;references&quot;&gt;References:&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://rubyreferences.github.io/rubychanges/2.7.html&quot;&gt;https://rubyreferences.github.io/rubychanges/2.7.html&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://medium.com/rubyinside/whats-new-in-ruby-2-7-79c98b265502&quot;&gt;https://medium.com/rubyinside/whats-new-in-ruby-2-7-79c98b265502&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://medium.com/rubyinside/whats-new-in-ruby-2-7-79c98b265502&quot;&gt;https://www.ruby-lang.org/en/news/2019/12/25/ruby-2-7-0-released&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="ruby" /><summary type="html">นอกจากวันคริสต์มาสจะเป็นวันประสูติของพระเยชูแล้ว เราเหล่า Rubyist ก็ให้ความสำคัญกับวันคริสต์มาสเช่นเดียวกัน เนื่องจากเป็นวันที่มีการปล่อย Ruby เวอร์ชันใหม่ออกมานั้นเอง สำหรับวันคริสต์มาสที่ผ่านมา (25/12/2562) ก็ได้มีการประกาศปล่อย Ruby เวอร์ชัน 2.7 ออกมาอย่างเป็นทางการ ซึ่งน่าเป็นเวอร์ชัน 2 ตัวสุดท้ายก่อนที่จะกลายเป็นเวอร์ชัน 3 ที่ทางทีมพัฒนาได้วางแผนที่จะปล่อยออกมาในวันคริสต์มาสในปีนี้ (แต่ก็แอบเห็นมีเวอร์ชัน 2.8-DEV ในรายการติดตั้งของ rbenv) เกริ่นกันมาพอสมควรแหละ มาดูกันว่าเวอร์ชัน 2.7 นี้มีฟีเจอร์อะไรใหม่ ปรับปรุงแก้ไขอะไรบ้าง</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby27/thumbnail.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby27/thumbnail.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ปรับแต่งโค้ดไฮไลท์ใน Jekyll</title><link href="https://karn18.github.io/dev/2019/12/11/syntax-hightlight-in-jekyll.html" rel="alternate" type="text/html" title="ปรับแต่งโค้ดไฮไลท์ใน Jekyll" /><published>2019-12-11T12:06:00+07:00</published><updated>2019-12-11T12:06:00+07:00</updated><id>https://karn18.github.io/dev/2019/12/11/syntax-hightlight-in-jekyll</id><content type="html" xml:base="https://karn18.github.io/dev/2019/12/11/syntax-hightlight-in-jekyll.html">&lt;p&gt;สำหรับการเขียนบทความที่มีการใส่โค้ดลงไปด้วยนั้น ทำให้ผู้อ่านได้เห็นตัวอย่างเข้าใจเนื้อหาเกี่ยวกับการเขียนโปรแกรมได้ดียิ่งขึ้น หรือแม้กระทั่งเป็นตัวอย่างเพื่อนำไปพัฒนาต่อยอดได้ ซึ่ง &lt;strong&gt;Jekyll&lt;/strong&gt; ก็รองรับการแสดงผลโค้ดไฮไลท์เอาไว้ด้วย &lt;!--more--&gt;&lt;/p&gt;
+## References:
+- [https://rubyreferences.github.io/rubychanges/2.7.html](https://rubyreferences.github.io/rubychanges/2.7.html)
+- [https://medium.com/rubyinside/whats-new-in-ruby-2-7-79c98b265502](https://medium.com/rubyinside/whats-new-in-ruby-2-7-79c98b265502)
+- [https://www.ruby-lang.org/en/news/2019/12/25/ruby-2-7-0-released](https://medium.com/rubyinside/whats-new-in-ruby-2-7-79c98b265502)</content><author><name>Karn</name></author><category term="ruby" /><summary type="html">นอกจากวันคริสต์มาสจะเป็นวันประสูติของพระเยชูแล้ว เราเหล่า Rubyist ก็ให้ความสำคัญกับวันคริสต์มาสเช่นเดียวกัน เนื่องจากเป็นวันที่มีการปล่อย Ruby เวอร์ชันใหม่ออกมานั้นเอง สำหรับวันคริสต์มาสที่ผ่านมา (25/12/2562) ก็ได้มีการประกาศปล่อย Ruby เวอร์ชัน 2.7 ออกมาอย่างเป็นทางการ ซึ่งน่าเป็นเวอร์ชัน 2 ตัวสุดท้ายก่อนที่จะกลายเป็นเวอร์ชัน 3 ที่ทางทีมพัฒนาได้วางแผนที่จะปล่อยออกมาในวันคริสต์มาสในปีนี้ (แต่ก็แอบเห็นมีเวอร์ชัน 2.8-DEV ในรายการติดตั้งของ rbenv) เกริ่นกันมาพอสมควรแหละ มาดูกันว่าเวอร์ชัน 2.7 นี้มีฟีเจอร์อะไรใหม่ ปรับปรุงแก้ไขอะไรบ้าง</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby27/thumbnail.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby27/thumbnail.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ปรับแต่งโค้ดไฮไลท์ใน Jekyll</title><link href="https://karn18.github.io/dev/2019/12/11/syntax-hightlight-in-jekyll.html" rel="alternate" type="text/html" title="ปรับแต่งโค้ดไฮไลท์ใน Jekyll" /><published>2019-12-11T12:06:00+07:00</published><updated>2019-12-11T12:06:00+07:00</updated><id>https://karn18.github.io/dev/2019/12/11/syntax-hightlight-in-jekyll</id><content type="html" xml:base="https://karn18.github.io/dev/2019/12/11/syntax-hightlight-in-jekyll.html">สำหรับการเขียนบทความที่มีการใส่โค้ดลงไปด้วยนั้น ทำให้ผู้อ่านได้เห็นตัวอย่างเข้าใจเนื้อหาเกี่ยวกับการเขียนโปรแกรมได้ดียิ่งขึ้น หรือแม้กระทั่งเป็นตัวอย่างเพื่อนำไปพัฒนาต่อยอดได้ ซึ่ง **Jekyll** ก็รองรับการแสดงผลโค้ดไฮไลท์เอาไว้ด้วย &lt;!--more--&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://rouge.jneen.net&quot;&gt;Rough&lt;/a&gt;&lt;/strong&gt; คือไลบราลีในภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ที่ถูกนำมาใช้ใน &lt;strong&gt;Jekyll&lt;/strong&gt; ซึ่งรองรับภาษาโปรแกรมมากถึง 176 ภาษา โดยใน &lt;strong&gt;Rough&lt;/strong&gt; ถูกตั้งเป็นค่ามาตรฐานการใช้งานใน &lt;strong&gt;Jekyll&lt;/strong&gt; ตั้งแต่เวอร์ชัน 3 เป็นต่อมา&lt;/p&gt;
+**[Rough](http://rouge.jneen.net)** คือไลบราลีในภาษา **Ruby** ที่ถูกนำมาใช้ใน **Jekyll** ซึ่งรองรับภาษาโปรแกรมมากถึง 176 ภาษา โดยใน **Rough** ถูกตั้งเป็นค่ามาตรฐานการใช้งานใน **Jekyll** ตั้งแต่เวอร์ชัน 3 เป็นต่อมา
 
-&lt;h2 id=&quot;หลักการทำงาน&quot;&gt;หลักการทำงาน&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Rough&lt;/strong&gt; จะแปลงโค้ดที่อยู่ใน Markdown ออกมาเป็น HTML ต่างๆ ขึ้นอยู่กับ &lt;strong&gt;Token&lt;/strong&gt; หรือจะอธิายให้เข้าใจง่ายๆ ก็คือองค์ประกอบแต่ละส่วนของโค้ดที่แตกต่างๆ กันออกไป เช่น Keyword, Variable, Whitespace หรือ Error เป็นต้น ซึ่งสามารถดูรายการ Token ได้จาก &lt;a href=&quot;https://github.com/rouge-ruby/rouge/wiki/List-of-tokens&quot;&gt;ที่นี่&lt;/a&gt;&lt;/p&gt;
+## หลักการทำงาน
+**Rough** จะแปลงโค้ดที่อยู่ใน Markdown ออกมาเป็น HTML ต่างๆ ขึ้นอยู่กับ **Token** หรือจะอธิายให้เข้าใจง่ายๆ ก็คือองค์ประกอบแต่ละส่วนของโค้ดที่แตกต่างๆ กันออกไป เช่น Keyword, Variable, Whitespace หรือ Error เป็นต้น ซึ่งสามารถดูรายการ Token ได้จาก [ที่นี่](https://github.com/rouge-ruby/rouge/wiki/List-of-tokens)
 
-&lt;p&gt;Token แต่ละตัวเมื่อถูกแปลงออกมาแล้วจะมี stylesheet ตามรายการ Token Shortname โดยเราจะต้องนำ stylesheet ของ Token ทั้งหมดมาใส่ไว้ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main.scss&lt;/code&gt; เพื่อให้ &lt;strong&gt;Jekyll&lt;/strong&gt; ทำการแสดงผลไฮไลท์ตามที่ต้องการ&lt;/p&gt;
+Token แต่ละตัวเมื่อถูกแปลงออกมาแล้วจะมี stylesheet ตามรายการ Token Shortname โดยเราจะต้องนำ stylesheet ของ Token ทั้งหมดมาใส่ไว้ใน `main.scss` เพื่อให้ **Jekyll** ทำการแสดงผลไฮไลท์ตามที่ต้องการ
 
-&lt;h2 id=&quot;stylesheet-ที่รองรับ&quot;&gt;Stylesheet ที่รองรับ&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Rough&lt;/strong&gt; มี stylesheet หลากหลายรูปแบบมาให้ด้วยเมื่อทำการติดตั้ง โดยเราสามารถตรวจสอบรายการ stylesheet ที่มีโดยใช้คำสั่ง&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;rougify &lt;span class=&quot;nb&quot;&gt;help &lt;/span&gt;style
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+## Stylesheet ที่รองรับ
+**Rough** มี stylesheet หลากหลายรูปแบบมาให้ด้วยเมื่อทำการติดตั้ง โดยเราสามารถตรวจสอบรายการ stylesheet ที่มีโดยใช้คำสั่ง
+```bash
+$ bundle exec rougify help style
+```
 
-&lt;p&gt;ผลลัพท์ที่ได้จะปรากฏดังแสดงด้านล่าง ซึ่งจะพบว่า &lt;strong&gt;Rough&lt;/strong&gt; ได้เตรียม stylesheet ไว้ให้ใช้งานมากถึง 23 แบบ&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;...
+ผลลัพท์ที่ได้จะปรากฏดังแสดงด้านล่าง ซึ่งจะพบว่า **Rough** ได้เตรียม stylesheet ไว้ให้ใช้งานมากถึง 23 แบบ
+```bash
+...
 available themes:
   base16, base16.dark, base16.light, base16.monokai, base16.monokai.dark, base16.monokai.light, base16.solarized,
   base16.solarized.dark, base16.solarized.light, bw, colorful, github, gruvbox, gruvbox.dark, gruvbox.light,
   igorpro, magritte, molokai, monokai, monokai.sublime, pastie, thankful_eyes, tulip
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;เราสามารถใช้คำสั่งสำหรับส่งออก stylesheet ที่จะใช้ โดยคำสั่ง&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;rougify style base16.monokai.dark &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; styles.css
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
+เราสามารถใช้คำสั่งสำหรับส่งออก stylesheet ที่จะใช้ โดยคำสั่ง
+```bash
+$ bundle exec rougify style base16.monokai.dark &gt; styles.css
+```
 
-&lt;p&gt;สำหรับขั้นตอนสุดท้ายก็คือการปรับแต่งเพิ่มเติมตามที่ชอบไม่ว่าจะเป็นฟ้อนต์ ขนาดตัวอักษร หรือสี แต่ถ้าไม่ต้องการปรับแต่งอะไรเพิ่มก็สามารถใช้ stylesheet ที่ export ออกมาได้เลย ดังที่ได้กล่าวข้างต้นแล้วว่าให้นำเข้า stylesheet ใส่เข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main.scss&lt;/code&gt; ของโปรเจค จากนั้นดูผลลัพท์การแสดงผลในเว็บบราวเซอร์&lt;/p&gt;
+สำหรับขั้นตอนสุดท้ายก็คือการปรับแต่งเพิ่มเติมตามที่ชอบไม่ว่าจะเป็นฟ้อนต์ ขนาดตัวอักษร หรือสี แต่ถ้าไม่ต้องการปรับแต่งอะไรเพิ่มก็สามารถใช้ stylesheet ที่ export ออกมาได้เลย ดังที่ได้กล่าวข้างต้นแล้วว่าให้นำเข้า stylesheet ใส่เข้าไปใน `main.scss` ของโปรเจค จากนั้นดูผลลัพท์การแสดงผลในเว็บบราวเซอร์
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/syntax-hightlight-in-jekyll/before-add-stylesheet.png&quot; alt=&quot;Before&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;ก่อนเพิ่ม stylesheet&lt;/em&gt;&lt;/p&gt;
+![Before](/assets/images/posts/2019/syntax-hightlight-in-jekyll/before-add-stylesheet.png){:width=&quot;600px&quot;}
+*ก่อนเพิ่ม stylesheet*
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/syntax-hightlight-in-jekyll/after-add-stylesheet.png&quot; alt=&quot;Before&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;หลังเพิ่ม stylesheet&lt;/em&gt;&lt;/p&gt;
+![Before](/assets/images/posts/2019/syntax-hightlight-in-jekyll/after-add-stylesheet.png){:width=&quot;600px&quot;}
+*หลังเพิ่ม stylesheet*
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/rouge-ruby/rouge&quot;&gt;Rough&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/docs/liquid/tags/#code-snippet-highlighting&quot;&gt;Code Highlighting in Jekyll&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="ruby" /><category term="jekyll" /><summary type="html">สำหรับการเขียนบทความที่มีการใส่โค้ดลงไปด้วยนั้น ทำให้ผู้อ่านได้เห็นตัวอย่างเข้าใจเนื้อหาเกี่ยวกับการเขียนโปรแกรมได้ดียิ่งขึ้น หรือแม้กระทั่งเป็นตัวอย่างเพื่อนำไปพัฒนาต่อยอดได้ ซึ่ง Jekyll ก็รองรับการแสดงผลโค้ดไฮไลท์เอาไว้ด้วย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/syntax-hightlight-in-jekyll/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/syntax-hightlight-in-jekyll/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย</title><link href="https://karn18.github.io/dev/2019/12/04/customize-reading-time-with-thai-nlp.html" rel="alternate" type="text/html" title="คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย" /><published>2019-12-04T09:00:00+07:00</published><updated>2019-12-04T09:00:00+07:00</updated><id>https://karn18.github.io/dev/2019/12/04/customize-reading-time-with-thai-nlp</id><content type="html" xml:base="https://karn18.github.io/dev/2019/12/04/customize-reading-time-with-thai-nlp.html">&lt;p&gt;บทความนี้จะกล่าวถึงการคำนวณเวลาที่ใช้ในการอ่านบทความ ซึ่งในส่วนของ &lt;strong&gt;Jekyll&lt;/strong&gt; จะมีปลักอินที่ชื่อ &lt;strong&gt;liquid_reading_time&lt;/strong&gt; ที่ถูกนำมาใช้ในการคำนวณเวลาโดยเฉลี่ยในการอ่านบทความหนึ่งๆ และแสดงให้ผู้อ่านเห็น &lt;!--more--&gt;โดยมีสูตรที่ว่า&lt;/p&gt;
+## References
+- [Rough](https://github.com/rouge-ruby/rouge)
+- [Code Highlighting in Jekyll](https://jekyllrb.com/docs/liquid/tags/#code-snippet-highlighting)</content><author><name>Karn</name></author><category term="ruby" /><category term="jekyll" /><summary type="html">สำหรับการเขียนบทความที่มีการใส่โค้ดลงไปด้วยนั้น ทำให้ผู้อ่านได้เห็นตัวอย่างเข้าใจเนื้อหาเกี่ยวกับการเขียนโปรแกรมได้ดียิ่งขึ้น หรือแม้กระทั่งเป็นตัวอย่างเพื่อนำไปพัฒนาต่อยอดได้ ซึ่ง Jekyll ก็รองรับการแสดงผลโค้ดไฮไลท์เอาไว้ด้วย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/syntax-hightlight-in-jekyll/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/syntax-hightlight-in-jekyll/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย</title><link href="https://karn18.github.io/dev/2019/12/04/customize-reading-time-with-thai-nlp.html" rel="alternate" type="text/html" title="คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย" /><published>2019-12-04T09:00:00+07:00</published><updated>2019-12-04T09:00:00+07:00</updated><id>https://karn18.github.io/dev/2019/12/04/customize-reading-time-with-thai-nlp</id><content type="html" xml:base="https://karn18.github.io/dev/2019/12/04/customize-reading-time-with-thai-nlp.html">บทความนี้จะกล่าวถึงการคำนวณเวลาที่ใช้ในการอ่านบทความ ซึ่งในส่วนของ **Jekyll** จะมีปลักอินที่ชื่อ **liquid_reading_time** ที่ถูกนำมาใช้ในการคำนวณเวลาโดยเฉลี่ยในการอ่านบทความหนึ่งๆ และแสดงให้ผู้อ่านเห็น &lt;!--more--&gt;โดยมีสูตรที่ว่า
 
-&lt;blockquote&gt;
-  &lt;p&gt;จำนวนคำทั้งหมดในบทความ / ความเร็วเฉลี่ยในการอ่าน = ระยะเวลาในการอ่าน&lt;/p&gt;
-&lt;/blockquote&gt;
+&gt; จำนวนคำทั้งหมดในบทความ / ความเร็วเฉลี่ยในการอ่าน = ระยะเวลาในการอ่าน
 
-&lt;p&gt;ถ้าดูแล้วการใช้ปลักอินดังกล่าวก็ดูน่าจะตอบโจทย์แล้วใช่หรือไม่ &lt;strong&gt;แต่&lt;/strong&gt;อย่าลืมว่าการนับจำนวนคำระหว่างภาษาไทยกับภาษาอังกฤษนั้นแตกต่างกัน กล่าวคือโดยปกติคำหนึ่งๆ ในภาษาอังกฤษจะถูกแยกจากกันด้วยช่องว่าง (whitespace) ส่วนภาษาไทยนั้นการแยกคำออกมานั้นมีความซับซ้อนกว่ามาก ดังนั้นการใช้ปลักอินที่ตัดคำโดยใช้ช่องว่างจึงไม่ตอบโจทย์&lt;/p&gt;
+ถ้าดูแล้วการใช้ปลักอินดังกล่าวก็ดูน่าจะตอบโจทย์แล้วใช่หรือไม่ **แต่**อย่าลืมว่าการนับจำนวนคำระหว่างภาษาไทยกับภาษาอังกฤษนั้นแตกต่างกัน กล่าวคือโดยปกติคำหนึ่งๆ ในภาษาอังกฤษจะถูกแยกจากกันด้วยช่องว่าง (whitespace) ส่วนภาษาไทยนั้นการแยกคำออกมานั้นมีความซับซ้อนกว่ามาก ดังนั้นการใช้ปลักอินที่ตัดคำโดยใช้ช่องว่างจึงไม่ตอบโจทย์
 
-&lt;p&gt;เอ๊ะแล้วอย่างงี้จะใช้ปลักอินตัวไหนมาช่วยในการตัดคำไทยดี ซึ่งต้องบอกเลยว่าถ้าหากใช้ &lt;strong&gt;Ruby&lt;/strong&gt; อย่างเดียวนั้นคงเป็นไปได้ยาก เนื่องจากไลบราลีที่ใช้สำหรับตัดคำไทย&lt;strong&gt;ไม่มีผู้พัฒนา&lt;/strong&gt;ในภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ทำให้ต้องไปเพิ่งไลบราลี &lt;a href=&quot;https://github.com/PyThaiNLP/pythainlp&quot;&gt;pythainlp&lt;/a&gt; ในภาษา &lt;strong&gt;Python&lt;/strong&gt; แทน ซึ่งไลบราลีตัวนี้มีนักพัฒนาคนไทยช่วยกัน และเผยแพร่ให้นักพัฒนาคนอื่นๆ ได้ใช้งานกัน&lt;/p&gt;
+เอ๊ะแล้วอย่างงี้จะใช้ปลักอินตัวไหนมาช่วยในการตัดคำไทยดี ซึ่งต้องบอกเลยว่าถ้าหากใช้ **Ruby** อย่างเดียวนั้นคงเป็นไปได้ยาก เนื่องจากไลบราลีที่ใช้สำหรับตัดคำไทย**ไม่มีผู้พัฒนา**ในภาษา **Ruby** ทำให้ต้องไปเพิ่งไลบราลี [pythainlp](https://github.com/PyThaiNLP/pythainlp) ในภาษา **Python** แทน ซึ่งไลบราลีตัวนี้มีนักพัฒนาคนไทยช่วยกัน และเผยแพร่ให้นักพัฒนาคนอื่นๆ ได้ใช้งานกัน
 
-&lt;p&gt;ฉะนั้นในบทความนี้จะเป็นการรวมร่างกันทำงานระหว่างไลบราลี &lt;strong&gt;liquid_reading_time&lt;/strong&gt; (Ruby) กับ &lt;strong&gt;pythainlp&lt;/strong&gt; (Python) โดย&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;pythailnp&lt;/strong&gt; นำมาใช้ในการตัดคำภาษาไทยที่มาจากบทความ&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;liquid_reading_time&lt;/strong&gt; นำมาใช้ในการคำนวณระยะเวลาในการอ่าน&lt;/li&gt;
-&lt;/ul&gt;
+ฉะนั้นในบทความนี้จะเป็นการรวมร่างกันทำงานระหว่างไลบราลี **liquid_reading_time** (Ruby) กับ **pythainlp** (Python) โดย
+- **pythailnp** นำมาใช้ในการตัดคำภาษาไทยที่มาจากบทความ
+- **liquid_reading_time** นำมาใช้ในการคำนวณระยะเวลาในการอ่าน
 
-&lt;h2 id=&quot;ลงมือปรับแต่งกันเลย&quot;&gt;ลงมือปรับแต่งกันเลย&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;เริ่มต้นโดยการ fork ปลักอินมาก่อน โดยเข้าไปที่ &lt;a href=&quot;https://github.com/bdesham/reading_time&quot;&gt;liquid_reading_time&lt;/a&gt; แล้วก็ clone project มาไว้ยังเครื่องคอมพิวเตอร์ของเรา&lt;/li&gt;
-  &lt;li&gt;เข้าไปยังไฟล์ที่ชื่อ &lt;strong&gt;lib/liquid_reading_time.rb&lt;/strong&gt; จากนั้นทำการเพิ่มโค้ดสำหรับเรียกใช้งานโปรแกรม &lt;strong&gt;word_tokenizer.py&lt;/strong&gt; ผ่านฟังก์ชันที่ชื่อ &lt;strong&gt;tokenize_words&lt;/strong&gt; และเปลี่ยนการเรียกใช้ฟังก์ชัน &lt;strong&gt;count_words&lt;/strong&gt; ดังแสดงในโค้ดด้านล่าง&lt;/li&gt;
-&lt;/ul&gt;
+## ลงมือปรับแต่งกันเลย
+- เริ่มต้นโดยการ fork ปลักอินมาก่อน โดยเข้าไปที่ [liquid_reading_time](https://github.com/bdesham/reading_time) แล้วก็ clone project มาไว้ยังเครื่องคอมพิวเตอร์ของเรา
+- เข้าไปยังไฟล์ที่ชื่อ **lib/liquid_reading_time.rb** จากนั้นทำการเพิ่มโค้ดสำหรับเรียกใช้งานโปรแกรม **word_tokenizer.py** ผ่านฟังก์ชันที่ชื่อ **tokenize_words** และเปลี่ยนการเรียกใช้ฟังก์ชัน **count_words** ดังแสดงในโค้ดด้านล่าง
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;count_words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;tokenize_words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Add this line&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;# words(html).length # Comment this line&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+```ruby
+  def count_words(html)
+      tokenize_words(words(html).join(' ')) # Add this line
+      # words(html).length # Comment this line
+    end
+  end
 
-  &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# Add new method&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;tokenize_words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`python word_tokenizer.py &quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;&quot;`&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_i&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+  ...
+  # Add new method
+  def tokenize_words(text)
+    cmd = `python word_tokenizer.py &quot;#{text}&quot;`
+    cmd.to_i
+  end
+```
 
-&lt;ul&gt;
-  &lt;li&gt;เข้าไปยังโฟลเดอร์เว็บไซด์ของเรา และทำการสร้างไฟล์ &lt;strong&gt;word_tokenizer.py&lt;/strong&gt; ซึ่งเป็นโปรแกรมทีรับฟารามิเตอร์เป็นเนื้อหาของบทความ แล้วจะส่งคืนค่าจำนวนคำที่ตัดได้คืนกลับไป โดยผ่านการแสดงผลทาง stdout&lt;/li&gt;
-&lt;/ul&gt;
+- เข้าไปยังโฟลเดอร์เว็บไซด์ของเรา และทำการสร้างไฟล์ **word_tokenizer.py** ซึ่งเป็นโปรแกรมทีรับฟารามิเตอร์เป็นเนื้อหาของบทความ แล้วจะส่งคืนค่าจำนวนคำที่ตัดได้คืนกลับไป โดยผ่านการแสดงผลทาง stdout
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;  &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
-  &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pythainlp&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sent_tokenize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word_tokenize&lt;/span&gt;
+```python
+  import sys
+  from pythainlp import sent_tokenize, word_tokenize
 
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word_tokenize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keep_whitespace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))))&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'0'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;ทำการแก้ไข Gemfile ของ &lt;strong&gt;liquid_reading_time&lt;/strong&gt; ให้โหลดจาก repo ของเราที่ได้ fork ออกมาแทน repo หลัก&lt;/li&gt;
-  &lt;li&gt;ทดสอบการประเมินเวลาของบทความกัน ซึ่งปรากฏว่าหลังจากเปลี่ยนมาใช้การตัดคำแบบไทยในการประเมินเวลาการอ่านบทความ จะได้ระยะเวลาในการประเมินที่ค่อนข้างใกล้เคียงกับเวลาที่ใช้อ่านจริง&lt;/li&gt;
-&lt;/ul&gt;
+  if len(sys.argv) &gt; 1:
+      content = sys.argv[1]
+      sys.stdout.write(str(len(word_tokenize(content, keep_whitespace=False))))
+  else:
+      sys.stdout.write('0')
+  sys.exit(0)
+```
+- ทำการแก้ไข Gemfile ของ **liquid_reading_time** ให้โหลดจาก repo ของเราที่ได้ fork ออกมาแทน repo หลัก
+- ทดสอบการประเมินเวลาของบทความกัน ซึ่งปรากฏว่าหลังจากเปลี่ยนมาใช้การตัดคำแบบไทยในการประเมินเวลาการอ่านบทความ จะได้ระยะเวลาในการประเมินที่ค่อนข้างใกล้เคียงกับเวลาที่ใช้อ่านจริง
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/customize-reading-time-with-thai-nlp/reading_time_default.png&quot; alt=&quot;Reading Time&quot; width=&quot;400px&quot; /&gt;
-&lt;em&gt;ใช้ liquid_reading_time แบบปกติ&lt;/em&gt;&lt;/p&gt;
+![Reading Time](/assets/images/posts/2019/customize-reading-time-with-thai-nlp/reading_time_default.png){:width=&quot;400px&quot;}
+*ใช้ liquid_reading_time แบบปกติ*
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/customize-reading-time-with-thai-nlp/reading_time_with_thai_nlp.png&quot; alt=&quot;Custome Reading Time&quot; width=&quot;400px&quot; /&gt;
-&lt;em&gt;ใช้ pythainlp ร่วมกับ liquid_reading_time&lt;/em&gt;&lt;/p&gt;
+![Custome Reading Time](/assets/images/posts/2019/customize-reading-time-with-thai-nlp/reading_time_with_thai_nlp.png){:width=&quot;400px&quot;}
+*ใช้ pythainlp ร่วมกับ liquid_reading_time*
 
-&lt;p&gt;&lt;em&gt;!!!&lt;/em&gt; ทั้งนี้การตัดคำแบบไทยนั้นเหมาะที่จะนำมาใช้กับบทความที่มีเนื้อหาเป็นทั้งภาษาไทย และภาษาอังกฤษ แต่ถ้าในกรณีที่ผู้เขียนบล๊อกที่เน้นใช้เนื้อหาเป็นภาษาอังกฤษแต่เพียงอย่างเดียว ก็ไม่จำเป็นต้องปรับแต่งปลั๊กอินเพิ่มใดๆ&lt;/p&gt;
+*!!!* ทั้งนี้การตัดคำแบบไทยนั้นเหมาะที่จะนำมาใช้กับบทความที่มีเนื้อหาเป็นทั้งภาษาไทย และภาษาอังกฤษ แต่ถ้าในกรณีที่ผู้เขียนบล๊อกที่เน้นใช้เนื้อหาเป็นภาษาอังกฤษแต่เพียงอย่างเดียว ก็ไม่จำเป็นต้องปรับแต่งปลั๊กอินเพิ่มใดๆ
 
-&lt;p&gt;&lt;em&gt;!!!&lt;/em&gt; ป.ล. การเรียกใช้งานโปรแกรมสำหรับตัดคำไทยจะทำให้ใช้ระยะเวลาในการแปลงไฟล์ Markdown ไปเป็น HTML นานขึ้นด้วย&lt;/p&gt;
+*!!!* ป.ล. การเรียกใช้งานโปรแกรมสำหรับตัดคำไทยจะทำให้ใช้ระยะเวลาในการแปลงไฟล์ Markdown ไปเป็น HTML นานขึ้นด้วย
 
-&lt;h2 id=&quot;references&quot;&gt;References:&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/PyThaiNLP/pythainlp&quot;&gt;pythainlp&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/bdesham/reading_time&quot;&gt;liquid_reading_time&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="ruby" /><category term="python" /><category term="thai nlp" /><summary type="html">บทความนี้จะกล่าวถึงการคำนวณเวลาที่ใช้ในการอ่านบทความ ซึ่งในส่วนของ Jekyll จะมีปลักอินที่ชื่อ liquid_reading_time ที่ถูกนำมาใช้ในการคำนวณเวลาโดยเฉลี่ยในการอ่านบทความหนึ่งๆ และแสดงให้ผู้อ่านเห็น</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/customize-reading-time-with-thai-nlp/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/customize-reading-time-with-thai-nlp/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ใช้งาน Bulma ใน Rails</title><link href="https://karn18.github.io/dev/2019/12/03/using-bulma-with-rails.html" rel="alternate" type="text/html" title="ใช้งาน Bulma ใน Rails" /><published>2019-12-03T09:00:00+07:00</published><updated>2019-12-03T09:00:00+07:00</updated><id>https://karn18.github.io/dev/2019/12/03/using-bulma-with-rails</id><content type="html" xml:base="https://karn18.github.io/dev/2019/12/03/using-bulma-with-rails.html">&lt;p&gt;ถ้าจะกล่าวถึง CSS Framework ที่เป็นที่นิยมใช้กันนั้นก็มีอยู่ด้วยกันหลากหลาย สำหรับในบทความนี้จะกล่าวถึง &lt;strong&gt;Bulma&lt;/strong&gt; ซึ่งเป็น CSS Framework ที่ใช้งานได้ง่าย ไม่ซับซ้อนและแลดูสวยงามเมื่อแสดงผลอยู่บนเว็บบราวเซอร์ โดยในวันนี้เราจะนำ &lt;strong&gt;Bulma&lt;/strong&gt; มาใช้งานร่วมกันกับ &lt;strong&gt;Rails&lt;/strong&gt;&lt;/p&gt;
+## References:
+- [pythainlp](https://github.com/PyThaiNLP/pythainlp)
+- [liquid_reading_time](https://github.com/bdesham/reading_time)</content><author><name>Karn</name></author><category term="ruby" /><category term="python" /><category term="thai nlp" /><summary type="html">บทความนี้จะกล่าวถึงการคำนวณเวลาที่ใช้ในการอ่านบทความ ซึ่งในส่วนของ Jekyll จะมีปลักอินที่ชื่อ liquid_reading_time ที่ถูกนำมาใช้ในการคำนวณเวลาโดยเฉลี่ยในการอ่านบทความหนึ่งๆ และแสดงให้ผู้อ่านเห็น</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/customize-reading-time-with-thai-nlp/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/customize-reading-time-with-thai-nlp/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ใช้งาน Bulma ใน Rails</title><link href="https://karn18.github.io/dev/2019/12/03/using-bulma-with-rails.html" rel="alternate" type="text/html" title="ใช้งาน Bulma ใน Rails" /><published>2019-12-03T09:00:00+07:00</published><updated>2019-12-03T09:00:00+07:00</updated><id>https://karn18.github.io/dev/2019/12/03/using-bulma-with-rails</id><content type="html" xml:base="https://karn18.github.io/dev/2019/12/03/using-bulma-with-rails.html">ถ้าจะกล่าวถึง CSS Framework ที่เป็นที่นิยมใช้กันนั้นก็มีอยู่ด้วยกันหลากหลาย สำหรับในบทความนี้จะกล่าวถึง **Bulma** ซึ่งเป็น CSS Framework ที่ใช้งานได้ง่าย ไม่ซับซ้อนและแลดูสวยงามเมื่อแสดงผลอยู่บนเว็บบราวเซอร์ โดยในวันนี้เราจะนำ **Bulma** มาใช้งานร่วมกันกับ **Rails**
 
 &lt;!--more--&gt;
 
-&lt;h2 id=&quot;ความต้องการพื้นฐาน&quot;&gt;ความต้องการพื้นฐาน&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Ruby 2.6&lt;/li&gt;
-  &lt;li&gt;Rails 6.0&lt;/li&gt;
-&lt;/ul&gt;
+## ความต้องการพื้นฐาน
+- Ruby 2.6
+- Rails 6.0
 
-&lt;hr /&gt;
+-----
 
-&lt;h2 id=&quot;เริ่มต้นอย่างรวดเร็ว&quot;&gt;เริ่มต้นอย่างรวดเร็ว&lt;/h2&gt;
-&lt;p&gt;ก่อนอื่นเรามาสร้างโปรเจค &lt;em&gt;Rails&lt;/em&gt; กันก่อน&lt;/p&gt;
+## เริ่มต้นอย่างรวดเร็ว
+ก่อนอื่นเรามาสร้างโปรเจค *Rails* กันก่อน
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails new myapp
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```bash
+$ rails new myapp
+```
 
-&lt;p&gt;สำหรับการติดตั้ง Bulma ให้กับโปรเจคสามารถทำได้ 2 วิธี คือ&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;ติดตั้งแบบ manual โดยวิธีนี้จะต้องใช้ NodeJS ร่วมด้วย&lt;/li&gt;
-  &lt;li&gt;ติดตั้งโดยใช้ Gem&lt;/li&gt;
-&lt;/ul&gt;
+สำหรับการติดตั้ง Bulma ให้กับโปรเจคสามารถทำได้ 2 วิธี คือ
+- ติดตั้งแบบ manual โดยวิธีนี้จะต้องใช้ NodeJS ร่วมด้วย
+- ติดตั้งโดยใช้ Gem
 
-&lt;p&gt;ในบทความนี้จะเลือกใช้วิธีที่ 2 นั้นคือติดตั้งโดยใช้ Gem ซึ่งทำได้ง่ายกว่า และพร้อมใช้กับ Rails ในทันที ด้วยวิธีการเพิ่มคำสั่งติดตั้งเข้าไปในไฟล์ &lt;strong&gt;Gemfile&lt;/strong&gt; ที่อยู่ภายในโปรเจค สำหรับ Gem ที่ใช้งานมีชื่อว่า
-&lt;strong&gt;&lt;a href=&quot;https://github.com/joshuajansen/bulma-rails&quot;&gt;bulma-rails&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+ในบทความนี้จะเลือกใช้วิธีที่ 2 นั้นคือติดตั้งโดยใช้ Gem ซึ่งทำได้ง่ายกว่า และพร้อมใช้กับ Rails ในทันที ด้วยวิธีการเพิ่มคำสั่งติดตั้งเข้าไปในไฟล์ **Gemfile** ที่อยู่ภายในโปรเจค สำหรับ Gem ที่ใช้งานมีชื่อว่า
+**[bulma-rails](https://github.com/joshuajansen/bulma-rails)**
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bulma-rails&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 0.8.0&quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+gem &quot;bulma-rails&quot;, &quot;~&gt; 0.8.0&quot;
+```
 
-&lt;p&gt;รันคำสั่งเพื่อติดตั้ง&lt;/p&gt;
+รันคำสั่งเพื่อติดตั้ง
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```bash
+$ bundle install
+```
 
-&lt;p&gt;จากนั้นนำเข้าสไตล์ของ &lt;strong&gt;Bulma&lt;/strong&gt; เข้าไปยัง &lt;strong&gt;application.scss&lt;/strong&gt;&lt;/p&gt;
+จากนั้นนำเข้าสไตล์ของ **Bulma** เข้าไปยัง **application.scss**
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/using-bulma-with-rails/application-scss-path.png&quot; alt=&quot;applicaiton.scss&quot; width=&quot;200px&quot; /&gt;
-&lt;em&gt;ตำแหน่งที่ตั้งของไฟล์ application.scss&lt;/em&gt;&lt;/p&gt;
+![applicaiton.scss](/assets/images/posts/2019/using-bulma-with-rails/application-scss-path.png){:width=&quot;200px&quot;}
+*ตำแหน่งที่ตั้งของไฟล์ application.scss*
 
-&lt;p&gt;&lt;em&gt;!!! หมายเหตุ: ในกรณีที่ extension ของ application เป็น css อยู่ให้ทำการเปลี่ยน extension ให้เป็น scss ด้วยการ rename&lt;/em&gt;&lt;/p&gt;
+*!!! หมายเหตุ: ในกรณีที่ extension ของ application เป็น css อยู่ให้ทำการเปลี่ยน extension ให้เป็น scss ด้วยการ rename*
 
-&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;@import&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bulma&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;มาถึงตรงนี้โปรเจคของเราก็พร้อมที่จะใช้ &lt;strong&gt;Bulma&lt;/strong&gt; ดังนั้นเรามาลองสร้างหน้าเว็บที่ใช้งาน &lt;strong&gt;Bulma&lt;/strong&gt; กันหน่อย
-โดยเริ่มสร้าง &lt;strong&gt;controller&lt;/strong&gt; ชื่อ &lt;em&gt;Home&lt;/em&gt; และ &lt;strong&gt;action&lt;/strong&gt; ชื่อ &lt;em&gt;index&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails generate controller Home index
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```scss
+@import &quot;bulma&quot;;
+```
 
-&lt;p&gt;ทดลองใส่โค้ดแสดงผลง่ายๆ โดยใช้ &lt;strong&gt;Bulma&lt;/strong&gt; ใน &lt;em&gt;index.html&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;section&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+มาถึงตรงนี้โปรเจคของเราก็พร้อมที่จะใช้ **Bulma** ดังนั้นเรามาลองสร้างหน้าเว็บที่ใช้งาน **Bulma** กันหน่อย
+โดยเริ่มสร้าง **controller** ชื่อ *Home* และ **action** ชื่อ *index*
+```bash
+$ rails generate controller Home index
+```
+
+ทดลองใส่โค้ดแสดงผลง่ายๆ โดยใช้ **Bulma** ใน *index.html*
+```html
+&lt;section class=&quot;section&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h1 class=&quot;title&quot;&gt;
       Hello World
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;subtitle&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      My first website with &lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Bulma&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;!
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/h1&gt;
+    &lt;p class=&quot;subtitle&quot;&gt;
+      My first website with &lt;strong&gt;Bulma&lt;/strong&gt;!
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+```
 
-&lt;p&gt;ตัวอย่างโค้ดสามารถเข้าไปดูได้&lt;a href=&quot;https://bulma.io/documentation/overview/start/&quot;&gt;ที่นี่&lt;/a&gt;
-รันเว็บเซอร์เวอร์และเข้าไปยังหน้าเว็บผ่านเว็บบราวเซอร์&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails server
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+ตัวอย่างโค้ดสามารถเข้าไปดูได้[ที่นี่](https://bulma.io/documentation/overview/start/)
+รันเว็บเซอร์เวอร์และเข้าไปยังหน้าเว็บผ่านเว็บบราวเซอร์
+```bash
+$ rails server
+```
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/using-bulma-with-rails/bulma-with-rails.png&quot; alt=&quot;index.html&quot; width=&quot;400px&quot; /&gt;
-&lt;em&gt;Bulma with Rails&lt;/em&gt;&lt;/p&gt;
+![index.html](/assets/images/posts/2019/using-bulma-with-rails/bulma-with-rails.png){:width=&quot;400px&quot;}
+*Bulma with Rails*
 
-&lt;hr /&gt;
-&lt;h2 id=&quot;พื้นฐานเกี่ยวกับ-bulma&quot;&gt;พื้นฐานเกี่ยวกับ Bulma&lt;/h2&gt;
-&lt;p&gt;จะว่าไป &lt;strong&gt;Bulma&lt;/strong&gt; ก็คือ CSS Framework ที่ได้รับการออกแบบมาให้ใช้ความสามารถของ &lt;em&gt;Flexbox&lt;/em&gt; เป็นหลักในการจัด layout ของเว็บไซด์ ซึ่งทำให้เราสามารถที่จะจัดหน้าตาของเว็บไซด์ได้ง่าย และสะดวกสบายมากยิ่งขึ้น แทนที่จะไปใช้ table เหมือนในสมัยก่อน นอกจากนี้ &lt;strong&gt;Bulma&lt;/strong&gt; จะมีเพียงแค่ CSS เท่านั้น ทำให้มีขนาดเล็กกว่า CSS Framework ตัวอื่นๆ เหมาะสมกับการนำไปใช้ร่วมกับ javascript ใดๆ ก็ได้ไม่ว่าจะเป็น vanilla javascript หรือ jquery ที่นี้ลองมาดูความสามารถของ &lt;strong&gt;Bulma&lt;/strong&gt; กัน&lt;/p&gt;
+---
+## พื้นฐานเกี่ยวกับ Bulma
+จะว่าไป **Bulma** ก็คือ CSS Framework ที่ได้รับการออกแบบมาให้ใช้ความสามารถของ *Flexbox* เป็นหลักในการจัด layout ของเว็บไซด์ ซึ่งทำให้เราสามารถที่จะจัดหน้าตาของเว็บไซด์ได้ง่าย และสะดวกสบายมากยิ่งขึ้น แทนที่จะไปใช้ table เหมือนในสมัยก่อน นอกจากนี้ **Bulma** จะมีเพียงแค่ CSS เท่านั้น ทำให้มีขนาดเล็กกว่า CSS Framework ตัวอื่นๆ เหมาะสมกับการนำไปใช้ร่วมกับ javascript ใดๆ ก็ได้ไม่ว่าจะเป็น vanilla javascript หรือ jquery ที่นี้ลองมาดูความสามารถของ **Bulma** กัน
 
-&lt;h3 id=&quot;การรองรับการแสดงผล&quot;&gt;การรองรับการแสดงผล&lt;/h3&gt;
-&lt;p&gt;สำหรับ &lt;strong&gt;Bulma&lt;/strong&gt; นั้นได้รับการออกแบบโดยคำนึงถึงอุปกรณ์มือถือเป็นอย่างแรก ทำให้การนำไปใช้แสดงผลบนอุปกรณ์มือถือนั้นสามารถทำได้ดีและสวยงาม โดย &lt;strong&gt;Bulma&lt;/strong&gt; แบ่งกลุ่มการแสดงผลออกเป็น 5 กลุ่มด้วยกันคือ&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;mobile โดยมีขนาดหน้าจอสูงสุดที่ 768px&lt;/li&gt;
-  &lt;li&gt;tablet ขนาดหน้าจอ 769px ขึ้นไป&lt;/li&gt;
-  &lt;li&gt;desktop ขนาดหน้าจอ 1024px ขึ้นไป&lt;/li&gt;
-  &lt;li&gt;widescreen ขนาดหน้าจอ 1216px ขึ้นไป&lt;/li&gt;
-  &lt;li&gt;fullhd ขนาดหน้าจอ 1408px ขึ้นไป&lt;/li&gt;
-&lt;/ul&gt;
+### การรองรับการแสดงผล
+สำหรับ **Bulma** นั้นได้รับการออกแบบโดยคำนึงถึงอุปกรณ์มือถือเป็นอย่างแรก ทำให้การนำไปใช้แสดงผลบนอุปกรณ์มือถือนั้นสามารถทำได้ดีและสวยงาม โดย **Bulma** แบ่งกลุ่มการแสดงผลออกเป็น 5 กลุ่มด้วยกันคือ
+- mobile โดยมีขนาดหน้าจอสูงสุดที่ 768px
+- tablet ขนาดหน้าจอ 769px ขึ้นไป
+- desktop ขนาดหน้าจอ 1024px ขึ้นไป
+- widescreen ขนาดหน้าจอ 1216px ขึ้นไป
+- fullhd ขนาดหน้าจอ 1408px ขึ้นไป
 
-&lt;h3 id=&quot;columns&quot;&gt;Columns&lt;/h3&gt;
-&lt;p&gt;กล่าวคือเมื่อมีการนำคอมโพเนนต์มาจัดเรียง Flexbox จะจัดการแสดงแบบอยุ่ในรูปของตาราง (grid) ซึ่งใช้ระบบ 12 คอลัมน์ต่อ 1 แถว&lt;/p&gt;
+### Columns
+กล่าวคือเมื่อมีการนำคอมโพเนนต์มาจัดเรียง Flexbox จะจัดการแสดงแบบอยุ่ในรูปของตาราง (grid) ซึ่งใช้ระบบ 12 คอลัมน์ต่อ 1 แถว
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/using-bulma-with-rails/grid-system.png&quot; alt=&quot;Grid System&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Grid System with 12 columns&lt;/em&gt;&lt;/p&gt;
+![Grid System](/assets/images/posts/2019/using-bulma-with-rails/grid-system.png){:width=&quot;500px&quot;}
+*Grid System with 12 columns*
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/using-bulma-with-rails/example-columns.png&quot; alt=&quot;Columns&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Columns Example&lt;/em&gt;&lt;/p&gt;
+![Columns](/assets/images/posts/2019/using-bulma-with-rails/example-columns.png){:width=&quot;500px&quot;}
+*Columns Example*
 
-&lt;h3 id=&quot;layout&quot;&gt;Layout&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Container&lt;/strong&gt; ใช้สำหรับจัดเรียงเนื้อหาให้อยู่ตรงกลางในแนวระนาบ&lt;/li&gt;
-&lt;/ul&gt;
+### Layout
+- **Container** ใช้สำหรับจัดเรียงเนื้อหาให้อยู่ตรงกลางในแนวระนาบ
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/using-bulma-with-rails/example-container.png&quot; alt=&quot;Container&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Container Example&lt;/em&gt;&lt;/p&gt;
+![Container](/assets/images/posts/2019/using-bulma-with-rails/example-container.png){:width=&quot;500px&quot;}
+*Container Example*
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Level&lt;/strong&gt; ใช้สำหรับจัดเรียงเนื้อหา แยกเป็นระดับๆ ในแนวระนาบ&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Media Object&lt;/strong&gt; เป็นโครงสร้างที่คล้ายกับการแสดงความเห็นในสื่อโซเชียล ซึ่งจะประกอบไปด้วยส่วนทางซ้ายสำหรับแสดงภาพ ส่วนตรงกลางสำหรับแสดงเนื้อหา และส่วนทางขวาสำหรับใส่เนื้อหาเพิ่มเติม&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+- **Level** ใช้สำหรับจัดเรียงเนื้อหา แยกเป็นระดับๆ ในแนวระนาบ
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/using-bulma-with-rails/example-level.png&quot; alt=&quot;Level&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Level Example&lt;/em&gt;&lt;/p&gt;
+- **Media Object** เป็นโครงสร้างที่คล้ายกับการแสดงความเห็นในสื่อโซเชียล ซึ่งจะประกอบไปด้วยส่วนทางซ้ายสำหรับแสดงภาพ ส่วนตรงกลางสำหรับแสดงเนื้อหา และส่วนทางขวาสำหรับใส่เนื้อหาเพิ่มเติม
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Hero&lt;/strong&gt; ใช้สำหรับแสดงพาดหัวข่าว (Banner) ในรูปแบบต่างๆ&lt;/li&gt;
-&lt;/ul&gt;
+![Level](/assets/images/posts/2019/using-bulma-with-rails/example-level.png){:width=&quot;500px&quot;}
+*Level Example*
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/using-bulma-with-rails/example-hero.png&quot; alt=&quot;Hero&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Hero Example&lt;/em&gt;&lt;/p&gt;
+- **Hero** ใช้สำหรับแสดงพาดหัวข่าว (Banner) ในรูปแบบต่างๆ
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Section&lt;/strong&gt; ใช้สำหรับแยกเนื้อหาออกเป็นส่วนๆ&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Footer&lt;/strong&gt; ใช้สำหรับแสดงเนื้อหาส่วนท้ายของเว็บไซด์&lt;/li&gt;
-&lt;/ul&gt;
+![Hero](/assets/images/posts/2019/using-bulma-with-rails/example-hero.png){:width=&quot;500px&quot;}
+*Hero Example*
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/using-bulma-with-rails/example-footer.png&quot; alt=&quot;Footer&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Footer Example&lt;/em&gt;&lt;/p&gt;
+- **Section** ใช้สำหรับแยกเนื้อหาออกเป็นส่วนๆ
+- **Footer** ใช้สำหรับแสดงเนื้อหาส่วนท้ายของเว็บไซด์
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Tiles&lt;/strong&gt; ใช้สำหรับแสดงเนื้อหาคล้ายแผ่นกระเบื้องมาต่อๆ กัน เหมือนกับการแสดงรูปภาพในเว็บไซด์ Pinterest&lt;/li&gt;
-&lt;/ul&gt;
+![Footer](/assets/images/posts/2019/using-bulma-with-rails/example-footer.png){:width=&quot;500px&quot;}
+*Footer Example*
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/using-bulma-with-rails/example-tile.png&quot; alt=&quot;Tile&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Tile Example&lt;/em&gt;&lt;/p&gt;
+- **Tiles** ใช้สำหรับแสดงเนื้อหาคล้ายแผ่นกระเบื้องมาต่อๆ กัน เหมือนกับการแสดงรูปภาพในเว็บไซด์ Pinterest
 
-&lt;h3 id=&quot;elements&quot;&gt;Elements&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Box&lt;/strong&gt; ใช้สำหรับแสดงเนื้อหาในรูปแบบของกล่อง&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Button&lt;/strong&gt; ใช้แสดงปุ่ม ซึ่งมีอยู่ด้วยกันหลายรูปแบบไม่ว่าจะเป็นลักษณะ สี รวมถึงสถานะการแสดงผล&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Content&lt;/strong&gt; ใช้สำหรับแสดงเนื้อหาประเภท WYSIWYG ซึ่งรองรับเฉพาะ HTML Tag เท่านั้น&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Delete&lt;/strong&gt; ใช้สำหรับแสดงเครื่องหมายลบ&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Icon&lt;/strong&gt; ใช้สำหรับแสดงไอคอนต่างๆ&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Image&lt;/strong&gt; ใช้สำหรับแสดงภาพ ซึ่งมีหลากหลายรูปแบบ และขนาด&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Notification&lt;/strong&gt; ใช้สำหรับแสดงข้อความแจ้งเตือน&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Progress bars&lt;/strong&gt; ใช้สำหรับแสดงแถบสถานะความก้าวหน้า&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Table&lt;/strong&gt; ใช้สำหรับแสดงตาราง&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Tag&lt;/strong&gt; ใช้สำหรับแสดงป้าย&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Title&lt;/strong&gt; ใช้สำหรับแสดงหัวข้อ&lt;/li&gt;
-&lt;/ul&gt;
+![Tile](/assets/images/posts/2019/using-bulma-with-rails/example-tile.png){:width=&quot;500px&quot;}
+*Tile Example*
 
-&lt;p&gt;สำหรับในบทความนี้ก็ขอนำแนะนำองค์ประกอบพื้นฐานไว้คร่าวๆ แต่เพียงเท่านี้ หากอยากศึกษาเพิ่มเติมถึงองค์ประกอบอื่นๆ เช่น ตัวช่วย (&lt;em&gt;Helpers&lt;/em&gt;) คอมโพเนนต์ (&lt;em&gt;Components&lt;/em&gt;) หรือการปรับแต่งสไตล์ (&lt;em&gt;Customization&lt;/em&gt;) สามารถดูรายละเอียดได้จากเว็บไซด์ &lt;a href=&quot;https://bulma.io&quot;&gt;Bulma&lt;/a&gt;&lt;/p&gt;
+### Elements
+- **Box** ใช้สำหรับแสดงเนื้อหาในรูปแบบของกล่อง
+- **Button** ใช้แสดงปุ่ม ซึ่งมีอยู่ด้วยกันหลายรูปแบบไม่ว่าจะเป็นลักษณะ สี รวมถึงสถานะการแสดงผล
+- **Content** ใช้สำหรับแสดงเนื้อหาประเภท WYSIWYG ซึ่งรองรับเฉพาะ HTML Tag เท่านั้น
+- **Delete** ใช้สำหรับแสดงเครื่องหมายลบ
+- **Icon** ใช้สำหรับแสดงไอคอนต่างๆ
+- **Image** ใช้สำหรับแสดงภาพ ซึ่งมีหลากหลายรูปแบบ และขนาด
+- **Notification** ใช้สำหรับแสดงข้อความแจ้งเตือน
+- **Progress bars** ใช้สำหรับแสดงแถบสถานะความก้าวหน้า
+- **Table** ใช้สำหรับแสดงตาราง
+- **Tag** ใช้สำหรับแสดงป้าย
+- **Title** ใช้สำหรับแสดงหัวข้อ
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://bulma.io&quot;&gt;https://bulma.io&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/joshuajansen/bulma-rails&quot;&gt;https://github.com/joshuajansen/bulma-rails&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="bulma" /><summary type="html">ถ้าจะกล่าวถึง CSS Framework ที่เป็นที่นิยมใช้กันนั้นก็มีอยู่ด้วยกันหลากหลาย สำหรับในบทความนี้จะกล่าวถึง Bulma ซึ่งเป็น CSS Framework ที่ใช้งานได้ง่าย ไม่ซับซ้อนและแลดูสวยงามเมื่อแสดงผลอยู่บนเว็บบราวเซอร์ โดยในวันนี้เราจะนำ Bulma มาใช้งานร่วมกันกับ Rails</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/using-bulma-with-rails/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/using-bulma-with-rails/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เมื่อนักสร้างคอนเทนต์มือใหม่ อยากมีเว็บไซด์เป็นของตัวเอง</title><link href="https://karn18.github.io/dev/2019/11/15/create-website-with-jekyll.html" rel="alternate" type="text/html" title="เมื่อนักสร้างคอนเทนต์มือใหม่ อยากมีเว็บไซด์เป็นของตัวเอง" /><published>2019-11-15T16:07:00+07:00</published><updated>2019-11-15T16:07:00+07:00</updated><id>https://karn18.github.io/dev/2019/11/15/create-website-with-jekyll</id><content type="html" xml:base="https://karn18.github.io/dev/2019/11/15/create-website-with-jekyll.html">&lt;p&gt;สำหรับนักสร้างคอนเทนต์ การมีเว็บไซด์เป็นของตัวเองเพื่อใช้ในการเผยแพร่บทความที่ได้เขียนขึ้นนั้นถือเป็นอีกช่องทางหนึ่ง ที่ช่วยเผยแพร่ความรู้ ประสบการณ์ และความคิดสร้างสรรค์ให้แก่ผู้อ่านในโลกอินเตอร์เน็ต นอกเหนือจากการเผยแพร่ผ่านเว็บไซด์อื่นๆ เช่น medium, blogger, reddit เป็นต้น ซึ่งในบทความนี้จะเป็นการแนะนำเครื่องมือที่ชื่อว่า &lt;strong&gt;Jekyll&lt;/strong&gt; เพื่อใช้สำหรับสร้างเว็บไซด์ที่รองรับการทำบล็อก&lt;/p&gt;
+สำหรับในบทความนี้ก็ขอนำแนะนำองค์ประกอบพื้นฐานไว้คร่าวๆ แต่เพียงเท่านี้ หากอยากศึกษาเพิ่มเติมถึงองค์ประกอบอื่นๆ เช่น ตัวช่วย (*Helpers*) คอมโพเนนต์ (*Components*) หรือการปรับแต่งสไตล์ (*Customization*) สามารถดูรายละเอียดได้จากเว็บไซด์ [Bulma](https://bulma.io)
+
+## References
+- [https://bulma.io](https://bulma.io)
+- [https://github.com/joshuajansen/bulma-rails](https://github.com/joshuajansen/bulma-rails)</content><author><name>Karn</name></author><category term="rails" /><category term="bulma" /><summary type="html">ถ้าจะกล่าวถึง CSS Framework ที่เป็นที่นิยมใช้กันนั้นก็มีอยู่ด้วยกันหลากหลาย สำหรับในบทความนี้จะกล่าวถึง Bulma ซึ่งเป็น CSS Framework ที่ใช้งานได้ง่าย ไม่ซับซ้อนและแลดูสวยงามเมื่อแสดงผลอยู่บนเว็บบราวเซอร์ โดยในวันนี้เราจะนำ Bulma มาใช้งานร่วมกันกับ Rails</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/using-bulma-with-rails/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/using-bulma-with-rails/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เมื่อนักสร้างคอนเทนต์มือใหม่ อยากมีเว็บไซด์เป็นของตัวเอง</title><link href="https://karn18.github.io/dev/2019/11/15/create-website-with-jekyll.html" rel="alternate" type="text/html" title="เมื่อนักสร้างคอนเทนต์มือใหม่ อยากมีเว็บไซด์เป็นของตัวเอง" /><published>2019-11-15T16:07:00+07:00</published><updated>2019-11-15T16:07:00+07:00</updated><id>https://karn18.github.io/dev/2019/11/15/create-website-with-jekyll</id><content type="html" xml:base="https://karn18.github.io/dev/2019/11/15/create-website-with-jekyll.html">สำหรับนักสร้างคอนเทนต์ การมีเว็บไซด์เป็นของตัวเองเพื่อใช้ในการเผยแพร่บทความที่ได้เขียนขึ้นนั้นถือเป็นอีกช่องทางหนึ่ง ที่ช่วยเผยแพร่ความรู้ ประสบการณ์ และความคิดสร้างสรรค์ให้แก่ผู้อ่านในโลกอินเตอร์เน็ต นอกเหนือจากการเผยแพร่ผ่านเว็บไซด์อื่นๆ เช่น medium, blogger, reddit เป็นต้น ซึ่งในบทความนี้จะเป็นการแนะนำเครื่องมือที่ชื่อว่า **Jekyll** เพื่อใช้สำหรับสร้างเว็บไซด์ที่รองรับการทำบล็อก
 
 &lt;!--more--&gt;
 
-&lt;h2 id=&quot;ทำไมเลือกใช้-jekyll&quot;&gt;ทำไมเลือกใช้ Jekyll&lt;/h2&gt;
-&lt;p&gt;ก่อนที่จะลงลึกถึงการติดตั้ง และใช้งาน &lt;strong&gt;Jekyll&lt;/strong&gt; มาดูกันก่อนว่า &lt;strong&gt;Jekyll&lt;/strong&gt; นั้นเหมาะสมที่จะมาเป็นเครื่องมือสำหรับนักสร้างคอนเทนต์มืใหม่อย่างเราหรือไม่ โดยลองนึกถึงคุณลักษณะของเว็บไซด์ที่เราอยากได้ว่าเป็นอย่างไรบ้าง&lt;/p&gt;
+## ทำไมเลือกใช้ Jekyll
+ก่อนที่จะลงลึกถึงการติดตั้ง และใช้งาน **Jekyll** มาดูกันก่อนว่า **Jekyll** นั้นเหมาะสมที่จะมาเป็นเครื่องมือสำหรับนักสร้างคอนเทนต์มืใหม่อย่างเราหรือไม่ โดยลองนึกถึงคุณลักษณะของเว็บไซด์ที่เราอยากได้ว่าเป็นอย่างไรบ้าง
 
-&lt;ul&gt;
-  &lt;li&gt;พัฒนาได้รวดเร็ว (&lt;strong&gt;Fast&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;ใช้งานได้ง่าย (&lt;strong&gt;Simple&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;มีปลอดภัย (&lt;strong&gt;Secure&lt;/strong&gt;)&lt;/li&gt;
-&lt;/ul&gt;
+- พัฒนาได้รวดเร็ว (**Fast**)
+- ใช้งานได้ง่าย (**Simple**)
+- มีปลอดภัย (**Secure**)
 
-&lt;p&gt;เมื่อเห็นคุณลักษณะข้างต้นก็จะพบว่าประเภทของเว็บไซด์ที่ตอบโจทย์ดังกล่าวก็จะเป็น Static Website หรือถ้าเรียกเป็นภาษาไทยก็คือ เว็บไซด์ที่ตอบสนองแบบทางเดียว กล่าวคือไม่มีการติดต่อกับฐานข้อมูล สำหรับเก็บข้อมูลใดๆ นั้นเอง
-ถ้าเราลองค้นหาเครื่องมือที่สร้าง Static Website ที่จะมาช่วยเหลือเราในการสร้างเว็บไซด์ ซึ่งจะพบว่ามีเครื่องมือที่ได้รับความนิยมอยู่ด้วยกันหลากหลาย&lt;/p&gt;
+เมื่อเห็นคุณลักษณะข้างต้นก็จะพบว่าประเภทของเว็บไซด์ที่ตอบโจทย์ดังกล่าวก็จะเป็น Static Website หรือถ้าเรียกเป็นภาษาไทยก็คือ เว็บไซด์ที่ตอบสนองแบบทางเดียว กล่าวคือไม่มีการติดต่อกับฐานข้อมูล สำหรับเก็บข้อมูลใดๆ นั้นเอง
+ถ้าเราลองค้นหาเครื่องมือที่สร้าง Static Website ที่จะมาช่วยเหลือเราในการสร้างเว็บไซด์ ซึ่งจะพบว่ามีเครื่องมือที่ได้รับความนิยมอยู่ด้วยกันหลากหลาย
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.org&quot;&gt;Gatby&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://hexo.io&quot;&gt;Hexo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://gohugo.io&quot;&gt;Hugo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://middlemanapp.com&quot;&gt;Middleman&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://spike.js.org&quot;&gt;Spike&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+- [Gatby](https://www.gatsbyjs.org)
+- [Hexo](https://hexo.io)
+- [Hugo](https://gohugo.io)
+- [Jekyll](https://jekyllrb.com)
+- [Middleman](http://middlemanapp.com)
+- [Spike](https://spike.js.org)
 
-&lt;p&gt;แล้วที่นี้เราจะเลือกใช้เครื่องมือตัวไหนดี ซึ่งในมุมมองแต่ละคนก็จะมีหลักเกณฑ์ในการเลือกที่แตกต่างกัน&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;ความชอบในภาษาสำหรับเขียนโปรแกรมที่ใช้ในแต่ละเครื่องมือ&lt;/li&gt;
-  &lt;li&gt;ความสามารถของแต่ละเครื่องมือ&lt;/li&gt;
-  &lt;li&gt;รูปแบบ และลักษณะการพัฒนาหน้าเว็บไซด์&lt;/li&gt;
-&lt;/ul&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Everything should be made as simple as possible, but not simple.&lt;/p&gt;
+แล้วที่นี้เราจะเลือกใช้เครื่องมือตัวไหนดี ซึ่งในมุมมองแต่ละคนก็จะมีหลักเกณฑ์ในการเลือกที่แตกต่างกัน
+- ความชอบในภาษาสำหรับเขียนโปรแกรมที่ใช้ในแต่ละเครื่องมือ
+- ความสามารถของแต่ละเครื่องมือ
+- รูปแบบ และลักษณะการพัฒนาหน้าเว็บไซด์
 
-  &lt;p&gt;~ Albert Einstein&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;p&gt;สำหรับบทความนี้ได้เลือกใช้ &lt;strong&gt;Jekyll&lt;/strong&gt; เนื่องจากเป็นเครื่องมือที่พัฒนาขึ้นจากภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ซึ่งเป็นภาษาที่ผู้เขียนชื่นชอบและสนใจเป็นหลัก ประกอบกันความสามารถในการเขียนบทความที่ง่ายผ่านรูปแบบของการเขียนโดยใช้ Markdown และสุดท้ายคือในการส่วนของการตกแต่งรูปแบบเว็บไซด์ซึ่งสามารถทำได้อย่างง่ายได้&lt;/p&gt;
+&gt; Everything should be made as simple as possible, but not simple.
+&gt;
+&gt; ~ Albert Einstein
 
-&lt;hr /&gt;
+สำหรับบทความนี้ได้เลือกใช้ **Jekyll** เนื่องจากเป็นเครื่องมือที่พัฒนาขึ้นจากภาษา **Ruby** ซึ่งเป็นภาษาที่ผู้เขียนชื่นชอบและสนใจเป็นหลัก ประกอบกันความสามารถในการเขียนบทความที่ง่ายผ่านรูปแบบของการเขียนโดยใช้ Markdown และสุดท้ายคือในการส่วนของการตกแต่งรูปแบบเว็บไซด์ซึ่งสามารถทำได้อย่างง่ายได้
 
-&lt;h2 id=&quot;jekyll-คืออะไร&quot;&gt;Jekyll คืออะไร&lt;/h2&gt;
-&lt;p&gt;จะอธิบายให้ชัดเจนเกี่ยวกับ &lt;strong&gt;Jekyll&lt;/strong&gt; ว่าคืออะไร ก็สามารถจะตอบได้ว่าเป็นเครื่องมือสำหรับพัฒนาเว็บไซด์แบบตอบสนองทางเดียว (Static Website) ที่รองรับการทำบล็อก เหมาะสมกับผู้ใช้งานทั่วไป หรือองค์กรต่างๆ โดยหน้าเว็บของเราจะถูกสร้างขึ้นโดยการแปลงเนื้อหาที่เขียนขึ้นจาก Markdown ไปเป็น HTML นั้นเอง&lt;/p&gt;
+---
 
-&lt;h2 id=&quot;ใครบ้างที่ใช้-jekyll&quot;&gt;ใครบ้างที่ใช้ Jekyll&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/create-website-with-jekyll/ruby-on-rails.png&quot; alt=&quot;Ruby on Rails&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Ruby on Rails&lt;/em&gt;&lt;/p&gt;
+## Jekyll คืออะไร
+จะอธิบายให้ชัดเจนเกี่ยวกับ **Jekyll** ว่าคืออะไร ก็สามารถจะตอบได้ว่าเป็นเครื่องมือสำหรับพัฒนาเว็บไซด์แบบตอบสนองทางเดียว (Static Website) ที่รองรับการทำบล็อก เหมาะสมกับผู้ใช้งานทั่วไป หรือองค์กรต่างๆ โดยหน้าเว็บของเราจะถูกสร้างขึ้นโดยการแปลงเนื้อหาที่เขียนขึ้นจาก Markdown ไปเป็น HTML นั้นเอง
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/create-website-with-jekyll/html-reference.png&quot; alt=&quot;HTML Reference&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;HTML Reference&lt;/em&gt;&lt;/p&gt;
+## ใครบ้างที่ใช้ Jekyll
+![Ruby on Rails](/assets/images/posts/2019/create-website-with-jekyll/ruby-on-rails.png){:width=&quot;500px&quot;}
+*Ruby on Rails*
 
-&lt;p&gt;สามารถดูเพิ่มเติมได้&lt;a href=&quot;https://jekyllrb.com/showcase/&quot;&gt;ที่นี่&lt;/a&gt;&lt;/p&gt;
+![HTML Reference](/assets/images/posts/2019/create-website-with-jekyll/html-reference.png){:width=&quot;500px&quot;}
+*HTML Reference*
 
-&lt;h2 id=&quot;ความต้องการพื้นฐาน&quot;&gt;ความต้องการพื้นฐาน&lt;/h2&gt;
-&lt;p&gt;เนื่องจาก &lt;strong&gt;Jekyll&lt;/strong&gt; เป็นเครื่องมือที่ทำงานด้วยภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ดังนั้นเราต้องติดตั้งโปรแกรมพื้นฐานดังต่อไปนี้ก่อน&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Ruby (v2.5 or later)&lt;/li&gt;
-  &lt;li&gt;Gems (v3.0 or later)&lt;/li&gt;
-&lt;/ul&gt;
+สามารถดูเพิ่มเติมได้[ที่นี่](https://jekyllrb.com/showcase/)
 
-&lt;h2 id=&quot;เริ่มต้นกันเลย-quickstart&quot;&gt;เริ่มต้นกันเลย (Quickstart)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;ติดตั้ง Jekyll และ Bunlder
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll bunlder
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;สร้างเว็บไซด์ใหม่ด้วย jekyll
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jekyll new mysite
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;เข้าไปยังเว็บไซด์โฟลเดอร์
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;mysite
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;รันเว็บไซด์ของเรา
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;เข้าไปยังเว็บไซด์ของเราผ่านเว็บบราวเซอร์ที่ &lt;strong&gt;http://localhost:4000&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
+## ความต้องการพื้นฐาน
+เนื่องจาก **Jekyll** เป็นเครื่องมือที่ทำงานด้วยภาษา **Ruby** ดังนั้นเราต้องติดตั้งโปรแกรมพื้นฐานดังต่อไปนี้ก่อน
+- Ruby (v2.5 or later)
+- Gems (v3.0 or later)
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/create-website-with-jekyll/example-jekyll.png&quot; alt=&quot;Jekyll&quot; width=&quot;400px&quot; /&gt;
-&lt;em&gt;Jekyll on localhost&lt;/em&gt;&lt;/p&gt;
+## เริ่มต้นกันเลย (Quickstart)
+- ติดตั้ง Jekyll และ Bunlder
+```bash
+$ gem install jekyll bunlder
+```
+- สร้างเว็บไซด์ใหม่ด้วย jekyll
+```bash
+$ jekyll new mysite
+```
+- เข้าไปยังเว็บไซด์โฟลเดอร์
+``` bash
+$ cd mysite
+```
+- รันเว็บไซด์ของเรา
+```bash
+$ bundle exec jekyll serve
+```
+- เข้าไปยังเว็บไซด์ของเราผ่านเว็บบราวเซอร์ที่ **http://localhost:4000**
 
-&lt;p&gt;เพียงไม่กี่ขั้นตอนข้างต้น เราก็จะได้เว็บไซด์พร้อมใช้งาน ซึ่งประกอบด้วย&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;หน้าหลัก ซึ่งจะแสดงรายการบทความที่ได้ทำการเผยแพร่&lt;/li&gt;
-  &lt;li&gt;หน้าแสดงบทความ&lt;/li&gt;
-  &lt;li&gt;หน้าเกี่ยวกับเว็บไซด์&lt;/li&gt;
-  &lt;li&gt;RSS Feed&lt;/li&gt;
-  &lt;li&gt;ข้อมูลเกี่ยวกับโซเชียลของผู้พัฒนา&lt;/li&gt;
-&lt;/ul&gt;
+![Jekyll](/assets/images/posts/2019/create-website-with-jekyll/example-jekyll.png){:width=&quot;400px&quot;}
+*Jekyll on localhost*
 
-&lt;hr /&gt;
+เพียงไม่กี่ขั้นตอนข้างต้น เราก็จะได้เว็บไซด์พร้อมใช้งาน ซึ่งประกอบด้วย
+- หน้าหลัก ซึ่งจะแสดงรายการบทความที่ได้ทำการเผยแพร่
+- หน้าแสดงบทความ
+- หน้าเกี่ยวกับเว็บไซด์
+- RSS Feed
+- ข้อมูลเกี่ยวกับโซเชียลของผู้พัฒนา
 
-&lt;h2 id=&quot;วิธีการติดตั้งเว็บไซด์บน-github-pages&quot;&gt;วิธีการติดตั้งเว็บไซด์บน Github Pages&lt;/h2&gt;
-&lt;p&gt;เมื่อได้เว็บไซด์ที่พร้อมจะนำเสนอสู่โลกอินเทอร์เนต สิ่งที่ขาดไม่ได้ถัดมาคือการนำเว็บไซด์ไปติดตั้งบนโฮสสาธารณะที่ผู้คนสามารถเข้ามาชมได้ แต่ถ้าการเช่าโฮส และการจดโดเมนเป็นเรื่องที่ยุ่งยากสำหรับมือใหม่ การเลือกใช้บริการโฮสเว็บไซด์สาธารณะก็ถือเป็นทางเลือกที่ประหยัด และสะดวกรวดเร็ว ใช่แล้วครับในบทความนี้เราได้เลือกใช้บริการของ &lt;strong&gt;Github&lt;/strong&gt; ที่เรียกว่า &lt;strong&gt;Github Page&lt;/strong&gt;&lt;/p&gt;
+---
 
-&lt;p&gt;&lt;strong&gt;Github Pages&lt;/strong&gt; เป็นบริการโฮสเว็บไซด์ของ &lt;strong&gt;Github&lt;/strong&gt; ผ่านการอัพโหลดเข้าไปยัง Repository ของ &lt;strong&gt;Github&lt;/strong&gt; อีกทั้งยังมีโดเมนที่เป็นสาธารณะภายใต้โดเมนของ &lt;strong&gt;Github&lt;/strong&gt; อีกด้วย โดยโดเมนที่ได้จะมีซับโดเมนตามชื่อบัญชีผู้ใช้ที่เราได้สมัครไว้กับทาง &lt;strong&gt;Github&lt;/strong&gt; ยกตัวอย่างเช่น ถ้าเรามีชื่อบัญชีผู้ใช้เป็น &lt;strong&gt;karn18&lt;/strong&gt; เราก็จะมีโดเมนเป็น &lt;strong&gt;karn18.github.io&lt;/strong&gt;&lt;/p&gt;
+## วิธีการติดตั้งเว็บไซด์บน Github Pages
+เมื่อได้เว็บไซด์ที่พร้อมจะนำเสนอสู่โลกอินเทอร์เนต สิ่งที่ขาดไม่ได้ถัดมาคือการนำเว็บไซด์ไปติดตั้งบนโฮสสาธารณะที่ผู้คนสามารถเข้ามาชมได้ แต่ถ้าการเช่าโฮส และการจดโดเมนเป็นเรื่องที่ยุ่งยากสำหรับมือใหม่ การเลือกใช้บริการโฮสเว็บไซด์สาธารณะก็ถือเป็นทางเลือกที่ประหยัด และสะดวกรวดเร็ว ใช่แล้วครับในบทความนี้เราได้เลือกใช้บริการของ **Github** ที่เรียกว่า **Github Page**
 
-&lt;ul&gt;
-  &lt;li&gt;สร้าง repository ดังนี้ &lt;strong&gt;{username}.github.io&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;เข้าไปยังเว็บไซด์โฟลเดอร์&lt;/li&gt;
-  &lt;li&gt;กำหนดค่าของ git และ push code ขึ้นไปยัง Github ดังนี้&lt;/li&gt;
-&lt;/ul&gt;
+**Github Pages** เป็นบริการโฮสเว็บไซด์ของ **Github** ผ่านการอัพโหลดเข้าไปยัง Repository ของ **Github** อีกทั้งยังมีโดเมนที่เป็นสาธารณะภายใต้โดเมนของ **Github** อีกด้วย โดยโดเมนที่ได้จะมีซับโดเมนตามชื่อบัญชีผู้ใช้ที่เราได้สมัครไว้กับทาง **Github** ยกตัวอย่างเช่น ถ้าเรามีชื่อบัญชีผู้ใช้เป็น **karn18** เราก็จะมีโดเมนเป็น **karn18.github.io**
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;git init
-git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-git commit &lt;span class=&quot;nt&quot;&gt;-am&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Init my static website&quot;&lt;/span&gt;
-git remote add origin https://github.com/&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;username&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;/&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;username&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-github&lt;/span&gt;.io.git
+- สร้าง repository ดังนี้ **{username}.github.io**
+- เข้าไปยังเว็บไซด์โฟลเดอร์
+- กำหนดค่าของ git และ push code ขึ้นไปยัง Github ดังนี้
+
+```bash
+git init
+git add .
+git commit -am &quot;Init my static website&quot;
+git remote add origin https://github.com/{username}/{username}-github.io.git
 git push
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;ul&gt;
-  &lt;li&gt;เข้าไปยัง &lt;strong&gt;{username}.github.io&lt;/strong&gt; ผ่านเว็บเบราเซอร์&lt;/li&gt;
-&lt;/ul&gt;
+- เข้าไปยัง **{username}.github.io** ผ่านเว็บเบราเซอร์
 
-&lt;p&gt;เพียงเท่านี้เราก็สามารถเริ่มเขียนบทความที่น่าสนใจ และเผยแผร่สู่โลกอินเทอร์เนตได้แล้ว&lt;/p&gt;
+เพียงเท่านี้เราก็สามารถเริ่มเขียนบทความที่น่าสนใจ และเผยแผร่สู่โลกอินเทอร์เนตได้แล้ว
 
-&lt;p&gt;&lt;em&gt;!!!&lt;/em&gt; หมายเหตุ: ให้แทน {username} ด้วยชื่อบัญชีผู้ใช้ที่สมัครไว้กับ Github&lt;/p&gt;
+*!!!* หมายเหตุ: ให้แทน {username} ด้วยชื่อบัญชีผู้ใช้ที่สมัครไว้กับ Github
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com&quot;&gt;https://jekyllrb.com&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://naturaily.com/blog/why-jekyll-netlify-cms&quot;&gt;https://naturaily.com/blog/why-jekyll-netlify-cms&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.webjeda.com/jekyll-guide/&quot;&gt;https://blog.webjeda.com/jekyll-guide/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="css" /><category term="html" /><category term="jekyll" /><category term="ruby" /><summary type="html">สำหรับนักสร้างคอนเทนต์ การมีเว็บไซด์เป็นของตัวเองเพื่อใช้ในการเผยแพร่บทความที่ได้เขียนขึ้นนั้นถือเป็นอีกช่องทางหนึ่ง ที่ช่วยเผยแพร่ความรู้ ประสบการณ์ และความคิดสร้างสรรค์ให้แก่ผู้อ่านในโลกอินเตอร์เน็ต นอกเหนือจากการเผยแพร่ผ่านเว็บไซด์อื่นๆ เช่น medium, blogger, reddit เป็นต้น ซึ่งในบทความนี้จะเป็นการแนะนำเครื่องมือที่ชื่อว่า Jekyll เพื่อใช้สำหรับสร้างเว็บไซด์ที่รองรับการทำบล็อก</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/create-website-with-jekyll/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/create-website-with-jekyll/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+## References
+- [https://jekyllrb.com](https://jekyllrb.com)
+- [https://naturaily.com/blog/why-jekyll-netlify-cms](https://naturaily.com/blog/why-jekyll-netlify-cms)
+- [https://blog.webjeda.com/jekyll-guide/](https://blog.webjeda.com/jekyll-guide/)</content><author><name>Karn</name></author><category term="css" /><category term="html" /><category term="jekyll" /><category term="ruby" /><summary type="html">สำหรับนักสร้างคอนเทนต์ การมีเว็บไซด์เป็นของตัวเองเพื่อใช้ในการเผยแพร่บทความที่ได้เขียนขึ้นนั้นถือเป็นอีกช่องทางหนึ่ง ที่ช่วยเผยแพร่ความรู้ ประสบการณ์ และความคิดสร้างสรรค์ให้แก่ผู้อ่านในโลกอินเตอร์เน็ต นอกเหนือจากการเผยแพร่ผ่านเว็บไซด์อื่นๆ เช่น medium, blogger, reddit เป็นต้น ซึ่งในบทความนี้จะเป็นการแนะนำเครื่องมือที่ชื่อว่า Jekyll เพื่อใช้สำหรับสร้างเว็บไซด์ที่รองรับการทำบล็อก</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/create-website-with-jekyll/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/create-website-with-jekyll/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
