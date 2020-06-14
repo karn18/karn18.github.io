@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>เปลี่ยน id ให้เป็น hash id บน URL | KT</title>
 <meta name="generator" content="Jekyll v4.1.0" />
@@ -24,15 +24,17 @@
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"เปลี่ยน id ให้เป็น hash id บน URL","dateModified":"2020-06-09T23:04:00+07:00","datePublished":"2020-06-09T23:04:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/06/09/%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99-id-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99-hash-id-%E0%B8%9A%E0%B8%99-url.html"},"url":"https://karn18.github.io/dev/2020/06/09/%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99-id-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99-hash-id-%E0%B8%9A%E0%B8%99-url.html","description":"ปกติเมื่อเราใช้ rails generator ในการสร้าง CRUD ไม่ว่าจะเป็น scaffold หรือ scaffold_controller จะพบว่า resources ที่ได้จะมีลักษณะคล้ายกับรูปด้านล่าง","@context":"https://schema.org"}</script>
+{"description":"ปกติเมื่อเราใช้ rails generator ในการสร้าง CRUD ไม่ว่าจะเป็น scaffold หรือ scaffold_controller จะพบว่า resources ที่ได้จะมีลักษณะคล้ายกับรูปด้านล่าง","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/06/09/%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99-id-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99-hash-id-%E0%B8%9A%E0%B8%99-url.html"},"datePublished":"2020-06-09T23:04:00+07:00","headline":"เปลี่ยน id ให้เป็น hash id บน URL","author":{"@type":"Person","name":"Karn"},"url":"https://karn18.github.io/dev/2020/06/09/%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99-id-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99-hash-id-%E0%B8%9A%E0%B8%99-url.html","dateModified":"2020-06-09T23:04:00+07:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/css/main.css" /><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><title>เปลี่ยน id ให้เป็น hash id บน URL</title>
-</head><body>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><title>เปลี่ยน id ให้เป็น hash id บน URL</title>
+</head><body data-theme="light">
     <div class="kz-progress"></div>
     <div class="kz-main-container"><nav class="kz-navbar">
   <a href="/" class="kz-navbar__logo">KT</a>
   <div class="kz-navbar__menu">
+    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
     <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
     <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
     <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
@@ -218,7 +220,7 @@
   <!-- <div class="kz-pagination">
   <div class="kz-pagination__newer">
     
-      <a class="kz-pagination__button" href="/fod/2020/06/10/favorite_of_the_day_1.html">&larr; Newer</a>
+      <a class="kz-pagination__button" href="/fod/2020/06/10/favorite-of-the-day-1.html">&larr; Newer</a>
     
   </div>
   <div class="kz-pagination__older">
