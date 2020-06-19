@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en"><!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Guide to Rails and Preact (Part 1) | KT</title>
+<meta name="generator" content="Jekyll v4.1.0" />
+<meta property="og:title" content="Guide to Rails and Preact (Part 1)" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="💡บทความนี้จะแนะนำไลบราลีที่ชื่อ Preact ซึ่งถือเป็นไลบราลี JavaScript ขนาดเล็กและทันสมัยให้กับ Frontend Developer ได้รู้จักกัน โดยในบทความจะแนะนำวิธีการติดตั้ง Preact บน Rails" />
+<meta property="og:description" content="💡บทความนี้จะแนะนำไลบราลีที่ชื่อ Preact ซึ่งถือเป็นไลบราลี JavaScript ขนาดเล็กและทันสมัยให้กับ Frontend Developer ได้รู้จักกัน โดยในบทความจะแนะนำวิธีการติดตั้ง Preact บน Rails" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-19T22:36:00+07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Guide to Rails and Preact (Part 1)" />
+<meta name="twitter:site" content="@karn18" />
+<meta name="twitter:creator" content="@Karn" />
+<script type="application/ld+json">
+{"headline":"Guide to Rails and Preact (Part 1)","dateModified":"2020-06-19T22:36:00+07:00","datePublished":"2020-06-19T22:36:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1.html"},"url":"https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1.html","description":"💡บทความนี้จะแนะนำไลบราลีที่ชื่อ Preact ซึ่งถือเป็นไลบราลี JavaScript ขนาดเล็กและทันสมัยให้กับ Frontend Developer ได้รู้จักกัน โดยในบทความจะแนะนำวิธีการติดตั้ง Preact บน Rails","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><title>Guide to Rails and Preact (Part 1)</title>
+</head><body data-theme="light">
+    <div class="kz-progress"></div>
+    <div class="kz-main-container"><nav class="kz-navbar">
+  <a href="/" class="kz-navbar__logo">KT</a>
+  <div class="kz-navbar__menu">
+    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
+    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
+    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
+    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+  </div>
+</nav>
+<div class="kz-content">
+        <div class="kz-blog">
+  <div class="kz-blog__header">
+  <h1 class="kz-blog__title">Guide to Rails and Preact (Part 1)</h1>
+  <div class="kz-blog__info">
+    <i class="typcn typcn-calendar-outline"></i> 19-06-2020
+    
+      | <i class="typcn typcn-tag"></i>
+      
+        <span>rails</span>
+      
+        <span>preact</span>
+      
+    
+  </div>
+</div>
+
+  
+  <div class="blog-content is-family-secondary">
+    <p>💡บทความนี้จะแนะนำไลบราลีที่ชื่อ <strong>Preact</strong> ซึ่งถือเป็นไลบราลี <strong>JavaScript</strong> ขนาดเล็กและทันสมัยให้กับ <strong>Frontend Developer</strong> ได้รู้จักกัน โดยในบทความจะแนะนำวิธีการติดตั้ง <strong>Preact</strong> บน <strong>Rails</strong><!--more--></p>
+
+<h2 id="เริ่มต้น">เริ่มต้น</h2>
+<ul>
+  <li>สร้างโปรเจคใหม่</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>rails new myblog <span class="nt">--wepacker</span> <span class="nt">-d</span> postgresql
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>ติดตั้ง <strong>Preact</strong> และปลักอินสำหรับ <strong>compile</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>yarn add preact @babel/plugin-transform-react-jsx
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>เพิ่มปลักอิน <code class="language-plaintext highlighter-rouge">plugin-transform-react-jsx</code> เข้าไปยัง <code class="language-plaintext highlighter-rouge">babel.config.js</code></li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="nx">plugins</span><span class="p">:</span> <span class="p">[</span>
+  <span class="p">...,</span>
+  <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">@babel/plugin-transform-react-jsx</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">{</span> <span class="dl">"</span><span class="s2">pragma</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">h</span><span class="dl">"</span> <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">]</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>สร้าง <strong>controller</strong> ชื่อ <code class="language-plaintext highlighter-rouge">Home</code> และ <strong>action</strong> ชื่อ <code class="language-plaintext highlighter-rouge">index</code></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>rails generate controller Home index
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>กำหนด <strong>routes</strong> ในการเข้าถึงใน <code class="language-plaintext highlighter-rouge">config/routes.rb</code></li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">root</span> <span class="ss">to: </span><span class="s1">'home#index'</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>กำหนด <strong>file extensions</strong> ของ <code class="language-plaintext highlighter-rouge">jsx</code> เพิ่มเติมใน <code class="language-plaintext highlighter-rouge">config/webpacker.yml</code></li>
+</ul>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nn">...</span>
+<span class="na">extensions</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">.js</span>
+  <span class="pi">-</span> <span class="s">.jsx</span>
+<span class="nn">...</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>สร้าง <strong>interactive component</strong> <code class="language-plaintext highlighter-rouge">Box</code> โดยสร้างไฟล์ <code class="language-plaintext highlighter-rouge">app/javascripts/packs/box.jsx</code> ซึ่งจะรับค่าจากผู้ใช้ในช่อง <strong>input</strong> และเมื่อกดปุ่ม จะนำข้อความที่ได้ไปแสดงผลในบริเวณที่กำหนดไว้</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">{</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">render</span><span class="p">,</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">preact</span><span class="dl">'</span>
+
+<span class="kd">class</span> <span class="nx">Box</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">''</span> <span class="p">}</span>
+
+  <span class="nx">onInput</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">value</span><span class="p">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span> <span class="p">})</span>
+  <span class="p">}</span>
+
+  <span class="nx">onSubmit</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">value</span> <span class="p">})</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">form</span> <span class="na">onSubmit</span><span class="p">=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">onSubmit</span><span class="si">}</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="p">=</span><span class="s">"text"</span> <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span> <span class="na">onInput</span><span class="p">=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">onInput</span><span class="si">}</span><span class="p">&gt;&lt;/</span><span class="nt">input</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="p">=</span><span class="s">"submit"</span><span class="p">&gt;</span>อัพเดต<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>แสดงผลที่นี่: <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">DOMContentLoaded</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">(&lt;</span><span class="nc">Box</span> <span class="p">/&gt;,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>เพิ่ม <strong>tag</strong> สำหรับโหลด <code class="language-plaintext highlighter-rouge">box</code> ใน <code class="language-plaintext highlighter-rouge">app/view/home/index.html.erb</code></li>
+</ul>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="cp">&lt;%=</span> <span class="n">javascript_pack_tag</span> <span class="s1">'box'</span> <span class="cp">%&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>รัน <strong>server</strong> และเข้าไปยัง <code class="language-plaintext highlighter-rouge">http://localhost:3000</code></li>
+</ul>
+
+<p><img src="/assets/images/posts/2020/guide-to-rails-and-preact/preact.png" alt="preact" />
+<em>ทดสอบการทำงาน Preact</em></p>
+
+<p>สำหรับในบทความนี้ก็จะแนะนำการติดตั้งไว้เพียงเท่านี้ สำหรับในบทความหน้า เราจะมาลงลึกในการใช้งาน <strong>Preact</strong> กัน 🤩</p>
+
+<h2 id="referecnes">Referecnes</h2>
+<ul>
+  <li><a href="https://preactjs.com">PREACT</a></li>
+</ul>
+
+  </div>
+  <!-- <div class="section field is-grouped">
+  <div class="control">
+    <a class="twitter-share-button"
+      href="https://twitter.com/intent/tweet?text=Guide to Rails and Preact (Part 1)&url=https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1.html&via=karn18&related=karn18"
+      data-size="large">
+      Tweet
+    </a>
+    <div id="fb-root"></div>
+  </div>
+  <div class="control">
+    <div class="fb-share-button" 
+      data-href="https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1.html"
+      data-layout="button_count" data-size="large">
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+        Share
+      </a>
+    </div>
+  </div>
+</div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+  
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+ -->
+  <!-- 
+ -->
+  <!-- <div class="kz-pagination">
+  <div class="kz-pagination__newer">
+    
+  </div>
+  <div class="kz-pagination__older">
+    
+      <a class="kz-pagination__button" href="/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html">Older &rarr;</a>
+    
+  </div>
+</div> -->
+  <div class="related-blog">
+  
+  
+  
+
+  
+</div>
+
+</div>
+
+
+
+      </div>
+    </div><script>
+  const h = document.documentElement;
+  const b = document.body;
+  const st = 'scrollTop';
+  const sh = 'scrollHeight';
+  const progress = document.querySelector('.kz-progress');
+  let scroll;
+
+  document.addEventListener('scroll', function() {
+    scroll = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+    progress.style.setProperty('--scroll', scroll + '%');
+  });
+</script>
+
+</body>
+</html>
