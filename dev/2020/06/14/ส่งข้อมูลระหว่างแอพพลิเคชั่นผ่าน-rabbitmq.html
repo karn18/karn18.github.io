@@ -14,8 +14,8 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง Ruby Application โดยลองนึกภาพว่าแอพตัวที่ 1ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยังแอพตัวที่ 2 เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log)" />
 <meta property="og:description" content="❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง Ruby Application โดยลองนึกภาพว่าแอพตัวที่ 1ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยังแอพตัวที่ 2 เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log)" />
-<link rel="canonical" href="http://localhost:4000/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html" />
-<meta property="og:url" content="http://localhost:4000/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html" />
 <meta property="og:site_name" content="KT" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-06-14T19:35:00+07:00" />
@@ -24,11 +24,13 @@
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"description":"❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง Ruby Application โดยลองนึกภาพว่าแอพตัวที่ 1ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยังแอพตัวที่ 2 เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log)","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html"},"datePublished":"2020-06-14T19:35:00+07:00","headline":"ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ","author":{"@type":"Person","name":"Karn"},"url":"http://localhost:4000/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html","dateModified":"2020-06-14T19:35:00+07:00","@context":"https://schema.org"}</script>
+{"description":"❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง Ruby Application โดยลองนึกภาพว่าแอพตัวที่ 1ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยังแอพตัวที่ 2 เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log)","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html"},"datePublished":"2020-06-14T19:35:00+07:00","headline":"ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ","author":{"@type":"Person","name":"Karn"},"url":"https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html","dateModified":"2020-06-14T19:35:00+07:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
-  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><title>ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ</title>
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><!-- Fathom - beautiful, simple website analytics -->
+<script src="https://cdn.usefathom.com/script.js" site="RHRIYMJC" defer></script>
+<!-- / Fathom --><title>ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ</title>
 </head><body data-theme="light">
     <div class="kz-progress"></div>
     <div class="kz-main-container"><nav class="kz-navbar">
@@ -223,7 +225,7 @@
   <!-- <div class="section field is-grouped">
   <div class="control">
     <a class="twitter-share-button"
-      href="https://twitter.com/intent/tweet?text=ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ&url=http://localhost:4000/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html&via=karn18&related=karn18"
+      href="https://twitter.com/intent/tweet?text=ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ&url=https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html&via=karn18&related=karn18"
       data-size="large">
       Tweet
     </a>
@@ -231,7 +233,7 @@
   </div>
   <div class="control">
     <div class="fb-share-button" 
-      data-href="http://localhost:4000/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html"
+      data-href="https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html"
       data-layout="button_count" data-size="large">
       <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
         Share
