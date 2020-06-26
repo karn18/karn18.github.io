@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en"><!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Monkey Path to History.pushState | KT</title>
+<meta name="generator" content="Jekyll v4.1.0" />
+<meta property="og:title" content="Monkey Path to History.pushState" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ Ajax Request ร่วมกับ History API หรือเรียกสั้นๆ ว่า pjax (PushState + Ajax) สำหรับผู้ใช้ Rails เราก็มี turbolinks เป็นตัวจัดการให้เราได้อย่างง่ายดาย" />
+<meta property="og:description" content="เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ Ajax Request ร่วมกับ History API หรือเรียกสั้นๆ ว่า pjax (PushState + Ajax) สำหรับผู้ใช้ Rails เราก็มี turbolinks เป็นตัวจัดการให้เราได้อย่างง่ายดาย" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-26T16:56:00+07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Monkey Path to History.pushState" />
+<meta name="twitter:site" content="@karn18" />
+<script type="application/ld+json">
+{"description":"เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ Ajax Request ร่วมกับ History API หรือเรียกสั้นๆ ว่า pjax (PushState + Ajax) สำหรับผู้ใช้ Rails เราก็มี turbolinks เป็นตัวจัดการให้เราได้อย่างง่ายดาย","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html"},"headline":"Monkey Path to History.pushState","dateModified":"2020-06-26T16:56:00+07:00","datePublished":"2020-06-26T16:56:00+07:00","url":"https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer data-skip-dnt="true" src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript><title>Monkey Path to History.pushState</title>
+</head><body data-theme="light">
+    <div class="kz-progress"></div>
+    <div class="kz-main-container"><nav class="kz-navbar">
+  <a href="/" class="kz-navbar__logo">KT</a>
+  <div class="kz-navbar__menu">
+    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
+    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
+    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
+    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+  </div>
+</nav>
+<div class="kz-content">
+        <div class="kz-blog">
+  <div class="kz-blog__header">
+  <h1 class="kz-blog__title">Monkey Path to History.pushState</h1>
+  <div class="kz-blog__info">
+    <i class="typcn typcn-calendar-outline"></i> 26-06-2020
+    
+      | <i class="typcn typcn-tag"></i>
+      
+        <span>javascript</span>
+      
+        <span>html</span>
+      
+    
+  </div>
+</div>
+
+  
+  <div class="blog-content is-family-secondary">
+    <p>เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ <strong>Ajax Request</strong> ร่วมกับ <strong>History API</strong>
+หรือเรียกสั้นๆ ว่า <strong>pjax (PushState + Ajax)</strong> สำหรับผู้ใช้ <strong>Rails</strong> เราก็มี <strong>turbolinks</strong> เป็นตัวจัดการให้เราได้อย่างง่ายดาย<!--more--></p>
+
+<p>ถ้าเราลองไปศึกษาดู <strong>History API</strong> จะพบว่าไม่ได้มี <strong>iterface</strong> ให้กับเหตุการณ์ <code class="language-plaintext highlighter-rouge">pushState</code> ทำให้เราไม่สามารถรับรู้ได้ว่าเมื่อไหร่เกิดการเปลี่ยน <strong>state</strong>
+ดังน้้นในตอนนี้ถ้าหากเราต้องการรับทราบเหตุการณ์ก็ต้อง <strong>Monkey Patch</strong> ให้กับเหตุการณ์ดังนี้</p>
+
+<h1 id="monkey-patch">Monkey Patch</h1>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>
+<span class="kd">function</span> <span class="nx">stateListener</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">orig</span> <span class="o">=</span> <span class="nx">his</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">rv</span> <span class="o">=</span> <span class="nx">orig</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
+    <span class="kd">const</span> <span class="nx">event</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">arguments</span> <span class="o">=</span> <span class="nx">arguments</span>
+    <span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">rv</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">history</span><span class="p">.</span><span class="nx">pushState</span> <span class="o">=</span> <span class="nx">stateListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">pushState</span><span class="dl">"</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>เพียงเท่านี้เราก็สามารถจะ <code class="language-plaintext highlighter-rouge">addEventListener</code> ให้กับ <code class="language-plaintext highlighter-rouge">pushState</code> ได้แล้ว แถมให้อีกนิดหนึ่งสำหรับการใช้ <strong>turbolinks</strong> เราก็จะใช้ <code class="language-plaintext highlighter-rouge">addEventListener</code> ให้กับ custom event ที่ชื่อว่า <code class="language-plaintext highlighter-rouge">turbolinks:load</code></p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://stackoverflow.com/questions/4570093/how-to-get-notified-about-changes-of-the-history-via-history-pushstate/25673946#answer-4585031">Get Notified about changes of the history</a></li>
+  <li><a href="https://github.com/turbolinks/turbolinks">Turbolinks</a></li>
+</ul>
+
+  </div>
+  <!-- <div class="section field is-grouped">
+  <div class="control">
+    <a class="twitter-share-button"
+      href="https://twitter.com/intent/tweet?text=Monkey Path to History.pushState&url=https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html&via=karn18&related=karn18"
+      data-size="large">
+      Tweet
+    </a>
+    <div id="fb-root"></div>
+  </div>
+  <div class="control">
+    <div class="fb-share-button" 
+      data-href="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html"
+      data-layout="button_count" data-size="large">
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+        Share
+      </a>
+    </div>
+  </div>
+</div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+  
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+ -->
+  <!-- 
+ -->
+  <!-- <div class="kz-pagination">
+  <div class="kz-pagination__newer">
+    
+  </div>
+  <div class="kz-pagination__older">
+    
+      <a class="kz-pagination__button" href="/dev/2020/06/19/guide-to-rails-and-preact_part_1.html">Older &rarr;</a>
+    
+  </div>
+</div> -->
+  <div class="related-blog">
+  
+  
+  
+
+  
+</div>
+
+</div>
+
+
+
+      </div>
+    </div><script>
+  const h = document.documentElement;
+  const b = document.body;
+  const st = 'scrollTop';
+  const sh = 'scrollHeight';
+  const progress = document.querySelector('.kz-progress');
+  let scroll;
+
+  document.addEventListener('scroll', function() {
+    scroll = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+    progress.style.setProperty('--scroll', scroll + '%');
+  });
+</script>
+
+</body>
+</html>

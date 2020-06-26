@@ -1,4 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-06-24T08:49:59+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Guide to Rails and Preact (Part 1)</title><link href="https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1.html" rel="alternate" type="text/html" title="Guide to Rails and Preact (Part 1)" /><published>2020-06-19T22:36:00+07:00</published><updated>2020-06-19T22:36:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1.html">&lt;p&gt;💡บทความนี้จะแนะนำไลบราลีที่ชื่อ &lt;strong&gt;Preact&lt;/strong&gt; ซึ่งถือเป็นไลบราลี &lt;strong&gt;JavaScript&lt;/strong&gt; ขนาดเล็กและทันสมัยให้กับ &lt;strong&gt;Frontend Developer&lt;/strong&gt; ได้รู้จักกัน โดยในบทความจะแนะนำวิธีการติดตั้ง &lt;strong&gt;Preact&lt;/strong&gt; บน &lt;strong&gt;Rails&lt;/strong&gt;&lt;!--more--&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-06-26T16:58:09+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Monkey Path to History.pushState</title><link href="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html" rel="alternate" type="text/html" title="Monkey Path to History.pushState" /><published>2020-06-26T16:56:00+07:00</published><updated>2020-06-26T16:56:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html">&lt;p&gt;เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ &lt;strong&gt;Ajax Request&lt;/strong&gt; ร่วมกับ &lt;strong&gt;History API&lt;/strong&gt;
+หรือเรียกสั้นๆ ว่า &lt;strong&gt;pjax (PushState + Ajax)&lt;/strong&gt; สำหรับผู้ใช้ &lt;strong&gt;Rails&lt;/strong&gt; เราก็มี &lt;strong&gt;turbolinks&lt;/strong&gt; เป็นตัวจัดการให้เราได้อย่างง่ายดาย&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;ถ้าเราลองไปศึกษาดู &lt;strong&gt;History API&lt;/strong&gt; จะพบว่าไม่ได้มี &lt;strong&gt;iterface&lt;/strong&gt; ให้กับเหตุการณ์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pushState&lt;/code&gt; ทำให้เราไม่สามารถรับรู้ได้ว่าเมื่อไหร่เกิดการเปลี่ยน &lt;strong&gt;state&lt;/strong&gt;
+ดังน้้นในตอนนี้ถ้าหากเราต้องการรับทราบเหตุการณ์ก็ต้อง &lt;strong&gt;Monkey Patch&lt;/strong&gt; ให้กับเหตุการณ์ดังนี้&lt;/p&gt;
+
+&lt;h1 id=&quot;monkey-patch&quot;&gt;Monkey Patch&lt;/h1&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;stateListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;orig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;his&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rv&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;orig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;dispatchEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rv&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;history&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pushState&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;stateListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;pushState&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เพียงเท่านี้เราก็สามารถจะ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addEventListener&lt;/code&gt; ให้กับ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pushState&lt;/code&gt; ได้แล้ว แถมให้อีกนิดหนึ่งสำหรับการใช้ &lt;strong&gt;turbolinks&lt;/strong&gt; เราก็จะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addEventListener&lt;/code&gt; ให้กับ custom event ที่ชื่อว่า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turbolinks:load&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/4570093/how-to-get-notified-about-changes-of-the-history-via-history-pushstate/25673946#answer-4585031&quot;&gt;Get Notified about changes of the history&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/turbolinks/turbolinks&quot;&gt;Turbolinks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="javascript" /><category term="html" /><summary type="html">เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ Ajax Request ร่วมกับ History API หรือเรียกสั้นๆ ว่า pjax (PushState + Ajax) สำหรับผู้ใช้ Rails เราก็มี turbolinks เป็นตัวจัดการให้เราได้อย่างง่ายดาย</summary></entry><entry><title type="html">Guide to Rails and Preact (Part 1)</title><link href="https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1.html" rel="alternate" type="text/html" title="Guide to Rails and Preact (Part 1)" /><published>2020-06-19T22:36:00+07:00</published><updated>2020-06-19T22:36:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/19/guide-to-rails-and-preact_part_1.html">&lt;p&gt;💡บทความนี้จะแนะนำไลบราลีที่ชื่อ &lt;strong&gt;Preact&lt;/strong&gt; ซึ่งถือเป็นไลบราลี &lt;strong&gt;JavaScript&lt;/strong&gt; ขนาดเล็กและทันสมัยให้กับ &lt;strong&gt;Frontend Developer&lt;/strong&gt; ได้รู้จักกัน โดยในบทความจะแนะนำวิธีการติดตั้ง &lt;strong&gt;Preact&lt;/strong&gt; บน &lt;strong&gt;Rails&lt;/strong&gt;&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;เริ่มต้น&quot;&gt;เริ่มต้น&lt;/h2&gt;
 &lt;ul&gt;
@@ -1066,140 +1108,4 @@ available themes:
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://bulma.io&quot;&gt;https://bulma.io&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/joshuajansen/bulma-rails&quot;&gt;https://github.com/joshuajansen/bulma-rails&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="bulma" /><summary type="html">ถ้าจะกล่าวถึง CSS Framework ที่เป็นที่นิยมใช้กันนั้นก็มีอยู่ด้วยกันหลากหลาย สำหรับในบทความนี้จะกล่าวถึง Bulma ซึ่งเป็น CSS Framework ที่ใช้งานได้ง่าย ไม่ซับซ้อนและแลดูสวยงามเมื่อแสดงผลอยู่บนเว็บบราวเซอร์ โดยในวันนี้เราจะนำ Bulma มาใช้งานร่วมกันกับ Rails</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/using-bulma-with-rails/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/using-bulma-with-rails/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เมื่อนักสร้างคอนเทนต์มือใหม่ อยากมีเว็บไซด์เป็นของตัวเอง</title><link href="https://karn18.github.io/dev/2019/11/15/create-website-with-jekyll.html" rel="alternate" type="text/html" title="เมื่อนักสร้างคอนเทนต์มือใหม่ อยากมีเว็บไซด์เป็นของตัวเอง" /><published>2019-11-15T16:07:00+07:00</published><updated>2019-11-15T16:07:00+07:00</updated><id>https://karn18.github.io/dev/2019/11/15/create-website-with-jekyll</id><content type="html" xml:base="https://karn18.github.io/dev/2019/11/15/create-website-with-jekyll.html">&lt;p&gt;สำหรับนักสร้างคอนเทนต์ การมีเว็บไซด์เป็นของตัวเองเพื่อใช้ในการเผยแพร่บทความที่ได้เขียนขึ้นนั้นถือเป็นอีกช่องทางหนึ่ง ที่ช่วยเผยแพร่ความรู้ ประสบการณ์ และความคิดสร้างสรรค์ให้แก่ผู้อ่านในโลกอินเตอร์เน็ต นอกเหนือจากการเผยแพร่ผ่านเว็บไซด์อื่นๆ เช่น medium, blogger, reddit เป็นต้น ซึ่งในบทความนี้จะเป็นการแนะนำเครื่องมือที่ชื่อว่า &lt;strong&gt;Jekyll&lt;/strong&gt; เพื่อใช้สำหรับสร้างเว็บไซด์ที่รองรับการทำบล็อก&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;ทำไมเลือกใช้-jekyll&quot;&gt;ทำไมเลือกใช้ Jekyll&lt;/h2&gt;
-&lt;p&gt;ก่อนที่จะลงลึกถึงการติดตั้ง และใช้งาน &lt;strong&gt;Jekyll&lt;/strong&gt; มาดูกันก่อนว่า &lt;strong&gt;Jekyll&lt;/strong&gt; นั้นเหมาะสมที่จะมาเป็นเครื่องมือสำหรับนักสร้างคอนเทนต์มืใหม่อย่างเราหรือไม่ โดยลองนึกถึงคุณลักษณะของเว็บไซด์ที่เราอยากได้ว่าเป็นอย่างไรบ้าง&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;พัฒนาได้รวดเร็ว (&lt;strong&gt;Fast&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;ใช้งานได้ง่าย (&lt;strong&gt;Simple&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;มีปลอดภัย (&lt;strong&gt;Secure&lt;/strong&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;เมื่อเห็นคุณลักษณะข้างต้นก็จะพบว่าประเภทของเว็บไซด์ที่ตอบโจทย์ดังกล่าวก็จะเป็น Static Website หรือถ้าเรียกเป็นภาษาไทยก็คือ เว็บไซด์ที่ตอบสนองแบบทางเดียว กล่าวคือไม่มีการติดต่อกับฐานข้อมูล สำหรับเก็บข้อมูลใดๆ นั้นเอง
-ถ้าเราลองค้นหาเครื่องมือที่สร้าง Static Website ที่จะมาช่วยเหลือเราในการสร้างเว็บไซด์ ซึ่งจะพบว่ามีเครื่องมือที่ได้รับความนิยมอยู่ด้วยกันหลากหลาย&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.org&quot;&gt;Gatby&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://hexo.io&quot;&gt;Hexo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://gohugo.io&quot;&gt;Hugo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://middlemanapp.com&quot;&gt;Middleman&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://spike.js.org&quot;&gt;Spike&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;แล้วที่นี้เราจะเลือกใช้เครื่องมือตัวไหนดี ซึ่งในมุมมองแต่ละคนก็จะมีหลักเกณฑ์ในการเลือกที่แตกต่างกัน&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;ความชอบในภาษาสำหรับเขียนโปรแกรมที่ใช้ในแต่ละเครื่องมือ&lt;/li&gt;
-  &lt;li&gt;ความสามารถของแต่ละเครื่องมือ&lt;/li&gt;
-  &lt;li&gt;รูปแบบ และลักษณะการพัฒนาหน้าเว็บไซด์&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Everything should be made as simple as possible, but not simple.&lt;/p&gt;
-
-  &lt;p&gt;~ Albert Einstein&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;สำหรับบทความนี้ได้เลือกใช้ &lt;strong&gt;Jekyll&lt;/strong&gt; เนื่องจากเป็นเครื่องมือที่พัฒนาขึ้นจากภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ซึ่งเป็นภาษาที่ผู้เขียนชื่นชอบและสนใจเป็นหลัก ประกอบกันความสามารถในการเขียนบทความที่ง่ายผ่านรูปแบบของการเขียนโดยใช้ Markdown และสุดท้ายคือในการส่วนของการตกแต่งรูปแบบเว็บไซด์ซึ่งสามารถทำได้อย่างง่ายได้&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;jekyll-คืออะไร&quot;&gt;Jekyll คืออะไร&lt;/h2&gt;
-&lt;p&gt;จะอธิบายให้ชัดเจนเกี่ยวกับ &lt;strong&gt;Jekyll&lt;/strong&gt; ว่าคืออะไร ก็สามารถจะตอบได้ว่าเป็นเครื่องมือสำหรับพัฒนาเว็บไซด์แบบตอบสนองทางเดียว (Static Website) ที่รองรับการทำบล็อก เหมาะสมกับผู้ใช้งานทั่วไป หรือองค์กรต่างๆ โดยหน้าเว็บของเราจะถูกสร้างขึ้นโดยการแปลงเนื้อหาที่เขียนขึ้นจาก Markdown ไปเป็น HTML นั้นเอง&lt;/p&gt;
-
-&lt;h2 id=&quot;ใครบ้างที่ใช้-jekyll&quot;&gt;ใครบ้างที่ใช้ Jekyll&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/create-website-with-jekyll/ruby-on-rails.png&quot; alt=&quot;Ruby on Rails&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Ruby on Rails&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/create-website-with-jekyll/html-reference.png&quot; alt=&quot;HTML Reference&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;HTML Reference&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;สามารถดูเพิ่มเติมได้&lt;a href=&quot;https://jekyllrb.com/showcase/&quot;&gt;ที่นี่&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;ความต้องการพื้นฐาน&quot;&gt;ความต้องการพื้นฐาน&lt;/h2&gt;
-&lt;p&gt;เนื่องจาก &lt;strong&gt;Jekyll&lt;/strong&gt; เป็นเครื่องมือที่ทำงานด้วยภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ดังนั้นเราต้องติดตั้งโปรแกรมพื้นฐานดังต่อไปนี้ก่อน&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Ruby (v2.5 or later)&lt;/li&gt;
-  &lt;li&gt;Gems (v3.0 or later)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;เริ่มต้นกันเลย-quickstart&quot;&gt;เริ่มต้นกันเลย (Quickstart)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;ติดตั้ง Jekyll และ Bunlder
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll bunlder
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;สร้างเว็บไซด์ใหม่ด้วย jekyll
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jekyll new mysite
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;เข้าไปยังเว็บไซด์โฟลเดอร์
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;mysite
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;รันเว็บไซด์ของเรา
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;เข้าไปยังเว็บไซด์ของเราผ่านเว็บบราวเซอร์ที่ &lt;strong&gt;http://localhost:4000&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2019/create-website-with-jekyll/example-jekyll.png&quot; alt=&quot;Jekyll&quot; width=&quot;400px&quot; /&gt;
-&lt;em&gt;Jekyll on localhost&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;เพียงไม่กี่ขั้นตอนข้างต้น เราก็จะได้เว็บไซด์พร้อมใช้งาน ซึ่งประกอบด้วย&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;หน้าหลัก ซึ่งจะแสดงรายการบทความที่ได้ทำการเผยแพร่&lt;/li&gt;
-  &lt;li&gt;หน้าแสดงบทความ&lt;/li&gt;
-  &lt;li&gt;หน้าเกี่ยวกับเว็บไซด์&lt;/li&gt;
-  &lt;li&gt;RSS Feed&lt;/li&gt;
-  &lt;li&gt;ข้อมูลเกี่ยวกับโซเชียลของผู้พัฒนา&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;วิธีการติดตั้งเว็บไซด์บน-github-pages&quot;&gt;วิธีการติดตั้งเว็บไซด์บน Github Pages&lt;/h2&gt;
-&lt;p&gt;เมื่อได้เว็บไซด์ที่พร้อมจะนำเสนอสู่โลกอินเทอร์เนต สิ่งที่ขาดไม่ได้ถัดมาคือการนำเว็บไซด์ไปติดตั้งบนโฮสสาธารณะที่ผู้คนสามารถเข้ามาชมได้ แต่ถ้าการเช่าโฮส และการจดโดเมนเป็นเรื่องที่ยุ่งยากสำหรับมือใหม่ การเลือกใช้บริการโฮสเว็บไซด์สาธารณะก็ถือเป็นทางเลือกที่ประหยัด และสะดวกรวดเร็ว ใช่แล้วครับในบทความนี้เราได้เลือกใช้บริการของ &lt;strong&gt;Github&lt;/strong&gt; ที่เรียกว่า &lt;strong&gt;Github Page&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Github Pages&lt;/strong&gt; เป็นบริการโฮสเว็บไซด์ของ &lt;strong&gt;Github&lt;/strong&gt; ผ่านการอัพโหลดเข้าไปยัง Repository ของ &lt;strong&gt;Github&lt;/strong&gt; อีกทั้งยังมีโดเมนที่เป็นสาธารณะภายใต้โดเมนของ &lt;strong&gt;Github&lt;/strong&gt; อีกด้วย โดยโดเมนที่ได้จะมีซับโดเมนตามชื่อบัญชีผู้ใช้ที่เราได้สมัครไว้กับทาง &lt;strong&gt;Github&lt;/strong&gt; ยกตัวอย่างเช่น ถ้าเรามีชื่อบัญชีผู้ใช้เป็น &lt;strong&gt;karn18&lt;/strong&gt; เราก็จะมีโดเมนเป็น &lt;strong&gt;karn18.github.io&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;สร้าง repository ดังนี้ &lt;strong&gt;{username}.github.io&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;เข้าไปยังเว็บไซด์โฟลเดอร์&lt;/li&gt;
-  &lt;li&gt;กำหนดค่าของ git และ push code ขึ้นไปยัง Github ดังนี้&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;git init
-git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-git commit &lt;span class=&quot;nt&quot;&gt;-am&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Init my static website&quot;&lt;/span&gt;
-git remote add origin https://github.com/&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;username&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;/&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;username&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-github&lt;/span&gt;.io.git
-git push
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เข้าไปยัง &lt;strong&gt;{username}.github.io&lt;/strong&gt; ผ่านเว็บเบราเซอร์&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;เพียงเท่านี้เราก็สามารถเริ่มเขียนบทความที่น่าสนใจ และเผยแผร่สู่โลกอินเทอร์เนตได้แล้ว&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;!!!&lt;/em&gt; หมายเหตุ: ให้แทน {username} ด้วยชื่อบัญชีผู้ใช้ที่สมัครไว้กับ Github&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com&quot;&gt;https://jekyllrb.com&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://naturaily.com/blog/why-jekyll-netlify-cms&quot;&gt;https://naturaily.com/blog/why-jekyll-netlify-cms&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.webjeda.com/jekyll-guide/&quot;&gt;https://blog.webjeda.com/jekyll-guide/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="css" /><category term="html" /><category term="jekyll" /><category term="ruby" /><summary type="html">สำหรับนักสร้างคอนเทนต์ การมีเว็บไซด์เป็นของตัวเองเพื่อใช้ในการเผยแพร่บทความที่ได้เขียนขึ้นนั้นถือเป็นอีกช่องทางหนึ่ง ที่ช่วยเผยแพร่ความรู้ ประสบการณ์ และความคิดสร้างสรรค์ให้แก่ผู้อ่านในโลกอินเตอร์เน็ต นอกเหนือจากการเผยแพร่ผ่านเว็บไซด์อื่นๆ เช่น medium, blogger, reddit เป็นต้น ซึ่งในบทความนี้จะเป็นการแนะนำเครื่องมือที่ชื่อว่า Jekyll เพื่อใช้สำหรับสร้างเว็บไซด์ที่รองรับการทำบล็อก</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/create-website-with-jekyll/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/create-website-with-jekyll/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="bulma" /><summary type="html">ถ้าจะกล่าวถึง CSS Framework ที่เป็นที่นิยมใช้กันนั้นก็มีอยู่ด้วยกันหลากหลาย สำหรับในบทความนี้จะกล่าวถึง Bulma ซึ่งเป็น CSS Framework ที่ใช้งานได้ง่าย ไม่ซับซ้อนและแลดูสวยงามเมื่อแสดงผลอยู่บนเว็บบราวเซอร์ โดยในวันนี้เราจะนำ Bulma มาใช้งานร่วมกันกับ Rails</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/using-bulma-with-rails/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/using-bulma-with-rails/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
