@@ -1,80 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-06-27T15:42:13+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">HEY เรามาแล้ว (Part 1)</title><link href="https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1.html" rel="alternate" type="text/html" title="HEY เรามาแล้ว (Part 1)" /><published>2020-06-27T15:39:00+07:00</published><updated>2020-06-27T15:39:00+07:00</updated><id>https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1</id><content type="html" xml:base="https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1.html">&lt;p&gt;ในช่วงสองสัปดาห์ที่ผ่านมานี้ &lt;strong&gt;service&lt;/strong&gt; ที่กำลังมาแรงและพูดถึงกันมาก นั่นก็คือ &lt;strong&gt;HEY&lt;/strong&gt; หรือ &lt;em&gt;email service&lt;/em&gt; จาก &lt;strong&gt;Basecamp&lt;/strong&gt; โดย &lt;strong&gt;HEY&lt;/strong&gt; ถูกพัฒนาขึ้นมาเพื่อเปลี่ยนประสบการณ์การใช้งานเมลล์ให้ดีขึ้น&lt;!--more--&gt;เราค่อยมาดูกันทีละนิดว่าแตกต่างจากอีเมล์ที่เราใช้อยู่กันยังไง&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-06-27T15:44:55+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">HEY เรามาแล้ว (Part 1)</title><link href="https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1.html" rel="alternate" type="text/html" title="HEY เรามาแล้ว (Part 1)" /><published>2020-06-27T15:39:00+07:00</published><updated>2020-06-27T15:39:00+07:00</updated><id>https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1</id><content type="html" xml:base="https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1.html">ในช่วงสองสัปดาห์ที่ผ่านมานี้ **service** ที่กำลังมาแรงและพูดถึงกันมาก นั่นก็คือ **HEY** หรือ *email service* จาก **Basecamp** โดย **HEY** ถูกพัฒนาขึ้นมาเพื่อเปลี่ยนประสบการณ์การใช้งานเมลล์ให้ดีขึ้น&lt;!--more--&gt;เราค่อยมาดูกันทีละนิดว่าแตกต่างจากอีเมล์ที่เราใช้อยู่กันยังไง
 
-&lt;blockquote&gt;
-  &lt;p&gt;สำหรับ &lt;strong&gt;HEY&lt;/strong&gt; ไม่ใช่ &lt;em&gt;Free Service&lt;/em&gt; และในตอนนี้สามารถสมัครใช้งานได้ผ่าน &lt;a href=&quot;https://app.hey.com/sign_up/welcome&quot;&gt;HEY&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&gt; สำหรับ **HEY** ไม่ใช่ *Free Service* และในตอนนี้สามารถสมัครใช้งานได้ผ่าน [HEY](https://app.hey.com/sign_up/welcome)
 
-&lt;h2 id=&quot;ราคา&quot;&gt;ราคา&lt;/h2&gt;
-&lt;p&gt;ขอยกเรื่องราคามาพูดเป็นอย่างแรกเลยแล้วกัน เพราะบางคนอาจจะตัดสินใจเรื่องใช้งาน &lt;strong&gt;service&lt;/strong&gt; จากค่าบริการเป็นหลัก
-ซึ่งก็เป็นการตัดสินใจส่วนบุคคลอันนี้ก็ไปตัดสินใจกันดู โดยหารู้ไม่ว่าบางทีค่าใช้จ่ายที่เรามองเห็นในการที่เป็นบริการที่ฟรี เราอาจจะเสียความเป็นส่วนตัวหรือความปลอดภัยของข้อมูลเราไปแล้ว&lt;/p&gt;
+## ราคา
+ขอยกเรื่องราคามาพูดเป็นอย่างแรกเลยแล้วกัน เพราะบางคนอาจจะตัดสินใจเรื่องใช้งาน **service** จากค่าบริการเป็นหลัก
+ซึ่งก็เป็นการตัดสินใจส่วนบุคคลอันนี้ก็ไปตัดสินใจกันดู โดยหารู้ไม่ว่าบางทีค่าใช้จ่ายที่เรามองเห็นในการที่เป็นบริการที่ฟรี เราอาจจะเสียความเป็นส่วนตัวหรือความปลอดภัยของข้อมูลเราไปแล้ว
 
-&lt;p&gt;เมื่อสมัครสมาชิก &lt;strong&gt;HEY&lt;/strong&gt; จะให้เราทดลองใช้งานเริ่มแรกเป็น&lt;strong&gt;เวลา 14 วัน&lt;/strong&gt; แต่ถ้ายังใช้งานต่อจะมีค่าบริการอยู่ที่ &lt;strong&gt;$99/ปี&lt;/strong&gt; (สำหรับชื่ออีเมลก็ผลต่อราคาที่ต้องจ่ายด้วย คือ ถ้าชื่อของเรามีขนาด 2 ตัวอักษรก็จะต้องจ่ายที่ &lt;strong&gt;$999/ปี&lt;/strong&gt; และขนาด 3 ตัวอักษรก็จะต้องจ่ายที่ &lt;strong&gt;$349/ปี&lt;/strong&gt; เรียกได้ว่าเป็น &lt;strong&gt;premium account&lt;/strong&gt; นั้นเอง) ทั้งนี้&lt;strong&gt;พอใจก็จ่าย ไม่พอใจก็ไม่ข้ามไปครับ&lt;/strong&gt;&lt;/p&gt;
+เมื่อสมัครสมาชิก **HEY** จะให้เราทดลองใช้งานเริ่มแรกเป็น**เวลา 14 วัน** แต่ถ้ายังใช้งานต่อจะมีค่าบริการอยู่ที่ **$99/ปี** (สำหรับชื่ออีเมลก็ผลต่อราคาที่ต้องจ่ายด้วย คือ ถ้าชื่อของเรามีขนาด 2 ตัวอักษรก็จะต้องจ่ายที่ **$999/ปี** และขนาด 3 ตัวอักษรก็จะต้องจ่ายที่ **$349/ปี** เรียกได้ว่าเป็น **premium account** นั้นเอง) ทั้งนี้**พอใจก็จ่าย ไม่พอใจก็ไม่ข้ามไปครับ**
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/hey-เรามาแล้ว/price.png&quot; alt=&quot;Price&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;Price&lt;/em&gt;&lt;/p&gt;
+![Price](/assets/images/posts/2020/hey-เรามาแล้ว/price.png){:width=&quot;600px&quot;}
+*Price*
 
-&lt;h2 id=&quot;การสมัครใช้งาน&quot;&gt;การสมัครใช้งาน&lt;/h2&gt;
-&lt;p&gt;ในช่วงแรกของการสมัครใช้งานจะทำได้ก็ต้องได้รับ &lt;strong&gt;Invite Code&lt;/strong&gt; จากทาง &lt;strong&gt;HEY&lt;/strong&gt; แต่ปัจจุบันเราสามารถสมัครใช้งานได้โดยตรงผ่านทางหน้าเว็บแล้วจ้า ซึ่งขั้นตอนการสมัครก็มีไม่กี่ขั้นตอน&lt;/p&gt;
+## การสมัครใช้งาน
+ในช่วงแรกของการสมัครใช้งานจะทำได้ก็ต้องได้รับ **Invite Code** จากทาง **HEY** แต่ปัจจุบันเราสามารถสมัครใช้งานได้โดยตรงผ่านทางหน้าเว็บแล้วจ้า ซึ่งขั้นตอนการสมัครก็มีไม่กี่ขั้นตอน
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/hey-เรามาแล้ว/sign_up.png&quot; alt=&quot;Sign Up&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;Sign Up&lt;/em&gt;&lt;/p&gt;
+![Sign Up](/assets/images/posts/2020/hey-เรามาแล้ว/sign_up.png){:width=&quot;600px&quot;}
+*Sign Up*
 
-&lt;p&gt;เพิ่มเติมเรื่องการตั้งรหัสผ่านนิดหนึ่ง เนื่องจากรหัสผ่านจะต้องมีขนาดไม่ต่ำกว่า 12 ตัวอักษรเพื่อความปลอดภัย ซึ่งบางคนอาจจะไม่เคยตั้งรหัสยาวเกิน 10 ตัวมาก่อนก็อาจจะใช้เวลาสักนิดในการนึกรหัสผ่านใหม่ขึ้น&lt;/p&gt;
+เพิ่มเติมเรื่องการตั้งรหัสผ่านนิดหนึ่ง เนื่องจากรหัสผ่านจะต้องมีขนาดไม่ต่ำกว่า 12 ตัวอักษรเพื่อความปลอดภัย ซึ่งบางคนอาจจะไม่เคยตั้งรหัสยาวเกิน 10 ตัวมาก่อนก็อาจจะใช้เวลาสักนิดในการนึกรหัสผ่านใหม่ขึ้น
 
-&lt;h2 id=&quot;อุปกรณ์&quot;&gt;อุปกรณ์&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;HEY&lt;/strong&gt; รองรับการใช้งานทั้งบนเว็บ สมาร์ทโฟน และแท็บเล็ต&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://apps.apple.com/de/app/hey-email/id1506603805&quot;&gt;ios&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.basecamp.hey&amp;amp;hl=en_US&quot;&gt;android&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+## อุปกรณ์
+**HEY** รองรับการใช้งานทั้งบนเว็บ สมาร์ทโฟน และแท็บเล็ต
+- [ios](https://apps.apple.com/de/app/hey-email/id1506603805)
+- [android](https://play.google.com/store/apps/details?id=com.basecamp.hey&amp;hl=en_US)
 
-&lt;h2 id=&quot;เริ่มต้นใช้งาน&quot;&gt;เริ่มต้นใช้งาน&lt;/h2&gt;
-&lt;p&gt;หลังจากที่สมัคร และโหลดแอพมาติดตั้งเรียบร้อยก็ถึงเวลาใช้งาน เราสามารถเข้าใช้งานผ่านอีเมลใหม่ของเรา โดยของผมก็จะเป็น &lt;a href=&quot;mailto:karn@hey.com&quot;&gt;karn@hey.com&lt;/a&gt; เมื่อเข้าสู่ระบบเรียบร้อย ระบบก็จะส่งอีเมลต้อนรับ พร้อมอีเมลแนะนำวิธีการใช้งานเข้าใน &lt;strong&gt;Imbox&lt;/strong&gt; ของเรา (&lt;strong&gt;Imbox&lt;/strong&gt; นะถูกแล้วไม่ใช่ &lt;strong&gt;Inbox&lt;/strong&gt;)&lt;/p&gt;
+## เริ่มต้นใช้งาน
+หลังจากที่สมัคร และโหลดแอพมาติดตั้งเรียบร้อยก็ถึงเวลาใช้งาน เราสามารถเข้าใช้งานผ่านอีเมลใหม่ของเรา โดยของผมก็จะเป็น [karn@hey.com](mailto:karn@hey.com) เมื่อเข้าสู่ระบบเรียบร้อย ระบบก็จะส่งอีเมลต้อนรับ พร้อมอีเมลแนะนำวิธีการใช้งานเข้าใน **Imbox** ของเรา (**Imbox** นะถูกแล้วไม่ใช่ **Inbox**)
 
-&lt;blockquote&gt;
-  &lt;p&gt;Imbox น่าจะย่อมาจาก Important box โดยเมลในกล่องนี้จะต้องเป็นเมลที่มีความสำคัญ และเห็นเป็นกล่องแรก เดี่ยวเราค่อยมาดูกันทีหลังว่ามีกล่องอะไรอีกบ้าง&lt;/p&gt;
-&lt;/blockquote&gt;
+&gt; Imbox น่าจะย่อมาจาก Important box โดยเมลในกล่องนี้จะต้องเป็นเมลที่มีความสำคัญ และเห็นเป็นกล่องแรก เดี่ยวเราค่อยมาดูกันทีหลังว่ามีกล่องอะไรอีกบ้าง
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/hey-เรามาแล้ว/getting_start.png&quot; alt=&quot;Getting Start&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;Getting Start&lt;/em&gt;&lt;/p&gt;
+![Getting Start](/assets/images/posts/2020/hey-เรามาแล้ว/getting_start.png){:width=&quot;600px&quot;}
+*Getting Start*
 
-&lt;h2 id=&quot;คัดกรอง-screener&quot;&gt;คัดกรอง (Screener)&lt;/h2&gt;
-&lt;p&gt;เริ่มต้นเราจะต้องคัดกรองผู้ส่งอีเมลที่จะอนุญาตส่งอีเมล์เข้ามายังกล่องของเรา ซึ่งเป็นแนวคิดการใช้งานที่ตรงไปตรงมา ที่ควรจะทำเป็นอย่างแรกเพื่อป้องกัน &lt;strong&gt;spam&lt;/strong&gt; หรืออีเมลไม่พึงประสงค์ต่างๆ สำหรับฟีเจอร์นี้ผมมองว่ามีผลกระทบต่อการใช้งานที่ชัดเจนต่างผู้ให้บริการอื่นๆ ที่ปล่อยให้อีเมลเข้ามายังกล่องของเราก่อน แล้วค่อยไปจัดการทีคัดเลือกทีหลังว่าอันไหนเป็น &lt;strong&gt;spam&lt;/strong&gt; บ้าง &lt;strong&gt;junk&lt;/strong&gt; บ้าง ซึ่งก็เวลาใช้งานจริงก็ไม่ค่อยมีประสิทธิภาพเท่าไหร่ เนื่องจากบางอีเมลที่กำหนดว่าเป็น &lt;strong&gt;spam&lt;/strong&gt; แล้วก็ยังเข้ามาในกล่อง ส่วนบางอันที่เป็น &lt;strong&gt;junk&lt;/strong&gt; และเคยกำหนดว่าไม่เป็น &lt;strong&gt;junk&lt;/strong&gt; แล้วก็ยังกลับไปอยู่ใน &lt;strong&gt;junk&lt;/strong&gt; อีก&lt;/p&gt;
+## คัดกรอง (Screener)
+เริ่มต้นเราจะต้องคัดกรองผู้ส่งอีเมลที่จะอนุญาตส่งอีเมล์เข้ามายังกล่องของเรา ซึ่งเป็นแนวคิดการใช้งานที่ตรงไปตรงมา ที่ควรจะทำเป็นอย่างแรกเพื่อป้องกัน **spam** หรืออีเมลไม่พึงประสงค์ต่างๆ สำหรับฟีเจอร์นี้ผมมองว่ามีผลกระทบต่อการใช้งานที่ชัดเจนต่างผู้ให้บริการอื่นๆ ที่ปล่อยให้อีเมลเข้ามายังกล่องของเราก่อน แล้วค่อยไปจัดการทีคัดเลือกทีหลังว่าอันไหนเป็น **spam** บ้าง **junk** บ้าง ซึ่งก็เวลาใช้งานจริงก็ไม่ค่อยมีประสิทธิภาพเท่าไหร่ เนื่องจากบางอีเมลที่กำหนดว่าเป็น **spam** แล้วก็ยังเข้ามาในกล่อง ส่วนบางอันที่เป็น **junk** และเคยกำหนดว่าไม่เป็น **junk** แล้วก็ยังกลับไปอยู่ใน **junk** อีก
 
-&lt;p&gt;ที่นี้เรามาดูกันว่า &lt;strong&gt;Screener&lt;/strong&gt; ทำงานกันอย่างไร โดยเมื่อมีผู้ส่งอีเมลมาถึงเราครั้งแรก ระบบจะตรวจสอบชื่อผู้ส่งว่าเคยส่งมาหาเราหรือยัง ถ้าหากเป็นผู้ส่งใหม่ จะปรากฏข้อความแจ้งให้เราเข้าไปคัดกรอง ดังแสดงในภาพด้านล่าง&lt;/p&gt;
+ที่นี้เรามาดูกันว่า **Screener** ทำงานกันอย่างไร โดยเมื่อมีผู้ส่งอีเมลมาถึงเราครั้งแรก ระบบจะตรวจสอบชื่อผู้ส่งว่าเคยส่งมาหาเราหรือยัง ถ้าหากเป็นผู้ส่งใหม่ จะปรากฏข้อความแจ้งให้เราเข้าไปคัดกรอง ดังแสดงในภาพด้านล่าง
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/hey-เรามาแล้ว/screener_1.png&quot; alt=&quot;Screener1&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;ข้อความแจ้งเตือนเมื่อมีผู้ส่งรายใหม่&lt;/em&gt;&lt;/p&gt;
+![Screener1](/assets/images/posts/2020/hey-เรามาแล้ว/screener_1.png){:width=&quot;600px&quot;}
+*ข้อความแจ้งเตือนเมื่อมีผู้ส่งรายใหม่*
 
-&lt;p&gt;เมื่อเรากดเข้าไปยังหน้า &lt;strong&gt;Screener&lt;/strong&gt; เพื่อตรวจสอบรายชื่อผู้ส่งอีเมลเข้ามาหาเรา โดยเราสามารถกดยอมรับ หรือไม่ยอมรับอีเมลจากบุคคลข้างต้นได้&lt;/p&gt;
+เมื่อเรากดเข้าไปยังหน้า **Screener** เพื่อตรวจสอบรายชื่อผู้ส่งอีเมลเข้ามาหาเรา โดยเราสามารถกดยอมรับ หรือไม่ยอมรับอีเมลจากบุคคลข้างต้นได้ 
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/hey-เรามาแล้ว/screener_2.png&quot; alt=&quot;Screener2&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;รายการคัดกรองผู้ส่งอีเมล&lt;/em&gt;&lt;/p&gt;
+![Screener2](/assets/images/posts/2020/hey-เรามาแล้ว/screener_2.png){:width=&quot;600px&quot;}
+*รายการคัดกรองผู้ส่งอีเมล*
 
-&lt;p&gt;และทันทีที่เรายอมรับผู้ส่ง อีเมลฉบับนั้นก็จะถูกนำเข้าสู่กล่อง &lt;strong&gt;Imbox&lt;/strong&gt; ของเรา&lt;/p&gt;
+และทันทีที่เรายอมรับผู้ส่ง อีเมลฉบับนั้นก็จะถูกนำเข้าสู่กล่อง **Imbox** ของเรา
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/hey-เรามาแล้ว/first_email.png&quot; alt=&quot;Firt Email&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;อีเมลฉบับแรก&lt;/em&gt;&lt;/p&gt;
+![Firt Email](/assets/images/posts/2020/hey-เรามาแล้ว/first_email.png){:width=&quot;600px&quot;}
+*อีเมลฉบับแรก*
 
-&lt;h2 id=&quot;ความสำคัญ-priority&quot;&gt;ความสำคัญ (Priority)&lt;/h2&gt;
-&lt;p&gt;อีเมลแต่ละฉบับก็จะมีความสำคัญแตกต่างๆ กันออกไป โดย &lt;strong&gt;HEY&lt;/strong&gt; แบ่งออกเป็น 3 ระดับ&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Imbox หรือกล่องที่มีความสำคัญ โดยจะเป็นอีเมลจากบุคคลที่เราจะต้องมีการตอบกลับหรือจะต้องเห็นเมื่อมีการส่งอีเมลมาหาเรา&lt;/li&gt;
-  &lt;li&gt;The Feed หรือกล่องติดตามข่าว โดยจะเป็นอีเมลข่าวสาร การตลาดต่างๆ ที่เรา subscribe เอาไว้ ซึ่งเราสามารถเข้าไปอ่านเมื่อไหร่ก็ได้ที่สะดวก&lt;/li&gt;
-  &lt;li&gt;Paper Trail หรือกล่องใบเสร็จ&lt;/li&gt;
-&lt;/ul&gt;
+## ความสำคัญ (Priority)
+อีเมลแต่ละฉบับก็จะมีความสำคัญแตกต่างๆ กันออกไป โดย **HEY** แบ่งออกเป็น 3 ระดับ
+- Imbox หรือกล่องที่มีความสำคัญ โดยจะเป็นอีเมลจากบุคคลที่เราจะต้องมีการตอบกลับหรือจะต้องเห็นเมื่อมีการส่งอีเมลมาหาเรา
+- The Feed หรือกล่องติดตามข่าว โดยจะเป็นอีเมลข่าวสาร การตลาดต่างๆ ที่เรา subscribe เอาไว้ ซึ่งเราสามารถเข้าไปอ่านเมื่อไหร่ก็ได้ที่สะดวก
+- Paper Trail หรือกล่องใบเสร็จ
 
-&lt;p&gt;และระบบจะแสดงตัวจัดการความสำคัญขึ้นมาทันที เมื่อเราเข้าไปยังอีเมลนั้น&lt;/p&gt;
+และระบบจะแสดงตัวจัดการความสำคัญขึ้นมาทันที เมื่อเราเข้าไปยังอีเมลนั้น
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/hey-เรามาแล้ว/priority.png&quot; alt=&quot;Prority&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;กำหนดความสำคัญของอีเมล&lt;/em&gt;&lt;/p&gt;
+![Prority](/assets/images/posts/2020/hey-เรามาแล้ว/priority.png){:width=&quot;600px&quot;}
+*กำหนดความสำคัญของอีเมล*
 
-&lt;p&gt;สำหรับในวันนี้ก็มารู้จักกับ &lt;strong&gt;HEY&lt;/strong&gt; กันแต่เพียงเท่านี้ก่อน ค่อยๆ ทดลองใช้และเรียนรุ้แต่ละฟีเจอร์กันไป เพราะตัวผมเองก็เพิ่งทดลองใช้ได้ไม่กี่วัน&lt;/p&gt;
+สำหรับในวันนี้ก็มารู้จักกับ **HEY** กันแต่เพียงเท่านี้ก่อน ค่อยๆ ทดลองใช้และเรียนรุ้แต่ละฟีเจอร์กันไป เพราะตัวผมเองก็เพิ่งทดลองใช้ได้ไม่กี่วัน
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://hey.com&quot;&gt;HEY&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="hey" /><category term="review" /><summary type="html">ในช่วงสองสัปดาห์ที่ผ่านมานี้ service ที่กำลังมาแรงและพูดถึงกันมาก นั่นก็คือ HEY หรือ email service จาก Basecamp โดย HEY ถูกพัฒนาขึ้นมาเพื่อเปลี่ยนประสบการณ์การใช้งานเมลล์ให้ดีขึ้น</summary></entry><entry><title type="html">Monkey Path to History.pushState</title><link href="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html" rel="alternate" type="text/html" title="Monkey Path to History.pushState" /><published>2020-06-26T16:56:00+07:00</published><updated>2020-06-26T16:56:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html">เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ **Ajax Request** ร่วมกับ **History API**
+## References
+- [HEY](https://hey.com)</content><author><name>Karn</name></author><category term="hey" /><category term="review" /><summary type="html">ในช่วงสองสัปดาห์ที่ผ่านมานี้ service ที่กำลังมาแรงและพูดถึงกันมาก นั่นก็คือ HEY หรือ email service จาก Basecamp โดย HEY ถูกพัฒนาขึ้นมาเพื่อเปลี่ยนประสบการณ์การใช้งานเมลล์ให้ดีขึ้น</summary></entry><entry><title type="html">Monkey Path to History.pushState</title><link href="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html" rel="alternate" type="text/html" title="Monkey Path to History.pushState" /><published>2020-06-26T16:56:00+07:00</published><updated>2020-06-26T16:56:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html">เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ **Ajax Request** ร่วมกับ **History API**
 หรือเรียกสั้นๆ ว่า **pjax (PushState + Ajax)** สำหรับผู้ใช้ **Rails** เราก็มี **turbolinks** เป็นตัวจัดการให้เราได้อย่างง่ายดาย&lt;!--more--&gt;
 
 ถ้าเราลองไปศึกษาดู **History API** จะพบว่าไม่ได้มี **iterface** ให้กับเหตุการณ์ `pushState` ทำให้เราไม่สามารถรับรู้ได้ว่าเมื่อไหร่เกิดการเปลี่ยน **state**
