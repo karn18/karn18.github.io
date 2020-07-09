@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-06-27T15:44:55+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">HEY เรามาแล้ว (Part 1)</title><link href="https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1.html" rel="alternate" type="text/html" title="HEY เรามาแล้ว (Part 1)" /><published>2020-06-27T15:39:00+07:00</published><updated>2020-06-27T15:39:00+07:00</updated><id>https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1</id><content type="html" xml:base="https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1.html">ในช่วงสองสัปดาห์ที่ผ่านมานี้ **service** ที่กำลังมาแรงและพูดถึงกันมาก นั่นก็คือ **HEY** หรือ *email service* จาก **Basecamp** โดย **HEY** ถูกพัฒนาขึ้นมาเพื่อเปลี่ยนประสบการณ์การใช้งานเมลล์ให้ดีขึ้น&lt;!--more--&gt;เราค่อยมาดูกันทีละนิดว่าแตกต่างจากอีเมล์ที่เราใช้อยู่กันยังไง
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-07-09T22:12:22+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">My Favorite Stack</title><link href="https://karn18.github.io/dev/2020/07/09/my-favorite-stack.html" rel="alternate" type="text/html" title="My Favorite Stack" /><published>2020-07-09T22:11:00+07:00</published><updated>2020-07-09T22:11:00+07:00</updated><id>https://karn18.github.io/dev/2020/07/09/my-favorite-stack</id><content type="html" xml:base="https://karn18.github.io/dev/2020/07/09/my-favorite-stack.html">&lt;p&gt;สำหรับบทความนี้จะมาลองแชร์ Stack ในการพัฒนาโปรแกรมกัน โดยแต่ละคนก็จะมีความชื่นชอบแตกต่างๆ กันไป ซึ่งก็คงจะผ่านการทดลอง ฝึกฝนจนชำนาญ เพื่อให้การทำงานของเรามีประสิทธิภาพมากที่สุด&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ความชอบแปรเปลี่ยนไปตามช่วงเวลา แต่ในช่วงเวลานี้ก็คงเป็น &lt;strong&gt;Rails&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ทั้งนี้ที่ได้นำมาแชร์นั้นก็เกิดจากได้ฟังประชุมทีมดูความก้าวหน้าของงานน้องๆ ภายในทีม และรู้สึกว่าผลงานที่ได้ออกมาค่อนข้างทำได้ดี และรวดเร็วกว่าที่คาดคะเนไว้ ซึ่งก็อดตื่นเต้นและดีใจไม่ได้&lt;/p&gt;
+
+&lt;h2 id=&quot;my-stack&quot;&gt;My Stack&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ruby on Rails
+จากที่ได้เคยใช้ &lt;strong&gt;Backend Framework&lt;/strong&gt; มาหลายตัวตลอดระยะเวลาหลายปี ก็ได้มาพบกับ &lt;strong&gt;Rails&lt;/strong&gt; ซึ่งคิดว่าในช่วงเวลานี้น่าจะเป็น &lt;strong&gt;Framework&lt;/strong&gt; ที่ใช้งานแล้วรู้สึกโอเคมากที่สุด และยังมีอะไรให้ศึกษาต่ออีกเยอะ มีโมดูลที่หลายหลาย อีกทั้งยังรองรับ &lt;strong&gt;Frontend Framework&lt;/strong&gt; ในตัว เช่น &lt;strong&gt;React&lt;/strong&gt;, &lt;strong&gt;Angular&lt;/strong&gt; หรือ &lt;strong&gt;Vuejs&lt;/strong&gt; เป็นต้น&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Stimulus
+สำหรับ &lt;strong&gt;Frontend Framework&lt;/strong&gt; นักพัฒนาส่วนใหญ่คงจะเลือก &lt;strong&gt;Framework&lt;/strong&gt; เจ้าใหญ่ในการทำงานเป็นหลัก แต่โดยส่วนตัวแล้วยังรู้สึกการใช้ &lt;strong&gt;Framework&lt;/strong&gt; เหล่านั้นมี learning curve ที่ค่อนข้างสูง ถ้าเป็นมือใหม่ การพัฒนา component ขึ้นมาสักชิ้นก็ใช้เวลาไม่ใช่น้อย และยิ่งพัฒนา component ที่มีความซับซ้อนมากขึ้น อาจจะต้องปวดหัวกันเป็นวันๆ เลยทีเดียว&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Stimulus&lt;/strong&gt; เป็นตัวเลือกที่ค่อนข้างชัดเจนไม่ว่าจะเป็นเรื่องของขนาด การศึกษาทำความเข้าใจ และเมื่อค่อยๆ ใช้งานไปเรื่อยๆ ยิ่งรู้สึกว่ามันใช้งานได้ง่ายและพัฒนาโปรแกรมได้อย่างรวดเร็ว&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Webpack
+หลังจากที่ &lt;strong&gt;Rails&lt;/strong&gt; ได้มีการเปลี่ยนตัว compile assets มาเป็น &lt;strong&gt;Webpack&lt;/strong&gt; ก็ทำให้การทำ fingerprint, compress ก็ง่ายขึ้น&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;PostgreSQL
+ในช่วงแรกๆ ของการพัฒนาโปรแกรมการเชื่อมต่อกับฐานข้อมูลจะเป็นการใช้งาน &lt;strong&gt;MySQL&lt;/strong&gt; ทั้งหมด จนได้มารู้จักกับ &lt;strong&gt;PostgreSQL&lt;/strong&gt; ก็ตอนเข้าทำงานที่บริษัทปัจจุบัน ก็เลยคุ้นชินกับการใช้เจ้า &lt;strong&gt;PostgreSQL&lt;/strong&gt; ไปซะแล้ว ส่วนอันไหนจะดีกว่ากันนั้นก็ไม่แน่ใจ&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Bulma
+จริงๆ &lt;strong&gt;CSS Framework&lt;/strong&gt; เป็นสิ่งที่ค่อนข้างยากสำหรับตัวผมมากๆ แต่ &lt;strong&gt;Bulma&lt;/strong&gt; ก็ถือว่าใช้งานไม่ยากมากนัก แก้ไขและต่อยอดได้รวดเร็ว และในกรณีที่ต้องเขียน &lt;strong&gt;CSS Class&lt;/strong&gt; เพิ่มเติม เราก็จะใช้ &lt;strong&gt;BEM&lt;/strong&gt; เป็นหลักการในการพัฒนา &lt;strong&gt;CSS&lt;/strong&gt; เพิ่มเติม&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="html" /><category term="javascript" /><category term="rails" /><category term="ruby" /><category term="stimulus" /><summary type="html">สำหรับบทความนี้จะมาลองแชร์ Stack ในการพัฒนาโปรแกรมกัน โดยแต่ละคนก็จะมีความชื่นชอบแตกต่างๆ กันไป ซึ่งก็คงจะผ่านการทดลอง ฝึกฝนจนชำนาญ เพื่อให้การทำงานของเรามีประสิทธิภาพมากที่สุด ความชอบแปรเปลี่ยนไปตามช่วงเวลา แต่ในช่วงเวลานี้ก็คงเป็น Rails ทั้งนี้ที่ได้นำมาแชร์นั้นก็เกิดจากได้ฟังประชุมทีมดูความก้าวหน้าของงานน้องๆ ภายในทีม และรู้สึกว่าผลงานที่ได้ออกมาค่อนข้างทำได้ดี และรวดเร็วกว่าที่คาดคะเนไว้ ซึ่งก็อดตื่นเต้นและดีใจไม่ได้ My Stack Ruby on Rails จากที่ได้เคยใช้ Backend Framework มาหลายตัวตลอดระยะเวลาหลายปี ก็ได้มาพบกับ Rails ซึ่งคิดว่าในช่วงเวลานี้น่าจะเป็น Framework ที่ใช้งานแล้วรู้สึกโอเคมากที่สุด และยังมีอะไรให้ศึกษาต่ออีกเยอะ มีโมดูลที่หลายหลาย อีกทั้งยังรองรับ Frontend Framework ในตัว เช่น React, Angular หรือ Vuejs เป็นต้น Stimulus สำหรับ Frontend Framework นักพัฒนาส่วนใหญ่คงจะเลือก Framework เจ้าใหญ่ในการทำงานเป็นหลัก แต่โดยส่วนตัวแล้วยังรู้สึกการใช้ Framework เหล่านั้นมี learning curve ที่ค่อนข้างสูง ถ้าเป็นมือใหม่ การพัฒนา component ขึ้นมาสักชิ้นก็ใช้เวลาไม่ใช่น้อย และยิ่งพัฒนา component ที่มีความซับซ้อนมากขึ้น อาจจะต้องปวดหัวกันเป็นวันๆ เลยทีเดียว Stimulus เป็นตัวเลือกที่ค่อนข้างชัดเจนไม่ว่าจะเป็นเรื่องของขนาด การศึกษาทำความเข้าใจ และเมื่อค่อยๆ ใช้งานไปเรื่อยๆ ยิ่งรู้สึกว่ามันใช้งานได้ง่ายและพัฒนาโปรแกรมได้อย่างรวดเร็ว Webpack หลังจากที่ Rails ได้มีการเปลี่ยนตัว compile assets มาเป็น Webpack ก็ทำให้การทำ fingerprint, compress ก็ง่ายขึ้น PostgreSQL ในช่วงแรกๆ ของการพัฒนาโปรแกรมการเชื่อมต่อกับฐานข้อมูลจะเป็นการใช้งาน MySQL ทั้งหมด จนได้มารู้จักกับ PostgreSQL ก็ตอนเข้าทำงานที่บริษัทปัจจุบัน ก็เลยคุ้นชินกับการใช้เจ้า PostgreSQL ไปซะแล้ว ส่วนอันไหนจะดีกว่ากันนั้นก็ไม่แน่ใจ Bulma จริงๆ CSS Framework เป็นสิ่งที่ค่อนข้างยากสำหรับตัวผมมากๆ แต่ Bulma ก็ถือว่าใช้งานไม่ยากมากนัก แก้ไขและต่อยอดได้รวดเร็ว และในกรณีที่ต้องเขียน CSS Class เพิ่มเติม เราก็จะใช้ BEM เป็นหลักการในการพัฒนา CSS เพิ่มเติม</summary></entry><entry><title type="html">HEY เรามาแล้ว (Part 1)</title><link href="https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1.html" rel="alternate" type="text/html" title="HEY เรามาแล้ว (Part 1)" /><published>2020-06-27T15:39:00+07:00</published><updated>2020-06-27T15:39:00+07:00</updated><id>https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1</id><content type="html" xml:base="https://karn18.github.io/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1.html">ในช่วงสองสัปดาห์ที่ผ่านมานี้ **service** ที่กำลังมาแรงและพูดถึงกันมาก นั่นก็คือ **HEY** หรือ *email service* จาก **Basecamp** โดย **HEY** ถูกพัฒนาขึ้นมาเพื่อเปลี่ยนประสบการณ์การใช้งานเมลล์ให้ดีขึ้น&lt;!--more--&gt;เราค่อยมาดูกันทีละนิดว่าแตกต่างจากอีเมล์ที่เราใช้อยู่กันยังไง
 
 &gt; สำหรับ **HEY** ไม่ใช่ *Free Service* และในตอนนี้สามารถสมัครใช้งานได้ผ่าน [HEY](https://app.hey.com/sign_up/welcome)
 
@@ -617,63 +653,4 @@ $ bundle exec rougify style base16.monokai.dark &gt; styles.css
 
 ## References
 - [Rough](https://github.com/rouge-ruby/rouge)
-- [Code Highlighting in Jekyll](https://jekyllrb.com/docs/liquid/tags/#code-snippet-highlighting)</content><author><name>Karn</name></author><category term="ruby" /><category term="jekyll" /><summary type="html">สำหรับการเขียนบทความที่มีการใส่โค้ดลงไปด้วยนั้น ทำให้ผู้อ่านได้เห็นตัวอย่างเข้าใจเนื้อหาเกี่ยวกับการเขียนโปรแกรมได้ดียิ่งขึ้น หรือแม้กระทั่งเป็นตัวอย่างเพื่อนำไปพัฒนาต่อยอดได้ ซึ่ง Jekyll ก็รองรับการแสดงผลโค้ดไฮไลท์เอาไว้ด้วย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/syntax-hightlight-in-jekyll/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/syntax-hightlight-in-jekyll/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย</title><link href="https://karn18.github.io/dev/2019/12/04/customize-reading-time-with-thai-nlp.html" rel="alternate" type="text/html" title="คำนวณเวลาอ่านบทความใน Jekyll โดยการตัดคำแบบไทย" /><published>2019-12-04T09:00:00+07:00</published><updated>2019-12-04T09:00:00+07:00</updated><id>https://karn18.github.io/dev/2019/12/04/customize-reading-time-with-thai-nlp</id><content type="html" xml:base="https://karn18.github.io/dev/2019/12/04/customize-reading-time-with-thai-nlp.html">บทความนี้จะกล่าวถึงการคำนวณเวลาที่ใช้ในการอ่านบทความ ซึ่งในส่วนของ **Jekyll** จะมีปลักอินที่ชื่อ **liquid_reading_time** ที่ถูกนำมาใช้ในการคำนวณเวลาโดยเฉลี่ยในการอ่านบทความหนึ่งๆ และแสดงให้ผู้อ่านเห็น &lt;!--more--&gt;โดยมีสูตรที่ว่า
-
-&gt; จำนวนคำทั้งหมดในบทความ / ความเร็วเฉลี่ยในการอ่าน = ระยะเวลาในการอ่าน
-
-ถ้าดูแล้วการใช้ปลักอินดังกล่าวก็ดูน่าจะตอบโจทย์แล้วใช่หรือไม่ **แต่**อย่าลืมว่าการนับจำนวนคำระหว่างภาษาไทยกับภาษาอังกฤษนั้นแตกต่างกัน กล่าวคือโดยปกติคำหนึ่งๆ ในภาษาอังกฤษจะถูกแยกจากกันด้วยช่องว่าง (whitespace) ส่วนภาษาไทยนั้นการแยกคำออกมานั้นมีความซับซ้อนกว่ามาก ดังนั้นการใช้ปลักอินที่ตัดคำโดยใช้ช่องว่างจึงไม่ตอบโจทย์
-
-เอ๊ะแล้วอย่างงี้จะใช้ปลักอินตัวไหนมาช่วยในการตัดคำไทยดี ซึ่งต้องบอกเลยว่าถ้าหากใช้ **Ruby** อย่างเดียวนั้นคงเป็นไปได้ยาก เนื่องจากไลบราลีที่ใช้สำหรับตัดคำไทย**ไม่มีผู้พัฒนา**ในภาษา **Ruby** ทำให้ต้องไปเพิ่งไลบราลี [pythainlp](https://github.com/PyThaiNLP/pythainlp) ในภาษา **Python** แทน ซึ่งไลบราลีตัวนี้มีนักพัฒนาคนไทยช่วยกัน และเผยแพร่ให้นักพัฒนาคนอื่นๆ ได้ใช้งานกัน
-
-ฉะนั้นในบทความนี้จะเป็นการรวมร่างกันทำงานระหว่างไลบราลี **liquid_reading_time** (Ruby) กับ **pythainlp** (Python) โดย
-- **pythailnp** นำมาใช้ในการตัดคำภาษาไทยที่มาจากบทความ
-- **liquid_reading_time** นำมาใช้ในการคำนวณระยะเวลาในการอ่าน
-
-## ลงมือปรับแต่งกันเลย
-- เริ่มต้นโดยการ fork ปลักอินมาก่อน โดยเข้าไปที่ [liquid_reading_time](https://github.com/bdesham/reading_time) แล้วก็ clone project มาไว้ยังเครื่องคอมพิวเตอร์ของเรา
-- เข้าไปยังไฟล์ที่ชื่อ **lib/liquid_reading_time.rb** จากนั้นทำการเพิ่มโค้ดสำหรับเรียกใช้งานโปรแกรม **word_tokenizer.py** ผ่านฟังก์ชันที่ชื่อ **tokenize_words** และเปลี่ยนการเรียกใช้ฟังก์ชัน **count_words** ดังแสดงในโค้ดด้านล่าง
-
-```ruby
-  def count_words(html)
-      tokenize_words(words(html).join(' ')) # Add this line
-      # words(html).length # Comment this line
-    end
-  end
-
-  ...
-  # Add new method
-  def tokenize_words(text)
-    cmd = `python word_tokenizer.py &quot;#{text}&quot;`
-    cmd.to_i
-  end
-```
-
-- เข้าไปยังโฟลเดอร์เว็บไซด์ของเรา และทำการสร้างไฟล์ **word_tokenizer.py** ซึ่งเป็นโปรแกรมทีรับฟารามิเตอร์เป็นเนื้อหาของบทความ แล้วจะส่งคืนค่าจำนวนคำที่ตัดได้คืนกลับไป โดยผ่านการแสดงผลทาง stdout
-
-```python
-  import sys
-  from pythainlp import sent_tokenize, word_tokenize
-
-  if len(sys.argv) &gt; 1:
-      content = sys.argv[1]
-      sys.stdout.write(str(len(word_tokenize(content, keep_whitespace=False))))
-  else:
-      sys.stdout.write('0')
-  sys.exit(0)
-```
-- ทำการแก้ไข Gemfile ของ **liquid_reading_time** ให้โหลดจาก repo ของเราที่ได้ fork ออกมาแทน repo หลัก
-- ทดสอบการประเมินเวลาของบทความกัน ซึ่งปรากฏว่าหลังจากเปลี่ยนมาใช้การตัดคำแบบไทยในการประเมินเวลาการอ่านบทความ จะได้ระยะเวลาในการประเมินที่ค่อนข้างใกล้เคียงกับเวลาที่ใช้อ่านจริง
-
-![Reading Time](/assets/images/posts/2019/customize-reading-time-with-thai-nlp/reading_time_default.png){:width=&quot;400px&quot;}
-*ใช้ liquid_reading_time แบบปกติ*
-
-![Custome Reading Time](/assets/images/posts/2019/customize-reading-time-with-thai-nlp/reading_time_with_thai_nlp.png){:width=&quot;400px&quot;}
-*ใช้ pythainlp ร่วมกับ liquid_reading_time*
-
-*!!!* ทั้งนี้การตัดคำแบบไทยนั้นเหมาะที่จะนำมาใช้กับบทความที่มีเนื้อหาเป็นทั้งภาษาไทย และภาษาอังกฤษ แต่ถ้าในกรณีที่ผู้เขียนบล๊อกที่เน้นใช้เนื้อหาเป็นภาษาอังกฤษแต่เพียงอย่างเดียว ก็ไม่จำเป็นต้องปรับแต่งปลั๊กอินเพิ่มใดๆ
-
-*!!!* ป.ล. การเรียกใช้งานโปรแกรมสำหรับตัดคำไทยจะทำให้ใช้ระยะเวลาในการแปลงไฟล์ Markdown ไปเป็น HTML นานขึ้นด้วย
-
-## References:
-- [pythainlp](https://github.com/PyThaiNLP/pythainlp)
-- [liquid_reading_time](https://github.com/bdesham/reading_time)</content><author><name>Karn</name></author><category term="ruby" /><category term="python" /><category term="thai nlp" /><summary type="html">บทความนี้จะกล่าวถึงการคำนวณเวลาที่ใช้ในการอ่านบทความ ซึ่งในส่วนของ Jekyll จะมีปลักอินที่ชื่อ liquid_reading_time ที่ถูกนำมาใช้ในการคำนวณเวลาโดยเฉลี่ยในการอ่านบทความหนึ่งๆ และแสดงให้ผู้อ่านเห็น</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/customize-reading-time-with-thai-nlp/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/customize-reading-time-with-thai-nlp/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+- [Code Highlighting in Jekyll](https://jekyllrb.com/docs/liquid/tags/#code-snippet-highlighting)</content><author><name>Karn</name></author><category term="ruby" /><category term="jekyll" /><summary type="html">สำหรับการเขียนบทความที่มีการใส่โค้ดลงไปด้วยนั้น ทำให้ผู้อ่านได้เห็นตัวอย่างเข้าใจเนื้อหาเกี่ยวกับการเขียนโปรแกรมได้ดียิ่งขึ้น หรือแม้กระทั่งเป็นตัวอย่างเพื่อนำไปพัฒนาต่อยอดได้ ซึ่ง Jekyll ก็รองรับการแสดงผลโค้ดไฮไลท์เอาไว้ด้วย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2019/syntax-hightlight-in-jekyll/thumbnail.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2019/syntax-hightlight-in-jekyll/thumbnail.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

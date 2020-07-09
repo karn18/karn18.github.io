@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en"><!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>My Favorite Stack | KT</title>
+<meta name="generator" content="Jekyll v4.1.0" />
+<meta property="og:title" content="My Favorite Stack" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="สำหรับบทความนี้จะมาลองแชร์ Stack ในการพัฒนาโปรแกรมกัน โดยแต่ละคนก็จะมีความชื่นชอบแตกต่างๆ กันไป ซึ่งก็คงจะผ่านการทดลอง ฝึกฝนจนชำนาญ เพื่อให้การทำงานของเรามีประสิทธิภาพมากที่สุด ความชอบแปรเปลี่ยนไปตามช่วงเวลา แต่ในช่วงเวลานี้ก็คงเป็น Rails ทั้งนี้ที่ได้นำมาแชร์นั้นก็เกิดจากได้ฟังประชุมทีมดูความก้าวหน้าของงานน้องๆ ภายในทีม และรู้สึกว่าผลงานที่ได้ออกมาค่อนข้างทำได้ดี และรวดเร็วกว่าที่คาดคะเนไว้ ซึ่งก็อดตื่นเต้นและดีใจไม่ได้ My Stack Ruby on Rails จากที่ได้เคยใช้ Backend Framework มาหลายตัวตลอดระยะเวลาหลายปี ก็ได้มาพบกับ Rails ซึ่งคิดว่าในช่วงเวลานี้น่าจะเป็น Framework ที่ใช้งานแล้วรู้สึกโอเคมากที่สุด และยังมีอะไรให้ศึกษาต่ออีกเยอะ มีโมดูลที่หลายหลาย อีกทั้งยังรองรับ Frontend Framework ในตัว เช่น React, Angular หรือ Vuejs เป็นต้น Stimulus สำหรับ Frontend Framework นักพัฒนาส่วนใหญ่คงจะเลือก Framework เจ้าใหญ่ในการทำงานเป็นหลัก แต่โดยส่วนตัวแล้วยังรู้สึกการใช้ Framework เหล่านั้นมี learning curve ที่ค่อนข้างสูง ถ้าเป็นมือใหม่ การพัฒนา component ขึ้นมาสักชิ้นก็ใช้เวลาไม่ใช่น้อย และยิ่งพัฒนา component ที่มีความซับซ้อนมากขึ้น อาจจะต้องปวดหัวกันเป็นวันๆ เลยทีเดียว Stimulus เป็นตัวเลือกที่ค่อนข้างชัดเจนไม่ว่าจะเป็นเรื่องของขนาด การศึกษาทำความเข้าใจ และเมื่อค่อยๆ ใช้งานไปเรื่อยๆ ยิ่งรู้สึกว่ามันใช้งานได้ง่ายและพัฒนาโปรแกรมได้อย่างรวดเร็ว Webpack หลังจากที่ Rails ได้มีการเปลี่ยนตัว compile assets มาเป็น Webpack ก็ทำให้การทำ fingerprint, compress ก็ง่ายขึ้น PostgreSQL ในช่วงแรกๆ ของการพัฒนาโปรแกรมการเชื่อมต่อกับฐานข้อมูลจะเป็นการใช้งาน MySQL ทั้งหมด จนได้มารู้จักกับ PostgreSQL ก็ตอนเข้าทำงานที่บริษัทปัจจุบัน ก็เลยคุ้นชินกับการใช้เจ้า PostgreSQL ไปซะแล้ว ส่วนอันไหนจะดีกว่ากันนั้นก็ไม่แน่ใจ Bulma จริงๆ CSS Framework เป็นสิ่งที่ค่อนข้างยากสำหรับตัวผมมากๆ แต่ Bulma ก็ถือว่าใช้งานไม่ยากมากนัก แก้ไขและต่อยอดได้รวดเร็ว และในกรณีที่ต้องเขียน CSS Class เพิ่มเติม เราก็จะใช้ BEM เป็นหลักการในการพัฒนา CSS เพิ่มเติม" />
+<meta property="og:description" content="สำหรับบทความนี้จะมาลองแชร์ Stack ในการพัฒนาโปรแกรมกัน โดยแต่ละคนก็จะมีความชื่นชอบแตกต่างๆ กันไป ซึ่งก็คงจะผ่านการทดลอง ฝึกฝนจนชำนาญ เพื่อให้การทำงานของเรามีประสิทธิภาพมากที่สุด ความชอบแปรเปลี่ยนไปตามช่วงเวลา แต่ในช่วงเวลานี้ก็คงเป็น Rails ทั้งนี้ที่ได้นำมาแชร์นั้นก็เกิดจากได้ฟังประชุมทีมดูความก้าวหน้าของงานน้องๆ ภายในทีม และรู้สึกว่าผลงานที่ได้ออกมาค่อนข้างทำได้ดี และรวดเร็วกว่าที่คาดคะเนไว้ ซึ่งก็อดตื่นเต้นและดีใจไม่ได้ My Stack Ruby on Rails จากที่ได้เคยใช้ Backend Framework มาหลายตัวตลอดระยะเวลาหลายปี ก็ได้มาพบกับ Rails ซึ่งคิดว่าในช่วงเวลานี้น่าจะเป็น Framework ที่ใช้งานแล้วรู้สึกโอเคมากที่สุด และยังมีอะไรให้ศึกษาต่ออีกเยอะ มีโมดูลที่หลายหลาย อีกทั้งยังรองรับ Frontend Framework ในตัว เช่น React, Angular หรือ Vuejs เป็นต้น Stimulus สำหรับ Frontend Framework นักพัฒนาส่วนใหญ่คงจะเลือก Framework เจ้าใหญ่ในการทำงานเป็นหลัก แต่โดยส่วนตัวแล้วยังรู้สึกการใช้ Framework เหล่านั้นมี learning curve ที่ค่อนข้างสูง ถ้าเป็นมือใหม่ การพัฒนา component ขึ้นมาสักชิ้นก็ใช้เวลาไม่ใช่น้อย และยิ่งพัฒนา component ที่มีความซับซ้อนมากขึ้น อาจจะต้องปวดหัวกันเป็นวันๆ เลยทีเดียว Stimulus เป็นตัวเลือกที่ค่อนข้างชัดเจนไม่ว่าจะเป็นเรื่องของขนาด การศึกษาทำความเข้าใจ และเมื่อค่อยๆ ใช้งานไปเรื่อยๆ ยิ่งรู้สึกว่ามันใช้งานได้ง่ายและพัฒนาโปรแกรมได้อย่างรวดเร็ว Webpack หลังจากที่ Rails ได้มีการเปลี่ยนตัว compile assets มาเป็น Webpack ก็ทำให้การทำ fingerprint, compress ก็ง่ายขึ้น PostgreSQL ในช่วงแรกๆ ของการพัฒนาโปรแกรมการเชื่อมต่อกับฐานข้อมูลจะเป็นการใช้งาน MySQL ทั้งหมด จนได้มารู้จักกับ PostgreSQL ก็ตอนเข้าทำงานที่บริษัทปัจจุบัน ก็เลยคุ้นชินกับการใช้เจ้า PostgreSQL ไปซะแล้ว ส่วนอันไหนจะดีกว่ากันนั้นก็ไม่แน่ใจ Bulma จริงๆ CSS Framework เป็นสิ่งที่ค่อนข้างยากสำหรับตัวผมมากๆ แต่ Bulma ก็ถือว่าใช้งานไม่ยากมากนัก แก้ไขและต่อยอดได้รวดเร็ว และในกรณีที่ต้องเขียน CSS Class เพิ่มเติม เราก็จะใช้ BEM เป็นหลักการในการพัฒนา CSS เพิ่มเติม" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/07/09/my-favorite-stack.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/07/09/my-favorite-stack.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-09T22:11:00+07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="My Favorite Stack" />
+<meta name="twitter:site" content="@karn18" />
+<meta name="twitter:creator" content="@Karn" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Karn"},"url":"https://karn18.github.io/dev/2020/07/09/my-favorite-stack.html","description":"สำหรับบทความนี้จะมาลองแชร์ Stack ในการพัฒนาโปรแกรมกัน โดยแต่ละคนก็จะมีความชื่นชอบแตกต่างๆ กันไป ซึ่งก็คงจะผ่านการทดลอง ฝึกฝนจนชำนาญ เพื่อให้การทำงานของเรามีประสิทธิภาพมากที่สุด ความชอบแปรเปลี่ยนไปตามช่วงเวลา แต่ในช่วงเวลานี้ก็คงเป็น Rails ทั้งนี้ที่ได้นำมาแชร์นั้นก็เกิดจากได้ฟังประชุมทีมดูความก้าวหน้าของงานน้องๆ ภายในทีม และรู้สึกว่าผลงานที่ได้ออกมาค่อนข้างทำได้ดี และรวดเร็วกว่าที่คาดคะเนไว้ ซึ่งก็อดตื่นเต้นและดีใจไม่ได้ My Stack Ruby on Rails จากที่ได้เคยใช้ Backend Framework มาหลายตัวตลอดระยะเวลาหลายปี ก็ได้มาพบกับ Rails ซึ่งคิดว่าในช่วงเวลานี้น่าจะเป็น Framework ที่ใช้งานแล้วรู้สึกโอเคมากที่สุด และยังมีอะไรให้ศึกษาต่ออีกเยอะ มีโมดูลที่หลายหลาย อีกทั้งยังรองรับ Frontend Framework ในตัว เช่น React, Angular หรือ Vuejs เป็นต้น Stimulus สำหรับ Frontend Framework นักพัฒนาส่วนใหญ่คงจะเลือก Framework เจ้าใหญ่ในการทำงานเป็นหลัก แต่โดยส่วนตัวแล้วยังรู้สึกการใช้ Framework เหล่านั้นมี learning curve ที่ค่อนข้างสูง ถ้าเป็นมือใหม่ การพัฒนา component ขึ้นมาสักชิ้นก็ใช้เวลาไม่ใช่น้อย และยิ่งพัฒนา component ที่มีความซับซ้อนมากขึ้น อาจจะต้องปวดหัวกันเป็นวันๆ เลยทีเดียว Stimulus เป็นตัวเลือกที่ค่อนข้างชัดเจนไม่ว่าจะเป็นเรื่องของขนาด การศึกษาทำความเข้าใจ และเมื่อค่อยๆ ใช้งานไปเรื่อยๆ ยิ่งรู้สึกว่ามันใช้งานได้ง่ายและพัฒนาโปรแกรมได้อย่างรวดเร็ว Webpack หลังจากที่ Rails ได้มีการเปลี่ยนตัว compile assets มาเป็น Webpack ก็ทำให้การทำ fingerprint, compress ก็ง่ายขึ้น PostgreSQL ในช่วงแรกๆ ของการพัฒนาโปรแกรมการเชื่อมต่อกับฐานข้อมูลจะเป็นการใช้งาน MySQL ทั้งหมด จนได้มารู้จักกับ PostgreSQL ก็ตอนเข้าทำงานที่บริษัทปัจจุบัน ก็เลยคุ้นชินกับการใช้เจ้า PostgreSQL ไปซะแล้ว ส่วนอันไหนจะดีกว่ากันนั้นก็ไม่แน่ใจ Bulma จริงๆ CSS Framework เป็นสิ่งที่ค่อนข้างยากสำหรับตัวผมมากๆ แต่ Bulma ก็ถือว่าใช้งานไม่ยากมากนัก แก้ไขและต่อยอดได้รวดเร็ว และในกรณีที่ต้องเขียน CSS Class เพิ่มเติม เราก็จะใช้ BEM เป็นหลักการในการพัฒนา CSS เพิ่มเติม","dateModified":"2020-07-09T22:11:00+07:00","headline":"My Favorite Stack","datePublished":"2020-07-09T22:11:00+07:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/07/09/my-favorite-stack.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer data-skip-dnt="true" src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript>
+
+<script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni"></script><title></title>
+<title>My Favorite Stack</title>
+</head><body data-theme="light">
+    <div class="kz-progress"></div>
+    <div class="kz-main-container"><nav class="kz-navbar">
+  <a href="/" class="kz-navbar__logo">KT</a>
+  <div class="kz-navbar__menu">
+    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
+    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
+    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
+    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+  </div>
+</nav>
+<div class="kz-content">
+        <div class="kz-blog">
+  <div class="kz-blog__header">
+  <h1 class="kz-blog__title">My Favorite Stack</h1>
+  <div class="kz-blog__info">
+    <i class="typcn typcn-calendar-outline"></i> 09-07-2020
+    
+      | <i class="typcn typcn-tag"></i>
+      
+        <span>html</span>
+      
+        <span>javascript</span>
+      
+        <span>rails</span>
+      
+        <span>ruby</span>
+      
+        <span>stimulus</span>
+      
+    
+  </div>
+</div>
+
+  
+  <div class="blog-content is-family-secondary">
+    <p>สำหรับบทความนี้จะมาลองแชร์ Stack ในการพัฒนาโปรแกรมกัน โดยแต่ละคนก็จะมีความชื่นชอบแตกต่างๆ กันไป ซึ่งก็คงจะผ่านการทดลอง ฝึกฝนจนชำนาญ เพื่อให้การทำงานของเรามีประสิทธิภาพมากที่สุด</p>
+
+<blockquote>
+  <p>ความชอบแปรเปลี่ยนไปตามช่วงเวลา แต่ในช่วงเวลานี้ก็คงเป็น <strong>Rails</strong></p>
+</blockquote>
+
+<p>ทั้งนี้ที่ได้นำมาแชร์นั้นก็เกิดจากได้ฟังประชุมทีมดูความก้าวหน้าของงานน้องๆ ภายในทีม และรู้สึกว่าผลงานที่ได้ออกมาค่อนข้างทำได้ดี และรวดเร็วกว่าที่คาดคะเนไว้ ซึ่งก็อดตื่นเต้นและดีใจไม่ได้</p>
+
+<h2 id="my-stack">My Stack</h2>
+
+<ul>
+  <li>
+    <p>Ruby on Rails
+จากที่ได้เคยใช้ <strong>Backend Framework</strong> มาหลายตัวตลอดระยะเวลาหลายปี ก็ได้มาพบกับ <strong>Rails</strong> ซึ่งคิดว่าในช่วงเวลานี้น่าจะเป็น <strong>Framework</strong> ที่ใช้งานแล้วรู้สึกโอเคมากที่สุด และยังมีอะไรให้ศึกษาต่ออีกเยอะ มีโมดูลที่หลายหลาย อีกทั้งยังรองรับ <strong>Frontend Framework</strong> ในตัว เช่น <strong>React</strong>, <strong>Angular</strong> หรือ <strong>Vuejs</strong> เป็นต้น</p>
+  </li>
+  <li>
+    <p>Stimulus
+สำหรับ <strong>Frontend Framework</strong> นักพัฒนาส่วนใหญ่คงจะเลือก <strong>Framework</strong> เจ้าใหญ่ในการทำงานเป็นหลัก แต่โดยส่วนตัวแล้วยังรู้สึกการใช้ <strong>Framework</strong> เหล่านั้นมี learning curve ที่ค่อนข้างสูง ถ้าเป็นมือใหม่ การพัฒนา component ขึ้นมาสักชิ้นก็ใช้เวลาไม่ใช่น้อย และยิ่งพัฒนา component ที่มีความซับซ้อนมากขึ้น อาจจะต้องปวดหัวกันเป็นวันๆ เลยทีเดียว</p>
+  </li>
+</ul>
+
+<p><strong>Stimulus</strong> เป็นตัวเลือกที่ค่อนข้างชัดเจนไม่ว่าจะเป็นเรื่องของขนาด การศึกษาทำความเข้าใจ และเมื่อค่อยๆ ใช้งานไปเรื่อยๆ ยิ่งรู้สึกว่ามันใช้งานได้ง่ายและพัฒนาโปรแกรมได้อย่างรวดเร็ว</p>
+
+<ul>
+  <li>
+    <p>Webpack
+หลังจากที่ <strong>Rails</strong> ได้มีการเปลี่ยนตัว compile assets มาเป็น <strong>Webpack</strong> ก็ทำให้การทำ fingerprint, compress ก็ง่ายขึ้น</p>
+  </li>
+  <li>
+    <p>PostgreSQL
+ในช่วงแรกๆ ของการพัฒนาโปรแกรมการเชื่อมต่อกับฐานข้อมูลจะเป็นการใช้งาน <strong>MySQL</strong> ทั้งหมด จนได้มารู้จักกับ <strong>PostgreSQL</strong> ก็ตอนเข้าทำงานที่บริษัทปัจจุบัน ก็เลยคุ้นชินกับการใช้เจ้า <strong>PostgreSQL</strong> ไปซะแล้ว ส่วนอันไหนจะดีกว่ากันนั้นก็ไม่แน่ใจ</p>
+  </li>
+  <li>
+    <p>Bulma
+จริงๆ <strong>CSS Framework</strong> เป็นสิ่งที่ค่อนข้างยากสำหรับตัวผมมากๆ แต่ <strong>Bulma</strong> ก็ถือว่าใช้งานไม่ยากมากนัก แก้ไขและต่อยอดได้รวดเร็ว และในกรณีที่ต้องเขียน <strong>CSS Class</strong> เพิ่มเติม เราก็จะใช้ <strong>BEM</strong> เป็นหลักการในการพัฒนา <strong>CSS</strong> เพิ่มเติม</p>
+  </li>
+</ul>
+
+  </div>
+  <!-- <div class="section field is-grouped">
+  <div class="control">
+    <a class="twitter-share-button"
+      href="https://twitter.com/intent/tweet?text=My Favorite Stack&url=https://karn18.github.io/dev/2020/07/09/my-favorite-stack.html&via=karn18&related=karn18"
+      data-size="large">
+      Tweet
+    </a>
+    <div id="fb-root"></div>
+  </div>
+  <div class="control">
+    <div class="fb-share-button" 
+      data-href="https://karn18.github.io/dev/2020/07/09/my-favorite-stack.html"
+      data-layout="button_count" data-size="large">
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+        Share
+      </a>
+    </div>
+  </div>
+</div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+  
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+ -->
+  <!-- 
+ -->
+  <!-- <div class="kz-pagination">
+  <div class="kz-pagination__newer">
+    
+  </div>
+  <div class="kz-pagination__older">
+    
+      <a class="kz-pagination__button" href="/tech/2020/06/27/hey-%E0%B9%80%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7-part-1.html">Older &rarr;</a>
+    
+  </div>
+</div> -->
+  <div class="related-blog">
+  
+  
+  
+
+  
+</div>
+
+</div>
+
+
+
+      </div>
+    </div><script>
+  const h = document.documentElement;
+  const b = document.body;
+  const st = 'scrollTop';
+  const sh = 'scrollHeight';
+  const progress = document.querySelector('.kz-progress');
+  let scroll;
+
+  document.addEventListener('scroll', function() {
+    scroll = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+    progress.style.setProperty('--scroll', scroll + '%');
+  });
+</script>
+
+</body>
+</html>
