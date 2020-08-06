@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en"><!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>ปรับแต่ง ActionText ให้รองรับ Youtube Embeded | KT</title>
+<meta name="generator" content="Jekyll v4.1.0" />
+<meta property="og:title" content="ปรับแต่ง ActionText ให้รองรับ Youtube Embeded" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="ปกติแล้วการใช้งาน ActionText รองรับการใส่ข้อมูลที่เป็น link อยู่แล้วตั้งแต่ต้น แต่ในกรณีที่เราอยากใส่ Embeded Link อย่างเช่น Youtube หรือ Vimeo เข้าไปและอยากให้มีการแสดงภาพตัวอย่างของวิดีโอปรากฏขึ้นในตัว editor หรือจะแสดง Video Player ขึ้นมาเมื่ออยู่ในหน้าแสดงผล เราจะต้องมีการเพิ่มเติมความสามารถให้กับ ActionText กันเล็กน้อย Link in ActionText รูปแบบในการพัฒนา พัฒนาเฉพาะการเพิ่มลิงค์ด้วย Youtube Embedded เท่านั้น การจัดการเหตุการณ์ต่างๆ จะใช้ Stimulus ขั้นตอนในการเพิ่ม Emedded Link สร้างปุ่ม Embed และเพิ่มเข้าไปยังเครื่องมือของ ActionText 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 export default class YoutubeEmbedded { extend (parent) { const buttonHTML = &#39;&lt;button type=&quot;button&quot; class=&quot;trix-button&quot; data-trix-attribute=&quot;embed&quot; data-trix-action=&quot;embed&quot; title=&quot;Embed&quot; tabindex=&quot;-1&quot;&gt;Youtube Embed&lt;/button&gt;&#39; const buttonGroup = parent.toolbarElement.querySelector( &quot;.trix-button-group--text-tools&quot; ) const dialogHml = `&lt;div class=&quot;trix-dialog trix-dialog--link&quot; data-trix-dialog=&quot;embed&quot; data-trix-dialog-attribute=&quot;embed&quot;&gt; &lt;div class=&quot;trix-dialog__link-fields&quot;&gt; &lt;input type=&quot;text&quot; name=&quot;embed&quot; class=&quot;trix-input trix-input--dialog&quot; placeholder=&quot;Paste your youtube video url&quot; aria-label=&quot;embed code&quot; required=&quot;&quot; data-trix-input=&quot;&quot; disabled=&quot;disabled&quot;&gt; &lt;div class=&quot;trix-button-group&quot;&gt; &lt;input type=&quot;button&quot; class=&quot;trix-button trix-button--dialog&quot; data-trix-custom=&quot;add-embed&quot; value=&quot;Add&quot;&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt;` const dialogGroup = parent.toolbarElement.querySelector(&quot;.trix-dialogs&quot;) buttonGroup.insertAdjacentHTML(&quot;beforeend&quot;, buttonHTML) dialogGroup.insertAdjacentHTML(&quot;beforeend&quot;, dialogHml) this.addEmbedEventListener() } addEmbedEventListener () { document .querySelector(&#39;[data-trix-action=&quot;embed&quot;]&#39;) .addEventListener(&quot;click&quot;, event =&gt; { const dialog = document.querySelector(&#39;[data-trix-dialog=&quot;embed&quot;]&#39;); const embedInput = document.querySelector(&#39;[name=&quot;embed&quot;]&#39;); if (event.target.classList.contains(&quot;trix-active&quot;)) { event.target.classList.remove(&quot;trix-active&quot;); dialog.classList.remove(&quot;trix-active&quot;); delete dialog.dataset.trixActive; embedInput.setAttribute(&quot;disabled&quot;, &quot;disabled&quot;); } else { event.target.classList.add(&quot;trix-active&quot;); dialog.classList.add(&quot;trix-active&quot;); dialog.dataset.trixActive = &quot;&quot;; embedInput.removeAttribute(&quot;disabled&quot;); embedInput.focus(); } }) document .querySelector(&#39;[data-trix-custom=&quot;add-embed&quot;]&#39;) .addEventListener(&quot;click&quot;, event =&gt; { document.dispatchEvent(new CustomEvent(&quot;add-embed&quot;, { bubbles: true, detail: { link: () =&gt; document.querySelector(&#39;[name=&quot;embed&quot;]&#39;).value } })) }) } } สร้าง embed_controller.jsr เพื่อใช้ในการควบคุมจัดการเหตุการณ์ของ ActionText โดยเริ่มต้นจากการใส่ปุ่ม Embed ที่เราสร้างขึ้นมา 1 2 3 4 5 6 7 8 9 10 11 12 import { Controller } from &quot;stimulus&quot; import Trix from &#39;trix&#39; import YoutubeEmbedded from &#39;embed&#39; export default class extends Controller { static targets = [ &quot;field&quot; ] connect () { this.editor = this.fieldTarget.editor; let embed = new YoutubeEmbedded() embed.extend(this.fieldTarget) } } ใส่ Stimulus Controller เข้าไปใน rich text area ของ content 1 2 3 4 &lt;div class=&quot;field&quot;&gt; &lt;%= form.label :content %&gt; &lt;%= form.rich_text_area :content, data: { controller: &quot;embed&quot;, target: &quot;embed.field&quot; } %&gt; &lt;/div&gt; รีเฟรชหน้าเว็บดูจะปรากฏปุ่ม Embed เพิ่มขึ้นมาดังแสดงในรูปด้านล่าง ปุ่ม Embed สร้างโมเดล Embed เพื่อใช้สำหรับเก็บข้อมูล Embeded Link ไว้ในฐานข้อมูล 1 $ rails generate model Embed string:link string:link_id เพิ่มเติมความสามารถให้กับโมเดล Embed โดยวัตถุที่ถูกแนบเข้ากับ ActionText จะต้องมี Signed Global ID (sgid) ซึ่งเราจะต้อง include โมดูล ActionText::Attachable เข้ากับโมเดล app/models/embed.rb 1 2 3 class Embed &lt; ApplicationRecord include ActionText::Attachable end เพิ่มโค้ดใน embed_controller.js ในการจัดการเหตุการณ์ เมื่อมีการเพิ่มลิงค์ ซึ่งจะเห็นได้จากโค้ดในไฟล์ embed.js จะมีการส่งเหตุการณ์ที่ชื่อ add-embed ดังนั้นเราจะต้อง addEventListener ให้กับเหตุการณ์ดังกล่าว และส่งข้อมูลไปบันทึกไว้ที่ server app/javascript/controllers/embed_controller.js 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 document.addEventListener(&quot;add-embed&quot;, (event) =&gt; { let link = event.detail.link() if (link) { const token = document.querySelector(&#39;meta[name=&quot;csrf-token&quot;]&#39;).content fetch(&#39;/embeds&#39;, { method: &quot;POST&quot;, headers: { &#39;Content-Type&#39;: &#39;application/json&#39;, &#39;X-CSRF-Token&#39;: token }, body: JSON.stringify({ embeds: { link } }) }) .then(response =&gt; response.json()) .then(({ sgid, content, contentType }) =&gt; { const attachment = new Trix.Attachment({ content, sgid, contentType, filename: link, previewable: true }) this.editor.insertAttachment(attachment) this.editor.insertLineBreak() }) } }) จะสังเกตเห็นว่าโค้ดข้างต้นมีการเรียก POST /embeds ดังนั้นในฝั่ง server เราจะต้องสร้าง endpoint สำหรับบันทึก Embed ไว้ app/controllers/embeds_controller.rb 1 2 3 4 5 6 def create @embed = Embed.create(embed_params) respond_to do |format| format.json end end ส่งผลที่เป็น json กลับไปยัง client ด้วย JBuilder app/views/embeds/create.json.jbuilder 1 2 3 4 json.extract! @embed, :link json.sgid @embed.attachable_sgid json.content render(partial: &quot;embed/thumbnail&quot;, locals: { embed: @embed }, formats: [:html]) json.contentType &quot;embed/youtube-video&quot; app/views/embeds/_thumbnail.html.erb 1 &lt;%= image_tag &quot;http://i3.ytimg.com/vi/#{embed.link_id}/maxresdefault.jpg&quot;, size: 300 %&gt; เพิ่มการแสดงผลภาพตัวอย่าง เมื่อ ActionText ทำการโหลดเนื้อหากลับมาแสดงบน Editor โดยการเพิ่มฟังก์ชัน to_trix_content_attachment_partial_path เข้าไปยังโมเดล Embed app/models/embed.rb 1 2 3 def to_trix_content_attachment_partial_path &#39;embed/thumbnail&#39; end ใส่ลิงค์ของ Youtube เข้าไป แสดงภาพตัวอย่างของวิดีโอที่ใส่เข้าไป เปลี่ยนการแสดงผลเนื้อหาของ ActionText ให้แสดง Video Player ของ Youtube app/views/embeds/_embed.html.erb 1 2 3 &lt;div class=&quot;embed-responsive&quot;&gt; &lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https://www.youtube.com/embed/&lt;%= embed.link_id %&gt;&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt; &lt;/div&gt; การแสดง Embedd Link ของ Youtube จะผ่านการเรียกใช้งาน iframe ซึ่งโดยปกติแล้ว ActionText จะไม่รองรับตั้งแต่ต้น ดังนั้นจะต้องกำหนดค่าเพิ่ม config/application.rb 1 2 3 config.to_prepare do ActionText::ContentHelper.allowed_tags &lt;&lt; &quot;iframe&quot; end แสดงวิดีโอ เพิ่ม JavaScript อีกนิด เพื่อให้แสดง caption app/javascript/packs/application.js 1 2 3 4 5 6 7 8 document.addEventListener(&quot;turbolinks:load&quot;, () =&gt; { let elements = document.querySelectorAll(&quot;action-text-attachment[content-type^=embed]&quot;) elements.forEach(element =&gt; { let caption = element.getAttribute(&#39;caption&#39;) if (caption != null) element.insertAdjacentHTML(&#39;beforeend&#39;, `&lt;caption&gt;${caption}&lt;/caption&gt;`) }) }) แสดงวิดีโอและ caption References ActionText GoRails ActionText https://stackoverflow.com/questions/61867995/how-to-embed-an-iframe-with-actiontext-trix-on-ruby-on-rails" />
+<meta property="og:description" content="ปกติแล้วการใช้งาน ActionText รองรับการใส่ข้อมูลที่เป็น link อยู่แล้วตั้งแต่ต้น แต่ในกรณีที่เราอยากใส่ Embeded Link อย่างเช่น Youtube หรือ Vimeo เข้าไปและอยากให้มีการแสดงภาพตัวอย่างของวิดีโอปรากฏขึ้นในตัว editor หรือจะแสดง Video Player ขึ้นมาเมื่ออยู่ในหน้าแสดงผล เราจะต้องมีการเพิ่มเติมความสามารถให้กับ ActionText กันเล็กน้อย Link in ActionText รูปแบบในการพัฒนา พัฒนาเฉพาะการเพิ่มลิงค์ด้วย Youtube Embedded เท่านั้น การจัดการเหตุการณ์ต่างๆ จะใช้ Stimulus ขั้นตอนในการเพิ่ม Emedded Link สร้างปุ่ม Embed และเพิ่มเข้าไปยังเครื่องมือของ ActionText 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 export default class YoutubeEmbedded { extend (parent) { const buttonHTML = &#39;&lt;button type=&quot;button&quot; class=&quot;trix-button&quot; data-trix-attribute=&quot;embed&quot; data-trix-action=&quot;embed&quot; title=&quot;Embed&quot; tabindex=&quot;-1&quot;&gt;Youtube Embed&lt;/button&gt;&#39; const buttonGroup = parent.toolbarElement.querySelector( &quot;.trix-button-group--text-tools&quot; ) const dialogHml = `&lt;div class=&quot;trix-dialog trix-dialog--link&quot; data-trix-dialog=&quot;embed&quot; data-trix-dialog-attribute=&quot;embed&quot;&gt; &lt;div class=&quot;trix-dialog__link-fields&quot;&gt; &lt;input type=&quot;text&quot; name=&quot;embed&quot; class=&quot;trix-input trix-input--dialog&quot; placeholder=&quot;Paste your youtube video url&quot; aria-label=&quot;embed code&quot; required=&quot;&quot; data-trix-input=&quot;&quot; disabled=&quot;disabled&quot;&gt; &lt;div class=&quot;trix-button-group&quot;&gt; &lt;input type=&quot;button&quot; class=&quot;trix-button trix-button--dialog&quot; data-trix-custom=&quot;add-embed&quot; value=&quot;Add&quot;&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt;` const dialogGroup = parent.toolbarElement.querySelector(&quot;.trix-dialogs&quot;) buttonGroup.insertAdjacentHTML(&quot;beforeend&quot;, buttonHTML) dialogGroup.insertAdjacentHTML(&quot;beforeend&quot;, dialogHml) this.addEmbedEventListener() } addEmbedEventListener () { document .querySelector(&#39;[data-trix-action=&quot;embed&quot;]&#39;) .addEventListener(&quot;click&quot;, event =&gt; { const dialog = document.querySelector(&#39;[data-trix-dialog=&quot;embed&quot;]&#39;); const embedInput = document.querySelector(&#39;[name=&quot;embed&quot;]&#39;); if (event.target.classList.contains(&quot;trix-active&quot;)) { event.target.classList.remove(&quot;trix-active&quot;); dialog.classList.remove(&quot;trix-active&quot;); delete dialog.dataset.trixActive; embedInput.setAttribute(&quot;disabled&quot;, &quot;disabled&quot;); } else { event.target.classList.add(&quot;trix-active&quot;); dialog.classList.add(&quot;trix-active&quot;); dialog.dataset.trixActive = &quot;&quot;; embedInput.removeAttribute(&quot;disabled&quot;); embedInput.focus(); } }) document .querySelector(&#39;[data-trix-custom=&quot;add-embed&quot;]&#39;) .addEventListener(&quot;click&quot;, event =&gt; { document.dispatchEvent(new CustomEvent(&quot;add-embed&quot;, { bubbles: true, detail: { link: () =&gt; document.querySelector(&#39;[name=&quot;embed&quot;]&#39;).value } })) }) } } สร้าง embed_controller.jsr เพื่อใช้ในการควบคุมจัดการเหตุการณ์ของ ActionText โดยเริ่มต้นจากการใส่ปุ่ม Embed ที่เราสร้างขึ้นมา 1 2 3 4 5 6 7 8 9 10 11 12 import { Controller } from &quot;stimulus&quot; import Trix from &#39;trix&#39; import YoutubeEmbedded from &#39;embed&#39; export default class extends Controller { static targets = [ &quot;field&quot; ] connect () { this.editor = this.fieldTarget.editor; let embed = new YoutubeEmbedded() embed.extend(this.fieldTarget) } } ใส่ Stimulus Controller เข้าไปใน rich text area ของ content 1 2 3 4 &lt;div class=&quot;field&quot;&gt; &lt;%= form.label :content %&gt; &lt;%= form.rich_text_area :content, data: { controller: &quot;embed&quot;, target: &quot;embed.field&quot; } %&gt; &lt;/div&gt; รีเฟรชหน้าเว็บดูจะปรากฏปุ่ม Embed เพิ่มขึ้นมาดังแสดงในรูปด้านล่าง ปุ่ม Embed สร้างโมเดล Embed เพื่อใช้สำหรับเก็บข้อมูล Embeded Link ไว้ในฐานข้อมูล 1 $ rails generate model Embed string:link string:link_id เพิ่มเติมความสามารถให้กับโมเดล Embed โดยวัตถุที่ถูกแนบเข้ากับ ActionText จะต้องมี Signed Global ID (sgid) ซึ่งเราจะต้อง include โมดูล ActionText::Attachable เข้ากับโมเดล app/models/embed.rb 1 2 3 class Embed &lt; ApplicationRecord include ActionText::Attachable end เพิ่มโค้ดใน embed_controller.js ในการจัดการเหตุการณ์ เมื่อมีการเพิ่มลิงค์ ซึ่งจะเห็นได้จากโค้ดในไฟล์ embed.js จะมีการส่งเหตุการณ์ที่ชื่อ add-embed ดังนั้นเราจะต้อง addEventListener ให้กับเหตุการณ์ดังกล่าว และส่งข้อมูลไปบันทึกไว้ที่ server app/javascript/controllers/embed_controller.js 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 document.addEventListener(&quot;add-embed&quot;, (event) =&gt; { let link = event.detail.link() if (link) { const token = document.querySelector(&#39;meta[name=&quot;csrf-token&quot;]&#39;).content fetch(&#39;/embeds&#39;, { method: &quot;POST&quot;, headers: { &#39;Content-Type&#39;: &#39;application/json&#39;, &#39;X-CSRF-Token&#39;: token }, body: JSON.stringify({ embeds: { link } }) }) .then(response =&gt; response.json()) .then(({ sgid, content, contentType }) =&gt; { const attachment = new Trix.Attachment({ content, sgid, contentType, filename: link, previewable: true }) this.editor.insertAttachment(attachment) this.editor.insertLineBreak() }) } }) จะสังเกตเห็นว่าโค้ดข้างต้นมีการเรียก POST /embeds ดังนั้นในฝั่ง server เราจะต้องสร้าง endpoint สำหรับบันทึก Embed ไว้ app/controllers/embeds_controller.rb 1 2 3 4 5 6 def create @embed = Embed.create(embed_params) respond_to do |format| format.json end end ส่งผลที่เป็น json กลับไปยัง client ด้วย JBuilder app/views/embeds/create.json.jbuilder 1 2 3 4 json.extract! @embed, :link json.sgid @embed.attachable_sgid json.content render(partial: &quot;embed/thumbnail&quot;, locals: { embed: @embed }, formats: [:html]) json.contentType &quot;embed/youtube-video&quot; app/views/embeds/_thumbnail.html.erb 1 &lt;%= image_tag &quot;http://i3.ytimg.com/vi/#{embed.link_id}/maxresdefault.jpg&quot;, size: 300 %&gt; เพิ่มการแสดงผลภาพตัวอย่าง เมื่อ ActionText ทำการโหลดเนื้อหากลับมาแสดงบน Editor โดยการเพิ่มฟังก์ชัน to_trix_content_attachment_partial_path เข้าไปยังโมเดล Embed app/models/embed.rb 1 2 3 def to_trix_content_attachment_partial_path &#39;embed/thumbnail&#39; end ใส่ลิงค์ของ Youtube เข้าไป แสดงภาพตัวอย่างของวิดีโอที่ใส่เข้าไป เปลี่ยนการแสดงผลเนื้อหาของ ActionText ให้แสดง Video Player ของ Youtube app/views/embeds/_embed.html.erb 1 2 3 &lt;div class=&quot;embed-responsive&quot;&gt; &lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https://www.youtube.com/embed/&lt;%= embed.link_id %&gt;&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt; &lt;/div&gt; การแสดง Embedd Link ของ Youtube จะผ่านการเรียกใช้งาน iframe ซึ่งโดยปกติแล้ว ActionText จะไม่รองรับตั้งแต่ต้น ดังนั้นจะต้องกำหนดค่าเพิ่ม config/application.rb 1 2 3 config.to_prepare do ActionText::ContentHelper.allowed_tags &lt;&lt; &quot;iframe&quot; end แสดงวิดีโอ เพิ่ม JavaScript อีกนิด เพื่อให้แสดง caption app/javascript/packs/application.js 1 2 3 4 5 6 7 8 document.addEventListener(&quot;turbolinks:load&quot;, () =&gt; { let elements = document.querySelectorAll(&quot;action-text-attachment[content-type^=embed]&quot;) elements.forEach(element =&gt; { let caption = element.getAttribute(&#39;caption&#39;) if (caption != null) element.insertAdjacentHTML(&#39;beforeend&#39;, `&lt;caption&gt;${caption}&lt;/caption&gt;`) }) }) แสดงวิดีโอและ caption References ActionText GoRails ActionText https://stackoverflow.com/questions/61867995/how-to-embed-an-iframe-with-actiontext-trix-on-ruby-on-rails" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/08/06/%E0%B8%9B%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87-actiontext-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%9A-youtube-embeded.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/08/06/%E0%B8%9B%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87-actiontext-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%9A-youtube-embeded.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-08-06T15:24:00+07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ปรับแต่ง ActionText ให้รองรับ Youtube Embeded" />
+<meta name="twitter:site" content="@karn18" />
+<meta name="twitter:creator" content="@Karn" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Karn"},"headline":"ปรับแต่ง ActionText ให้รองรับ Youtube Embeded","dateModified":"2020-08-06T15:24:00+07:00","datePublished":"2020-08-06T15:24:00+07:00","url":"https://karn18.github.io/dev/2020/08/06/%E0%B8%9B%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87-actiontext-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%9A-youtube-embeded.html","description":"ปกติแล้วการใช้งาน ActionText รองรับการใส่ข้อมูลที่เป็น link อยู่แล้วตั้งแต่ต้น แต่ในกรณีที่เราอยากใส่ Embeded Link อย่างเช่น Youtube หรือ Vimeo เข้าไปและอยากให้มีการแสดงภาพตัวอย่างของวิดีโอปรากฏขึ้นในตัว editor หรือจะแสดง Video Player ขึ้นมาเมื่ออยู่ในหน้าแสดงผล เราจะต้องมีการเพิ่มเติมความสามารถให้กับ ActionText กันเล็กน้อย Link in ActionText รูปแบบในการพัฒนา พัฒนาเฉพาะการเพิ่มลิงค์ด้วย Youtube Embedded เท่านั้น การจัดการเหตุการณ์ต่างๆ จะใช้ Stimulus ขั้นตอนในการเพิ่ม Emedded Link สร้างปุ่ม Embed และเพิ่มเข้าไปยังเครื่องมือของ ActionText 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 export default class YoutubeEmbedded { extend (parent) { const buttonHTML = &#39;&lt;button type=&quot;button&quot; class=&quot;trix-button&quot; data-trix-attribute=&quot;embed&quot; data-trix-action=&quot;embed&quot; title=&quot;Embed&quot; tabindex=&quot;-1&quot;&gt;Youtube Embed&lt;/button&gt;&#39; const buttonGroup = parent.toolbarElement.querySelector( &quot;.trix-button-group--text-tools&quot; ) const dialogHml = `&lt;div class=&quot;trix-dialog trix-dialog--link&quot; data-trix-dialog=&quot;embed&quot; data-trix-dialog-attribute=&quot;embed&quot;&gt; &lt;div class=&quot;trix-dialog__link-fields&quot;&gt; &lt;input type=&quot;text&quot; name=&quot;embed&quot; class=&quot;trix-input trix-input--dialog&quot; placeholder=&quot;Paste your youtube video url&quot; aria-label=&quot;embed code&quot; required=&quot;&quot; data-trix-input=&quot;&quot; disabled=&quot;disabled&quot;&gt; &lt;div class=&quot;trix-button-group&quot;&gt; &lt;input type=&quot;button&quot; class=&quot;trix-button trix-button--dialog&quot; data-trix-custom=&quot;add-embed&quot; value=&quot;Add&quot;&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt;` const dialogGroup = parent.toolbarElement.querySelector(&quot;.trix-dialogs&quot;) buttonGroup.insertAdjacentHTML(&quot;beforeend&quot;, buttonHTML) dialogGroup.insertAdjacentHTML(&quot;beforeend&quot;, dialogHml) this.addEmbedEventListener() } addEmbedEventListener () { document .querySelector(&#39;[data-trix-action=&quot;embed&quot;]&#39;) .addEventListener(&quot;click&quot;, event =&gt; { const dialog = document.querySelector(&#39;[data-trix-dialog=&quot;embed&quot;]&#39;); const embedInput = document.querySelector(&#39;[name=&quot;embed&quot;]&#39;); if (event.target.classList.contains(&quot;trix-active&quot;)) { event.target.classList.remove(&quot;trix-active&quot;); dialog.classList.remove(&quot;trix-active&quot;); delete dialog.dataset.trixActive; embedInput.setAttribute(&quot;disabled&quot;, &quot;disabled&quot;); } else { event.target.classList.add(&quot;trix-active&quot;); dialog.classList.add(&quot;trix-active&quot;); dialog.dataset.trixActive = &quot;&quot;; embedInput.removeAttribute(&quot;disabled&quot;); embedInput.focus(); } }) document .querySelector(&#39;[data-trix-custom=&quot;add-embed&quot;]&#39;) .addEventListener(&quot;click&quot;, event =&gt; { document.dispatchEvent(new CustomEvent(&quot;add-embed&quot;, { bubbles: true, detail: { link: () =&gt; document.querySelector(&#39;[name=&quot;embed&quot;]&#39;).value } })) }) } } สร้าง embed_controller.jsr เพื่อใช้ในการควบคุมจัดการเหตุการณ์ของ ActionText โดยเริ่มต้นจากการใส่ปุ่ม Embed ที่เราสร้างขึ้นมา 1 2 3 4 5 6 7 8 9 10 11 12 import { Controller } from &quot;stimulus&quot; import Trix from &#39;trix&#39; import YoutubeEmbedded from &#39;embed&#39; export default class extends Controller { static targets = [ &quot;field&quot; ] connect () { this.editor = this.fieldTarget.editor; let embed = new YoutubeEmbedded() embed.extend(this.fieldTarget) } } ใส่ Stimulus Controller เข้าไปใน rich text area ของ content 1 2 3 4 &lt;div class=&quot;field&quot;&gt; &lt;%= form.label :content %&gt; &lt;%= form.rich_text_area :content, data: { controller: &quot;embed&quot;, target: &quot;embed.field&quot; } %&gt; &lt;/div&gt; รีเฟรชหน้าเว็บดูจะปรากฏปุ่ม Embed เพิ่มขึ้นมาดังแสดงในรูปด้านล่าง ปุ่ม Embed สร้างโมเดล Embed เพื่อใช้สำหรับเก็บข้อมูล Embeded Link ไว้ในฐานข้อมูล 1 $ rails generate model Embed string:link string:link_id เพิ่มเติมความสามารถให้กับโมเดล Embed โดยวัตถุที่ถูกแนบเข้ากับ ActionText จะต้องมี Signed Global ID (sgid) ซึ่งเราจะต้อง include โมดูล ActionText::Attachable เข้ากับโมเดล app/models/embed.rb 1 2 3 class Embed &lt; ApplicationRecord include ActionText::Attachable end เพิ่มโค้ดใน embed_controller.js ในการจัดการเหตุการณ์ เมื่อมีการเพิ่มลิงค์ ซึ่งจะเห็นได้จากโค้ดในไฟล์ embed.js จะมีการส่งเหตุการณ์ที่ชื่อ add-embed ดังนั้นเราจะต้อง addEventListener ให้กับเหตุการณ์ดังกล่าว และส่งข้อมูลไปบันทึกไว้ที่ server app/javascript/controllers/embed_controller.js 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 document.addEventListener(&quot;add-embed&quot;, (event) =&gt; { let link = event.detail.link() if (link) { const token = document.querySelector(&#39;meta[name=&quot;csrf-token&quot;]&#39;).content fetch(&#39;/embeds&#39;, { method: &quot;POST&quot;, headers: { &#39;Content-Type&#39;: &#39;application/json&#39;, &#39;X-CSRF-Token&#39;: token }, body: JSON.stringify({ embeds: { link } }) }) .then(response =&gt; response.json()) .then(({ sgid, content, contentType }) =&gt; { const attachment = new Trix.Attachment({ content, sgid, contentType, filename: link, previewable: true }) this.editor.insertAttachment(attachment) this.editor.insertLineBreak() }) } }) จะสังเกตเห็นว่าโค้ดข้างต้นมีการเรียก POST /embeds ดังนั้นในฝั่ง server เราจะต้องสร้าง endpoint สำหรับบันทึก Embed ไว้ app/controllers/embeds_controller.rb 1 2 3 4 5 6 def create @embed = Embed.create(embed_params) respond_to do |format| format.json end end ส่งผลที่เป็น json กลับไปยัง client ด้วย JBuilder app/views/embeds/create.json.jbuilder 1 2 3 4 json.extract! @embed, :link json.sgid @embed.attachable_sgid json.content render(partial: &quot;embed/thumbnail&quot;, locals: { embed: @embed }, formats: [:html]) json.contentType &quot;embed/youtube-video&quot; app/views/embeds/_thumbnail.html.erb 1 &lt;%= image_tag &quot;http://i3.ytimg.com/vi/#{embed.link_id}/maxresdefault.jpg&quot;, size: 300 %&gt; เพิ่มการแสดงผลภาพตัวอย่าง เมื่อ ActionText ทำการโหลดเนื้อหากลับมาแสดงบน Editor โดยการเพิ่มฟังก์ชัน to_trix_content_attachment_partial_path เข้าไปยังโมเดล Embed app/models/embed.rb 1 2 3 def to_trix_content_attachment_partial_path &#39;embed/thumbnail&#39; end ใส่ลิงค์ของ Youtube เข้าไป แสดงภาพตัวอย่างของวิดีโอที่ใส่เข้าไป เปลี่ยนการแสดงผลเนื้อหาของ ActionText ให้แสดง Video Player ของ Youtube app/views/embeds/_embed.html.erb 1 2 3 &lt;div class=&quot;embed-responsive&quot;&gt; &lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https://www.youtube.com/embed/&lt;%= embed.link_id %&gt;&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt; &lt;/div&gt; การแสดง Embedd Link ของ Youtube จะผ่านการเรียกใช้งาน iframe ซึ่งโดยปกติแล้ว ActionText จะไม่รองรับตั้งแต่ต้น ดังนั้นจะต้องกำหนดค่าเพิ่ม config/application.rb 1 2 3 config.to_prepare do ActionText::ContentHelper.allowed_tags &lt;&lt; &quot;iframe&quot; end แสดงวิดีโอ เพิ่ม JavaScript อีกนิด เพื่อให้แสดง caption app/javascript/packs/application.js 1 2 3 4 5 6 7 8 document.addEventListener(&quot;turbolinks:load&quot;, () =&gt; { let elements = document.querySelectorAll(&quot;action-text-attachment[content-type^=embed]&quot;) elements.forEach(element =&gt; { let caption = element.getAttribute(&#39;caption&#39;) if (caption != null) element.insertAdjacentHTML(&#39;beforeend&#39;, `&lt;caption&gt;${caption}&lt;/caption&gt;`) }) }) แสดงวิดีโอและ caption References ActionText GoRails ActionText https://stackoverflow.com/questions/61867995/how-to-embed-an-iframe-with-actiontext-trix-on-ruby-on-rails","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/08/06/%E0%B8%9B%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87-actiontext-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%9A-youtube-embeded.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni"></script>
+<title>ปรับแต่ง ActionText ให้รองรับ Youtube Embeded</title>
+</head><body data-theme="light">
+    <div class="kz-progress"></div>
+    <div class="kz-main-container"><nav class="kz-navbar">
+  <a href="/" class="kz-navbar__logo">KT</a>
+  <div class="kz-navbar__menu">
+    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
+    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
+    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
+    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+  </div>
+</nav>
+<div class="kz-content">
+        <div class="kz-blog">
+  <div class="kz-blog__header">
+  <h1 class="kz-blog__title">ปรับแต่ง ActionText ให้รองรับ Youtube Embeded</h1>
+  <div class="kz-blog__info">
+    <i class="typcn typcn-calendar-outline"></i> 06-08-2020
+    
+      | <i class="typcn typcn-tag"></i>
+      
+        <span>actiontext</span>
+      
+        <span>javascript</span>
+      
+        <span>rails</span>
+      
+        <span>ruby</span>
+      
+        <span>stimulus</span>
+      
+    
+  </div>
+</div>
+
+  
+  <div class="blog-content is-family-secondary">
+    <p>ปกติแล้วการใช้งาน <strong>ActionText</strong> รองรับการใส่ข้อมูลที่เป็น <strong>link</strong> อยู่แล้วตั้งแต่ต้น แต่ในกรณีที่เราอยากใส่ <strong>Embeded Link</strong> อย่างเช่น <strong>Youtube</strong> หรือ <strong>Vimeo</strong> เข้าไปและอยากให้มีการแสดงภาพตัวอย่างของวิดีโอปรากฏขึ้นในตัว <strong>editor</strong> หรือจะแสดง <strong>Video Player</strong> ขึ้นมาเมื่ออยู่ในหน้าแสดงผล เราจะต้องมีการเพิ่มเติมความสามารถให้กับ <strong>ActionText</strong> กันเล็กน้อย<!-- more --></p>
+
+<p><img src="/assets/images/posts/2020/ปรับแต่ง-actiontext-ให้รองรับ-youtube-embeded/example1.png" alt="default actiontext" />
+<em>Link in ActionText</em></p>
+
+<h2 id="รูปแบบในการพัฒนา">รูปแบบในการพัฒนา</h2>
+<ul>
+  <li>พัฒนาเฉพาะการเพิ่มลิงค์ด้วย <strong>Youtube Embedded</strong> เท่านั้น</li>
+  <li>การจัดการเหตุการณ์ต่างๆ จะใช้ <strong>Stimulus</strong></li>
+</ul>
+
+<h2 id="ขั้นตอนในการเพิ่ม-emedded-link">ขั้นตอนในการเพิ่ม Emedded Link</h2>
+<ul>
+  <li>สร้างปุ่ม <strong>Embed</strong> และเพิ่มเข้าไปยังเครื่องมือของ <strong>ActionText</strong></li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+</pre></td><td class="rouge-code"><pre><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">YoutubeEmbedded</span> <span class="p">{</span>
+  <span class="nx">extend</span> <span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">buttonHTML</span> <span class="o">=</span>
+    <span class="dl">'</span><span class="s1">&lt;button type="button" class="trix-button" data-trix-attribute="embed" data-trix-action="embed" title="Embed" tabindex="-1"&gt;Youtube Embed&lt;/button&gt;</span><span class="dl">'</span>
+    <span class="kd">const</span> <span class="nx">buttonGroup</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">toolbarElement</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span>
+      <span class="dl">"</span><span class="s2">.trix-button-group--text-tools</span><span class="dl">"</span>
+    <span class="p">)</span>
+    <span class="kd">const</span> <span class="nx">dialogHml</span> <span class="o">=</span> 
+      <span class="s2">`&lt;div class="trix-dialog trix-dialog--link" data-trix-dialog="embed" data-trix-dialog-attribute="embed"&gt;
+        &lt;div class="trix-dialog__link-fields"&gt;
+          &lt;input type="text" name="embed" class="trix-input trix-input--dialog" placeholder="Paste your youtube video url" aria-label="embed code" required="" data-trix-input="" disabled="disabled"&gt;
+          &lt;div class="trix-button-group"&gt;
+            &lt;input type="button" class="trix-button trix-button--dialog" data-trix-custom="add-embed" value="Add"&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;`</span>
+    <span class="kd">const</span> <span class="nx">dialogGroup</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">toolbarElement</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">.trix-dialogs</span><span class="dl">"</span><span class="p">)</span>
+    <span class="nx">buttonGroup</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeend</span><span class="dl">"</span><span class="p">,</span> <span class="nx">buttonHTML</span><span class="p">)</span>
+    <span class="nx">dialogGroup</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeend</span><span class="dl">"</span><span class="p">,</span> <span class="nx">dialogHml</span><span class="p">)</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">addEmbedEventListener</span><span class="p">()</span>
+  <span class="p">}</span>
+
+  <span class="nx">addEmbedEventListener</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nb">document</span>
+      <span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-trix-action="embed"]</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">dialog</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-trix-dialog="embed"]</span><span class="dl">'</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">embedInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">[name="embed"]</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="dl">"</span><span class="s2">trix-active</span><span class="dl">"</span><span class="p">))</span> <span class="p">{</span>
+          <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="dl">"</span><span class="s2">trix-active</span><span class="dl">"</span><span class="p">);</span>
+          <span class="nx">dialog</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="dl">"</span><span class="s2">trix-active</span><span class="dl">"</span><span class="p">);</span>
+          <span class="k">delete</span> <span class="nx">dialog</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">trixActive</span><span class="p">;</span>
+          <span class="nx">embedInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">disabled</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">disabled</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">trix-active</span><span class="dl">"</span><span class="p">);</span>
+          <span class="nx">dialog</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">trix-active</span><span class="dl">"</span><span class="p">);</span>
+          <span class="nx">dialog</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">trixActive</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+          <span class="nx">embedInput</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">disabled</span><span class="dl">"</span><span class="p">);</span>
+          <span class="nx">embedInput</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+        <span class="p">}</span>
+      <span class="p">})</span>
+  
+    <span class="nb">document</span>
+      <span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-trix-custom="add-embed"]</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="k">new</span> <span class="nx">CustomEvent</span><span class="p">(</span><span class="dl">"</span><span class="s2">add-embed</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> 
+          <span class="na">bubbles</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="na">detail</span><span class="p">:</span> <span class="p">{</span> <span class="na">link</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">[name="embed"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span> <span class="p">}</span>
+        <span class="p">}))</span>
+      <span class="p">})</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>สร้าง <strong>embed_controller.jsr</strong> เพื่อใช้ในการควบคุมจัดการเหตุการณ์ของ <strong>ActionText</strong> โดยเริ่มต้นจากการใส่ปุ่ม <strong>Embed</strong> ที่เราสร้างขึ้นมา</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">stimulus</span><span class="dl">"</span>
+<span class="k">import</span> <span class="nx">Trix</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">trix</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">YoutubeEmbedded</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">embed</span><span class="dl">'</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+  <span class="kd">static</span> <span class="nx">targets</span> <span class="o">=</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span> <span class="p">]</span>
+
+  <span class="nx">connect</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">editor</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">fieldTarget</span><span class="p">.</span><span class="nx">editor</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">embed</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YoutubeEmbedded</span><span class="p">()</span>
+    <span class="nx">embed</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fieldTarget</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>ใส่ <strong>Stimulus Controller</strong> เข้าไปใน <strong>rich text area</strong> ของ <strong>content</strong></li>
+</ul>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"field"</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">label</span> <span class="ss">:content</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">rich_text_area</span> <span class="ss">:content</span><span class="p">,</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">controller: </span><span class="s2">"embed"</span><span class="p">,</span> <span class="ss">target: </span><span class="s2">"embed.field"</span> <span class="p">}</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>รีเฟรชหน้าเว็บดูจะปรากฏปุ่ม <strong>Embed</strong> เพิ่มขึ้นมาดังแสดงในรูปด้านล่าง</li>
+</ul>
+
+<p><img src="/assets/images/posts/2020/ปรับแต่ง-actiontext-ให้รองรับ-youtube-embeded/embed_button.png" alt="Embed Button" width="200px" />
+<em>ปุ่ม Embed</em></p>
+
+<ul>
+  <li>สร้างโมเดล <strong>Embed</strong> เพื่อใช้สำหรับเก็บข้อมูล <strong>Embeded Link</strong> ไว้ในฐานข้อมูล</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>rails generate model Embed string:link string:link_id
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>เพิ่มเติมความสามารถให้กับโมเดล <strong>Embed</strong> โดยวัตถุที่ถูกแนบเข้ากับ <strong>ActionText</strong> จะต้องมี <strong>Signed Global ID (sgid)</strong> ซึ่งเราจะต้อง include โมดูล <strong>ActionText::Attachable</strong> เข้ากับโมเดล</li>
+</ul>
+
+<h3 id="appmodelsembedrb">app/models/embed.rb</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Embed</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="kp">include</span> <span class="no">ActionText</span><span class="o">::</span><span class="no">Attachable</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>เพิ่มโค้ดใน <strong>embed_controller.js</strong> ในการจัดการเหตุการณ์ เมื่อมีการเพิ่มลิงค์ ซึ่งจะเห็นได้จากโค้ดในไฟล์ <strong>embed.js</strong> จะมีการส่งเหตุการณ์ที่ชื่อ <code class="language-plaintext highlighter-rouge">add-embed</code> ดังนั้นเราจะต้อง <code class="language-plaintext highlighter-rouge">addEventListener</code> ให้กับเหตุการณ์ดังกล่าว และส่งข้อมูลไปบันทึกไว้ที่ server</li>
+</ul>
+
+<h3 id="appjavascriptcontrollersembed_controllerjs">app/javascript/controllers/embed_controller.js</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre></td><td class="rouge-code"><pre>  <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">add-embed</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">.</span><span class="nx">link</span><span class="p">()</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">link</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">meta[name="csrf-token"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">content</span>
+      <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/embeds</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+          <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+          <span class="dl">'</span><span class="s1">X-CSRF-Token</span><span class="dl">'</span><span class="p">:</span> <span class="nx">token</span>
+        <span class="p">},</span>
+        <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+          <span class="na">embeds</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nx">link</span>
+          <span class="p">}</span>
+        <span class="p">})</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(({</span> <span class="nx">sgid</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">contentType</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">attachment</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Trix</span><span class="p">.</span><span class="nx">Attachment</span><span class="p">({</span>
+          <span class="nx">content</span><span class="p">,</span>
+          <span class="nx">sgid</span><span class="p">,</span>
+          <span class="nx">contentType</span><span class="p">,</span>
+          <span class="na">filename</span><span class="p">:</span> <span class="nx">link</span><span class="p">,</span>
+          <span class="na">previewable</span><span class="p">:</span> <span class="kc">true</span>
+        <span class="p">})</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">editor</span><span class="p">.</span><span class="nx">insertAttachment</span><span class="p">(</span><span class="nx">attachment</span><span class="p">)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">editor</span><span class="p">.</span><span class="nx">insertLineBreak</span><span class="p">()</span>
+      <span class="p">})</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>จะสังเกตเห็นว่าโค้ดข้างต้นมีการเรียก <code class="language-plaintext highlighter-rouge">POST /embeds</code> ดังนั้นในฝั่ง server เราจะต้องสร้าง <strong>endpoint</strong> สำหรับบันทึก <strong>Embed</strong> ไว้</li>
+</ul>
+
+<h3 id="appcontrollersembeds_controllerrb">app/controllers/embeds_controller.rb</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@embed</span> <span class="o">=</span> <span class="no">Embed</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">embed_params</span><span class="p">)</span>
+    <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+      <span class="nb">format</span><span class="p">.</span><span class="nf">json</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>ส่งผลที่เป็น <strong>json</strong> กลับไปยัง <strong>client</strong> ด้วย <strong>JBuilder</strong></li>
+</ul>
+
+<h3 id="appviewsembedscreatejsonjbuilder">app/views/embeds/create.json.jbuilder</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nx">json</span><span class="p">.</span><span class="nx">extract</span><span class="o">!</span> <span class="p">@</span><span class="nd">embed</span><span class="p">,</span> <span class="p">:</span><span class="nx">link</span>
+<span class="nx">json</span><span class="p">.</span><span class="nx">sgid</span> <span class="p">@</span><span class="nd">embed</span><span class="p">.</span><span class="nx">attachable_sgid</span>
+<span class="nx">json</span><span class="p">.</span><span class="nx">content</span> <span class="nx">render</span><span class="p">(</span><span class="nx">partial</span><span class="p">:</span> <span class="dl">"</span><span class="s2">embed/thumbnail</span><span class="dl">"</span><span class="p">,</span> <span class="nx">locals</span><span class="p">:</span> <span class="p">{</span> <span class="nl">embed</span><span class="p">:</span> <span class="p">@</span><span class="nd">embed</span> <span class="p">},</span> <span class="nx">formats</span><span class="p">:</span> <span class="p">[:</span><span class="nx">html</span><span class="p">])</span>
+<span class="nx">json</span><span class="p">.</span><span class="nx">contentType</span> <span class="dl">"</span><span class="s2">embed/youtube-video</span><span class="dl">"</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="appviewsembeds_thumbnailhtmlerb">app/views/embeds/_thumbnail.html.erb</h3>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="cp">&lt;%=</span> <span class="n">image_tag</span> <span class="s2">"http://i3.ytimg.com/vi/</span><span class="si">#{</span><span class="n">embed</span><span class="p">.</span><span class="nf">link_id</span><span class="si">}</span><span class="s2">/maxresdefault.jpg"</span><span class="p">,</span> <span class="ss">size: </span><span class="mi">300</span> <span class="cp">%&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>เพิ่มการแสดงผลภาพตัวอย่าง เมื่อ <strong>ActionText</strong> ทำการโหลดเนื้อหากลับมาแสดงบน <strong>Editor</strong> โดยการเพิ่มฟังก์ชัน <code class="language-plaintext highlighter-rouge">to_trix_content_attachment_partial_path</code> เข้าไปยังโมเดล <strong>Embed</strong></li>
+</ul>
+
+<h3 id="appmodelsembedrb-1">app/models/embed.rb</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  <span class="k">def</span> <span class="nf">to_trix_content_attachment_partial_path</span>
+    <span class="s1">'embed/thumbnail'</span>
+  <span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/assets/images/posts/2020/ปรับแต่ง-actiontext-ให้รองรับ-youtube-embeded/insert_youtube_link.png" alt="Insert Youtube Link" />
+<em>ใส่ลิงค์ของ <strong>Youtube</strong> เข้าไป</em></p>
+
+<p><img src="/assets/images/posts/2020/ปรับแต่ง-actiontext-ให้รองรับ-youtube-embeded/preview_in_actiontext.png" alt="Preview" />
+<em>แสดงภาพตัวอย่างของวิดีโอที่ใส่เข้าไป</em></p>
+
+<ul>
+  <li>เปลี่ยนการแสดงผลเนื้อหาของ <strong>ActionText</strong> ให้แสดง <strong>Video Player</strong> ของ <strong>Youtube</strong></li>
+</ul>
+
+<h3 id="appviewsembeds_embedhtmlerb">app/views/embeds/_embed.html.erb</h3>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"embed-responsive"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;iframe</span> <span class="na">width=</span><span class="s">"640"</span> <span class="na">height=</span><span class="s">"360"</span> <span class="na">src=</span><span class="s">"https://www.youtube.com/embed/&lt;%= embed.link_id %&gt;"</span> <span class="na">frameborder=</span><span class="s">"0"</span> <span class="na">allow=</span><span class="s">"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"</span> <span class="na">allowfullscreen</span><span class="nt">&gt;&lt;/iframe&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>การแสดง <strong>Embedd Link</strong> ของ <strong>Youtube</strong> จะผ่านการเรียกใช้งาน <strong>iframe</strong> ซึ่งโดยปกติแล้ว <strong>ActionText</strong> จะไม่รองรับตั้งแต่ต้น ดังนั้นจะต้องกำหนดค่าเพิ่ม</li>
+</ul>
+
+<h3 id="configapplicationrb">config/application.rb</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  <span class="n">config</span><span class="p">.</span><span class="nf">to_prepare</span> <span class="k">do</span>
+    <span class="no">ActionText</span><span class="o">::</span><span class="no">ContentHelper</span><span class="p">.</span><span class="nf">allowed_tags</span> <span class="o">&lt;&lt;</span> <span class="s2">"iframe"</span>
+  <span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/assets/images/posts/2020/ปรับแต่ง-actiontext-ให้รองรับ-youtube-embeded/show_player.png" alt="Show Player" />
+<em>แสดงวิดีโอ</em></p>
+
+<ul>
+  <li>เพิ่ม <strong>JavaScript</strong> อีกนิด เพื่อให้แสดง caption</li>
+</ul>
+
+<h3 id="appjavascriptpacksapplicationjs">app/javascript/packs/application.js</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">turbolinks:load</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">"</span><span class="s2">action-text-attachment[content-type^=embed]</span><span class="dl">"</span><span class="p">)</span>
+  <span class="nx">elements</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">element</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">caption</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">caption</span><span class="dl">'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">caption</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="nx">element</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="dl">'</span><span class="s1">beforeend</span><span class="dl">'</span><span class="p">,</span> <span class="s2">`&lt;caption&gt;</span><span class="p">${</span><span class="nx">caption</span><span class="p">}</span><span class="s2">&lt;/caption&gt;`</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/assets/images/posts/2020/ปรับแต่ง-actiontext-ให้รองรับ-youtube-embeded/show_player_with_caption.png" alt="Show Player" />
+<em>แสดงวิดีโอและ caption</em></p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://edgeguides.rubyonrails.org/action_text_overview.html">ActionText</a></li>
+  <li><a href="https://gorails.com/series/actiontext">GoRails ActionText</a></li>
+  <li><a href="https://stackoverflow.com/questions/61867995/how-to-embed-an-iframe-with-actiontext-trix-on-ruby-on-rails">https://stackoverflow.com/questions/61867995/how-to-embed-an-iframe-with-actiontext-trix-on-ruby-on-rails</a></li>
+</ul>
+
+  </div>
+  <!-- <div class="section field is-grouped">
+  <div class="control">
+    <a class="twitter-share-button"
+      href="https://twitter.com/intent/tweet?text=ปรับแต่ง ActionText ให้รองรับ Youtube Embeded&url=https://karn18.github.io/dev/2020/08/06/%E0%B8%9B%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87-actiontext-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%9A-youtube-embeded.html&via=karn18&related=karn18"
+      data-size="large">
+      Tweet
+    </a>
+    <div id="fb-root"></div>
+  </div>
+  <div class="control">
+    <div class="fb-share-button" 
+      data-href="https://karn18.github.io/dev/2020/08/06/%E0%B8%9B%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87-actiontext-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%9A-youtube-embeded.html"
+      data-layout="button_count" data-size="large">
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+        Share
+      </a>
+    </div>
+  </div>
+</div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+  
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+ -->
+  <!-- 
+ -->
+  <!-- <div class="kz-pagination">
+  <div class="kz-pagination__newer">
+    
+  </div>
+  <div class="kz-pagination__older">
+    
+      <a class="kz-pagination__button" href="/tech/2020/07/10/%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1-readme-%E0%B8%AA%E0%B8%B3%E0%B8%AB%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%9A%E0%B8%99-github.html">Older &rarr;</a>
+    
+  </div>
+</div> -->
+  <div class="related-blog">
+  
+  
+  
+
+  
+</div>
+
+</div>
+
+
+
+      </div>
+    </div><script>
+  const h = document.documentElement;
+  const b = document.body;
+  const st = 'scrollTop';
+  const sh = 'scrollHeight';
+  const progress = document.querySelector('.kz-progress');
+  let scroll;
+
+  document.addEventListener('scroll', function() {
+    scroll = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+    progress.style.setProperty('--scroll', scroll + '%');
+  });
+</script>
+
+</body>
+</html>
