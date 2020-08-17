@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-08-17T10:14:53+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">เพิ่มฟิลด์ใหักับ nested attributes แบบ dynamic ด้วย stimulus</title><link href="https://karn18.github.io/dev/2020/08/17/%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%9F%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%B1%E0%B8%81%E0%B8%B1%E0%B8%9A-nested-attributes-%E0%B9%81%E0%B8%9A%E0%B8%9A-dynamic-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-stimulus.html" rel="alternate" type="text/html" title="เพิ่มฟิลด์ใหักับ nested attributes แบบ dynamic ด้วย stimulus" /><published>2020-08-17T09:46:00+07:00</published><updated>2020-08-17T09:46:00+07:00</updated><id>https://karn18.github.io/dev/2020/08/17/%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%9F%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%B1%E0%B8%81%E0%B8%B1%E0%B8%9A-nested-attributes-%E0%B9%81%E0%B8%9A%E0%B8%9A-dynamic-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-stimulus</id><content type="html" xml:base="https://karn18.github.io/dev/2020/08/17/%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%9F%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%B1%E0%B8%81%E0%B8%B1%E0%B8%9A-nested-attributes-%E0%B9%81%E0%B8%9A%E0%B8%9A-dynamic-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-stimulus.html">&lt;p&gt;💡 ได้กลับมาแก้โปรเจคเก่าที่มีการใช้งาน &lt;strong&gt;Nested Attributes&lt;/strong&gt; ก็ปรากฏว่ามันมีบัคในส่วนของการกดเพิ่มฟิลด์ให้กับ &lt;strong&gt;Nested Attributes&lt;/strong&gt; ซึ่งพอมานั่งคิดๆ วิเคราะห์ดูถ้าตอนนั้นได้รู้จักกับ &lt;strong&gt;Stimulus&lt;/strong&gt; และนำมาใช้ในโปรเจคก็คงจะช่วยให้พัฒนาได้ง่าย และรวดเร็วขึ้น&lt;!-- more --&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-08-17T22:16:46+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Favorite Of the Day #2</title><link href="https://karn18.github.io/fod/2020/08/17/favorite-of-the-day-2.html" rel="alternate" type="text/html" title="Favorite Of the Day #2" /><published>2020-08-17T22:16:00+07:00</published><updated>2020-08-17T22:16:00+07:00</updated><id>https://karn18.github.io/fod/2020/08/17/favorite-of-the-day-2</id><content type="html" xml:base="https://karn18.github.io/fod/2020/08/17/favorite-of-the-day-2.html">&lt;h2 id=&quot;faynman-technique-เทคนิคไฟยน์แมน&quot;&gt;Faynman Technique (เทคนิคไฟยน์แมน)&lt;/h2&gt;
+
+&lt;p&gt;ถ้าหากใครอยากเรียนรู้ได้ไว และเข้าใจเนื้อหาของเรื่องที่สนใจ &lt;strong&gt;Faynman Technique&lt;/strong&gt; สามารถช่วยคุณได้ ซึ่งมีด้วยกัน 4 ขั้นตอน&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;p&gt;1 เลือกหัวข้อที่จะศึกษา และทำความเข้าใจ 📔&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;เตรียมปากกาและกระดาษเอาไว้ จากนั้นเขียนหัวข้อเอาไว้ที่ด้านบน บางคนอาจจะมีหลายเรื่องที่อยากศึกษา ก็ลองยกเรื่องที่สนใจมากที่สุดขึ้นมาสักหนึ่งเรื่องก่อน แล้วค่อยๆ ศึกษาเรื่องอื่นต่อไป&lt;/li&gt;
+  &lt;li&gt;พยายามเขียนสิ่งที่รู้ลงไปในกระดาษ ไม่ว่าจะเป็นข้อมูลที่รู้อยู่แล้ว ข้อมูลใหม่ๆ รวมไปจนถึงหัวข้อที่ยากต่อความเข้าใจ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2 สอน 👨‍🏫&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;นำความรู้ และข้อมูลจากกระดาษที่เราจดไปสอนแก่ผู้อื่น โดยพยายามใช้คำพูดที่เป็นตัวเรา เข้าใจได้ง่าย และยกตัวอย่าง อย่าใช้ศัพท์เทคนิคหรือวิชาการในการอธิบายผู้อื่น&lt;/li&gt;
+  &lt;li&gt;สำหรับแนวทางในการยกตัวอย่าง ก็ควรยกตัวอย่างที่ใกล้เคียงกับชีวิตเราให้มากที่สุด เพราะจะทำให้ผู้ฟังสามารถนึกภาพ หรือเข้าใจได้ง่าย&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;3 หาความรู้ใหม่ 💡&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;แน่นอนว่าเมื่อเป็นเนื้อหาใหม่ๆ เมื่อเราได้ไปสอนแก่ผู้อื่น ก็มักจะมีเรื่องที่เรายังไม่เข้าใจอยู่เป็นธรรมดา (ช่องว่างทางความรู้) บางคนถึงขนาดกังวลจนไม่กล้าที่จะสอนผู้อื่น เพราะคิดว่าตัวเองนั้นยังมีความรู้ไม่พอ&lt;/li&gt;
+  &lt;li&gt;เมื่อได้ลองสอนผู้อื่น ที่นี้เราจะรู้ว่าช่องว่างทางความรู้ที่กล่าวไปนั้นมีตรงไหนที่ขาดหายไป ให้เรากลับไปทบทวนเนื้อหาอีกครั้ง หรือแม้กระทั่งหาข้อมูลใหม่ๆ มาสนับสนุนเพิ่มเติม และต้องไม่ลืมที่จะจดบันทึกลงในกระดาษของเราด้วย&lt;/li&gt;
+  &lt;li&gt;ทำซ้ำในขั้นตอนการสอน และหาความรู้ใหม่จนกว่าผู้ฟังจะเข้าใจ ยิ่งเราทำซ้ำหลายๆ รอบคนที่จะเข้าใจมากยิ่งขึ้นก็คือตัวเรานั้นเอง&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;4 ทบทวนและทำให้เข้าใจง่ายขึ้น 🔎&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ลองกลับมาทบทวนในสิ่งที่เราสอนดู ว่ายังมีจุดไหนที่ใช้ศัพท์ยากๆ หรือยกตัวอย่างที่ยังเข้าได้ยากอยู่ ลองพยายามหาวิธีทำให้ง่ายขึ้นไม่ว่าจะเป็นคำพูด หรือตัวอย่าง และเมื่อใดก็ตามที่คุณทำ นั้นหมายความคุณเข้าใจในสิ่งนั้นแล้วจริงๆ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you can’t explain it simply, you don’t understand it well enough. ~ Albert Einstein&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Karn</name></author><category term="fod" /><category term="faynman" /><category term="learning" /><category term="teaching" /><summary type="html">Faynman Technique (เทคนิคไฟยน์แมน) ถ้าหากใครอยากเรียนรู้ได้ไว และเข้าใจเนื้อหาของเรื่องที่สนใจ Faynman Technique สามารถช่วยคุณได้ ซึ่งมีด้วยกัน 4 ขั้นตอน 1 เลือกหัวข้อที่จะศึกษา และทำความเข้าใจ 📔 เตรียมปากกาและกระดาษเอาไว้ จากนั้นเขียนหัวข้อเอาไว้ที่ด้านบน บางคนอาจจะมีหลายเรื่องที่อยากศึกษา ก็ลองยกเรื่องที่สนใจมากที่สุดขึ้นมาสักหนึ่งเรื่องก่อน แล้วค่อยๆ ศึกษาเรื่องอื่นต่อไป พยายามเขียนสิ่งที่รู้ลงไปในกระดาษ ไม่ว่าจะเป็นข้อมูลที่รู้อยู่แล้ว ข้อมูลใหม่ๆ รวมไปจนถึงหัวข้อที่ยากต่อความเข้าใจ 2 สอน 👨‍🏫 นำความรู้ และข้อมูลจากกระดาษที่เราจดไปสอนแก่ผู้อื่น โดยพยายามใช้คำพูดที่เป็นตัวเรา เข้าใจได้ง่าย และยกตัวอย่าง อย่าใช้ศัพท์เทคนิคหรือวิชาการในการอธิบายผู้อื่น สำหรับแนวทางในการยกตัวอย่าง ก็ควรยกตัวอย่างที่ใกล้เคียงกับชีวิตเราให้มากที่สุด เพราะจะทำให้ผู้ฟังสามารถนึกภาพ หรือเข้าใจได้ง่าย 3 หาความรู้ใหม่ 💡 แน่นอนว่าเมื่อเป็นเนื้อหาใหม่ๆ เมื่อเราได้ไปสอนแก่ผู้อื่น ก็มักจะมีเรื่องที่เรายังไม่เข้าใจอยู่เป็นธรรมดา (ช่องว่างทางความรู้) บางคนถึงขนาดกังวลจนไม่กล้าที่จะสอนผู้อื่น เพราะคิดว่าตัวเองนั้นยังมีความรู้ไม่พอ เมื่อได้ลองสอนผู้อื่น ที่นี้เราจะรู้ว่าช่องว่างทางความรู้ที่กล่าวไปนั้นมีตรงไหนที่ขาดหายไป ให้เรากลับไปทบทวนเนื้อหาอีกครั้ง หรือแม้กระทั่งหาข้อมูลใหม่ๆ มาสนับสนุนเพิ่มเติม และต้องไม่ลืมที่จะจดบันทึกลงในกระดาษของเราด้วย ทำซ้ำในขั้นตอนการสอน และหาความรู้ใหม่จนกว่าผู้ฟังจะเข้าใจ ยิ่งเราทำซ้ำหลายๆ รอบคนที่จะเข้าใจมากยิ่งขึ้นก็คือตัวเรานั้นเอง 4 ทบทวนและทำให้เข้าใจง่ายขึ้น 🔎 ลองกลับมาทบทวนในสิ่งที่เราสอนดู ว่ายังมีจุดไหนที่ใช้ศัพท์ยากๆ หรือยกตัวอย่างที่ยังเข้าได้ยากอยู่ ลองพยายามหาวิธีทำให้ง่ายขึ้นไม่ว่าจะเป็นคำพูด หรือตัวอย่าง และเมื่อใดก็ตามที่คุณทำ นั้นหมายความคุณเข้าใจในสิ่งนั้นแล้วจริงๆ If you can’t explain it simply, you don’t understand it well enough. ~ Albert Einstein</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/favorite-of-the-day-2/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/favorite-of-the-day-2/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เพิ่มฟิลด์ใหักับ nested attributes แบบ dynamic ด้วย stimulus</title><link href="https://karn18.github.io/dev/2020/08/17/%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%9F%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%B1%E0%B8%81%E0%B8%B1%E0%B8%9A-nested-attributes-%E0%B9%81%E0%B8%9A%E0%B8%9A-dynamic-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-stimulus.html" rel="alternate" type="text/html" title="เพิ่มฟิลด์ใหักับ nested attributes แบบ dynamic ด้วย stimulus" /><published>2020-08-17T09:46:00+07:00</published><updated>2020-08-17T09:46:00+07:00</updated><id>https://karn18.github.io/dev/2020/08/17/%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%9F%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%B1%E0%B8%81%E0%B8%B1%E0%B8%9A-nested-attributes-%E0%B9%81%E0%B8%9A%E0%B8%9A-dynamic-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-stimulus</id><content type="html" xml:base="https://karn18.github.io/dev/2020/08/17/%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%9F%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%B1%E0%B8%81%E0%B8%B1%E0%B8%9A-nested-attributes-%E0%B9%81%E0%B8%9A%E0%B8%9A-dynamic-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-stimulus.html">&lt;p&gt;💡 ได้กลับมาแก้โปรเจคเก่าที่มีการใช้งาน &lt;strong&gt;Nested Attributes&lt;/strong&gt; ก็ปรากฏว่ามันมีบัคในส่วนของการกดเพิ่มฟิลด์ให้กับ &lt;strong&gt;Nested Attributes&lt;/strong&gt; ซึ่งพอมานั่งคิดๆ วิเคราะห์ดูถ้าตอนนั้นได้รู้จักกับ &lt;strong&gt;Stimulus&lt;/strong&gt; และนำมาใช้ในโปรเจคก็คงจะช่วยให้พัฒนาได้ง่าย และรวดเร็วขึ้น&lt;!-- more --&gt;&lt;/p&gt;
 
 &lt;p&gt;สำหรับโจทย์ในวันนนี้จะเป็นการบันทึกข้อมูลหนังสือ โดยหนังสือหนึ่งเล่มสามารถมีผู้แต่งได้หลายคน ซึ่งฟอร์มในการบันทึกจะทำการสร้างหนังสือ และรายชื่อผู้แต่งไปพร้อมๆ กัน&lt;/p&gt;
 
@@ -1256,60 +1290,4 @@
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.rabbitmq.com&quot;&gt;RabbitMQ&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/ruby-amqp/bunny&quot;&gt;Bunny&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="ruby" /><category term="rabbitmq" /><summary type="html">❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง Ruby Application โดยลองนึกภาพว่าแอพตัวที่ 1ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยังแอพตัวที่ 2 เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Favorite Of the Day #1</title><link href="https://karn18.github.io/fod/2020/06/10/favorite-of-the-day-1.html" rel="alternate" type="text/html" title="Favorite Of the Day #1" /><published>2020-06-10T14:35:00+07:00</published><updated>2020-06-10T14:35:00+07:00</updated><id>https://karn18.github.io/fod/2020/06/10/favorite-of-the-day-1</id><content type="html" xml:base="https://karn18.github.io/fod/2020/06/10/favorite-of-the-day-1.html">&lt;h1 id=&quot;พฤติกรรม-3-อย่าง&quot;&gt;พฤติกรรม 3 อย่าง&lt;/h1&gt;
-
-&lt;p&gt;พฤติกรรมที่น่าจะนำไปใช้ในการดูแลบริษัท ทีมหรือ startup&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Care like a parent
-    &lt;ul&gt;
-      &lt;li&gt;เราจะต้องใส่ใจเหมือนพ่อแม่ดูแลลูก ยกตัวอย่างเช่น โลกของลูกในแต่ละช่วงอายุเป็นอย่างไร เราจะต้องรู้ให้ได้ว่าเค้าสนใจอะไร&lt;/li&gt;
-      &lt;li&gt;ในยุคที่เทคโนโลยีสามารถเข้าถึงได้ง่าย ไม่มีทางที่เราจะหาทางรู้ไม่ได้
-&lt;!--more--&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Curious like a child
-    &lt;ul&gt;
-      &lt;li&gt;เรียนรู้อยู่ตลอดเวลา สงสัยใคร่รู้เหมือนเด็ก&lt;/li&gt;
-      &lt;li&gt;ต้องรู้จัก &lt;strong&gt;Unlearn&lt;/strong&gt; และ &lt;strong&gt;Relearn&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;หนักแน่นในหลักการ พริ้วไหวในบริบท&lt;/strong&gt;
-        &lt;ul&gt;
-          &lt;li&gt;ดูที่จังหวะ และเวลา&lt;/li&gt;
-          &lt;li&gt;situational awarness&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Courage like a startup
-    &lt;ul&gt;
-      &lt;li&gt;กล้าที่จะลงมือทำอะไรใหม่&lt;/li&gt;
-      &lt;li&gt;Fail fast, fail forward&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://open.spotify.com/episode/5iqtOiKEM5yKxeXNt5FhAi?si=bgnlniLORg2zRrZW9JRLrQ&quot;&gt;BW02-บอร์ดยุคโควิด19 เปลี่ยนไปอย่างไร ทำงานร่วมกับซีอีโอแบบไหน&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;fomo-vs-jomo&quot;&gt;FOMO vs JOMO&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;FOMO&lt;/strong&gt; ย่อมาจากคำว่า &lt;strong&gt;Fear Of Missing Out&lt;/strong&gt; หรือความรู้สึกกลัวจะตกข่าวหรือตกกระแส จะต้องรับรู้ข่าวสารใหม่ๆ ก่อนคนอื่น ทำให้คนกลุ่มนี้ฝังตัวติดอยู่ในโลก &lt;strong&gt;social&lt;/strong&gt; คอยเฝ้าดูว่ามีข่าวสารอะไรเกินขึ้นเดี๋ยวนั้นบ้าง เฝ้ารอเสียงตึ๊งๆ ของ &lt;strong&gt;notification&lt;/strong&gt; ไม่ว่าจะเป็น &lt;strong&gt;Chat&lt;/strong&gt; &lt;strong&gt;Facebook&lt;/strong&gt; หรือ &lt;strong&gt;Twitter&lt;/strong&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;JOMO&lt;/strong&gt; ย่อมาจากคำว่า &lt;strong&gt;Joy of Missing Out&lt;/strong&gt; หรือความสุขในการปล่อยวางการรับรู้ข่าวสาร แต่ไม่ใช่ว่าเราจะไม่รับรู้ข่าวสารเลย เพียงแต่มีการจัดระเบียบเวลาในการรับรู้ข่าวสารที่เหมาะสม และเลือกรับข่าวสารที่สำคัญ&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ทั้งนี้ในการทำงาน เราควรจะเป็นคนประเภท &lt;strong&gt;JOMO&lt;/strong&gt; โดยการพยายามหลีกเลี่ยงการใช้งาน &lt;strong&gt;social&lt;/strong&gt; หรือเปิดดู &lt;strong&gt;email&lt;/strong&gt; ตลอดเวลา เพื่อให้เรา &lt;strong&gt;focus&lt;/strong&gt; กับงานที่เราทำอยู่&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;references-1&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://basecamp.com/books/calm&quot;&gt;It doesn’t have to be crazy at work&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="fod" /><category term="podcast" /><category term="book" /><summary type="html">พฤติกรรม 3 อย่าง พฤติกรรมที่น่าจะนำไปใช้ในการดูแลบริษัท ทีมหรือ startup Care like a parent เราจะต้องใส่ใจเหมือนพ่อแม่ดูแลลูก ยกตัวอย่างเช่น โลกของลูกในแต่ละช่วงอายุเป็นอย่างไร เราจะต้องรู้ให้ได้ว่าเค้าสนใจอะไร ในยุคที่เทคโนโลยีสามารถเข้าถึงได้ง่าย ไม่มีทางที่เราจะหาทางรู้ไม่ได้</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="ruby" /><category term="rabbitmq" /><summary type="html">❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง Ruby Application โดยลองนึกภาพว่าแอพตัวที่ 1ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยังแอพตัวที่ 2 เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
