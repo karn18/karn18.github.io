@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-08-17T22:19:39+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Favorite Of the Day #2</title><link href="https://karn18.github.io/fod/2020/08/17/favorite-of-the-day-2.html" rel="alternate" type="text/html" title="Favorite Of the Day #2" /><published>2020-08-17T22:16:00+07:00</published><updated>2020-08-17T22:16:00+07:00</updated><id>https://karn18.github.io/fod/2020/08/17/favorite-of-the-day-2</id><content type="html" xml:base="https://karn18.github.io/fod/2020/08/17/favorite-of-the-day-2.html">&lt;h2 id=&quot;faynman-technique-เทคนิคไฟยน์แมน&quot;&gt;Faynman Technique (เทคนิคไฟยน์แมน)&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-08-27T18:00:18+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">แต่งฟ้อนต์ใน VSCODE แบบใช้งานจริง</title><link href="https://karn18.github.io/dev/2020/08/27/%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87%E0%B8%9F%E0%B9%89%E0%B8%AD%E0%B8%99%E0%B8%95%E0%B9%8C%E0%B9%83%E0%B8%99-vscode-%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%87.html" rel="alternate" type="text/html" title="แต่งฟ้อนต์ใน VSCODE แบบใช้งานจริง" /><published>2020-08-27T17:59:00+07:00</published><updated>2020-08-27T17:59:00+07:00</updated><id>https://karn18.github.io/dev/2020/08/27/%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87%E0%B8%9F%E0%B9%89%E0%B8%AD%E0%B8%99%E0%B8%95%E0%B9%8C%E0%B9%83%E0%B8%99-vscode-%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%87</id><content type="html" xml:base="https://karn18.github.io/dev/2020/08/27/%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87%E0%B8%9F%E0%B9%89%E0%B8%AD%E0%B8%99%E0%B8%95%E0%B9%8C%E0%B9%83%E0%B8%99-vscode-%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%87.html">&lt;p&gt;ถ้าจะย้อนกลับไปที่&lt;a href=&quot;https://medium.com/@karn18/%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87-vs-code-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%83%E0%B8%8A%E0%B9%89-%E0%B8%A0%E0%B8%B2%E0%B8%84%E0%B8%9F%E0%B9%89%E0%B8%AD%E0%B8%99%E0%B8%95%E0%B9%8C-598af704033c&quot;&gt;บทความ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;แต่ง VSCode ให้น่าใช้ (ภาคฟ้อนต์)&lt;/code&gt;&lt;/a&gt; การที่เราผสมผสานฟ้อนต์เข้าไปใน &lt;strong&gt;VSCODE&lt;/strong&gt; ก็ดูเป็นอะไรที่น่าตื่นเต้น และดูว้าว แต่เวลาที่ใช้งานจริงกลับยังรู้สึกน่าหงุดหงิดในบางครั้งเวลาที่ &lt;strong&gt;VSCODE&lt;/strong&gt; มีการอัพเดตใหม่ เราก็จะต้องมาคอย &lt;strong&gt;enable extension&lt;/strong&gt; ใหม่ทุกครั้งไป ดังนั้นในบทความนี้จะแสดง &lt;strong&gt;Settings&lt;/strong&gt; ของฟ้อนต์ที่ใช้งานจริงในการพัฒนาโปรแกรมบน &lt;strong&gt;VSCODE&lt;/strong&gt; มาให้ดูกัน&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;p&gt;สำหรับฟ้อนต์ที่ใช้งานหลักๆ ใน &lt;strong&gt;VSCODE&lt;/strong&gt; ก็จะมีด้วยกัน 3 ตัว โดยจะสลับไปมาแล้วแต่อารมณ์ในช่วงนั้นๆ ซึ่งประกอบไปด้วย&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/JetBrains/JetBrainsMono&quot;&gt;JetBrains Mono&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/microsoft/cascadia-code&quot;&gt;Cascadia&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/tonsky/FiraCode&quot;&gt;Fira Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;และที่ขาดไม่ได้ก็คงจะเป็นฟ้อนต์ไทย ซึ่งก็เอาไว้ใช้สำหรับเขียนคอมเมนต์ โน๊ตต่างๆ หรือเขียนบล็อกนี่เอง โดยผมจะใช้ฟ้อนต์&lt;a href=&quot;https://fonts.google.com/specimen/Bai+Jamjuree&quot;&gt;ใบจามจุรี&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;เมื่อติดตั้งฟ้อนต์ต่างๆ เรียบร้อยทีนี้ก็เข้าไป &lt;strong&gt;config&lt;/strong&gt; ใน &lt;strong&gt;VSCODE&lt;/strong&gt; ดังแสดงในภาพด้านล่าง&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/แต่งฟ้อนต์ใน-vscode-แบบใช้งานจริง/config1.png&quot; alt=&quot;config&quot; width=&quot;600px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;จะเห็นได้ว่าเราจะกำหนดฟ้อนต์หลักที่จะใช้งานไว้เป็นตัวแรก และกำหนดฟ้อนต์ไทยไว้เป็นตัวถัดมา ที่ทำแบบนี้ก็เพราะเวลาที่ &lt;strong&gt;VSCODE&lt;/strong&gt; แสดงผลเลือกใช้งานฟ้อนต์ตามลำดับที่เรากำหนด และเมื่อได้ฟ้อนต์ที่เลือกใช้ไม่รองรับอักษรขระที่แสดงผล ก็จะ &lt;strong&gt;fallback&lt;/strong&gt; ไปเลือกฟ้อนต์ตัวถัดๆ ไป จึงทำให้ &lt;strong&gt;VSCODE&lt;/strong&gt; ของเราสามารถที่จะแสดงตัวอักษรภาษาอังกฤษด้วยฟ้อนต์ &lt;strong&gt;Cascadia&lt;/strong&gt; และแสดงตัวอักษรไทยด้วยฟ้อนต์ &lt;strong&gt;Bai Jamjuree&lt;/strong&gt; ได้&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/แต่งฟ้อนต์ใน-vscode-แบบใช้งานจริง/example.png&quot; alt=&quot;example&quot; width=&quot;600px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;🎉 สำหรับผู้ที่ใช้งาน &lt;strong&gt;Mac&lt;/strong&gt; หรือ &lt;strong&gt;Linux&lt;/strong&gt; และมีการใช้งาน &lt;strong&gt;oh-my-zsh&lt;/strong&gt; และ &lt;strong&gt;&lt;a href=&quot;https://github.com/romkatv/powerlevel10k&quot;&gt;powerlevel10k&lt;/a&gt;&lt;/strong&gt; ก็จะประสบปัญหาการแสดงผล &lt;strong&gt;Powerline Font&lt;/strong&gt; ใน &lt;strong&gt;terminal&lt;/strong&gt; ของ &lt;strong&gt;VSCODE&lt;/strong&gt; ซึ่งเราจะเห็นรูปไอคอนต่างๆ เป็นสี่เหลี่ยมไปหมดเลย&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/แต่งฟ้อนต์ใน-vscode-แบบใช้งานจริง/missing_powerline.png&quot; alt=&quot;missing_powerline&quot; width=&quot;600px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;เราสามารถแก้ไขได้ง่ายๆ คือการเพิ่มฟ้อนต์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MesloLGS NF&lt;/code&gt; เข้าไปหลังฟ้อนต์หลักที่ใช้งาน&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/แต่งฟ้อนต์ใน-vscode-แบบใช้งานจริง/config2.png&quot; alt=&quot;missing_powerline&quot; width=&quot;600px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ทันทีที่ใส่ฟ้อนต์เพิ่มเข้าไปไอคอนที่เป็นเหลี่ยมอยู่ ก็แสดงเป็นไอคอนต่างๆ ที่สวยงาม&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/แต่งฟ้อนต์ใน-vscode-แบบใช้งานจริง/fix_powerline.png&quot; alt=&quot;missing_powerline&quot; width=&quot;600px&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://github.com/JetBrains/JetBrainsMono&lt;/li&gt;
+  &lt;li&gt;https://github.com/microsoft/cascadia-code&lt;/li&gt;
+  &lt;li&gt;https://github.com/tonsky/FiraCode&lt;/li&gt;
+  &lt;li&gt;https://fonts.google.com/specimen/Bai+Jamjuree&lt;/li&gt;
+  &lt;li&gt;https://ohmyz.sh&lt;/li&gt;
+  &lt;li&gt;https://github.com/romkatv/powerlevel10k&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="css" /><category term="html" /><category term="jekyll" /><category term="ruby" /><summary type="html">ถ้าจะย้อนกลับไปที่บทความ แต่ง VSCode ให้น่าใช้ (ภาคฟ้อนต์) การที่เราผสมผสานฟ้อนต์เข้าไปใน VSCODE ก็ดูเป็นอะไรที่น่าตื่นเต้น และดูว้าว แต่เวลาที่ใช้งานจริงกลับยังรู้สึกน่าหงุดหงิดในบางครั้งเวลาที่ VSCODE มีการอัพเดตใหม่ เราก็จะต้องมาคอย enable extension ใหม่ทุกครั้งไป ดังนั้นในบทความนี้จะแสดง Settings ของฟ้อนต์ที่ใช้งานจริงในการพัฒนาโปรแกรมบน VSCODE มาให้ดูกัน สำหรับฟ้อนต์ที่ใช้งานหลักๆ ใน VSCODE ก็จะมีด้วยกัน 3 ตัว โดยจะสลับไปมาแล้วแต่อารมณ์ในช่วงนั้นๆ ซึ่งประกอบไปด้วย JetBrains Mono Cascadia Fira Code และที่ขาดไม่ได้ก็คงจะเป็นฟ้อนต์ไทย ซึ่งก็เอาไว้ใช้สำหรับเขียนคอมเมนต์ โน๊ตต่างๆ หรือเขียนบล็อกนี่เอง โดยผมจะใช้ฟ้อนต์ใบจามจุรี เมื่อติดตั้งฟ้อนต์ต่างๆ เรียบร้อยทีนี้ก็เข้าไป config ใน VSCODE ดังแสดงในภาพด้านล่าง จะเห็นได้ว่าเราจะกำหนดฟ้อนต์หลักที่จะใช้งานไว้เป็นตัวแรก และกำหนดฟ้อนต์ไทยไว้เป็นตัวถัดมา ที่ทำแบบนี้ก็เพราะเวลาที่ VSCODE แสดงผลเลือกใช้งานฟ้อนต์ตามลำดับที่เรากำหนด และเมื่อได้ฟ้อนต์ที่เลือกใช้ไม่รองรับอักษรขระที่แสดงผล ก็จะ fallback ไปเลือกฟ้อนต์ตัวถัดๆ ไป จึงทำให้ VSCODE ของเราสามารถที่จะแสดงตัวอักษรภาษาอังกฤษด้วยฟ้อนต์ Cascadia และแสดงตัวอักษรไทยด้วยฟ้อนต์ Bai Jamjuree ได้ 🎉 สำหรับผู้ที่ใช้งาน Mac หรือ Linux และมีการใช้งาน oh-my-zsh และ powerlevel10k ก็จะประสบปัญหาการแสดงผล Powerline Font ใน terminal ของ VSCODE ซึ่งเราจะเห็นรูปไอคอนต่างๆ เป็นสี่เหลี่ยมไปหมดเลย เราสามารถแก้ไขได้ง่ายๆ คือการเพิ่มฟ้อนต์ MesloLGS NF เข้าไปหลังฟ้อนต์หลักที่ใช้งาน ทันทีที่ใส่ฟ้อนต์เพิ่มเข้าไปไอคอนที่เป็นเหลี่ยมอยู่ ก็แสดงเป็นไอคอนต่างๆ ที่สวยงาม References https://github.com/JetBrains/JetBrainsMono https://github.com/microsoft/cascadia-code https://github.com/tonsky/FiraCode https://fonts.google.com/specimen/Bai+Jamjuree https://ohmyz.sh https://github.com/romkatv/powerlevel10k</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87%E0%B8%9F%E0%B9%89%E0%B8%AD%E0%B8%99%E0%B8%95%E0%B9%8C%E0%B9%83%E0%B8%99-vscode-%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%87/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87%E0%B8%9F%E0%B9%89%E0%B8%AD%E0%B8%99%E0%B8%95%E0%B9%8C%E0%B9%83%E0%B8%99-vscode-%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%87/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">FOD#2: Faynman Technique</title><link href="https://karn18.github.io/fod/2020/08/17/fod-2-faynman-technique.html" rel="alternate" type="text/html" title="FOD#2: Faynman Technique" /><published>2020-08-17T22:16:00+07:00</published><updated>2020-08-17T22:16:00+07:00</updated><id>https://karn18.github.io/fod/2020/08/17/fod-2-faynman-technique</id><content type="html" xml:base="https://karn18.github.io/fod/2020/08/17/fod-2-faynman-technique.html">&lt;h2 id=&quot;faynman-technique-เทคนิคไฟยน์แมน&quot;&gt;Faynman Technique (เทคนิคไฟยน์แมน)&lt;/h2&gt;
 
 &lt;p&gt;ถ้าหากใครอยากเรียนรู้ได้ไว และเข้าใจเนื้อหาของเรื่องที่สนใจ &lt;strong&gt;Faynman Technique&lt;/strong&gt; สามารถช่วยคุณได้ ซึ่งมีด้วยกัน 4 ขั้นตอน&lt;!-- more --&gt;&lt;/p&gt;
 
@@ -168,7 +207,7 @@
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html&quot;&gt;https://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.driftingruby.com/episodes/nested-forms-from-scratch-with-stimulusjs&quot;&gt;https://www.driftingruby.com/episodes/nested-forms-from-scratch-with-stimulusjs&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="stimulus" /><summary type="html">💡 ได้กลับมาแก้โปรเจคเก่าที่มีการใช้งาน Nested Attributes ก็ปรากฏว่ามันมีบัคในส่วนของการกดเพิ่มฟิลด์ให้กับ Nested Attributes ซึ่งพอมานั่งคิดๆ วิเคราะห์ดูถ้าตอนนั้นได้รู้จักกับ Stimulus และนำมาใช้ในโปรเจคก็คงจะช่วยให้พัฒนาได้ง่าย และรวดเร็วขึ้น สำหรับโจทย์ในวันนนี้จะเป็นการบันทึกข้อมูลหนังสือ โดยหนังสือหนึ่งเล่มสามารถมีผู้แต่งได้หลายคน ซึ่งฟอร์มในการบันทึกจะทำการสร้างหนังสือ และรายชื่อผู้แต่งไปพร้อมๆ กัน เริ่มต้นจากการสร้างโมเดล Book และ Author กำหนดคุณสมบัติของ Book ให้สามารถรับ Nested Attributes ของ Author 1 2 3 4 5 class Book &amp;lt; ActiveRecord::Base has_many :authors accepts_nested_attributes_for :authors, reject_if: :all_blank, allow_destroy: true end โมเดล Author จะถูกสร้างก็ต่อเมื่อค่าที่ส่งเข้ามาต้องไม่เป็นค่าว่าง และอนุญาตให้ลบข้อมูลได้ผ่าน attribute ที่ชื่อ _destroy สร้าง template ไว้สำหรับเพิ่ม Author ในฟอร์มของ Book เพื่อให้ Stimulus Controller เรียกใช้ app/views/books/_form.html.erb 1 2 3 4 5 6 7 8 9 10 11 &amp;lt;h2&amp;gt;Authors:&amp;lt;/h2&amp;gt; &amp;lt;div class=&quot;authors&quot; data-controller=&quot;nested&quot;&amp;gt; &amp;lt;template data-target=&quot;nested.template&quot;&amp;gt; &amp;lt;%= render 'authors/form', model: Author.new, form: form, child_index: 'NEXT_ID' %&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;div data-target=&quot;nested.parent&quot;&amp;gt; &amp;lt;%= render 'authors/form', model: nil, form: form, child_index: nil %&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;%= link_to &quot;Add Author&quot;, &quot;#&quot;, data: { action: &quot;nested#add_associate&quot; }, class: &quot;btn&quot; %&amp;gt; &amp;lt;/div&amp;gt; จะสังเกตเห็นได้ว่ามีการใช้ ในการเก็บแม่แบบสำหรับการสร้างฟอร์มแบบ dynamic สร้าง Stimulus Controller ในการเพิ่มฟิลด์ของ Author แบบ dynamic app/javascripts/controllers/nested_controller.js 1 2 3 4 5 6 7 8 9 10 11 12 import { Controller } from &quot;stimulus&quot; export default class extends Controller { static targets = [ &quot;template&quot;, &quot;parent&quot; ] add_associate(event) { event.preventDefault() var content = this.templateTarget.innerHTML.replace(/NEXT_ID/g, new Date().getTime()) this.parentTarget.insertAdjacentHTML('beforeend', content) } } ทันทีที่เกิดเหตุการณ์ add_associate โปรแกรมจะทำการดึงฟอร์มแม่แบบที่จะสร้างขึ้นมาและแทนที่ข้อความ NEXT_ID ด้วย timestamp และนำไปใส่เพิ่มในจุดที่ระบุไว้ ปรับแก้ไขฟอร์มสำหรับการสร้าง Author app/views/authors/_form.html.erb 1 2 3 4 5 6 7 8 9 10 &amp;lt;%= form.fields_for :authors, model, child_index: child_index, class: &quot;-form&quot; do |author_fields|%&amp;gt; &amp;lt;div class=&quot;form-group&quot;&amp;gt; &amp;lt;%= author_fields.label :full_name, class: &quot;form-label col-2&quot; %&amp;gt; &amp;lt;%= author_fields.text_field :full_name, class: &quot;form-input col-7&quot; %&amp;gt; &amp;lt;label class=&quot;form-checkbox col-2 mx-2&quot;&amp;gt; &amp;lt;%= author_fields.check_box :_destroy, class: &quot;form-checkbox&quot; %&amp;gt; &amp;lt;i class=&quot;form-icon&quot;&amp;gt;&amp;lt;/i&amp;gt; Delete &amp;lt;/label&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;% end %&amp;gt; ทดสอบผลลัพท์กันดู References https://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html https://www.driftingruby.com/episodes/nested-forms-from-scratch-with-stimulusjs</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%9F%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%B1%E0%B8%81%E0%B8%B1%E0%B8%9A-nested-attributes-%E0%B9%81%E0%B8%9A%E0%B8%9A-dynamic-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-stimulus/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%9F%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%B1%E0%B8%81%E0%B8%B1%E0%B8%9A-nested-attributes-%E0%B9%81%E0%B8%9A%E0%B8%9A-dynamic-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-stimulus/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Guide to Rails and Preact (Part 2)</title><link href="https://karn18.github.io/dev/2020/08/10/guide-to-rails-and-preact-part-2.html" rel="alternate" type="text/html" title="Guide to Rails and Preact (Part 2)" /><published>2020-08-10T22:02:00+07:00</published><updated>2020-08-10T22:02:00+07:00</updated><id>https://karn18.github.io/dev/2020/08/10/guide-to-rails-and-preact-part-2</id><content type="html" xml:base="https://karn18.github.io/dev/2020/08/10/guide-to-rails-and-preact-part-2.html">&lt;p&gt;มาต่อจากตอนที่แล้ว &lt;a href=&quot;/dev/2020/06/19/guide-to-rails-and-preact-part-1.html&quot;&gt;part 1&lt;/a&gt; เราได้สร้างโปรเจค &lt;strong&gt;book_store&lt;/strong&gt; เอาไว้ แต่ยังไม่ได้มีการสร้างฟอร์มสำหรับเก็บข้อมูลหนังสือกันเลย สำหรับในบทความนี้จะลองเป็นการพัฒนาโปรแกรมในรูปแบบลูกผสม&lt;!-- more --&gt; โดยจะให้ &lt;strong&gt;Rails&lt;/strong&gt; ทำหน้าที่ในการจัด &lt;strong&gt;routing&lt;/strong&gt; และ &lt;strong&gt;render&lt;/strong&gt; หน้าเว็บหลัก แต่จะมีบางส่วนที่จะพัฒนาเป็น &lt;strong&gt;Component&lt;/strong&gt; ขึ้นและใช้เป็น &lt;strong&gt;CSR&lt;/strong&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="stimulus" /><summary type="html">💡 ได้กลับมาแก้โปรเจคเก่าที่มีการใช้งาน Nested Attributes ก็ปรากฏว่ามันมีบัคในส่วนของการกดเพิ่มฟิลด์ให้กับ Nested Attributes ซึ่งพอมานั่งคิดๆ วิเคราะห์ดูถ้าตอนนั้นได้รู้จักกับ Stimulus และนำมาใช้ในโปรเจคก็คงจะช่วยให้พัฒนาได้ง่าย และรวดเร็วขึ้น สำหรับโจทย์ในวันนนี้จะเป็นการบันทึกข้อมูลหนังสือ โดยหนังสือหนึ่งเล่มสามารถมีผู้แต่งได้หลายคน ซึ่งฟอร์มในการบันทึกจะทำการสร้างหนังสือ และรายชื่อผู้แต่งไปพร้อมๆ กัน เริ่มต้นจากการสร้างโมเดล Book และ Author กำหนดคุณสมบัติของ Book ให้สามารถรับ Nested Attributes ของ Author 1 2 3 4 5 class Book &amp;lt; ActiveRecord::Base has_many :authors accepts_nested_attributes_for :authors, reject_if: :all_blank, allow_destroy: true end โมเดล Author จะถูกสร้างก็ต่อเมื่อค่าที่ส่งเข้ามาต้องไม่เป็นค่าว่าง และอนุญาตให้ลบข้อมูลได้ผ่าน attribute ที่ชื่อ _destroy สร้าง template ไว้สำหรับเพิ่ม Author ในฟอร์มของ Book เพื่อให้ Stimulus Controller เรียกใช้ app/views/books/_form.html.erb 1 2 3 4 5 6 7 8 9 10 11 &amp;lt;h2&amp;gt;Authors:&amp;lt;/h2&amp;gt; &amp;lt;div class=&quot;authors&quot; data-controller=&quot;nested&quot;&amp;gt; &amp;lt;template data-target=&quot;nested.template&quot;&amp;gt; &amp;lt;%= render 'authors/form', model: Author.new, form: form, child_index: 'NEXT_ID' %&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;div data-target=&quot;nested.parent&quot;&amp;gt; &amp;lt;%= render 'authors/form', model: nil, form: form, child_index: nil %&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;%= link_to &quot;Add Author&quot;, &quot;#&quot;, data: { action: &quot;nested#add_associate&quot; }, class: &quot;btn&quot; %&amp;gt; &amp;lt;/div&amp;gt; จะสังเกตเห็นได้ว่ามีการใช้ ในการเก็บแม่แบบสำหรับการสร้างฟอร์มแบบ dynamic สร้าง Stimulus Controller ในการเพิ่มฟิลด์ของ Author แบบ dynamic app/javascripts/controllers/nested_controller.js 1 2 3 4 5 6 7 8 9 10 11 12 import { Controller } from &quot;stimulus&quot; export default class extends Controller { static targets = [ &quot;template&quot;, &quot;parent&quot; ] add_associate(event) { event.preventDefault() var content = this.templateTarget.innerHTML.replace(/NEXT_ID/g, new Date().getTime()) this.parentTarget.insertAdjacentHTML('beforeend', content) } } ทันทีที่เกิดเหตุการณ์ add_associate โปรแกรมจะทำการดึงฟอร์มแม่แบบที่จะสร้างขึ้นมาและแทนที่ข้อความ NEXT_ID ด้วย timestamp และนำไปใส่เพิ่มในจุดที่ระบุไว้ ปรับแก้ไขฟอร์มสำหรับการสร้าง Author app/views/authors/_form.html.erb 1 2 3 4 5 6 7 8 9 10 &amp;lt;%= form.fields_for :authors, model, child_index: child_index, class: &quot;-form&quot; do |author_fields|%&amp;gt; &amp;lt;div class=&quot;form-group&quot;&amp;gt; &amp;lt;%= author_fields.label :full_name, class: &quot;form-label col-2&quot; %&amp;gt; &amp;lt;%= author_fields.text_field :full_name, class: &quot;form-input col-7&quot; %&amp;gt; &amp;lt;label class=&quot;form-checkbox col-2 mx-2&quot;&amp;gt; &amp;lt;%= author_fields.check_box :_destroy, class: &quot;form-checkbox&quot; %&amp;gt; &amp;lt;i class=&quot;form-icon&quot;&amp;gt;&amp;lt;/i&amp;gt; Delete &amp;lt;/label&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;% end %&amp;gt; ทดสอบผลลัพท์กันดู References https://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html https://www.driftingruby.com/episodes/nested-forms-from-scratch-with-stimulusjs</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%9F%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%B1%E0%B8%81%E0%B8%B1%E0%B8%9A-nested-attributes-%E0%B9%81%E0%B8%9A%E0%B8%9A-dynamic-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-stimulus/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%9F%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%B1%E0%B8%81%E0%B8%B1%E0%B8%9A-nested-attributes-%E0%B9%81%E0%B8%9A%E0%B8%9A-dynamic-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-stimulus/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Guide to Rails and Preact (Part 2)</title><link href="https://karn18.github.io/dev/2020/08/10/guide-to-rails-and-preact-part-2.html" rel="alternate" type="text/html" title="Guide to Rails and Preact (Part 2)" /><published>2020-08-10T22:02:00+07:00</published><updated>2020-08-10T22:02:00+07:00</updated><id>https://karn18.github.io/dev/2020/08/10/guide-to-rails-and-preact-part-2</id><content type="html" xml:base="https://karn18.github.io/dev/2020/08/10/guide-to-rails-and-preact-part-2.html">&lt;p&gt;มาต่อจากตอนที่แล้ว &lt;a href=&quot;/dev/2020/06/19/guide-to-rails-and-preact-part-1.html&quot;&gt;part 1&lt;/a&gt; เราได้สร้างโปรเจค &lt;strong&gt;book_store&lt;/strong&gt; เอาไว้ แต่ยังไม่ได้มีการสร้างฟอร์มสำหรับเก็บข้อมูลหนังสือกันเลย สำหรับในบทความนี้จะลองเป็นการพัฒนาโปรแกรมในรูปแบบลูกผสม&lt;!-- more --&gt; โดยจะให้ &lt;strong&gt;Rails&lt;/strong&gt; ทำหน้าที่ในการจัด &lt;strong&gt;routing&lt;/strong&gt; และ &lt;strong&gt;render&lt;/strong&gt; หน้าเว็บหลัก แต่จะมีบางส่วนที่จะพัฒนาเป็น &lt;strong&gt;Component&lt;/strong&gt; ขึ้นและใช้เป็น &lt;strong&gt;CSR&lt;/strong&gt;
 สร้าง &lt;strong&gt;Component&lt;/strong&gt; สำหรับการบันทึกข้อมูลหนังสือ&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1134,159 +1173,4 @@
 &lt;h2 id=&quot;referecnes&quot;&gt;Referecnes&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://preactjs.com&quot;&gt;PREACT&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="preact" /><summary type="html">💡บทความนี้จะแนะนำไลบราลีที่ชื่อ Preact ซึ่งถือเป็นไลบราลี JavaScript ขนาดเล็กและทันสมัยให้กับ Frontend Developer ได้รู้จักกัน โดยในบทความจะแนะนำวิธีการติดตั้ง Preact บน Rails</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/guide-to-rails-and-preact-part-1/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/guide-to-rails-and-preact-part-1/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ</title><link href="https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html" rel="alternate" type="text/html" title="ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน RabbitMQ" /><published>2020-06-14T19:35:00+07:00</published><updated>2020-06-14T19:35:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/14/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq.html">&lt;p&gt;❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง &lt;strong&gt;Ruby Application&lt;/strong&gt; โดยลองนึกภาพว่า&lt;strong&gt;แอพตัวที่ 1&lt;/strong&gt;ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยัง&lt;strong&gt;แอพตัวที่ 2&lt;/strong&gt; เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log)&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;💡 สำหรับวิธีแก้ไขโจทย์นี้เราจะใช้ &lt;strong&gt;RabbitMQ&lt;/strong&gt; เป็นตัวกลางในการสื่อสารระหว่างแอพพลิเคชัน ซึ่งมีภาพการเชื่อมต่อดังแสดงในภาพด้านล่าง&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน-rabbitmq/architecture.png&quot; alt=&quot;architecture design&quot; /&gt;
-&lt;em&gt;แผนภาพการเชื่อมต่อระหว่าง Application กับ RabbitMQ&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;🌱 รูปแบบการพัฒนาเป็นดังนี้&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;แอพตัวที่ 1 (&lt;strong&gt;Rails Application&lt;/strong&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;โมเดล &lt;strong&gt;Post&lt;/strong&gt;  สำหรับเก็บข้อมูล โดยมีการดักจับเหตุการณ์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;after_create&lt;/code&gt; เป็น trigger ในการส่งข้อมูล&lt;/li&gt;
-      &lt;li&gt;สร้างคลาส &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Publisher&lt;/code&gt; เพื่อทำหน้าที่ในการส่งข้อมูลไปยัง &lt;strong&gt;RabbitMQ&lt;/strong&gt; โดยใช้ไลบราลี่ &lt;strong&gt;bunny&lt;/strong&gt; และกำหนด &lt;strong&gt;channel&lt;/strong&gt; เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kz.message&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;เรียกใช้ Active Job ในการส่งข้อมูลผ่าน &lt;strong&gt;background process&lt;/strong&gt; เพื่อให้โปรแกรมทำงานได้ราบรื่นยิ่งขึ้น&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;แอพตัวที่ 2 (&lt;strong&gt;Ruby Application&lt;/strong&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;สร้างเป็น Commandline Application ที่รับคำสั่ง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit&lt;/code&gt; เพื่อปิดโปรแกรมเพียงอย่างเดียว&lt;/li&gt;
-      &lt;li&gt;สร้างคลาส &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Subscriber&lt;/code&gt; เพื่อรอรับข้อมูลจาก &lt;strong&gt;RabbitMQ&lt;/strong&gt; โดยใช้ไลบราลี &lt;strong&gt;bunny&lt;/strong&gt; เช่นเดียวกับ&lt;strong&gt;แอพตัวที่ 1&lt;/strong&gt; และกำหนด &lt;strong&gt;channel&lt;/strong&gt; เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kz.message&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;เมื่อรับข้อมูลเข้าจาก &lt;strong&gt;RabbitMQ&lt;/strong&gt; ก็จะทำการบันเหตุการณ์ลงในไฟล์ชื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my-post.log&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน-rabbitmq/rails-application.png&quot; alt=&quot;Rails Application&quot; width=&quot;420px&quot; /&gt;
-&lt;em&gt;บันทึกโพสผ่าน Rails Application และส่งข้อมูลไปยัง RabbitMQ&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ส่งข้อมูลระหว่างแอพพลิเคชั่นผ่าน-rabbitmq/my-post.log.png&quot; alt=&quot;Log&quot; /&gt;
-&lt;em&gt;Ruby Application รับข้อมูลจาก RabbitMQ และบันทึกเหตุการณ์ลงไฟล์&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;โค้ดตัวอย่างของ-publisher&quot;&gt;โค้ดตัวอย่างของ Publisher&lt;/h2&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bunny'&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Publisher&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;publish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chnnl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Publish message to &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chnnl&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; with &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_json&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;kw.&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chnnl&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;publish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;channel&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@channel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create_channel&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;connection&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@connection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bunny&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;โค้ดตัวอย่างของ-subscriber&quot;&gt;โค้ดตัวอย่างของ Subscriber&lt;/h2&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bunny'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'json'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'logger'&lt;/span&gt;
-
-&lt;span class=&quot;vi&quot;&gt;@logger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'my-post.log'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Subscriber&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;manual_ack: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delivery_info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;properties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Received &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;, message properties are &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;properties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;inspect&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;block&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;channel&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@channel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create_channel&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;connection&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@connection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bunny&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Start subscribe with channel name&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;Subscriber&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;kz.message&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ขณะนี้มีการสร้างโพสชื่อ &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'title'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; โดย &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'author'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; เมื่อเวลา &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'created_at'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Type exit to quit&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kp&quot;&gt;loop&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;gets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chomp&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'exit'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;referecnes&quot;&gt;Referecnes&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.rabbitmq.com&quot;&gt;RabbitMQ&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/ruby-amqp/bunny&quot;&gt;Bunny&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="ruby" /><category term="rabbitmq" /><summary type="html">❓ โจทย์วันนี้จะเป็นการศึกษาหาวิธีส่งข้อมูลระหว่าง Ruby Application โดยลองนึกภาพว่าแอพตัวที่ 1ถูกสร้างมาเพื่อบันทึกข้อมูลต่างๆ เก็บไว้ และต้องการส่งข้อมูลที่บันทึกไว้ไปยังแอพตัวที่ 2 เพื่อจุดประสงค์ต่างๆ เช่น การประมวลผล (Process) หรือบันทึกเหตุการณ์ (Log)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%9E%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-rabbitmq/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="rails" /><category term="preact" /><summary type="html">💡บทความนี้จะแนะนำไลบราลีที่ชื่อ Preact ซึ่งถือเป็นไลบราลี JavaScript ขนาดเล็กและทันสมัยให้กับ Frontend Developer ได้รู้จักกัน โดยในบทความจะแนะนำวิธีการติดตั้ง Preact บน Rails</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/guide-to-rails-and-preact-part-1/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/guide-to-rails-and-preact-part-1/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
