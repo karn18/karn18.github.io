@@ -1,4 +1,152 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-09-07T11:15:54+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">My Issues with WKHTMLTOPDF</title><link href="https://karn18.github.io/dev/2020/09/03/my-issues-with-wkhtmltopdf.html" rel="alternate" type="text/html" title="My Issues with WKHTMLTOPDF" /><published>2020-09-03T16:38:00+07:00</published><updated>2020-09-03T16:38:00+07:00</updated><id>https://karn18.github.io/dev/2020/09/03/my-issues-with-wkhtmltopdf</id><content type="html" xml:base="https://karn18.github.io/dev/2020/09/03/my-issues-with-wkhtmltopdf.html">&lt;p&gt;ไม่ว่าจะทำโปรเจ็คไหนก็ต้องพบกับปัญหาอยู่เสมอ ขึ้นอยู่ว่าจะเล็กหรือใหญ่ขนาดไหนแตกต่างกันไป สำหรับปัญหาที่จะถูกยกมาเล่าสู่กันฟังในวันบทความนี้ จะเป็นเรื่องเกี่ยวกับการสร้างเอกสารรายงานออกมาในรูป &lt;strong&gt;PDF&lt;/strong&gt; ซึ่งผมก็จะใช้เครื่องมือที่ชื่อว่า &lt;strong&gt;WKHTMLTOPDF&lt;/strong&gt;&lt;!-- more --&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-09-28T18:04:50+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ติดตั้ง ruby ด้วย rbenv</title><link href="https://karn18.github.io/dev/2020/09/28/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv.html" rel="alternate" type="text/html" title="ติดตั้ง ruby ด้วย rbenv" /><published>2020-09-28T18:04:00+07:00</published><updated>2020-09-28T18:04:00+07:00</updated><id>https://karn18.github.io/dev/2020/09/28/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv</id><content type="html" xml:base="https://karn18.github.io/dev/2020/09/28/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv.html">&lt;p&gt;สำหรับผู้เริ่มต้นจะใช้ &lt;strong&gt;Ruby&lt;/strong&gt; การเตรียมสภาพแวดล้อมต่างๆ ให้พร้อมบนเครื่องคอมพิวเตอร์นั้นจำเป็นอย่างมาก ดังนั้นในบทความนี้จะเป็นจุดเริ่มต้นก่อนที่จะลงมือศึกษาการเขียนโค้ดอย่างจริงจังด้วยภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ซึ่งก็คือการติดตั้ง &lt;strong&gt;Ruby&lt;/strong&gt; นั้นเองครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ruby&lt;/strong&gt; รองรับทั้งผู้พัฒนาทั้ง &lt;strong&gt;Windows&lt;/strong&gt;, &lt;strong&gt;Linux&lt;/strong&gt; และ &lt;strong&gt;Mac&lt;/strong&gt; โดยส่วนตัวผมเองนั้น ปกติก็จะใช้งาน &lt;strong&gt;Linux&lt;/strong&gt; และ &lt;strong&gt;Mac&lt;/strong&gt; เป็นหลักในการพัฒนาโปรแกรม ซึ่งเราจะใช้ &lt;strong&gt;rbenv&lt;/strong&gt; เป็นเครื่องมือที่ช่วยในการติดตั้ง และจัดการเวอร์ชันของ &lt;strong&gt;Ruby&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;ติดตั้ง-rbenv&quot;&gt;ติดตั้ง rbenv&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-homebrew&quot;&gt;1. Homebrew&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;เปิด terminal และรันคำสั่ง&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;rbenv
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;โหลด &lt;strong&gt;rbenv&lt;/strong&gt; บน &lt;strong&gt;shell&lt;/strong&gt; ที่ใช้งาน&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv init
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;กำหนดค่าให้ &lt;strong&gt;rbenv&lt;/strong&gt; โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน &lt;strong&gt;terminal&lt;/strong&gt; (&lt;strong&gt;~/.zshrc&lt;/strong&gt; หรือ &lt;strong&gt;~/.bashrc&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;rbenv init -&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ติดตั้ง-ruby-ด้วย-rbenv/rbenv_version.png&quot; alt=&quot;rbenv_version&quot; width=&quot;350px&quot; /&gt;
+&lt;em&gt;เช็คเวอร์ชันของ rbenv&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-manual-ผ่าน-git-checkout&quot;&gt;2. Manual ผ่าน Git Checkout&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;โคลน &lt;strong&gt;rbenv&lt;/strong&gt; ไปวางไว้ที่ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.rbenv&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;เพิ่ม &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.rbenv/bin&lt;/code&gt; เข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$PATH&lt;/code&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;สำหรับผู้ใช้ ZSH&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.zshrc  &lt;span class=&quot;c&quot;&gt;# ZSH&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;สำหรับผู้ใช้ BASH&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bashrc &lt;span class=&quot;c&quot;&gt;# BASH&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;โหลด &lt;strong&gt;rbenv&lt;/strong&gt; บน &lt;strong&gt;shell&lt;/strong&gt; ที่ใช้งาน&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv init
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;กำหนดค่าให้ &lt;strong&gt;rbenv&lt;/strong&gt; โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน &lt;strong&gt;terminal&lt;/strong&gt; (&lt;strong&gt;~/.zshrc&lt;/strong&gt; หรือ &lt;strong&gt;~/.bashrc&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;rbenv init -&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ติดตั้ง-ruby-ด้วย-rbenv/rbenv_version.png&quot; alt=&quot;rbenv_version&quot; width=&quot;350px&quot; /&gt;
+&lt;em&gt;เช็คเวอร์ชันของ rbenv&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;ติดตั้ง-ruby&quot;&gt;ติดตั้ง Ruby&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;ตรวจสอบรายการเวอร์ชันของ &lt;strong&gt;Ruby&lt;/strong&gt; ที่สามารถติดตั้งได้&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--list&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ติดตั้ง-ruby-ด้วย-rbenv/rbenv_list.png&quot; alt=&quot;rbenv_version&quot; width=&quot;600px&quot; /&gt;
+&lt;em&gt;รายการเวอร์ชันของ ruby ที่สามารถติดตั้งได้&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ติดตั้งเวอร์ชันที่จะใช้งาน (ผมจะติดตั้ง version 2.7.1)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;2.7.1
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ตรวจสอบเวอร์ชันที่ติดตั้งผ่าน &lt;strong&gt;rbenv&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv versions
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ติดตั้ง-ruby-ด้วย-rbenv/rbenv_versions.png&quot; alt=&quot;rbenv_version&quot; width=&quot;420px&quot; /&gt;
+&lt;em&gt;รายการเวอร์ชันของ ruby ที่ติดตั้งผ่าน rbenv&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;กำหนดเวอร์ชันของ &lt;strong&gt;ruby&lt;/strong&gt; แบบ &lt;strong&gt;global&lt;/strong&gt; เพื่อใช้งาน&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv global 2.7.1
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;สำหรับ &lt;strong&gt;rbenv&lt;/strong&gt; มีคำสั่งอื่นๆ ที่ให้เราใช้งานอีกมาก ซึ่งสามารถศึกษาได้จาก &lt;a href=&quot;https://github.com/rbenv/rbenv#command-reference&quot;&gt;#command-reference&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;สำหรับนักพัฒนาบน Windows อย่าเพิ่งน้อยใจ&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ถึงแม้ &lt;strong&gt;rbenv&lt;/strong&gt; จะไม่มีให้ใช้บน &lt;strong&gt;Windows&lt;/strong&gt; แต่เราก็สามารถที่จะติดตั้ง &lt;strong&gt;ruby&lt;/strong&gt; ได้ด้วย &lt;strong&gt;RubyInstaller for Windows&lt;/strong&gt; ซึ่งวิธีการติดตั้งนั้นก็ง่ายมากๆ เพียงดาว์นโหลดตัวติดตั้งตามเวอ์ชันที่จะใช้งาน จากนั้นเพียงแค่ดับเบิลคลิกและกด &lt;strong&gt;Next&lt;/strong&gt; ไปเรื่อยๆ จนจบเพียงเท่านั้นก็สามารถใช้งาน &lt;strong&gt;Ruby&lt;/strong&gt; บนเครื่องคอมพิวเตอร์ของเราได้&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/rbenv/rbenv&quot;&gt;rbenv&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://rubyinstaller.org/&quot;&gt;rubyinstaller&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="rbenv" /><category term="ruby" /><category term="101" /><summary type="html">สำหรับผู้เริ่มต้นจะใช้ Ruby การเตรียมสภาพแวดล้อมต่างๆ ให้พร้อมบนเครื่องคอมพิวเตอร์นั้นจำเป็นอย่างมาก ดังนั้นในบทความนี้จะเป็นจุดเริ่มต้นก่อนที่จะลงมือศึกษาการเขียนโค้ดอย่างจริงจังด้วยภาษา Ruby ซึ่งก็คือการติดตั้ง Ruby นั้นเองครับ Ruby รองรับทั้งผู้พัฒนาทั้ง Windows, Linux และ Mac โดยส่วนตัวผมเองนั้น ปกติก็จะใช้งาน Linux และ Mac เป็นหลักในการพัฒนาโปรแกรม ซึ่งเราจะใช้ rbenv เป็นเครื่องมือที่ช่วยในการติดตั้ง และจัดการเวอร์ชันของ Ruby ติดตั้ง rbenv 1. Homebrew เปิด terminal และรันคำสั่ง 1 $ brew install rbenv โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv 2. Manual ผ่าน Git Checkout โคลน rbenv ไปวางไว้ที่ ~/.rbenv 1 $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv เพิ่ม ~/.rbenv/bin เข้าไปใน $PATH สำหรับผู้ใช้ ZSH 1 $ echo 'export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;' &amp;gt;&amp;gt; ~/.zshrc # ZSH สำหรับผู้ใช้ BASH 1 $ echo 'export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;' &amp;gt;&amp;gt; ~/.bashrc # BASH โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv ติดตั้ง Ruby ตรวจสอบรายการเวอร์ชันของ Ruby ที่สามารถติดตั้งได้ 1 $ rbenv install --list รายการเวอร์ชันของ ruby ที่สามารถติดตั้งได้ ติดตั้งเวอร์ชันที่จะใช้งาน (ผมจะติดตั้ง version 2.7.1) 1 $ rbenv install 2.7.1 ตรวจสอบเวอร์ชันที่ติดตั้งผ่าน rbenv 1 $ rbenv versions รายการเวอร์ชันของ ruby ที่ติดตั้งผ่าน rbenv กำหนดเวอร์ชันของ ruby แบบ global เพื่อใช้งาน 1 $ rbenv global 2.7.1 สำหรับ rbenv มีคำสั่งอื่นๆ ที่ให้เราใช้งานอีกมาก ซึ่งสามารถศึกษาได้จาก #command-reference สำหรับนักพัฒนาบน Windows อย่าเพิ่งน้อยใจ ถึงแม้ rbenv จะไม่มีให้ใช้บน Windows แต่เราก็สามารถที่จะติดตั้ง ruby ได้ด้วย RubyInstaller for Windows ซึ่งวิธีการติดตั้งนั้นก็ง่ายมากๆ เพียงดาว์นโหลดตัวติดตั้งตามเวอ์ชันที่จะใช้งาน จากนั้นเพียงแค่ดับเบิลคลิกและกด Next ไปเรื่อยๆ จนจบเพียงเท่านั้นก็สามารถใช้งาน Ruby บนเครื่องคอมพิวเตอร์ของเราได้ References rbenv rubyinstaller</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">My Issues with WKHTMLTOPDF</title><link href="https://karn18.github.io/dev/2020/09/03/my-issues-with-wkhtmltopdf.html" rel="alternate" type="text/html" title="My Issues with WKHTMLTOPDF" /><published>2020-09-03T16:38:00+07:00</published><updated>2020-09-03T16:38:00+07:00</updated><id>https://karn18.github.io/dev/2020/09/03/my-issues-with-wkhtmltopdf</id><content type="html" xml:base="https://karn18.github.io/dev/2020/09/03/my-issues-with-wkhtmltopdf.html">&lt;p&gt;ไม่ว่าจะทำโปรเจ็คไหนก็ต้องพบกับปัญหาอยู่เสมอ ขึ้นอยู่ว่าจะเล็กหรือใหญ่ขนาดไหนแตกต่างกันไป สำหรับปัญหาที่จะถูกยกมาเล่าสู่กันฟังในวันบทความนี้ จะเป็นเรื่องเกี่ยวกับการสร้างเอกสารรายงานออกมาในรูป &lt;strong&gt;PDF&lt;/strong&gt; ซึ่งผมก็จะใช้เครื่องมือที่ชื่อว่า &lt;strong&gt;WKHTMLTOPDF&lt;/strong&gt;&lt;!-- more --&gt;&lt;/p&gt;
 
 &lt;p&gt;สำหรับเครื่องมือตัวนี้ เมื่ออ่านจากชื่อก็พอจะเดาออกว่าเป็นเป็นการแปลงไฟล์ &lt;strong&gt;HTML&lt;/strong&gt; ให้ออกมาอยู่ในรูป &lt;strong&gt;PDF&lt;/strong&gt; โดยปกติผมจะใช้เครื่องมือตัวนี้กับ &lt;strong&gt;&lt;a href=&quot;https://github.com/mileszs/wicked_pdf&quot;&gt;wicked_pdf&lt;/a&gt;&lt;/strong&gt; แต่ก็ยังสามารถใช้ร่วมกับ &lt;strong&gt;&lt;a href=&quot;https://github.com/pdfkitpdfkit&quot;&gt;PDFKit&lt;/a&gt;&lt;/strong&gt; ได้ด้วยเช่นกัน&lt;/p&gt;
 
@@ -1029,46 +1177,4 @@
 &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://hey.com&quot;&gt;HEY&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="hey" /><category term="review" /><summary type="html">ในช่วงสองสัปดาห์ที่ผ่านมานี้ service ที่กำลังมาแรงและพูดถึงกันมาก นั่นก็คือ HEY หรือ email service จาก Basecamp โดย HEY ถูกพัฒนาขึ้นมาเพื่อเปลี่ยนประสบการณ์การใช้งานเมลล์ให้ดีขึ้น</summary></entry><entry><title type="html">Monkey Path to History.pushState</title><link href="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html" rel="alternate" type="text/html" title="Monkey Path to History.pushState" /><published>2020-06-26T16:56:00+07:00</published><updated>2020-06-26T16:56:00+07:00</updated><id>https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate</id><content type="html" xml:base="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html">&lt;p&gt;เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ &lt;strong&gt;Ajax Request&lt;/strong&gt; ร่วมกับ &lt;strong&gt;History API&lt;/strong&gt;
-หรือเรียกสั้นๆ ว่า &lt;strong&gt;pjax (PushState + Ajax)&lt;/strong&gt; สำหรับผู้ใช้ &lt;strong&gt;Rails&lt;/strong&gt; เราก็มี &lt;strong&gt;turbolinks&lt;/strong&gt; เป็นตัวจัดการให้เราได้อย่างง่ายดาย&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;ถ้าเราลองไปศึกษาดู &lt;strong&gt;History API&lt;/strong&gt; จะพบว่าไม่ได้มี &lt;strong&gt;iterface&lt;/strong&gt; ให้กับเหตุการณ์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pushState&lt;/code&gt; ทำให้เราไม่สามารถรับรู้ได้ว่าเมื่อไหร่เกิดการเปลี่ยน &lt;strong&gt;state&lt;/strong&gt;
-ดังน้้นในตอนนี้ถ้าหากเราต้องการรับทราบเหตุการณ์ก็ต้อง &lt;strong&gt;Monkey Patch&lt;/strong&gt; ให้กับเหตุการณ์ดังนี้&lt;/p&gt;
-
-&lt;h1 id=&quot;monkey-patch&quot;&gt;Monkey Patch&lt;/h1&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;stateListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;orig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;his&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rv&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;orig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;dispatchEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rv&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;history&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pushState&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;stateListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;pushState&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;เพียงเท่านี้เราก็สามารถจะ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addEventListener&lt;/code&gt; ให้กับ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pushState&lt;/code&gt; ได้แล้ว แถมให้อีกนิดหนึ่งสำหรับการใช้ &lt;strong&gt;turbolinks&lt;/strong&gt; เราก็จะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addEventListener&lt;/code&gt; ให้กับ custom event ที่ชื่อว่า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turbolinks:load&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/4570093/how-to-get-notified-about-changes-of-the-history-via-history-pushstate/25673946#answer-4585031&quot;&gt;Get Notified about changes of the history&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/turbolinks/turbolinks&quot;&gt;Turbolinks&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="javascript" /><category term="html" /><summary type="html">เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ Ajax Request ร่วมกับ History API หรือเรียกสั้นๆ ว่า pjax (PushState + Ajax) สำหรับผู้ใช้ Rails เราก็มี turbolinks เป็นตัวจัดการให้เราได้อย่างง่ายดาย</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="hey" /><category term="review" /><summary type="html">ในช่วงสองสัปดาห์ที่ผ่านมานี้ service ที่กำลังมาแรงและพูดถึงกันมาก นั่นก็คือ HEY หรือ email service จาก Basecamp โดย HEY ถูกพัฒนาขึ้นมาเพื่อเปลี่ยนประสบการณ์การใช้งานเมลล์ให้ดีขึ้น</summary></entry></feed>
