@@ -13,20 +13,20 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="สำหรับผู้เริ่มต้นจะใช้ Ruby การเตรียมสภาพแวดล้อมต่างๆ ให้พร้อมบนเครื่องคอมพิวเตอร์นั้นจำเป็นอย่างมาก ดังนั้นในบทความนี้จะเป็นจุดเริ่มต้นก่อนที่จะลงมือศึกษาการเขียนโค้ดอย่างจริงจังด้วยภาษา Ruby ซึ่งก็คือการติดตั้ง Ruby นั้นเองครับ Ruby รองรับทั้งผู้พัฒนาทั้ง Windows, Linux และ Mac โดยส่วนตัวผมเองนั้น ปกติก็จะใช้งาน Linux และ Mac เป็นหลักในการพัฒนาโปรแกรม ซึ่งเราจะใช้ rbenv เป็นเครื่องมือที่ช่วยในการติดตั้ง และจัดการเวอร์ชันของ Ruby ติดตั้ง rbenv 1. Homebrew เปิด terminal และรันคำสั่ง 1 $ brew install rbenv โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv 2. Manual ผ่าน Git Checkout โคลน rbenv ไปวางไว้ที่ ~/.rbenv 1 $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv เพิ่ม ~/.rbenv/bin เข้าไปใน $PATH สำหรับผู้ใช้ ZSH 1 $ echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.zshrc # ZSH สำหรับผู้ใช้ BASH 1 $ echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc # BASH โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv ติดตั้ง Ruby ตรวจสอบรายการเวอร์ชันของ Ruby ที่สามารถติดตั้งได้ 1 $ rbenv install --list รายการเวอร์ชันของ ruby ที่สามารถติดตั้งได้ ติดตั้งเวอร์ชันที่จะใช้งาน (ผมจะติดตั้ง version 2.7.1) 1 $ rbenv install 2.7.1 ตรวจสอบเวอร์ชันที่ติดตั้งผ่าน rbenv 1 $ rbenv versions รายการเวอร์ชันของ ruby ที่ติดตั้งผ่าน rbenv กำหนดเวอร์ชันของ ruby แบบ global เพื่อใช้งาน 1 $ rbenv global 2.7.1 สำหรับ rbenv มีคำสั่งอื่นๆ ที่ให้เราใช้งานอีกมาก ซึ่งสามารถศึกษาได้จาก #command-reference สำหรับนักพัฒนาบน Windows อย่าเพิ่งน้อยใจ ถึงแม้ rbenv จะไม่มีให้ใช้บน Windows แต่เราก็สามารถที่จะติดตั้ง ruby ได้ด้วย RubyInstaller for Windows ซึ่งวิธีการติดตั้งนั้นก็ง่ายมากๆ เพียงดาว์นโหลดตัวติดตั้งตามเวอ์ชันที่จะใช้งาน จากนั้นเพียงแค่ดับเบิลคลิกและกด Next ไปเรื่อยๆ จนจบเพียงเท่านั้นก็สามารถใช้งาน Ruby บนเครื่องคอมพิวเตอร์ของเราได้ References rbenv rubyinstaller" />
 <meta property="og:description" content="สำหรับผู้เริ่มต้นจะใช้ Ruby การเตรียมสภาพแวดล้อมต่างๆ ให้พร้อมบนเครื่องคอมพิวเตอร์นั้นจำเป็นอย่างมาก ดังนั้นในบทความนี้จะเป็นจุดเริ่มต้นก่อนที่จะลงมือศึกษาการเขียนโค้ดอย่างจริงจังด้วยภาษา Ruby ซึ่งก็คือการติดตั้ง Ruby นั้นเองครับ Ruby รองรับทั้งผู้พัฒนาทั้ง Windows, Linux และ Mac โดยส่วนตัวผมเองนั้น ปกติก็จะใช้งาน Linux และ Mac เป็นหลักในการพัฒนาโปรแกรม ซึ่งเราจะใช้ rbenv เป็นเครื่องมือที่ช่วยในการติดตั้ง และจัดการเวอร์ชันของ Ruby ติดตั้ง rbenv 1. Homebrew เปิด terminal และรันคำสั่ง 1 $ brew install rbenv โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv 2. Manual ผ่าน Git Checkout โคลน rbenv ไปวางไว้ที่ ~/.rbenv 1 $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv เพิ่ม ~/.rbenv/bin เข้าไปใน $PATH สำหรับผู้ใช้ ZSH 1 $ echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.zshrc # ZSH สำหรับผู้ใช้ BASH 1 $ echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc # BASH โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv ติดตั้ง Ruby ตรวจสอบรายการเวอร์ชันของ Ruby ที่สามารถติดตั้งได้ 1 $ rbenv install --list รายการเวอร์ชันของ ruby ที่สามารถติดตั้งได้ ติดตั้งเวอร์ชันที่จะใช้งาน (ผมจะติดตั้ง version 2.7.1) 1 $ rbenv install 2.7.1 ตรวจสอบเวอร์ชันที่ติดตั้งผ่าน rbenv 1 $ rbenv versions รายการเวอร์ชันของ ruby ที่ติดตั้งผ่าน rbenv กำหนดเวอร์ชันของ ruby แบบ global เพื่อใช้งาน 1 $ rbenv global 2.7.1 สำหรับ rbenv มีคำสั่งอื่นๆ ที่ให้เราใช้งานอีกมาก ซึ่งสามารถศึกษาได้จาก #command-reference สำหรับนักพัฒนาบน Windows อย่าเพิ่งน้อยใจ ถึงแม้ rbenv จะไม่มีให้ใช้บน Windows แต่เราก็สามารถที่จะติดตั้ง ruby ได้ด้วย RubyInstaller for Windows ซึ่งวิธีการติดตั้งนั้นก็ง่ายมากๆ เพียงดาว์นโหลดตัวติดตั้งตามเวอ์ชันที่จะใช้งาน จากนั้นเพียงแค่ดับเบิลคลิกและกด Next ไปเรื่อยๆ จนจบเพียงเท่านั้นก็สามารถใช้งาน Ruby บนเครื่องคอมพิวเตอร์ของเราได้ References rbenv rubyinstaller" />
-<link rel="canonical" href="https://karn18.github.io/dev/2020/09/28/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv.html" />
-<meta property="og:url" content="https://karn18.github.io/dev/2020/09/28/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv.html" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/09/28/setup-ruby-with-rbenv.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/09/28/setup-ruby-with-rbenv.html" />
 <meta property="og:site_name" content="KT" />
-<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2020/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv/cover.png" />
+<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2020/setup-ruby-with-rbenv/cover.png" />
 <meta property="og:image:height" content="100" />
 <meta property="og:image:width" content="100" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-09-28T18:04:00+07:00" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2020/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv/cover.png" />
+<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2020/setup-ruby-with-rbenv/cover.png" />
 <meta property="twitter:title" content="ติดตั้ง ruby ด้วย rbenv" />
 <meta name="twitter:site" content="@karn18" />
 <script type="application/ld+json">
-{"headline":"ติดตั้ง ruby ด้วย rbenv","dateModified":"2020-09-28T18:04:00+07:00","datePublished":"2020-09-28T18:04:00+07:00","image":{"height":100,"width":100,"url":"https://karn18.github.io/assets/images/posts/2020/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv/cover.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/09/28/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv.html"},"url":"https://karn18.github.io/dev/2020/09/28/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv.html","description":"สำหรับผู้เริ่มต้นจะใช้ Ruby การเตรียมสภาพแวดล้อมต่างๆ ให้พร้อมบนเครื่องคอมพิวเตอร์นั้นจำเป็นอย่างมาก ดังนั้นในบทความนี้จะเป็นจุดเริ่มต้นก่อนที่จะลงมือศึกษาการเขียนโค้ดอย่างจริงจังด้วยภาษา Ruby ซึ่งก็คือการติดตั้ง Ruby นั้นเองครับ Ruby รองรับทั้งผู้พัฒนาทั้ง Windows, Linux และ Mac โดยส่วนตัวผมเองนั้น ปกติก็จะใช้งาน Linux และ Mac เป็นหลักในการพัฒนาโปรแกรม ซึ่งเราจะใช้ rbenv เป็นเครื่องมือที่ช่วยในการติดตั้ง และจัดการเวอร์ชันของ Ruby ติดตั้ง rbenv 1. Homebrew เปิด terminal และรันคำสั่ง 1 $ brew install rbenv โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv 2. Manual ผ่าน Git Checkout โคลน rbenv ไปวางไว้ที่ ~/.rbenv 1 $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv เพิ่ม ~/.rbenv/bin เข้าไปใน $PATH สำหรับผู้ใช้ ZSH 1 $ echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.zshrc # ZSH สำหรับผู้ใช้ BASH 1 $ echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc # BASH โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv ติดตั้ง Ruby ตรวจสอบรายการเวอร์ชันของ Ruby ที่สามารถติดตั้งได้ 1 $ rbenv install --list รายการเวอร์ชันของ ruby ที่สามารถติดตั้งได้ ติดตั้งเวอร์ชันที่จะใช้งาน (ผมจะติดตั้ง version 2.7.1) 1 $ rbenv install 2.7.1 ตรวจสอบเวอร์ชันที่ติดตั้งผ่าน rbenv 1 $ rbenv versions รายการเวอร์ชันของ ruby ที่ติดตั้งผ่าน rbenv กำหนดเวอร์ชันของ ruby แบบ global เพื่อใช้งาน 1 $ rbenv global 2.7.1 สำหรับ rbenv มีคำสั่งอื่นๆ ที่ให้เราใช้งานอีกมาก ซึ่งสามารถศึกษาได้จาก #command-reference สำหรับนักพัฒนาบน Windows อย่าเพิ่งน้อยใจ ถึงแม้ rbenv จะไม่มีให้ใช้บน Windows แต่เราก็สามารถที่จะติดตั้ง ruby ได้ด้วย RubyInstaller for Windows ซึ่งวิธีการติดตั้งนั้นก็ง่ายมากๆ เพียงดาว์นโหลดตัวติดตั้งตามเวอ์ชันที่จะใช้งาน จากนั้นเพียงแค่ดับเบิลคลิกและกด Next ไปเรื่อยๆ จนจบเพียงเท่านั้นก็สามารถใช้งาน Ruby บนเครื่องคอมพิวเตอร์ของเราได้ References rbenv rubyinstaller","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"ติดตั้ง ruby ด้วย rbenv","dateModified":"2020-09-28T18:04:00+07:00","datePublished":"2020-09-28T18:04:00+07:00","image":{"height":100,"width":100,"url":"https://karn18.github.io/assets/images/posts/2020/setup-ruby-with-rbenv/cover.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/09/28/setup-ruby-with-rbenv.html"},"url":"https://karn18.github.io/dev/2020/09/28/setup-ruby-with-rbenv.html","description":"สำหรับผู้เริ่มต้นจะใช้ Ruby การเตรียมสภาพแวดล้อมต่างๆ ให้พร้อมบนเครื่องคอมพิวเตอร์นั้นจำเป็นอย่างมาก ดังนั้นในบทความนี้จะเป็นจุดเริ่มต้นก่อนที่จะลงมือศึกษาการเขียนโค้ดอย่างจริงจังด้วยภาษา Ruby ซึ่งก็คือการติดตั้ง Ruby นั้นเองครับ Ruby รองรับทั้งผู้พัฒนาทั้ง Windows, Linux และ Mac โดยส่วนตัวผมเองนั้น ปกติก็จะใช้งาน Linux และ Mac เป็นหลักในการพัฒนาโปรแกรม ซึ่งเราจะใช้ rbenv เป็นเครื่องมือที่ช่วยในการติดตั้ง และจัดการเวอร์ชันของ Ruby ติดตั้ง rbenv 1. Homebrew เปิด terminal และรันคำสั่ง 1 $ brew install rbenv โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv 2. Manual ผ่าน Git Checkout โคลน rbenv ไปวางไว้ที่ ~/.rbenv 1 $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv เพิ่ม ~/.rbenv/bin เข้าไปใน $PATH สำหรับผู้ใช้ ZSH 1 $ echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.zshrc # ZSH สำหรับผู้ใช้ BASH 1 $ echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc # BASH โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv ติดตั้ง Ruby ตรวจสอบรายการเวอร์ชันของ Ruby ที่สามารถติดตั้งได้ 1 $ rbenv install --list รายการเวอร์ชันของ ruby ที่สามารถติดตั้งได้ ติดตั้งเวอร์ชันที่จะใช้งาน (ผมจะติดตั้ง version 2.7.1) 1 $ rbenv install 2.7.1 ตรวจสอบเวอร์ชันที่ติดตั้งผ่าน rbenv 1 $ rbenv versions รายการเวอร์ชันของ ruby ที่ติดตั้งผ่าน rbenv กำหนดเวอร์ชันของ ruby แบบ global เพื่อใช้งาน 1 $ rbenv global 2.7.1 สำหรับ rbenv มีคำสั่งอื่นๆ ที่ให้เราใช้งานอีกมาก ซึ่งสามารถศึกษาได้จาก #command-reference สำหรับนักพัฒนาบน Windows อย่าเพิ่งน้อยใจ ถึงแม้ rbenv จะไม่มีให้ใช้บน Windows แต่เราก็สามารถที่จะติดตั้ง ruby ได้ด้วย RubyInstaller for Windows ซึ่งวิธีการติดตั้งนั้นก็ง่ายมากๆ เพียงดาว์นโหลดตัวติดตั้งตามเวอ์ชันที่จะใช้งาน จากนั้นเพียงแค่ดับเบิลคลิกและกด Next ไปเรื่อยๆ จนจบเพียงเท่านั้นก็สามารถใช้งาน Ruby บนเครื่องคอมพิวเตอร์ของเราได้ References rbenv rubyinstaller","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
@@ -65,7 +65,7 @@
 
   
     <figure class="image blog-image-header">
-      <img src="/assets/images/posts/2020/ติดตั้ง-ruby-ด้วย-rbenv/cover.png">
+      <img src="/assets/images/posts/2020/setup-ruby-with-rbenv/cover.png">
     </figure>
   
   <div class="blog-content is-family-secondary">
@@ -108,7 +108,7 @@
 </pre></td><td class="rouge-code"><pre><span class="nv">$ </span>rbenv <span class="nt">--version</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p><img src="/assets/images/posts/2020/ติดตั้ง-ruby-ด้วย-rbenv/rbenv_version.png" alt="rbenv_version" width="350px" />
+<p><img src="/assets/images/posts/2020/setup-ruby-with-rbenv/rbenv_version.png" alt="rbenv_version" width="350px" />
 <em>เช็คเวอร์ชันของ rbenv</em></p>
 
 <h3 id="2-manual-ผ่าน-git-checkout">2. Manual ผ่าน Git Checkout</h3>
@@ -166,7 +166,7 @@
 </pre></td><td class="rouge-code"><pre><span class="nv">$ </span>rbenv <span class="nt">--version</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p><img src="/assets/images/posts/2020/ติดตั้ง-ruby-ด้วย-rbenv/rbenv_version.png" alt="rbenv_version" width="350px" />
+<p><img src="/assets/images/posts/2020/setup-ruby-with-rbenv/rbenv_version.png" alt="rbenv_version" width="350px" />
 <em>เช็คเวอร์ชันของ rbenv</em></p>
 
 <h2 id="ติดตั้ง-ruby">ติดตั้ง Ruby</h2>
@@ -178,7 +178,7 @@
 </pre></td><td class="rouge-code"><pre><span class="nv">$ </span>rbenv <span class="nb">install</span> <span class="nt">--list</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p><img src="/assets/images/posts/2020/ติดตั้ง-ruby-ด้วย-rbenv/rbenv_list.png" alt="rbenv_version" width="600px" />
+<p><img src="/assets/images/posts/2020/setup-ruby-with-rbenv/rbenv_list.png" alt="rbenv_version" width="600px" />
 <em>รายการเวอร์ชันของ ruby ที่สามารถติดตั้งได้</em></p>
 
 <ul>
@@ -196,7 +196,7 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre><span class="nv">$ </span>rbenv versions
 </pre></td></tr></tbody></table></code></pre></div></div>
-<p><img src="/assets/images/posts/2020/ติดตั้ง-ruby-ด้วย-rbenv/rbenv_versions.png" alt="rbenv_version" width="420px" />
+<p><img src="/assets/images/posts/2020/setup-ruby-with-rbenv/rbenv_versions.png" alt="rbenv_version" width="420px" />
 <em>รายการเวอร์ชันของ ruby ที่ติดตั้งผ่าน rbenv</em></p>
 
 <p>กำหนดเวอร์ชันของ <strong>ruby</strong> แบบ <strong>global</strong> เพื่อใช้งาน</p>
@@ -223,7 +223,7 @@
   <!-- <div class="section field is-grouped">
   <div class="control">
     <a class="twitter-share-button"
-      href="https://twitter.com/intent/tweet?text=ติดตั้ง ruby ด้วย rbenv&url=https://karn18.github.io/dev/2020/09/28/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv.html&via=karn18&related=karn18"
+      href="https://twitter.com/intent/tweet?text=ติดตั้ง ruby ด้วย rbenv&url=https://karn18.github.io/dev/2020/09/28/setup-ruby-with-rbenv.html&via=karn18&related=karn18"
       data-size="large">
       Tweet
     </a>
@@ -231,7 +231,7 @@
   </div>
   <div class="control">
     <div class="fb-share-button" 
-      data-href="https://karn18.github.io/dev/2020/09/28/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ruby-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-rbenv.html"
+      data-href="https://karn18.github.io/dev/2020/09/28/setup-ruby-with-rbenv.html"
       data-layout="button_count" data-size="large">
       <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
         Share
