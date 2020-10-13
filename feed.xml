@@ -1,47 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-10-13T13:35:16+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Micro:bit v2</title><link href="https://karn18.github.io/stem/2020/10/13/micro-bit-v2.html" rel="alternate" type="text/html" title="Micro:bit v2" /><published>2020-10-13T13:32:00+07:00</published><updated>2020-10-13T13:32:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/13/micro-bit-v2</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/13/micro-bit-v2.html">เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง **micro:bit Education Foundcation** ได้ประกาศเปิดตัว **micro:bit** เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว **micro:bit** กันบ้าง เรามาดูกันครับ
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-10-13T14:51:43+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Micro:bit v2</title><link href="https://karn18.github.io/stem/2020/10/13/micro-bit-v2.html" rel="alternate" type="text/html" title="Micro:bit v2" /><published>2020-10-13T13:32:00+07:00</published><updated>2020-10-13T13:32:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/13/micro-bit-v2</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/13/micro-bit-v2.html">&lt;p&gt;เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง &lt;strong&gt;micro:bit Education Foundcation&lt;/strong&gt; ได้ประกาศเปิดตัว &lt;strong&gt;micro:bit&lt;/strong&gt; เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว &lt;strong&gt;micro:bit&lt;/strong&gt; กันบ้าง เรามาดูกันครับ&lt;/p&gt;
 
-- โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ
-- แมมโมรี่ขนาด 152kB และแรม 128kB
-- มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ
-- เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส
-- Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น
-- เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0
+&lt;ul&gt;
+  &lt;li&gt;โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ&lt;/li&gt;
+  &lt;li&gt;แมมโมรี่ขนาด 152kB และแรม 128kB&lt;/li&gt;
+  &lt;li&gt;มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ&lt;/li&gt;
+  &lt;li&gt;เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส&lt;/li&gt;
+  &lt;li&gt;Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น&lt;/li&gt;
+  &lt;li&gt;เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0&lt;!-- more --&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-![Front](/assets/images/posts/2020/micro-bit-v2/comparison-front.png)
-*เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2*
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/comparison-front.png&quot; alt=&quot;Front&quot; /&gt;
+&lt;em&gt;เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2&lt;/em&gt;&lt;/p&gt;
 
-![Back](/assets/images/posts/2020/micro-bit-v2/comparison-front.png)
-*เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2*
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/comparison-front.png&quot; alt=&quot;Back&quot; /&gt;
+&lt;em&gt;เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2&lt;/em&gt;&lt;/p&gt;
 
-แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ **Microsoft MakeCode** ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น
+&lt;p&gt;แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ &lt;strong&gt;Microsoft MakeCode&lt;/strong&gt; ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น&lt;/p&gt;
 
-## On loud/quit Sound
+&lt;h2 id=&quot;on-loudquit-sound&quot;&gt;On loud/quit Sound&lt;/h2&gt;
 
-![Logo Pressed](/assets/images/posts/2020/micro-bit-v2/loudsound.png){:width=&quot;200px&quot;}
-*เมื่อมีเสียงดังหรือเงียบ*
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/loudsound.png&quot; alt=&quot;Logo Pressed&quot; width=&quot;200px&quot; /&gt;
+&lt;em&gt;เมื่อมีเสียงดังหรือเงียบ&lt;/em&gt;&lt;/p&gt;
 
-## On Logo Pressed
+&lt;h2 id=&quot;on-logo-pressed&quot;&gt;On Logo Pressed&lt;/h2&gt;
 
-![Logo Pressed](/assets/images/posts/2020/micro-bit-v2/onLogoPressed.png){:width=&quot;200px&quot;}
-*เมื่อสัมผัสที่โลโก้*
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/onLogoPressed.png&quot; alt=&quot;Logo Pressed&quot; width=&quot;200px&quot; /&gt;
+&lt;em&gt;เมื่อสัมผัสที่โลโก้&lt;/em&gt;&lt;/p&gt;
 
-## Sound Level
+&lt;h2 id=&quot;sound-level&quot;&gt;Sound Level&lt;/h2&gt;
 
-![Sound Level](/assets/images/posts/2020/micro-bit-v2/soundLevel.png){:width=&quot;200px&quot;}
-*ค่าระดับเสียงที่อ่านได้จากบอร์ด*
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/soundLevel.png&quot; alt=&quot;Sound Level&quot; width=&quot;200px&quot; /&gt;
+&lt;em&gt;ค่าระดับเสียงที่อ่านได้จากบอร์ด&lt;/em&gt;&lt;/p&gt;
 
-## Enable/disable Speaker
+&lt;h2 id=&quot;enabledisable-speaker&quot;&gt;Enable/disable Speaker&lt;/h2&gt;
 
-![Enable/disable Speaker](/assets/images/posts/2020/micro-bit-v2/speakerEnabled.png){:width=&quot;300px&quot;}
-*เปิด/ปิดลำโพง*
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/speakerEnabled.png&quot; alt=&quot;Enable/disable Speaker&quot; width=&quot;300px&quot; /&gt;
+&lt;em&gt;เปิด/ปิดลำโพง&lt;/em&gt;&lt;/p&gt;
 
-มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน **พฤศจิกายน 2020** ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ
+&lt;p&gt;มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน &lt;strong&gt;พฤศจิกายน 2020&lt;/strong&gt; ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ&lt;/p&gt;
 
-ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ
+&lt;p&gt;ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ&lt;/p&gt;
 
-## References
-- [https://microbit.org/news/](https://microbit.org/news/)
-- [Details of micro:bit v2](https://tech.microbit.org/latest-revision/#overview)</content><author><name>Karn</name></author><category term="microbit" /><summary type="html">เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง micro:bit Education Foundcation ได้ประกาศเปิดตัว micro:bit เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว micro:bit กันบ้าง เรามาดูกันครับ โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ แมมโมรี่ขนาด 152kB และแรม 128kB มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0 เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2 เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2 แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ Microsoft MakeCode ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น On loud/quit Sound เมื่อมีเสียงดังหรือเงียบ On Logo Pressed เมื่อสัมผัสที่โลโก้ Sound Level ค่าระดับเสียงที่อ่านได้จากบอร์ด Enable/disable Speaker เปิด/ปิดลำโพง มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน พฤศจิกายน 2020 ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ References https://microbit.org/news/ Details of micro:bit v2</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/micro-bit-v2/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/micro-bit-v2/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า</title><link href="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html" rel="alternate" type="text/html" title="เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า" /><published>2020-10-13T12:10:00+07:00</published><updated>2020-10-13T12:10:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html">สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า **Scheduler** มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://microbit.org/news/&quot;&gt;https://microbit.org/news/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://tech.microbit.org/latest-revision/#overview&quot;&gt;Details of micro:bit v2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="microbit" /><summary type="html">เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง micro:bit Education Foundcation ได้ประกาศเปิดตัว micro:bit เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว micro:bit กันบ้าง เรามาดูกันครับ โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ แมมโมรี่ขนาด 152kB และแรม 128kB มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0 เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2 เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2 แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ Microsoft MakeCode ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น On loud/quit Sound เมื่อมีเสียงดังหรือเงียบ On Logo Pressed เมื่อสัมผัสที่โลโก้ Sound Level ค่าระดับเสียงที่อ่านได้จากบอร์ด Enable/disable Speaker เปิด/ปิดลำโพง มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน พฤศจิกายน 2020 ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ References https://microbit.org/news/ Details of micro:bit v2</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/micro-bit-v2/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/micro-bit-v2/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า</title><link href="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html" rel="alternate" type="text/html" title="เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า" /><published>2020-10-13T12:10:00+07:00</published><updated>2020-10-13T12:10:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html">สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า **Scheduler** มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น
 
 - การส่ง **email** แจ้งเตือนเมื่อถึงรอบเวลา
 - การประมวลผลข้อมูลที่ใช้เวลานาน
