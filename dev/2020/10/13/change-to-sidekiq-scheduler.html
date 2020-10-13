@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en"><!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า | KT</title>
+<meta name="generator" content="Jekyll v4.1.0" />
+<meta property="og:title" content="เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า Scheduler มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น การส่ง email แจ้งเตือนเมื่อถึงรอบเวลา การประมวลผลข้อมูลที่ใช้เวลานาน การออกรายงาน PDF ในแต่ละเดือน ถ้าเป็นใน Unix เราก็คงจะคุ้นชินกับการเรียกใช้ crontab สำหรับ Ruby เองก็จะใช้ gem ที่มีความสามารถเช่นเดียวกัน นั้นก็คือ rufus-scheduler ซึ่งปัญหาที่ผมและทีมเจอก็คือการนำ rufus-scheduler มาใช้กับ Rails Application ไม่ถูกวิธีจึงทำให้เกิดปัญหาการเรียกใช้งาน และสร้างข้อมูลซ้ำ รวมไปถึงการส่ง email ไปยังลูกค้าซ้ำซ้อน โดยเคสปัญหาเกิดขึ้นดังนี้ สร้าง config/initializers/scheduler.rb ซึ่งเป็นไฟล์ initializer ไว้สำหรับรันงานตามกำหนดเวลา และจะทำงานทันทีที่โปรแกรมทำงาน config/initializers/scheduler.rb 1 2 3 4 5 6 7 require &#39;rufus-scheduler&#39; scheduler = Rufus::Scheduler.new scheduler.cron &#39;0 0 * * *&#39; do # Send emails UserMailer.notify.deliver_later end จากค่าที่กำหนดไว้ข้างต้นจะกำหนดให้ทุกๆ เที่ยงคืนจะส่ง email แจ้งเตือนไปยังผู้ใช้งาน เอ๊ะ!!! ดูแล้วก็ไม่น่าจะมีประเด็นปัญหาอะไรนิ ใช่แล้วหละครับในกรณีที่เรารันแอพไว้เพียง 1 instance ก็จะไม่เกิดปัญหาอะไร ทีนี้ลองมานึกภาพตามผมกันดู ถ้าเกิดว่าแอพของเราจำเป็นต้องมีการขยายให้รันได้ 2 instance หรือมากกว่านั้นเพื่อรับโหลดที่มากขึ้น ปัญหาการใช้งาน Scheduler แบบวิธีข้างต้นก็จะสร้างปัญหาขึ้นมาทันที ซึ่งก็คือแต่ละ instance จะทำการเหมือนกันเมื่อถึงเวลาเที่ยงคืน และจะทำการส่ง email ไปหาลูกค้า ทำให้แทนที่ลูกค้าคนหนึงควรจะได้รับ email เพียงฉบับเดียกลับกลายเป็นหลายฉบับ email จะถูกส่งซ้ำ เมื่อแอพรัน 2 instance ที่นี้มองเห็นปัญหาแล้วใช่มั้ยครับ สำหรับวิธีแก้ไขปัญหาก็เพียงเปลี่ยนมาใช้ Sidekiq Scheduler ซึ่งเป็น extension หนึ่งของ Sidekiq อยู่แล้ว อันที่จริงแล้วในตัวโปรแกรมเราก็ใช้ Sidekiq เป็นตัวจัดการงานที่เป็น Background Job ต่างๆ อยู่แล้ว ดังนั้นการย้ายงานในส่วนของ Scheduler ให้มาทำที่ตรงนี้ก็น่าจะเป็นจุดที่เหมาะสมที่สุด และที่สำคัญคือ Sidekiq จะถูกสร้างขึ้นมาเพียง 1 instance ซึ่งทำให้ไม่เกิดการทำงานซ้ำซ้อนที่เกิดขึ้นอย่างแน่นอน ใช้ Sidekiq Scheduler แทน config/sidekiq.yml 1 2 3 4 :schedule: send_email: cron: &#39;0 0 * * *&#39; class: UserMailer References Sidekiq Scheduler Rufus Scheduler" />
+<meta property="og:description" content="สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า Scheduler มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น การส่ง email แจ้งเตือนเมื่อถึงรอบเวลา การประมวลผลข้อมูลที่ใช้เวลานาน การออกรายงาน PDF ในแต่ละเดือน ถ้าเป็นใน Unix เราก็คงจะคุ้นชินกับการเรียกใช้ crontab สำหรับ Ruby เองก็จะใช้ gem ที่มีความสามารถเช่นเดียวกัน นั้นก็คือ rufus-scheduler ซึ่งปัญหาที่ผมและทีมเจอก็คือการนำ rufus-scheduler มาใช้กับ Rails Application ไม่ถูกวิธีจึงทำให้เกิดปัญหาการเรียกใช้งาน และสร้างข้อมูลซ้ำ รวมไปถึงการส่ง email ไปยังลูกค้าซ้ำซ้อน โดยเคสปัญหาเกิดขึ้นดังนี้ สร้าง config/initializers/scheduler.rb ซึ่งเป็นไฟล์ initializer ไว้สำหรับรันงานตามกำหนดเวลา และจะทำงานทันทีที่โปรแกรมทำงาน config/initializers/scheduler.rb 1 2 3 4 5 6 7 require &#39;rufus-scheduler&#39; scheduler = Rufus::Scheduler.new scheduler.cron &#39;0 0 * * *&#39; do # Send emails UserMailer.notify.deliver_later end จากค่าที่กำหนดไว้ข้างต้นจะกำหนดให้ทุกๆ เที่ยงคืนจะส่ง email แจ้งเตือนไปยังผู้ใช้งาน เอ๊ะ!!! ดูแล้วก็ไม่น่าจะมีประเด็นปัญหาอะไรนิ ใช่แล้วหละครับในกรณีที่เรารันแอพไว้เพียง 1 instance ก็จะไม่เกิดปัญหาอะไร ทีนี้ลองมานึกภาพตามผมกันดู ถ้าเกิดว่าแอพของเราจำเป็นต้องมีการขยายให้รันได้ 2 instance หรือมากกว่านั้นเพื่อรับโหลดที่มากขึ้น ปัญหาการใช้งาน Scheduler แบบวิธีข้างต้นก็จะสร้างปัญหาขึ้นมาทันที ซึ่งก็คือแต่ละ instance จะทำการเหมือนกันเมื่อถึงเวลาเที่ยงคืน และจะทำการส่ง email ไปหาลูกค้า ทำให้แทนที่ลูกค้าคนหนึงควรจะได้รับ email เพียงฉบับเดียกลับกลายเป็นหลายฉบับ email จะถูกส่งซ้ำ เมื่อแอพรัน 2 instance ที่นี้มองเห็นปัญหาแล้วใช่มั้ยครับ สำหรับวิธีแก้ไขปัญหาก็เพียงเปลี่ยนมาใช้ Sidekiq Scheduler ซึ่งเป็น extension หนึ่งของ Sidekiq อยู่แล้ว อันที่จริงแล้วในตัวโปรแกรมเราก็ใช้ Sidekiq เป็นตัวจัดการงานที่เป็น Background Job ต่างๆ อยู่แล้ว ดังนั้นการย้ายงานในส่วนของ Scheduler ให้มาทำที่ตรงนี้ก็น่าจะเป็นจุดที่เหมาะสมที่สุด และที่สำคัญคือ Sidekiq จะถูกสร้างขึ้นมาเพียง 1 instance ซึ่งทำให้ไม่เกิดการทำงานซ้ำซ้อนที่เกิดขึ้นอย่างแน่นอน ใช้ Sidekiq Scheduler แทน config/sidekiq.yml 1 2 3 4 :schedule: send_email: cron: &#39;0 0 * * *&#39; class: UserMailer References Sidekiq Scheduler Rufus Scheduler" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-13T12:10:00+07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า" />
+<meta name="twitter:site" content="@karn18" />
+<meta name="twitter:creator" content="@Karn" />
+<script type="application/ld+json">
+{"headline":"เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า","dateModified":"2020-10-13T12:10:00+07:00","datePublished":"2020-10-13T12:10:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html"},"url":"https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html","description":"สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า Scheduler มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น การส่ง email แจ้งเตือนเมื่อถึงรอบเวลา การประมวลผลข้อมูลที่ใช้เวลานาน การออกรายงาน PDF ในแต่ละเดือน ถ้าเป็นใน Unix เราก็คงจะคุ้นชินกับการเรียกใช้ crontab สำหรับ Ruby เองก็จะใช้ gem ที่มีความสามารถเช่นเดียวกัน นั้นก็คือ rufus-scheduler ซึ่งปัญหาที่ผมและทีมเจอก็คือการนำ rufus-scheduler มาใช้กับ Rails Application ไม่ถูกวิธีจึงทำให้เกิดปัญหาการเรียกใช้งาน และสร้างข้อมูลซ้ำ รวมไปถึงการส่ง email ไปยังลูกค้าซ้ำซ้อน โดยเคสปัญหาเกิดขึ้นดังนี้ สร้าง config/initializers/scheduler.rb ซึ่งเป็นไฟล์ initializer ไว้สำหรับรันงานตามกำหนดเวลา และจะทำงานทันทีที่โปรแกรมทำงาน config/initializers/scheduler.rb 1 2 3 4 5 6 7 require &#39;rufus-scheduler&#39; scheduler = Rufus::Scheduler.new scheduler.cron &#39;0 0 * * *&#39; do # Send emails UserMailer.notify.deliver_later end จากค่าที่กำหนดไว้ข้างต้นจะกำหนดให้ทุกๆ เที่ยงคืนจะส่ง email แจ้งเตือนไปยังผู้ใช้งาน เอ๊ะ!!! ดูแล้วก็ไม่น่าจะมีประเด็นปัญหาอะไรนิ ใช่แล้วหละครับในกรณีที่เรารันแอพไว้เพียง 1 instance ก็จะไม่เกิดปัญหาอะไร ทีนี้ลองมานึกภาพตามผมกันดู ถ้าเกิดว่าแอพของเราจำเป็นต้องมีการขยายให้รันได้ 2 instance หรือมากกว่านั้นเพื่อรับโหลดที่มากขึ้น ปัญหาการใช้งาน Scheduler แบบวิธีข้างต้นก็จะสร้างปัญหาขึ้นมาทันที ซึ่งก็คือแต่ละ instance จะทำการเหมือนกันเมื่อถึงเวลาเที่ยงคืน และจะทำการส่ง email ไปหาลูกค้า ทำให้แทนที่ลูกค้าคนหนึงควรจะได้รับ email เพียงฉบับเดียกลับกลายเป็นหลายฉบับ email จะถูกส่งซ้ำ เมื่อแอพรัน 2 instance ที่นี้มองเห็นปัญหาแล้วใช่มั้ยครับ สำหรับวิธีแก้ไขปัญหาก็เพียงเปลี่ยนมาใช้ Sidekiq Scheduler ซึ่งเป็น extension หนึ่งของ Sidekiq อยู่แล้ว อันที่จริงแล้วในตัวโปรแกรมเราก็ใช้ Sidekiq เป็นตัวจัดการงานที่เป็น Background Job ต่างๆ อยู่แล้ว ดังนั้นการย้ายงานในส่วนของ Scheduler ให้มาทำที่ตรงนี้ก็น่าจะเป็นจุดที่เหมาะสมที่สุด และที่สำคัญคือ Sidekiq จะถูกสร้างขึ้นมาเพียง 1 instance ซึ่งทำให้ไม่เกิดการทำงานซ้ำซ้อนที่เกิดขึ้นอย่างแน่นอน ใช้ Sidekiq Scheduler แทน config/sidekiq.yml 1 2 3 4 :schedule: send_email: cron: &#39;0 0 * * *&#39; class: UserMailer References Sidekiq Scheduler Rufus Scheduler","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
+<title>เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า</title>
+</head><body data-theme="light">
+    <div class="kz-progress"></div>
+    <div class="kz-main-container"><nav class="kz-navbar">
+  <a href="/" class="kz-navbar__logo">KT</a>
+  <div class="kz-navbar__menu">
+    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
+    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
+    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
+    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+  </div>
+</nav>
+<div class="kz-content">
+        <div class="kz-blog">
+  <div class="kz-blog__header">
+  <h1 class="kz-blog__title">เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า</h1>
+  <div class="kz-blog__info">
+    <i class="typcn typcn-calendar-outline"></i> 13-10-2020
+    
+      | <i class="typcn typcn-tag"></i>
+      
+        <span>ruby</span>
+      
+    
+  </div>
+</div>
+
+  
+  <div class="blog-content is-family-secondary">
+    <p>สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า <strong>Scheduler</strong> มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น</p>
+
+<ul>
+  <li>การส่ง <strong>email</strong> แจ้งเตือนเมื่อถึงรอบเวลา</li>
+  <li>การประมวลผลข้อมูลที่ใช้เวลานาน</li>
+  <li>การออกรายงาน <strong>PDF</strong> ในแต่ละเดือน</li>
+</ul>
+
+<p>ถ้าเป็นใน <strong>Unix</strong> เราก็คงจะคุ้นชินกับการเรียกใช้ <code class="language-plaintext highlighter-rouge">crontab</code> สำหรับ <strong>Ruby</strong> เองก็จะใช้ <strong>gem</strong> ที่มีความสามารถเช่นเดียวกัน นั้นก็คือ <strong>rufus-scheduler</strong> ซึ่งปัญหาที่ผมและทีมเจอก็คือการนำ <strong>rufus-scheduler</strong> มาใช้กับ <strong>Rails Application</strong> ไม่ถูกวิธีจึงทำให้เกิดปัญหาการเรียกใช้งาน และสร้างข้อมูลซ้ำ รวมไปถึงการส่ง <strong>email</strong> ไปยังลูกค้าซ้ำซ้อน โดยเคสปัญหาเกิดขึ้นดังนี้</p>
+
+<ul>
+  <li>สร้าง <code class="language-plaintext highlighter-rouge">config/initializers/scheduler.rb</code> ซึ่งเป็นไฟล์ <strong>initializer</strong> ไว้สำหรับรันงานตามกำหนดเวลา และจะทำงานทันทีที่โปรแกรมทำงาน</li>
+</ul>
+
+<h2 id="configinitializersschedulerrb">config/initializers/scheduler.rb</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="nb">require</span> <span class="s1">'rufus-scheduler'</span>
+
+<span class="n">scheduler</span> <span class="o">=</span> <span class="no">Rufus</span><span class="o">::</span><span class="no">Scheduler</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">scheduler</span><span class="p">.</span><span class="nf">cron</span> <span class="s1">'0 0 * * *'</span> <span class="k">do</span>
+  <span class="c1"># Send emails</span>
+  <span class="no">UserMailer</span><span class="p">.</span><span class="nf">notify</span><span class="p">.</span><span class="nf">deliver_later</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>จากค่าที่กำหนดไว้ข้างต้นจะกำหนดให้ทุกๆ เที่ยงคืนจะส่ง <strong>email</strong> แจ้งเตือนไปยังผู้ใช้งาน</p>
+
+<p><strong>เอ๊ะ!!!</strong> ดูแล้วก็ไม่น่าจะมีประเด็นปัญหาอะไรนิ ใช่แล้วหละครับในกรณีที่เรารันแอพไว้เพียง 1 instance ก็จะไม่เกิดปัญหาอะไร ทีนี้ลองมานึกภาพตามผมกันดู</p>
+
+<p>ถ้าเกิดว่าแอพของเราจำเป็นต้องมีการขยายให้รันได้ 2 instance หรือมากกว่านั้นเพื่อรับโหลดที่มากขึ้น ปัญหาการใช้งาน <strong>Scheduler</strong> แบบวิธีข้างต้นก็จะสร้างปัญหาขึ้นมาทันที ซึ่งก็คือแต่ละ instance จะทำการเหมือนกันเมื่อถึงเวลาเที่ยงคืน และจะทำการส่ง <strong>email</strong> ไปหาลูกค้า ทำให้แทนที่ลูกค้าคนหนึงควรจะได้รับ <strong>email</strong> เพียงฉบับเดียกลับกลายเป็นหลายฉบับ</p>
+
+<p><img src="/assets/images/posts/2020/change-to-sidekiq-scheduler/issue.png" alt="issue1" width="600px" />
+<em>email จะถูกส่งซ้ำ เมื่อแอพรัน 2 instance</em></p>
+
+<p>ที่นี้มองเห็นปัญหาแล้วใช่มั้ยครับ สำหรับวิธีแก้ไขปัญหาก็เพียงเปลี่ยนมาใช้ <strong>Sidekiq Scheduler</strong> ซึ่งเป็น <strong>extension</strong> หนึ่งของ <strong>Sidekiq</strong> อยู่แล้ว อันที่จริงแล้วในตัวโปรแกรมเราก็ใช้ <strong>Sidekiq</strong> เป็นตัวจัดการงานที่เป็น <strong>Background Job</strong> ต่างๆ อยู่แล้ว ดังนั้นการย้ายงานในส่วนของ <strong>Scheduler</strong> ให้มาทำที่ตรงนี้ก็น่าจะเป็นจุดที่เหมาะสมที่สุด และที่สำคัญคือ <strong>Sidekiq</strong> จะถูกสร้างขึ้นมาเพียง 1 instance ซึ่งทำให้ไม่เกิดการทำงานซ้ำซ้อนที่เกิดขึ้นอย่างแน่นอน</p>
+
+<p><img src="/assets/images/posts/2020/change-to-sidekiq-scheduler/approach.png" alt="approach" width="460px" />
+<em>ใช้ Sidekiq Scheduler แทน</em></p>
+
+<h2 id="configsidekiqyml">config/sidekiq.yml</h2>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="s">:schedule:</span>
+  <span class="s">send_email</span><span class="pi">:</span>
+    <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="na">class</span><span class="pi">:</span> <span class="s">UserMailer</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://github.com/Moove-it/sidekiq-scheduler">Sidekiq Scheduler</a></li>
+  <li><a href="https://github.com/jmettraux/rufus-scheduler">Rufus Scheduler</a></li>
+</ul>
+
+  </div>
+  <!-- <div class="section field is-grouped">
+  <div class="control">
+    <a class="twitter-share-button"
+      href="https://twitter.com/intent/tweet?text=เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า&url=https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html&via=karn18&related=karn18"
+      data-size="large">
+      Tweet
+    </a>
+    <div id="fb-root"></div>
+  </div>
+  <div class="control">
+    <div class="fb-share-button" 
+      data-href="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html"
+      data-layout="button_count" data-size="large">
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+        Share
+      </a>
+    </div>
+  </div>
+</div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+  
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+ -->
+  <!-- 
+ -->
+  <!-- <div class="kz-pagination">
+  <div class="kz-pagination__newer">
+    
+  </div>
+  <div class="kz-pagination__older">
+    
+      <a class="kz-pagination__button" href="/dev/2020/10/03/add-a-staging-environment-to-rails.html">Older &rarr;</a>
+    
+  </div>
+</div> -->
+  <div class="related-blog">
+  
+  
+  
+
+  
+</div>
+
+</div>
+
+
+
+      </div>
+    </div><script>
+  const h = document.documentElement;
+  const b = document.body;
+  const st = 'scrollTop';
+  const sh = 'scrollHeight';
+  const progress = document.querySelector('.kz-progress');
+  let scroll;
+
+  document.addEventListener('scroll', function() {
+    scroll = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+    progress.style.setProperty('--scroll', scroll + '%');
+  });
+</script>
+
+</body>
+</html>
