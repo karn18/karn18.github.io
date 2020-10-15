@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-10-15T22:30:10+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Memoization in Ruby</title><link href="https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html" rel="alternate" type="text/html" title="Memoization in Ruby" /><published>2020-10-15T22:22:00+07:00</published><updated>2020-10-15T22:22:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/15/memoization-in-ruby</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html">&lt;p&gt;อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ก็คือ &lt;strong&gt;Memoization&lt;/strong&gt; แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค &lt;strong&gt;Memoization&lt;/strong&gt; จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว&lt;!-- more --&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-10-15T22:51:32+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Memoization in Ruby</title><link href="https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html" rel="alternate" type="text/html" title="Memoization in Ruby" /><published>2020-10-15T22:22:00+07:00</published><updated>2020-10-15T22:22:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/15/memoization-in-ruby</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html">&lt;p&gt;อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ก็คือ &lt;strong&gt;Memoization&lt;/strong&gt; แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค &lt;strong&gt;Memoization&lt;/strong&gt; จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว&lt;!-- more --&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;memoization-คืออะไร&quot;&gt;Memoization คืออะไร&lt;/h2&gt;
 
@@ -8,9 +8,9 @@
 
 &lt;p&gt;ถ้าแบ่งเป็นขั้นตอนจะมีด้วยกัน 3 ขั้นด้วยกันคือ&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;โค้ดถูกเรียกใช้งาน เพื่อประมวณผลอะไรบางอย่าง&lt;/li&gt;
+  &lt;li&gt;โค้ดถูกเรียกใช้งาน เพื่อประมวลผลอะไรบางอย่าง&lt;/li&gt;
   &lt;li&gt;แทนที่จะส่งค่าคืนกลับไปเมื่อถูกเรียกเพียงอย่างเดียว จะเก็บค่าที่ได้จากการประมวลผลเอาไว้ในตัวแปร&lt;/li&gt;
-  &lt;li&gt;เมื่อมีการเรียกใช้งานโค้ดดังกล่าวอีกครั้ง ก็จะดึงค่าที่เก็บเอาไว้ส่งคืนกลับไป โดยไม่ต้องประมวณผลใหม่&lt;/li&gt;
+  &lt;li&gt;เมื่อมีการเรียกใช้งานโค้ดดังกล่าวอีกครั้ง ก็จะดึงค่าที่เก็บเอาไว้ส่งคืนกลับไป โดยไม่ต้องประมวลผลใหม่&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;ถ้าอ่านคำอธิบายข้างต้นแล้วยังงง มาดูรายละเอียดพร้อมกับโค้ดตัวอย่างกันเลยดีกว่า น่าจะทำให้เข้าได้ดียิ่งขึ้น&lt;/p&gt;
@@ -52,496 +52,359 @@
   &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Memoization&quot;&gt;https://en.wikipedia.org/wiki/Memoization&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://gavinmiller.io/2013/basics-of-ruby-memoization&quot;&gt;http://gavinmiller.io/2013/basics-of-ruby-memoization&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://rubyinrails.com/2014/11/03/memoization-ruby/&quot;&gt;https://rubyinrails.com/2014/11/03/memoization-ruby&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><summary type="html">อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา Ruby ก็คือ Memoization แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค Memoization จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว Memoization คืออะไร Memoization is the process of storing a computed value to avoid duplicated work by future calls. ถ้าแบ่งเป็นขั้นตอนจะมีด้วยกัน 3 ขั้นด้วยกันคือ โค้ดถูกเรียกใช้งาน เพื่อประมวณผลอะไรบางอย่าง แทนที่จะส่งค่าคืนกลับไปเมื่อถูกเรียกเพียงอย่างเดียว จะเก็บค่าที่ได้จากการประมวลผลเอาไว้ในตัวแปร เมื่อมีการเรียกใช้งานโค้ดดังกล่าวอีกครั้ง ก็จะดึงค่าที่เก็บเอาไว้ส่งคืนกลับไป โดยไม่ต้องประมวณผลใหม่ ถ้าอ่านคำอธิบายข้างต้นแล้วยังงง มาดูรายละเอียดพร้อมกับโค้ดตัวอย่างกันเลยดีกว่า น่าจะทำให้เข้าได้ดียิ่งขึ้น ก่อนอื่นลงสังเกต โค้ดด้านล่าง จะเห็นว่ามีการเรียกใช้ user_score ซึ่งจะทำการดึงข้อมูลคะแนนของผู้ใช้งานจากฐานข้อมูล 1 2 3 def user_score User.find_by(name: 'Sam').try(:score) end เมื่อ user_score ถูกเรียกใช้ ไม่ว่าจะกี่ครั้งสิ่งที่เกิดขึ้นคือจะต้องไปดึงข้อมูลจากฐานข้อมูลทุกรอบ ซึ่งก็เป็นกระบวนการที่เสียเวลา ให้เปลืองทรัพยากร จุดที่ Memoization ถูกนำมาใช้ก็คือตรงนี้เองแหละครับ แทนที่เราจะต้องดึงข้อมูลจากฐานข้อมูลทุกรอบ เราก็จะเก็บข้อมูลที่เคยดึงเก็บเอาไว้ในตัวแปรหนึ่งตัว ซึ่งนั้นก็คือ @user_score ดังแสดงในโค้ดด้านล่าง Memoization มักจะใช้เครื่องหมาย ||= 1 2 3 def user_score @user_score ||= User.find_by(name: 'Sam').try(:score) end พูดง่ายๆ Memoization ก็เป็นการ Caching ข้อมูลนั้นเอง References https://en.wikipedia.org/wiki/Memoization http://gavinmiller.io/2013/basics-of-ruby-memoization https://rubyinrails.com/2014/11/03/memoization-ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/memoization-in-ruby/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/memoization-in-ruby/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ruby’s Main Object</title><link href="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html" rel="alternate" type="text/html" title="Ruby’s Main Object" /><published>2020-10-15T14:22:00+07:00</published><updated>2020-10-15T14:22:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/15/ruby-s-main-object</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html">&lt;p&gt;&lt;strong&gt;Ruby&lt;/strong&gt; ถูกออกแบบขึ้นมาภายใต้หลักการของ &lt;strong&gt;Object&lt;/strong&gt; นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน &lt;strong&gt;Ruby&lt;/strong&gt; ล้วนเป็น &lt;strong&gt;Object&lt;/strong&gt; ทั้งหมด โดย &lt;strong&gt;Object&lt;/strong&gt; ที่เป็น &lt;strong&gt;Top Level&lt;/strong&gt; จะเรียกว่า &lt;strong&gt;Main Object&lt;/strong&gt; ซึ่งเมธอดที่ถูกนิยามภายใต้ &lt;strong&gt;Main Object&lt;/strong&gt; สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;puts&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;respond_to?&lt;/code&gt; หรือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is_a?&lt;/code&gt; ได้ทุกๆ ที่&lt;!-- more --&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><summary type="html">อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา Ruby ก็คือ Memoization แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค Memoization จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว Memoization คืออะไร Memoization is the process of storing a computed value to avoid duplicated work by future calls. ถ้าแบ่งเป็นขั้นตอนจะมีด้วยกัน 3 ขั้นด้วยกันคือ โค้ดถูกเรียกใช้งาน เพื่อประมวลผลอะไรบางอย่าง แทนที่จะส่งค่าคืนกลับไปเมื่อถูกเรียกเพียงอย่างเดียว จะเก็บค่าที่ได้จากการประมวลผลเอาไว้ในตัวแปร เมื่อมีการเรียกใช้งานโค้ดดังกล่าวอีกครั้ง ก็จะดึงค่าที่เก็บเอาไว้ส่งคืนกลับไป โดยไม่ต้องประมวลผลใหม่ ถ้าอ่านคำอธิบายข้างต้นแล้วยังงง มาดูรายละเอียดพร้อมกับโค้ดตัวอย่างกันเลยดีกว่า น่าจะทำให้เข้าได้ดียิ่งขึ้น ก่อนอื่นลงสังเกต โค้ดด้านล่าง จะเห็นว่ามีการเรียกใช้ user_score ซึ่งจะทำการดึงข้อมูลคะแนนของผู้ใช้งานจากฐานข้อมูล 1 2 3 def user_score User.find_by(name: 'Sam').try(:score) end เมื่อ user_score ถูกเรียกใช้ ไม่ว่าจะกี่ครั้งสิ่งที่เกิดขึ้นคือจะต้องไปดึงข้อมูลจากฐานข้อมูลทุกรอบ ซึ่งก็เป็นกระบวนการที่เสียเวลา ให้เปลืองทรัพยากร จุดที่ Memoization ถูกนำมาใช้ก็คือตรงนี้เองแหละครับ แทนที่เราจะต้องดึงข้อมูลจากฐานข้อมูลทุกรอบ เราก็จะเก็บข้อมูลที่เคยดึงเก็บเอาไว้ในตัวแปรหนึ่งตัว ซึ่งนั้นก็คือ @user_score ดังแสดงในโค้ดด้านล่าง Memoization มักจะใช้เครื่องหมาย ||= 1 2 3 def user_score @user_score ||= User.find_by(name: 'Sam').try(:score) end พูดง่ายๆ Memoization ก็เป็นการ Caching ข้อมูลนั้นเอง References https://en.wikipedia.org/wiki/Memoization http://gavinmiller.io/2013/basics-of-ruby-memoization https://rubyinrails.com/2014/11/03/memoization-ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/memoization-in-ruby/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/memoization-in-ruby/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ruby’s Main Object</title><link href="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html" rel="alternate" type="text/html" title="Ruby’s Main Object" /><published>2020-10-15T14:22:00+07:00</published><updated>2020-10-15T14:22:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/15/ruby-s-main-object</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html">**Ruby** ถูกออกแบบขึ้นมาภายใต้หลักการของ **Object** นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน **Ruby** ล้วนเป็น **Object** ทั้งหมด โดย **Object** ที่เป็น **Top Level** จะเรียกว่า **Main Object** ซึ่งเมธอดที่ถูกนิยามภายใต้ **Main Object** สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด `puts`, `respond_to?` หรือ `is_a?` ได้ทุกๆ ที่&lt;!-- more --&gt;
 
-&lt;p&gt;จริงๆ แล้ว &lt;strong&gt;Main Object&lt;/strong&gt; จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด &lt;strong&gt;IRB&lt;/strong&gt;&lt;/p&gt;
+จริงๆ แล้ว **Main Object** จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด **IRB**
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ruby-s-main-object/main_object.png&quot; alt=&quot;main object&quot; width=&quot;300px&quot; /&gt;
-&lt;em&gt;Main Object ใน IRB&lt;/em&gt;&lt;/p&gt;
+![main object](/assets/images/posts/2020/ruby-s-main-object/main_object.png){:width=&quot;300px&quot;}
+*Main Object ใน IRB*
 
-&lt;p&gt;เราสามารถนิยามเมธอดที่สามารถเรียกใช้งานได้จากทุกๆ ที่ได้ง่ายๆ เพียงแค่นิยามเมธอดไว้ด้านนอกคลาส หรือโมดูลเท่านั้น &lt;strong&gt;Ruby&lt;/strong&gt; จะก็จะผูกเมธอดนั้นๆ เข้ากับ &lt;strong&gt;Main Object&lt;/strong&gt; ให้เราโดยอัตโนมัติ&lt;/p&gt;
+เราสามารถนิยามเมธอดที่สามารถเรียกใช้งานได้จากทุกๆ ที่ได้ง่ายๆ เพียงแค่นิยามเมธอดไว้ด้านนอกคลาส หรือโมดูลเท่านั้น **Ruby** จะก็จะผูกเมธอดนั้นๆ เข้ากับ **Main Object** ให้เราโดยอัตโนมัติ
 
-&lt;p&gt;ลองนิยามเมธอด &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;show_message&lt;/code&gt; มาทดสอบกัน&lt;/p&gt;
+ลองนิยามเมธอด `show_message` มาทดสอบกัน
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ruby-s-main-object/irb_define_method.png&quot; alt=&quot;main object&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;show_message in irb&lt;/em&gt;&lt;/p&gt;
+![main object](/assets/images/posts/2020/ruby-s-main-object/irb_define_method.png){:width=&quot;600px&quot;}
+*show_message in irb*
 
-&lt;blockquote&gt;
-  &lt;p&gt;สิ่งหนึ่งที่มีความแตกต่างกันระหว่างการนิยามเมธอดใน &lt;strong&gt;IRB&lt;/strong&gt; กับในไฟล์ &lt;strong&gt;Ruby&lt;/strong&gt; ก็คือ &lt;strong&gt;IRB&lt;/strong&gt; จะผูกเมธอดที่นิยามในขอบเขตที่เป็น &lt;strong&gt;public&lt;/strong&gt; แต่ในไฟล์จะถูกผูกในขอบเขตที่เป็น &lt;strong&gt;private&lt;/strong&gt; อันนี้ต้องไปลองเล่นดูได้นะครับ จะได้เห็นความแตกต่าง&lt;/p&gt;
-&lt;/blockquote&gt;
+&gt; สิ่งหนึ่งที่มีความแตกต่างกันระหว่างการนิยามเมธอดใน **IRB** กับในไฟล์ **Ruby** ก็คือ **IRB** จะผูกเมธอดที่นิยามในขอบเขตที่เป็น **public** แต่ในไฟล์จะถูกผูกในขอบเขตที่เป็น **private** อันนี้ต้องไปลองเล่นดูได้นะครับ จะได้เห็นความแตกต่าง
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what&quot;&gt;https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/&quot;&gt;https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><summary type="html">Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่ จริงๆ แล้ว Main Object จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด IRB Main Object ใน IRB เราสามารถนิยามเมธอดที่สามารถเรียกใช้งานได้จากทุกๆ ที่ได้ง่ายๆ เพียงแค่นิยามเมธอดไว้ด้านนอกคลาส หรือโมดูลเท่านั้น Ruby จะก็จะผูกเมธอดนั้นๆ เข้ากับ Main Object ให้เราโดยอัตโนมัติ ลองนิยามเมธอด show_message มาทดสอบกัน show_message in irb สิ่งหนึ่งที่มีความแตกต่างกันระหว่างการนิยามเมธอดใน IRB กับในไฟล์ Ruby ก็คือ IRB จะผูกเมธอดที่นิยามในขอบเขตที่เป็น public แต่ในไฟล์จะถูกผูกในขอบเขตที่เป็น private อันนี้ต้องไปลองเล่นดูได้นะครับ จะได้เห็นความแตกต่าง References https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to update micro:bit firmware</title><link href="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html" rel="alternate" type="text/html" title="How to update micro:bit firmware" /><published>2020-10-14T22:29:00+07:00</published><updated>2020-10-14T22:29:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html">&lt;p&gt;&lt;strong&gt;Firmware&lt;/strong&gt; คือโปรแกรมแกรม (&lt;strong&gt;Software&lt;/strong&gt;) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (&lt;strong&gt;Hardware&lt;/strong&gt;) ให้ทำงานได้ราบรื่น แม้กระทั่ง &lt;strong&gt;micro:bit&lt;/strong&gt; เองก็ต้องมี &lt;strong&gt;Firmware&lt;/strong&gt; เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; ให้ทันสมัยก็จะช่วยให้การทำงาน &lt;strong&gt;micro:bit&lt;/strong&gt; ดียิ่งขึ้น&lt;/p&gt;
+## References
+- [https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what](https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what)
+- [https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/](https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><summary type="html">Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่ จริงๆ แล้ว Main Object จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด IRB Main Object ใน IRB เราสามารถนิยามเมธอดที่สามารถเรียกใช้งานได้จากทุกๆ ที่ได้ง่ายๆ เพียงแค่นิยามเมธอดไว้ด้านนอกคลาส หรือโมดูลเท่านั้น Ruby จะก็จะผูกเมธอดนั้นๆ เข้ากับ Main Object ให้เราโดยอัตโนมัติ ลองนิยามเมธอด show_message มาทดสอบกัน show_message in irb สิ่งหนึ่งที่มีความแตกต่างกันระหว่างการนิยามเมธอดใน IRB กับในไฟล์ Ruby ก็คือ IRB จะผูกเมธอดที่นิยามในขอบเขตที่เป็น public แต่ในไฟล์จะถูกผูกในขอบเขตที่เป็น private อันนี้ต้องไปลองเล่นดูได้นะครับ จะได้เห็นความแตกต่าง References https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to update micro:bit firmware</title><link href="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html" rel="alternate" type="text/html" title="How to update micro:bit firmware" /><published>2020-10-14T22:29:00+07:00</published><updated>2020-10-14T22:29:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html">**Firmware** คือโปรแกรมแกรม (**Software**) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (**Hardware**) ให้ทำงานได้ราบรื่น แม้กระทั่ง **micro:bit** เองก็ต้องมี **Firmware** เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ **Firmware** ให้ทันสมัยก็จะช่วยให้การทำงาน **micro:bit** ดียิ่งขึ้น 
 
-&lt;h2 id=&quot;ตรวจสอบเวอร์ชันของ-firmware&quot;&gt;ตรวจสอบเวอร์ชันของ Firmware&lt;/h2&gt;
+## ตรวจสอบเวอร์ชันของ Firmware
 
-&lt;p&gt;เราสามารถตรวจสอบเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; ที่ติดตั้งอยู่บน &lt;strong&gt;micro:bit&lt;/strong&gt; ได้ไม่ยาก เพียงแค่ต่อบอร์ด &lt;strong&gt;micro:bit&lt;/strong&gt; ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ &lt;strong&gt;DETAILS.TXT&lt;/strong&gt; บนไดรฟ์ &lt;strong&gt;MICROBIT&lt;/strong&gt;&lt;/p&gt;
+เราสามารถตรวจสอบเวอร์ชันของ **Firmware** ที่ติดตั้งอยู่บน **micro:bit** ได้ไม่ยาก เพียงแค่ต่อบอร์ด **micro:bit** ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ **DETAILS.TXT** บนไดรฟ์ **MICROBIT**
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/microbit_drive.png&quot; alt=&quot;MICROBIT Drive&quot; width=&quot;400px&quot; /&gt;
-&lt;em&gt;MICROBIT Drive&lt;/em&gt;&lt;/p&gt;
+![MICROBIT Drive](/assets/images/posts/2020/how-to-update-micro-bit-firmware/microbit_drive.png){:width=&quot;400px&quot;}
+*MICROBIT Drive*
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/details.png&quot; alt=&quot;DETAILS.TXT&quot; /&gt;
-&lt;em&gt;Firmware: 0250&lt;/em&gt;&lt;/p&gt;
+![DETAILS.TXT](/assets/images/posts/2020/how-to-update-micro-bit-firmware/details.png)
+*Firmware: 0250*
 
-&lt;p&gt;ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interface Version&lt;/code&gt; ซึ่งจะเห็นว่า &lt;strong&gt;micro:bit&lt;/strong&gt; มีเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0250&lt;/code&gt;&lt;/p&gt;
+ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า `Interface Version` ซึ่งจะเห็นว่า **micro:bit** มีเวอร์ชันของ **Firmware** เป็น `0250`
 
-&lt;h2 id=&quot;อัพเดตกันได้เลย&quot;&gt;อัพเดตกันได้เลย&lt;/h2&gt;
+## อัพเดตกันได้เลย
 
-&lt;p&gt;มาดูที่วิธีการอัพเดต &lt;strong&gt;Firmware&lt;/strong&gt; กันบ้าง โดยเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; ล่าสุดจะเป็นเวอร์ชัน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0253&lt;/code&gt;&lt;/p&gt;
+มาดูที่วิธีการอัพเดต **Firmware** กันบ้าง โดยเวอร์ชันของ **Firmware** ล่าสุดจะเป็นเวอร์ชัน `0253`
 
-&lt;ul&gt;
-  &lt;li&gt;ดาว์นโหลด &lt;strong&gt;Firmware&lt;/strong&gt; มาไว้ที่เครื่องจาก&lt;a href=&quot;https://cdn.sanity.io/files/ajwvhvgo/production/5ecfa4d407a9d02e0f2e7fe192e5fa6a246f8621.hex?dl=0253_kl26z_microbit_0x8000.hex&quot;&gt;ที่นี่&lt;/a&gt; ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.hex&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;ถอดสาย &lt;strong&gt;USB&lt;/strong&gt; ที่เชื่อมต่อออกจาก &lt;strong&gt;micro:bit&lt;/strong&gt; รวมถึงไฟเลี้ยงด้วย&lt;/li&gt;
-  &lt;li&gt;กดปุ่ม &lt;strong&gt;Reset&lt;/strong&gt; แช่เอาไว้ พร้อมกับต่อสาย &lt;strong&gt;USB&lt;/strong&gt; เข้ากับตัว &lt;strong&gt;micro:bit&lt;/strong&gt; โดยในคราวนี้จะปรากฏเป็นไดรฟ์ &lt;strong&gt;MAINTENANCE&lt;/strong&gt; ขึ้นมาแทนที่จะเป็น &lt;strong&gt;MICROBIT&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
+- ดาว์นโหลด **Firmware** มาไว้ที่เครื่องจาก[ที่นี่](https://cdn.sanity.io/files/ajwvhvgo/production/5ecfa4d407a9d02e0f2e7fe192e5fa6a246f8621.hex?dl=0253_kl26z_microbit_0x8000.hex) ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ `.hex`
+- ถอดสาย **USB** ที่เชื่อมต่อออกจาก **micro:bit** รวมถึงไฟเลี้ยงด้วย
+- กดปุ่ม **Reset** แช่เอาไว้ พร้อมกับต่อสาย **USB** เข้ากับตัว **micro:bit** โดยในคราวนี้จะปรากฏเป็นไดรฟ์ **MAINTENANCE** ขึ้นมาแทนที่จะเป็น **MICROBIT**
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/maintenance_drive.png&quot; alt=&quot;MAINTENANCE Drive&quot; width=&quot;400px&quot; /&gt;&lt;/p&gt;
+![MAINTENANCE Drive](/assets/images/posts/2020/how-to-update-micro-bit-firmware/maintenance_drive.png){:width=&quot;400px&quot;}
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;ลากไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.hex&lt;/code&gt; เข้าไปยังไดรฟ์ &lt;strong&gt;MAINTENANCE&lt;/strong&gt; ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ &lt;strong&gt;MICROBIT&lt;/strong&gt; ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต &lt;strong&gt;Firmware&lt;/strong&gt; ใหม่สำเร็จเรียบร้อย&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ตรวจสอบไฟล์ &lt;strong&gt;DETAILS.TXT&lt;/strong&gt; ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0253&lt;/code&gt; ถูกต้องหรือไม่&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+- ลากไฟล์ `.hex` เข้าไปยังไดรฟ์ **MAINTENANCE** ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ **MICROBIT** ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต **Firmware** ใหม่สำเร็จเรียบร้อย
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/new_version.png&quot; alt=&quot;NEW FIRMWARE&quot; /&gt;
-&lt;em&gt;Firmware: 0253&lt;/em&gt;&lt;/p&gt;
+- ตรวจสอบไฟล์ **DETAILS.TXT** ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น `0253` ถูกต้องหรือไม่
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://microbit.org/get-started/user-guide/firmware/&quot;&gt;https://microbit.org/get-started/user-guide/firmware/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">Firmware คือโปรแกรมแกรม (Software) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (Hardware) ให้ทำงานได้ราบรื่น แม้กระทั่ง micro:bit เองก็ต้องมี Firmware เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ Firmware ให้ทันสมัยก็จะช่วยให้การทำงาน micro:bit ดียิ่งขึ้น ตรวจสอบเวอร์ชันของ Firmware เราสามารถตรวจสอบเวอร์ชันของ Firmware ที่ติดตั้งอยู่บน micro:bit ได้ไม่ยาก เพียงแค่ต่อบอร์ด micro:bit ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ DETAILS.TXT บนไดรฟ์ MICROBIT MICROBIT Drive Firmware: 0250 ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า Interface Version ซึ่งจะเห็นว่า micro:bit มีเวอร์ชันของ Firmware เป็น 0250 อัพเดตกันได้เลย มาดูที่วิธีการอัพเดต Firmware กันบ้าง โดยเวอร์ชันของ Firmware ล่าสุดจะเป็นเวอร์ชัน 0253 ดาว์นโหลด Firmware มาไว้ที่เครื่องจากที่นี่ ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ .hex ถอดสาย USB ที่เชื่อมต่อออกจาก micro:bit รวมถึงไฟเลี้ยงด้วย กดปุ่ม Reset แช่เอาไว้ พร้อมกับต่อสาย USB เข้ากับตัว micro:bit โดยในคราวนี้จะปรากฏเป็นไดรฟ์ MAINTENANCE ขึ้นมาแทนที่จะเป็น MICROBIT ลากไฟล์ .hex เข้าไปยังไดรฟ์ MAINTENANCE ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ MICROBIT ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต Firmware ใหม่สำเร็จเรียบร้อย ตรวจสอบไฟล์ DETAILS.TXT ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น 0253 ถูกต้องหรือไม่ Firmware: 0253 References https://microbit.org/get-started/user-guide/firmware/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">What is micro:bit</title><link href="https://karn18.github.io/stem/2020/10/13/what-is-micro-bit.html" rel="alternate" type="text/html" title="What is micro:bit" /><published>2020-10-13T22:16:00+07:00</published><updated>2020-10-13T22:16:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/13/what-is-micro-bit</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/13/what-is-micro-bit.html">&lt;p&gt;การศึกษาในศตวรรษที่ 21 การแค่ให้เด็กท่องๆ จำๆ ตัวอักษรตามตำราแล้วไปสอบนั้นคงไม่พอที่จะเอาตัวรอดอีกต่อไป สำหรับเด็กในยุคนี้การศึกษาด้วยแนวทางใหม่ที่เรียกว่า &lt;strong&gt;STEM&lt;/strong&gt; ถือเป็นแนวทางการศึกษาที่จะถูกคิด และบูรณาการศาสตร์จาก 4 แขนง อันได้แก่ &lt;strong&gt;วิทยาศาตร์(Science) เทคโนโลยี(Technology) วิศวกรรมศาสตร์(Engineering) และคณิตศาสตร์(Mathematics)&lt;/strong&gt; เพื่อจะทำให้เด็กเกิดความคิดสร้างสรรค์ รู้จักประยุกต์ความรู้ที่ได้ไปใช้งานให้เหมาะสม และเข้าใจในนวัตกรรมที่เกิดขึ้น&lt;!-- more --&gt;&lt;/p&gt;
+![NEW FIRMWARE](/assets/images/posts/2020/how-to-update-micro-bit-firmware/new_version.png)
+*Firmware: 0253*
 
-&lt;p&gt;การเขียนโค้ดหรือโปรแกรมมิ่ง (&lt;strong&gt;Programming&lt;/strong&gt;) เป็นอีกหนึ่งทักษะที่จะกระตุ้นให้เด็กๆ เกิดการเรียนรู้ &lt;strong&gt;STEM&lt;/strong&gt; โดยในบทความนี้จะแนะนำการเขียนโค้ดผ่าน &lt;strong&gt;micro:bit&lt;/strong&gt; ซึ่งเป็นบอร์ดไมโครคอนโทรลเลอร์ที่ได้รับการออกแบบพัฒนาขึ้นมาโดย &lt;strong&gt;BBC&lt;/strong&gt; และความร่วมมือของพันธมิตรในการพัฒนาชุดเครื่องมือสำหรับการเขียนโค้ดด้วย &lt;strong&gt;micro:bit&lt;/strong&gt; นอกจากนั้นยังได้มีการแจกจ่าย &lt;strong&gt;micro:bit&lt;/strong&gt; จำนวน 1 ล้านชิ้นให้กับโรงเรียนทั่วประเทศอังกฤษเพื่อเป็นสื่อการเรียนการสอนการเขียนโค้ดให้กับเด็กๆ&lt;/p&gt;
+## References
+- [https://microbit.org/get-started/user-guide/firmware/](https://microbit.org/get-started/user-guide/firmware/)</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">Firmware คือโปรแกรมแกรม (Software) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (Hardware) ให้ทำงานได้ราบรื่น แม้กระทั่ง micro:bit เองก็ต้องมี Firmware เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ Firmware ให้ทันสมัยก็จะช่วยให้การทำงาน micro:bit ดียิ่งขึ้น ตรวจสอบเวอร์ชันของ Firmware เราสามารถตรวจสอบเวอร์ชันของ Firmware ที่ติดตั้งอยู่บน micro:bit ได้ไม่ยาก เพียงแค่ต่อบอร์ด micro:bit ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ DETAILS.TXT บนไดรฟ์ MICROBIT MICROBIT Drive Firmware: 0250 ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า Interface Version ซึ่งจะเห็นว่า micro:bit มีเวอร์ชันของ Firmware เป็น 0250 อัพเดตกันได้เลย มาดูที่วิธีการอัพเดต Firmware กันบ้าง โดยเวอร์ชันของ Firmware ล่าสุดจะเป็นเวอร์ชัน 0253 ดาว์นโหลด Firmware มาไว้ที่เครื่องจากที่นี่ ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ .hex ถอดสาย USB ที่เชื่อมต่อออกจาก micro:bit รวมถึงไฟเลี้ยงด้วย กดปุ่ม Reset แช่เอาไว้ พร้อมกับต่อสาย USB เข้ากับตัว micro:bit โดยในคราวนี้จะปรากฏเป็นไดรฟ์ MAINTENANCE ขึ้นมาแทนที่จะเป็น MICROBIT ลากไฟล์ .hex เข้าไปยังไดรฟ์ MAINTENANCE ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ MICROBIT ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต Firmware ใหม่สำเร็จเรียบร้อย ตรวจสอบไฟล์ DETAILS.TXT ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น 0253 ถูกต้องหรือไม่ Firmware: 0253 References https://microbit.org/get-started/user-guide/firmware/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">What is micro:bit</title><link href="https://karn18.github.io/stem/2020/10/13/what-is-micro-bit.html" rel="alternate" type="text/html" title="What is micro:bit" /><published>2020-10-13T22:16:00+07:00</published><updated>2020-10-13T22:16:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/13/what-is-micro-bit</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/13/what-is-micro-bit.html">การศึกษาในศตวรรษที่ 21 การแค่ให้เด็กท่องๆ จำๆ ตัวอักษรตามตำราแล้วไปสอบนั้นคงไม่พอที่จะเอาตัวรอดอีกต่อไป สำหรับเด็กในยุคนี้การศึกษาด้วยแนวทางใหม่ที่เรียกว่า **STEM** ถือเป็นแนวทางการศึกษาที่จะถูกคิด และบูรณาการศาสตร์จาก 4 แขนง อันได้แก่ **วิทยาศาตร์(Science) เทคโนโลยี(Technology) วิศวกรรมศาสตร์(Engineering) และคณิตศาสตร์(Mathematics)** เพื่อจะทำให้เด็กเกิดความคิดสร้างสรรค์ รู้จักประยุกต์ความรู้ที่ได้ไปใช้งานให้เหมาะสม และเข้าใจในนวัตกรรมที่เกิดขึ้น&lt;!-- more --&gt;
 
-&lt;h2 id=&quot;องค์ประกอบของ-microbit&quot;&gt;องค์ประกอบของ micro:bit&lt;/h2&gt;
+การเขียนโค้ดหรือโปรแกรมมิ่ง (**Programming**) เป็นอีกหนึ่งทักษะที่จะกระตุ้นให้เด็กๆ เกิดการเรียนรู้ **STEM** โดยในบทความนี้จะแนะนำการเขียนโค้ดผ่าน **micro:bit** ซึ่งเป็นบอร์ดไมโครคอนโทรลเลอร์ที่ได้รับการออกแบบพัฒนาขึ้นมาโดย **BBC** และความร่วมมือของพันธมิตรในการพัฒนาชุดเครื่องมือสำหรับการเขียนโค้ดด้วย **micro:bit** นอกจากนั้นยังได้มีการแจกจ่าย **micro:bit** จำนวน 1 ล้านชิ้นให้กับโรงเรียนทั่วประเทศอังกฤษเพื่อเป็นสื่อการเรียนการสอนการเขียนโค้ดให้กับเด็กๆ
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-is-micro-bit/components.png&quot; alt=&quot;Components&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;micro:bit&lt;/em&gt;&lt;/p&gt;
+## องค์ประกอบของ micro:bit
 
-&lt;p&gt;ขอแยกอธิบายแต่ละด้านของ &lt;strong&gt;micro:bit&lt;/strong&gt; แล้วกัน&lt;/p&gt;
+![Components](/assets/images/posts/2020/what-is-micro-bit/components.png){:width=&quot;500px&quot;}
+*micro:bit*
 
-&lt;ul&gt;
-  &lt;li&gt;ด้านหน้า&lt;/li&gt;
-&lt;/ul&gt;
+ขอแยกอธิบายแต่ละด้านของ **micro:bit** แล้วกัน
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-is-micro-bit/front.png&quot; alt=&quot;Front&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+- ด้านหน้า
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;ปุ่ม A และ B&lt;/p&gt;
+![Front](/assets/images/posts/2020/what-is-micro-bit/front.png){:width=&quot;300px&quot;}
 
-    &lt;p&gt;เราสามารถเขียนโค้ดเพื่อรับการกดปุ่ม เพื่อสั่งให้บอร์ดทำอย่างอื่นต่อได้&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ไฟ LED ขนาด 5x5&lt;/p&gt;
+1. ปุ่ม A และ B
 
-    &lt;p&gt;ใช้สำหรับแสดงผลต่างๆ ไม่ว่าจะเป็นตัวเลข ตัวอักษร กราฟ หรือภาพ โดยไฟจะสว่างเป็นสีแดง นอกจากนั้นเรายังสามารถควบคุมระดับความสว่างของหลอดไฟได้ด้วย&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;GPIO Pins&lt;/p&gt;
+    เราสามารถเขียนโค้ดเพื่อรับการกดปุ่ม เพื่อสั่งให้บอร์ดทำอย่างอื่นต่อได้
 
-    &lt;p&gt;เป็นพินที่ใช้สำหรับต่อวงจรภายนอก ถ้าดูจากภาพแล้วจะประกอบไปด้วยพินขนาดใหญ่จำนวน 3 พิน ระหว่างพินจะมีพินขนาดเล็กรวมกันทั้งหมด 20 พิน โดยแต่ละพินสามารถใช้รับ/ส่งสัญญาณได้ทั้งแบบแอนะล็อก (Analog) และดิจิทัล (Digital)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;3V Pin&lt;/p&gt;
+2. ไฟ LED ขนาด 5x5
 
-    &lt;p&gt;พินสำหรับต่อไฟขนาด 3 โวลต์ เพื่อเป็นแหล่งจ่ายไฟให้กับอุปกรณ์ที่มาต่อ&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;GND Pin&lt;/p&gt;
-
-    &lt;p&gt;พินสำหรับต่อกราวด์&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+    ใช้สำหรับแสดงผลต่างๆ ไม่ว่าจะเป็นตัวเลข ตัวอักษร กราฟ หรือภาพ โดยไฟจะสว่างเป็นสีแดง นอกจากนั้นเรายังสามารถควบคุมระดับความสว่างของหลอดไฟได้ด้วย
 
-&lt;blockquote&gt;
-  &lt;p&gt;สำหรับพินทั้งหมดที่อยู่บนบอร์ดจะด้วยกันทั้ง 25 พิน&lt;/p&gt;
-&lt;/blockquote&gt;
+3. GPIO Pins
 
-&lt;ul&gt;
-  &lt;li&gt;ด้านหลัง&lt;/li&gt;
-&lt;/ul&gt;
+    เป็นพินที่ใช้สำหรับต่อวงจรภายนอก ถ้าดูจากภาพแล้วจะประกอบไปด้วยพินขนาดใหญ่จำนวน 3 พิน ระหว่างพินจะมีพินขนาดเล็กรวมกันทั้งหมด 20 พิน โดยแต่ละพินสามารถใช้รับ/ส่งสัญญาณได้ทั้งแบบแอนะล็อก (Analog) และดิจิทัล (Digital)
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-is-micro-bit/back.png&quot; alt=&quot;Front&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+4. 3V Pin
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;ตัวรับส่งสัญญาณคลื่นวิทยุ (Radio) และบลูทูธพลังงานต่ำ (Bluetooth Low Energy ~ BLE)&lt;/p&gt;
+    พินสำหรับต่อไฟขนาด 3 โวลต์ เพื่อเป็นแหล่งจ่ายไฟให้กับอุปกรณ์ที่มาต่อ
 
-    &lt;p&gt;&lt;strong&gt;micro:bit&lt;/strong&gt; สามารถติดต่อสื่อสารระหว่างกันผ่านคลื่นวิทยุ และสามารถใช้เชื่อมต่อกับอุปกรณ์มือถือหรือแทบเล็ตผ่านบลูทูธ&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;หน่วยประมวลผล&lt;/p&gt;
+5. GND Pin
 
-    &lt;p&gt;เป็นศูนย์กลางในการประมวลผล หรือเรียกได้ว่าเป็นสมองของบอร์ด &lt;strong&gt;micro:bit&lt;/strong&gt; นั้นเอง&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;เซนเซอร์วัดความเข้มสนามแม่เหล็ก (Magnatic Sensor) หรือเข็มทิศ&lt;/p&gt;
+    พินสำหรับต่อกราวด์
 
-    &lt;p&gt;นั้นทำให้เราสามารถเขียนโค้ดเพื่อใช้สำหรับบอกทิศที่อยู่ตรงหน้าเราได้&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;เซนเซอร์วัดความเร่ง (Accelerometer Sensor)&lt;/p&gt;
+&gt; สำหรับพินทั้งหมดที่อยู่บนบอร์ดจะด้วยกันทั้ง 25 พิน
 
-    &lt;p&gt;การตรวจจับการเคลื่อนที่ การตก การสั่น หรือการเอียงของบอร์ด ก็นำไปประยุกต์ใช้ในการควบคุมอุปกรณ์อื่นๆ ได้ไม่ยาก&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Pins&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Micro USB&lt;/p&gt;
+- ด้านหลัง
 
-    &lt;p&gt;เชื่อมต่อระหว่างบอร์ดกับเครื่องคอมพิวเตอร์ เพื่อใช้สำหรับโหลดโปรแกรม และจ่ายไฟให้กับบอร์ด&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;หลอดไฟแสดงสถานะ&lt;/p&gt;
+![Front](/assets/images/posts/2020/what-is-micro-bit/back.png){:width=&quot;300px&quot;}
 
-    &lt;p&gt;เมื่อมีต่อกับแหล่งจ่ายไฟ หรือขณะทำการโหลดโปรแกรม&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ปุ่มรีเซท&lt;/p&gt;
+1. ตัวรับส่งสัญญาณคลื่นวิทยุ (Radio) และบลูทูธพลังงานต่ำ (Bluetooth Low Energy ~ BLE)
 
-    &lt;p&gt;เราสามารถกดปุ่มรีเซท เพื่อให้โปรแกรมเริ่มทำงานใหม่อีกครั้ง&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ช่องต่อไฟเลี้ยง&lt;/p&gt;
+    **micro:bit** สามารถติดต่อสื่อสารระหว่างกันผ่านคลื่นวิทยุ และสามารถใช้เชื่อมต่อกับอุปกรณ์มือถือหรือแทบเล็ตผ่านบลูทูธ
 
-    &lt;p&gt;ใช้เชื่อมต่อกับแหล่งจ่ายไฟขนาด 3 โวลต์&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;USB Inferface Chip&lt;/p&gt;
+2. หน่วยประมวลผล
 
-    &lt;p&gt;เป็นชิพสำหรับควมคุมการเชื่อมต่อกับ USB ในการโหลดโค้ดลงบอร์ด&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+    เป็นศูนย์กลางในการประมวลผล หรือเรียกได้ว่าเป็นสมองของบอร์ด **micro:bit** นั้นเอง
 
-&lt;h2 id=&quot;เครื่องมือสำหรับเขียนโค้ด-microsoft-makecode&quot;&gt;เครื่องมือสำหรับเขียนโค้ด Microsoft MakeCode&lt;/h2&gt;
+3. เซนเซอร์วัดความเข้มสนามแม่เหล็ก (Magnatic Sensor) หรือเข็มทิศ
 
-&lt;p&gt;&lt;strong&gt;Microsoft MakeCode&lt;/strong&gt; เป็นเครื่องมือที่ถูกพัฒนาขึ้นมาสำหรับ &lt;strong&gt;micro:bit&lt;/strong&gt; โดยรองรับการเขียนโค้ดทั้งในรูปแบบบล๊อก (Block) ซึ่งจะคล้ายกับการต่อตัวต่อแบบลากวาง เหมาะสำหรับเด็กๆ ที่เริ่มต้นเขียนโค้ด และรองรับการเขียนโค้ดแบบข้อความ (Text-based) ซึ่งมีด้วยให้เลือกใช้ด้วยกัน 2 ภาษาเลยทีเดียว นั้นก็คือ &lt;strong&gt;JavaScript&lt;/strong&gt; และ &lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
+    นั้นทำให้เราสามารถเขียนโค้ดเพื่อใช้สำหรับบอกทิศที่อยู่ตรงหน้าเราได้
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-is-micro-bit/makecode.png&quot; alt=&quot;MakeCode&quot; /&gt;&lt;/p&gt;
+4. เซนเซอร์วัดความเร่ง (Accelerometer Sensor)
 
-&lt;p&gt;สำหรับในบทความนี้ก็น่าจะทำให้เราเริ่มรู้จักกับ &lt;strong&gt;micro:bit&lt;/strong&gt; และเครื่องมือสำหรับเขียนโค้ดกันไปแล้ว ในบทความหน้าเราจะมาลองมือเขียนโค้ด และรันโค้ดของเรากัน อย่าลืมรอติดตามกันนะครับ&lt;/p&gt;
+    การตรวจจับการเคลื่อนที่ การตก การสั่น หรือการเอียงของบอร์ด ก็นำไปประยุกต์ใช้ในการควบคุมอุปกรณ์อื่นๆ ได้ไม่ยาก
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.microbit.org&quot;&gt;micro:bit&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://makecode.microbit.org/&quot;&gt;MakeCode&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">การศึกษาในศตวรรษที่ 21 การแค่ให้เด็กท่องๆ จำๆ ตัวอักษรตามตำราแล้วไปสอบนั้นคงไม่พอที่จะเอาตัวรอดอีกต่อไป สำหรับเด็กในยุคนี้การศึกษาด้วยแนวทางใหม่ที่เรียกว่า STEM ถือเป็นแนวทางการศึกษาที่จะถูกคิด และบูรณาการศาสตร์จาก 4 แขนง อันได้แก่ วิทยาศาตร์(Science) เทคโนโลยี(Technology) วิศวกรรมศาสตร์(Engineering) และคณิตศาสตร์(Mathematics) เพื่อจะทำให้เด็กเกิดความคิดสร้างสรรค์ รู้จักประยุกต์ความรู้ที่ได้ไปใช้งานให้เหมาะสม และเข้าใจในนวัตกรรมที่เกิดขึ้น การเขียนโค้ดหรือโปรแกรมมิ่ง (Programming) เป็นอีกหนึ่งทักษะที่จะกระตุ้นให้เด็กๆ เกิดการเรียนรู้ STEM โดยในบทความนี้จะแนะนำการเขียนโค้ดผ่าน micro:bit ซึ่งเป็นบอร์ดไมโครคอนโทรลเลอร์ที่ได้รับการออกแบบพัฒนาขึ้นมาโดย BBC และความร่วมมือของพันธมิตรในการพัฒนาชุดเครื่องมือสำหรับการเขียนโค้ดด้วย micro:bit นอกจากนั้นยังได้มีการแจกจ่าย micro:bit จำนวน 1 ล้านชิ้นให้กับโรงเรียนทั่วประเทศอังกฤษเพื่อเป็นสื่อการเรียนการสอนการเขียนโค้ดให้กับเด็กๆ องค์ประกอบของ micro:bit micro:bit ขอแยกอธิบายแต่ละด้านของ micro:bit แล้วกัน ด้านหน้า ปุ่ม A และ B เราสามารถเขียนโค้ดเพื่อรับการกดปุ่ม เพื่อสั่งให้บอร์ดทำอย่างอื่นต่อได้ ไฟ LED ขนาด 5x5 ใช้สำหรับแสดงผลต่างๆ ไม่ว่าจะเป็นตัวเลข ตัวอักษร กราฟ หรือภาพ โดยไฟจะสว่างเป็นสีแดง นอกจากนั้นเรายังสามารถควบคุมระดับความสว่างของหลอดไฟได้ด้วย GPIO Pins เป็นพินที่ใช้สำหรับต่อวงจรภายนอก ถ้าดูจากภาพแล้วจะประกอบไปด้วยพินขนาดใหญ่จำนวน 3 พิน ระหว่างพินจะมีพินขนาดเล็กรวมกันทั้งหมด 20 พิน โดยแต่ละพินสามารถใช้รับ/ส่งสัญญาณได้ทั้งแบบแอนะล็อก (Analog) และดิจิทัล (Digital) 3V Pin พินสำหรับต่อไฟขนาด 3 โวลต์ เพื่อเป็นแหล่งจ่ายไฟให้กับอุปกรณ์ที่มาต่อ GND Pin พินสำหรับต่อกราวด์ สำหรับพินทั้งหมดที่อยู่บนบอร์ดจะด้วยกันทั้ง 25 พิน ด้านหลัง ตัวรับส่งสัญญาณคลื่นวิทยุ (Radio) และบลูทูธพลังงานต่ำ (Bluetooth Low Energy ~ BLE) micro:bit สามารถติดต่อสื่อสารระหว่างกันผ่านคลื่นวิทยุ และสามารถใช้เชื่อมต่อกับอุปกรณ์มือถือหรือแทบเล็ตผ่านบลูทูธ หน่วยประมวลผล เป็นศูนย์กลางในการประมวลผล หรือเรียกได้ว่าเป็นสมองของบอร์ด micro:bit นั้นเอง เซนเซอร์วัดความเข้มสนามแม่เหล็ก (Magnatic Sensor) หรือเข็มทิศ นั้นทำให้เราสามารถเขียนโค้ดเพื่อใช้สำหรับบอกทิศที่อยู่ตรงหน้าเราได้ เซนเซอร์วัดความเร่ง (Accelerometer Sensor) การตรวจจับการเคลื่อนที่ การตก การสั่น หรือการเอียงของบอร์ด ก็นำไปประยุกต์ใช้ในการควบคุมอุปกรณ์อื่นๆ ได้ไม่ยาก Pins Micro USB เชื่อมต่อระหว่างบอร์ดกับเครื่องคอมพิวเตอร์ เพื่อใช้สำหรับโหลดโปรแกรม และจ่ายไฟให้กับบอร์ด หลอดไฟแสดงสถานะ เมื่อมีต่อกับแหล่งจ่ายไฟ หรือขณะทำการโหลดโปรแกรม ปุ่มรีเซท เราสามารถกดปุ่มรีเซท เพื่อให้โปรแกรมเริ่มทำงานใหม่อีกครั้ง ช่องต่อไฟเลี้ยง ใช้เชื่อมต่อกับแหล่งจ่ายไฟขนาด 3 โวลต์ USB Inferface Chip เป็นชิพสำหรับควมคุมการเชื่อมต่อกับ USB ในการโหลดโค้ดลงบอร์ด เครื่องมือสำหรับเขียนโค้ด Microsoft MakeCode Microsoft MakeCode เป็นเครื่องมือที่ถูกพัฒนาขึ้นมาสำหรับ micro:bit โดยรองรับการเขียนโค้ดทั้งในรูปแบบบล๊อก (Block) ซึ่งจะคล้ายกับการต่อตัวต่อแบบลากวาง เหมาะสำหรับเด็กๆ ที่เริ่มต้นเขียนโค้ด และรองรับการเขียนโค้ดแบบข้อความ (Text-based) ซึ่งมีด้วยให้เลือกใช้ด้วยกัน 2 ภาษาเลยทีเดียว นั้นก็คือ JavaScript และ Python สำหรับในบทความนี้ก็น่าจะทำให้เราเริ่มรู้จักกับ micro:bit และเครื่องมือสำหรับเขียนโค้ดกันไปแล้ว ในบทความหน้าเราจะมาลองมือเขียนโค้ด และรันโค้ดของเรากัน อย่าลืมรอติดตามกันนะครับ References micro:bit MakeCode</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/what-is-micro-bit/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/what-is-micro-bit/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Micro:bit v2</title><link href="https://karn18.github.io/stem/2020/10/13/micro-bit-v2.html" rel="alternate" type="text/html" title="Micro:bit v2" /><published>2020-10-13T13:32:00+07:00</published><updated>2020-10-13T13:32:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/13/micro-bit-v2</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/13/micro-bit-v2.html">&lt;p&gt;เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง &lt;strong&gt;micro:bit Education Foundcation&lt;/strong&gt; ได้ประกาศเปิดตัว &lt;strong&gt;micro:bit&lt;/strong&gt; เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว &lt;strong&gt;micro:bit&lt;/strong&gt; กันบ้าง เรามาดูกันครับ&lt;/p&gt;
+5. Pins
 
-&lt;ul&gt;
-  &lt;li&gt;โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ&lt;/li&gt;
-  &lt;li&gt;แมมโมรี่ขนาด 152kB และแรม 128kB&lt;/li&gt;
-  &lt;li&gt;มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ&lt;/li&gt;
-  &lt;li&gt;เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส&lt;/li&gt;
-  &lt;li&gt;Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น&lt;/li&gt;
-  &lt;li&gt;เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0&lt;!-- more --&gt;&lt;/li&gt;
-&lt;/ul&gt;
+6. Micro USB
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/comparison-front.png&quot; alt=&quot;Front&quot; /&gt;
-&lt;em&gt;เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2&lt;/em&gt;&lt;/p&gt;
+    เชื่อมต่อระหว่างบอร์ดกับเครื่องคอมพิวเตอร์ เพื่อใช้สำหรับโหลดโปรแกรม และจ่ายไฟให้กับบอร์ด
+    
+7. หลอดไฟแสดงสถานะ
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/comparison-front.png&quot; alt=&quot;Back&quot; /&gt;
-&lt;em&gt;เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ &lt;strong&gt;Microsoft MakeCode&lt;/strong&gt; ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น&lt;/p&gt;
+    เมื่อมีต่อกับแหล่งจ่ายไฟ หรือขณะทำการโหลดโปรแกรม
 
-&lt;h2 id=&quot;on-loudquit-sound&quot;&gt;On loud/quit Sound&lt;/h2&gt;
+8. ปุ่มรีเซท
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/loudsound.png&quot; alt=&quot;Logo Pressed&quot; width=&quot;200px&quot; /&gt;
-&lt;em&gt;เมื่อมีเสียงดังหรือเงียบ&lt;/em&gt;&lt;/p&gt;
+    เราสามารถกดปุ่มรีเซท เพื่อให้โปรแกรมเริ่มทำงานใหม่อีกครั้ง
 
-&lt;h2 id=&quot;on-logo-pressed&quot;&gt;On Logo Pressed&lt;/h2&gt;
+9. ช่องต่อไฟเลี้ยง
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/onLogoPressed.png&quot; alt=&quot;Logo Pressed&quot; width=&quot;200px&quot; /&gt;
-&lt;em&gt;เมื่อสัมผัสที่โลโก้&lt;/em&gt;&lt;/p&gt;
+    ใช้เชื่อมต่อกับแหล่งจ่ายไฟขนาด 3 โวลต์
 
-&lt;h2 id=&quot;sound-level&quot;&gt;Sound Level&lt;/h2&gt;
+10. USB Inferface Chip
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/soundLevel.png&quot; alt=&quot;Sound Level&quot; width=&quot;200px&quot; /&gt;
-&lt;em&gt;ค่าระดับเสียงที่อ่านได้จากบอร์ด&lt;/em&gt;&lt;/p&gt;
+    เป็นชิพสำหรับควมคุมการเชื่อมต่อกับ USB ในการโหลดโค้ดลงบอร์ด
 
-&lt;h2 id=&quot;enabledisable-speaker&quot;&gt;Enable/disable Speaker&lt;/h2&gt;
+## เครื่องมือสำหรับเขียนโค้ด Microsoft MakeCode
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/speakerEnabled.png&quot; alt=&quot;Enable/disable Speaker&quot; width=&quot;300px&quot; /&gt;
-&lt;em&gt;เปิด/ปิดลำโพง&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน &lt;strong&gt;พฤศจิกายน 2020&lt;/strong&gt; ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ&lt;/p&gt;
-
-&lt;p&gt;ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://microbit.org/news/&quot;&gt;https://microbit.org/news/&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://tech.microbit.org/latest-revision/#overview&quot;&gt;Details of micro:bit v2&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง micro:bit Education Foundcation ได้ประกาศเปิดตัว micro:bit เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว micro:bit กันบ้าง เรามาดูกันครับ โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ แมมโมรี่ขนาด 152kB และแรม 128kB มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0 เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2 เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2 แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ Microsoft MakeCode ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น On loud/quit Sound เมื่อมีเสียงดังหรือเงียบ On Logo Pressed เมื่อสัมผัสที่โลโก้ Sound Level ค่าระดับเสียงที่อ่านได้จากบอร์ด Enable/disable Speaker เปิด/ปิดลำโพง มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน พฤศจิกายน 2020 ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ References https://microbit.org/news/ Details of micro:bit v2</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/micro-bit-v2/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/micro-bit-v2/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า</title><link href="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html" rel="alternate" type="text/html" title="เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า" /><published>2020-10-13T12:10:00+07:00</published><updated>2020-10-13T12:10:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html">&lt;p&gt;สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า &lt;strong&gt;Scheduler&lt;/strong&gt; มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;การส่ง &lt;strong&gt;email&lt;/strong&gt; แจ้งเตือนเมื่อถึงรอบเวลา&lt;/li&gt;
-  &lt;li&gt;การประมวลผลข้อมูลที่ใช้เวลานาน&lt;/li&gt;
-  &lt;li&gt;การออกรายงาน &lt;strong&gt;PDF&lt;/strong&gt; ในแต่ละเดือน&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ถ้าเป็นใน &lt;strong&gt;Unix&lt;/strong&gt; เราก็คงจะคุ้นชินกับการเรียกใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;crontab&lt;/code&gt; สำหรับ &lt;strong&gt;Ruby&lt;/strong&gt; เองก็จะใช้ &lt;strong&gt;gem&lt;/strong&gt; ที่มีความสามารถเช่นเดียวกัน นั้นก็คือ &lt;strong&gt;rufus-scheduler&lt;/strong&gt; ซึ่งปัญหาที่ผมและทีมเจอก็คือการนำ &lt;strong&gt;rufus-scheduler&lt;/strong&gt; มาใช้กับ &lt;strong&gt;Rails Application&lt;/strong&gt; ไม่ถูกวิธีจึงทำให้เกิดปัญหาการเรียกใช้งาน และสร้างข้อมูลซ้ำ รวมไปถึงการส่ง &lt;strong&gt;email&lt;/strong&gt; ไปยังลูกค้าซ้ำซ้อน โดยเคสปัญหาเกิดขึ้นดังนี้&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;สร้าง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config/initializers/scheduler.rb&lt;/code&gt; ซึ่งเป็นไฟล์ &lt;strong&gt;initializer&lt;/strong&gt; ไว้สำหรับรันงานตามกำหนดเวลา และจะทำงานทันทีที่โปรแกรมทำงาน&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;configinitializersschedulerrb&quot;&gt;config/initializers/scheduler.rb&lt;/h2&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'rufus-scheduler'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;scheduler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rufus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Scheduler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;scheduler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cron&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0 0 * * *'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# Send emails&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;UserMailer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;deliver_later&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;จากค่าที่กำหนดไว้ข้างต้นจะกำหนดให้ทุกๆ เที่ยงคืนจะส่ง &lt;strong&gt;email&lt;/strong&gt; แจ้งเตือนไปยังผู้ใช้งาน&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;เอ๊ะ!!!&lt;/strong&gt; ดูแล้วก็ไม่น่าจะมีประเด็นปัญหาอะไรนิ ใช่แล้วหละครับในกรณีที่เรารันแอพไว้เพียง 1 instance ก็จะไม่เกิดปัญหาอะไร ทีนี้ลองมานึกภาพตามผมกันดู&lt;/p&gt;
-
-&lt;p&gt;ถ้าเกิดว่าแอพของเราจำเป็นต้องมีการขยายให้รันได้ 2 instance หรือมากกว่านั้นเพื่อรับโหลดที่มากขึ้น ปัญหาการใช้งาน &lt;strong&gt;Scheduler&lt;/strong&gt; แบบวิธีข้างต้นก็จะสร้างปัญหาขึ้นมาทันที ซึ่งก็คือแต่ละ instance จะทำการเหมือนกันเมื่อถึงเวลาเที่ยงคืน และจะทำการส่ง &lt;strong&gt;email&lt;/strong&gt; ไปหาลูกค้า ทำให้แทนที่ลูกค้าคนหนึงควรจะได้รับ &lt;strong&gt;email&lt;/strong&gt; เพียงฉบับเดียกลับกลายเป็นหลายฉบับ&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/change-to-sidekiq-scheduler/issue.png&quot; alt=&quot;issue1&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;email จะถูกส่งซ้ำ เมื่อแอพรัน 2 instance&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;ที่นี้มองเห็นปัญหาแล้วใช่มั้ยครับ สำหรับวิธีแก้ไขปัญหาก็เพียงเปลี่ยนมาใช้ &lt;strong&gt;Sidekiq Scheduler&lt;/strong&gt; ซึ่งเป็น &lt;strong&gt;extension&lt;/strong&gt; หนึ่งของ &lt;strong&gt;Sidekiq&lt;/strong&gt; อยู่แล้ว อันที่จริงแล้วในตัวโปรแกรมเราก็ใช้ &lt;strong&gt;Sidekiq&lt;/strong&gt; เป็นตัวจัดการงานที่เป็น &lt;strong&gt;Background Job&lt;/strong&gt; ต่างๆ อยู่แล้ว ดังนั้นการย้ายงานในส่วนของ &lt;strong&gt;Scheduler&lt;/strong&gt; ให้มาทำที่ตรงนี้ก็น่าจะเป็นจุดที่เหมาะสมที่สุด และที่สำคัญคือ &lt;strong&gt;Sidekiq&lt;/strong&gt; จะถูกสร้างขึ้นมาเพียง 1 instance ซึ่งทำให้ไม่เกิดการทำงานซ้ำซ้อนที่เกิดขึ้นอย่างแน่นอน&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/change-to-sidekiq-scheduler/approach.png&quot; alt=&quot;approach&quot; width=&quot;460px&quot; /&gt;
-&lt;em&gt;ใช้ Sidekiq Scheduler แทน&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;configsidekiqyml&quot;&gt;config/sidekiq.yml&lt;/h2&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;s&quot;&gt;:schedule:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;send_email&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;cron&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*'&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;UserMailer&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/Moove-it/sidekiq-scheduler&quot;&gt;Sidekiq Scheduler&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/jmettraux/rufus-scheduler&quot;&gt;Rufus Scheduler&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><summary type="html">สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า Scheduler มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น การส่ง email แจ้งเตือนเมื่อถึงรอบเวลา การประมวลผลข้อมูลที่ใช้เวลานาน การออกรายงาน PDF ในแต่ละเดือน ถ้าเป็นใน Unix เราก็คงจะคุ้นชินกับการเรียกใช้ crontab สำหรับ Ruby เองก็จะใช้ gem ที่มีความสามารถเช่นเดียวกัน นั้นก็คือ rufus-scheduler ซึ่งปัญหาที่ผมและทีมเจอก็คือการนำ rufus-scheduler มาใช้กับ Rails Application ไม่ถูกวิธีจึงทำให้เกิดปัญหาการเรียกใช้งาน และสร้างข้อมูลซ้ำ รวมไปถึงการส่ง email ไปยังลูกค้าซ้ำซ้อน โดยเคสปัญหาเกิดขึ้นดังนี้ สร้าง config/initializers/scheduler.rb ซึ่งเป็นไฟล์ initializer ไว้สำหรับรันงานตามกำหนดเวลา และจะทำงานทันทีที่โปรแกรมทำงาน config/initializers/scheduler.rb 1 2 3 4 5 6 7 require 'rufus-scheduler' scheduler = Rufus::Scheduler.new scheduler.cron '0 0 * * *' do # Send emails UserMailer.notify.deliver_later end จากค่าที่กำหนดไว้ข้างต้นจะกำหนดให้ทุกๆ เที่ยงคืนจะส่ง email แจ้งเตือนไปยังผู้ใช้งาน เอ๊ะ!!! ดูแล้วก็ไม่น่าจะมีประเด็นปัญหาอะไรนิ ใช่แล้วหละครับในกรณีที่เรารันแอพไว้เพียง 1 instance ก็จะไม่เกิดปัญหาอะไร ทีนี้ลองมานึกภาพตามผมกันดู ถ้าเกิดว่าแอพของเราจำเป็นต้องมีการขยายให้รันได้ 2 instance หรือมากกว่านั้นเพื่อรับโหลดที่มากขึ้น ปัญหาการใช้งาน Scheduler แบบวิธีข้างต้นก็จะสร้างปัญหาขึ้นมาทันที ซึ่งก็คือแต่ละ instance จะทำการเหมือนกันเมื่อถึงเวลาเที่ยงคืน และจะทำการส่ง email ไปหาลูกค้า ทำให้แทนที่ลูกค้าคนหนึงควรจะได้รับ email เพียงฉบับเดียกลับกลายเป็นหลายฉบับ email จะถูกส่งซ้ำ เมื่อแอพรัน 2 instance ที่นี้มองเห็นปัญหาแล้วใช่มั้ยครับ สำหรับวิธีแก้ไขปัญหาก็เพียงเปลี่ยนมาใช้ Sidekiq Scheduler ซึ่งเป็น extension หนึ่งของ Sidekiq อยู่แล้ว อันที่จริงแล้วในตัวโปรแกรมเราก็ใช้ Sidekiq เป็นตัวจัดการงานที่เป็น Background Job ต่างๆ อยู่แล้ว ดังนั้นการย้ายงานในส่วนของ Scheduler ให้มาทำที่ตรงนี้ก็น่าจะเป็นจุดที่เหมาะสมที่สุด และที่สำคัญคือ Sidekiq จะถูกสร้างขึ้นมาเพียง 1 instance ซึ่งทำให้ไม่เกิดการทำงานซ้ำซ้อนที่เกิดขึ้นอย่างแน่นอน ใช้ Sidekiq Scheduler แทน config/sidekiq.yml 1 2 3 4 :schedule: send_email: cron: '0 0 * * *' class: UserMailer References Sidekiq Scheduler Rufus Scheduler</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/change-to-sidekiq-scheduler/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/change-to-sidekiq-scheduler/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เพิ่ม Staging Environment ให้กับ Rails</title><link href="https://karn18.github.io/dev/2020/10/03/add-a-staging-environment-to-rails.html" rel="alternate" type="text/html" title="เพิ่ม Staging Environment ให้กับ Rails" /><published>2020-10-03T16:54:00+07:00</published><updated>2020-10-03T16:54:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/03/add-a-staging-environment-to-rails</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/03/add-a-staging-environment-to-rails.html">&lt;p&gt;เมื่อเราสร้าง &lt;strong&gt;Rails Application&lt;/strong&gt; ผ่านคำสั่ง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rails&lt;/code&gt; ปกติแล้วจะมาพร้อมกับ &lt;strong&gt;config&lt;/strong&gt; ของสภาพแวดล้อม 3 รูปแบบเป็นค่ามาตรฐาน&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Development&lt;/li&gt;
-  &lt;li&gt;Test&lt;/li&gt;
-  &lt;li&gt;Production
-ซึ่งแต่ละสภาพแวดล้อมก็จะมีค่า &lt;strong&gt;config&lt;/strong&gt; ต่างๆ ที่ถูกกำหนดมาให้แยกจากกัน ในโฟลเดอร์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;configs/environments/${ENV}.rb&lt;/code&gt;
-&lt;!-- more --&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;เพียงแค่ 3 สภาพแวดล้อมโดยปกติก็เพียงพอต่อการใช้งานแล้ว &lt;strong&gt;แต่ๆ&lt;/strong&gt;ในบางครั้งเราก็อยากรันโปรแกรมในสภาพแวดล้อมที่เหมือนจริง แต่ไม่ใช่เครื่องเซิฟเวอร์ที่ปล่อยให้คนใช้งานจริง แต่จะเป็นเครื่องเซิฟเวอร์ที่อาจจะมีคุณลักษณะใกล้เคียงของจริง ที่เรียกว่า &lt;strong&gt;Staging Server&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;ซึ่งถ้าเป็นลักษณะเหตุการณ์แบบนี้ ถ้าวิธีการง่ายๆ เราก็คงเลือกใช้วิธีการแก้ไข &lt;strong&gt;config&lt;/strong&gt; จากในสภาพแวดล้อม &lt;strong&gt;production&lt;/strong&gt; ให้ทำการเชื่อมต่อฐานข้อมูล การต่อกับ &lt;strong&gt;sidekiq&lt;/strong&gt; การต่อกับ &lt;strong&gt;redis&lt;/strong&gt; ที่อยู่ในเครื่อง &lt;strong&gt;Stagging&lt;/strong&gt; แทน สำหรับวิธีการนี้ดูเหมือนจะง่ายๆ แต่พอเราเริ่มมีการอัพเดตโค้ดผ่านการใช้ &lt;strong&gt;git&lt;/strong&gt; หรือการใช้ automation อาจจะมีปัญหาเรื่องของ &lt;strong&gt;config&lt;/strong&gt; ได้&lt;/p&gt;
-
-&lt;p&gt;ดังนั้นวิธีการที่น่าจะเหมาะสมที่สุดก็คงจะเป็นการเพิ่มสภาพแวดล้อมใหม่สำหรับ &lt;strong&gt;Staging&lt;/strong&gt; ซึ่งสามารถทำได้ดังนี้&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;สร้างไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config/environments/staging.rb&lt;/code&gt; ซึ่งแนะนำให้เราก๊อบปี้ไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config/environments/production.rb&lt;/code&gt; มาเลยจะดีกว่า&lt;/li&gt;
-  &lt;li&gt;สร้างฐานข้อมูลใหม่สำหรับ &lt;strong&gt;Staging&lt;/strong&gt; และกำหนดค่าการต่อฐานข้อมูลใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config/database.rb&lt;/code&gt; โดยการเพิ่ม &lt;strong&gt;config&lt;/strong&gt; ของ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;staging&lt;/code&gt; เข้าไป&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;staging&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;*default&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;example_staging'&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;localhost&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5434&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;postgres&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;postgres&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;จากนั้นในขั้นตอนการรันโปรแกรม จะต้องกำหนด &lt;strong&gt;RAILS_ENV&lt;/strong&gt; ให้มีค่าเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;staging&lt;/code&gt; 
-เพียงเท่านี้เราก็สามารถจะรันโปรแกรมในสภาพแวดล้อม &lt;strong&gt;Staging&lt;/strong&gt; ได้&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References:&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://nts.strzibny.name/creating-staging-environments-in-rails/&quot;&gt;https://nts.strzibny.name/creating-staging-environments-in-rails&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="environments" /><category term="rails" /><category term="ruby" /><summary type="html">เมื่อเราสร้าง Rails Application ผ่านคำสั่ง rails ปกติแล้วจะมาพร้อมกับ config ของสภาพแวดล้อม 3 รูปแบบเป็นค่ามาตรฐาน Development Test Production ซึ่งแต่ละสภาพแวดล้อมก็จะมีค่า config ต่างๆ ที่ถูกกำหนดมาให้แยกจากกัน ในโฟลเดอร์ configs/environments/${ENV}.rb เพียงแค่ 3 สภาพแวดล้อมโดยปกติก็เพียงพอต่อการใช้งานแล้ว แต่ๆในบางครั้งเราก็อยากรันโปรแกรมในสภาพแวดล้อมที่เหมือนจริง แต่ไม่ใช่เครื่องเซิฟเวอร์ที่ปล่อยให้คนใช้งานจริง แต่จะเป็นเครื่องเซิฟเวอร์ที่อาจจะมีคุณลักษณะใกล้เคียงของจริง ที่เรียกว่า Staging Server ซึ่งถ้าเป็นลักษณะเหตุการณ์แบบนี้ ถ้าวิธีการง่ายๆ เราก็คงเลือกใช้วิธีการแก้ไข config จากในสภาพแวดล้อม production ให้ทำการเชื่อมต่อฐานข้อมูล การต่อกับ sidekiq การต่อกับ redis ที่อยู่ในเครื่อง Stagging แทน สำหรับวิธีการนี้ดูเหมือนจะง่ายๆ แต่พอเราเริ่มมีการอัพเดตโค้ดผ่านการใช้ git หรือการใช้ automation อาจจะมีปัญหาเรื่องของ config ได้ ดังนั้นวิธีการที่น่าจะเหมาะสมที่สุดก็คงจะเป็นการเพิ่มสภาพแวดล้อมใหม่สำหรับ Staging ซึ่งสามารถทำได้ดังนี้ สร้างไฟล์ config/environments/staging.rb ซึ่งแนะนำให้เราก๊อบปี้ไฟล์ config/environments/production.rb มาเลยจะดีกว่า สร้างฐานข้อมูลใหม่สำหรับ Staging และกำหนดค่าการต่อฐานข้อมูลใน config/database.rb โดยการเพิ่ม config ของ staging เข้าไป 1 2 3 4 5 6 7 staging: &amp;lt;&amp;lt;: *default database: 'example_staging' host: localhost port: 5434 username: postgres password: postgres จากนั้นในขั้นตอนการรันโปรแกรม จะต้องกำหนด RAILS_ENV ให้มีค่าเป็น staging เพียงเท่านี้เราก็สามารถจะรันโปรแกรมในสภาพแวดล้อม Staging ได้ References: https://nts.strzibny.name/creating-staging-environments-in-rails</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/add-a-staging-environment-to-rails/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/add-a-staging-environment-to-rails/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เรียนรู้เกี่ยวกับ Ruby Blocks</title><link href="https://karn18.github.io/dev/2020/10/03/ruby-blocks.html" rel="alternate" type="text/html" title="เรียนรู้เกี่ยวกับ Ruby Blocks" /><published>2020-10-03T16:54:00+07:00</published><updated>2020-10-03T16:54:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/03/ruby-blocks</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/03/ruby-blocks.html">&lt;p&gt;หากเริ่มเขียน &lt;strong&gt;Ruby&lt;/strong&gt; มาได้สักระยะหนึ่ง จะพบว่ามี &lt;strong&gt;syntax&lt;/strong&gt; ที่เห็นอยู่บ่อยๆ เลยก็คือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{}&lt;/code&gt; หรือคำสั่ง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;do/end&lt;/code&gt; โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า &lt;strong&gt;Block&lt;/strong&gt;&lt;!-- more --&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# Example 1&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Number is &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Example 2&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Number is &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;table&gt;
-    &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td&gt;พารามิเตอร์ที่รับเข้ามาจะอยู่ภายในเครื่องหมาย&lt;/td&gt;
-        &lt;td&gt;ในกรณีที่มีหลายพารามิเตอร์ก็จะใช้ , คั่น&lt;/td&gt;
-      &lt;/tr&gt;
-    &lt;/tbody&gt;
-  &lt;/table&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;จะพูดให้ง่ายๆ &lt;strong&gt;Block&lt;/strong&gt; ก็คือ &lt;strong&gt;Anonymous Function&lt;/strong&gt; ที่ถูกนิยามขึ้นโดยไม่มีฟังก์ชัน และถูกเรียกใช้งานในทันที ซึ่งจะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{}&lt;/code&gt; หรือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;do/end&lt;/code&gt; ก็ได้ แต่ส่วนใหญ่เราจะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{}&lt;/code&gt; ในกรณีที่โค้ดเรามีเพียงบรรทัดเดียว และจะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;do/end&lt;/code&gt; เมื่อโค้ดมีหลายบรรทัด ทั้งนี้ก็เพื่อความสวยงาม และอ่านได้ง่าย&lt;/p&gt;
-
-&lt;h1 id=&quot;references&quot;&gt;References:&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://marcuscode.com/lang/ruby/variables-and-variable-scope&quot;&gt;http://marcuscode.com/lang/ruby/variables-and-variable-scope&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/&quot;&gt;https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">หากเริ่มเขียน Ruby มาได้สักระยะหนึ่ง จะพบว่ามี syntax ที่เห็นอยู่บ่อยๆ เลยก็คือ {} หรือคำสั่ง do/end โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า Block 1 2 3 4 5 6 7 # Example 1 [1, 2, 3].each { |num| puts &quot;Number is #{num}&quot; } # Example 2 [1, 2, 3].each do |num| puts &quot;Number is #{num}&quot; end พารามิเตอร์ที่รับเข้ามาจะอยู่ภายในเครื่องหมาย ในกรณีที่มีหลายพารามิเตอร์ก็จะใช้ , คั่น จะพูดให้ง่ายๆ Block ก็คือ Anonymous Function ที่ถูกนิยามขึ้นโดยไม่มีฟังก์ชัน และถูกเรียกใช้งานในทันที ซึ่งจะใช้ {} หรือ do/end ก็ได้ แต่ส่วนใหญ่เราจะใช้ {} ในกรณีที่โค้ดเรามีเพียงบรรทัดเดียว และจะใช้ do/end เมื่อโค้ดมีหลายบรรทัด ทั้งนี้ก็เพื่อความสวยงาม และอ่านได้ง่าย References: http://marcuscode.com/lang/ruby/variables-and-variable-scope https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-blocks/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-blocks/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Scotty Factor</title><link href="https://karn18.github.io/dev/2020/10/02/scotty-factor.html" rel="alternate" type="text/html" title="Scotty Factor" /><published>2020-10-02T17:41:00+07:00</published><updated>2020-10-02T17:41:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/02/scotty-factor</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/02/scotty-factor.html">&lt;p&gt;สำหรับใครที่เป็นแฟน &lt;strong&gt;Star Trek&lt;/strong&gt; พอได้อ่านหัวข้อของบทความก็คงนึกถึง &lt;strong&gt;Montgomery “Scotty” Scott&lt;/strong&gt; ขึ้นมาทันที ใช่แล้วหละครับในบทความนี้จะเกี่ยวข้องกับ &lt;strong&gt;Scotty&lt;/strong&gt; จาก &lt;strong&gt;Star Trek&lt;/strong&gt; โดยที่ &lt;strong&gt;Scotty&lt;/strong&gt; เป็นวิศวกรประจำยาน &lt;strong&gt;Enterprise&lt;/strong&gt; ซึ่งเค้าเคยช่วยชีวิตลูกเรือของ &lt;strong&gt;USS Enterprise&lt;/strong&gt; ให้รอดพ้นจากอันตรายต่างๆ ได้อย่างปาฏิหาริย์อยู่เสมอ จนได้รับการขนานนามว่า &lt;strong&gt;“Miracle Worker”&lt;/strong&gt;&lt;!-- more --&gt;&lt;/p&gt;
-
-&lt;p&gt;สงสัยกันใช่มั้ยครับเค้าทำได้อย่างไร? ลองมาดูตัวอย่างเหตุการณ์หนึ่งที่ ​&lt;strong&gt;Wrap Drive&lt;/strong&gt; ของยานมีปัญหา &lt;strong&gt;Kirk&lt;/strong&gt; ไม่สามารถ &lt;strong&gt;Wrap&lt;/strong&gt; ไปทำภาระกิจ จึงได้เรียก &lt;strong&gt;Scotty&lt;/strong&gt; ให้แก้ไขปัญหาและถามถึงระยะเวลาที่ใช้ โดย &lt;strong&gt;Scotty&lt;/strong&gt; ก็ตอบว่าใช้เวลา 6 ชม. แต่หลักจากนั้นเพียงแค่ 4 ชม. เท่านั้น &lt;strong&gt;Scotty&lt;/strong&gt; ก็สามารถช่อม &lt;strong&gt;Wrap Drive&lt;/strong&gt; ได้สำเร็จ&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;สังเกตได้ว่า &lt;strong&gt;Scotty&lt;/strong&gt; นั้นเทพมากๆ สามารถซ่อม &lt;strong&gt;Wrap Drive&lt;/strong&gt; ได้เร็วกว่าที่ประเมินไว้ตั้ง 2 ชม. สมแล้วที่ได้รับการขนานนามว่า &lt;strong&gt;Miracle Work&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;แท้จริงแล้ว &lt;strong&gt;Scotty&lt;/strong&gt; ใช้เทคนิคดังนี้&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;คำนวณเวลาจริงที่ใช้ในการทำงาน&lt;/li&gt;
-  &lt;li&gt;เพิ่มเวลาเข้าไปจากเวลาที่คำนวณไว้อีก 25%-50% (ขึ้นอยู่กับแต่ละงาน)&lt;/li&gt;
-  &lt;li&gt;ใช้เวลาที่บวกเพิ่มเข้าไป รายงานให้กับหัวหน้าหรือผู้บริหาร&lt;/li&gt;
-  &lt;li&gt;เมื่อมีการต่อรองเรื่องเวลา ก็สามารถปรับลดได้อีกเล็กน้อยตามความเหมาะสม แต่ไม่น้อยไปกว่า 25% ที่บวกเพิ่ม&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ในบาง &lt;strong&gt;reference&lt;/strong&gt; จะบอกให้เราคูณ 4 เข้าไปกับเวลาที่ใช้จริง และเมื่อมีการต่อรองก็จะไม่น้อยกว่าเวลาจริงคูณ 2&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;และนี้แหละครับ ความลับของ &lt;strong&gt;Scotty&lt;/strong&gt; ในการประเมินระยะเวลา ที่ทำให้เค้าสามารถทำงานได้เร็วกว่าที่บอกไว้เสมอ&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://wiki.c2.com/?ScottyFactor&quot;&gt;Scotty Factor&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.urbandictionary.com/define.php?term=Scotty%20Principle&quot;&gt;Urban Dictionary&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ipstenu.org/2011/the-scotty-principle/&quot;&gt;The Scotty Principle&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="estimation" /><summary type="html">สำหรับใครที่เป็นแฟน Star Trek พอได้อ่านหัวข้อของบทความก็คงนึกถึง Montgomery “Scotty” Scott ขึ้นมาทันที ใช่แล้วหละครับในบทความนี้จะเกี่ยวข้องกับ Scotty จาก Star Trek โดยที่ Scotty เป็นวิศวกรประจำยาน Enterprise ซึ่งเค้าเคยช่วยชีวิตลูกเรือของ USS Enterprise ให้รอดพ้นจากอันตรายต่างๆ ได้อย่างปาฏิหาริย์อยู่เสมอ จนได้รับการขนานนามว่า “Miracle Worker” สงสัยกันใช่มั้ยครับเค้าทำได้อย่างไร? ลองมาดูตัวอย่างเหตุการณ์หนึ่งที่ ​Wrap Drive ของยานมีปัญหา Kirk ไม่สามารถ Wrap ไปทำภาระกิจ จึงได้เรียก Scotty ให้แก้ไขปัญหาและถามถึงระยะเวลาที่ใช้ โดย Scotty ก็ตอบว่าใช้เวลา 6 ชม. แต่หลักจากนั้นเพียงแค่ 4 ชม. เท่านั้น Scotty ก็สามารถช่อม Wrap Drive ได้สำเร็จ สังเกตได้ว่า Scotty นั้นเทพมากๆ สามารถซ่อม Wrap Drive ได้เร็วกว่าที่ประเมินไว้ตั้ง 2 ชม. สมแล้วที่ได้รับการขนานนามว่า Miracle Work แท้จริงแล้ว Scotty ใช้เทคนิคดังนี้ คำนวณเวลาจริงที่ใช้ในการทำงาน เพิ่มเวลาเข้าไปจากเวลาที่คำนวณไว้อีก 25%-50% (ขึ้นอยู่กับแต่ละงาน) ใช้เวลาที่บวกเพิ่มเข้าไป รายงานให้กับหัวหน้าหรือผู้บริหาร เมื่อมีการต่อรองเรื่องเวลา ก็สามารถปรับลดได้อีกเล็กน้อยตามความเหมาะสม แต่ไม่น้อยไปกว่า 25% ที่บวกเพิ่ม ในบาง reference จะบอกให้เราคูณ 4 เข้าไปกับเวลาที่ใช้จริง และเมื่อมีการต่อรองก็จะไม่น้อยกว่าเวลาจริงคูณ 2 และนี้แหละครับ ความลับของ Scotty ในการประเมินระยะเวลา ที่ทำให้เค้าสามารถทำงานได้เร็วกว่าที่บอกไว้เสมอ References Scotty Factor Urban Dictionary The Scotty Principle</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/scotty-factor/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/scotty-factor/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">It is not an easy path</title><link href="https://karn18.github.io/dev/2020/10/01/it-is-not-an-easy-path.html" rel="alternate" type="text/html" title="It is not an easy path" /><published>2020-10-01T14:35:00+07:00</published><updated>2020-10-01T14:35:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/01/it-is-not-an-easy-path</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/01/it-is-not-an-easy-path.html">&lt;blockquote&gt;
-  &lt;p&gt;เมื่อเส้นทางไม่ได้โรยด้วยกลีบกุหลาบ ก็ต้องพยายามและฝ่าฝันกันไป&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;เชื่อว่าหลายๆ คนคงเคยมีประสบการณ์ที่จะต้องแก้ไขโค้ดของคนอื่น หรือต่อยอดโปรเจ็คเดิมซึ่งใครทำไว้ก็ไม่รู้ ซึ่งผมมักจะเรียกว่า &lt;strong&gt;Lagacy Project&lt;/strong&gt; หรือโปรเจ็ค 💩 นั้นเอง 555+ โดยในบทความนี้จะมาเล่าถึงประสบการณ์ที่ได้รับจากการที่ทีมต้องมาช่วงต่อในการแก้ไขและปรับปรุงโปรเจ็คหนึ่งเข้า&lt;!-- more --&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ก่อนอื่นก็ต้องขอเกริ่นถึงตัวงานของโปรเจ็คสักนิดหนึ่ง โดยโปรเจคนี้ถูกพัฒนาด้วยภาษา &lt;strong&gt;Java&lt;/strong&gt; ในส่วนของ &lt;strong&gt;Backend&lt;/strong&gt; และใช้ &lt;strong&gt;JavaScript&lt;/strong&gt; บวกกับ &lt;strong&gt;jQuery&lt;/strong&gt; ในส่วนของ &lt;strong&gt;Frontend&lt;/strong&gt; ซึ่งถูกก็เรียกว่า &lt;strong&gt;ตึ๊ดตี๊ด เฟรมเวิร์ค&lt;/strong&gt; (ขออนุญาตเซนเซอร์ชื่อไว้นิดหนึ่ง)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/it-is-not-an-easy-path/lagacy_architecture.png&quot; alt=&quot;lagacy_architecture&quot; /&gt;
-&lt;em&gt;Architecture&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;ถ้าดูจากภาพรวมแล้ว ผมคิดว่าตัวโครงสร้างเองก็แบ่งได้ชัดเป็น 2 ส่วน (&lt;strong&gt;Frontend&lt;/strong&gt; และ &lt;strong&gt;Backend&lt;/strong&gt;) แบบนี้ผมก็สามารถแบ่งงานให้ทีมได้ไม่ยาก&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ภาพรวมใช้ได้แหละ ก็ต้องไปไล่ศึกษาโค้ดกันหน่อยก่อนที่จะแก้ไขกันจริง เพื่อจะได้เป็นแนะนำทีมได้ และแล้วความสนุกก็บังเกิดไม่ว่าจะเป็นโค้ดในฝั่ง &lt;strong&gt;Frontent&lt;/strong&gt; หรือ &lt;strong&gt;Backend&lt;/strong&gt; ผมรู้สึกได้ว่าเป็นการเขียนโค้ดที่มีความเป็น &lt;strong&gt;ตี๊ดตี๊ด เฟรมเวิร์ค&lt;/strong&gt; จนรู้สึกว่าการที่จะให้น้องๆ ในทีมเข้าไปแก้ไข หรือจะเพิ่มฟีเจอร์นั้นไม่ใช่เรื่องง่ายเลยทีเดียว จึงกลายมาเป็นคำถามย้อนกลับมาที่ตัวผมว่า &lt;strong&gt;“ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี”&lt;/strong&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;รีวิวร่วมกันอีกรอบ ที่แน่ๆ คราวนี้เราช่วยกันดูทั้งทีม และก็ถามความคิดเห็นทั้งทีมว่า &lt;strong&gt;“ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี”&lt;/strong&gt; ทั้งนี้เราก็ไม่ตัดสินใจจากการรีวิวโค้ดแต่เพียงอย่างเดียว ยังมีปัจจัยอื่นๆ ที่ต้องพิจารณาร่วมด้วยดังนี้&lt;/p&gt;
-
-    &lt;ol&gt;
-      &lt;li&gt;เทคโนโลยีที่ใช้งาน ซึ่งของเดิมนั้นค่อนข้างจะเก่า ไลบราลีที่ใช้งานก็ไม่ได้มีการอัพเดต และมีบางตัวที่เลิกใช้ไปบางแล้ว&lt;/li&gt;
-      &lt;li&gt;ระยะเวลาที่จำกัด ถือเป็นความเสี่ยงหลักของเราเลยที่เกรงว่าจะพัฒนาตัวใหม่ขึ้นมาไม่ทันตามกรอบเวลาที่มี&lt;/li&gt;
-      &lt;li&gt;เอกสารรายละเอียดเกี่ยวกับ &lt;strong&gt;Requirements&lt;/strong&gt; และ &lt;strong&gt;Flow&lt;/strong&gt; ที่หายสาบสูญ นั้นกลายเป็นคำถามแล้วเราจะพัฒนาโปรแกรมให้มีฟีเจอร์ตามเดิมได้อย่างไร? เพราะเอกสาร &lt;strong&gt;Requirements&lt;/strong&gt; ใหม่ก็จะอธิบายฟีเจอร์ที่เคยแต่ละฟีเจอร์ไว้เพียงสั้นๆ&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;สุดท้ายเราก็ได้คำตอบออกมาคือ &lt;strong&gt;พัฒนาขึ้นใหม่ ให้เทียบเท่าของเดิม และเพิ่มฟีเจอร์ตาม Requirements ใหม่&lt;/strong&gt; ซึ่งเป็นการตัดสินใจร่วมกันของทั้งทีม&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;จากปัจจัยต่างๆ ทำไมถึงยังตัดสินใจพัฒนาโปรแกรมขึ้นใหม่ แทนที่จะแก้ไขของเดิม? เวลาก็จำกัด ความเข้าใจใน &lt;strong&gt;Requirements&lt;/strong&gt; และ &lt;strong&gt;Flow&lt;/strong&gt; ก็ไม่มาก&lt;/p&gt;
-
-    &lt;ol&gt;
-      &lt;li&gt;ภาษา และเทคโนโลยีที่ใช้งานไม่เหมือนกัน อันนี้เราก็ต้องเลือกใช้ภาษา และเทคโนโลยีที่เราถนัดไว้ก่อน เพื่อจะช่วยทำให้เราพัฒนาได้เร็วยิ่งขึ้น&lt;/li&gt;
-      &lt;li&gt;ถึงแม้เวลาจะดูจำกัด แต่อันนี้ผมใช้ประสบการณ์ความเร็วของทีมในการพัฒนาโปรเจคอื่นๆ มาตัดสินใจ และคิดว่าน่าจะทันตามเวลา&lt;/li&gt;
-      &lt;li&gt;เอกสารไม่มี ก็ต้องทำฟีเจอร์เก่าด้วยก็ถือว่ายากมาก แต่มีคนที่รู้ &lt;strong&gt;Flow&lt;/strong&gt; อยู่ก็ค่อยประชุมเก็บรายละเอียดกันจากคนที่รู้กันใหม่แล้วกัน&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ไม่ว่าจะเลิกทางใดก็มีความเสี่ยงทั้งหมด ดังนั้นเลือกทางที่คุ้มค่าจะเสี่ยงแล้วกัน&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Ruby + Rails + StimulusJS&lt;/strong&gt; เป็นภาษา และเฟรมเวิร์คที่ใช้ในการพัฒนา
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Ruby&lt;/strong&gt; เป็นภาษาที่สนุก และเรียนรู้ได้เร็ว&lt;/li&gt;
-      &lt;li&gt;ด้วยความที่ &lt;strong&gt;Rails&lt;/strong&gt; เป็นเฟรมเวิร์คที่ครบครัน ทำให้เราหยิบจับ &lt;strong&gt;Gem&lt;/strong&gt; หรือไลบราลีอื่นๆ มาใช้ร่วมกับโปรเจค ยิ่งทำให้เราพัฒนาโปรแกรมได้เร็วยิ่งขึ้น&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;StimulusJS&lt;/strong&gt; เป็นเฟรมเวิร์คของ &lt;strong&gt;JavaScript&lt;/strong&gt; ที่เรียบง่าย และขนาดเล็กอันหนึ่งในการจัดการกับ &lt;strong&gt;Frontend&lt;/strong&gt; ผมเชื่อว่าหลายๆ คนคงไม่รู้จัก แต่เชื่อเถอะว่าถ้าคุณได้รู้จัก และลองใช้แล้วคุณจะไม่ลืมมันอีกเลย&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Docker + Docker Compose&lt;/strong&gt; เป็นเครื่องมือที่ใช้ในการติดตั้งโปรแกรมสำหรับ &lt;strong&gt;Development&lt;/strong&gt; และ &lt;strong&gt;Production&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;จากที่เคยใช้แบบงูๆ ปลาๆ พอได้ใช้งานแบบจริงจัง ตอนแรกก็รู้สึกยาก และ &lt;strong&gt;config&lt;/strong&gt; ไม่ค่อยถูก พอได้เรียนรู้เพิ่มขึ้นก็รู้สึกมันก็สะดวกดีในการใช้สำหรับ &lt;strong&gt;Production&lt;/strong&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Sentry&lt;/strong&gt; เป็นอีกหนึ่งเครื่องมือที่ได้นำมาใช้ในการติดตามปัญหาที่เกิดขึ้นกับโปรแกรมของเราไม่ว่าจะเป็น &lt;strong&gt;Development&lt;/strong&gt; หรือ &lt;strong&gt;Production&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;ต้องยอมรับเลยว่าเป็นเครื่องมือที่ดีจริงๆ ทำให้ทางทีมสามารถรู้ถึงรายละเอียดของปัญหา และเข้าไปแก้ไขได้ถูกต้อง&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;!!! D-DAY วันที่ 1 ตุลาคม 2563 เป็นวันที่จะต้องปล่อยโปรแกรมให้ใช้งาน หลังจากที่ตรากตรำพัฒนาร่วม 3 เดือนเต็มๆ ซึ่งในทีมของผมจะประกอบไปด้วย&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;ผู้พัฒนาหลัก 3 คน&lt;/li&gt;
-  &lt;li&gt;ผู้ทดสอบโปรแกรม 1 คน&lt;/li&gt;
-  &lt;li&gt;ผู้ดูแลเกี่ยวกับฐานข้อมูล และรายงาน 1 คน&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://thip.ha.or.th&quot;&gt;&lt;strong&gt;THIP.HA.OR.TH&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/it-is-not-an-easy-path/ex1.png&quot; alt=&quot;ex1&quot; /&gt;
-&lt;em&gt;ภาพตัวอย่างหน้า Login&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/it-is-not-an-easy-path/ex2.png&quot; alt=&quot;ex2&quot; /&gt;
-&lt;em&gt;ภาพตัวอย่างหน้า Dashboard&lt;/em&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ทั้งนี้ก็ต้องขอบคุณน้องๆ ในทีมทุกคน ที่ร่วมมือช่วยกันทำให้การพัฒนาโปรเจคนี้สำเร็จได้ตามที่ตั้งใจไว้ แม้ว่าแต่ละคนอาจจะมีบทบาทที่แตกต่างๆ กันแต่ถ้าขาดคนใดคนหนึ่งไปก็คงไม่สามารถสร้างชิ้นงานชิ้นนี้ขึ้นมาได้&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;ถึงแม้ว่าทีมจะประสบความสำเร็จในการพัฒนาโปรแกรมไปได้ระดับหนึ่ง และนำไปใช้งานได้ตามเวลาที่กำหนด แต่ก็ยังมีอีกหลายจุดที่ทีมยังขาด และบางจุดก็สามารถพัฒนาเพิ่มเติมให้ดียิ่งขึ้นไปได้ ซึ่งผมก็มองว่าทีมของผมจะพัฒนาต่อๆ ไป&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://thip.ha.or.th/&quot;&gt;thip&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="ruby" /><summary type="html">เมื่อเส้นทางไม่ได้โรยด้วยกลีบกุหลาบ ก็ต้องพยายามและฝ่าฝันกันไป เชื่อว่าหลายๆ คนคงเคยมีประสบการณ์ที่จะต้องแก้ไขโค้ดของคนอื่น หรือต่อยอดโปรเจ็คเดิมซึ่งใครทำไว้ก็ไม่รู้ ซึ่งผมมักจะเรียกว่า Lagacy Project หรือโปรเจ็ค 💩 นั้นเอง 555+ โดยในบทความนี้จะมาเล่าถึงประสบการณ์ที่ได้รับจากการที่ทีมต้องมาช่วงต่อในการแก้ไขและปรับปรุงโปรเจ็คหนึ่งเข้า ก่อนอื่นก็ต้องขอเกริ่นถึงตัวงานของโปรเจ็คสักนิดหนึ่ง โดยโปรเจคนี้ถูกพัฒนาด้วยภาษา Java ในส่วนของ Backend และใช้ JavaScript บวกกับ jQuery ในส่วนของ Frontend ซึ่งถูกก็เรียกว่า ตึ๊ดตี๊ด เฟรมเวิร์ค (ขออนุญาตเซนเซอร์ชื่อไว้นิดหนึ่ง) Architecture ถ้าดูจากภาพรวมแล้ว ผมคิดว่าตัวโครงสร้างเองก็แบ่งได้ชัดเป็น 2 ส่วน (Frontend และ Backend) แบบนี้ผมก็สามารถแบ่งงานให้ทีมได้ไม่ยาก ภาพรวมใช้ได้แหละ ก็ต้องไปไล่ศึกษาโค้ดกันหน่อยก่อนที่จะแก้ไขกันจริง เพื่อจะได้เป็นแนะนำทีมได้ และแล้วความสนุกก็บังเกิดไม่ว่าจะเป็นโค้ดในฝั่ง Frontent หรือ Backend ผมรู้สึกได้ว่าเป็นการเขียนโค้ดที่มีความเป็น ตี๊ดตี๊ด เฟรมเวิร์ค จนรู้สึกว่าการที่จะให้น้องๆ ในทีมเข้าไปแก้ไข หรือจะเพิ่มฟีเจอร์นั้นไม่ใช่เรื่องง่ายเลยทีเดียว จึงกลายมาเป็นคำถามย้อนกลับมาที่ตัวผมว่า “ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี” รีวิวร่วมกันอีกรอบ ที่แน่ๆ คราวนี้เราช่วยกันดูทั้งทีม และก็ถามความคิดเห็นทั้งทีมว่า “ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี” ทั้งนี้เราก็ไม่ตัดสินใจจากการรีวิวโค้ดแต่เพียงอย่างเดียว ยังมีปัจจัยอื่นๆ ที่ต้องพิจารณาร่วมด้วยดังนี้ เทคโนโลยีที่ใช้งาน ซึ่งของเดิมนั้นค่อนข้างจะเก่า ไลบราลีที่ใช้งานก็ไม่ได้มีการอัพเดต และมีบางตัวที่เลิกใช้ไปบางแล้ว ระยะเวลาที่จำกัด ถือเป็นความเสี่ยงหลักของเราเลยที่เกรงว่าจะพัฒนาตัวใหม่ขึ้นมาไม่ทันตามกรอบเวลาที่มี เอกสารรายละเอียดเกี่ยวกับ Requirements และ Flow ที่หายสาบสูญ นั้นกลายเป็นคำถามแล้วเราจะพัฒนาโปรแกรมให้มีฟีเจอร์ตามเดิมได้อย่างไร? เพราะเอกสาร Requirements ใหม่ก็จะอธิบายฟีเจอร์ที่เคยแต่ละฟีเจอร์ไว้เพียงสั้นๆ สุดท้ายเราก็ได้คำตอบออกมาคือ พัฒนาขึ้นใหม่ ให้เทียบเท่าของเดิม และเพิ่มฟีเจอร์ตาม Requirements ใหม่ ซึ่งเป็นการตัดสินใจร่วมกันของทั้งทีม จากปัจจัยต่างๆ ทำไมถึงยังตัดสินใจพัฒนาโปรแกรมขึ้นใหม่ แทนที่จะแก้ไขของเดิม? เวลาก็จำกัด ความเข้าใจใน Requirements และ Flow ก็ไม่มาก ภาษา และเทคโนโลยีที่ใช้งานไม่เหมือนกัน อันนี้เราก็ต้องเลือกใช้ภาษา และเทคโนโลยีที่เราถนัดไว้ก่อน เพื่อจะช่วยทำให้เราพัฒนาได้เร็วยิ่งขึ้น ถึงแม้เวลาจะดูจำกัด แต่อันนี้ผมใช้ประสบการณ์ความเร็วของทีมในการพัฒนาโปรเจคอื่นๆ มาตัดสินใจ และคิดว่าน่าจะทันตามเวลา เอกสารไม่มี ก็ต้องทำฟีเจอร์เก่าด้วยก็ถือว่ายากมาก แต่มีคนที่รู้ Flow อยู่ก็ค่อยประชุมเก็บรายละเอียดกันจากคนที่รู้กันใหม่แล้วกัน ไม่ว่าจะเลิกทางใดก็มีความเสี่ยงทั้งหมด ดังนั้นเลือกทางที่คุ้มค่าจะเสี่ยงแล้วกัน Ruby + Rails + StimulusJS เป็นภาษา และเฟรมเวิร์คที่ใช้ในการพัฒนา Ruby เป็นภาษาที่สนุก และเรียนรู้ได้เร็ว ด้วยความที่ Rails เป็นเฟรมเวิร์คที่ครบครัน ทำให้เราหยิบจับ Gem หรือไลบราลีอื่นๆ มาใช้ร่วมกับโปรเจค ยิ่งทำให้เราพัฒนาโปรแกรมได้เร็วยิ่งขึ้น StimulusJS เป็นเฟรมเวิร์คของ JavaScript ที่เรียบง่าย และขนาดเล็กอันหนึ่งในการจัดการกับ Frontend ผมเชื่อว่าหลายๆ คนคงไม่รู้จัก แต่เชื่อเถอะว่าถ้าคุณได้รู้จัก และลองใช้แล้วคุณจะไม่ลืมมันอีกเลย Docker + Docker Compose เป็นเครื่องมือที่ใช้ในการติดตั้งโปรแกรมสำหรับ Development และ Production จากที่เคยใช้แบบงูๆ ปลาๆ พอได้ใช้งานแบบจริงจัง ตอนแรกก็รู้สึกยาก และ config ไม่ค่อยถูก พอได้เรียนรู้เพิ่มขึ้นก็รู้สึกมันก็สะดวกดีในการใช้สำหรับ Production Sentry เป็นอีกหนึ่งเครื่องมือที่ได้นำมาใช้ในการติดตามปัญหาที่เกิดขึ้นกับโปรแกรมของเราไม่ว่าจะเป็น Development หรือ Production ต้องยอมรับเลยว่าเป็นเครื่องมือที่ดีจริงๆ ทำให้ทางทีมสามารถรู้ถึงรายละเอียดของปัญหา และเข้าไปแก้ไขได้ถูกต้อง !!! D-DAY วันที่ 1 ตุลาคม 2563 เป็นวันที่จะต้องปล่อยโปรแกรมให้ใช้งาน หลังจากที่ตรากตรำพัฒนาร่วม 3 เดือนเต็มๆ ซึ่งในทีมของผมจะประกอบไปด้วย ผู้พัฒนาหลัก 3 คน ผู้ทดสอบโปรแกรม 1 คน ผู้ดูแลเกี่ยวกับฐานข้อมูล และรายงาน 1 คน THIP.HA.OR.TH ภาพตัวอย่างหน้า Login ภาพตัวอย่างหน้า Dashboard ทั้งนี้ก็ต้องขอบคุณน้องๆ ในทีมทุกคน ที่ร่วมมือช่วยกันทำให้การพัฒนาโปรเจคนี้สำเร็จได้ตามที่ตั้งใจไว้ แม้ว่าแต่ละคนอาจจะมีบทบาทที่แตกต่างๆ กันแต่ถ้าขาดคนใดคนหนึ่งไปก็คงไม่สามารถสร้างชิ้นงานชิ้นนี้ขึ้นมาได้ ถึงแม้ว่าทีมจะประสบความสำเร็จในการพัฒนาโปรแกรมไปได้ระดับหนึ่ง และนำไปใช้งานได้ตามเวลาที่กำหนด แต่ก็ยังมีอีกหลายจุดที่ทีมยังขาด และบางจุดก็สามารถพัฒนาเพิ่มเติมให้ดียิ่งขึ้นไปได้ ซึ่งผมก็มองว่าทีมของผมจะพัฒนาต่อๆ ไป References thip</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/it-is-not-an-easy-path/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/it-is-not-an-easy-path/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+**Microsoft MakeCode** เป็นเครื่องมือที่ถูกพัฒนาขึ้นมาสำหรับ **micro:bit** โดยรองรับการเขียนโค้ดทั้งในรูปแบบบล๊อก (Block) ซึ่งจะคล้ายกับการต่อตัวต่อแบบลากวาง เหมาะสำหรับเด็กๆ ที่เริ่มต้นเขียนโค้ด และรองรับการเขียนโค้ดแบบข้อความ (Text-based) ซึ่งมีด้วยให้เลือกใช้ด้วยกัน 2 ภาษาเลยทีเดียว นั้นก็คือ **JavaScript** และ **Python**
+
+![MakeCode](/assets/images/posts/2020/what-is-micro-bit/makecode.png)
+
+สำหรับในบทความนี้ก็น่าจะทำให้เราเริ่มรู้จักกับ **micro:bit** และเครื่องมือสำหรับเขียนโค้ดกันไปแล้ว ในบทความหน้าเราจะมาลองมือเขียนโค้ด และรันโค้ดของเรากัน อย่าลืมรอติดตามกันนะครับ
+
+## References
+- [micro:bit](https://www.microbit.org)
+- [MakeCode](https://makecode.microbit.org/)</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">การศึกษาในศตวรรษที่ 21 การแค่ให้เด็กท่องๆ จำๆ ตัวอักษรตามตำราแล้วไปสอบนั้นคงไม่พอที่จะเอาตัวรอดอีกต่อไป สำหรับเด็กในยุคนี้การศึกษาด้วยแนวทางใหม่ที่เรียกว่า STEM ถือเป็นแนวทางการศึกษาที่จะถูกคิด และบูรณาการศาสตร์จาก 4 แขนง อันได้แก่ วิทยาศาตร์(Science) เทคโนโลยี(Technology) วิศวกรรมศาสตร์(Engineering) และคณิตศาสตร์(Mathematics) เพื่อจะทำให้เด็กเกิดความคิดสร้างสรรค์ รู้จักประยุกต์ความรู้ที่ได้ไปใช้งานให้เหมาะสม และเข้าใจในนวัตกรรมที่เกิดขึ้น การเขียนโค้ดหรือโปรแกรมมิ่ง (Programming) เป็นอีกหนึ่งทักษะที่จะกระตุ้นให้เด็กๆ เกิดการเรียนรู้ STEM โดยในบทความนี้จะแนะนำการเขียนโค้ดผ่าน micro:bit ซึ่งเป็นบอร์ดไมโครคอนโทรลเลอร์ที่ได้รับการออกแบบพัฒนาขึ้นมาโดย BBC และความร่วมมือของพันธมิตรในการพัฒนาชุดเครื่องมือสำหรับการเขียนโค้ดด้วย micro:bit นอกจากนั้นยังได้มีการแจกจ่าย micro:bit จำนวน 1 ล้านชิ้นให้กับโรงเรียนทั่วประเทศอังกฤษเพื่อเป็นสื่อการเรียนการสอนการเขียนโค้ดให้กับเด็กๆ องค์ประกอบของ micro:bit micro:bit ขอแยกอธิบายแต่ละด้านของ micro:bit แล้วกัน ด้านหน้า ปุ่ม A และ B เราสามารถเขียนโค้ดเพื่อรับการกดปุ่ม เพื่อสั่งให้บอร์ดทำอย่างอื่นต่อได้ ไฟ LED ขนาด 5x5 ใช้สำหรับแสดงผลต่างๆ ไม่ว่าจะเป็นตัวเลข ตัวอักษร กราฟ หรือภาพ โดยไฟจะสว่างเป็นสีแดง นอกจากนั้นเรายังสามารถควบคุมระดับความสว่างของหลอดไฟได้ด้วย GPIO Pins เป็นพินที่ใช้สำหรับต่อวงจรภายนอก ถ้าดูจากภาพแล้วจะประกอบไปด้วยพินขนาดใหญ่จำนวน 3 พิน ระหว่างพินจะมีพินขนาดเล็กรวมกันทั้งหมด 20 พิน โดยแต่ละพินสามารถใช้รับ/ส่งสัญญาณได้ทั้งแบบแอนะล็อก (Analog) และดิจิทัล (Digital) 3V Pin พินสำหรับต่อไฟขนาด 3 โวลต์ เพื่อเป็นแหล่งจ่ายไฟให้กับอุปกรณ์ที่มาต่อ GND Pin พินสำหรับต่อกราวด์ สำหรับพินทั้งหมดที่อยู่บนบอร์ดจะด้วยกันทั้ง 25 พิน ด้านหลัง ตัวรับส่งสัญญาณคลื่นวิทยุ (Radio) และบลูทูธพลังงานต่ำ (Bluetooth Low Energy ~ BLE) micro:bit สามารถติดต่อสื่อสารระหว่างกันผ่านคลื่นวิทยุ และสามารถใช้เชื่อมต่อกับอุปกรณ์มือถือหรือแทบเล็ตผ่านบลูทูธ หน่วยประมวลผล เป็นศูนย์กลางในการประมวลผล หรือเรียกได้ว่าเป็นสมองของบอร์ด micro:bit นั้นเอง เซนเซอร์วัดความเข้มสนามแม่เหล็ก (Magnatic Sensor) หรือเข็มทิศ นั้นทำให้เราสามารถเขียนโค้ดเพื่อใช้สำหรับบอกทิศที่อยู่ตรงหน้าเราได้ เซนเซอร์วัดความเร่ง (Accelerometer Sensor) การตรวจจับการเคลื่อนที่ การตก การสั่น หรือการเอียงของบอร์ด ก็นำไปประยุกต์ใช้ในการควบคุมอุปกรณ์อื่นๆ ได้ไม่ยาก Pins Micro USB เชื่อมต่อระหว่างบอร์ดกับเครื่องคอมพิวเตอร์ เพื่อใช้สำหรับโหลดโปรแกรม และจ่ายไฟให้กับบอร์ด หลอดไฟแสดงสถานะ เมื่อมีต่อกับแหล่งจ่ายไฟ หรือขณะทำการโหลดโปรแกรม ปุ่มรีเซท เราสามารถกดปุ่มรีเซท เพื่อให้โปรแกรมเริ่มทำงานใหม่อีกครั้ง ช่องต่อไฟเลี้ยง ใช้เชื่อมต่อกับแหล่งจ่ายไฟขนาด 3 โวลต์ USB Inferface Chip เป็นชิพสำหรับควมคุมการเชื่อมต่อกับ USB ในการโหลดโค้ดลงบอร์ด เครื่องมือสำหรับเขียนโค้ด Microsoft MakeCode Microsoft MakeCode เป็นเครื่องมือที่ถูกพัฒนาขึ้นมาสำหรับ micro:bit โดยรองรับการเขียนโค้ดทั้งในรูปแบบบล๊อก (Block) ซึ่งจะคล้ายกับการต่อตัวต่อแบบลากวาง เหมาะสำหรับเด็กๆ ที่เริ่มต้นเขียนโค้ด และรองรับการเขียนโค้ดแบบข้อความ (Text-based) ซึ่งมีด้วยให้เลือกใช้ด้วยกัน 2 ภาษาเลยทีเดียว นั้นก็คือ JavaScript และ Python สำหรับในบทความนี้ก็น่าจะทำให้เราเริ่มรู้จักกับ micro:bit และเครื่องมือสำหรับเขียนโค้ดกันไปแล้ว ในบทความหน้าเราจะมาลองมือเขียนโค้ด และรันโค้ดของเรากัน อย่าลืมรอติดตามกันนะครับ References micro:bit MakeCode</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/what-is-micro-bit/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/what-is-micro-bit/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Micro:bit v2</title><link href="https://karn18.github.io/stem/2020/10/13/micro-bit-v2.html" rel="alternate" type="text/html" title="Micro:bit v2" /><published>2020-10-13T13:32:00+07:00</published><updated>2020-10-13T13:32:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/13/micro-bit-v2</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/13/micro-bit-v2.html">เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง **micro:bit Education Foundcation** ได้ประกาศเปิดตัว **micro:bit** เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว **micro:bit** กันบ้าง เรามาดูกันครับ
+
+- โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ
+- แมมโมรี่ขนาด 152kB และแรม 128kB
+- มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ
+- เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส
+- Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น
+- เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0&lt;!-- more --&gt;
+
+![Front](/assets/images/posts/2020/micro-bit-v2/comparison-front.png)
+*เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2*
+
+![Back](/assets/images/posts/2020/micro-bit-v2/comparison-front.png)
+*เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2*
+
+แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ **Microsoft MakeCode** ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น
+
+## On loud/quit Sound
+
+![Logo Pressed](/assets/images/posts/2020/micro-bit-v2/loudsound.png){:width=&quot;200px&quot;}
+*เมื่อมีเสียงดังหรือเงียบ*
+
+## On Logo Pressed
+
+![Logo Pressed](/assets/images/posts/2020/micro-bit-v2/onLogoPressed.png){:width=&quot;200px&quot;}
+*เมื่อสัมผัสที่โลโก้*
+
+## Sound Level
+
+![Sound Level](/assets/images/posts/2020/micro-bit-v2/soundLevel.png){:width=&quot;200px&quot;}
+*ค่าระดับเสียงที่อ่านได้จากบอร์ด*
+
+## Enable/disable Speaker
+
+![Enable/disable Speaker](/assets/images/posts/2020/micro-bit-v2/speakerEnabled.png){:width=&quot;300px&quot;}
+*เปิด/ปิดลำโพง*
+
+มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน **พฤศจิกายน 2020** ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ
+
+ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ
+
+## References
+- [https://microbit.org/news/](https://microbit.org/news/)
+- [Details of micro:bit v2](https://tech.microbit.org/latest-revision/#overview)</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง micro:bit Education Foundcation ได้ประกาศเปิดตัว micro:bit เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว micro:bit กันบ้าง เรามาดูกันครับ โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ แมมโมรี่ขนาด 152kB และแรม 128kB มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0 เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2 เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2 แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ Microsoft MakeCode ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น On loud/quit Sound เมื่อมีเสียงดังหรือเงียบ On Logo Pressed เมื่อสัมผัสที่โลโก้ Sound Level ค่าระดับเสียงที่อ่านได้จากบอร์ด Enable/disable Speaker เปิด/ปิดลำโพง มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน พฤศจิกายน 2020 ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ References https://microbit.org/news/ Details of micro:bit v2</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/micro-bit-v2/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/micro-bit-v2/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า</title><link href="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html" rel="alternate" type="text/html" title="เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า" /><published>2020-10-13T12:10:00+07:00</published><updated>2020-10-13T12:10:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html">สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า **Scheduler** มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น
+
+- การส่ง **email** แจ้งเตือนเมื่อถึงรอบเวลา
+- การประมวลผลข้อมูลที่ใช้เวลานาน
+- การออกรายงาน **PDF** ในแต่ละเดือน
+
+ถ้าเป็นใน **Unix** เราก็คงจะคุ้นชินกับการเรียกใช้ `crontab` สำหรับ **Ruby** เองก็จะใช้ **gem** ที่มีความสามารถเช่นเดียวกัน นั้นก็คือ **rufus-scheduler** ซึ่งปัญหาที่ผมและทีมเจอก็คือการนำ **rufus-scheduler** มาใช้กับ **Rails Application** ไม่ถูกวิธีจึงทำให้เกิดปัญหาการเรียกใช้งาน และสร้างข้อมูลซ้ำ รวมไปถึงการส่ง **email** ไปยังลูกค้าซ้ำซ้อน โดยเคสปัญหาเกิดขึ้นดังนี้
+
+- สร้าง `config/initializers/scheduler.rb` ซึ่งเป็นไฟล์ **initializer** ไว้สำหรับรันงานตามกำหนดเวลา และจะทำงานทันทีที่โปรแกรมทำงาน
+
+## config/initializers/scheduler.rb
+
+```ruby
+require 'rufus-scheduler'
+
+scheduler = Rufus::Scheduler.new
+scheduler.cron '0 0 * * *' do
+  # Send emails
+  UserMailer.notify.deliver_later
+end
+```
+
+จากค่าที่กำหนดไว้ข้างต้นจะกำหนดให้ทุกๆ เที่ยงคืนจะส่ง **email** แจ้งเตือนไปยังผู้ใช้งาน
+
+**เอ๊ะ!!!** ดูแล้วก็ไม่น่าจะมีประเด็นปัญหาอะไรนิ ใช่แล้วหละครับในกรณีที่เรารันแอพไว้เพียง 1 instance ก็จะไม่เกิดปัญหาอะไร ทีนี้ลองมานึกภาพตามผมกันดู 
+
+ถ้าเกิดว่าแอพของเราจำเป็นต้องมีการขยายให้รันได้ 2 instance หรือมากกว่านั้นเพื่อรับโหลดที่มากขึ้น ปัญหาการใช้งาน **Scheduler** แบบวิธีข้างต้นก็จะสร้างปัญหาขึ้นมาทันที ซึ่งก็คือแต่ละ instance จะทำการเหมือนกันเมื่อถึงเวลาเที่ยงคืน และจะทำการส่ง **email** ไปหาลูกค้า ทำให้แทนที่ลูกค้าคนหนึงควรจะได้รับ **email** เพียงฉบับเดียกลับกลายเป็นหลายฉบับ
+
+![issue1](/assets/images/posts/2020/change-to-sidekiq-scheduler/issue.png){:width=&quot;600px&quot;}
+*email จะถูกส่งซ้ำ เมื่อแอพรัน 2 instance*
+
+ที่นี้มองเห็นปัญหาแล้วใช่มั้ยครับ สำหรับวิธีแก้ไขปัญหาก็เพียงเปลี่ยนมาใช้ **Sidekiq Scheduler** ซึ่งเป็น **extension** หนึ่งของ **Sidekiq** อยู่แล้ว อันที่จริงแล้วในตัวโปรแกรมเราก็ใช้ **Sidekiq** เป็นตัวจัดการงานที่เป็น **Background Job** ต่างๆ อยู่แล้ว ดังนั้นการย้ายงานในส่วนของ **Scheduler** ให้มาทำที่ตรงนี้ก็น่าจะเป็นจุดที่เหมาะสมที่สุด และที่สำคัญคือ **Sidekiq** จะถูกสร้างขึ้นมาเพียง 1 instance ซึ่งทำให้ไม่เกิดการทำงานซ้ำซ้อนที่เกิดขึ้นอย่างแน่นอน
+
+![approach](/assets/images/posts/2020/change-to-sidekiq-scheduler/approach.png){:width=&quot;460px&quot;}
+*ใช้ Sidekiq Scheduler แทน*
+
+## config/sidekiq.yml
+
+```yaml
+:schedule:
+  send_email:
+    cron: '0 0 * * *'
+    class: UserMailer
+```
+
+## References
+- [Sidekiq Scheduler](https://github.com/Moove-it/sidekiq-scheduler)
+- [Rufus Scheduler](https://github.com/jmettraux/rufus-scheduler)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><summary type="html">สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า Scheduler มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น การส่ง email แจ้งเตือนเมื่อถึงรอบเวลา การประมวลผลข้อมูลที่ใช้เวลานาน การออกรายงาน PDF ในแต่ละเดือน ถ้าเป็นใน Unix เราก็คงจะคุ้นชินกับการเรียกใช้ crontab สำหรับ Ruby เองก็จะใช้ gem ที่มีความสามารถเช่นเดียวกัน นั้นก็คือ rufus-scheduler ซึ่งปัญหาที่ผมและทีมเจอก็คือการนำ rufus-scheduler มาใช้กับ Rails Application ไม่ถูกวิธีจึงทำให้เกิดปัญหาการเรียกใช้งาน และสร้างข้อมูลซ้ำ รวมไปถึงการส่ง email ไปยังลูกค้าซ้ำซ้อน โดยเคสปัญหาเกิดขึ้นดังนี้ สร้าง config/initializers/scheduler.rb ซึ่งเป็นไฟล์ initializer ไว้สำหรับรันงานตามกำหนดเวลา และจะทำงานทันทีที่โปรแกรมทำงาน config/initializers/scheduler.rb 1 2 3 4 5 6 7 require 'rufus-scheduler' scheduler = Rufus::Scheduler.new scheduler.cron '0 0 * * *' do # Send emails UserMailer.notify.deliver_later end จากค่าที่กำหนดไว้ข้างต้นจะกำหนดให้ทุกๆ เที่ยงคืนจะส่ง email แจ้งเตือนไปยังผู้ใช้งาน เอ๊ะ!!! ดูแล้วก็ไม่น่าจะมีประเด็นปัญหาอะไรนิ ใช่แล้วหละครับในกรณีที่เรารันแอพไว้เพียง 1 instance ก็จะไม่เกิดปัญหาอะไร ทีนี้ลองมานึกภาพตามผมกันดู ถ้าเกิดว่าแอพของเราจำเป็นต้องมีการขยายให้รันได้ 2 instance หรือมากกว่านั้นเพื่อรับโหลดที่มากขึ้น ปัญหาการใช้งาน Scheduler แบบวิธีข้างต้นก็จะสร้างปัญหาขึ้นมาทันที ซึ่งก็คือแต่ละ instance จะทำการเหมือนกันเมื่อถึงเวลาเที่ยงคืน และจะทำการส่ง email ไปหาลูกค้า ทำให้แทนที่ลูกค้าคนหนึงควรจะได้รับ email เพียงฉบับเดียกลับกลายเป็นหลายฉบับ email จะถูกส่งซ้ำ เมื่อแอพรัน 2 instance ที่นี้มองเห็นปัญหาแล้วใช่มั้ยครับ สำหรับวิธีแก้ไขปัญหาก็เพียงเปลี่ยนมาใช้ Sidekiq Scheduler ซึ่งเป็น extension หนึ่งของ Sidekiq อยู่แล้ว อันที่จริงแล้วในตัวโปรแกรมเราก็ใช้ Sidekiq เป็นตัวจัดการงานที่เป็น Background Job ต่างๆ อยู่แล้ว ดังนั้นการย้ายงานในส่วนของ Scheduler ให้มาทำที่ตรงนี้ก็น่าจะเป็นจุดที่เหมาะสมที่สุด และที่สำคัญคือ Sidekiq จะถูกสร้างขึ้นมาเพียง 1 instance ซึ่งทำให้ไม่เกิดการทำงานซ้ำซ้อนที่เกิดขึ้นอย่างแน่นอน ใช้ Sidekiq Scheduler แทน config/sidekiq.yml 1 2 3 4 :schedule: send_email: cron: '0 0 * * *' class: UserMailer References Sidekiq Scheduler Rufus Scheduler</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/change-to-sidekiq-scheduler/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/change-to-sidekiq-scheduler/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เพิ่ม Staging Environment ให้กับ Rails</title><link href="https://karn18.github.io/dev/2020/10/03/add-a-staging-environment-to-rails.html" rel="alternate" type="text/html" title="เพิ่ม Staging Environment ให้กับ Rails" /><published>2020-10-03T16:54:00+07:00</published><updated>2020-10-03T16:54:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/03/add-a-staging-environment-to-rails</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/03/add-a-staging-environment-to-rails.html">เมื่อเราสร้าง **Rails Application** ผ่านคำสั่ง `rails` ปกติแล้วจะมาพร้อมกับ **config** ของสภาพแวดล้อม 3 รูปแบบเป็นค่ามาตรฐาน
+1. Development
+2. Test
+3. Production
+ซึ่งแต่ละสภาพแวดล้อมก็จะมีค่า **config** ต่างๆ ที่ถูกกำหนดมาให้แยกจากกัน ในโฟลเดอร์ `configs/environments/${ENV}.rb`
+&lt;!-- more --&gt;
+
+เพียงแค่ 3 สภาพแวดล้อมโดยปกติก็เพียงพอต่อการใช้งานแล้ว **แต่ๆ**ในบางครั้งเราก็อยากรันโปรแกรมในสภาพแวดล้อมที่เหมือนจริง แต่ไม่ใช่เครื่องเซิฟเวอร์ที่ปล่อยให้คนใช้งานจริง แต่จะเป็นเครื่องเซิฟเวอร์ที่อาจจะมีคุณลักษณะใกล้เคียงของจริง ที่เรียกว่า **Staging Server**
+
+ซึ่งถ้าเป็นลักษณะเหตุการณ์แบบนี้ ถ้าวิธีการง่ายๆ เราก็คงเลือกใช้วิธีการแก้ไข **config** จากในสภาพแวดล้อม **production** ให้ทำการเชื่อมต่อฐานข้อมูล การต่อกับ **sidekiq** การต่อกับ **redis** ที่อยู่ในเครื่อง **Stagging** แทน สำหรับวิธีการนี้ดูเหมือนจะง่ายๆ แต่พอเราเริ่มมีการอัพเดตโค้ดผ่านการใช้ **git** หรือการใช้ automation อาจจะมีปัญหาเรื่องของ **config** ได้
+
+ดังนั้นวิธีการที่น่าจะเหมาะสมที่สุดก็คงจะเป็นการเพิ่มสภาพแวดล้อมใหม่สำหรับ **Staging** ซึ่งสามารถทำได้ดังนี้
+
+- สร้างไฟล์ `config/environments/staging.rb` ซึ่งแนะนำให้เราก๊อบปี้ไฟล์ `config/environments/production.rb` มาเลยจะดีกว่า
+- สร้างฐานข้อมูลใหม่สำหรับ **Staging** และกำหนดค่าการต่อฐานข้อมูลใน `config/database.rb` โดยการเพิ่ม **config** ของ `staging` เข้าไป
+
+```yml
+staging:
+  &lt;&lt;: *default
+  database: 'example_staging'
+  host: localhost
+  port: 5434
+  username: postgres
+  password: postgres
+```
+
+- จากนั้นในขั้นตอนการรันโปรแกรม จะต้องกำหนด **RAILS_ENV** ให้มีค่าเป็น `staging` 
+เพียงเท่านี้เราก็สามารถจะรันโปรแกรมในสภาพแวดล้อม **Staging** ได้
+
+## References:
+- [https://nts.strzibny.name/creating-staging-environments-in-rails](https://nts.strzibny.name/creating-staging-environments-in-rails/)</content><author><name>Karn</name></author><category term="dev" /><category term="environments" /><category term="rails" /><category term="ruby" /><summary type="html">เมื่อเราสร้าง Rails Application ผ่านคำสั่ง rails ปกติแล้วจะมาพร้อมกับ config ของสภาพแวดล้อม 3 รูปแบบเป็นค่ามาตรฐาน Development Test Production ซึ่งแต่ละสภาพแวดล้อมก็จะมีค่า config ต่างๆ ที่ถูกกำหนดมาให้แยกจากกัน ในโฟลเดอร์ configs/environments/${ENV}.rb เพียงแค่ 3 สภาพแวดล้อมโดยปกติก็เพียงพอต่อการใช้งานแล้ว แต่ๆในบางครั้งเราก็อยากรันโปรแกรมในสภาพแวดล้อมที่เหมือนจริง แต่ไม่ใช่เครื่องเซิฟเวอร์ที่ปล่อยให้คนใช้งานจริง แต่จะเป็นเครื่องเซิฟเวอร์ที่อาจจะมีคุณลักษณะใกล้เคียงของจริง ที่เรียกว่า Staging Server ซึ่งถ้าเป็นลักษณะเหตุการณ์แบบนี้ ถ้าวิธีการง่ายๆ เราก็คงเลือกใช้วิธีการแก้ไข config จากในสภาพแวดล้อม production ให้ทำการเชื่อมต่อฐานข้อมูล การต่อกับ sidekiq การต่อกับ redis ที่อยู่ในเครื่อง Stagging แทน สำหรับวิธีการนี้ดูเหมือนจะง่ายๆ แต่พอเราเริ่มมีการอัพเดตโค้ดผ่านการใช้ git หรือการใช้ automation อาจจะมีปัญหาเรื่องของ config ได้ ดังนั้นวิธีการที่น่าจะเหมาะสมที่สุดก็คงจะเป็นการเพิ่มสภาพแวดล้อมใหม่สำหรับ Staging ซึ่งสามารถทำได้ดังนี้ สร้างไฟล์ config/environments/staging.rb ซึ่งแนะนำให้เราก๊อบปี้ไฟล์ config/environments/production.rb มาเลยจะดีกว่า สร้างฐานข้อมูลใหม่สำหรับ Staging และกำหนดค่าการต่อฐานข้อมูลใน config/database.rb โดยการเพิ่ม config ของ staging เข้าไป 1 2 3 4 5 6 7 staging: &amp;lt;&amp;lt;: *default database: 'example_staging' host: localhost port: 5434 username: postgres password: postgres จากนั้นในขั้นตอนการรันโปรแกรม จะต้องกำหนด RAILS_ENV ให้มีค่าเป็น staging เพียงเท่านี้เราก็สามารถจะรันโปรแกรมในสภาพแวดล้อม Staging ได้ References: https://nts.strzibny.name/creating-staging-environments-in-rails</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/add-a-staging-environment-to-rails/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/add-a-staging-environment-to-rails/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เรียนรู้เกี่ยวกับ Ruby Blocks</title><link href="https://karn18.github.io/dev/2020/10/03/ruby-blocks.html" rel="alternate" type="text/html" title="เรียนรู้เกี่ยวกับ Ruby Blocks" /><published>2020-10-03T16:54:00+07:00</published><updated>2020-10-03T16:54:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/03/ruby-blocks</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/03/ruby-blocks.html">หากเริ่มเขียน **Ruby** มาได้สักระยะหนึ่ง จะพบว่ามี **syntax** ที่เห็นอยู่บ่อยๆ เลยก็คือ `{}` หรือคำสั่ง `do/end` โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า **Block**&lt;!-- more --&gt;
+
+```ruby
+# Example 1
+[1, 2, 3].each { |num| puts &quot;Number is #{num}&quot; }
+
+# Example 2
+[1, 2, 3].each do |num|
+  puts &quot;Number is #{num}&quot;
+end
+```
+
+&gt; พารามิเตอร์ที่รับเข้ามาจะอยู่ภายในเครื่องหมาย | ในกรณีที่มีหลายพารามิเตอร์ก็จะใช้ , คั่น
+
+จะพูดให้ง่ายๆ **Block** ก็คือ **Anonymous Function** ที่ถูกนิยามขึ้นโดยไม่มีฟังก์ชัน และถูกเรียกใช้งานในทันที ซึ่งจะใช้ `{}` หรือ `do/end` ก็ได้ แต่ส่วนใหญ่เราจะใช้ `{}` ในกรณีที่โค้ดเรามีเพียงบรรทัดเดียว และจะใช้ `do/end` เมื่อโค้ดมีหลายบรรทัด ทั้งนี้ก็เพื่อความสวยงาม และอ่านได้ง่าย
+
+# References:
+- [http://marcuscode.com/lang/ruby/variables-and-variable-scope](http://marcuscode.com/lang/ruby/variables-and-variable-scope)
+- [https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/](https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">หากเริ่มเขียน Ruby มาได้สักระยะหนึ่ง จะพบว่ามี syntax ที่เห็นอยู่บ่อยๆ เลยก็คือ {} หรือคำสั่ง do/end โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า Block 1 2 3 4 5 6 7 # Example 1 [1, 2, 3].each { |num| puts &quot;Number is #{num}&quot; } # Example 2 [1, 2, 3].each do |num| puts &quot;Number is #{num}&quot; end พารามิเตอร์ที่รับเข้ามาจะอยู่ภายในเครื่องหมาย ในกรณีที่มีหลายพารามิเตอร์ก็จะใช้ , คั่น จะพูดให้ง่ายๆ Block ก็คือ Anonymous Function ที่ถูกนิยามขึ้นโดยไม่มีฟังก์ชัน และถูกเรียกใช้งานในทันที ซึ่งจะใช้ {} หรือ do/end ก็ได้ แต่ส่วนใหญ่เราจะใช้ {} ในกรณีที่โค้ดเรามีเพียงบรรทัดเดียว และจะใช้ do/end เมื่อโค้ดมีหลายบรรทัด ทั้งนี้ก็เพื่อความสวยงาม และอ่านได้ง่าย References: http://marcuscode.com/lang/ruby/variables-and-variable-scope https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-blocks/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-blocks/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Scotty Factor</title><link href="https://karn18.github.io/dev/2020/10/02/scotty-factor.html" rel="alternate" type="text/html" title="Scotty Factor" /><published>2020-10-02T17:41:00+07:00</published><updated>2020-10-02T17:41:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/02/scotty-factor</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/02/scotty-factor.html">สำหรับใครที่เป็นแฟน **Star Trek** พอได้อ่านหัวข้อของบทความก็คงนึกถึง **Montgomery &quot;Scotty&quot; Scott** ขึ้นมาทันที ใช่แล้วหละครับในบทความนี้จะเกี่ยวข้องกับ **Scotty** จาก **Star Trek** โดยที่ **Scotty** เป็นวิศวกรประจำยาน **Enterprise** ซึ่งเค้าเคยช่วยชีวิตลูกเรือของ **USS Enterprise** ให้รอดพ้นจากอันตรายต่างๆ ได้อย่างปาฏิหาริย์อยู่เสมอ จนได้รับการขนานนามว่า **&quot;Miracle Worker&quot;**&lt;!-- more --&gt;
+
+สงสัยกันใช่มั้ยครับเค้าทำได้อย่างไร? ลองมาดูตัวอย่างเหตุการณ์หนึ่งที่ ​**Wrap Drive** ของยานมีปัญหา **Kirk** ไม่สามารถ **Wrap** ไปทำภาระกิจ จึงได้เรียก **Scotty** ให้แก้ไขปัญหาและถามถึงระยะเวลาที่ใช้ โดย **Scotty** ก็ตอบว่าใช้เวลา 6 ชม. แต่หลักจากนั้นเพียงแค่ 4 ชม. เท่านั้น **Scotty** ก็สามารถช่อม **Wrap Drive** ได้สำเร็จ
+
+&gt; สังเกตได้ว่า **Scotty** นั้นเทพมากๆ สามารถซ่อม **Wrap Drive** ได้เร็วกว่าที่ประเมินไว้ตั้ง 2 ชม. สมแล้วที่ได้รับการขนานนามว่า **Miracle Work**
+
+แท้จริงแล้ว **Scotty** ใช้เทคนิคดังนี้
+
+1. คำนวณเวลาจริงที่ใช้ในการทำงาน
+2. เพิ่มเวลาเข้าไปจากเวลาที่คำนวณไว้อีก 25%-50% (ขึ้นอยู่กับแต่ละงาน)
+3. ใช้เวลาที่บวกเพิ่มเข้าไป รายงานให้กับหัวหน้าหรือผู้บริหาร
+4. เมื่อมีการต่อรองเรื่องเวลา ก็สามารถปรับลดได้อีกเล็กน้อยตามความเหมาะสม แต่ไม่น้อยไปกว่า 25% ที่บวกเพิ่ม
+
+&gt; ในบาง **reference** จะบอกให้เราคูณ 4 เข้าไปกับเวลาที่ใช้จริง และเมื่อมีการต่อรองก็จะไม่น้อยกว่าเวลาจริงคูณ 2
+
+และนี้แหละครับ ความลับของ **Scotty** ในการประเมินระยะเวลา ที่ทำให้เค้าสามารถทำงานได้เร็วกว่าที่บอกไว้เสมอ
+
+## References
+- [Scotty Factor](http://wiki.c2.com/?ScottyFactor)
+- [Urban Dictionary](https://www.urbandictionary.com/define.php?term=Scotty%20Principle)
+- [The Scotty Principle](https://ipstenu.org/2011/the-scotty-principle/)</content><author><name>Karn</name></author><category term="dev" /><category term="estimation" /><summary type="html">สำหรับใครที่เป็นแฟน Star Trek พอได้อ่านหัวข้อของบทความก็คงนึกถึง Montgomery “Scotty” Scott ขึ้นมาทันที ใช่แล้วหละครับในบทความนี้จะเกี่ยวข้องกับ Scotty จาก Star Trek โดยที่ Scotty เป็นวิศวกรประจำยาน Enterprise ซึ่งเค้าเคยช่วยชีวิตลูกเรือของ USS Enterprise ให้รอดพ้นจากอันตรายต่างๆ ได้อย่างปาฏิหาริย์อยู่เสมอ จนได้รับการขนานนามว่า “Miracle Worker” สงสัยกันใช่มั้ยครับเค้าทำได้อย่างไร? ลองมาดูตัวอย่างเหตุการณ์หนึ่งที่ ​Wrap Drive ของยานมีปัญหา Kirk ไม่สามารถ Wrap ไปทำภาระกิจ จึงได้เรียก Scotty ให้แก้ไขปัญหาและถามถึงระยะเวลาที่ใช้ โดย Scotty ก็ตอบว่าใช้เวลา 6 ชม. แต่หลักจากนั้นเพียงแค่ 4 ชม. เท่านั้น Scotty ก็สามารถช่อม Wrap Drive ได้สำเร็จ สังเกตได้ว่า Scotty นั้นเทพมากๆ สามารถซ่อม Wrap Drive ได้เร็วกว่าที่ประเมินไว้ตั้ง 2 ชม. สมแล้วที่ได้รับการขนานนามว่า Miracle Work แท้จริงแล้ว Scotty ใช้เทคนิคดังนี้ คำนวณเวลาจริงที่ใช้ในการทำงาน เพิ่มเวลาเข้าไปจากเวลาที่คำนวณไว้อีก 25%-50% (ขึ้นอยู่กับแต่ละงาน) ใช้เวลาที่บวกเพิ่มเข้าไป รายงานให้กับหัวหน้าหรือผู้บริหาร เมื่อมีการต่อรองเรื่องเวลา ก็สามารถปรับลดได้อีกเล็กน้อยตามความเหมาะสม แต่ไม่น้อยไปกว่า 25% ที่บวกเพิ่ม ในบาง reference จะบอกให้เราคูณ 4 เข้าไปกับเวลาที่ใช้จริง และเมื่อมีการต่อรองก็จะไม่น้อยกว่าเวลาจริงคูณ 2 และนี้แหละครับ ความลับของ Scotty ในการประเมินระยะเวลา ที่ทำให้เค้าสามารถทำงานได้เร็วกว่าที่บอกไว้เสมอ References Scotty Factor Urban Dictionary The Scotty Principle</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/scotty-factor/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/scotty-factor/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">It is not an easy path</title><link href="https://karn18.github.io/dev/2020/10/01/it-is-not-an-easy-path.html" rel="alternate" type="text/html" title="It is not an easy path" /><published>2020-10-01T14:35:00+07:00</published><updated>2020-10-01T14:35:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/01/it-is-not-an-easy-path</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/01/it-is-not-an-easy-path.html">&gt; เมื่อเส้นทางไม่ได้โรยด้วยกลีบกุหลาบ ก็ต้องพยายามและฝ่าฝันกันไป
+
+เชื่อว่าหลายๆ คนคงเคยมีประสบการณ์ที่จะต้องแก้ไขโค้ดของคนอื่น หรือต่อยอดโปรเจ็คเดิมซึ่งใครทำไว้ก็ไม่รู้ ซึ่งผมมักจะเรียกว่า **Lagacy Project** หรือโปรเจ็ค 💩 นั้นเอง 555+ โดยในบทความนี้จะมาเล่าถึงประสบการณ์ที่ได้รับจากการที่ทีมต้องมาช่วงต่อในการแก้ไขและปรับปรุงโปรเจ็คหนึ่งเข้า&lt;!-- more --&gt;
+
+* ก่อนอื่นก็ต้องขอเกริ่นถึงตัวงานของโปรเจ็คสักนิดหนึ่ง โดยโปรเจคนี้ถูกพัฒนาด้วยภาษา **Java** ในส่วนของ **Backend** และใช้ **JavaScript** บวกกับ **jQuery** ในส่วนของ **Frontend** ซึ่งถูกก็เรียกว่า **ตึ๊ดตี๊ด เฟรมเวิร์ค** (ขออนุญาตเซนเซอร์ชื่อไว้นิดหนึ่ง)
+
+![lagacy_architecture](/assets/images/posts/2020/it-is-not-an-easy-path/lagacy_architecture.png)
+*Architecture*
+
+* ถ้าดูจากภาพรวมแล้ว ผมคิดว่าตัวโครงสร้างเองก็แบ่งได้ชัดเป็น 2 ส่วน (**Frontend** และ **Backend**) แบบนี้ผมก็สามารถแบ่งงานให้ทีมได้ไม่ยาก
+
+* ภาพรวมใช้ได้แหละ ก็ต้องไปไล่ศึกษาโค้ดกันหน่อยก่อนที่จะแก้ไขกันจริง เพื่อจะได้เป็นแนะนำทีมได้ และแล้วความสนุกก็บังเกิดไม่ว่าจะเป็นโค้ดในฝั่ง **Frontent** หรือ **Backend** ผมรู้สึกได้ว่าเป็นการเขียนโค้ดที่มีความเป็น **ตี๊ดตี๊ด เฟรมเวิร์ค** จนรู้สึกว่าการที่จะให้น้องๆ ในทีมเข้าไปแก้ไข หรือจะเพิ่มฟีเจอร์นั้นไม่ใช่เรื่องง่ายเลยทีเดียว จึงกลายมาเป็นคำถามย้อนกลับมาที่ตัวผมว่า **&quot;ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี&quot;** 
+
+* รีวิวร่วมกันอีกรอบ ที่แน่ๆ คราวนี้เราช่วยกันดูทั้งทีม และก็ถามความคิดเห็นทั้งทีมว่า **&quot;ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี&quot;** ทั้งนี้เราก็ไม่ตัดสินใจจากการรีวิวโค้ดแต่เพียงอย่างเดียว ยังมีปัจจัยอื่นๆ ที่ต้องพิจารณาร่วมด้วยดังนี้
+
+  1. เทคโนโลยีที่ใช้งาน ซึ่งของเดิมนั้นค่อนข้างจะเก่า ไลบราลีที่ใช้งานก็ไม่ได้มีการอัพเดต และมีบางตัวที่เลิกใช้ไปบางแล้ว
+  2. ระยะเวลาที่จำกัด ถือเป็นความเสี่ยงหลักของเราเลยที่เกรงว่าจะพัฒนาตัวใหม่ขึ้นมาไม่ทันตามกรอบเวลาที่มี
+  3. เอกสารรายละเอียดเกี่ยวกับ **Requirements** และ **Flow** ที่หายสาบสูญ นั้นกลายเป็นคำถามแล้วเราจะพัฒนาโปรแกรมให้มีฟีเจอร์ตามเดิมได้อย่างไร? เพราะเอกสาร **Requirements** ใหม่ก็จะอธิบายฟีเจอร์ที่เคยแต่ละฟีเจอร์ไว้เพียงสั้นๆ
+
+&gt; สุดท้ายเราก็ได้คำตอบออกมาคือ **พัฒนาขึ้นใหม่ ให้เทียบเท่าของเดิม และเพิ่มฟีเจอร์ตาม Requirements ใหม่** ซึ่งเป็นการตัดสินใจร่วมกันของทั้งทีม
+
+* จากปัจจัยต่างๆ ทำไมถึงยังตัดสินใจพัฒนาโปรแกรมขึ้นใหม่ แทนที่จะแก้ไขของเดิม? เวลาก็จำกัด ความเข้าใจใน **Requirements** และ **Flow** ก็ไม่มาก
+
+  1. ภาษา และเทคโนโลยีที่ใช้งานไม่เหมือนกัน อันนี้เราก็ต้องเลือกใช้ภาษา และเทคโนโลยีที่เราถนัดไว้ก่อน เพื่อจะช่วยทำให้เราพัฒนาได้เร็วยิ่งขึ้น
+  2. ถึงแม้เวลาจะดูจำกัด แต่อันนี้ผมใช้ประสบการณ์ความเร็วของทีมในการพัฒนาโปรเจคอื่นๆ มาตัดสินใจ และคิดว่าน่าจะทันตามเวลา
+  3. เอกสารไม่มี ก็ต้องทำฟีเจอร์เก่าด้วยก็ถือว่ายากมาก แต่มีคนที่รู้ **Flow** อยู่ก็ค่อยประชุมเก็บรายละเอียดกันจากคนที่รู้กันใหม่แล้วกัน
+
+&gt; ไม่ว่าจะเลิกทางใดก็มีความเสี่ยงทั้งหมด ดังนั้นเลือกทางที่คุ้มค่าจะเสี่ยงแล้วกัน
+
+* **Ruby + Rails + StimulusJS** เป็นภาษา และเฟรมเวิร์คที่ใช้ในการพัฒนา
+  - **Ruby** เป็นภาษาที่สนุก และเรียนรู้ได้เร็ว
+  - ด้วยความที่ **Rails** เป็นเฟรมเวิร์คที่ครบครัน ทำให้เราหยิบจับ **Gem** หรือไลบราลีอื่นๆ มาใช้ร่วมกับโปรเจค ยิ่งทำให้เราพัฒนาโปรแกรมได้เร็วยิ่งขึ้น
+  - **StimulusJS** เป็นเฟรมเวิร์คของ **JavaScript** ที่เรียบง่าย และขนาดเล็กอันหนึ่งในการจัดการกับ **Frontend** ผมเชื่อว่าหลายๆ คนคงไม่รู้จัก แต่เชื่อเถอะว่าถ้าคุณได้รู้จัก และลองใช้แล้วคุณจะไม่ลืมมันอีกเลย
+
+* **Docker + Docker Compose** เป็นเครื่องมือที่ใช้ในการติดตั้งโปรแกรมสำหรับ **Development** และ **Production** 
+  - จากที่เคยใช้แบบงูๆ ปลาๆ พอได้ใช้งานแบบจริงจัง ตอนแรกก็รู้สึกยาก และ **config** ไม่ค่อยถูก พอได้เรียนรู้เพิ่มขึ้นก็รู้สึกมันก็สะดวกดีในการใช้สำหรับ **Production**
+
+* **Sentry** เป็นอีกหนึ่งเครื่องมือที่ได้นำมาใช้ในการติดตามปัญหาที่เกิดขึ้นกับโปรแกรมของเราไม่ว่าจะเป็น **Development** หรือ **Production**
+  - ต้องยอมรับเลยว่าเป็นเครื่องมือที่ดีจริงๆ ทำให้ทางทีมสามารถรู้ถึงรายละเอียดของปัญหา และเข้าไปแก้ไขได้ถูกต้อง
+
+!!! D-DAY วันที่ 1 ตุลาคม 2563 เป็นวันที่จะต้องปล่อยโปรแกรมให้ใช้งาน หลังจากที่ตรากตรำพัฒนาร่วม 3 เดือนเต็มๆ ซึ่งในทีมของผมจะประกอบไปด้วย
+1. ผู้พัฒนาหลัก 3 คน
+2. ผู้ทดสอบโปรแกรม 1 คน
+3. ผู้ดูแลเกี่ยวกับฐานข้อมูล และรายงาน 1 คน
+
+[**THIP.HA.OR.TH**](https://thip.ha.or.th)
+
+![ex1](/assets/images/posts/2020/it-is-not-an-easy-path/ex1.png)
+*ภาพตัวอย่างหน้า Login*
+
+![ex2](/assets/images/posts/2020/it-is-not-an-easy-path/ex2.png)
+*ภาพตัวอย่างหน้า Dashboard*
+
+&gt; ทั้งนี้ก็ต้องขอบคุณน้องๆ ในทีมทุกคน ที่ร่วมมือช่วยกันทำให้การพัฒนาโปรเจคนี้สำเร็จได้ตามที่ตั้งใจไว้ แม้ว่าแต่ละคนอาจจะมีบทบาทที่แตกต่างๆ กันแต่ถ้าขาดคนใดคนหนึ่งไปก็คงไม่สามารถสร้างชิ้นงานชิ้นนี้ขึ้นมาได้
+
+ถึงแม้ว่าทีมจะประสบความสำเร็จในการพัฒนาโปรแกรมไปได้ระดับหนึ่ง และนำไปใช้งานได้ตามเวลาที่กำหนด แต่ก็ยังมีอีกหลายจุดที่ทีมยังขาด และบางจุดก็สามารถพัฒนาเพิ่มเติมให้ดียิ่งขึ้นไปได้ ซึ่งผมก็มองว่าทีมของผมจะพัฒนาต่อๆ ไป
+
+## References
+- [thip](https://thip.ha.or.th/)</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="ruby" /><summary type="html">เมื่อเส้นทางไม่ได้โรยด้วยกลีบกุหลาบ ก็ต้องพยายามและฝ่าฝันกันไป เชื่อว่าหลายๆ คนคงเคยมีประสบการณ์ที่จะต้องแก้ไขโค้ดของคนอื่น หรือต่อยอดโปรเจ็คเดิมซึ่งใครทำไว้ก็ไม่รู้ ซึ่งผมมักจะเรียกว่า Lagacy Project หรือโปรเจ็ค 💩 นั้นเอง 555+ โดยในบทความนี้จะมาเล่าถึงประสบการณ์ที่ได้รับจากการที่ทีมต้องมาช่วงต่อในการแก้ไขและปรับปรุงโปรเจ็คหนึ่งเข้า ก่อนอื่นก็ต้องขอเกริ่นถึงตัวงานของโปรเจ็คสักนิดหนึ่ง โดยโปรเจคนี้ถูกพัฒนาด้วยภาษา Java ในส่วนของ Backend และใช้ JavaScript บวกกับ jQuery ในส่วนของ Frontend ซึ่งถูกก็เรียกว่า ตึ๊ดตี๊ด เฟรมเวิร์ค (ขออนุญาตเซนเซอร์ชื่อไว้นิดหนึ่ง) Architecture ถ้าดูจากภาพรวมแล้ว ผมคิดว่าตัวโครงสร้างเองก็แบ่งได้ชัดเป็น 2 ส่วน (Frontend และ Backend) แบบนี้ผมก็สามารถแบ่งงานให้ทีมได้ไม่ยาก ภาพรวมใช้ได้แหละ ก็ต้องไปไล่ศึกษาโค้ดกันหน่อยก่อนที่จะแก้ไขกันจริง เพื่อจะได้เป็นแนะนำทีมได้ และแล้วความสนุกก็บังเกิดไม่ว่าจะเป็นโค้ดในฝั่ง Frontent หรือ Backend ผมรู้สึกได้ว่าเป็นการเขียนโค้ดที่มีความเป็น ตี๊ดตี๊ด เฟรมเวิร์ค จนรู้สึกว่าการที่จะให้น้องๆ ในทีมเข้าไปแก้ไข หรือจะเพิ่มฟีเจอร์นั้นไม่ใช่เรื่องง่ายเลยทีเดียว จึงกลายมาเป็นคำถามย้อนกลับมาที่ตัวผมว่า “ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี” รีวิวร่วมกันอีกรอบ ที่แน่ๆ คราวนี้เราช่วยกันดูทั้งทีม และก็ถามความคิดเห็นทั้งทีมว่า “ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี” ทั้งนี้เราก็ไม่ตัดสินใจจากการรีวิวโค้ดแต่เพียงอย่างเดียว ยังมีปัจจัยอื่นๆ ที่ต้องพิจารณาร่วมด้วยดังนี้ เทคโนโลยีที่ใช้งาน ซึ่งของเดิมนั้นค่อนข้างจะเก่า ไลบราลีที่ใช้งานก็ไม่ได้มีการอัพเดต และมีบางตัวที่เลิกใช้ไปบางแล้ว ระยะเวลาที่จำกัด ถือเป็นความเสี่ยงหลักของเราเลยที่เกรงว่าจะพัฒนาตัวใหม่ขึ้นมาไม่ทันตามกรอบเวลาที่มี เอกสารรายละเอียดเกี่ยวกับ Requirements และ Flow ที่หายสาบสูญ นั้นกลายเป็นคำถามแล้วเราจะพัฒนาโปรแกรมให้มีฟีเจอร์ตามเดิมได้อย่างไร? เพราะเอกสาร Requirements ใหม่ก็จะอธิบายฟีเจอร์ที่เคยแต่ละฟีเจอร์ไว้เพียงสั้นๆ สุดท้ายเราก็ได้คำตอบออกมาคือ พัฒนาขึ้นใหม่ ให้เทียบเท่าของเดิม และเพิ่มฟีเจอร์ตาม Requirements ใหม่ ซึ่งเป็นการตัดสินใจร่วมกันของทั้งทีม จากปัจจัยต่างๆ ทำไมถึงยังตัดสินใจพัฒนาโปรแกรมขึ้นใหม่ แทนที่จะแก้ไขของเดิม? เวลาก็จำกัด ความเข้าใจใน Requirements และ Flow ก็ไม่มาก ภาษา และเทคโนโลยีที่ใช้งานไม่เหมือนกัน อันนี้เราก็ต้องเลือกใช้ภาษา และเทคโนโลยีที่เราถนัดไว้ก่อน เพื่อจะช่วยทำให้เราพัฒนาได้เร็วยิ่งขึ้น ถึงแม้เวลาจะดูจำกัด แต่อันนี้ผมใช้ประสบการณ์ความเร็วของทีมในการพัฒนาโปรเจคอื่นๆ มาตัดสินใจ และคิดว่าน่าจะทันตามเวลา เอกสารไม่มี ก็ต้องทำฟีเจอร์เก่าด้วยก็ถือว่ายากมาก แต่มีคนที่รู้ Flow อยู่ก็ค่อยประชุมเก็บรายละเอียดกันจากคนที่รู้กันใหม่แล้วกัน ไม่ว่าจะเลิกทางใดก็มีความเสี่ยงทั้งหมด ดังนั้นเลือกทางที่คุ้มค่าจะเสี่ยงแล้วกัน Ruby + Rails + StimulusJS เป็นภาษา และเฟรมเวิร์คที่ใช้ในการพัฒนา Ruby เป็นภาษาที่สนุก และเรียนรู้ได้เร็ว ด้วยความที่ Rails เป็นเฟรมเวิร์คที่ครบครัน ทำให้เราหยิบจับ Gem หรือไลบราลีอื่นๆ มาใช้ร่วมกับโปรเจค ยิ่งทำให้เราพัฒนาโปรแกรมได้เร็วยิ่งขึ้น StimulusJS เป็นเฟรมเวิร์คของ JavaScript ที่เรียบง่าย และขนาดเล็กอันหนึ่งในการจัดการกับ Frontend ผมเชื่อว่าหลายๆ คนคงไม่รู้จัก แต่เชื่อเถอะว่าถ้าคุณได้รู้จัก และลองใช้แล้วคุณจะไม่ลืมมันอีกเลย Docker + Docker Compose เป็นเครื่องมือที่ใช้ในการติดตั้งโปรแกรมสำหรับ Development และ Production จากที่เคยใช้แบบงูๆ ปลาๆ พอได้ใช้งานแบบจริงจัง ตอนแรกก็รู้สึกยาก และ config ไม่ค่อยถูก พอได้เรียนรู้เพิ่มขึ้นก็รู้สึกมันก็สะดวกดีในการใช้สำหรับ Production Sentry เป็นอีกหนึ่งเครื่องมือที่ได้นำมาใช้ในการติดตามปัญหาที่เกิดขึ้นกับโปรแกรมของเราไม่ว่าจะเป็น Development หรือ Production ต้องยอมรับเลยว่าเป็นเครื่องมือที่ดีจริงๆ ทำให้ทางทีมสามารถรู้ถึงรายละเอียดของปัญหา และเข้าไปแก้ไขได้ถูกต้อง !!! D-DAY วันที่ 1 ตุลาคม 2563 เป็นวันที่จะต้องปล่อยโปรแกรมให้ใช้งาน หลังจากที่ตรากตรำพัฒนาร่วม 3 เดือนเต็มๆ ซึ่งในทีมของผมจะประกอบไปด้วย ผู้พัฒนาหลัก 3 คน ผู้ทดสอบโปรแกรม 1 คน ผู้ดูแลเกี่ยวกับฐานข้อมูล และรายงาน 1 คน THIP.HA.OR.TH ภาพตัวอย่างหน้า Login ภาพตัวอย่างหน้า Dashboard ทั้งนี้ก็ต้องขอบคุณน้องๆ ในทีมทุกคน ที่ร่วมมือช่วยกันทำให้การพัฒนาโปรเจคนี้สำเร็จได้ตามที่ตั้งใจไว้ แม้ว่าแต่ละคนอาจจะมีบทบาทที่แตกต่างๆ กันแต่ถ้าขาดคนใดคนหนึ่งไปก็คงไม่สามารถสร้างชิ้นงานชิ้นนี้ขึ้นมาได้ ถึงแม้ว่าทีมจะประสบความสำเร็จในการพัฒนาโปรแกรมไปได้ระดับหนึ่ง และนำไปใช้งานได้ตามเวลาที่กำหนด แต่ก็ยังมีอีกหลายจุดที่ทีมยังขาด และบางจุดก็สามารถพัฒนาเพิ่มเติมให้ดียิ่งขึ้นไปได้ ซึ่งผมก็มองว่าทีมของผมจะพัฒนาต่อๆ ไป References thip</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/it-is-not-an-easy-path/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/it-is-not-an-easy-path/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
