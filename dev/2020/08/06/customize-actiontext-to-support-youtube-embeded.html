@@ -8,7 +8,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>ปรับแต่ง ActionText ให้รองรับ Youtube Embeded | KT</title>
-<meta name="generator" content="Jekyll v4.1.0" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="ปรับแต่ง ActionText ให้รองรับ Youtube Embeded" />
 <meta name="author" content="Karn" />
 <meta property="og:locale" content="en_US" />
@@ -144,14 +144,14 @@
       <span class="dl">"</span><span class="s2">.trix-button-group--text-tools</span><span class="dl">"</span>
     <span class="p">)</span>
     <span class="kd">const</span> <span class="nx">dialogHml</span> <span class="o">=</span> 
-      <span class="s2">`&lt;div class="trix-dialog trix-dialog--link" data-trix-dialog="embed" data-trix-dialog-attribute="embed"&gt;
+      <span class="s2">`</span><span class="err">&lt;div class="trix-dialog trix-dialog--link" data-trix-dialog="embed" data-trix-dialog-attribute="embed"&gt;
         &lt;div class="trix-dialog__link-fields"&gt;
           &lt;input type="text" name="embed" class="trix-input trix-input--dialog" placeholder="Paste your youtube video url" aria-label="embed code" required="" data-trix-input="" disabled="disabled"&gt;
           &lt;div class="trix-button-group"&gt;
             &lt;input type="button" class="trix-button trix-button--dialog" data-trix-custom="add-embed" value="Add"&gt;
           &lt;/div&gt;
         &lt;/div&gt;
-      &lt;/div&gt;`</span>
+      &lt;/div&gt;</span><span class="s2">`</span>
     <span class="kd">const</span> <span class="nx">dialogGroup</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">toolbarElement</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">.trix-dialogs</span><span class="dl">"</span><span class="p">)</span>
     <span class="nx">buttonGroup</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeend</span><span class="dl">"</span><span class="p">,</span> <span class="nx">buttonHTML</span><span class="p">)</span>
     <span class="nx">dialogGroup</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeend</span><span class="dl">"</span><span class="p">,</span> <span class="nx">dialogHml</span><span class="p">)</span>
@@ -443,7 +443,7 @@
   <span class="nx">elements</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">element</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">caption</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">caption</span><span class="dl">'</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">caption</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
-      <span class="nx">element</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="dl">'</span><span class="s1">beforeend</span><span class="dl">'</span><span class="p">,</span> <span class="s2">`&lt;caption&gt;</span><span class="p">${</span><span class="nx">caption</span><span class="p">}</span><span class="s2">&lt;/caption&gt;`</span><span class="p">)</span>
+      <span class="nx">element</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="dl">'</span><span class="s1">beforeend</span><span class="dl">'</span><span class="p">,</span> <span class="s2">`</span><span class="err">&lt;caption&gt;</span><span class="p">${</span><span class="nx">caption</span><span class="p">}</span><span class="err">&lt;/caption&gt;</span><span class="s2">`</span><span class="p">)</span>
   <span class="p">})</span>
 <span class="p">})</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
