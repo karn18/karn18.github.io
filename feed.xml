@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-10-15T14:22:53+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Ruby’s Main Object</title><link href="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html" rel="alternate" type="text/html" title="Ruby’s Main Object" /><published>2020-10-15T14:22:00+07:00</published><updated>2020-10-15T14:22:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/15/ruby-s-main-object</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html">&lt;p&gt;&lt;strong&gt;Ruby&lt;/strong&gt; ถูกออกแบบขึ้นมาภายใต้หลักการของ &lt;strong&gt;Object&lt;/strong&gt; นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน &lt;strong&gt;Ruby&lt;/strong&gt; ล้วนเป็น &lt;strong&gt;Object&lt;/strong&gt; ทั้งหมด โดย &lt;strong&gt;Object&lt;/strong&gt; ที่เป็น &lt;strong&gt;Top Level&lt;/strong&gt; จะเรียกว่า &lt;strong&gt;Main Object&lt;/strong&gt; ซึ่งเมธอดที่ถูกนิยามภายใต้ &lt;strong&gt;Main Object&lt;/strong&gt; สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;puts&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;respond_to?&lt;/code&gt; หรือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is_a?&lt;/code&gt; ได้ทุกๆ ที่&lt;!-- more --&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-10-15T22:22:15+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Memoization in Ruby</title><link href="https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html" rel="alternate" type="text/html" title="Memoization in Ruby" /><published>2020-10-15T22:22:00+07:00</published><updated>2020-10-15T22:22:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/15/memoization-in-ruby</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html">&lt;p&gt;อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ก็คือ &lt;strong&gt;Memoization&lt;/strong&gt; แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค &lt;strong&gt;Memoization&lt;/strong&gt; จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;memoization-คืออะไร&quot;&gt;Memoization คืออะไร&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Memoization is the process of storing a computed value to avoid duplicated work by future calls.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ถ้าแบ่งเป็นขั้นตอนจะมีด้วยกัน 3 ขั้นด้วยกันคือ&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;โค้ดถูกเรียกใช้งาน เพื่อประมวณผลอะไรบางอย่าง&lt;/li&gt;
+  &lt;li&gt;แทนที่จะส่งค่าคืนกลับไปเมื่อถูกเรียกเพียงอย่างเดียว จะเก็บค่าที่ได้จากการประมวลผลเอาไว้ในตัวแปร&lt;/li&gt;
+  &lt;li&gt;เมื่อมีการเรียกใช้งานโค้ดดังกล่าวอีกครั้ง ก็จะดึงค่าที่เก็บเอาไว้ส่งคืนกลับไป โดยไม่ต้องประมวณผลใหม่&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ถ้าอ่านคำอธิบายข้างต้นแล้วยังงง มาดูรายละเอียดพร้อมกับโค้ดตัวอย่างกันเลยดีกว่า น่าจะทำให้เข้าได้ดียิ่งขึ้น&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ก่อนอื่นลงสังเกต โค้ดด้านล่าง จะเห็นว่ามีการเรียกใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user_score&lt;/code&gt; ซึ่งจะทำการดึงข้อมูลคะแนนของผู้ใช้งานจากฐานข้อมูล&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;user_score&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Sam'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;เมื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user_score&lt;/code&gt; ถูกเรียกใช้ ไม่ว่าจะกี่ครั้งสิ่งที่เกิดขึ้นคือจะต้องไปดึงข้อมูลจากฐานข้อมูลทุกรอบ ซึ่งก็เป็นกระบวนการที่เสียเวลา ให้เปลืองทรัพยากร&lt;/li&gt;
+  &lt;li&gt;จุดที่ &lt;strong&gt;Memoization&lt;/strong&gt; ถูกนำมาใช้ก็คือตรงนี้เองแหละครับ แทนที่เราจะต้องดึงข้อมูลจากฐานข้อมูลทุกรอบ เราก็จะเก็บข้อมูลที่เคยดึงเก็บเอาไว้ในตัวแปรหนึ่งตัว ซึ่งนั้นก็คือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@user_score&lt;/code&gt; ดังแสดงในโค้ดด้านล่าง&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;table&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;Memoization มักจะใช้เครื่องหมาย&lt;/td&gt;
+        &lt;td&gt; &lt;/td&gt;
+        &lt;td&gt;=&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;user_score&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@user_score&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Sam'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;พูดง่ายๆ Memoization ก็เป็นการ Caching ข้อมูลนั้นเอง&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Memoization&quot;&gt;https://en.wikipedia.org/wiki/Memoization&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://gavinmiller.io/2013/basics-of-ruby-memoization&quot;&gt;http://gavinmiller.io/2013/basics-of-ruby-memoization&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://rubyinrails.com/2014/11/03/memoization-ruby/&quot;&gt;https://rubyinrails.com/2014/11/03/memoization-ruby&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><summary type="html">อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา Ruby ก็คือ Memoization แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค Memoization จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว Memoization คืออะไร Memoization is the process of storing a computed value to avoid duplicated work by future calls. ถ้าแบ่งเป็นขั้นตอนจะมีด้วยกัน 3 ขั้นด้วยกันคือ โค้ดถูกเรียกใช้งาน เพื่อประมวณผลอะไรบางอย่าง แทนที่จะส่งค่าคืนกลับไปเมื่อถูกเรียกเพียงอย่างเดียว จะเก็บค่าที่ได้จากการประมวลผลเอาไว้ในตัวแปร เมื่อมีการเรียกใช้งานโค้ดดังกล่าวอีกครั้ง ก็จะดึงค่าที่เก็บเอาไว้ส่งคืนกลับไป โดยไม่ต้องประมวณผลใหม่ ถ้าอ่านคำอธิบายข้างต้นแล้วยังงง มาดูรายละเอียดพร้อมกับโค้ดตัวอย่างกันเลยดีกว่า น่าจะทำให้เข้าได้ดียิ่งขึ้น ก่อนอื่นลงสังเกต โค้ดด้านล่าง จะเห็นว่ามีการเรียกใช้ user_score ซึ่งจะทำการดึงข้อมูลคะแนนของผู้ใช้งานจากฐานข้อมูล 1 2 3 def user_score User.find_by(name: 'Sam').try(:score) end เมื่อ user_score ถูกเรียกใช้ ไม่ว่าจะกี่ครั้งสิ่งที่เกิดขึ้นคือจะต้องไปดึงข้อมูลจากฐานข้อมูลทุกรอบ ซึ่งก็เป็นกระบวนการที่เสียเวลา ให้เปลืองทรัพยากร จุดที่ Memoization ถูกนำมาใช้ก็คือตรงนี้เองแหละครับ แทนที่เราจะต้องดึงข้อมูลจากฐานข้อมูลทุกรอบ เราก็จะเก็บข้อมูลที่เคยดึงเก็บเอาไว้ในตัวแปรหนึ่งตัว ซึ่งนั้นก็คือ @user_score ดังแสดงในโค้ดด้านล่าง Memoization มักจะใช้เครื่องหมาย   = 1 2 3 def user_score @user_score ||= User.find_by(name: 'Sam').try(:score) end พูดง่ายๆ Memoization ก็เป็นการ Caching ข้อมูลนั้นเอง References https://en.wikipedia.org/wiki/Memoization http://gavinmiller.io/2013/basics-of-ruby-memoization https://rubyinrails.com/2014/11/03/memoization-ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/memoization-in-ruby/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/memoization-in-ruby/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ruby’s Main Object</title><link href="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html" rel="alternate" type="text/html" title="Ruby’s Main Object" /><published>2020-10-15T14:22:00+07:00</published><updated>2020-10-15T14:22:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/15/ruby-s-main-object</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html">&lt;p&gt;&lt;strong&gt;Ruby&lt;/strong&gt; ถูกออกแบบขึ้นมาภายใต้หลักการของ &lt;strong&gt;Object&lt;/strong&gt; นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน &lt;strong&gt;Ruby&lt;/strong&gt; ล้วนเป็น &lt;strong&gt;Object&lt;/strong&gt; ทั้งหมด โดย &lt;strong&gt;Object&lt;/strong&gt; ที่เป็น &lt;strong&gt;Top Level&lt;/strong&gt; จะเรียกว่า &lt;strong&gt;Main Object&lt;/strong&gt; ซึ่งเมธอดที่ถูกนิยามภายใต้ &lt;strong&gt;Main Object&lt;/strong&gt; สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;puts&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;respond_to?&lt;/code&gt; หรือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is_a?&lt;/code&gt; ได้ทุกๆ ที่&lt;!-- more --&gt;&lt;/p&gt;
 
 &lt;p&gt;จริงๆ แล้ว &lt;strong&gt;Main Object&lt;/strong&gt; จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด &lt;strong&gt;IRB&lt;/strong&gt;&lt;/p&gt;
 
@@ -20,7 +82,7 @@
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what&quot;&gt;https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/&quot;&gt;https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="dev" /><category term="ruby" /><summary type="html">Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่ จริงๆ แล้ว Main Object จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด IRB Main Object ใน IRB เราสามารถนิยามเมธอดที่สามารถเรียกใช้งานได้จากทุกๆ ที่ได้ง่ายๆ เพียงแค่นิยามเมธอดไว้ด้านนอกคลาส หรือโมดูลเท่านั้น Ruby จะก็จะผูกเมธอดนั้นๆ เข้ากับ Main Object ให้เราโดยอัตโนมัติ ลองนิยามเมธอด show_message มาทดสอบกัน show_message in irb สิ่งหนึ่งที่มีความแตกต่างกันระหว่างการนิยามเมธอดใน IRB กับในไฟล์ Ruby ก็คือ IRB จะผูกเมธอดที่นิยามในขอบเขตที่เป็น public แต่ในไฟล์จะถูกผูกในขอบเขตที่เป็น private อันนี้ต้องไปลองเล่นดูได้นะครับ จะได้เห็นความแตกต่าง References https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to update micro:bit firmware</title><link href="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html" rel="alternate" type="text/html" title="How to update micro:bit firmware" /><published>2020-10-14T22:29:00+07:00</published><updated>2020-10-14T22:29:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html">&lt;p&gt;&lt;strong&gt;Firmware&lt;/strong&gt; คือโปรแกรมแกรม (&lt;strong&gt;Software&lt;/strong&gt;) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (&lt;strong&gt;Hardware&lt;/strong&gt;) ให้ทำงานได้ราบรื่น แม้กระทั่ง &lt;strong&gt;micro:bit&lt;/strong&gt; เองก็ต้องมี &lt;strong&gt;Firmware&lt;/strong&gt; เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; ให้ทันสมัยก็จะช่วยให้การทำงาน &lt;strong&gt;micro:bit&lt;/strong&gt; ดียิ่งขึ้น&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><summary type="html">Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่ จริงๆ แล้ว Main Object จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด IRB Main Object ใน IRB เราสามารถนิยามเมธอดที่สามารถเรียกใช้งานได้จากทุกๆ ที่ได้ง่ายๆ เพียงแค่นิยามเมธอดไว้ด้านนอกคลาส หรือโมดูลเท่านั้น Ruby จะก็จะผูกเมธอดนั้นๆ เข้ากับ Main Object ให้เราโดยอัตโนมัติ ลองนิยามเมธอด show_message มาทดสอบกัน show_message in irb สิ่งหนึ่งที่มีความแตกต่างกันระหว่างการนิยามเมธอดใน IRB กับในไฟล์ Ruby ก็คือ IRB จะผูกเมธอดที่นิยามในขอบเขตที่เป็น public แต่ในไฟล์จะถูกผูกในขอบเขตที่เป็น private อันนี้ต้องไปลองเล่นดูได้นะครับ จะได้เห็นความแตกต่าง References https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to update micro:bit firmware</title><link href="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html" rel="alternate" type="text/html" title="How to update micro:bit firmware" /><published>2020-10-14T22:29:00+07:00</published><updated>2020-10-14T22:29:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html">&lt;p&gt;&lt;strong&gt;Firmware&lt;/strong&gt; คือโปรแกรมแกรม (&lt;strong&gt;Software&lt;/strong&gt;) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (&lt;strong&gt;Hardware&lt;/strong&gt;) ให้ทำงานได้ราบรื่น แม้กระทั่ง &lt;strong&gt;micro:bit&lt;/strong&gt; เองก็ต้องมี &lt;strong&gt;Firmware&lt;/strong&gt; เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; ให้ทันสมัยก็จะช่วยให้การทำงาน &lt;strong&gt;micro:bit&lt;/strong&gt; ดียิ่งขึ้น&lt;/p&gt;
 
 &lt;h2 id=&quot;ตรวจสอบเวอร์ชันของ-firmware&quot;&gt;ตรวจสอบเวอร์ชันของ Firmware&lt;/h2&gt;
 
@@ -490,152 +552,4 @@
 &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://thip.ha.or.th/&quot;&gt;thip&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="ruby" /><summary type="html">เมื่อเส้นทางไม่ได้โรยด้วยกลีบกุหลาบ ก็ต้องพยายามและฝ่าฝันกันไป เชื่อว่าหลายๆ คนคงเคยมีประสบการณ์ที่จะต้องแก้ไขโค้ดของคนอื่น หรือต่อยอดโปรเจ็คเดิมซึ่งใครทำไว้ก็ไม่รู้ ซึ่งผมมักจะเรียกว่า Lagacy Project หรือโปรเจ็ค 💩 นั้นเอง 555+ โดยในบทความนี้จะมาเล่าถึงประสบการณ์ที่ได้รับจากการที่ทีมต้องมาช่วงต่อในการแก้ไขและปรับปรุงโปรเจ็คหนึ่งเข้า ก่อนอื่นก็ต้องขอเกริ่นถึงตัวงานของโปรเจ็คสักนิดหนึ่ง โดยโปรเจคนี้ถูกพัฒนาด้วยภาษา Java ในส่วนของ Backend และใช้ JavaScript บวกกับ jQuery ในส่วนของ Frontend ซึ่งถูกก็เรียกว่า ตึ๊ดตี๊ด เฟรมเวิร์ค (ขออนุญาตเซนเซอร์ชื่อไว้นิดหนึ่ง) Architecture ถ้าดูจากภาพรวมแล้ว ผมคิดว่าตัวโครงสร้างเองก็แบ่งได้ชัดเป็น 2 ส่วน (Frontend และ Backend) แบบนี้ผมก็สามารถแบ่งงานให้ทีมได้ไม่ยาก ภาพรวมใช้ได้แหละ ก็ต้องไปไล่ศึกษาโค้ดกันหน่อยก่อนที่จะแก้ไขกันจริง เพื่อจะได้เป็นแนะนำทีมได้ และแล้วความสนุกก็บังเกิดไม่ว่าจะเป็นโค้ดในฝั่ง Frontent หรือ Backend ผมรู้สึกได้ว่าเป็นการเขียนโค้ดที่มีความเป็น ตี๊ดตี๊ด เฟรมเวิร์ค จนรู้สึกว่าการที่จะให้น้องๆ ในทีมเข้าไปแก้ไข หรือจะเพิ่มฟีเจอร์นั้นไม่ใช่เรื่องง่ายเลยทีเดียว จึงกลายมาเป็นคำถามย้อนกลับมาที่ตัวผมว่า “ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี” รีวิวร่วมกันอีกรอบ ที่แน่ๆ คราวนี้เราช่วยกันดูทั้งทีม และก็ถามความคิดเห็นทั้งทีมว่า “ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี” ทั้งนี้เราก็ไม่ตัดสินใจจากการรีวิวโค้ดแต่เพียงอย่างเดียว ยังมีปัจจัยอื่นๆ ที่ต้องพิจารณาร่วมด้วยดังนี้ เทคโนโลยีที่ใช้งาน ซึ่งของเดิมนั้นค่อนข้างจะเก่า ไลบราลีที่ใช้งานก็ไม่ได้มีการอัพเดต และมีบางตัวที่เลิกใช้ไปบางแล้ว ระยะเวลาที่จำกัด ถือเป็นความเสี่ยงหลักของเราเลยที่เกรงว่าจะพัฒนาตัวใหม่ขึ้นมาไม่ทันตามกรอบเวลาที่มี เอกสารรายละเอียดเกี่ยวกับ Requirements และ Flow ที่หายสาบสูญ นั้นกลายเป็นคำถามแล้วเราจะพัฒนาโปรแกรมให้มีฟีเจอร์ตามเดิมได้อย่างไร? เพราะเอกสาร Requirements ใหม่ก็จะอธิบายฟีเจอร์ที่เคยแต่ละฟีเจอร์ไว้เพียงสั้นๆ สุดท้ายเราก็ได้คำตอบออกมาคือ พัฒนาขึ้นใหม่ ให้เทียบเท่าของเดิม และเพิ่มฟีเจอร์ตาม Requirements ใหม่ ซึ่งเป็นการตัดสินใจร่วมกันของทั้งทีม จากปัจจัยต่างๆ ทำไมถึงยังตัดสินใจพัฒนาโปรแกรมขึ้นใหม่ แทนที่จะแก้ไขของเดิม? เวลาก็จำกัด ความเข้าใจใน Requirements และ Flow ก็ไม่มาก ภาษา และเทคโนโลยีที่ใช้งานไม่เหมือนกัน อันนี้เราก็ต้องเลือกใช้ภาษา และเทคโนโลยีที่เราถนัดไว้ก่อน เพื่อจะช่วยทำให้เราพัฒนาได้เร็วยิ่งขึ้น ถึงแม้เวลาจะดูจำกัด แต่อันนี้ผมใช้ประสบการณ์ความเร็วของทีมในการพัฒนาโปรเจคอื่นๆ มาตัดสินใจ และคิดว่าน่าจะทันตามเวลา เอกสารไม่มี ก็ต้องทำฟีเจอร์เก่าด้วยก็ถือว่ายากมาก แต่มีคนที่รู้ Flow อยู่ก็ค่อยประชุมเก็บรายละเอียดกันจากคนที่รู้กันใหม่แล้วกัน ไม่ว่าจะเลิกทางใดก็มีความเสี่ยงทั้งหมด ดังนั้นเลือกทางที่คุ้มค่าจะเสี่ยงแล้วกัน Ruby + Rails + StimulusJS เป็นภาษา และเฟรมเวิร์คที่ใช้ในการพัฒนา Ruby เป็นภาษาที่สนุก และเรียนรู้ได้เร็ว ด้วยความที่ Rails เป็นเฟรมเวิร์คที่ครบครัน ทำให้เราหยิบจับ Gem หรือไลบราลีอื่นๆ มาใช้ร่วมกับโปรเจค ยิ่งทำให้เราพัฒนาโปรแกรมได้เร็วยิ่งขึ้น StimulusJS เป็นเฟรมเวิร์คของ JavaScript ที่เรียบง่าย และขนาดเล็กอันหนึ่งในการจัดการกับ Frontend ผมเชื่อว่าหลายๆ คนคงไม่รู้จัก แต่เชื่อเถอะว่าถ้าคุณได้รู้จัก และลองใช้แล้วคุณจะไม่ลืมมันอีกเลย Docker + Docker Compose เป็นเครื่องมือที่ใช้ในการติดตั้งโปรแกรมสำหรับ Development และ Production จากที่เคยใช้แบบงูๆ ปลาๆ พอได้ใช้งานแบบจริงจัง ตอนแรกก็รู้สึกยาก และ config ไม่ค่อยถูก พอได้เรียนรู้เพิ่มขึ้นก็รู้สึกมันก็สะดวกดีในการใช้สำหรับ Production Sentry เป็นอีกหนึ่งเครื่องมือที่ได้นำมาใช้ในการติดตามปัญหาที่เกิดขึ้นกับโปรแกรมของเราไม่ว่าจะเป็น Development หรือ Production ต้องยอมรับเลยว่าเป็นเครื่องมือที่ดีจริงๆ ทำให้ทางทีมสามารถรู้ถึงรายละเอียดของปัญหา และเข้าไปแก้ไขได้ถูกต้อง !!! D-DAY วันที่ 1 ตุลาคม 2563 เป็นวันที่จะต้องปล่อยโปรแกรมให้ใช้งาน หลังจากที่ตรากตรำพัฒนาร่วม 3 เดือนเต็มๆ ซึ่งในทีมของผมจะประกอบไปด้วย ผู้พัฒนาหลัก 3 คน ผู้ทดสอบโปรแกรม 1 คน ผู้ดูแลเกี่ยวกับฐานข้อมูล และรายงาน 1 คน THIP.HA.OR.TH ภาพตัวอย่างหน้า Login ภาพตัวอย่างหน้า Dashboard ทั้งนี้ก็ต้องขอบคุณน้องๆ ในทีมทุกคน ที่ร่วมมือช่วยกันทำให้การพัฒนาโปรเจคนี้สำเร็จได้ตามที่ตั้งใจไว้ แม้ว่าแต่ละคนอาจจะมีบทบาทที่แตกต่างๆ กันแต่ถ้าขาดคนใดคนหนึ่งไปก็คงไม่สามารถสร้างชิ้นงานชิ้นนี้ขึ้นมาได้ ถึงแม้ว่าทีมจะประสบความสำเร็จในการพัฒนาโปรแกรมไปได้ระดับหนึ่ง และนำไปใช้งานได้ตามเวลาที่กำหนด แต่ก็ยังมีอีกหลายจุดที่ทีมยังขาด และบางจุดก็สามารถพัฒนาเพิ่มเติมให้ดียิ่งขึ้นไปได้ ซึ่งผมก็มองว่าทีมของผมจะพัฒนาต่อๆ ไป References thip</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/it-is-not-an-easy-path/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/it-is-not-an-easy-path/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ติดตั้ง ruby ด้วย rbenv</title><link href="https://karn18.github.io/dev/2020/09/28/setup-ruby-with-rbenv.html" rel="alternate" type="text/html" title="ติดตั้ง ruby ด้วย rbenv" /><published>2020-09-28T18:04:00+07:00</published><updated>2020-09-28T18:04:00+07:00</updated><id>https://karn18.github.io/dev/2020/09/28/setup-ruby-with-rbenv</id><content type="html" xml:base="https://karn18.github.io/dev/2020/09/28/setup-ruby-with-rbenv.html">&lt;p&gt;สำหรับผู้เริ่มต้นจะใช้ &lt;strong&gt;Ruby&lt;/strong&gt; การเตรียมสภาพแวดล้อมต่างๆ ให้พร้อมบนเครื่องคอมพิวเตอร์นั้นจำเป็นอย่างมาก ดังนั้นในบทความนี้จะเป็นจุดเริ่มต้นก่อนที่จะลงมือศึกษาการเขียนโค้ดอย่างจริงจังด้วยภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ซึ่งก็คือการติดตั้ง &lt;strong&gt;Ruby&lt;/strong&gt; นั้นเองครับ&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Ruby&lt;/strong&gt; รองรับทั้งผู้พัฒนาทั้ง &lt;strong&gt;Windows&lt;/strong&gt;, &lt;strong&gt;Linux&lt;/strong&gt; และ &lt;strong&gt;Mac&lt;/strong&gt; โดยส่วนตัวผมเองนั้น ปกติก็จะใช้งาน &lt;strong&gt;Linux&lt;/strong&gt; และ &lt;strong&gt;Mac&lt;/strong&gt; เป็นหลักในการพัฒนาโปรแกรม ซึ่งเราจะใช้ &lt;strong&gt;rbenv&lt;/strong&gt; เป็นเครื่องมือที่ช่วยในการติดตั้ง และจัดการเวอร์ชันของ &lt;strong&gt;Ruby&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;ติดตั้ง-rbenv&quot;&gt;ติดตั้ง rbenv&lt;/h2&gt;
-
-&lt;h3 id=&quot;1-homebrew&quot;&gt;1. Homebrew&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;เปิด terminal และรันคำสั่ง&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;rbenv
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;โหลด &lt;strong&gt;rbenv&lt;/strong&gt; บน &lt;strong&gt;shell&lt;/strong&gt; ที่ใช้งาน&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv init
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;กำหนดค่าให้ &lt;strong&gt;rbenv&lt;/strong&gt; โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน &lt;strong&gt;terminal&lt;/strong&gt; (&lt;strong&gt;~/.zshrc&lt;/strong&gt; หรือ &lt;strong&gt;~/.bashrc&lt;/strong&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;rbenv init -&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/setup-ruby-with-rbenv/rbenv_version.png&quot; alt=&quot;rbenv_version&quot; width=&quot;350px&quot; /&gt;
-&lt;em&gt;เช็คเวอร์ชันของ rbenv&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;2-manual-ผ่าน-git-checkout&quot;&gt;2. Manual ผ่าน Git Checkout&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;โคลน &lt;strong&gt;rbenv&lt;/strong&gt; ไปวางไว้ที่ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.rbenv&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;เพิ่ม &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.rbenv/bin&lt;/code&gt; เข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$PATH&lt;/code&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;สำหรับผู้ใช้ ZSH&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.zshrc  &lt;span class=&quot;c&quot;&gt;# ZSH&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;สำหรับผู้ใช้ BASH&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bashrc &lt;span class=&quot;c&quot;&gt;# BASH&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;โหลด &lt;strong&gt;rbenv&lt;/strong&gt; บน &lt;strong&gt;shell&lt;/strong&gt; ที่ใช้งาน&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv init
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;กำหนดค่าให้ &lt;strong&gt;rbenv&lt;/strong&gt; โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน &lt;strong&gt;terminal&lt;/strong&gt; (&lt;strong&gt;~/.zshrc&lt;/strong&gt; หรือ &lt;strong&gt;~/.bashrc&lt;/strong&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;rbenv init -&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/setup-ruby-with-rbenv/rbenv_version.png&quot; alt=&quot;rbenv_version&quot; width=&quot;350px&quot; /&gt;
-&lt;em&gt;เช็คเวอร์ชันของ rbenv&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;ติดตั้ง-ruby&quot;&gt;ติดตั้ง Ruby&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;ตรวจสอบรายการเวอร์ชันของ &lt;strong&gt;Ruby&lt;/strong&gt; ที่สามารถติดตั้งได้&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--list&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/setup-ruby-with-rbenv/rbenv_list.png&quot; alt=&quot;rbenv_version&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;รายการเวอร์ชันของ ruby ที่สามารถติดตั้งได้&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ติดตั้งเวอร์ชันที่จะใช้งาน (ผมจะติดตั้ง version 2.7.1)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;2.7.1
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ตรวจสอบเวอร์ชันที่ติดตั้งผ่าน &lt;strong&gt;rbenv&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv versions
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/setup-ruby-with-rbenv/rbenv_versions.png&quot; alt=&quot;rbenv_version&quot; width=&quot;420px&quot; /&gt;
-&lt;em&gt;รายการเวอร์ชันของ ruby ที่ติดตั้งผ่าน rbenv&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;กำหนดเวอร์ชันของ &lt;strong&gt;ruby&lt;/strong&gt; แบบ &lt;strong&gt;global&lt;/strong&gt; เพื่อใช้งาน&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rbenv global 2.7.1
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;สำหรับ &lt;strong&gt;rbenv&lt;/strong&gt; มีคำสั่งอื่นๆ ที่ให้เราใช้งานอีกมาก ซึ่งสามารถศึกษาได้จาก &lt;a href=&quot;https://github.com/rbenv/rbenv#command-reference&quot;&gt;#command-reference&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;สำหรับนักพัฒนาบน Windows อย่าเพิ่งน้อยใจ&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;ถึงแม้ &lt;strong&gt;rbenv&lt;/strong&gt; จะไม่มีให้ใช้บน &lt;strong&gt;Windows&lt;/strong&gt; แต่เราก็สามารถที่จะติดตั้ง &lt;strong&gt;ruby&lt;/strong&gt; ได้ด้วย &lt;strong&gt;RubyInstaller for Windows&lt;/strong&gt; ซึ่งวิธีการติดตั้งนั้นก็ง่ายมากๆ เพียงดาว์นโหลดตัวติดตั้งตามเวอ์ชันที่จะใช้งาน จากนั้นเพียงแค่ดับเบิลคลิกและกด &lt;strong&gt;Next&lt;/strong&gt; ไปเรื่อยๆ จนจบเพียงเท่านั้นก็สามารถใช้งาน &lt;strong&gt;Ruby&lt;/strong&gt; บนเครื่องคอมพิวเตอร์ของเราได้&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/rbenv/rbenv&quot;&gt;rbenv&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://rubyinstaller.org/&quot;&gt;rubyinstaller&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="dev" /><category term="rbenv" /><category term="ruby" /><category term="101" /><summary type="html">สำหรับผู้เริ่มต้นจะใช้ Ruby การเตรียมสภาพแวดล้อมต่างๆ ให้พร้อมบนเครื่องคอมพิวเตอร์นั้นจำเป็นอย่างมาก ดังนั้นในบทความนี้จะเป็นจุดเริ่มต้นก่อนที่จะลงมือศึกษาการเขียนโค้ดอย่างจริงจังด้วยภาษา Ruby ซึ่งก็คือการติดตั้ง Ruby นั้นเองครับ Ruby รองรับทั้งผู้พัฒนาทั้ง Windows, Linux และ Mac โดยส่วนตัวผมเองนั้น ปกติก็จะใช้งาน Linux และ Mac เป็นหลักในการพัฒนาโปรแกรม ซึ่งเราจะใช้ rbenv เป็นเครื่องมือที่ช่วยในการติดตั้ง และจัดการเวอร์ชันของ Ruby ติดตั้ง rbenv 1. Homebrew เปิด terminal และรันคำสั่ง 1 $ brew install rbenv โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv 2. Manual ผ่าน Git Checkout โคลน rbenv ไปวางไว้ที่ ~/.rbenv 1 $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv เพิ่ม ~/.rbenv/bin เข้าไปใน $PATH สำหรับผู้ใช้ ZSH 1 $ echo 'export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;' &amp;gt;&amp;gt; ~/.zshrc # ZSH สำหรับผู้ใช้ BASH 1 $ echo 'export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;' &amp;gt;&amp;gt; ~/.bashrc # BASH โหลด rbenv บน shell ที่ใช้งาน 1 $ rbenv init กำหนดค่าให้ rbenv โหลดขึ้นมาใช้งานเมื่อเปิดใช้งาน terminal (~/.zshrc หรือ ~/.bashrc) 1 eval &quot;$(rbenv init -)&quot; ตรวจสอบสักหน่อยว่าติดตั้งสำเร็จหรือไม่ 1 $ rbenv --version เช็คเวอร์ชันของ rbenv ติดตั้ง Ruby ตรวจสอบรายการเวอร์ชันของ Ruby ที่สามารถติดตั้งได้ 1 $ rbenv install --list รายการเวอร์ชันของ ruby ที่สามารถติดตั้งได้ ติดตั้งเวอร์ชันที่จะใช้งาน (ผมจะติดตั้ง version 2.7.1) 1 $ rbenv install 2.7.1 ตรวจสอบเวอร์ชันที่ติดตั้งผ่าน rbenv 1 $ rbenv versions รายการเวอร์ชันของ ruby ที่ติดตั้งผ่าน rbenv กำหนดเวอร์ชันของ ruby แบบ global เพื่อใช้งาน 1 $ rbenv global 2.7.1 สำหรับ rbenv มีคำสั่งอื่นๆ ที่ให้เราใช้งานอีกมาก ซึ่งสามารถศึกษาได้จาก #command-reference สำหรับนักพัฒนาบน Windows อย่าเพิ่งน้อยใจ ถึงแม้ rbenv จะไม่มีให้ใช้บน Windows แต่เราก็สามารถที่จะติดตั้ง ruby ได้ด้วย RubyInstaller for Windows ซึ่งวิธีการติดตั้งนั้นก็ง่ายมากๆ เพียงดาว์นโหลดตัวติดตั้งตามเวอ์ชันที่จะใช้งาน จากนั้นเพียงแค่ดับเบิลคลิกและกด Next ไปเรื่อยๆ จนจบเพียงเท่านั้นก็สามารถใช้งาน Ruby บนเครื่องคอมพิวเตอร์ของเราได้ References rbenv rubyinstaller</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/setup-ruby-with-rbenv/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/setup-ruby-with-rbenv/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="ruby" /><summary type="html">เมื่อเส้นทางไม่ได้โรยด้วยกลีบกุหลาบ ก็ต้องพยายามและฝ่าฝันกันไป เชื่อว่าหลายๆ คนคงเคยมีประสบการณ์ที่จะต้องแก้ไขโค้ดของคนอื่น หรือต่อยอดโปรเจ็คเดิมซึ่งใครทำไว้ก็ไม่รู้ ซึ่งผมมักจะเรียกว่า Lagacy Project หรือโปรเจ็ค 💩 นั้นเอง 555+ โดยในบทความนี้จะมาเล่าถึงประสบการณ์ที่ได้รับจากการที่ทีมต้องมาช่วงต่อในการแก้ไขและปรับปรุงโปรเจ็คหนึ่งเข้า ก่อนอื่นก็ต้องขอเกริ่นถึงตัวงานของโปรเจ็คสักนิดหนึ่ง โดยโปรเจคนี้ถูกพัฒนาด้วยภาษา Java ในส่วนของ Backend และใช้ JavaScript บวกกับ jQuery ในส่วนของ Frontend ซึ่งถูกก็เรียกว่า ตึ๊ดตี๊ด เฟรมเวิร์ค (ขออนุญาตเซนเซอร์ชื่อไว้นิดหนึ่ง) Architecture ถ้าดูจากภาพรวมแล้ว ผมคิดว่าตัวโครงสร้างเองก็แบ่งได้ชัดเป็น 2 ส่วน (Frontend และ Backend) แบบนี้ผมก็สามารถแบ่งงานให้ทีมได้ไม่ยาก ภาพรวมใช้ได้แหละ ก็ต้องไปไล่ศึกษาโค้ดกันหน่อยก่อนที่จะแก้ไขกันจริง เพื่อจะได้เป็นแนะนำทีมได้ และแล้วความสนุกก็บังเกิดไม่ว่าจะเป็นโค้ดในฝั่ง Frontent หรือ Backend ผมรู้สึกได้ว่าเป็นการเขียนโค้ดที่มีความเป็น ตี๊ดตี๊ด เฟรมเวิร์ค จนรู้สึกว่าการที่จะให้น้องๆ ในทีมเข้าไปแก้ไข หรือจะเพิ่มฟีเจอร์นั้นไม่ใช่เรื่องง่ายเลยทีเดียว จึงกลายมาเป็นคำถามย้อนกลับมาที่ตัวผมว่า “ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี” รีวิวร่วมกันอีกรอบ ที่แน่ๆ คราวนี้เราช่วยกันดูทั้งทีม และก็ถามความคิดเห็นทั้งทีมว่า “ตกลงเราจะแก้ไขโปรเจคเดิม หรือจะพัฒนาขึ้นใหม่ดี” ทั้งนี้เราก็ไม่ตัดสินใจจากการรีวิวโค้ดแต่เพียงอย่างเดียว ยังมีปัจจัยอื่นๆ ที่ต้องพิจารณาร่วมด้วยดังนี้ เทคโนโลยีที่ใช้งาน ซึ่งของเดิมนั้นค่อนข้างจะเก่า ไลบราลีที่ใช้งานก็ไม่ได้มีการอัพเดต และมีบางตัวที่เลิกใช้ไปบางแล้ว ระยะเวลาที่จำกัด ถือเป็นความเสี่ยงหลักของเราเลยที่เกรงว่าจะพัฒนาตัวใหม่ขึ้นมาไม่ทันตามกรอบเวลาที่มี เอกสารรายละเอียดเกี่ยวกับ Requirements และ Flow ที่หายสาบสูญ นั้นกลายเป็นคำถามแล้วเราจะพัฒนาโปรแกรมให้มีฟีเจอร์ตามเดิมได้อย่างไร? เพราะเอกสาร Requirements ใหม่ก็จะอธิบายฟีเจอร์ที่เคยแต่ละฟีเจอร์ไว้เพียงสั้นๆ สุดท้ายเราก็ได้คำตอบออกมาคือ พัฒนาขึ้นใหม่ ให้เทียบเท่าของเดิม และเพิ่มฟีเจอร์ตาม Requirements ใหม่ ซึ่งเป็นการตัดสินใจร่วมกันของทั้งทีม จากปัจจัยต่างๆ ทำไมถึงยังตัดสินใจพัฒนาโปรแกรมขึ้นใหม่ แทนที่จะแก้ไขของเดิม? เวลาก็จำกัด ความเข้าใจใน Requirements และ Flow ก็ไม่มาก ภาษา และเทคโนโลยีที่ใช้งานไม่เหมือนกัน อันนี้เราก็ต้องเลือกใช้ภาษา และเทคโนโลยีที่เราถนัดไว้ก่อน เพื่อจะช่วยทำให้เราพัฒนาได้เร็วยิ่งขึ้น ถึงแม้เวลาจะดูจำกัด แต่อันนี้ผมใช้ประสบการณ์ความเร็วของทีมในการพัฒนาโปรเจคอื่นๆ มาตัดสินใจ และคิดว่าน่าจะทันตามเวลา เอกสารไม่มี ก็ต้องทำฟีเจอร์เก่าด้วยก็ถือว่ายากมาก แต่มีคนที่รู้ Flow อยู่ก็ค่อยประชุมเก็บรายละเอียดกันจากคนที่รู้กันใหม่แล้วกัน ไม่ว่าจะเลิกทางใดก็มีความเสี่ยงทั้งหมด ดังนั้นเลือกทางที่คุ้มค่าจะเสี่ยงแล้วกัน Ruby + Rails + StimulusJS เป็นภาษา และเฟรมเวิร์คที่ใช้ในการพัฒนา Ruby เป็นภาษาที่สนุก และเรียนรู้ได้เร็ว ด้วยความที่ Rails เป็นเฟรมเวิร์คที่ครบครัน ทำให้เราหยิบจับ Gem หรือไลบราลีอื่นๆ มาใช้ร่วมกับโปรเจค ยิ่งทำให้เราพัฒนาโปรแกรมได้เร็วยิ่งขึ้น StimulusJS เป็นเฟรมเวิร์คของ JavaScript ที่เรียบง่าย และขนาดเล็กอันหนึ่งในการจัดการกับ Frontend ผมเชื่อว่าหลายๆ คนคงไม่รู้จัก แต่เชื่อเถอะว่าถ้าคุณได้รู้จัก และลองใช้แล้วคุณจะไม่ลืมมันอีกเลย Docker + Docker Compose เป็นเครื่องมือที่ใช้ในการติดตั้งโปรแกรมสำหรับ Development และ Production จากที่เคยใช้แบบงูๆ ปลาๆ พอได้ใช้งานแบบจริงจัง ตอนแรกก็รู้สึกยาก และ config ไม่ค่อยถูก พอได้เรียนรู้เพิ่มขึ้นก็รู้สึกมันก็สะดวกดีในการใช้สำหรับ Production Sentry เป็นอีกหนึ่งเครื่องมือที่ได้นำมาใช้ในการติดตามปัญหาที่เกิดขึ้นกับโปรแกรมของเราไม่ว่าจะเป็น Development หรือ Production ต้องยอมรับเลยว่าเป็นเครื่องมือที่ดีจริงๆ ทำให้ทางทีมสามารถรู้ถึงรายละเอียดของปัญหา และเข้าไปแก้ไขได้ถูกต้อง !!! D-DAY วันที่ 1 ตุลาคม 2563 เป็นวันที่จะต้องปล่อยโปรแกรมให้ใช้งาน หลังจากที่ตรากตรำพัฒนาร่วม 3 เดือนเต็มๆ ซึ่งในทีมของผมจะประกอบไปด้วย ผู้พัฒนาหลัก 3 คน ผู้ทดสอบโปรแกรม 1 คน ผู้ดูแลเกี่ยวกับฐานข้อมูล และรายงาน 1 คน THIP.HA.OR.TH ภาพตัวอย่างหน้า Login ภาพตัวอย่างหน้า Dashboard ทั้งนี้ก็ต้องขอบคุณน้องๆ ในทีมทุกคน ที่ร่วมมือช่วยกันทำให้การพัฒนาโปรเจคนี้สำเร็จได้ตามที่ตั้งใจไว้ แม้ว่าแต่ละคนอาจจะมีบทบาทที่แตกต่างๆ กันแต่ถ้าขาดคนใดคนหนึ่งไปก็คงไม่สามารถสร้างชิ้นงานชิ้นนี้ขึ้นมาได้ ถึงแม้ว่าทีมจะประสบความสำเร็จในการพัฒนาโปรแกรมไปได้ระดับหนึ่ง และนำไปใช้งานได้ตามเวลาที่กำหนด แต่ก็ยังมีอีกหลายจุดที่ทีมยังขาด และบางจุดก็สามารถพัฒนาเพิ่มเติมให้ดียิ่งขึ้นไปได้ ซึ่งผมก็มองว่าทีมของผมจะพัฒนาต่อๆ ไป References thip</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/it-is-not-an-easy-path/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/it-is-not-an-easy-path/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
