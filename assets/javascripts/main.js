@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function(){
-  let theme = localStorage.getItem('theme') || 'light'
+  let theme = localStorage.getItem('theme') || 'dark'
 	if (theme === "dark") {
     document.body.setAttribute('data-theme', 'dark');
     toggleSwitcher(theme)
 	}
 
   document.getElementById('themeSwitcher').addEventListener('click', function(event) {
-    let currentTheme = localStorage.getItem('theme') || 'light'
+    let currentTheme = localStorage.getItem('theme') || 'dark'
     let theme = toggleTheme(currentTheme)
     localStorage.setItem('theme', theme)
     toggleSwitcher(theme)
