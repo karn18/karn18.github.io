@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-10-25T15:29:28+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ป้ายไฟแสดงชื่อด้วย micro:bit</title><link href="https://karn18.github.io/stem/2020/10/25/moving-display.html" rel="alternate" type="text/html" title="ป้ายไฟแสดงชื่อด้วย micro:bit" /><published>2020-10-25T15:29:00+07:00</published><updated>2020-10-25T15:29:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/25/moving-display</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/25/moving-display.html">&lt;p&gt;&lt;strong&gt;micro:bit&lt;/strong&gt; สามารถนำมาทำเป็นป้ายไฟได้ด้วยนะ ซึ่งการเขียนโค้ดแสดงป้ายไฟนี้
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-25T16:42:57+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Add Custom Title To iMovies</title><link href="http://localhost:4000/2020/10/25/add-custom-title-to-imovies.html" rel="alternate" type="text/html" title="Add Custom Title To iMovies" /><published>2020-10-25T16:30:11+07:00</published><updated>2020-10-25T16:30:11+07:00</updated><id>http://localhost:4000/2020/10/25/add-custom-title-to-imovies</id><content type="html" xml:base="http://localhost:4000/2020/10/25/add-custom-title-to-imovies.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">ป้ายไฟแสดงชื่อด้วย micro:bit</title><link href="http://localhost:4000/stem/2020/10/25/moving-display.html" rel="alternate" type="text/html" title="ป้ายไฟแสดงชื่อด้วย micro:bit" /><published>2020-10-25T15:29:00+07:00</published><updated>2020-10-25T15:29:00+07:00</updated><id>http://localhost:4000/stem/2020/10/25/moving-display</id><content type="html" xml:base="http://localhost:4000/stem/2020/10/25/moving-display.html">&lt;p&gt;&lt;strong&gt;micro:bit&lt;/strong&gt; สามารถนำมาทำเป็นป้ายไฟได้ด้วยนะ ซึ่งการเขียนโค้ดแสดงป้ายไฟนี้
 น้องๆ จะได้เรียนรู้การแสดงผลตัวอักษรผ่านบล็อก &lt;strong&gt;show leds&lt;/strong&gt; การหน่วงเวลาการแสดงผลโดยใช้บล็อก &lt;strong&gt;pause&lt;/strong&gt; และการทำงานของโปรแกรมต่อเนื่องตามลำดับจากบล็อกสู่บล็อก 🌈&lt;!-- more --&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;เริ่มต้นกันเลย&quot;&gt;เริ่มต้นกันเลย&lt;/h2&gt;
@@ -52,398 +52,466 @@
 
 &lt;blockquote&gt;
   &lt;p&gt;💡 นอกจากการใช้บล็อก &lt;strong&gt;show leds&lt;/strong&gt; มาใช้แสดงตัวอักษร เรายังสามารถใช้บล็อก &lt;strong&gt;show string&lt;/strong&gt; มาใช้แทนได้ด้วยนะ ลองไปทดลองเล่นกันดู&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="basic" /><category term="microbit" /><summary type="html">micro:bit สามารถนำมาทำเป็นป้ายไฟได้ด้วยนะ ซึ่งการเขียนโค้ดแสดงป้ายไฟนี้ น้องๆ จะได้เรียนรู้การแสดงผลตัวอักษรผ่านบล็อก show leds การหน่วงเวลาการแสดงผลโดยใช้บล็อก pause และการทำงานของโปรแกรมต่อเนื่องตามลำดับจากบล็อกสู่บล็อก 🌈 เริ่มต้นกันเลย เปิดโปรแกรม Microsoft MakeCode ขึ้นมาและสร้างโปรเจคใหม่ว่า ป้ายไฟ สร้างโปรเจค ป้ายไฟ สำหรับป้ายไฟปกติแล้วจะแสดงข้อความวนไปเรื่อยๆ ดังนั้นเราจะใช้บล็อก forever เพื่อให้โปรแกรมสามารถทำงานวนไปเรื่อยๆ ไม่มีที่สิ้นสุดได้ บล็อก leds ต่อเข้ากับบล็อก forever ป้ายไฟในวันนี้จะแสดงชื่อของเราเอง ซึ่งป้ายไฟของผมก็จะเป็น KARN เริ่มลากบล็อก show leds มาต่อกับบล็อก forever จากนั้นปรับ leds ให้แสดงตัวอักษร โดยแต่ละบล็อกแสดง 1 ตัวอักษรเท่านั้น ปรับบล็อก show leds ให้แสดงตัวอักษร K ต่อตัวอักษรให้เป็นคำตามที่ต้องการ และตรวจสอบผลลัพท์บนบอร์ด micro:bit จำลอง ป้ายไฟแสดงข้อความ KARN จะสังเกตเห็นว่าตอนนี้ตัวอักษรจะวิ่งค่อนข้างเร็ว จนทำให้ตาเรามองมันทันว่าป้ายไฟของเราพยายามจะแสดงคำว่าอะไร เพื่อหน่วงเวลาในการแสดงผลตัวอักษรแต่ละตัวให้ช้าขึ้น ให้เราลากบล็อก pause ระหว่างตัวอักษร บล็อก pause ทดลองปรับเวลาในการหน่วงบนบล็อก pause และสังเกตความแตกต่าง บล็อกคำสั่งที่สมบูรณ์ ป้ายไฟที่ปรับความเร็วในการแสดงผลแล้ว 💡 นอกจากการใช้บล็อก show leds มาใช้แสดงตัวอักษร เรายังสามารถใช้บล็อก show string มาใช้แทนได้ด้วยนะ ลองไปทดลองเล่นกันดู</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/moving-display/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/moving-display/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">งงๆ กับ Methods และ Instance Methods ใน Ruby</title><link href="https://karn18.github.io/dev/2020/10/22/methods-vs-instance-methods.html" rel="alternate" type="text/html" title="งงๆ กับ Methods และ Instance Methods ใน Ruby" /><published>2020-10-22T12:07:00+07:00</published><updated>2020-10-22T12:07:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/22/methods-vs-instance-methods</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/22/methods-vs-instance-methods.html">```ruby
-class Car
-  def forward
-   @distance = 1
-  end
-end
-```
-จาก **Class** ด้านบน ถ้ามีคนมาถามเราว่าคลาส **Car** มี methods อะไรบ้าง คำตอบก็คือมี method ที่ชื่อ `forward` ไงหละ ถูกต้องแล้วครับ&lt;!-- more --&gt; 
-
-```bash
-c = Car.new
-Car.methods == c.methods           # false
-Car.instance_methods == c.methods  # true
-```
-
-ที่นี้ลองดูโค้ดเปรียบเทียบ methods ที่อยู่ภายใต้ **Instance** และ **Class** กัน สังเกตเห็นอะไรมั้ยครับ
-
-- **c** เป็น object ที่สร้างขึ้นจาก class **Car**
-- methods ของ class **Car** ไม่เท่ากับ methods ของ object **c**
-- instance methods ของ class **Car** กับเท่ากันกับ methods ของ object **c**
-
-ไม่รู้จะงงมากขึ้นกว่าเดิมหรือเปล่า เพียงแต่สิ่งที่โค้ดพยายามจะบอกเราก็คือ
-- เมื่ออ้างอิงจาก object เราจะเรียกมันว่า **methods**
-- เมื่ออ้างอิงจาก class มันจะมี **methods** ด้วยกัน 2 ประเภทคือ **Instance methods** และ **Class methods** 
-  - ถ้าจะบอกว่าภายใน class **Car** มี methods อะไรบ้าง อันนั้นจะหมายถึง **Class methods** ซึ่ง method `forward` ไม่ใช่ **Class methods**
-  - ส่วนถ้าจะบอกว่าใน class **Car** มี **Instance methods** อะไรบ้าง สามารถตอบทันทีเลยว่า `forward` เป็นหนึ่งในนั้น
-
-## References
-- [Metaprogramming Ruby 2](https://pragprog.com/titles/ppmetr2/metaprogramming-ruby-2)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">1 2 3 4 5 class Car def forward @distance = 1 end end จาก Class ด้านบน ถ้ามีคนมาถามเราว่าคลาส Car มี methods อะไรบ้าง คำตอบก็คือมี method ที่ชื่อ forward ไงหละ ถูกต้องแล้วครับ 1 2 3 c = Car.new Car.methods == c.methods # false Car.instance_methods == c.methods # true ที่นี้ลองดูโค้ดเปรียบเทียบ methods ที่อยู่ภายใต้ Instance และ Class กัน สังเกตเห็นอะไรมั้ยครับ c เป็น object ที่สร้างขึ้นจาก class Car methods ของ class Car ไม่เท่ากับ methods ของ object c instance methods ของ class Car กับเท่ากันกับ methods ของ object c ไม่รู้จะงงมากขึ้นกว่าเดิมหรือเปล่า เพียงแต่สิ่งที่โค้ดพยายามจะบอกเราก็คือ เมื่ออ้างอิงจาก object เราจะเรียกมันว่า methods เมื่ออ้างอิงจาก class มันจะมี methods ด้วยกัน 2 ประเภทคือ Instance methods และ Class methods ถ้าจะบอกว่าภายใน class Car มี methods อะไรบ้าง อันนั้นจะหมายถึง Class methods ซึ่ง method forward ไม่ใช่ Class methods ส่วนถ้าจะบอกว่าใน class Car มี Instance methods อะไรบ้าง สามารถตอบทันทีเลยว่า forward เป็นหนึ่งในนั้น References Metaprogramming Ruby 2</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/methods-vs-instance-methods/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/methods-vs-instance-methods/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Variable Scopes</title><link href="https://karn18.github.io/dev/2020/10/19/ruby-variable-scopes.html" rel="alternate" type="text/html" title="Variable Scopes" /><published>2020-10-19T17:32:00+07:00</published><updated>2020-10-19T17:32:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/19/ruby-variable-scopes</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/19/ruby-variable-scopes.html">สำหรับ **Ruby** การใช้งาน **Class Variable** และ **Instance Variable** จะมีความแตกต่างจากภาษาอื่นๆ นิดหน่อยลองมาดูกัน
-
-## Syntax
-```ruby
-@@class_variable    # Class scope, static across all class intances
-@instance_variable  # Class object scope, value specific to object instance
-```
-
-- **Class Variable** เป็นตัวแปรที่ผูกติดอยู่กับคลาส ใช้สำหรับเก็บข้อมูลเพื่อแชร์กันภายในคลาส
-- **Instance Variable** ก็จะเป็นตัวแปรที่ใช้เก็บข้อมูล โดยจะแยกออกจากกันระหว่างออปเจ็คที่ถูกสร้างขึ้นมา (**Instance**)
-
-ทำความเข้าใจเพิ่มเติมได้จากโค้ดด้านล่าง
-
-```ruby
-class Customer
-   @@no_of_customers = 0
-   def initialize(id, name, addr)
-      @cust_id = id
-      @cust_name = name
-      @cust_addr = addr
-   end
-
-   def display_details()
-      puts &quot;Customer id #@cust_id&quot;
-      puts &quot;Customer name #@cust_name&quot;
-      puts &quot;Customer address #@cust_addr&quot;
-   end
-
-   def total_no_of_customers()
-      @@no_of_customers += 1
-      puts &quot;Total number of customers: #@@no_of_customers&quot;
-   end
-end
-
-# Create Objects
-cust1 = Customer.new(&quot;1&quot;, &quot;John&quot;, &quot;Wisdom Apartments, Ludhiya&quot;)
-cust2 = Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khandala&quot;)
-
-# Call Methods
-cust1.total_no_of_customers()   # Total number of customers: 1
-cust2.total_no_of_customers()   # Total number of customers: 1
-```
-
-&gt; สำหรับ Ruby จะแปลกๆ นิดหนึ่งตรงที่ไม่ว่าจะเป็นตัวแบบ Class หรือ Instance จะไม่สามารถเข้าถึงได้ตรงถึงตัวแปรจากภายนอกได้ ต้องสร้าง accessor method ขึ้นมาไว้เรียกผ่าน
-
-ถ้าเราอยากจะเข้าถึงค่า `@@no_of_customers` จะต้องสร้างเมธอดขึ้นมาเป็นตัวกลางในการเข้าถึงตัวแปร 
-
-```ruby
-def self.no_of_customers
-  @@no_of_customers
-end
-```
-
-หรือเรียกผ่าน **built-in method** ที่ชื่อว่า `Class.class_variable_get` ก็ได้
-เช่นเดียวกันสำหรับ **Instance Varible** ทั้ง 3 ตัวก็จะต้องใช้วิธีการเดียวกัน เพียงแต่ใน **ruby** จะมีเมธอดอำนวยความสะดวกในการเข้าถึงอยู่ โดยวันนี้เราจะใช้ `attr_reader` (**ruby** จะมีชุดเมธอดที่เรียก **accessor** อยู่เอาไว้อธิบายกันในบทความหน้านะครับ)
-
-```ruby
-...
-attr_reader :cust_id, :cust_name, :cust_addr
-```
-
-เพียงเท่านี้เราก็สามารถเข้าถึงตัวแปรทั้ง 3 ตัวได้แล้ว 
-
-```ruby
-puts &quot;#{cust1.cust_id}: #{cust1.cust_name} - #{cust1.cust_addr}&quot;  # 1: John - Wisdom Apartments, Ludhiya
-puts &quot;Number of customer is #{Customer.no_of_customers}&quot;          # Number of customer is 2
-```
-
-## References
-- [https://syntaxdb.com/ref/ruby/class-variables](https://syntaxdb.com/ref/ruby/class-variables)
-- [https://www.tutorialspoint.com/ruby/ruby_variables.htm](https://www.tutorialspoint.com/ruby/ruby_variables.htm)
-- [class_variable_get](https://devdocs.io/ruby~2.6/module#method-i-class_variable_get)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">สำหรับ Ruby การใช้งาน Class Variable และ Instance Variable จะมีความแตกต่างจากภาษาอื่นๆ นิดหน่อยลองมาดูกัน Syntax 1 2 @@class_variable # Class scope, static across all class intances @instance_variable # Class object scope, value specific to object instance Class Variable เป็นตัวแปรที่ผูกติดอยู่กับคลาส ใช้สำหรับเก็บข้อมูลเพื่อแชร์กันภายในคลาส Instance Variable ก็จะเป็นตัวแปรที่ใช้เก็บข้อมูล โดยจะแยกออกจากกันระหว่างออปเจ็คที่ถูกสร้างขึ้นมา (Instance) ทำความเข้าใจเพิ่มเติมได้จากโค้ดด้านล่าง 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 class Customer @@no_of_customers = 0 def initialize(id, name, addr) @cust_id = id @cust_name = name @cust_addr = addr end def display_details() puts &quot;Customer id #@cust_id&quot; puts &quot;Customer name #@cust_name&quot; puts &quot;Customer address #@cust_addr&quot; end def total_no_of_customers() @@no_of_customers += 1 puts &quot;Total number of customers: #@@no_of_customers&quot; end end # Create Objects cust1 = Customer.new(&quot;1&quot;, &quot;John&quot;, &quot;Wisdom Apartments, Ludhiya&quot;) cust2 = Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khandala&quot;) # Call Methods cust1.total_no_of_customers() # Total number of customers: 1 cust2.total_no_of_customers() # Total number of customers: 1 สำหรับ Ruby จะแปลกๆ นิดหนึ่งตรงที่ไม่ว่าจะเป็นตัวแบบ Class หรือ Instance จะไม่สามารถเข้าถึงได้ตรงถึงตัวแปรจากภายนอกได้ ต้องสร้าง accessor method ขึ้นมาไว้เรียกผ่าน ถ้าเราอยากจะเข้าถึงค่า @@no_of_customers จะต้องสร้างเมธอดขึ้นมาเป็นตัวกลางในการเข้าถึงตัวแปร 1 2 3 def self.no_of_customers @@no_of_customers end หรือเรียกผ่าน built-in method ที่ชื่อว่า Class.class_variable_get ก็ได้ เช่นเดียวกันสำหรับ Instance Varible ทั้ง 3 ตัวก็จะต้องใช้วิธีการเดียวกัน เพียงแต่ใน ruby จะมีเมธอดอำนวยความสะดวกในการเข้าถึงอยู่ โดยวันนี้เราจะใช้ attr_reader (ruby จะมีชุดเมธอดที่เรียก accessor อยู่เอาไว้อธิบายกันในบทความหน้านะครับ) 1 2 ... attr_reader :cust_id, :cust_name, :cust_addr เพียงเท่านี้เราก็สามารถเข้าถึงตัวแปรทั้ง 3 ตัวได้แล้ว 1 2 puts &quot;#{cust1.cust_id}: #{cust1.cust_name} - #{cust1.cust_addr}&quot; # 1: John - Wisdom Apartments, Ludhiya puts &quot;Number of customer is #{Customer.no_of_customers}&quot; # Number of customer is 2 References https://syntaxdb.com/ref/ruby/class-variables https://www.tutorialspoint.com/ruby/ruby_variables.htm class_variable_get</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-variable-scopes/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-variable-scopes/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Memoization in Ruby</title><link href="https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html" rel="alternate" type="text/html" title="Memoization in Ruby" /><published>2020-10-15T22:22:00+07:00</published><updated>2020-10-15T22:22:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/15/memoization-in-ruby</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html">อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา **Ruby** ก็คือ **Memoization** แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค **Memoization** จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว&lt;!-- more --&gt;
-
-## Memoization คืออะไร
-
-&gt; Memoization is the process of storing a computed value to avoid duplicated work by future calls.
-
-ถ้าแบ่งเป็นขั้นตอนจะมีด้วยกัน 3 ขั้นด้วยกันคือ
-- โค้ดถูกเรียกใช้งาน เพื่อประมวลผลอะไรบางอย่าง
-- แทนที่จะส่งค่าคืนกลับไปเมื่อถูกเรียกเพียงอย่างเดียว จะเก็บค่าที่ได้จากการประมวลผลเอาไว้ในตัวแปร
-- เมื่อมีการเรียกใช้งานโค้ดดังกล่าวอีกครั้ง ก็จะดึงค่าที่เก็บเอาไว้ส่งคืนกลับไป โดยไม่ต้องประมวลผลใหม่
-
-ถ้าอ่านคำอธิบายข้างต้นแล้วยังงง มาดูรายละเอียดพร้อมกับโค้ดตัวอย่างกันเลยดีกว่า น่าจะทำให้เข้าได้ดียิ่งขึ้น
-- ก่อนอื่นลงสังเกต โค้ดด้านล่าง จะเห็นว่ามีการเรียกใช้ `user_score` ซึ่งจะทำการดึงข้อมูลคะแนนของผู้ใช้งานจากฐานข้อมูล
-
-```ruby
-def user_score
-  User.find_by(name: 'Sam').try(:score)
-end
-```
-
-- เมื่อ `user_score` ถูกเรียกใช้ ไม่ว่าจะกี่ครั้งสิ่งที่เกิดขึ้นคือจะต้องไปดึงข้อมูลจากฐานข้อมูลทุกรอบ ซึ่งก็เป็นกระบวนการที่เสียเวลา ให้เปลืองทรัพยากร
-- จุดที่ **Memoization** ถูกนำมาใช้ก็คือตรงนี้เองแหละครับ แทนที่เราจะต้องดึงข้อมูลจากฐานข้อมูลทุกรอบ เราก็จะเก็บข้อมูลที่เคยดึงเก็บเอาไว้ในตัวแปรหนึ่งตัว ซึ่งนั้นก็คือ `@user_score` ดังแสดงในโค้ดด้านล่าง
-
-&gt; Memoization มักจะใช้เครื่องหมาย `||=`
-
-```ruby
-def user_score
-  @user_score ||= User.find_by(name: 'Sam').try(:score)
-end
-```
-
-&gt; พูดง่ายๆ Memoization ก็เป็นการ Caching ข้อมูลนั้นเอง
-
-## References
-- [https://en.wikipedia.org/wiki/Memoization](https://en.wikipedia.org/wiki/Memoization)
-- [http://gavinmiller.io/2013/basics-of-ruby-memoization](http://gavinmiller.io/2013/basics-of-ruby-memoization)
-- [https://rubyinrails.com/2014/11/03/memoization-ruby](https://rubyinrails.com/2014/11/03/memoization-ruby/)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา Ruby ก็คือ Memoization แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค Memoization จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว Memoization คืออะไร Memoization is the process of storing a computed value to avoid duplicated work by future calls. ถ้าแบ่งเป็นขั้นตอนจะมีด้วยกัน 3 ขั้นด้วยกันคือ โค้ดถูกเรียกใช้งาน เพื่อประมวลผลอะไรบางอย่าง แทนที่จะส่งค่าคืนกลับไปเมื่อถูกเรียกเพียงอย่างเดียว จะเก็บค่าที่ได้จากการประมวลผลเอาไว้ในตัวแปร เมื่อมีการเรียกใช้งานโค้ดดังกล่าวอีกครั้ง ก็จะดึงค่าที่เก็บเอาไว้ส่งคืนกลับไป โดยไม่ต้องประมวลผลใหม่ ถ้าอ่านคำอธิบายข้างต้นแล้วยังงง มาดูรายละเอียดพร้อมกับโค้ดตัวอย่างกันเลยดีกว่า น่าจะทำให้เข้าได้ดียิ่งขึ้น ก่อนอื่นลงสังเกต โค้ดด้านล่าง จะเห็นว่ามีการเรียกใช้ user_score ซึ่งจะทำการดึงข้อมูลคะแนนของผู้ใช้งานจากฐานข้อมูล 1 2 3 def user_score User.find_by(name: 'Sam').try(:score) end เมื่อ user_score ถูกเรียกใช้ ไม่ว่าจะกี่ครั้งสิ่งที่เกิดขึ้นคือจะต้องไปดึงข้อมูลจากฐานข้อมูลทุกรอบ ซึ่งก็เป็นกระบวนการที่เสียเวลา ให้เปลืองทรัพยากร จุดที่ Memoization ถูกนำมาใช้ก็คือตรงนี้เองแหละครับ แทนที่เราจะต้องดึงข้อมูลจากฐานข้อมูลทุกรอบ เราก็จะเก็บข้อมูลที่เคยดึงเก็บเอาไว้ในตัวแปรหนึ่งตัว ซึ่งนั้นก็คือ @user_score ดังแสดงในโค้ดด้านล่าง Memoization มักจะใช้เครื่องหมาย ||= 1 2 3 def user_score @user_score ||= User.find_by(name: 'Sam').try(:score) end พูดง่ายๆ Memoization ก็เป็นการ Caching ข้อมูลนั้นเอง References https://en.wikipedia.org/wiki/Memoization http://gavinmiller.io/2013/basics-of-ruby-memoization https://rubyinrails.com/2014/11/03/memoization-ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/memoization-in-ruby/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/memoization-in-ruby/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ruby’s Main Object</title><link href="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html" rel="alternate" type="text/html" title="Ruby’s Main Object" /><published>2020-10-15T14:22:00+07:00</published><updated>2020-10-15T14:22:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/15/ruby-s-main-object</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html">**Ruby** ถูกออกแบบขึ้นมาภายใต้หลักการของ **Object** นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน **Ruby** ล้วนเป็น **Object** ทั้งหมด โดย **Object** ที่เป็น **Top Level** จะเรียกว่า **Main Object** ซึ่งเมธอดที่ถูกนิยามภายใต้ **Main Object** สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด `puts`, `respond_to?` หรือ `is_a?` ได้ทุกๆ ที่&lt;!-- more --&gt;
-
-จริงๆ แล้ว **Main Object** จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด **IRB**
-
-![main object](/assets/images/posts/2020/ruby-s-main-object/main_object.png){:width=&quot;300px&quot;}
-*Main Object ใน IRB*
-
-เราสามารถนิยามเมธอดที่สามารถเรียกใช้งานได้จากทุกๆ ที่ได้ง่ายๆ เพียงแค่นิยามเมธอดไว้ด้านนอกคลาส หรือโมดูลเท่านั้น **Ruby** จะก็จะผูกเมธอดนั้นๆ เข้ากับ **Main Object** ให้เราโดยอัตโนมัติ
-
-ลองนิยามเมธอด `show_message` มาทดสอบกัน
-
-![main object](/assets/images/posts/2020/ruby-s-main-object/irb_define_method.png){:width=&quot;600px&quot;}
-*show_message in irb*
-
-&gt; สิ่งหนึ่งที่มีความแตกต่างกันระหว่างการนิยามเมธอดใน **IRB** กับในไฟล์ **Ruby** ก็คือ **IRB** จะผูกเมธอดที่นิยามในขอบเขตที่เป็น **public** แต่ในไฟล์จะถูกผูกในขอบเขตที่เป็น **private** อันนี้ต้องไปลองเล่นดูได้นะครับ จะได้เห็นความแตกต่าง
-
-## References
-- [https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what](https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what)
-- [https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/](https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่ จริงๆ แล้ว Main Object จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด IRB Main Object ใน IRB เราสามารถนิยามเมธอดที่สามารถเรียกใช้งานได้จากทุกๆ ที่ได้ง่ายๆ เพียงแค่นิยามเมธอดไว้ด้านนอกคลาส หรือโมดูลเท่านั้น Ruby จะก็จะผูกเมธอดนั้นๆ เข้ากับ Main Object ให้เราโดยอัตโนมัติ ลองนิยามเมธอด show_message มาทดสอบกัน show_message in irb สิ่งหนึ่งที่มีความแตกต่างกันระหว่างการนิยามเมธอดใน IRB กับในไฟล์ Ruby ก็คือ IRB จะผูกเมธอดที่นิยามในขอบเขตที่เป็น public แต่ในไฟล์จะถูกผูกในขอบเขตที่เป็น private อันนี้ต้องไปลองเล่นดูได้นะครับ จะได้เห็นความแตกต่าง References https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to update micro:bit firmware</title><link href="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html" rel="alternate" type="text/html" title="How to update micro:bit firmware" /><published>2020-10-14T22:29:00+07:00</published><updated>2020-10-14T22:29:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html">**Firmware** คือโปรแกรมแกรม (**Software**) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (**Hardware**) ให้ทำงานได้ราบรื่น แม้กระทั่ง **micro:bit** เองก็ต้องมี **Firmware** เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ **Firmware** ให้ทันสมัยก็จะช่วยให้การทำงาน **micro:bit** ดียิ่งขึ้น 
-
-## ตรวจสอบเวอร์ชันของ Firmware
-
-เราสามารถตรวจสอบเวอร์ชันของ **Firmware** ที่ติดตั้งอยู่บน **micro:bit** ได้ไม่ยาก เพียงแค่ต่อบอร์ด **micro:bit** ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ **DETAILS.TXT** บนไดรฟ์ **MICROBIT**
-
-![MICROBIT Drive](/assets/images/posts/2020/how-to-update-micro-bit-firmware/microbit_drive.png){:width=&quot;400px&quot;}
-*MICROBIT Drive*
-
-![DETAILS.TXT](/assets/images/posts/2020/how-to-update-micro-bit-firmware/details.png)
-*Firmware: 0250*
-
-ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า `Interface Version` ซึ่งจะเห็นว่า **micro:bit** มีเวอร์ชันของ **Firmware** เป็น `0250`
-
-## อัพเดตกันได้เลย
-
-มาดูที่วิธีการอัพเดต **Firmware** กันบ้าง โดยเวอร์ชันของ **Firmware** ล่าสุดจะเป็นเวอร์ชัน `0253`
-
-- ดาว์นโหลด **Firmware** มาไว้ที่เครื่องจาก[ที่นี่](https://cdn.sanity.io/files/ajwvhvgo/production/5ecfa4d407a9d02e0f2e7fe192e5fa6a246f8621.hex?dl=0253_kl26z_microbit_0x8000.hex) ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ `.hex`
-- ถอดสาย **USB** ที่เชื่อมต่อออกจาก **micro:bit** รวมถึงไฟเลี้ยงด้วย
-- กดปุ่ม **Reset** แช่เอาไว้ พร้อมกับต่อสาย **USB** เข้ากับตัว **micro:bit** โดยในคราวนี้จะปรากฏเป็นไดรฟ์ **MAINTENANCE** ขึ้นมาแทนที่จะเป็น **MICROBIT**
-
-![MAINTENANCE Drive](/assets/images/posts/2020/how-to-update-micro-bit-firmware/maintenance_drive.png){:width=&quot;400px&quot;}
-
-- ลากไฟล์ `.hex` เข้าไปยังไดรฟ์ **MAINTENANCE** ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ **MICROBIT** ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต **Firmware** ใหม่สำเร็จเรียบร้อย
-
-- ตรวจสอบไฟล์ **DETAILS.TXT** ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น `0253` ถูกต้องหรือไม่
-
-![NEW FIRMWARE](/assets/images/posts/2020/how-to-update-micro-bit-firmware/new_version.png)
-*Firmware: 0253*
-
-## References
-- [https://microbit.org/get-started/user-guide/firmware/](https://microbit.org/get-started/user-guide/firmware/)</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">Firmware คือโปรแกรมแกรม (Software) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (Hardware) ให้ทำงานได้ราบรื่น แม้กระทั่ง micro:bit เองก็ต้องมี Firmware เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ Firmware ให้ทันสมัยก็จะช่วยให้การทำงาน micro:bit ดียิ่งขึ้น ตรวจสอบเวอร์ชันของ Firmware เราสามารถตรวจสอบเวอร์ชันของ Firmware ที่ติดตั้งอยู่บน micro:bit ได้ไม่ยาก เพียงแค่ต่อบอร์ด micro:bit ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ DETAILS.TXT บนไดรฟ์ MICROBIT MICROBIT Drive Firmware: 0250 ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า Interface Version ซึ่งจะเห็นว่า micro:bit มีเวอร์ชันของ Firmware เป็น 0250 อัพเดตกันได้เลย มาดูที่วิธีการอัพเดต Firmware กันบ้าง โดยเวอร์ชันของ Firmware ล่าสุดจะเป็นเวอร์ชัน 0253 ดาว์นโหลด Firmware มาไว้ที่เครื่องจากที่นี่ ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ .hex ถอดสาย USB ที่เชื่อมต่อออกจาก micro:bit รวมถึงไฟเลี้ยงด้วย กดปุ่ม Reset แช่เอาไว้ พร้อมกับต่อสาย USB เข้ากับตัว micro:bit โดยในคราวนี้จะปรากฏเป็นไดรฟ์ MAINTENANCE ขึ้นมาแทนที่จะเป็น MICROBIT ลากไฟล์ .hex เข้าไปยังไดรฟ์ MAINTENANCE ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ MICROBIT ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต Firmware ใหม่สำเร็จเรียบร้อย ตรวจสอบไฟล์ DETAILS.TXT ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น 0253 ถูกต้องหรือไม่ Firmware: 0253 References https://microbit.org/get-started/user-guide/firmware/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">What is micro:bit</title><link href="https://karn18.github.io/stem/2020/10/13/what-is-micro-bit.html" rel="alternate" type="text/html" title="What is micro:bit" /><published>2020-10-13T22:16:00+07:00</published><updated>2020-10-13T22:16:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/13/what-is-micro-bit</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/13/what-is-micro-bit.html">การศึกษาในศตวรรษที่ 21 การแค่ให้เด็กท่องๆ จำๆ ตัวอักษรตามตำราแล้วไปสอบนั้นคงไม่พอที่จะเอาตัวรอดอีกต่อไป สำหรับเด็กในยุคนี้การศึกษาด้วยแนวทางใหม่ที่เรียกว่า **STEM** ถือเป็นแนวทางการศึกษาที่จะถูกคิด และบูรณาการศาสตร์จาก 4 แขนง อันได้แก่ **วิทยาศาตร์(Science) เทคโนโลยี(Technology) วิศวกรรมศาสตร์(Engineering) และคณิตศาสตร์(Mathematics)** เพื่อจะทำให้เด็กเกิดความคิดสร้างสรรค์ รู้จักประยุกต์ความรู้ที่ได้ไปใช้งานให้เหมาะสม และเข้าใจในนวัตกรรมที่เกิดขึ้น&lt;!-- more --&gt;
-
-การเขียนโค้ดหรือโปรแกรมมิ่ง (**Programming**) เป็นอีกหนึ่งทักษะที่จะกระตุ้นให้เด็กๆ เกิดการเรียนรู้ **STEM** โดยในบทความนี้จะแนะนำการเขียนโค้ดผ่าน **micro:bit** ซึ่งเป็นบอร์ดไมโครคอนโทรลเลอร์ที่ได้รับการออกแบบพัฒนาขึ้นมาโดย **BBC** และความร่วมมือของพันธมิตรในการพัฒนาชุดเครื่องมือสำหรับการเขียนโค้ดด้วย **micro:bit** นอกจากนั้นยังได้มีการแจกจ่าย **micro:bit** จำนวน 1 ล้านชิ้นให้กับโรงเรียนทั่วประเทศอังกฤษเพื่อเป็นสื่อการเรียนการสอนการเขียนโค้ดให้กับเด็กๆ
-
-## องค์ประกอบของ micro:bit
-
-![Components](/assets/images/posts/2020/what-is-micro-bit/components.png){:width=&quot;500px&quot;}
-*micro:bit*
-
-ขอแยกอธิบายแต่ละด้านของ **micro:bit** แล้วกัน
-
-- ด้านหน้า
-
-![Front](/assets/images/posts/2020/what-is-micro-bit/front.png){:width=&quot;300px&quot;}
-
-1. ปุ่ม A และ B
-
-    เราสามารถเขียนโค้ดเพื่อรับการกดปุ่ม เพื่อสั่งให้บอร์ดทำอย่างอื่นต่อได้
-
-2. ไฟ LED ขนาด 5x5
-
-    ใช้สำหรับแสดงผลต่างๆ ไม่ว่าจะเป็นตัวเลข ตัวอักษร กราฟ หรือภาพ โดยไฟจะสว่างเป็นสีแดง นอกจากนั้นเรายังสามารถควบคุมระดับความสว่างของหลอดไฟได้ด้วย
-
-3. GPIO Pins
-
-    เป็นพินที่ใช้สำหรับต่อวงจรภายนอก ถ้าดูจากภาพแล้วจะประกอบไปด้วยพินขนาดใหญ่จำนวน 3 พิน ระหว่างพินจะมีพินขนาดเล็กรวมกันทั้งหมด 20 พิน โดยแต่ละพินสามารถใช้รับ/ส่งสัญญาณได้ทั้งแบบแอนะล็อก (Analog) และดิจิทัล (Digital)
-
-4. 3V Pin
-
-    พินสำหรับต่อไฟขนาด 3 โวลต์ เพื่อเป็นแหล่งจ่ายไฟให้กับอุปกรณ์ที่มาต่อ
-
-5. GND Pin
-
-    พินสำหรับต่อกราวด์
-
-&gt; สำหรับพินทั้งหมดที่อยู่บนบอร์ดจะด้วยกันทั้ง 25 พิน
-
-- ด้านหลัง
-
-![Front](/assets/images/posts/2020/what-is-micro-bit/back.png){:width=&quot;300px&quot;}
-
-1. ตัวรับส่งสัญญาณคลื่นวิทยุ (Radio) และบลูทูธพลังงานต่ำ (Bluetooth Low Energy ~ BLE)
-
-    **micro:bit** สามารถติดต่อสื่อสารระหว่างกันผ่านคลื่นวิทยุ และสามารถใช้เชื่อมต่อกับอุปกรณ์มือถือหรือแทบเล็ตผ่านบลูทูธ
-
-2. หน่วยประมวลผล
-
-    เป็นศูนย์กลางในการประมวลผล หรือเรียกได้ว่าเป็นสมองของบอร์ด **micro:bit** นั้นเอง
-
-3. เซนเซอร์วัดความเข้มสนามแม่เหล็ก (Magnatic Sensor) หรือเข็มทิศ
-
-    นั้นทำให้เราสามารถเขียนโค้ดเพื่อใช้สำหรับบอกทิศที่อยู่ตรงหน้าเราได้
-
-4. เซนเซอร์วัดความเร่ง (Accelerometer Sensor)
-
-    การตรวจจับการเคลื่อนที่ การตก การสั่น หรือการเอียงของบอร์ด ก็นำไปประยุกต์ใช้ในการควบคุมอุปกรณ์อื่นๆ ได้ไม่ยาก
-
-5. Pins
-
-6. Micro USB
-
-    เชื่อมต่อระหว่างบอร์ดกับเครื่องคอมพิวเตอร์ เพื่อใช้สำหรับโหลดโปรแกรม และจ่ายไฟให้กับบอร์ด
-    
-7. หลอดไฟแสดงสถานะ
-
-    เมื่อมีต่อกับแหล่งจ่ายไฟ หรือขณะทำการโหลดโปรแกรม
-
-8. ปุ่มรีเซท
-
-    เราสามารถกดปุ่มรีเซท เพื่อให้โปรแกรมเริ่มทำงานใหม่อีกครั้ง
-
-9. ช่องต่อไฟเลี้ยง
-
-    ใช้เชื่อมต่อกับแหล่งจ่ายไฟขนาด 3 โวลต์
-
-10. USB Inferface Chip
-
-    เป็นชิพสำหรับควมคุมการเชื่อมต่อกับ USB ในการโหลดโค้ดลงบอร์ด
-
-## เครื่องมือสำหรับเขียนโค้ด Microsoft MakeCode
-
-**Microsoft MakeCode** เป็นเครื่องมือที่ถูกพัฒนาขึ้นมาสำหรับ **micro:bit** โดยรองรับการเขียนโค้ดทั้งในรูปแบบบล็อก (Block) ซึ่งจะคล้ายกับการต่อตัวต่อแบบลากวาง เหมาะสำหรับเด็กๆ ที่เริ่มต้นเขียนโค้ด และรองรับการเขียนโค้ดแบบข้อความ (Text-based) ซึ่งมีด้วยให้เลือกใช้ด้วยกัน 2 ภาษาเลยทีเดียว นั้นก็คือ **JavaScript** และ **Python**
-
-![MakeCode](/assets/images/posts/2020/what-is-micro-bit/makecode.png)
-
-สำหรับในบทความนี้ก็น่าจะทำให้เราเริ่มรู้จักกับ **micro:bit** และเครื่องมือสำหรับเขียนโค้ดกันไปแล้ว ในบทความหน้าเราจะมาลองมือเขียนโค้ด และรันโค้ดของเรากัน อย่าลืมรอติดตามกันนะครับ
-
-## References
-- [micro:bit](https://www.microbit.org)
-- [MakeCode](https://makecode.microbit.org/)</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">การศึกษาในศตวรรษที่ 21 การแค่ให้เด็กท่องๆ จำๆ ตัวอักษรตามตำราแล้วไปสอบนั้นคงไม่พอที่จะเอาตัวรอดอีกต่อไป สำหรับเด็กในยุคนี้การศึกษาด้วยแนวทางใหม่ที่เรียกว่า STEM ถือเป็นแนวทางการศึกษาที่จะถูกคิด และบูรณาการศาสตร์จาก 4 แขนง อันได้แก่ วิทยาศาตร์(Science) เทคโนโลยี(Technology) วิศวกรรมศาสตร์(Engineering) และคณิตศาสตร์(Mathematics) เพื่อจะทำให้เด็กเกิดความคิดสร้างสรรค์ รู้จักประยุกต์ความรู้ที่ได้ไปใช้งานให้เหมาะสม และเข้าใจในนวัตกรรมที่เกิดขึ้น การเขียนโค้ดหรือโปรแกรมมิ่ง (Programming) เป็นอีกหนึ่งทักษะที่จะกระตุ้นให้เด็กๆ เกิดการเรียนรู้ STEM โดยในบทความนี้จะแนะนำการเขียนโค้ดผ่าน micro:bit ซึ่งเป็นบอร์ดไมโครคอนโทรลเลอร์ที่ได้รับการออกแบบพัฒนาขึ้นมาโดย BBC และความร่วมมือของพันธมิตรในการพัฒนาชุดเครื่องมือสำหรับการเขียนโค้ดด้วย micro:bit นอกจากนั้นยังได้มีการแจกจ่าย micro:bit จำนวน 1 ล้านชิ้นให้กับโรงเรียนทั่วประเทศอังกฤษเพื่อเป็นสื่อการเรียนการสอนการเขียนโค้ดให้กับเด็กๆ องค์ประกอบของ micro:bit micro:bit ขอแยกอธิบายแต่ละด้านของ micro:bit แล้วกัน ด้านหน้า ปุ่ม A และ B เราสามารถเขียนโค้ดเพื่อรับการกดปุ่ม เพื่อสั่งให้บอร์ดทำอย่างอื่นต่อได้ ไฟ LED ขนาด 5x5 ใช้สำหรับแสดงผลต่างๆ ไม่ว่าจะเป็นตัวเลข ตัวอักษร กราฟ หรือภาพ โดยไฟจะสว่างเป็นสีแดง นอกจากนั้นเรายังสามารถควบคุมระดับความสว่างของหลอดไฟได้ด้วย GPIO Pins เป็นพินที่ใช้สำหรับต่อวงจรภายนอก ถ้าดูจากภาพแล้วจะประกอบไปด้วยพินขนาดใหญ่จำนวน 3 พิน ระหว่างพินจะมีพินขนาดเล็กรวมกันทั้งหมด 20 พิน โดยแต่ละพินสามารถใช้รับ/ส่งสัญญาณได้ทั้งแบบแอนะล็อก (Analog) และดิจิทัล (Digital) 3V Pin พินสำหรับต่อไฟขนาด 3 โวลต์ เพื่อเป็นแหล่งจ่ายไฟให้กับอุปกรณ์ที่มาต่อ GND Pin พินสำหรับต่อกราวด์ สำหรับพินทั้งหมดที่อยู่บนบอร์ดจะด้วยกันทั้ง 25 พิน ด้านหลัง ตัวรับส่งสัญญาณคลื่นวิทยุ (Radio) และบลูทูธพลังงานต่ำ (Bluetooth Low Energy ~ BLE) micro:bit สามารถติดต่อสื่อสารระหว่างกันผ่านคลื่นวิทยุ และสามารถใช้เชื่อมต่อกับอุปกรณ์มือถือหรือแทบเล็ตผ่านบลูทูธ หน่วยประมวลผล เป็นศูนย์กลางในการประมวลผล หรือเรียกได้ว่าเป็นสมองของบอร์ด micro:bit นั้นเอง เซนเซอร์วัดความเข้มสนามแม่เหล็ก (Magnatic Sensor) หรือเข็มทิศ นั้นทำให้เราสามารถเขียนโค้ดเพื่อใช้สำหรับบอกทิศที่อยู่ตรงหน้าเราได้ เซนเซอร์วัดความเร่ง (Accelerometer Sensor) การตรวจจับการเคลื่อนที่ การตก การสั่น หรือการเอียงของบอร์ด ก็นำไปประยุกต์ใช้ในการควบคุมอุปกรณ์อื่นๆ ได้ไม่ยาก Pins Micro USB เชื่อมต่อระหว่างบอร์ดกับเครื่องคอมพิวเตอร์ เพื่อใช้สำหรับโหลดโปรแกรม และจ่ายไฟให้กับบอร์ด หลอดไฟแสดงสถานะ เมื่อมีต่อกับแหล่งจ่ายไฟ หรือขณะทำการโหลดโปรแกรม ปุ่มรีเซท เราสามารถกดปุ่มรีเซท เพื่อให้โปรแกรมเริ่มทำงานใหม่อีกครั้ง ช่องต่อไฟเลี้ยง ใช้เชื่อมต่อกับแหล่งจ่ายไฟขนาด 3 โวลต์ USB Inferface Chip เป็นชิพสำหรับควมคุมการเชื่อมต่อกับ USB ในการโหลดโค้ดลงบอร์ด เครื่องมือสำหรับเขียนโค้ด Microsoft MakeCode Microsoft MakeCode เป็นเครื่องมือที่ถูกพัฒนาขึ้นมาสำหรับ micro:bit โดยรองรับการเขียนโค้ดทั้งในรูปแบบบล็อก (Block) ซึ่งจะคล้ายกับการต่อตัวต่อแบบลากวาง เหมาะสำหรับเด็กๆ ที่เริ่มต้นเขียนโค้ด และรองรับการเขียนโค้ดแบบข้อความ (Text-based) ซึ่งมีด้วยให้เลือกใช้ด้วยกัน 2 ภาษาเลยทีเดียว นั้นก็คือ JavaScript และ Python สำหรับในบทความนี้ก็น่าจะทำให้เราเริ่มรู้จักกับ micro:bit และเครื่องมือสำหรับเขียนโค้ดกันไปแล้ว ในบทความหน้าเราจะมาลองมือเขียนโค้ด และรันโค้ดของเรากัน อย่าลืมรอติดตามกันนะครับ References micro:bit MakeCode</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/what-is-micro-bit/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/what-is-micro-bit/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Micro:bit v2</title><link href="https://karn18.github.io/stem/2020/10/13/micro-bit-v2.html" rel="alternate" type="text/html" title="Micro:bit v2" /><published>2020-10-13T13:32:00+07:00</published><updated>2020-10-13T13:32:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/13/micro-bit-v2</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/13/micro-bit-v2.html">เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง **micro:bit Education Foundcation** ได้ประกาศเปิดตัว **micro:bit** เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว **micro:bit** กันบ้าง เรามาดูกันครับ
-
-- โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ
-- แมมโมรี่ขนาด 152kB และแรม 128kB
-- มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ
-- เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส
-- Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น
-- เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0&lt;!-- more --&gt;
-
-![Front](/assets/images/posts/2020/micro-bit-v2/comparison-front.png)
-*เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2*
-
-![Back](/assets/images/posts/2020/micro-bit-v2/comparison-front.png)
-*เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2*
-
-แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ **Microsoft MakeCode** ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น
-
-## On loud/quit Sound
-
-![Logo Pressed](/assets/images/posts/2020/micro-bit-v2/loudsound.png){:width=&quot;200px&quot;}
-*เมื่อมีเสียงดังหรือเงียบ*
-
-## On Logo Pressed
-
-![Logo Pressed](/assets/images/posts/2020/micro-bit-v2/onLogoPressed.png){:width=&quot;200px&quot;}
-*เมื่อสัมผัสที่โลโก้*
-
-## Sound Level
-
-![Sound Level](/assets/images/posts/2020/micro-bit-v2/soundLevel.png){:width=&quot;200px&quot;}
-*ค่าระดับเสียงที่อ่านได้จากบอร์ด*
-
-## Enable/disable Speaker
-
-![Enable/disable Speaker](/assets/images/posts/2020/micro-bit-v2/speakerEnabled.png){:width=&quot;300px&quot;}
-*เปิด/ปิดลำโพง*
-
-มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน **พฤศจิกายน 2020** ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ
-
-ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ
-
-## References
-- [https://microbit.org/news/](https://microbit.org/news/)
-- [Details of micro:bit v2](https://tech.microbit.org/latest-revision/#overview)</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง micro:bit Education Foundcation ได้ประกาศเปิดตัว micro:bit เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว micro:bit กันบ้าง เรามาดูกันครับ โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ แมมโมรี่ขนาด 152kB และแรม 128kB มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0 เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2 เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2 แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ Microsoft MakeCode ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น On loud/quit Sound เมื่อมีเสียงดังหรือเงียบ On Logo Pressed เมื่อสัมผัสที่โลโก้ Sound Level ค่าระดับเสียงที่อ่านได้จากบอร์ด Enable/disable Speaker เปิด/ปิดลำโพง มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน พฤศจิกายน 2020 ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ References https://microbit.org/news/ Details of micro:bit v2</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/micro-bit-v2/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/micro-bit-v2/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า</title><link href="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html" rel="alternate" type="text/html" title="เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า" /><published>2020-10-13T12:10:00+07:00</published><updated>2020-10-13T12:10:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/13/change-to-sidekiq-scheduler.html">สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า **Scheduler** มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น
-
-- การส่ง **email** แจ้งเตือนเมื่อถึงรอบเวลา
-- การประมวลผลข้อมูลที่ใช้เวลานาน
-- การออกรายงาน **PDF** ในแต่ละเดือน
-
-ถ้าเป็นใน **Unix** เราก็คงจะคุ้นชินกับการเรียกใช้ `crontab` สำหรับ **Ruby** เองก็จะใช้ **gem** ที่มีความสามารถเช่นเดียวกัน นั้นก็คือ **rufus-scheduler** ซึ่งปัญหาที่ผมและทีมเจอก็คือการนำ **rufus-scheduler** มาใช้กับ **Rails Application** ไม่ถูกวิธีจึงทำให้เกิดปัญหาการเรียกใช้งาน และสร้างข้อมูลซ้ำ รวมไปถึงการส่ง **email** ไปยังลูกค้าซ้ำซ้อน โดยเคสปัญหาเกิดขึ้นดังนี้
-
-- สร้าง `config/initializers/scheduler.rb` ซึ่งเป็นไฟล์ **initializer** ไว้สำหรับรันงานตามกำหนดเวลา และจะทำงานทันทีที่โปรแกรมทำงาน
-
-## config/initializers/scheduler.rb
-
-```ruby
-require 'rufus-scheduler'
-
-scheduler = Rufus::Scheduler.new
-scheduler.cron '0 0 * * *' do
-  # Send emails
-  UserMailer.notify.deliver_later
-end
-```
-
-จากค่าที่กำหนดไว้ข้างต้นจะกำหนดให้ทุกๆ เที่ยงคืนจะส่ง **email** แจ้งเตือนไปยังผู้ใช้งาน
-
-**เอ๊ะ!!!** ดูแล้วก็ไม่น่าจะมีประเด็นปัญหาอะไรนิ ใช่แล้วหละครับในกรณีที่เรารันแอพไว้เพียง 1 instance ก็จะไม่เกิดปัญหาอะไร ทีนี้ลองมานึกภาพตามผมกันดู 
-
-ถ้าเกิดว่าแอพของเราจำเป็นต้องมีการขยายให้รันได้ 2 instance หรือมากกว่านั้นเพื่อรับโหลดที่มากขึ้น ปัญหาการใช้งาน **Scheduler** แบบวิธีข้างต้นก็จะสร้างปัญหาขึ้นมาทันที ซึ่งก็คือแต่ละ instance จะทำการเหมือนกันเมื่อถึงเวลาเที่ยงคืน และจะทำการส่ง **email** ไปหาลูกค้า ทำให้แทนที่ลูกค้าคนหนึงควรจะได้รับ **email** เพียงฉบับเดียกลับกลายเป็นหลายฉบับ
-
-![issue1](/assets/images/posts/2020/change-to-sidekiq-scheduler/issue.png){:width=&quot;600px&quot;}
-*email จะถูกส่งซ้ำ เมื่อแอพรัน 2 instance*
-
-ที่นี้มองเห็นปัญหาแล้วใช่มั้ยครับ สำหรับวิธีแก้ไขปัญหาก็เพียงเปลี่ยนมาใช้ **Sidekiq Scheduler** ซึ่งเป็น **extension** หนึ่งของ **Sidekiq** อยู่แล้ว อันที่จริงแล้วในตัวโปรแกรมเราก็ใช้ **Sidekiq** เป็นตัวจัดการงานที่เป็น **Background Job** ต่างๆ อยู่แล้ว ดังนั้นการย้ายงานในส่วนของ **Scheduler** ให้มาทำที่ตรงนี้ก็น่าจะเป็นจุดที่เหมาะสมที่สุด และที่สำคัญคือ **Sidekiq** จะถูกสร้างขึ้นมาเพียง 1 instance ซึ่งทำให้ไม่เกิดการทำงานซ้ำซ้อนที่เกิดขึ้นอย่างแน่นอน
-
-![approach](/assets/images/posts/2020/change-to-sidekiq-scheduler/approach.png){:width=&quot;460px&quot;}
-*ใช้ Sidekiq Scheduler แทน*
-
-## config/sidekiq.yml
-
-```yaml
-:schedule:
-  send_email:
-    cron: '0 0 * * *'
-    class: UserMailer
-```
-
-## References
-- [Sidekiq Scheduler](https://github.com/Moove-it/sidekiq-scheduler)
-- [Rufus Scheduler](https://github.com/jmettraux/rufus-scheduler)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><summary type="html">สำหรับงานที่ถูกเรียกใช้งานเมื่อถึงกำหนดเวลา หรือถูกปลุกขึ้นมาทำงานเมื่อถึงรอบเวลาที่เรียกว่า Scheduler มีประโยชน์อย่างมากสำหรับการจัดการเหตุการณ์ที่ไม่ต้องตอบสนองกับผู้ใช้งานทันทีทันใด ยกตัวอย่างเช่น การส่ง email แจ้งเตือนเมื่อถึงรอบเวลา การประมวลผลข้อมูลที่ใช้เวลานาน การออกรายงาน PDF ในแต่ละเดือน ถ้าเป็นใน Unix เราก็คงจะคุ้นชินกับการเรียกใช้ crontab สำหรับ Ruby เองก็จะใช้ gem ที่มีความสามารถเช่นเดียวกัน นั้นก็คือ rufus-scheduler ซึ่งปัญหาที่ผมและทีมเจอก็คือการนำ rufus-scheduler มาใช้กับ Rails Application ไม่ถูกวิธีจึงทำให้เกิดปัญหาการเรียกใช้งาน และสร้างข้อมูลซ้ำ รวมไปถึงการส่ง email ไปยังลูกค้าซ้ำซ้อน โดยเคสปัญหาเกิดขึ้นดังนี้ สร้าง config/initializers/scheduler.rb ซึ่งเป็นไฟล์ initializer ไว้สำหรับรันงานตามกำหนดเวลา และจะทำงานทันทีที่โปรแกรมทำงาน config/initializers/scheduler.rb 1 2 3 4 5 6 7 require 'rufus-scheduler' scheduler = Rufus::Scheduler.new scheduler.cron '0 0 * * *' do # Send emails UserMailer.notify.deliver_later end จากค่าที่กำหนดไว้ข้างต้นจะกำหนดให้ทุกๆ เที่ยงคืนจะส่ง email แจ้งเตือนไปยังผู้ใช้งาน เอ๊ะ!!! ดูแล้วก็ไม่น่าจะมีประเด็นปัญหาอะไรนิ ใช่แล้วหละครับในกรณีที่เรารันแอพไว้เพียง 1 instance ก็จะไม่เกิดปัญหาอะไร ทีนี้ลองมานึกภาพตามผมกันดู ถ้าเกิดว่าแอพของเราจำเป็นต้องมีการขยายให้รันได้ 2 instance หรือมากกว่านั้นเพื่อรับโหลดที่มากขึ้น ปัญหาการใช้งาน Scheduler แบบวิธีข้างต้นก็จะสร้างปัญหาขึ้นมาทันที ซึ่งก็คือแต่ละ instance จะทำการเหมือนกันเมื่อถึงเวลาเที่ยงคืน และจะทำการส่ง email ไปหาลูกค้า ทำให้แทนที่ลูกค้าคนหนึงควรจะได้รับ email เพียงฉบับเดียกลับกลายเป็นหลายฉบับ email จะถูกส่งซ้ำ เมื่อแอพรัน 2 instance ที่นี้มองเห็นปัญหาแล้วใช่มั้ยครับ สำหรับวิธีแก้ไขปัญหาก็เพียงเปลี่ยนมาใช้ Sidekiq Scheduler ซึ่งเป็น extension หนึ่งของ Sidekiq อยู่แล้ว อันที่จริงแล้วในตัวโปรแกรมเราก็ใช้ Sidekiq เป็นตัวจัดการงานที่เป็น Background Job ต่างๆ อยู่แล้ว ดังนั้นการย้ายงานในส่วนของ Scheduler ให้มาทำที่ตรงนี้ก็น่าจะเป็นจุดที่เหมาะสมที่สุด และที่สำคัญคือ Sidekiq จะถูกสร้างขึ้นมาเพียง 1 instance ซึ่งทำให้ไม่เกิดการทำงานซ้ำซ้อนที่เกิดขึ้นอย่างแน่นอน ใช้ Sidekiq Scheduler แทน config/sidekiq.yml 1 2 3 4 :schedule: send_email: cron: '0 0 * * *' class: UserMailer References Sidekiq Scheduler Rufus Scheduler</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/change-to-sidekiq-scheduler/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/change-to-sidekiq-scheduler/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เพิ่ม Staging Environment ให้กับ Rails</title><link href="https://karn18.github.io/dev/2020/10/03/add-a-staging-environment-to-rails.html" rel="alternate" type="text/html" title="เพิ่ม Staging Environment ให้กับ Rails" /><published>2020-10-03T16:54:00+07:00</published><updated>2020-10-03T16:54:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/03/add-a-staging-environment-to-rails</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/03/add-a-staging-environment-to-rails.html">เมื่อเราสร้าง **Rails Application** ผ่านคำสั่ง `rails` ปกติแล้วจะมาพร้อมกับ **config** ของสภาพแวดล้อม 3 รูปแบบเป็นค่ามาตรฐาน
-1. Development
-2. Test
-3. Production
-ซึ่งแต่ละสภาพแวดล้อมก็จะมีค่า **config** ต่างๆ ที่ถูกกำหนดมาให้แยกจากกัน ในโฟลเดอร์ `configs/environments/${ENV}.rb`
-&lt;!-- more --&gt;
-
-เพียงแค่ 3 สภาพแวดล้อมโดยปกติก็เพียงพอต่อการใช้งานแล้ว **แต่ๆ**ในบางครั้งเราก็อยากรันโปรแกรมในสภาพแวดล้อมที่เหมือนจริง แต่ไม่ใช่เครื่องเซิฟเวอร์ที่ปล่อยให้คนใช้งานจริง แต่จะเป็นเครื่องเซิฟเวอร์ที่อาจจะมีคุณลักษณะใกล้เคียงของจริง ที่เรียกว่า **Staging Server**
-
-ซึ่งถ้าเป็นลักษณะเหตุการณ์แบบนี้ ถ้าวิธีการง่ายๆ เราก็คงเลือกใช้วิธีการแก้ไข **config** จากในสภาพแวดล้อม **production** ให้ทำการเชื่อมต่อฐานข้อมูล การต่อกับ **sidekiq** การต่อกับ **redis** ที่อยู่ในเครื่อง **Stagging** แทน สำหรับวิธีการนี้ดูเหมือนจะง่ายๆ แต่พอเราเริ่มมีการอัพเดตโค้ดผ่านการใช้ **git** หรือการใช้ automation อาจจะมีปัญหาเรื่องของ **config** ได้
-
-ดังนั้นวิธีการที่น่าจะเหมาะสมที่สุดก็คงจะเป็นการเพิ่มสภาพแวดล้อมใหม่สำหรับ **Staging** ซึ่งสามารถทำได้ดังนี้
-
-- สร้างไฟล์ `config/environments/staging.rb` ซึ่งแนะนำให้เราก๊อบปี้ไฟล์ `config/environments/production.rb` มาเลยจะดีกว่า
-- สร้างฐานข้อมูลใหม่สำหรับ **Staging** และกำหนดค่าการต่อฐานข้อมูลใน `config/database.rb` โดยการเพิ่ม **config** ของ `staging` เข้าไป
-
-```yml
-staging:
-  &lt;&lt;: *default
-  database: 'example_staging'
-  host: localhost
-  port: 5434
-  username: postgres
-  password: postgres
-```
-
-- จากนั้นในขั้นตอนการรันโปรแกรม จะต้องกำหนด **RAILS_ENV** ให้มีค่าเป็น `staging` 
-เพียงเท่านี้เราก็สามารถจะรันโปรแกรมในสภาพแวดล้อม **Staging** ได้
-
-## References:
-- [https://nts.strzibny.name/creating-staging-environments-in-rails](https://nts.strzibny.name/creating-staging-environments-in-rails/)</content><author><name>Karn</name></author><category term="dev" /><category term="environments" /><category term="rails" /><category term="ruby" /><summary type="html">เมื่อเราสร้าง Rails Application ผ่านคำสั่ง rails ปกติแล้วจะมาพร้อมกับ config ของสภาพแวดล้อม 3 รูปแบบเป็นค่ามาตรฐาน Development Test Production ซึ่งแต่ละสภาพแวดล้อมก็จะมีค่า config ต่างๆ ที่ถูกกำหนดมาให้แยกจากกัน ในโฟลเดอร์ configs/environments/${ENV}.rb เพียงแค่ 3 สภาพแวดล้อมโดยปกติก็เพียงพอต่อการใช้งานแล้ว แต่ๆในบางครั้งเราก็อยากรันโปรแกรมในสภาพแวดล้อมที่เหมือนจริง แต่ไม่ใช่เครื่องเซิฟเวอร์ที่ปล่อยให้คนใช้งานจริง แต่จะเป็นเครื่องเซิฟเวอร์ที่อาจจะมีคุณลักษณะใกล้เคียงของจริง ที่เรียกว่า Staging Server ซึ่งถ้าเป็นลักษณะเหตุการณ์แบบนี้ ถ้าวิธีการง่ายๆ เราก็คงเลือกใช้วิธีการแก้ไข config จากในสภาพแวดล้อม production ให้ทำการเชื่อมต่อฐานข้อมูล การต่อกับ sidekiq การต่อกับ redis ที่อยู่ในเครื่อง Stagging แทน สำหรับวิธีการนี้ดูเหมือนจะง่ายๆ แต่พอเราเริ่มมีการอัพเดตโค้ดผ่านการใช้ git หรือการใช้ automation อาจจะมีปัญหาเรื่องของ config ได้ ดังนั้นวิธีการที่น่าจะเหมาะสมที่สุดก็คงจะเป็นการเพิ่มสภาพแวดล้อมใหม่สำหรับ Staging ซึ่งสามารถทำได้ดังนี้ สร้างไฟล์ config/environments/staging.rb ซึ่งแนะนำให้เราก๊อบปี้ไฟล์ config/environments/production.rb มาเลยจะดีกว่า สร้างฐานข้อมูลใหม่สำหรับ Staging และกำหนดค่าการต่อฐานข้อมูลใน config/database.rb โดยการเพิ่ม config ของ staging เข้าไป 1 2 3 4 5 6 7 staging: &amp;lt;&amp;lt;: *default database: 'example_staging' host: localhost port: 5434 username: postgres password: postgres จากนั้นในขั้นตอนการรันโปรแกรม จะต้องกำหนด RAILS_ENV ให้มีค่าเป็น staging เพียงเท่านี้เราก็สามารถจะรันโปรแกรมในสภาพแวดล้อม Staging ได้ References: https://nts.strzibny.name/creating-staging-environments-in-rails</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/add-a-staging-environment-to-rails/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/add-a-staging-environment-to-rails/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;เมื่อปรับเปลี่ยนความเร็วในการแสดงผลเป็นที่พอใจแล้ว ที่นี่เรามาโหลดโปรแกรมเข้าไปยัง &lt;strong&gt;micro:bit&lt;/strong&gt; ดู&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/microbit.gif&quot; alt=&quot;microbit&quot; /&gt;
+&lt;em&gt;รันโค้ดป้ายไฟบน micro:bit&lt;/em&gt;&lt;/p&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="basic" /><category term="microbit" /><summary type="html">micro:bit สามารถนำมาทำเป็นป้ายไฟได้ด้วยนะ ซึ่งการเขียนโค้ดแสดงป้ายไฟนี้ น้องๆ จะได้เรียนรู้การแสดงผลตัวอักษรผ่านบล็อก show leds การหน่วงเวลาการแสดงผลโดยใช้บล็อก pause และการทำงานของโปรแกรมต่อเนื่องตามลำดับจากบล็อกสู่บล็อก 🌈 เริ่มต้นกันเลย เปิดโปรแกรม Microsoft MakeCode ขึ้นมาและสร้างโปรเจคใหม่ว่า ป้ายไฟ สร้างโปรเจค ป้ายไฟ สำหรับป้ายไฟปกติแล้วจะแสดงข้อความวนไปเรื่อยๆ ดังนั้นเราจะใช้บล็อก forever เพื่อให้โปรแกรมสามารถทำงานวนไปเรื่อยๆ ไม่มีที่สิ้นสุดได้ บล็อก leds ต่อเข้ากับบล็อก forever ป้ายไฟในวันนี้จะแสดงชื่อของเราเอง ซึ่งป้ายไฟของผมก็จะเป็น KARN เริ่มลากบล็อก show leds มาต่อกับบล็อก forever จากนั้นปรับ leds ให้แสดงตัวอักษร โดยแต่ละบล็อกแสดง 1 ตัวอักษรเท่านั้น ปรับบล็อก show leds ให้แสดงตัวอักษร K ต่อตัวอักษรให้เป็นคำตามที่ต้องการ และตรวจสอบผลลัพท์บนบอร์ด micro:bit จำลอง ป้ายไฟแสดงข้อความ KARN จะสังเกตเห็นว่าตอนนี้ตัวอักษรจะวิ่งค่อนข้างเร็ว จนทำให้ตาเรามองมันทันว่าป้ายไฟของเราพยายามจะแสดงคำว่าอะไร เพื่อหน่วงเวลาในการแสดงผลตัวอักษรแต่ละตัวให้ช้าขึ้น ให้เราลากบล็อก pause ระหว่างตัวอักษร บล็อก pause ทดลองปรับเวลาในการหน่วงบนบล็อก pause และสังเกตความแตกต่าง บล็อกคำสั่งที่สมบูรณ์ ป้ายไฟที่ปรับความเร็วในการแสดงผลแล้ว 💡 นอกจากการใช้บล็อก show leds มาใช้แสดงตัวอักษร เรายังสามารถใช้บล็อก show string มาใช้แทนได้ด้วยนะ ลองไปทดลองเล่นกันดู เมื่อปรับเปลี่ยนความเร็วในการแสดงผลเป็นที่พอใจแล้ว ที่นี่เรามาโหลดโปรแกรมเข้าไปยัง micro:bit ดู รันโค้ดป้ายไฟบน micro:bit</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/posts/2020/moving-display/cover.png" /><media:content medium="image" url="http://localhost:4000/assets/images/posts/2020/moving-display/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">งงๆ กับ Methods และ Instance Methods ใน Ruby</title><link href="http://localhost:4000/dev/2020/10/22/methods-vs-instance-methods.html" rel="alternate" type="text/html" title="งงๆ กับ Methods และ Instance Methods ใน Ruby" /><published>2020-10-22T12:07:00+07:00</published><updated>2020-10-22T12:07:00+07:00</updated><id>http://localhost:4000/dev/2020/10/22/methods-vs-instance-methods</id><content type="html" xml:base="http://localhost:4000/dev/2020/10/22/methods-vs-instance-methods.html">&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;forward&lt;/span&gt;
+   &lt;span class=&quot;vi&quot;&gt;@distance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;จาก &lt;strong&gt;Class&lt;/strong&gt; ด้านบน ถ้ามีคนมาถามเราว่าคลาส &lt;strong&gt;Car&lt;/strong&gt; มี methods อะไรบ้าง คำตอบก็คือมี method ที่ชื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forward&lt;/code&gt; ไงหละ ถูกต้องแล้วครับ&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;c &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Car.new
+Car.methods &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; c.methods           &lt;span class=&quot;c&quot;&gt;# false&lt;/span&gt;
+Car.instance_methods &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; c.methods  &lt;span class=&quot;c&quot;&gt;# true&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ที่นี้ลองดูโค้ดเปรียบเทียบ methods ที่อยู่ภายใต้ &lt;strong&gt;Instance&lt;/strong&gt; และ &lt;strong&gt;Class&lt;/strong&gt; กัน สังเกตเห็นอะไรมั้ยครับ&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;c&lt;/strong&gt; เป็น object ที่สร้างขึ้นจาก class &lt;strong&gt;Car&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;methods ของ class &lt;strong&gt;Car&lt;/strong&gt; ไม่เท่ากับ methods ของ object &lt;strong&gt;c&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;instance methods ของ class &lt;strong&gt;Car&lt;/strong&gt; กับเท่ากันกับ methods ของ object &lt;strong&gt;c&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ไม่รู้จะงงมากขึ้นกว่าเดิมหรือเปล่า เพียงแต่สิ่งที่โค้ดพยายามจะบอกเราก็คือ&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;เมื่ออ้างอิงจาก object เราจะเรียกมันว่า &lt;strong&gt;methods&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;เมื่ออ้างอิงจาก class มันจะมี &lt;strong&gt;methods&lt;/strong&gt; ด้วยกัน 2 ประเภทคือ &lt;strong&gt;Instance methods&lt;/strong&gt; และ &lt;strong&gt;Class methods&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;ถ้าจะบอกว่าภายใน class &lt;strong&gt;Car&lt;/strong&gt; มี methods อะไรบ้าง อันนั้นจะหมายถึง &lt;strong&gt;Class methods&lt;/strong&gt; ซึ่ง method &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forward&lt;/code&gt; ไม่ใช่ &lt;strong&gt;Class methods&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;ส่วนถ้าจะบอกว่าใน class &lt;strong&gt;Car&lt;/strong&gt; มี &lt;strong&gt;Instance methods&lt;/strong&gt; อะไรบ้าง สามารถตอบทันทีเลยว่า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forward&lt;/code&gt; เป็นหนึ่งในนั้น&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pragprog.com/titles/ppmetr2/metaprogramming-ruby-2&quot;&gt;Metaprogramming Ruby 2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">1 2 3 4 5 class Car def forward @distance = 1 end end จาก Class ด้านบน ถ้ามีคนมาถามเราว่าคลาส Car มี methods อะไรบ้าง คำตอบก็คือมี method ที่ชื่อ forward ไงหละ ถูกต้องแล้วครับ 1 2 3 c = Car.new Car.methods == c.methods # false Car.instance_methods == c.methods # true ที่นี้ลองดูโค้ดเปรียบเทียบ methods ที่อยู่ภายใต้ Instance และ Class กัน สังเกตเห็นอะไรมั้ยครับ c เป็น object ที่สร้างขึ้นจาก class Car methods ของ class Car ไม่เท่ากับ methods ของ object c instance methods ของ class Car กับเท่ากันกับ methods ของ object c ไม่รู้จะงงมากขึ้นกว่าเดิมหรือเปล่า เพียงแต่สิ่งที่โค้ดพยายามจะบอกเราก็คือ เมื่ออ้างอิงจาก object เราจะเรียกมันว่า methods เมื่ออ้างอิงจาก class มันจะมี methods ด้วยกัน 2 ประเภทคือ Instance methods และ Class methods ถ้าจะบอกว่าภายใน class Car มี methods อะไรบ้าง อันนั้นจะหมายถึง Class methods ซึ่ง method forward ไม่ใช่ Class methods ส่วนถ้าจะบอกว่าใน class Car มี Instance methods อะไรบ้าง สามารถตอบทันทีเลยว่า forward เป็นหนึ่งในนั้น References Metaprogramming Ruby 2</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/posts/2020/methods-vs-instance-methods/cover.png" /><media:content medium="image" url="http://localhost:4000/assets/images/posts/2020/methods-vs-instance-methods/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Create A Gem</title><link href="http://localhost:4000/2020/10/20/create-a-gem.html" rel="alternate" type="text/html" title="Create A Gem" /><published>2020-10-20T16:30:34+07:00</published><updated>2020-10-20T16:30:34+07:00</updated><id>http://localhost:4000/2020/10/20/create-a-gem</id><content type="html" xml:base="http://localhost:4000/2020/10/20/create-a-gem.html">&lt;p&gt;&lt;strong&gt;Gem&lt;/strong&gt; เป็นชื่อที่ถูกนำมาใช้เรียก ไลบราลีหนึ่งๆ ของ &lt;strong&gt;Ruby&lt;/strong&gt; ซึ่งเราเองก็สามารถที่จะสร้าง &lt;strong&gt;Gem&lt;/strong&gt; เป็นของเราเองขึ้นมาได้ เพื่อนำไปใช้ในอนาคต หรือนำไปแบ่งปันให้คนอื่นได้ใช้งาน&lt;/p&gt;
+
+&lt;p&gt;การสร้าง &lt;strong&gt;Gem&lt;/strong&gt; ก็สามารถทำได้ 2 วิธีคือ&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Manual อันนี้ก็อาจจะค่อนข้างยุ่งยากนิดหน่อย เพราะต้องสร้างไฟล์ต่างๆ เองให้ครบ ซึ่งเราจะไม่ทำกันวิธีนี้แต่ถ้าอยากลงรายละเอียดไปตามนี้เลย &lt;a href=&quot;https://guides.rubygems.org/make-your-own-gem/&quot;&gt;👇&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Bundler เป็นเครื่องมืออันหนึ่งสำหรับ &lt;strong&gt;Ruby Programmer&lt;/strong&gt; ที่ใช้สำหรับจัดการไลบราลีของ &lt;strong&gt;Ruby&lt;/strong&gt; นี่แหละเราจะใช้เครื่องมือนี้กันในการสร้าง &lt;strong&gt;Gem&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;เริ่มกันเลย&quot;&gt;เริ่มกันเลย&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle gem addons-formatter
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://bundler.io/&quot;&gt;Bundler&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://guides.rubygems.org&quot;&gt;Gem&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Gem เป็นชื่อที่ถูกนำมาใช้เรียก ไลบราลีหนึ่งๆ ของ Ruby ซึ่งเราเองก็สามารถที่จะสร้าง Gem เป็นของเราเองขึ้นมาได้ เพื่อนำไปใช้ในอนาคต หรือนำไปแบ่งปันให้คนอื่นได้ใช้งาน การสร้าง Gem ก็สามารถทำได้ 2 วิธีคือ Manual อันนี้ก็อาจจะค่อนข้างยุ่งยากนิดหน่อย เพราะต้องสร้างไฟล์ต่างๆ เองให้ครบ ซึ่งเราจะไม่ทำกันวิธีนี้แต่ถ้าอยากลงรายละเอียดไปตามนี้เลย 👇 Bundler เป็นเครื่องมืออันหนึ่งสำหรับ Ruby Programmer ที่ใช้สำหรับจัดการไลบราลีของ Ruby นี่แหละเราจะใช้เครื่องมือนี้กันในการสร้าง Gem เริ่มกันเลย 1 $ bundle gem addons-formatter References Bundler Gem</summary></entry><entry><title type="html">Variable Scopes</title><link href="http://localhost:4000/dev/2020/10/19/ruby-variable-scopes.html" rel="alternate" type="text/html" title="Variable Scopes" /><published>2020-10-19T17:32:00+07:00</published><updated>2020-10-19T17:32:00+07:00</updated><id>http://localhost:4000/dev/2020/10/19/ruby-variable-scopes</id><content type="html" xml:base="http://localhost:4000/dev/2020/10/19/ruby-variable-scopes.html">&lt;p&gt;สำหรับ &lt;strong&gt;Ruby&lt;/strong&gt; การใช้งาน &lt;strong&gt;Class Variable&lt;/strong&gt; และ &lt;strong&gt;Instance Variable&lt;/strong&gt; จะมีความแตกต่างจากภาษาอื่นๆ นิดหน่อยลองมาดูกัน&lt;/p&gt;
+
+&lt;h2 id=&quot;syntax&quot;&gt;Syntax&lt;/h2&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;vc&quot;&gt;@@class_variable&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;# Class scope, static across all class intances&lt;/span&gt;
+&lt;span class=&quot;vi&quot;&gt;@instance_variable&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# Class object scope, value specific to object instance&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Class Variable&lt;/strong&gt; เป็นตัวแปรที่ผูกติดอยู่กับคลาส ใช้สำหรับเก็บข้อมูลเพื่อแชร์กันภายในคลาส&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Instance Variable&lt;/strong&gt; ก็จะเป็นตัวแปรที่ใช้เก็บข้อมูล โดยจะแยกออกจากกันระหว่างออปเจ็คที่ถูกสร้างขึ้นมา (&lt;strong&gt;Instance&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ทำความเข้าใจเพิ่มเติมได้จากโค้ดด้านล่าง&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Customer&lt;/span&gt;
+   &lt;span class=&quot;vc&quot;&gt;@@no_of_customers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;addr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@cust_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@cust_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@cust_addr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;addr&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;display_details&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Customer id &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#@cust_id&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Customer name &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#@cust_name&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Customer address &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#@cust_addr&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;total_no_of_customers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+      &lt;span class=&quot;vc&quot;&gt;@@no_of_customers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Total number of customers: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#@@no_of_customers&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Create Objects&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cust1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Customer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;John&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Wisdom Apartments, Ludhiya&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cust2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Customer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Poul&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;New Empire road, Khandala&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Call Methods&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cust1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;total_no_of_customers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# Total number of customers: 1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cust2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;total_no_of_customers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# Total number of customers: 1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;สำหรับ Ruby จะแปลกๆ นิดหนึ่งตรงที่ไม่ว่าจะเป็นตัวแบบ Class หรือ Instance จะไม่สามารถเข้าถึงได้ตรงถึงตัวแปรจากภายนอกได้ ต้องสร้าง accessor method ขึ้นมาไว้เรียกผ่าน&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ถ้าเราอยากจะเข้าถึงค่า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@@no_of_customers&lt;/code&gt; จะต้องสร้างเมธอดขึ้นมาเป็นตัวกลางในการเข้าถึงตัวแปร&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;no_of_customers&lt;/span&gt;
+  &lt;span class=&quot;vc&quot;&gt;@@no_of_customers&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;หรือเรียกผ่าน &lt;strong&gt;built-in method&lt;/strong&gt; ที่ชื่อว่า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Class.class_variable_get&lt;/code&gt; ก็ได้
+เช่นเดียวกันสำหรับ &lt;strong&gt;Instance Varible&lt;/strong&gt; ทั้ง 3 ตัวก็จะต้องใช้วิธีการเดียวกัน เพียงแต่ใน &lt;strong&gt;ruby&lt;/strong&gt; จะมีเมธอดอำนวยความสะดวกในการเข้าถึงอยู่ โดยวันนี้เราจะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;attr_reader&lt;/code&gt; (&lt;strong&gt;ruby&lt;/strong&gt; จะมีชุดเมธอดที่เรียก &lt;strong&gt;accessor&lt;/strong&gt; อยู่เอาไว้อธิบายกันในบทความหน้านะครับ)&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;attr_reader&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:cust_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:cust_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:cust_addr&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เพียงเท่านี้เราก็สามารถเข้าถึงตัวแปรทั้ง 3 ตัวได้แล้ว&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cust1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cust_id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cust1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cust_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; - &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cust1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cust_addr&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 1: John - Wisdom Apartments, Ludhiya&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Number of customer is &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Customer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;no_of_customers&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;          &lt;span class=&quot;c1&quot;&gt;# Number of customer is 2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://syntaxdb.com/ref/ruby/class-variables&quot;&gt;https://syntaxdb.com/ref/ruby/class-variables&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.tutorialspoint.com/ruby/ruby_variables.htm&quot;&gt;https://www.tutorialspoint.com/ruby/ruby_variables.htm&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://devdocs.io/ruby~2.6/module#method-i-class_variable_get&quot;&gt;class_variable_get&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">สำหรับ Ruby การใช้งาน Class Variable และ Instance Variable จะมีความแตกต่างจากภาษาอื่นๆ นิดหน่อยลองมาดูกัน Syntax 1 2 @@class_variable # Class scope, static across all class intances @instance_variable # Class object scope, value specific to object instance Class Variable เป็นตัวแปรที่ผูกติดอยู่กับคลาส ใช้สำหรับเก็บข้อมูลเพื่อแชร์กันภายในคลาส Instance Variable ก็จะเป็นตัวแปรที่ใช้เก็บข้อมูล โดยจะแยกออกจากกันระหว่างออปเจ็คที่ถูกสร้างขึ้นมา (Instance) ทำความเข้าใจเพิ่มเติมได้จากโค้ดด้านล่าง 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 class Customer @@no_of_customers = 0 def initialize(id, name, addr) @cust_id = id @cust_name = name @cust_addr = addr end def display_details() puts &quot;Customer id #@cust_id&quot; puts &quot;Customer name #@cust_name&quot; puts &quot;Customer address #@cust_addr&quot; end def total_no_of_customers() @@no_of_customers += 1 puts &quot;Total number of customers: #@@no_of_customers&quot; end end # Create Objects cust1 = Customer.new(&quot;1&quot;, &quot;John&quot;, &quot;Wisdom Apartments, Ludhiya&quot;) cust2 = Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khandala&quot;) # Call Methods cust1.total_no_of_customers() # Total number of customers: 1 cust2.total_no_of_customers() # Total number of customers: 1 สำหรับ Ruby จะแปลกๆ นิดหนึ่งตรงที่ไม่ว่าจะเป็นตัวแบบ Class หรือ Instance จะไม่สามารถเข้าถึงได้ตรงถึงตัวแปรจากภายนอกได้ ต้องสร้าง accessor method ขึ้นมาไว้เรียกผ่าน ถ้าเราอยากจะเข้าถึงค่า @@no_of_customers จะต้องสร้างเมธอดขึ้นมาเป็นตัวกลางในการเข้าถึงตัวแปร 1 2 3 def self.no_of_customers @@no_of_customers end หรือเรียกผ่าน built-in method ที่ชื่อว่า Class.class_variable_get ก็ได้ เช่นเดียวกันสำหรับ Instance Varible ทั้ง 3 ตัวก็จะต้องใช้วิธีการเดียวกัน เพียงแต่ใน ruby จะมีเมธอดอำนวยความสะดวกในการเข้าถึงอยู่ โดยวันนี้เราจะใช้ attr_reader (ruby จะมีชุดเมธอดที่เรียก accessor อยู่เอาไว้อธิบายกันในบทความหน้านะครับ) 1 2 ... attr_reader :cust_id, :cust_name, :cust_addr เพียงเท่านี้เราก็สามารถเข้าถึงตัวแปรทั้ง 3 ตัวได้แล้ว 1 2 puts &quot;#{cust1.cust_id}: #{cust1.cust_name} - #{cust1.cust_addr}&quot; # 1: John - Wisdom Apartments, Ludhiya puts &quot;Number of customer is #{Customer.no_of_customers}&quot; # Number of customer is 2 References https://syntaxdb.com/ref/ruby/class-variables https://www.tutorialspoint.com/ruby/ruby_variables.htm class_variable_get</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/posts/2020/ruby-variable-scopes/cover.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/posts/2020/ruby-variable-scopes/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Memoization in Ruby</title><link href="http://localhost:4000/dev/2020/10/15/memoization-in-ruby.html" rel="alternate" type="text/html" title="Memoization in Ruby" /><published>2020-10-15T22:22:00+07:00</published><updated>2020-10-15T22:22:00+07:00</updated><id>http://localhost:4000/dev/2020/10/15/memoization-in-ruby</id><content type="html" xml:base="http://localhost:4000/dev/2020/10/15/memoization-in-ruby.html">&lt;p&gt;อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา &lt;strong&gt;Ruby&lt;/strong&gt; ก็คือ &lt;strong&gt;Memoization&lt;/strong&gt; แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค &lt;strong&gt;Memoization&lt;/strong&gt; จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;memoization-คืออะไร&quot;&gt;Memoization คืออะไร&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Memoization is the process of storing a computed value to avoid duplicated work by future calls.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ถ้าแบ่งเป็นขั้นตอนจะมีด้วยกัน 3 ขั้นด้วยกันคือ&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;โค้ดถูกเรียกใช้งาน เพื่อประมวลผลอะไรบางอย่าง&lt;/li&gt;
+  &lt;li&gt;แทนที่จะส่งค่าคืนกลับไปเมื่อถูกเรียกเพียงอย่างเดียว จะเก็บค่าที่ได้จากการประมวลผลเอาไว้ในตัวแปร&lt;/li&gt;
+  &lt;li&gt;เมื่อมีการเรียกใช้งานโค้ดดังกล่าวอีกครั้ง ก็จะดึงค่าที่เก็บเอาไว้ส่งคืนกลับไป โดยไม่ต้องประมวลผลใหม่&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ถ้าอ่านคำอธิบายข้างต้นแล้วยังงง มาดูรายละเอียดพร้อมกับโค้ดตัวอย่างกันเลยดีกว่า น่าจะทำให้เข้าได้ดียิ่งขึ้น&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ก่อนอื่นลงสังเกต โค้ดด้านล่าง จะเห็นว่ามีการเรียกใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user_score&lt;/code&gt; ซึ่งจะทำการดึงข้อมูลคะแนนของผู้ใช้งานจากฐานข้อมูล&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;user_score&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Sam'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;เมื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user_score&lt;/code&gt; ถูกเรียกใช้ ไม่ว่าจะกี่ครั้งสิ่งที่เกิดขึ้นคือจะต้องไปดึงข้อมูลจากฐานข้อมูลทุกรอบ ซึ่งก็เป็นกระบวนการที่เสียเวลา ให้เปลืองทรัพยากร&lt;/li&gt;
+  &lt;li&gt;จุดที่ &lt;strong&gt;Memoization&lt;/strong&gt; ถูกนำมาใช้ก็คือตรงนี้เองแหละครับ แทนที่เราจะต้องดึงข้อมูลจากฐานข้อมูลทุกรอบ เราก็จะเก็บข้อมูลที่เคยดึงเก็บเอาไว้ในตัวแปรหนึ่งตัว ซึ่งนั้นก็คือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@user_score&lt;/code&gt; ดังแสดงในโค้ดด้านล่าง&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Memoization มักจะใช้เครื่องหมาย &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;||=&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;user_score&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@user_score&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Sam'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;พูดง่ายๆ Memoization ก็เป็นการ Caching ข้อมูลนั้นเอง&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Memoization&quot;&gt;https://en.wikipedia.org/wiki/Memoization&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://gavinmiller.io/2013/basics-of-ruby-memoization&quot;&gt;http://gavinmiller.io/2013/basics-of-ruby-memoization&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://rubyinrails.com/2014/11/03/memoization-ruby/&quot;&gt;https://rubyinrails.com/2014/11/03/memoization-ruby&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา Ruby ก็คือ Memoization แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค Memoization จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว Memoization คืออะไร Memoization is the process of storing a computed value to avoid duplicated work by future calls. ถ้าแบ่งเป็นขั้นตอนจะมีด้วยกัน 3 ขั้นด้วยกันคือ โค้ดถูกเรียกใช้งาน เพื่อประมวลผลอะไรบางอย่าง แทนที่จะส่งค่าคืนกลับไปเมื่อถูกเรียกเพียงอย่างเดียว จะเก็บค่าที่ได้จากการประมวลผลเอาไว้ในตัวแปร เมื่อมีการเรียกใช้งานโค้ดดังกล่าวอีกครั้ง ก็จะดึงค่าที่เก็บเอาไว้ส่งคืนกลับไป โดยไม่ต้องประมวลผลใหม่ ถ้าอ่านคำอธิบายข้างต้นแล้วยังงง มาดูรายละเอียดพร้อมกับโค้ดตัวอย่างกันเลยดีกว่า น่าจะทำให้เข้าได้ดียิ่งขึ้น ก่อนอื่นลงสังเกต โค้ดด้านล่าง จะเห็นว่ามีการเรียกใช้ user_score ซึ่งจะทำการดึงข้อมูลคะแนนของผู้ใช้งานจากฐานข้อมูล 1 2 3 def user_score User.find_by(name: 'Sam').try(:score) end เมื่อ user_score ถูกเรียกใช้ ไม่ว่าจะกี่ครั้งสิ่งที่เกิดขึ้นคือจะต้องไปดึงข้อมูลจากฐานข้อมูลทุกรอบ ซึ่งก็เป็นกระบวนการที่เสียเวลา ให้เปลืองทรัพยากร จุดที่ Memoization ถูกนำมาใช้ก็คือตรงนี้เองแหละครับ แทนที่เราจะต้องดึงข้อมูลจากฐานข้อมูลทุกรอบ เราก็จะเก็บข้อมูลที่เคยดึงเก็บเอาไว้ในตัวแปรหนึ่งตัว ซึ่งนั้นก็คือ @user_score ดังแสดงในโค้ดด้านล่าง Memoization มักจะใช้เครื่องหมาย ||= 1 2 3 def user_score @user_score ||= User.find_by(name: 'Sam').try(:score) end พูดง่ายๆ Memoization ก็เป็นการ Caching ข้อมูลนั้นเอง References https://en.wikipedia.org/wiki/Memoization http://gavinmiller.io/2013/basics-of-ruby-memoization https://rubyinrails.com/2014/11/03/memoization-ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/posts/2020/memoization-in-ruby/cover.png" /><media:content medium="image" url="http://localhost:4000/assets/images/posts/2020/memoization-in-ruby/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ruby’s Main Object</title><link href="http://localhost:4000/dev/2020/10/15/ruby-s-main-object.html" rel="alternate" type="text/html" title="Ruby’s Main Object" /><published>2020-10-15T14:22:00+07:00</published><updated>2020-10-15T14:22:00+07:00</updated><id>http://localhost:4000/dev/2020/10/15/ruby-s-main-object</id><content type="html" xml:base="http://localhost:4000/dev/2020/10/15/ruby-s-main-object.html">&lt;p&gt;&lt;strong&gt;Ruby&lt;/strong&gt; ถูกออกแบบขึ้นมาภายใต้หลักการของ &lt;strong&gt;Object&lt;/strong&gt; นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน &lt;strong&gt;Ruby&lt;/strong&gt; ล้วนเป็น &lt;strong&gt;Object&lt;/strong&gt; ทั้งหมด โดย &lt;strong&gt;Object&lt;/strong&gt; ที่เป็น &lt;strong&gt;Top Level&lt;/strong&gt; จะเรียกว่า &lt;strong&gt;Main Object&lt;/strong&gt; ซึ่งเมธอดที่ถูกนิยามภายใต้ &lt;strong&gt;Main Object&lt;/strong&gt; สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;puts&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;respond_to?&lt;/code&gt; หรือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is_a?&lt;/code&gt; ได้ทุกๆ ที่&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;p&gt;จริงๆ แล้ว &lt;strong&gt;Main Object&lt;/strong&gt; จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด &lt;strong&gt;IRB&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ruby-s-main-object/main_object.png&quot; alt=&quot;main object&quot; width=&quot;300px&quot; /&gt;
+&lt;em&gt;Main Object ใน IRB&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;เราสามารถนิยามเมธอดที่สามารถเรียกใช้งานได้จากทุกๆ ที่ได้ง่ายๆ เพียงแค่นิยามเมธอดไว้ด้านนอกคลาส หรือโมดูลเท่านั้น &lt;strong&gt;Ruby&lt;/strong&gt; จะก็จะผูกเมธอดนั้นๆ เข้ากับ &lt;strong&gt;Main Object&lt;/strong&gt; ให้เราโดยอัตโนมัติ&lt;/p&gt;
+
+&lt;p&gt;ลองนิยามเมธอด &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;show_message&lt;/code&gt; มาทดสอบกัน&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/ruby-s-main-object/irb_define_method.png&quot; alt=&quot;main object&quot; width=&quot;600px&quot; /&gt;
+&lt;em&gt;show_message in irb&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;สิ่งหนึ่งที่มีความแตกต่างกันระหว่างการนิยามเมธอดใน &lt;strong&gt;IRB&lt;/strong&gt; กับในไฟล์ &lt;strong&gt;Ruby&lt;/strong&gt; ก็คือ &lt;strong&gt;IRB&lt;/strong&gt; จะผูกเมธอดที่นิยามในขอบเขตที่เป็น &lt;strong&gt;public&lt;/strong&gt; แต่ในไฟล์จะถูกผูกในขอบเขตที่เป็น &lt;strong&gt;private&lt;/strong&gt; อันนี้ต้องไปลองเล่นดูได้นะครับ จะได้เห็นความแตกต่าง&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what&quot;&gt;https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/&quot;&gt;https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่ จริงๆ แล้ว Main Object จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด IRB Main Object ใน IRB เราสามารถนิยามเมธอดที่สามารถเรียกใช้งานได้จากทุกๆ ที่ได้ง่ายๆ เพียงแค่นิยามเมธอดไว้ด้านนอกคลาส หรือโมดูลเท่านั้น Ruby จะก็จะผูกเมธอดนั้นๆ เข้ากับ Main Object ให้เราโดยอัตโนมัติ ลองนิยามเมธอด show_message มาทดสอบกัน show_message in irb สิ่งหนึ่งที่มีความแตกต่างกันระหว่างการนิยามเมธอดใน IRB กับในไฟล์ Ruby ก็คือ IRB จะผูกเมธอดที่นิยามในขอบเขตที่เป็น public แต่ในไฟล์จะถูกผูกในขอบเขตที่เป็น private อันนี้ต้องไปลองเล่นดูได้นะครับ จะได้เห็นความแตกต่าง References https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/posts/2020/ruby-s-main-object/cover.png" /><media:content medium="image" url="http://localhost:4000/assets/images/posts/2020/ruby-s-main-object/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to update micro:bit firmware</title><link href="http://localhost:4000/stem/2020/10/14/how-to-update-micro-bit-firmware.html" rel="alternate" type="text/html" title="How to update micro:bit firmware" /><published>2020-10-14T22:29:00+07:00</published><updated>2020-10-14T22:29:00+07:00</updated><id>http://localhost:4000/stem/2020/10/14/how-to-update-micro-bit-firmware</id><content type="html" xml:base="http://localhost:4000/stem/2020/10/14/how-to-update-micro-bit-firmware.html">&lt;p&gt;&lt;strong&gt;Firmware&lt;/strong&gt; คือโปรแกรมแกรม (&lt;strong&gt;Software&lt;/strong&gt;) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (&lt;strong&gt;Hardware&lt;/strong&gt;) ให้ทำงานได้ราบรื่น แม้กระทั่ง &lt;strong&gt;micro:bit&lt;/strong&gt; เองก็ต้องมี &lt;strong&gt;Firmware&lt;/strong&gt; เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; ให้ทันสมัยก็จะช่วยให้การทำงาน &lt;strong&gt;micro:bit&lt;/strong&gt; ดียิ่งขึ้น&lt;/p&gt;
+
+&lt;h2 id=&quot;ตรวจสอบเวอร์ชันของ-firmware&quot;&gt;ตรวจสอบเวอร์ชันของ Firmware&lt;/h2&gt;
+
+&lt;p&gt;เราสามารถตรวจสอบเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; ที่ติดตั้งอยู่บน &lt;strong&gt;micro:bit&lt;/strong&gt; ได้ไม่ยาก เพียงแค่ต่อบอร์ด &lt;strong&gt;micro:bit&lt;/strong&gt; ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ &lt;strong&gt;DETAILS.TXT&lt;/strong&gt; บนไดรฟ์ &lt;strong&gt;MICROBIT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/microbit_drive.png&quot; alt=&quot;MICROBIT Drive&quot; width=&quot;400px&quot; /&gt;
+&lt;em&gt;MICROBIT Drive&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/details.png&quot; alt=&quot;DETAILS.TXT&quot; /&gt;
+&lt;em&gt;Firmware: 0250&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interface Version&lt;/code&gt; ซึ่งจะเห็นว่า &lt;strong&gt;micro:bit&lt;/strong&gt; มีเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0250&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;อัพเดตกันได้เลย&quot;&gt;อัพเดตกันได้เลย&lt;/h2&gt;
+
+&lt;p&gt;มาดูที่วิธีการอัพเดต &lt;strong&gt;Firmware&lt;/strong&gt; กันบ้าง โดยเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; ล่าสุดจะเป็นเวอร์ชัน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0253&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ดาว์นโหลด &lt;strong&gt;Firmware&lt;/strong&gt; มาไว้ที่เครื่องจาก&lt;a href=&quot;https://cdn.sanity.io/files/ajwvhvgo/production/5ecfa4d407a9d02e0f2e7fe192e5fa6a246f8621.hex?dl=0253_kl26z_microbit_0x8000.hex&quot;&gt;ที่นี่&lt;/a&gt; ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.hex&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;ถอดสาย &lt;strong&gt;USB&lt;/strong&gt; ที่เชื่อมต่อออกจาก &lt;strong&gt;micro:bit&lt;/strong&gt; รวมถึงไฟเลี้ยงด้วย&lt;/li&gt;
+  &lt;li&gt;กดปุ่ม &lt;strong&gt;Reset&lt;/strong&gt; แช่เอาไว้ พร้อมกับต่อสาย &lt;strong&gt;USB&lt;/strong&gt; เข้ากับตัว &lt;strong&gt;micro:bit&lt;/strong&gt; โดยในคราวนี้จะปรากฏเป็นไดรฟ์ &lt;strong&gt;MAINTENANCE&lt;/strong&gt; ขึ้นมาแทนที่จะเป็น &lt;strong&gt;MICROBIT&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/maintenance_drive.png&quot; alt=&quot;MAINTENANCE Drive&quot; width=&quot;400px&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;ลากไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.hex&lt;/code&gt; เข้าไปยังไดรฟ์ &lt;strong&gt;MAINTENANCE&lt;/strong&gt; ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ &lt;strong&gt;MICROBIT&lt;/strong&gt; ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต &lt;strong&gt;Firmware&lt;/strong&gt; ใหม่สำเร็จเรียบร้อย&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ตรวจสอบไฟล์ &lt;strong&gt;DETAILS.TXT&lt;/strong&gt; ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0253&lt;/code&gt; ถูกต้องหรือไม่&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/new_version.png&quot; alt=&quot;NEW FIRMWARE&quot; /&gt;
+&lt;em&gt;Firmware: 0253&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://microbit.org/get-started/user-guide/firmware/&quot;&gt;https://microbit.org/get-started/user-guide/firmware/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">Firmware คือโปรแกรมแกรม (Software) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (Hardware) ให้ทำงานได้ราบรื่น แม้กระทั่ง micro:bit เองก็ต้องมี Firmware เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ Firmware ให้ทันสมัยก็จะช่วยให้การทำงาน micro:bit ดียิ่งขึ้น ตรวจสอบเวอร์ชันของ Firmware เราสามารถตรวจสอบเวอร์ชันของ Firmware ที่ติดตั้งอยู่บน micro:bit ได้ไม่ยาก เพียงแค่ต่อบอร์ด micro:bit ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ DETAILS.TXT บนไดรฟ์ MICROBIT MICROBIT Drive Firmware: 0250 ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า Interface Version ซึ่งจะเห็นว่า micro:bit มีเวอร์ชันของ Firmware เป็น 0250 อัพเดตกันได้เลย มาดูที่วิธีการอัพเดต Firmware กันบ้าง โดยเวอร์ชันของ Firmware ล่าสุดจะเป็นเวอร์ชัน 0253 ดาว์นโหลด Firmware มาไว้ที่เครื่องจากที่นี่ ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ .hex ถอดสาย USB ที่เชื่อมต่อออกจาก micro:bit รวมถึงไฟเลี้ยงด้วย กดปุ่ม Reset แช่เอาไว้ พร้อมกับต่อสาย USB เข้ากับตัว micro:bit โดยในคราวนี้จะปรากฏเป็นไดรฟ์ MAINTENANCE ขึ้นมาแทนที่จะเป็น MICROBIT ลากไฟล์ .hex เข้าไปยังไดรฟ์ MAINTENANCE ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ MICROBIT ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต Firmware ใหม่สำเร็จเรียบร้อย ตรวจสอบไฟล์ DETAILS.TXT ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น 0253 ถูกต้องหรือไม่ Firmware: 0253 References https://microbit.org/get-started/user-guide/firmware/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png" /><media:content medium="image" url="http://localhost:4000/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">What is micro:bit</title><link href="http://localhost:4000/stem/2020/10/13/what-is-micro-bit.html" rel="alternate" type="text/html" title="What is micro:bit" /><published>2020-10-13T22:16:00+07:00</published><updated>2020-10-13T22:16:00+07:00</updated><id>http://localhost:4000/stem/2020/10/13/what-is-micro-bit</id><content type="html" xml:base="http://localhost:4000/stem/2020/10/13/what-is-micro-bit.html">&lt;p&gt;การศึกษาในศตวรรษที่ 21 การแค่ให้เด็กท่องๆ จำๆ ตัวอักษรตามตำราแล้วไปสอบนั้นคงไม่พอที่จะเอาตัวรอดอีกต่อไป สำหรับเด็กในยุคนี้การศึกษาด้วยแนวทางใหม่ที่เรียกว่า &lt;strong&gt;STEM&lt;/strong&gt; ถือเป็นแนวทางการศึกษาที่จะถูกคิด และบูรณาการศาสตร์จาก 4 แขนง อันได้แก่ &lt;strong&gt;วิทยาศาตร์(Science) เทคโนโลยี(Technology) วิศวกรรมศาสตร์(Engineering) และคณิตศาสตร์(Mathematics)&lt;/strong&gt; เพื่อจะทำให้เด็กเกิดความคิดสร้างสรรค์ รู้จักประยุกต์ความรู้ที่ได้ไปใช้งานให้เหมาะสม และเข้าใจในนวัตกรรมที่เกิดขึ้น&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;p&gt;การเขียนโค้ดหรือโปรแกรมมิ่ง (&lt;strong&gt;Programming&lt;/strong&gt;) เป็นอีกหนึ่งทักษะที่จะกระตุ้นให้เด็กๆ เกิดการเรียนรู้ &lt;strong&gt;STEM&lt;/strong&gt; โดยในบทความนี้จะแนะนำการเขียนโค้ดผ่าน &lt;strong&gt;micro:bit&lt;/strong&gt; ซึ่งเป็นบอร์ดไมโครคอนโทรลเลอร์ที่ได้รับการออกแบบพัฒนาขึ้นมาโดย &lt;strong&gt;BBC&lt;/strong&gt; และความร่วมมือของพันธมิตรในการพัฒนาชุดเครื่องมือสำหรับการเขียนโค้ดด้วย &lt;strong&gt;micro:bit&lt;/strong&gt; นอกจากนั้นยังได้มีการแจกจ่าย &lt;strong&gt;micro:bit&lt;/strong&gt; จำนวน 1 ล้านชิ้นให้กับโรงเรียนทั่วประเทศอังกฤษเพื่อเป็นสื่อการเรียนการสอนการเขียนโค้ดให้กับเด็กๆ&lt;/p&gt;
+
+&lt;h2 id=&quot;องค์ประกอบของ-microbit&quot;&gt;องค์ประกอบของ micro:bit&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-is-micro-bit/components.png&quot; alt=&quot;Components&quot; width=&quot;500px&quot; /&gt;
+&lt;em&gt;micro:bit&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;ขอแยกอธิบายแต่ละด้านของ &lt;strong&gt;micro:bit&lt;/strong&gt; แล้วกัน&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ด้านหน้า&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-is-micro-bit/front.png&quot; alt=&quot;Front&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;ปุ่ม A และ B&lt;/p&gt;
+
+    &lt;p&gt;เราสามารถเขียนโค้ดเพื่อรับการกดปุ่ม เพื่อสั่งให้บอร์ดทำอย่างอื่นต่อได้&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ไฟ LED ขนาด 5x5&lt;/p&gt;
+
+    &lt;p&gt;ใช้สำหรับแสดงผลต่างๆ ไม่ว่าจะเป็นตัวเลข ตัวอักษร กราฟ หรือภาพ โดยไฟจะสว่างเป็นสีแดง นอกจากนั้นเรายังสามารถควบคุมระดับความสว่างของหลอดไฟได้ด้วย&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;GPIO Pins&lt;/p&gt;
+
+    &lt;p&gt;เป็นพินที่ใช้สำหรับต่อวงจรภายนอก ถ้าดูจากภาพแล้วจะประกอบไปด้วยพินขนาดใหญ่จำนวน 3 พิน ระหว่างพินจะมีพินขนาดเล็กรวมกันทั้งหมด 20 พิน โดยแต่ละพินสามารถใช้รับ/ส่งสัญญาณได้ทั้งแบบแอนะล็อก (Analog) และดิจิทัล (Digital)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;3V Pin&lt;/p&gt;
+
+    &lt;p&gt;พินสำหรับต่อไฟขนาด 3 โวลต์ เพื่อเป็นแหล่งจ่ายไฟให้กับอุปกรณ์ที่มาต่อ&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;GND Pin&lt;/p&gt;
+
+    &lt;p&gt;พินสำหรับต่อกราวด์&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;สำหรับพินทั้งหมดที่อยู่บนบอร์ดจะด้วยกันทั้ง 25 พิน&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ด้านหลัง&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-is-micro-bit/back.png&quot; alt=&quot;Front&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;ตัวรับส่งสัญญาณคลื่นวิทยุ (Radio) และบลูทูธพลังงานต่ำ (Bluetooth Low Energy ~ BLE)&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;micro:bit&lt;/strong&gt; สามารถติดต่อสื่อสารระหว่างกันผ่านคลื่นวิทยุ และสามารถใช้เชื่อมต่อกับอุปกรณ์มือถือหรือแทบเล็ตผ่านบลูทูธ&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;หน่วยประมวลผล&lt;/p&gt;
+
+    &lt;p&gt;เป็นศูนย์กลางในการประมวลผล หรือเรียกได้ว่าเป็นสมองของบอร์ด &lt;strong&gt;micro:bit&lt;/strong&gt; นั้นเอง&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เซนเซอร์วัดความเข้มสนามแม่เหล็ก (Magnatic Sensor) หรือเข็มทิศ&lt;/p&gt;
+
+    &lt;p&gt;นั้นทำให้เราสามารถเขียนโค้ดเพื่อใช้สำหรับบอกทิศที่อยู่ตรงหน้าเราได้&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เซนเซอร์วัดความเร่ง (Accelerometer Sensor)&lt;/p&gt;
+
+    &lt;p&gt;การตรวจจับการเคลื่อนที่ การตก การสั่น หรือการเอียงของบอร์ด ก็นำไปประยุกต์ใช้ในการควบคุมอุปกรณ์อื่นๆ ได้ไม่ยาก&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Pins&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Micro USB&lt;/p&gt;
+
+    &lt;p&gt;เชื่อมต่อระหว่างบอร์ดกับเครื่องคอมพิวเตอร์ เพื่อใช้สำหรับโหลดโปรแกรม และจ่ายไฟให้กับบอร์ด&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;หลอดไฟแสดงสถานะ&lt;/p&gt;
+
+    &lt;p&gt;เมื่อมีต่อกับแหล่งจ่ายไฟ หรือขณะทำการโหลดโปรแกรม&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ปุ่มรีเซท&lt;/p&gt;
+
+    &lt;p&gt;เราสามารถกดปุ่มรีเซท เพื่อให้โปรแกรมเริ่มทำงานใหม่อีกครั้ง&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ช่องต่อไฟเลี้ยง&lt;/p&gt;
+
+    &lt;p&gt;ใช้เชื่อมต่อกับแหล่งจ่ายไฟขนาด 3 โวลต์&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;USB Inferface Chip&lt;/p&gt;
+
+    &lt;p&gt;เป็นชิพสำหรับควมคุมการเชื่อมต่อกับ USB ในการโหลดโค้ดลงบอร์ด&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;เครื่องมือสำหรับเขียนโค้ด-microsoft-makecode&quot;&gt;เครื่องมือสำหรับเขียนโค้ด Microsoft MakeCode&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Microsoft MakeCode&lt;/strong&gt; เป็นเครื่องมือที่ถูกพัฒนาขึ้นมาสำหรับ &lt;strong&gt;micro:bit&lt;/strong&gt; โดยรองรับการเขียนโค้ดทั้งในรูปแบบบล็อก (Block) ซึ่งจะคล้ายกับการต่อตัวต่อแบบลากวาง เหมาะสำหรับเด็กๆ ที่เริ่มต้นเขียนโค้ด และรองรับการเขียนโค้ดแบบข้อความ (Text-based) ซึ่งมีด้วยให้เลือกใช้ด้วยกัน 2 ภาษาเลยทีเดียว นั้นก็คือ &lt;strong&gt;JavaScript&lt;/strong&gt; และ &lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-is-micro-bit/makecode.png&quot; alt=&quot;MakeCode&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;สำหรับในบทความนี้ก็น่าจะทำให้เราเริ่มรู้จักกับ &lt;strong&gt;micro:bit&lt;/strong&gt; และเครื่องมือสำหรับเขียนโค้ดกันไปแล้ว ในบทความหน้าเราจะมาลองมือเขียนโค้ด และรันโค้ดของเรากัน อย่าลืมรอติดตามกันนะครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.microbit.org&quot;&gt;micro:bit&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://makecode.microbit.org/&quot;&gt;MakeCode&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">การศึกษาในศตวรรษที่ 21 การแค่ให้เด็กท่องๆ จำๆ ตัวอักษรตามตำราแล้วไปสอบนั้นคงไม่พอที่จะเอาตัวรอดอีกต่อไป สำหรับเด็กในยุคนี้การศึกษาด้วยแนวทางใหม่ที่เรียกว่า STEM ถือเป็นแนวทางการศึกษาที่จะถูกคิด และบูรณาการศาสตร์จาก 4 แขนง อันได้แก่ วิทยาศาตร์(Science) เทคโนโลยี(Technology) วิศวกรรมศาสตร์(Engineering) และคณิตศาสตร์(Mathematics) เพื่อจะทำให้เด็กเกิดความคิดสร้างสรรค์ รู้จักประยุกต์ความรู้ที่ได้ไปใช้งานให้เหมาะสม และเข้าใจในนวัตกรรมที่เกิดขึ้น การเขียนโค้ดหรือโปรแกรมมิ่ง (Programming) เป็นอีกหนึ่งทักษะที่จะกระตุ้นให้เด็กๆ เกิดการเรียนรู้ STEM โดยในบทความนี้จะแนะนำการเขียนโค้ดผ่าน micro:bit ซึ่งเป็นบอร์ดไมโครคอนโทรลเลอร์ที่ได้รับการออกแบบพัฒนาขึ้นมาโดย BBC และความร่วมมือของพันธมิตรในการพัฒนาชุดเครื่องมือสำหรับการเขียนโค้ดด้วย micro:bit นอกจากนั้นยังได้มีการแจกจ่าย micro:bit จำนวน 1 ล้านชิ้นให้กับโรงเรียนทั่วประเทศอังกฤษเพื่อเป็นสื่อการเรียนการสอนการเขียนโค้ดให้กับเด็กๆ องค์ประกอบของ micro:bit micro:bit ขอแยกอธิบายแต่ละด้านของ micro:bit แล้วกัน ด้านหน้า ปุ่ม A และ B เราสามารถเขียนโค้ดเพื่อรับการกดปุ่ม เพื่อสั่งให้บอร์ดทำอย่างอื่นต่อได้ ไฟ LED ขนาด 5x5 ใช้สำหรับแสดงผลต่างๆ ไม่ว่าจะเป็นตัวเลข ตัวอักษร กราฟ หรือภาพ โดยไฟจะสว่างเป็นสีแดง นอกจากนั้นเรายังสามารถควบคุมระดับความสว่างของหลอดไฟได้ด้วย GPIO Pins เป็นพินที่ใช้สำหรับต่อวงจรภายนอก ถ้าดูจากภาพแล้วจะประกอบไปด้วยพินขนาดใหญ่จำนวน 3 พิน ระหว่างพินจะมีพินขนาดเล็กรวมกันทั้งหมด 20 พิน โดยแต่ละพินสามารถใช้รับ/ส่งสัญญาณได้ทั้งแบบแอนะล็อก (Analog) และดิจิทัล (Digital) 3V Pin พินสำหรับต่อไฟขนาด 3 โวลต์ เพื่อเป็นแหล่งจ่ายไฟให้กับอุปกรณ์ที่มาต่อ GND Pin พินสำหรับต่อกราวด์ สำหรับพินทั้งหมดที่อยู่บนบอร์ดจะด้วยกันทั้ง 25 พิน ด้านหลัง ตัวรับส่งสัญญาณคลื่นวิทยุ (Radio) และบลูทูธพลังงานต่ำ (Bluetooth Low Energy ~ BLE) micro:bit สามารถติดต่อสื่อสารระหว่างกันผ่านคลื่นวิทยุ และสามารถใช้เชื่อมต่อกับอุปกรณ์มือถือหรือแทบเล็ตผ่านบลูทูธ หน่วยประมวลผล เป็นศูนย์กลางในการประมวลผล หรือเรียกได้ว่าเป็นสมองของบอร์ด micro:bit นั้นเอง เซนเซอร์วัดความเข้มสนามแม่เหล็ก (Magnatic Sensor) หรือเข็มทิศ นั้นทำให้เราสามารถเขียนโค้ดเพื่อใช้สำหรับบอกทิศที่อยู่ตรงหน้าเราได้ เซนเซอร์วัดความเร่ง (Accelerometer Sensor) การตรวจจับการเคลื่อนที่ การตก การสั่น หรือการเอียงของบอร์ด ก็นำไปประยุกต์ใช้ในการควบคุมอุปกรณ์อื่นๆ ได้ไม่ยาก Pins Micro USB เชื่อมต่อระหว่างบอร์ดกับเครื่องคอมพิวเตอร์ เพื่อใช้สำหรับโหลดโปรแกรม และจ่ายไฟให้กับบอร์ด หลอดไฟแสดงสถานะ เมื่อมีต่อกับแหล่งจ่ายไฟ หรือขณะทำการโหลดโปรแกรม ปุ่มรีเซท เราสามารถกดปุ่มรีเซท เพื่อให้โปรแกรมเริ่มทำงานใหม่อีกครั้ง ช่องต่อไฟเลี้ยง ใช้เชื่อมต่อกับแหล่งจ่ายไฟขนาด 3 โวลต์ USB Inferface Chip เป็นชิพสำหรับควมคุมการเชื่อมต่อกับ USB ในการโหลดโค้ดลงบอร์ด เครื่องมือสำหรับเขียนโค้ด Microsoft MakeCode Microsoft MakeCode เป็นเครื่องมือที่ถูกพัฒนาขึ้นมาสำหรับ micro:bit โดยรองรับการเขียนโค้ดทั้งในรูปแบบบล็อก (Block) ซึ่งจะคล้ายกับการต่อตัวต่อแบบลากวาง เหมาะสำหรับเด็กๆ ที่เริ่มต้นเขียนโค้ด และรองรับการเขียนโค้ดแบบข้อความ (Text-based) ซึ่งมีด้วยให้เลือกใช้ด้วยกัน 2 ภาษาเลยทีเดียว นั้นก็คือ JavaScript และ Python สำหรับในบทความนี้ก็น่าจะทำให้เราเริ่มรู้จักกับ micro:bit และเครื่องมือสำหรับเขียนโค้ดกันไปแล้ว ในบทความหน้าเราจะมาลองมือเขียนโค้ด และรันโค้ดของเรากัน อย่าลืมรอติดตามกันนะครับ References micro:bit MakeCode</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/posts/2020/what-is-micro-bit/cover.png" /><media:content medium="image" url="http://localhost:4000/assets/images/posts/2020/what-is-micro-bit/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Micro:bit v2</title><link href="http://localhost:4000/stem/2020/10/13/micro-bit-v2.html" rel="alternate" type="text/html" title="Micro:bit v2" /><published>2020-10-13T13:32:00+07:00</published><updated>2020-10-13T13:32:00+07:00</updated><id>http://localhost:4000/stem/2020/10/13/micro-bit-v2</id><content type="html" xml:base="http://localhost:4000/stem/2020/10/13/micro-bit-v2.html">&lt;p&gt;เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง &lt;strong&gt;micro:bit Education Foundcation&lt;/strong&gt; ได้ประกาศเปิดตัว &lt;strong&gt;micro:bit&lt;/strong&gt; เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว &lt;strong&gt;micro:bit&lt;/strong&gt; กันบ้าง เรามาดูกันครับ&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ&lt;/li&gt;
+  &lt;li&gt;แมมโมรี่ขนาด 152kB และแรม 128kB&lt;/li&gt;
+  &lt;li&gt;มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ&lt;/li&gt;
+  &lt;li&gt;เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส&lt;/li&gt;
+  &lt;li&gt;Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น&lt;/li&gt;
+  &lt;li&gt;เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0&lt;!-- more --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/comparison-front.png&quot; alt=&quot;Front&quot; /&gt;
+&lt;em&gt;เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/comparison-front.png&quot; alt=&quot;Back&quot; /&gt;
+&lt;em&gt;เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ &lt;strong&gt;Microsoft MakeCode&lt;/strong&gt; ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น&lt;/p&gt;
+
+&lt;h2 id=&quot;on-loudquit-sound&quot;&gt;On loud/quit Sound&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/loudsound.png&quot; alt=&quot;Logo Pressed&quot; width=&quot;200px&quot; /&gt;
+&lt;em&gt;เมื่อมีเสียงดังหรือเงียบ&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;on-logo-pressed&quot;&gt;On Logo Pressed&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/onLogoPressed.png&quot; alt=&quot;Logo Pressed&quot; width=&quot;200px&quot; /&gt;
+&lt;em&gt;เมื่อสัมผัสที่โลโก้&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;sound-level&quot;&gt;Sound Level&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/soundLevel.png&quot; alt=&quot;Sound Level&quot; width=&quot;200px&quot; /&gt;
+&lt;em&gt;ค่าระดับเสียงที่อ่านได้จากบอร์ด&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;enabledisable-speaker&quot;&gt;Enable/disable Speaker&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/micro-bit-v2/speakerEnabled.png&quot; alt=&quot;Enable/disable Speaker&quot; width=&quot;300px&quot; /&gt;
+&lt;em&gt;เปิด/ปิดลำโพง&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน &lt;strong&gt;พฤศจิกายน 2020&lt;/strong&gt; ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ&lt;/p&gt;
+
+&lt;p&gt;ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://microbit.org/news/&quot;&gt;https://microbit.org/news/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://tech.microbit.org/latest-revision/#overview&quot;&gt;Details of micro:bit v2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง micro:bit Education Foundcation ได้ประกาศเปิดตัว micro:bit เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว micro:bit กันบ้าง เรามาดูกันครับ โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ แมมโมรี่ขนาด 152kB และแรม 128kB มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0 เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2 เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2 แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ Microsoft MakeCode ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น On loud/quit Sound เมื่อมีเสียงดังหรือเงียบ On Logo Pressed เมื่อสัมผัสที่โลโก้ Sound Level ค่าระดับเสียงที่อ่านได้จากบอร์ด Enable/disable Speaker เปิด/ปิดลำโพง มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน พฤศจิกายน 2020 ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ References https://microbit.org/news/ Details of micro:bit v2</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/posts/2020/micro-bit-v2/cover.png" /><media:content medium="image" url="http://localhost:4000/assets/images/posts/2020/micro-bit-v2/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
