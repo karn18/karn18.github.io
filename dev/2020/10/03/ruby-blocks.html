@@ -12,27 +12,28 @@
 <meta property="og:title" content="เรียนรู้เกี่ยวกับ Ruby Blocks" />
 <meta name="author" content="Karn" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="หากเริ่มเขียน Ruby มาได้สักระยะหนึ่ง จะพบว่ามี syntax ที่เห็นอยู่บ่อยๆ เลยก็คือ {} หรือคำสั่ง do/end โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า Block 1 2 3 4 5 6 7 # Example 1 [1, 2, 3].each { |num| puts &quot;Number is #{num}&quot; } # Example 2 [1, 2, 3].each do |num| puts &quot;Number is #{num}&quot; end พารามิเตอร์ที่รับเข้ามาจะอยู่ภายในเครื่องหมาย ในกรณีที่มีหลายพารามิเตอร์ก็จะใช้ , คั่น จะพูดให้ง่ายๆ Block ก็คือ Anonymous Function ที่ถูกนิยามขึ้นโดยไม่มีฟังก์ชัน และถูกเรียกใช้งานในทันที ซึ่งจะใช้ {} หรือ do/end ก็ได้ แต่ส่วนใหญ่เราจะใช้ {} ในกรณีที่โค้ดเรามีเพียงบรรทัดเดียว และจะใช้ do/end เมื่อโค้ดมีหลายบรรทัด ทั้งนี้ก็เพื่อความสวยงาม และอ่านได้ง่าย References: http://marcuscode.com/lang/ruby/variables-and-variable-scope https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/" />
-<meta property="og:description" content="หากเริ่มเขียน Ruby มาได้สักระยะหนึ่ง จะพบว่ามี syntax ที่เห็นอยู่บ่อยๆ เลยก็คือ {} หรือคำสั่ง do/end โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า Block 1 2 3 4 5 6 7 # Example 1 [1, 2, 3].each { |num| puts &quot;Number is #{num}&quot; } # Example 2 [1, 2, 3].each do |num| puts &quot;Number is #{num}&quot; end พารามิเตอร์ที่รับเข้ามาจะอยู่ภายในเครื่องหมาย ในกรณีที่มีหลายพารามิเตอร์ก็จะใช้ , คั่น จะพูดให้ง่ายๆ Block ก็คือ Anonymous Function ที่ถูกนิยามขึ้นโดยไม่มีฟังก์ชัน และถูกเรียกใช้งานในทันที ซึ่งจะใช้ {} หรือ do/end ก็ได้ แต่ส่วนใหญ่เราจะใช้ {} ในกรณีที่โค้ดเรามีเพียงบรรทัดเดียว และจะใช้ do/end เมื่อโค้ดมีหลายบรรทัด ทั้งนี้ก็เพื่อความสวยงาม และอ่านได้ง่าย References: http://marcuscode.com/lang/ruby/variables-and-variable-scope https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/" />
-<link rel="canonical" href="http://localhost:4000/dev/2020/10/03/ruby-blocks.html" />
-<meta property="og:url" content="http://localhost:4000/dev/2020/10/03/ruby-blocks.html" />
+<meta name="description" content="หากเริ่มเขียน Ruby มาได้สักระยะหนึ่ง จะพบว่ามี syntax ที่เห็นอยู่บ่อยๆ เลยก็คือ {} หรือคำสั่ง do/end โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า Block" />
+<meta property="og:description" content="หากเริ่มเขียน Ruby มาได้สักระยะหนึ่ง จะพบว่ามี syntax ที่เห็นอยู่บ่อยๆ เลยก็คือ {} หรือคำสั่ง do/end โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า Block" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/10/03/ruby-blocks.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/10/03/ruby-blocks.html" />
 <meta property="og:site_name" content="KT" />
-<meta property="og:image" content="http://localhost:4000/assets/images/posts/2020/ruby-blocks/cover.png" />
+<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2020/ruby-blocks/cover.png" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-03T16:54:00+07:00" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="http://localhost:4000/assets/images/posts/2020/ruby-blocks/cover.png" />
+<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2020/ruby-blocks/cover.png" />
 <meta property="twitter:title" content="เรียนรู้เกี่ยวกับ Ruby Blocks" />
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"headline":"เรียนรู้เกี่ยวกับ Ruby Blocks","dateModified":"2020-10-03T16:54:00+07:00","datePublished":"2020-10-03T16:54:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/dev/2020/10/03/ruby-blocks.html"},"url":"http://localhost:4000/dev/2020/10/03/ruby-blocks.html","description":"หากเริ่มเขียน Ruby มาได้สักระยะหนึ่ง จะพบว่ามี syntax ที่เห็นอยู่บ่อยๆ เลยก็คือ {} หรือคำสั่ง do/end โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า Block 1 2 3 4 5 6 7 # Example 1 [1, 2, 3].each { |num| puts &quot;Number is #{num}&quot; } # Example 2 [1, 2, 3].each do |num| puts &quot;Number is #{num}&quot; end พารามิเตอร์ที่รับเข้ามาจะอยู่ภายในเครื่องหมาย ในกรณีที่มีหลายพารามิเตอร์ก็จะใช้ , คั่น จะพูดให้ง่ายๆ Block ก็คือ Anonymous Function ที่ถูกนิยามขึ้นโดยไม่มีฟังก์ชัน และถูกเรียกใช้งานในทันที ซึ่งจะใช้ {} หรือ do/end ก็ได้ แต่ส่วนใหญ่เราจะใช้ {} ในกรณีที่โค้ดเรามีเพียงบรรทัดเดียว และจะใช้ do/end เมื่อโค้ดมีหลายบรรทัด ทั้งนี้ก็เพื่อความสวยงาม และอ่านได้ง่าย References: http://marcuscode.com/lang/ruby/variables-and-variable-scope https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/","@type":"BlogPosting","image":{"width":1200,"height":630,"url":"http://localhost:4000/assets/images/posts/2020/ruby-blocks/cover.png","@type":"imageObject"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Karn"},"headline":"เรียนรู้เกี่ยวกับ Ruby Blocks","dateModified":"2020-10-03T16:54:00+07:00","datePublished":"2020-10-03T16:54:00+07:00","image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/ruby-blocks/cover.png","@type":"imageObject"},"url":"https://karn18.github.io/dev/2020/10/03/ruby-blocks.html","description":"หากเริ่มเขียน Ruby มาได้สักระยะหนึ่ง จะพบว่ามี syntax ที่เห็นอยู่บ่อยๆ เลยก็คือ {} หรือคำสั่ง do/end โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า Block","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/10/03/ruby-blocks.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
-  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><title>เรียนรู้เกี่ยวกับ Ruby Blocks</title>
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
+<title>เรียนรู้เกี่ยวกับ Ruby Blocks</title>
 </head><body data-theme="dark">
     <div class="kz-progress"></div>
     <div class="kz-main-container"><nav class="kz-navbar">
@@ -68,7 +69,7 @@
     </figure>
   
   <div class="blog-content is-family-secondary">
-    <p>หากเริ่มเขียน <strong>Ruby</strong> มาได้สักระยะหนึ่ง จะพบว่ามี <strong>syntax</strong> ที่เห็นอยู่บ่อยๆ เลยก็คือ <code class="language-plaintext highlighter-rouge">{}</code> หรือคำสั่ง <code class="language-plaintext highlighter-rouge">do/end</code> โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า <strong>Block</strong><!-- more --></p>
+    <p>หากเริ่มเขียน <strong>Ruby</strong> มาได้สักระยะหนึ่ง จะพบว่ามี <strong>syntax</strong> ที่เห็นอยู่บ่อยๆ เลยก็คือ <code class="language-plaintext highlighter-rouge">{}</code> หรือคำสั่ง <code class="language-plaintext highlighter-rouge">do/end</code> โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า <strong>Block</strong><!--more--></p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -109,7 +110,7 @@
   <!-- <div class="section field is-grouped">
   <div class="control">
     <a class="twitter-share-button"
-      href="https://twitter.com/intent/tweet?text=เรียนรู้เกี่ยวกับ Ruby Blocks&url=http://localhost:4000/dev/2020/10/03/ruby-blocks.html&via=karn18&related=karn18"
+      href="https://twitter.com/intent/tweet?text=เรียนรู้เกี่ยวกับ Ruby Blocks&url=https://karn18.github.io/dev/2020/10/03/ruby-blocks.html&via=karn18&related=karn18"
       data-size="large">
       Tweet
     </a>
@@ -117,7 +118,7 @@
   </div>
   <div class="control">
     <div class="fb-share-button" 
-      data-href="http://localhost:4000/dev/2020/10/03/ruby-blocks.html"
+      data-href="https://karn18.github.io/dev/2020/10/03/ruby-blocks.html"
       data-layout="button_count" data-size="large">
       <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
         Share
@@ -199,38 +200,11 @@
       
       
       
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
         <li>
           <a href="/dev/2020/10/22/methods-vs-instance-methods.html">งงๆ กับ Methods และ Instance Methods ใน Ruby</a>
         </li>
         
         
-      
-    
-      
-      
-      
-
-
-      
-      
       
     
       
