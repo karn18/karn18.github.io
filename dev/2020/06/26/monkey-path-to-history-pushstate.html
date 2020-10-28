@@ -13,8 +13,8 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ Ajax Request ร่วมกับ History API หรือเรียกสั้นๆ ว่า pjax (PushState + Ajax) สำหรับผู้ใช้ Rails เราก็มี turbolinks เป็นตัวจัดการให้เราได้อย่างง่ายดาย" />
 <meta property="og:description" content="เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ Ajax Request ร่วมกับ History API หรือเรียกสั้นๆ ว่า pjax (PushState + Ajax) สำหรับผู้ใช้ Rails เราก็มี turbolinks เป็นตัวจัดการให้เราได้อย่างง่ายดาย" />
-<link rel="canonical" href="http://localhost:4000/dev/2020/06/26/monkey-path-to-history-pushstate.html" />
-<meta property="og:url" content="http://localhost:4000/dev/2020/06/26/monkey-path-to-history-pushstate.html" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html" />
 <meta property="og:site_name" content="KT" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-06-26T16:56:00+07:00" />
@@ -22,11 +22,12 @@
 <meta property="twitter:title" content="Monkey Path to History.pushState" />
 <meta name="twitter:site" content="@karn18" />
 <script type="application/ld+json">
-{"headline":"Monkey Path to History.pushState","dateModified":"2020-06-26T16:56:00+07:00","datePublished":"2020-06-26T16:56:00+07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/dev/2020/06/26/monkey-path-to-history-pushstate.html"},"url":"http://localhost:4000/dev/2020/06/26/monkey-path-to-history-pushstate.html","description":"เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ Ajax Request ร่วมกับ History API หรือเรียกสั้นๆ ว่า pjax (PushState + Ajax) สำหรับผู้ใช้ Rails เราก็มี turbolinks เป็นตัวจัดการให้เราได้อย่างง่ายดาย","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Monkey Path to History.pushState","dateModified":"2020-06-26T16:56:00+07:00","datePublished":"2020-06-26T16:56:00+07:00","url":"https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html","description":"เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ Ajax Request ร่วมกับ History API หรือเรียกสั้นๆ ว่า pjax (PushState + Ajax) สำหรับผู้ใช้ Rails เราก็มี turbolinks เป็นตัวจัดการให้เราได้อย่างง่ายดาย","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
-  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><title>Monkey Path to History.pushState</title>
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
+<title>Monkey Path to History.pushState</title>
 </head><body data-theme="dark">
     <div class="kz-progress"></div>
     <div class="kz-main-container"><nav class="kz-navbar">
@@ -106,7 +107,7 @@
   <!-- <div class="section field is-grouped">
   <div class="control">
     <a class="twitter-share-button"
-      href="https://twitter.com/intent/tweet?text=Monkey Path to History.pushState&url=http://localhost:4000/dev/2020/06/26/monkey-path-to-history-pushstate.html&via=karn18&related=karn18"
+      href="https://twitter.com/intent/tweet?text=Monkey Path to History.pushState&url=https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html&via=karn18&related=karn18"
       data-size="large">
       Tweet
     </a>
@@ -114,7 +115,7 @@
   </div>
   <div class="control">
     <div class="fb-share-button" 
-      data-href="http://localhost:4000/dev/2020/06/26/monkey-path-to-history-pushstate.html"
+      data-href="https://karn18.github.io/dev/2020/06/26/monkey-path-to-history-pushstate.html"
       data-layout="button_count" data-size="large">
       <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
         Share
@@ -157,390 +158,314 @@
     
   </div>
 </div> -->
+  <div class="kz-support-me">
   <!-- <a href="https://www.buymeacoffee.com/karn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=karn&button_colour=BD5FFF&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a> -->
 
-<a href='https://ko-fi.com/Z8Z12J9KQ' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-
-  <div class="related-blog">
+  <a href='https://ko-fi.com/Z8Z12J9KQ' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+</div>
+  <div class="kz-related-blogs">
   
   
   
 
   
-    <h3>Also Read</h3>
+    <h3>Related Blogs</h3>
     <ol>
-    
       
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-        <li>
-          <a href="/dev/2020/08/06/customize-actiontext-to-support-youtube-embeded.html">ปรับแต่ง ActionText ให้รองรับ Youtube Embeded</a>
-        </li>
+        
+        
+        
+        
+        
         
         
       
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-        <li>
-          <a href="/dev/2020/07/09/my-favorite-stack.html">My Favorite Stack</a>
-        </li>
+        
+        
+        
+        
+        
         
         
       
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-    
-      
-      
-      
-
-
-      
-      
-      
-        <li>
-          <a href="/dev/2019/11/15/create-website-with-jekyll.html">เมื่อนักสร้างคอนเทนต์มือใหม่ อยากมีเว็บไซด์เป็นของตัวเอง</a>
-        </li>
+        
+        
+        
+        
+        
         
         
       
-    
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+          <li><a href="/dev/2020/08/06/customize-actiontext-to-support-youtube-embeded.html">ปรับแต่ง ActionText ให้รองรับ Youtube Embeded</a></li>
+          
+          
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+          <li><a href="/dev/2020/07/09/my-favorite-stack.html">My Favorite Stack</a></li>
+          
+          
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+          <li><a href="/dev/2019/11/15/create-website-with-jekyll.html">เมื่อนักสร้างคอนเทนต์มือใหม่ อยากมีเว็บไซด์เป็นของตัวเอง</a></li>
+          
+          
+        
+        
+        
+    </ol>
   
-  </ol>
 </div>
 
 </div>
