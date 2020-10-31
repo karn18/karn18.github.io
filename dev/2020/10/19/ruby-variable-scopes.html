@@ -14,26 +14,25 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="สำหรับ Ruby การใช้งาน Class Variable และ Instance Variable จะมีความแตกต่างจากภาษาอื่นๆ นิดหน่อยลองมาดูกัน Syntax 1 2 @@class_variable # Class scope, static across all class intances @instance_variable # Class object scope, value specific to object instance Class Variable เป็นตัวแปรที่ผูกติดอยู่กับคลาส ใช้สำหรับเก็บข้อมูลเพื่อแชร์กันภายในคลาส Instance Variable ก็จะเป็นตัวแปรที่ใช้เก็บข้อมูล โดยจะแยกออกจากกันระหว่างออปเจ็คที่ถูกสร้างขึ้นมา (Instance) ทำความเข้าใจเพิ่มเติมได้จากโค้ดด้านล่าง 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 class Customer @@no_of_customers = 0 def initialize(id, name, addr) @cust_id = id @cust_name = name @cust_addr = addr end def display_details() puts &quot;Customer id #@cust_id&quot; puts &quot;Customer name #@cust_name&quot; puts &quot;Customer address #@cust_addr&quot; end def total_no_of_customers() @@no_of_customers += 1 puts &quot;Total number of customers: #@@no_of_customers&quot; end end # Create Objects cust1 = Customer.new(&quot;1&quot;, &quot;John&quot;, &quot;Wisdom Apartments, Ludhiya&quot;) cust2 = Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khandala&quot;) # Call Methods cust1.total_no_of_customers() # Total number of customers: 1 cust2.total_no_of_customers() # Total number of customers: 1 สำหรับ Ruby จะแปลกๆ นิดหนึ่งตรงที่ไม่ว่าจะเป็นตัวแบบ Class หรือ Instance จะไม่สามารถเข้าถึงได้ตรงถึงตัวแปรจากภายนอกได้ ต้องสร้าง accessor method ขึ้นมาไว้เรียกผ่าน ถ้าเราอยากจะเข้าถึงค่า @@no_of_customers จะต้องสร้างเมธอดขึ้นมาเป็นตัวกลางในการเข้าถึงตัวแปร 1 2 3 def self.no_of_customers @@no_of_customers end หรือเรียกผ่าน built-in method ที่ชื่อว่า Class.class_variable_get ก็ได้ เช่นเดียวกันสำหรับ Instance Varible ทั้ง 3 ตัวก็จะต้องใช้วิธีการเดียวกัน เพียงแต่ใน ruby จะมีเมธอดอำนวยความสะดวกในการเข้าถึงอยู่ โดยวันนี้เราจะใช้ attr_reader (ruby จะมีชุดเมธอดที่เรียก accessor อยู่เอาไว้อธิบายกันในบทความหน้านะครับ) 1 2 ... attr_reader :cust_id, :cust_name, :cust_addr เพียงเท่านี้เราก็สามารถเข้าถึงตัวแปรทั้ง 3 ตัวได้แล้ว 1 2 puts &quot;#{cust1.cust_id}: #{cust1.cust_name} - #{cust1.cust_addr}&quot; # 1: John - Wisdom Apartments, Ludhiya puts &quot;Number of customer is #{Customer.no_of_customers}&quot; # Number of customer is 2 References https://syntaxdb.com/ref/ruby/class-variables https://www.tutorialspoint.com/ruby/ruby_variables.htm class_variable_get" />
 <meta property="og:description" content="สำหรับ Ruby การใช้งาน Class Variable และ Instance Variable จะมีความแตกต่างจากภาษาอื่นๆ นิดหน่อยลองมาดูกัน Syntax 1 2 @@class_variable # Class scope, static across all class intances @instance_variable # Class object scope, value specific to object instance Class Variable เป็นตัวแปรที่ผูกติดอยู่กับคลาส ใช้สำหรับเก็บข้อมูลเพื่อแชร์กันภายในคลาส Instance Variable ก็จะเป็นตัวแปรที่ใช้เก็บข้อมูล โดยจะแยกออกจากกันระหว่างออปเจ็คที่ถูกสร้างขึ้นมา (Instance) ทำความเข้าใจเพิ่มเติมได้จากโค้ดด้านล่าง 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 class Customer @@no_of_customers = 0 def initialize(id, name, addr) @cust_id = id @cust_name = name @cust_addr = addr end def display_details() puts &quot;Customer id #@cust_id&quot; puts &quot;Customer name #@cust_name&quot; puts &quot;Customer address #@cust_addr&quot; end def total_no_of_customers() @@no_of_customers += 1 puts &quot;Total number of customers: #@@no_of_customers&quot; end end # Create Objects cust1 = Customer.new(&quot;1&quot;, &quot;John&quot;, &quot;Wisdom Apartments, Ludhiya&quot;) cust2 = Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khandala&quot;) # Call Methods cust1.total_no_of_customers() # Total number of customers: 1 cust2.total_no_of_customers() # Total number of customers: 1 สำหรับ Ruby จะแปลกๆ นิดหนึ่งตรงที่ไม่ว่าจะเป็นตัวแบบ Class หรือ Instance จะไม่สามารถเข้าถึงได้ตรงถึงตัวแปรจากภายนอกได้ ต้องสร้าง accessor method ขึ้นมาไว้เรียกผ่าน ถ้าเราอยากจะเข้าถึงค่า @@no_of_customers จะต้องสร้างเมธอดขึ้นมาเป็นตัวกลางในการเข้าถึงตัวแปร 1 2 3 def self.no_of_customers @@no_of_customers end หรือเรียกผ่าน built-in method ที่ชื่อว่า Class.class_variable_get ก็ได้ เช่นเดียวกันสำหรับ Instance Varible ทั้ง 3 ตัวก็จะต้องใช้วิธีการเดียวกัน เพียงแต่ใน ruby จะมีเมธอดอำนวยความสะดวกในการเข้าถึงอยู่ โดยวันนี้เราจะใช้ attr_reader (ruby จะมีชุดเมธอดที่เรียก accessor อยู่เอาไว้อธิบายกันในบทความหน้านะครับ) 1 2 ... attr_reader :cust_id, :cust_name, :cust_addr เพียงเท่านี้เราก็สามารถเข้าถึงตัวแปรทั้ง 3 ตัวได้แล้ว 1 2 puts &quot;#{cust1.cust_id}: #{cust1.cust_name} - #{cust1.cust_addr}&quot; # 1: John - Wisdom Apartments, Ludhiya puts &quot;Number of customer is #{Customer.no_of_customers}&quot; # Number of customer is 2 References https://syntaxdb.com/ref/ruby/class-variables https://www.tutorialspoint.com/ruby/ruby_variables.htm class_variable_get" />
-<link rel="canonical" href="https://karn18.github.io/dev/2020/10/19/ruby-variable-scopes.html" />
-<meta property="og:url" content="https://karn18.github.io/dev/2020/10/19/ruby-variable-scopes.html" />
+<link rel="canonical" href="http://localhost:4000/dev/2020/10/19/ruby-variable-scopes.html" />
+<meta property="og:url" content="http://localhost:4000/dev/2020/10/19/ruby-variable-scopes.html" />
 <meta property="og:site_name" content="KT" />
-<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2020/ruby-variable-scopes/cover.jpg" />
+<meta property="og:image" content="http://localhost:4000/assets/images/posts/2020/ruby-variable-scopes/cover.jpg" />
 <meta property="og:image:height" content="866" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-19T17:32:00+07:00" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2020/ruby-variable-scopes/cover.jpg" />
+<meta property="twitter:image" content="http://localhost:4000/assets/images/posts/2020/ruby-variable-scopes/cover.jpg" />
 <meta property="twitter:title" content="Variable Scopes" />
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Karn"},"headline":"Variable Scopes","dateModified":"2020-10-19T17:32:00+07:00","datePublished":"2020-10-19T17:32:00+07:00","image":{"width":1200,"height":866,"url":"https://karn18.github.io/assets/images/posts/2020/ruby-variable-scopes/cover.jpg","@type":"imageObject"},"url":"https://karn18.github.io/dev/2020/10/19/ruby-variable-scopes.html","description":"สำหรับ Ruby การใช้งาน Class Variable และ Instance Variable จะมีความแตกต่างจากภาษาอื่นๆ นิดหน่อยลองมาดูกัน Syntax 1 2 @@class_variable # Class scope, static across all class intances @instance_variable # Class object scope, value specific to object instance Class Variable เป็นตัวแปรที่ผูกติดอยู่กับคลาส ใช้สำหรับเก็บข้อมูลเพื่อแชร์กันภายในคลาส Instance Variable ก็จะเป็นตัวแปรที่ใช้เก็บข้อมูล โดยจะแยกออกจากกันระหว่างออปเจ็คที่ถูกสร้างขึ้นมา (Instance) ทำความเข้าใจเพิ่มเติมได้จากโค้ดด้านล่าง 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 class Customer @@no_of_customers = 0 def initialize(id, name, addr) @cust_id = id @cust_name = name @cust_addr = addr end def display_details() puts &quot;Customer id #@cust_id&quot; puts &quot;Customer name #@cust_name&quot; puts &quot;Customer address #@cust_addr&quot; end def total_no_of_customers() @@no_of_customers += 1 puts &quot;Total number of customers: #@@no_of_customers&quot; end end # Create Objects cust1 = Customer.new(&quot;1&quot;, &quot;John&quot;, &quot;Wisdom Apartments, Ludhiya&quot;) cust2 = Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khandala&quot;) # Call Methods cust1.total_no_of_customers() # Total number of customers: 1 cust2.total_no_of_customers() # Total number of customers: 1 สำหรับ Ruby จะแปลกๆ นิดหนึ่งตรงที่ไม่ว่าจะเป็นตัวแบบ Class หรือ Instance จะไม่สามารถเข้าถึงได้ตรงถึงตัวแปรจากภายนอกได้ ต้องสร้าง accessor method ขึ้นมาไว้เรียกผ่าน ถ้าเราอยากจะเข้าถึงค่า @@no_of_customers จะต้องสร้างเมธอดขึ้นมาเป็นตัวกลางในการเข้าถึงตัวแปร 1 2 3 def self.no_of_customers @@no_of_customers end หรือเรียกผ่าน built-in method ที่ชื่อว่า Class.class_variable_get ก็ได้ เช่นเดียวกันสำหรับ Instance Varible ทั้ง 3 ตัวก็จะต้องใช้วิธีการเดียวกัน เพียงแต่ใน ruby จะมีเมธอดอำนวยความสะดวกในการเข้าถึงอยู่ โดยวันนี้เราจะใช้ attr_reader (ruby จะมีชุดเมธอดที่เรียก accessor อยู่เอาไว้อธิบายกันในบทความหน้านะครับ) 1 2 ... attr_reader :cust_id, :cust_name, :cust_addr เพียงเท่านี้เราก็สามารถเข้าถึงตัวแปรทั้ง 3 ตัวได้แล้ว 1 2 puts &quot;#{cust1.cust_id}: #{cust1.cust_name} - #{cust1.cust_addr}&quot; # 1: John - Wisdom Apartments, Ludhiya puts &quot;Number of customer is #{Customer.no_of_customers}&quot; # Number of customer is 2 References https://syntaxdb.com/ref/ruby/class-variables https://www.tutorialspoint.com/ruby/ruby_variables.htm class_variable_get","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/10/19/ruby-variable-scopes.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Karn"},"headline":"Variable Scopes","dateModified":"2020-10-19T17:32:00+07:00","datePublished":"2020-10-19T17:32:00+07:00","image":{"width":1200,"height":866,"url":"http://localhost:4000/assets/images/posts/2020/ruby-variable-scopes/cover.jpg","@type":"imageObject"},"url":"http://localhost:4000/dev/2020/10/19/ruby-variable-scopes.html","description":"สำหรับ Ruby การใช้งาน Class Variable และ Instance Variable จะมีความแตกต่างจากภาษาอื่นๆ นิดหน่อยลองมาดูกัน Syntax 1 2 @@class_variable # Class scope, static across all class intances @instance_variable # Class object scope, value specific to object instance Class Variable เป็นตัวแปรที่ผูกติดอยู่กับคลาส ใช้สำหรับเก็บข้อมูลเพื่อแชร์กันภายในคลาส Instance Variable ก็จะเป็นตัวแปรที่ใช้เก็บข้อมูล โดยจะแยกออกจากกันระหว่างออปเจ็คที่ถูกสร้างขึ้นมา (Instance) ทำความเข้าใจเพิ่มเติมได้จากโค้ดด้านล่าง 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 class Customer @@no_of_customers = 0 def initialize(id, name, addr) @cust_id = id @cust_name = name @cust_addr = addr end def display_details() puts &quot;Customer id #@cust_id&quot; puts &quot;Customer name #@cust_name&quot; puts &quot;Customer address #@cust_addr&quot; end def total_no_of_customers() @@no_of_customers += 1 puts &quot;Total number of customers: #@@no_of_customers&quot; end end # Create Objects cust1 = Customer.new(&quot;1&quot;, &quot;John&quot;, &quot;Wisdom Apartments, Ludhiya&quot;) cust2 = Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khandala&quot;) # Call Methods cust1.total_no_of_customers() # Total number of customers: 1 cust2.total_no_of_customers() # Total number of customers: 1 สำหรับ Ruby จะแปลกๆ นิดหนึ่งตรงที่ไม่ว่าจะเป็นตัวแบบ Class หรือ Instance จะไม่สามารถเข้าถึงได้ตรงถึงตัวแปรจากภายนอกได้ ต้องสร้าง accessor method ขึ้นมาไว้เรียกผ่าน ถ้าเราอยากจะเข้าถึงค่า @@no_of_customers จะต้องสร้างเมธอดขึ้นมาเป็นตัวกลางในการเข้าถึงตัวแปร 1 2 3 def self.no_of_customers @@no_of_customers end หรือเรียกผ่าน built-in method ที่ชื่อว่า Class.class_variable_get ก็ได้ เช่นเดียวกันสำหรับ Instance Varible ทั้ง 3 ตัวก็จะต้องใช้วิธีการเดียวกัน เพียงแต่ใน ruby จะมีเมธอดอำนวยความสะดวกในการเข้าถึงอยู่ โดยวันนี้เราจะใช้ attr_reader (ruby จะมีชุดเมธอดที่เรียก accessor อยู่เอาไว้อธิบายกันในบทความหน้านะครับ) 1 2 ... attr_reader :cust_id, :cust_name, :cust_addr เพียงเท่านี้เราก็สามารถเข้าถึงตัวแปรทั้ง 3 ตัวได้แล้ว 1 2 puts &quot;#{cust1.cust_id}: #{cust1.cust_name} - #{cust1.cust_addr}&quot; # 1: John - Wisdom Apartments, Ludhiya puts &quot;Number of customer is #{Customer.no_of_customers}&quot; # Number of customer is 2 References https://syntaxdb.com/ref/ruby/class-variables https://www.tutorialspoint.com/ruby/ruby_variables.htm class_variable_get","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/dev/2020/10/19/ruby-variable-scopes.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
-  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<title>Variable Scopes</title>
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><title>Variable Scopes</title>
 </head><body data-theme="dark">
     <div class="kz-progress"></div>
     <div class="kz-main-container"><nav class="kz-navbar">
@@ -183,7 +182,7 @@
   <!-- <div class="section field is-grouped">
   <div class="control">
     <a class="twitter-share-button"
-      href="https://twitter.com/intent/tweet?text=Variable Scopes&url=https://karn18.github.io/dev/2020/10/19/ruby-variable-scopes.html&via=karn18&related=karn18"
+      href="https://twitter.com/intent/tweet?text=Variable Scopes&url=http://localhost:4000/dev/2020/10/19/ruby-variable-scopes.html&via=karn18&related=karn18"
       data-size="large">
       Tweet
     </a>
@@ -191,7 +190,7 @@
   </div>
   <div class="control">
     <div class="fb-share-button" 
-      data-href="https://karn18.github.io/dev/2020/10/19/ruby-variable-scopes.html"
+      data-href="http://localhost:4000/dev/2020/10/19/ruby-variable-scopes.html"
       data-layout="button_count" data-size="large">
       <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
         Share
@@ -225,7 +224,7 @@
   <!-- <div class="kz-pagination">
   <div class="kz-pagination__newer">
     
-      <a class="kz-pagination__button" href="/dev/2020/10/22/methods-vs-instance-methods.html">&larr; Newer</a>
+      <a class="kz-pagination__button" href="/2020/10/20/create-a-gem.html">&larr; Newer</a>
     
   </div>
   <div class="kz-pagination__older">
@@ -265,9 +264,39 @@
         
         
         
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
           <li><a href="/dev/2020/10/22/methods-vs-instance-methods.html">งงๆ กับ Methods และ Instance Methods ใน Ruby</a></li>
           
           
+        
+      
+        
+        
+        
+        
         
       
         

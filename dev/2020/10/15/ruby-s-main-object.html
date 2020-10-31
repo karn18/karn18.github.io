@@ -14,26 +14,25 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่" />
 <meta property="og:description" content="Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่" />
-<link rel="canonical" href="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html" />
-<meta property="og:url" content="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html" />
+<link rel="canonical" href="http://localhost:4000/dev/2020/10/15/ruby-s-main-object.html" />
+<meta property="og:url" content="http://localhost:4000/dev/2020/10/15/ruby-s-main-object.html" />
 <meta property="og:site_name" content="KT" />
-<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" />
+<meta property="og:image" content="http://localhost:4000/assets/images/posts/2020/ruby-s-main-object/cover.png" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-15T14:22:00+07:00" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" />
+<meta property="twitter:image" content="http://localhost:4000/assets/images/posts/2020/ruby-s-main-object/cover.png" />
 <meta property="twitter:title" content="Ruby’s Main Object" />
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Karn"},"headline":"Ruby’s Main Object","dateModified":"2020-10-15T14:22:00+07:00","datePublished":"2020-10-15T14:22:00+07:00","image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png","@type":"imageObject"},"url":"https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html","description":"Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Karn"},"headline":"Ruby’s Main Object","dateModified":"2020-10-15T14:22:00+07:00","datePublished":"2020-10-15T14:22:00+07:00","image":{"width":1200,"height":630,"url":"http://localhost:4000/assets/images/posts/2020/ruby-s-main-object/cover.png","@type":"imageObject"},"url":"http://localhost:4000/dev/2020/10/15/ruby-s-main-object.html","description":"Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/dev/2020/10/15/ruby-s-main-object.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
-  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<title>Ruby's Main Object</title>
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><title>Ruby's Main Object</title>
 </head><body data-theme="dark">
     <div class="kz-progress"></div>
     <div class="kz-main-container"><nav class="kz-navbar">
@@ -97,7 +96,7 @@
   <!-- <div class="section field is-grouped">
   <div class="control">
     <a class="twitter-share-button"
-      href="https://twitter.com/intent/tweet?text=Ruby's Main Object&url=https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html&via=karn18&related=karn18"
+      href="https://twitter.com/intent/tweet?text=Ruby's Main Object&url=http://localhost:4000/dev/2020/10/15/ruby-s-main-object.html&via=karn18&related=karn18"
       data-size="large">
       Tweet
     </a>
@@ -105,7 +104,7 @@
   </div>
   <div class="control">
     <div class="fb-share-button" 
-      data-href="https://karn18.github.io/dev/2020/10/15/ruby-s-main-object.html"
+      data-href="http://localhost:4000/dev/2020/10/15/ruby-s-main-object.html"
       data-layout="button_count" data-size="large">
       <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
         Share
@@ -179,9 +178,39 @@
         
         
         
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
           <li><a href="/dev/2020/10/22/methods-vs-instance-methods.html">งงๆ กับ Methods และ Instance Methods ใน Ruby</a></li>
           
           
+        
+      
+        
+        
+        
+        
         
       
         
