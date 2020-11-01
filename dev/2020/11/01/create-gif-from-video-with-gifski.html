@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en"><!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski | KT</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="ต้องแนะนำแอพ Gifski นี้เลยครับสำหรับใครที่ต้องการจะแปลงไฟล์วิดีโอให้เป็นไฟล์ gif ซึ่งใช้งานได้อย่างง่ายดาย เพียงแค่เปิดโปรแกรมขึ้น และลากไฟล์ที่เราต้องการจะแปลงเข้าไป จากนั้นก็เลือกปรับขนาดของภาพ, FPS, และ Quality ตามต้องการ ซึ่งการปรับแต่งก็จะส่งผลต่อขนาดไฟล์ สำหรับผมต้องการไฟล์ gif ไปแสดงอยู่บนเว็บบทความของผมซึ่งก็จะกังวลเรื่องของขนาด โดยที่ไม่อยากให้มันใหญ่มากก็จะพยายามปรับขนาดภาพให้เล็ก ส่วน FPS และ Quality ก็จะให้ค่าต่ำๆ หน่อย เพียงให้พอดูออก ปรับเรียบร้อยก็กดปุ่ม convert เพียงเท่านี้เราก็ได้ไฟล์ gif ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้ฟรี References Gifski" />
+<meta property="og:description" content="ต้องแนะนำแอพ Gifski นี้เลยครับสำหรับใครที่ต้องการจะแปลงไฟล์วิดีโอให้เป็นไฟล์ gif ซึ่งใช้งานได้อย่างง่ายดาย เพียงแค่เปิดโปรแกรมขึ้น และลากไฟล์ที่เราต้องการจะแปลงเข้าไป จากนั้นก็เลือกปรับขนาดของภาพ, FPS, และ Quality ตามต้องการ ซึ่งการปรับแต่งก็จะส่งผลต่อขนาดไฟล์ สำหรับผมต้องการไฟล์ gif ไปแสดงอยู่บนเว็บบทความของผมซึ่งก็จะกังวลเรื่องของขนาด โดยที่ไม่อยากให้มันใหญ่มากก็จะพยายามปรับขนาดภาพให้เล็ก ส่วน FPS และ Quality ก็จะให้ค่าต่ำๆ หน่อย เพียงให้พอดูออก ปรับเรียบร้อยก็กดปุ่ม convert เพียงเท่านี้เราก็ได้ไฟล์ gif ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้ฟรี References Gifski" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-01T22:32:00+07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski" />
+<meta name="twitter:site" content="@karn18" />
+<meta name="twitter:creator" content="@Karn" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Karn"},"headline":"เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski","dateModified":"2020-11-01T22:32:00+07:00","datePublished":"2020-11-01T22:32:00+07:00","url":"https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html","description":"ต้องแนะนำแอพ Gifski นี้เลยครับสำหรับใครที่ต้องการจะแปลงไฟล์วิดีโอให้เป็นไฟล์ gif ซึ่งใช้งานได้อย่างง่ายดาย เพียงแค่เปิดโปรแกรมขึ้น และลากไฟล์ที่เราต้องการจะแปลงเข้าไป จากนั้นก็เลือกปรับขนาดของภาพ, FPS, และ Quality ตามต้องการ ซึ่งการปรับแต่งก็จะส่งผลต่อขนาดไฟล์ สำหรับผมต้องการไฟล์ gif ไปแสดงอยู่บนเว็บบทความของผมซึ่งก็จะกังวลเรื่องของขนาด โดยที่ไม่อยากให้มันใหญ่มากก็จะพยายามปรับขนาดภาพให้เล็ก ส่วน FPS และ Quality ก็จะให้ค่าต่ำๆ หน่อย เพียงให้พอดูออก ปรับเรียบร้อยก็กดปุ่ม convert เพียงเท่านี้เราก็ได้ไฟล์ gif ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้ฟรี References Gifski","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
+<title>เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski</title>
+</head><body data-theme="dark">
+    <div class="kz-progress"></div>
+    <div class="kz-main-container"><nav class="kz-navbar">
+  <a href="/" class="kz-navbar__logo">KT</a>
+  <div class="kz-navbar__menu">
+    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
+    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
+    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
+    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+  </div>
+</nav>
+<div class="kz-content">
+        <div class="kz-blog">
+  <div class="kz-blog__header">
+  <h1 class="kz-blog__title">เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski</h1>
+  <div class="kz-blog__info">
+    <i class="typcn typcn-calendar-outline"></i> 01-11-2020
+    
+      | <i class="typcn typcn-tag"></i>
+      
+        <span>gif</span>
+      
+        <span>gifski</span>
+      
+        <span>video</span>
+      
+    
+  </div>
+</div>
+
+  
+  <div class="blog-content is-family-secondary">
+    <p>ต้องแนะนำแอพ <strong>Gifski</strong> นี้เลยครับสำหรับใครที่ต้องการจะแปลงไฟล์วิดีโอให้เป็นไฟล์ <strong>gif</strong> ซึ่งใช้งานได้อย่างง่ายดาย
+เพียงแค่เปิดโปรแกรมขึ้น และลากไฟล์ที่เราต้องการจะแปลงเข้าไป</p>
+
+<p><img src="/assets/images/posts/2020/create-gif-from-video-with-gifski/drop_file.png" alt="drop_file" width="400px" /></p>
+
+<p>จากนั้นก็เลือกปรับขนาดของภาพ, FPS, และ Quality ตามต้องการ ซึ่งการปรับแต่งก็จะส่งผลต่อขนาดไฟล์ สำหรับผมต้องการไฟล์ <strong>gif</strong> ไปแสดงอยู่บนเว็บบทความของผมซึ่งก็จะกังวลเรื่องของขนาด โดยที่ไม่อยากให้มันใหญ่มากก็จะพยายามปรับขนาดภาพให้เล็ก ส่วน FPS และ Quality ก็จะให้ค่าต่ำๆ หน่อย เพียงให้พอดูออก</p>
+
+<p><img src="/assets/images/posts/2020/create-gif-from-video-with-gifski/config.png" alt="config" width="400px" /></p>
+
+<p>ปรับเรียบร้อยก็กดปุ่ม convert</p>
+
+<p><img src="/assets/images/posts/2020/create-gif-from-video-with-gifski/final.gif" alt="final" /></p>
+
+<p>เพียงเท่านี้เราก็ได้ไฟล์ <strong>gif</strong> ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้<strong>ฟรี</strong></p>
+
+<h1 id="references">References</h1>
+<ul>
+  <li><a href="https://gif.ski/">Gifski</a></li>
+</ul>
+
+  </div>
+  <!-- <div class="section field is-grouped">
+  <div class="control">
+    <a class="twitter-share-button"
+      href="https://twitter.com/intent/tweet?text=เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski&url=https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html&via=karn18&related=karn18"
+      data-size="large">
+      Tweet
+    </a>
+    <div id="fb-root"></div>
+  </div>
+  <div class="control">
+    <div class="fb-share-button" 
+      data-href="https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html"
+      data-layout="button_count" data-size="large">
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+        Share
+      </a>
+    </div>
+  </div>
+</div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+  
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+ -->
+  <!-- 
+ -->
+  <!-- <div class="kz-pagination">
+  <div class="kz-pagination__newer">
+    
+  </div>
+  <div class="kz-pagination__older">
+    
+      <a class="kz-pagination__button" href="/stem/2020/10/31/yummy-candy.html">Older &rarr;</a>
+    
+  </div>
+</div> -->
+  <div class="kz-support-me">
+  <!-- <a href="https://www.buymeacoffee.com/karn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=karn&button_colour=BD5FFF&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a> -->
+
+  <a href='https://ko-fi.com/Z8Z12J9KQ' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+</div>
+  <div class="kz-related-blogs">
+  
+  
+  
+
+  
+    <h3>Related Blogs</h3>
+    <ol>
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+    </ol>
+  
+</div>
+
+</div>
+
+
+
+      </div>
+    </div><script>
+  const h = document.documentElement;
+  const b = document.body;
+  const st = 'scrollTop';
+  const sh = 'scrollHeight';
+  const progress = document.querySelector('.kz-progress');
+  let scroll;
+
+  document.addEventListener('scroll', function() {
+    scroll = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+    progress.style.setProperty('--scroll', scroll + '%');
+  });
+</script>
+
+</body>
+</html>
