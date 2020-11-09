@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-11-04T11:54:12+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ก้าวแรกกับการใช้ GitHub Actions</title><link href="https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html" rel="alternate" type="text/html" title="ก้าวแรกกับการใช้ GitHub Actions" /><published>2020-11-04T11:54:00+07:00</published><updated>2020-11-04T11:54:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html">&lt;p&gt;&lt;strong&gt;GitHub Actions&lt;/strong&gt; เป็นเครื่องมือ &lt;strong&gt;CI/CD&lt;/strong&gt; หนึ่งที่จะช่วยให้เราทำงานแบบ &lt;strong&gt;automation&lt;/strong&gt; ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ &lt;strong&gt;automation tools&lt;/strong&gt; ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ &lt;strong&gt;Actions&lt;/strong&gt; ในการทดสอบโปรแกรมหลังจากที่ &lt;strong&gt;push code&lt;/strong&gt; ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย &lt;strong&gt;Codecov&lt;/strong&gt; และจะแสดง &lt;strong&gt;badge&lt;/strong&gt; แสดงสถานะที่เกิดขึ้นไว้ด้วย&lt;!--more--&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-11-09T11:26:47+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">รู้ได้ยังไงว่า Private Key เข้าคู่หรือไม่เข้าคู่กับ Certificate</title><link href="https://karn18.github.io/dev/2020/11/09/verifying-a-private-key-that-matchs-a-certificate.html" rel="alternate" type="text/html" title="รู้ได้ยังไงว่า Private Key เข้าคู่หรือไม่เข้าคู่กับ Certificate" /><published>2020-11-09T11:26:00+07:00</published><updated>2020-11-09T11:26:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/09/verifying-a-private-key-that-matchs-a-certificate</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/09/verifying-a-private-key-that-matchs-a-certificate.html">&lt;p&gt;เมื่ออยากกำหนดให้เว็บไซด์ที่เรารันบน &lt;strong&gt;Nginx&lt;/strong&gt; สามารถใช้งาน &lt;strong&gt;HTTPS&lt;/strong&gt; วิธีที่ง่ายที่เราคุ้นชินก็คงใช้ &lt;strong&gt;Certbot&lt;/strong&gt; ในการสร้างไฟล์ SSL certificate และ config ค่าต่างๆ ให้เรียบร้อยไปเลย
+ ซึ่งก็จะประกอบด้วยไฟล์ private key และ certificate แต่เกิดเราต้องสร้างไฟล์ private key และ certicate ขึ้นมาเองหละ เราจะมั่นใจได้ยังไงว่า เราสร้างไฟล์ขึ้นมาได้ถูกต้องพร้อมนำไปใช้งาน&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ปัญหาที่ผมเจอคือ ผมได้รับไฟล์ private.key มาพร้อมกับ domain.crt และ intermediate.crt มาเพื่อมาจัดการ &lt;strong&gt;HTTPS&lt;/strong&gt; ของเว็บไซด์อันหนึ่ง&lt;/li&gt;
+  &lt;li&gt;อันดับแรกก็คือการสร้างไฟล์ ​SSL certificate สำหรับโดเมนนี้ขึ้นมา โดยการรวมไฟล์ domain.crt และ intermediate.crt เข้าด้วยกัน จากนั้นก็นำไปติดตั้งใน &lt;strong&gt;Nginx&lt;/strong&gt; 👉 &lt;a href=&quot;https://www.ssldragon.com/blog/how-to-install-an-ssl-certificate-on-nginx/&quot;&gt;Here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;ก่อนที่จะ reload config ก็ต้องตรวจสอบกันเล็กน้อยว่า config ถูกต้องหรือไม่&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/verifying-a-private-key-that-matchs-a-certificate/nginx-validate.png&quot; alt=&quot;key_mismatch&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ชัดเจนเลยว่ามันมีปัญหา และคงรันไม่ผ่านแน่ๆ ทั้งนี้เราก็สามารถตรวจสอบเองได้ง่ายๆ ด้วยคำสั่งนี้&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;openssl rsa &lt;span class=&quot;nt&quot;&gt;-noout&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-modulus&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-in&lt;/span&gt; private.key |md5sum
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;openssl x509 &lt;span class=&quot;nt&quot;&gt;-noout&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-modulus&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-in&lt;/span&gt; certificate.crt |md5sum
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;โดยผลลัพท์ของ md5 ที่ออกมาจากทั้งสองคำสั่งจะได้ค่าเดียวกัน นั้นแสดงว่าไฟล์ทั้งเข้าคู่กัน และสามารถนำไปใช้งานได้ แต่ถ้าเกิดผลลัพธ์ออกมาไม่เท่ากัน นั้นแสดงว่าเราอาจจะสร้างไฟล์ certificate ผิด&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;การตรวจสอบค่าอาจจะใช้ algorithm อื่นแทน MD5 ก็ได้ ไม่ว่าจะเป็น SHA1 หรือ SHA256&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://comodosslstore.com/ssltools/cert-key-matcher.php&quot;&gt;Cert Key Matcher&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.looklinux.com/check-if-certificate-private-key-and-csr-match/&quot;&gt;Check if certificate private key and csr match&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="nginx" /><category term="ssl" /><summary type="html">เมื่ออยากกำหนดให้เว็บไซด์ที่เรารันบน Nginx สามารถใช้งาน HTTPS วิธีที่ง่ายที่เราคุ้นชินก็คงใช้ Certbot ในการสร้างไฟล์ SSL certificate และ config ค่าต่างๆ ให้เรียบร้อยไปเลย ซึ่งก็จะประกอบด้วยไฟล์ private key และ certificate แต่เกิดเราต้องสร้างไฟล์ private key และ certicate ขึ้นมาเองหละ เราจะมั่นใจได้ยังไงว่า เราสร้างไฟล์ขึ้นมาได้ถูกต้องพร้อมนำไปใช้งาน</summary></entry><entry><title type="html">ก้าวแรกกับการใช้ GitHub Actions</title><link href="https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html" rel="alternate" type="text/html" title="ก้าวแรกกับการใช้ GitHub Actions" /><published>2020-11-04T11:54:00+07:00</published><updated>2020-11-04T11:54:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html">&lt;p&gt;&lt;strong&gt;GitHub Actions&lt;/strong&gt; เป็นเครื่องมือ &lt;strong&gt;CI/CD&lt;/strong&gt; หนึ่งที่จะช่วยให้เราทำงานแบบ &lt;strong&gt;automation&lt;/strong&gt; ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ &lt;strong&gt;automation tools&lt;/strong&gt; ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ &lt;strong&gt;Actions&lt;/strong&gt; ในการทดสอบโปรแกรมหลังจากที่ &lt;strong&gt;push code&lt;/strong&gt; ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย &lt;strong&gt;Codecov&lt;/strong&gt; และจะแสดง &lt;strong&gt;badge&lt;/strong&gt; แสดงสถานะที่เกิดขึ้นไว้ด้วย&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;ตัวอย่างที่สำเร็จแล้ว&quot;&gt;ตัวอย่างที่สำเร็จแล้ว&lt;/h2&gt;
 
@@ -446,45 +479,4 @@ Car.instance_methods &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; c.methods  
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what&quot;&gt;https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/&quot;&gt;https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to update micro:bit firmware</title><link href="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html" rel="alternate" type="text/html" title="How to update micro:bit firmware" /><published>2020-10-14T22:29:00+07:00</published><updated>2020-10-14T22:29:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html">&lt;p&gt;&lt;strong&gt;Firmware&lt;/strong&gt; คือโปรแกรมแกรม (&lt;strong&gt;Software&lt;/strong&gt;) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (&lt;strong&gt;Hardware&lt;/strong&gt;) ให้ทำงานได้ราบรื่น แม้กระทั่ง &lt;strong&gt;micro:bit&lt;/strong&gt; เองก็ต้องมี &lt;strong&gt;Firmware&lt;/strong&gt; เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; ให้ทันสมัยก็จะช่วยให้การทำงาน &lt;strong&gt;micro:bit&lt;/strong&gt; ดียิ่งขึ้น&lt;/p&gt;
-
-&lt;h2 id=&quot;ตรวจสอบเวอร์ชันของ-firmware&quot;&gt;ตรวจสอบเวอร์ชันของ Firmware&lt;/h2&gt;
-
-&lt;p&gt;เราสามารถตรวจสอบเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; ที่ติดตั้งอยู่บน &lt;strong&gt;micro:bit&lt;/strong&gt; ได้ไม่ยาก เพียงแค่ต่อบอร์ด &lt;strong&gt;micro:bit&lt;/strong&gt; ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ &lt;strong&gt;DETAILS.TXT&lt;/strong&gt; บนไดรฟ์ &lt;strong&gt;MICROBIT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/microbit_drive.png&quot; alt=&quot;MICROBIT Drive&quot; width=&quot;400px&quot; /&gt;
-&lt;em&gt;MICROBIT Drive&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/details.png&quot; alt=&quot;DETAILS.TXT&quot; /&gt;
-&lt;em&gt;Firmware: 0250&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interface Version&lt;/code&gt; ซึ่งจะเห็นว่า &lt;strong&gt;micro:bit&lt;/strong&gt; มีเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0250&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;อัพเดตกันได้เลย&quot;&gt;อัพเดตกันได้เลย&lt;/h2&gt;
-
-&lt;p&gt;มาดูที่วิธีการอัพเดต &lt;strong&gt;Firmware&lt;/strong&gt; กันบ้าง โดยเวอร์ชันของ &lt;strong&gt;Firmware&lt;/strong&gt; ล่าสุดจะเป็นเวอร์ชัน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0253&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ดาว์นโหลด &lt;strong&gt;Firmware&lt;/strong&gt; มาไว้ที่เครื่องจาก&lt;a href=&quot;https://cdn.sanity.io/files/ajwvhvgo/production/5ecfa4d407a9d02e0f2e7fe192e5fa6a246f8621.hex?dl=0253_kl26z_microbit_0x8000.hex&quot;&gt;ที่นี่&lt;/a&gt; ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.hex&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;ถอดสาย &lt;strong&gt;USB&lt;/strong&gt; ที่เชื่อมต่อออกจาก &lt;strong&gt;micro:bit&lt;/strong&gt; รวมถึงไฟเลี้ยงด้วย&lt;/li&gt;
-  &lt;li&gt;กดปุ่ม &lt;strong&gt;Reset&lt;/strong&gt; แช่เอาไว้ พร้อมกับต่อสาย &lt;strong&gt;USB&lt;/strong&gt; เข้ากับตัว &lt;strong&gt;micro:bit&lt;/strong&gt; โดยในคราวนี้จะปรากฏเป็นไดรฟ์ &lt;strong&gt;MAINTENANCE&lt;/strong&gt; ขึ้นมาแทนที่จะเป็น &lt;strong&gt;MICROBIT&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/maintenance_drive.png&quot; alt=&quot;MAINTENANCE Drive&quot; width=&quot;400px&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;ลากไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.hex&lt;/code&gt; เข้าไปยังไดรฟ์ &lt;strong&gt;MAINTENANCE&lt;/strong&gt; ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ &lt;strong&gt;MICROBIT&lt;/strong&gt; ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต &lt;strong&gt;Firmware&lt;/strong&gt; ใหม่สำเร็จเรียบร้อย&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ตรวจสอบไฟล์ &lt;strong&gt;DETAILS.TXT&lt;/strong&gt; ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0253&lt;/code&gt; ถูกต้องหรือไม่&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/how-to-update-micro-bit-firmware/new_version.png&quot; alt=&quot;NEW FIRMWARE&quot; /&gt;
-&lt;em&gt;Firmware: 0253&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://microbit.org/get-started/user-guide/firmware/&quot;&gt;https://microbit.org/get-started/user-guide/firmware/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="microbit" /><summary type="html">Firmware คือโปรแกรมแกรม (Software) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (Hardware) ให้ทำงานได้ราบรื่น แม้กระทั่ง micro:bit เองก็ต้องมี Firmware เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ Firmware ให้ทันสมัยก็จะช่วยให้การทำงาน micro:bit ดียิ่งขึ้น ตรวจสอบเวอร์ชันของ Firmware เราสามารถตรวจสอบเวอร์ชันของ Firmware ที่ติดตั้งอยู่บน micro:bit ได้ไม่ยาก เพียงแค่ต่อบอร์ด micro:bit ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ DETAILS.TXT บนไดรฟ์ MICROBIT MICROBIT Drive Firmware: 0250 ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า Interface Version ซึ่งจะเห็นว่า micro:bit มีเวอร์ชันของ Firmware เป็น 0250 อัพเดตกันได้เลย มาดูที่วิธีการอัพเดต Firmware กันบ้าง โดยเวอร์ชันของ Firmware ล่าสุดจะเป็นเวอร์ชัน 0253 ดาว์นโหลด Firmware มาไว้ที่เครื่องจากที่นี่ ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ .hex ถอดสาย USB ที่เชื่อมต่อออกจาก micro:bit รวมถึงไฟเลี้ยงด้วย กดปุ่ม Reset แช่เอาไว้ พร้อมกับต่อสาย USB เข้ากับตัว micro:bit โดยในคราวนี้จะปรากฏเป็นไดรฟ์ MAINTENANCE ขึ้นมาแทนที่จะเป็น MICROBIT ลากไฟล์ .hex เข้าไปยังไดรฟ์ MAINTENANCE ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ MICROBIT ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต Firmware ใหม่สำเร็จเรียบร้อย ตรวจสอบไฟล์ DETAILS.TXT ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น 0253 ถูกต้องหรือไม่ Firmware: 0253 References https://microbit.org/get-started/user-guide/firmware/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">Ruby ถูกออกแบบขึ้นมาภายใต้หลักการของ Object นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน Ruby ล้วนเป็น Object ทั้งหมด โดย Object ที่เป็น Top Level จะเรียกว่า Main Object ซึ่งเมธอดที่ถูกนิยามภายใต้ Main Object สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด puts, respond_to? หรือ is_a? ได้ทุกๆ ที่</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-s-main-object/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
