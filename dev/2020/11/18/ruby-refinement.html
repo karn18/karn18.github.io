@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en"><!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Ruby Refinement | KT</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Ruby Refinement" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="เป็นที่รู้กันดีว่า Ruby ถูกออกมาแบบมาด้วยหลักการ Open/Closed ซึ่งก็ทำให้เราสามารถที่จะทำ Monkey Patching ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม Monkey Patching ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้ message.rb 1 2 3 4 5 6 7 8 9 class Message def initailize(message) @message = message end def print puts @message end end patched_message.rb (Monkey Patching) 1 2 3 4 5 class Message def print puts &quot;[Patched]: #{@message}&quot; end end app.rb (Before Patch) 1 2 3 4 5 6 require_relative &#39;./message&#39; msg = Message.new &quot;Great Day&quot; msg.print # --&gt; Great Day msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; Awesome Day app.rb (After Patch) 1 2 3 4 5 6 7 require_relative &#39;./message&#39; require_relative &#39;./patched_message&#39; msg = Message.new &quot;Great Day&quot; msg.print # --&gt; [Patched]: Great Day msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; [Patched]: Awesome Day ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print ที่นี้แหละ Refinement จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย Refinement จะคล้ายๆ กับ Moneky Patching แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง refined_message.rb 1 2 3 4 5 6 7 module RefinedMessage refine Message do def print puts &quot;[Refined]: #{@message}&quot; end end end การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล app.rb (Using Refinement) 1 2 3 4 5 6 7 8 9 require_relative &#39;./message&#39; require_relative &#39;./refinement_message.rb&#39; msg = Message.new(&#39;Great Day&#39;) msg.print # --&gt; Great Day using RefinedMessage msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; [Patched]: Awesome Day การใช้งาน refinement ก็จะใช้ using ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้ สำหรับการใช้ Refinement ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่ References Refinement ruby-refinement" />
+<meta property="og:description" content="เป็นที่รู้กันดีว่า Ruby ถูกออกมาแบบมาด้วยหลักการ Open/Closed ซึ่งก็ทำให้เราสามารถที่จะทำ Monkey Patching ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม Monkey Patching ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้ message.rb 1 2 3 4 5 6 7 8 9 class Message def initailize(message) @message = message end def print puts @message end end patched_message.rb (Monkey Patching) 1 2 3 4 5 class Message def print puts &quot;[Patched]: #{@message}&quot; end end app.rb (Before Patch) 1 2 3 4 5 6 require_relative &#39;./message&#39; msg = Message.new &quot;Great Day&quot; msg.print # --&gt; Great Day msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; Awesome Day app.rb (After Patch) 1 2 3 4 5 6 7 require_relative &#39;./message&#39; require_relative &#39;./patched_message&#39; msg = Message.new &quot;Great Day&quot; msg.print # --&gt; [Patched]: Great Day msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; [Patched]: Awesome Day ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print ที่นี้แหละ Refinement จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย Refinement จะคล้ายๆ กับ Moneky Patching แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง refined_message.rb 1 2 3 4 5 6 7 module RefinedMessage refine Message do def print puts &quot;[Refined]: #{@message}&quot; end end end การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล app.rb (Using Refinement) 1 2 3 4 5 6 7 8 9 require_relative &#39;./message&#39; require_relative &#39;./refinement_message.rb&#39; msg = Message.new(&#39;Great Day&#39;) msg.print # --&gt; Great Day using RefinedMessage msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; [Patched]: Awesome Day การใช้งาน refinement ก็จะใช้ using ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้ สำหรับการใช้ Refinement ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่ References Refinement ruby-refinement" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/11/18/ruby-refinement.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/11/18/ruby-refinement.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-18T22:42:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" />
+<meta property="twitter:title" content="Ruby Refinement" />
+<meta name="twitter:site" content="@karn18" />
+<meta name="twitter:creator" content="@Karn" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Karn"},"headline":"Ruby Refinement","dateModified":"2020-11-18T22:42:00+07:00","datePublished":"2020-11-18T22:42:00+07:00","image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png","@type":"imageObject"},"url":"https://karn18.github.io/dev/2020/11/18/ruby-refinement.html","description":"เป็นที่รู้กันดีว่า Ruby ถูกออกมาแบบมาด้วยหลักการ Open/Closed ซึ่งก็ทำให้เราสามารถที่จะทำ Monkey Patching ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม Monkey Patching ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้ message.rb 1 2 3 4 5 6 7 8 9 class Message def initailize(message) @message = message end def print puts @message end end patched_message.rb (Monkey Patching) 1 2 3 4 5 class Message def print puts &quot;[Patched]: #{@message}&quot; end end app.rb (Before Patch) 1 2 3 4 5 6 require_relative &#39;./message&#39; msg = Message.new &quot;Great Day&quot; msg.print # --&gt; Great Day msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; Awesome Day app.rb (After Patch) 1 2 3 4 5 6 7 require_relative &#39;./message&#39; require_relative &#39;./patched_message&#39; msg = Message.new &quot;Great Day&quot; msg.print # --&gt; [Patched]: Great Day msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; [Patched]: Awesome Day ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print ที่นี้แหละ Refinement จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย Refinement จะคล้ายๆ กับ Moneky Patching แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง refined_message.rb 1 2 3 4 5 6 7 module RefinedMessage refine Message do def print puts &quot;[Refined]: #{@message}&quot; end end end การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล app.rb (Using Refinement) 1 2 3 4 5 6 7 8 9 require_relative &#39;./message&#39; require_relative &#39;./refinement_message.rb&#39; msg = Message.new(&#39;Great Day&#39;) msg.print # --&gt; Great Day using RefinedMessage msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; [Patched]: Awesome Day การใช้งาน refinement ก็จะใช้ using ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้ สำหรับการใช้ Refinement ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่ References Refinement ruby-refinement","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/11/18/ruby-refinement.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
+<title>Ruby Refinement</title>
+</head><body data-theme="dark">
+    <div class="kz-progress"></div>
+    <div class="kz-main-container"><nav class="kz-navbar">
+  <a href="/" class="kz-navbar__logo">KT</a>
+  <div class="kz-navbar__menu">
+    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
+    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
+    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
+    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+  </div>
+</nav>
+<div class="kz-content">
+        <div class="kz-blog">
+  <div class="kz-blog__header">
+  <h1 class="kz-blog__title">Ruby Refinement</h1>
+  <div class="kz-blog__info">
+    <i class="typcn typcn-calendar-outline"></i> 18-11-2020
+    
+      | <i class="typcn typcn-tag"></i>
+      
+        <span>ruby</span>
+      
+        <span>101</span>
+      
+    
+  </div>
+</div>
+
+  
+    <figure class="image blog-image-header">
+      <img src="/assets/images/posts/2020/ruby-refinement/cover.png">
+    </figure>
+  
+  <div class="blog-content is-family-secondary">
+    <p>เป็นที่รู้กันดีว่า <strong>Ruby</strong> ถูกออกมาแบบมาด้วยหลักการ <strong>Open/Closed</strong> ซึ่งก็ทำให้เราสามารถที่จะทำ <strong>Monkey Patching</strong> ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม <strong>Monkey Patching</strong> ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้</p>
+
+<h2 id="messagerb">message.rb</h2>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Message</span>
+  <span class="k">def</span> <span class="nf">initailize</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="vi">@message</span> <span class="o">=</span> <span class="n">message</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">print</span>
+    <span class="nb">puts</span> <span class="vi">@message</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="patched_messagerb-monkey-patching">patched_message.rb (Monkey Patching)</h2>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Message</span>
+  <span class="k">def</span> <span class="nf">print</span>
+    <span class="nb">puts</span> <span class="s2">"[Patched]: </span><span class="si">#{</span><span class="vi">@message</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="apprb-before-patch">app.rb (Before Patch)</h2>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nb">require_relative</span> <span class="s1">'./message'</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="no">Message</span><span class="p">.</span><span class="nf">new</span> <span class="s2">"Great Day"</span>
+<span class="n">msg</span><span class="p">.</span><span class="nf">print</span> <span class="c1"># --&gt; Great Day</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="no">Message</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'Awesome Day'</span><span class="p">)</span>
+<span class="n">msg</span><span class="p">.</span><span class="nf">print</span> <span class="c1"># --&gt; Awesome Day</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="apprb-after-patch">app.rb (After Patch)</h2>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="nb">require_relative</span> <span class="s1">'./message'</span>
+<span class="nb">require_relative</span> <span class="s1">'./patched_message'</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="no">Message</span><span class="p">.</span><span class="nf">new</span> <span class="s2">"Great Day"</span> 
+<span class="n">msg</span><span class="p">.</span><span class="nf">print</span> <span class="c1"># --&gt; [Patched]: Great Day</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="no">Message</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'Awesome Day'</span><span class="p">)</span>
+<span class="n">msg</span><span class="p">.</span><span class="nf">print</span> <span class="c1"># --&gt; [Patched]: Awesome Day</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print</p>
+</blockquote>
+
+<p>ที่นี้แหละ <strong>Refinement</strong> จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย <strong>Refinement</strong> จะคล้ายๆ กับ <strong>Moneky Patching</strong> แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง</p>
+
+<h2 id="refined_messagerb">refined_message.rb</h2>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="k">module</span> <span class="nn">RefinedMessage</span>
+  <span class="n">refine</span> <span class="no">Message</span> <span class="k">do</span>
+    <span class="k">def</span> <span class="nf">print</span>
+      <span class="nb">puts</span> <span class="s2">"[Refined]: </span><span class="si">#{</span><span class="vi">@message</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<blockquote>
+  <p>การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล</p>
+</blockquote>
+
+<h2 id="apprb-using-refinement">app.rb (Using Refinement)</h2>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="nb">require_relative</span> <span class="s1">'./message'</span>
+<span class="nb">require_relative</span> <span class="s1">'./refinement_message.rb'</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="no">Message</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'Great Day'</span><span class="p">)</span>
+<span class="n">msg</span><span class="p">.</span><span class="nf">print</span> <span class="c1"># --&gt; Great Day</span>
+
+<span class="n">using</span> <span class="no">RefinedMessage</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="no">Message</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'Awesome Day'</span><span class="p">)</span>
+<span class="n">msg</span><span class="p">.</span><span class="nf">print</span> <span class="c1"># --&gt; [Patched]: Awesome Day</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>การใช้งาน refinement ก็จะใช้ <code class="language-plaintext highlighter-rouge">using</code> ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้</p>
+</blockquote>
+
+<p>สำหรับการใช้ <strong>Refinement</strong> ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://docs.ruby-lang.org/en/2.4.0/syntax/refinements_rdoc.html">Refinement</a></li>
+  <li><a href="https://rollout.io/blog/ruby-refinements/">ruby-refinement</a></li>
+</ul>
+
+  </div>
+  <!-- <div class="section field is-grouped">
+  <div class="control">
+    <a class="twitter-share-button"
+      href="https://twitter.com/intent/tweet?text=Ruby Refinement&url=https://karn18.github.io/dev/2020/11/18/ruby-refinement.html&via=karn18&related=karn18"
+      data-size="large">
+      Tweet
+    </a>
+    <div id="fb-root"></div>
+  </div>
+  <div class="control">
+    <div class="fb-share-button" 
+      data-href="https://karn18.github.io/dev/2020/11/18/ruby-refinement.html"
+      data-layout="button_count" data-size="large">
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+        Share
+      </a>
+    </div>
+  </div>
+</div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+  
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+ -->
+  <!-- 
+ -->
+  <!-- <div class="kz-pagination">
+  <div class="kz-pagination__newer">
+    
+  </div>
+  <div class="kz-pagination__older">
+    
+      <a class="kz-pagination__button" href="/dev/2020/11/11/interactive-fun-cards.html">Older &rarr;</a>
+    
+  </div>
+</div> -->
+  <div class="kz-support-me">
+  <!-- <a href="https://www.buymeacoffee.com/karn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=karn&button_colour=BD5FFF&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a> -->
+
+  <a href='https://ko-fi.com/Z8Z12J9KQ' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+</div>
+  <div class="kz-related-blogs">
+  
+  
+  
+
+  
+    <h3>Related Blogs</h3>
+    <ol>
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+          <li><a href="/dev/2020/11/04/first-step-to-github-actions.html">ก้าวแรกกับการใช้ GitHub Actions</a></li>
+          
+          
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+          <li><a href="/dev/2020/10/22/methods-vs-instance-methods.html">งงๆ กับ Methods และ Instance Methods ใน Ruby</a></li>
+          
+          
+        
+      
+        
+        
+        
+        
+        
+          <li><a href="/dev/2020/10/19/ruby-variable-scopes.html">Variable Scopes</a></li>
+          
+          
+        
+      
+        
+        
+        
+        
+        
+          <li><a href="/dev/2020/10/15/memoization-in-ruby.html">Memoization in Ruby</a></li>
+          
+          
+        
+      
+        
+        
+        
+        
+        
+          <li><a href="/dev/2020/10/15/ruby-s-main-object.html">Ruby's Main Object</a></li>
+          
+          
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+          <li><a href="/dev/2020/10/13/change-to-sidekiq-scheduler.html">เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า</a></li>
+          
+          
+              
+    </ol>
+  
+</div>
+
+</div>
+
+
+
+      </div>
+    </div><script>
+  const h = document.documentElement;
+  const b = document.body;
+  const st = 'scrollTop';
+  const sh = 'scrollHeight';
+  const progress = document.querySelector('.kz-progress');
+  let scroll;
+
+  document.addEventListener('scroll', function() {
+    scroll = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+    progress.style.setProperty('--scroll', scroll + '%');
+  });
+</script>
+
+</body>
+</html>
