@@ -28,7 +28,7 @@
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Karn"},"headline":"Ruby Refinement","dateModified":"2020-11-18T22:42:00+07:00","datePublished":"2020-11-18T22:42:00+07:00","image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png","@type":"imageObject"},"url":"https://karn18.github.io/dev/2020/11/18/ruby-refinement.html","description":"เป็นที่รู้กันดีว่า Ruby ถูกออกมาแบบมาด้วยหลักการ Open/Closed ซึ่งก็ทำให้เราสามารถที่จะทำ Monkey Patching ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม Monkey Patching ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้ message.rb 1 2 3 4 5 6 7 8 9 class Message def initailize(message) @message = message end def print puts @message end end patched_message.rb (Monkey Patching) 1 2 3 4 5 class Message def print puts &quot;[Patched]: #{@message}&quot; end end app.rb (Before Patch) 1 2 3 4 5 6 require_relative &#39;./message&#39; msg = Message.new &quot;Great Day&quot; msg.print # --&gt; Great Day msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; Awesome Day app.rb (After Patch) 1 2 3 4 5 6 7 require_relative &#39;./message&#39; require_relative &#39;./patched_message&#39; msg = Message.new &quot;Great Day&quot; msg.print # --&gt; [Patched]: Great Day msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; [Patched]: Awesome Day ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print ที่นี้แหละ Refinement จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย Refinement จะคล้ายๆ กับ Moneky Patching แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง refined_message.rb 1 2 3 4 5 6 7 module RefinedMessage refine Message do def print puts &quot;[Refined]: #{@message}&quot; end end end การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล app.rb (Using Refinement) 1 2 3 4 5 6 7 8 9 require_relative &#39;./message&#39; require_relative &#39;./refinement_message.rb&#39; msg = Message.new(&#39;Great Day&#39;) msg.print # --&gt; Great Day using RefinedMessage msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; [Patched]: Awesome Day การใช้งาน refinement ก็จะใช้ using ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้ สำหรับการใช้ Refinement ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่ References Refinement ruby-refinement","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/11/18/ruby-refinement.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Karn"},"url":"https://karn18.github.io/dev/2020/11/18/ruby-refinement.html","description":"เป็นที่รู้กันดีว่า Ruby ถูกออกมาแบบมาด้วยหลักการ Open/Closed ซึ่งก็ทำให้เราสามารถที่จะทำ Monkey Patching ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม Monkey Patching ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้ message.rb 1 2 3 4 5 6 7 8 9 class Message def initailize(message) @message = message end def print puts @message end end patched_message.rb (Monkey Patching) 1 2 3 4 5 class Message def print puts &quot;[Patched]: #{@message}&quot; end end app.rb (Before Patch) 1 2 3 4 5 6 require_relative &#39;./message&#39; msg = Message.new &quot;Great Day&quot; msg.print # --&gt; Great Day msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; Awesome Day app.rb (After Patch) 1 2 3 4 5 6 7 require_relative &#39;./message&#39; require_relative &#39;./patched_message&#39; msg = Message.new &quot;Great Day&quot; msg.print # --&gt; [Patched]: Great Day msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; [Patched]: Awesome Day ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print ที่นี้แหละ Refinement จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย Refinement จะคล้ายๆ กับ Moneky Patching แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง refined_message.rb 1 2 3 4 5 6 7 module RefinedMessage refine Message do def print puts &quot;[Refined]: #{@message}&quot; end end end การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล app.rb (Using Refinement) 1 2 3 4 5 6 7 8 9 require_relative &#39;./message&#39; require_relative &#39;./refinement_message.rb&#39; msg = Message.new(&#39;Great Day&#39;) msg.print # --&gt; Great Day using RefinedMessage msg = Message.new(&#39;Awesome Day&#39;) msg.print # --&gt; [Patched]: Awesome Day การใช้งาน refinement ก็จะใช้ using ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้ สำหรับการใช้ Refinement ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่ References Refinement ruby-refinement","dateModified":"2020-11-18T22:42:00+07:00","headline":"Ruby Refinement","datePublished":"2020-11-18T22:42:00+07:00","@type":"BlogPosting","image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/11/18/ruby-refinement.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
@@ -249,12 +249,12 @@
     
   </div>
 </div> -->
-  <div class="kz-support-me">
+  <!-- <div class="kz-support-me">
   <!-- <a href="https://www.buymeacoffee.com/karn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=karn&button_colour=BD5FFF&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a> -->
 
   <a href='https://ko-fi.com/Z8Z12J9KQ' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-</div>
-  <div class="kz-related-blogs">
+</div> -->
+  <!-- <div class="kz-related-blogs">
   
   
   
@@ -385,6 +385,8 @@
     </ol>
   
 </div>
+ -->
+  <script data-ad-client="ca-pub-1742525010164998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 </div>
 
