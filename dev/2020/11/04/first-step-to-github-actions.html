@@ -24,12 +24,13 @@
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Karn"},"url":"https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html","description":"GitHub Actions เป็นเครื่องมือ CI/CD หนึ่งที่จะช่วยให้เราทำงานแบบ automation ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ automation tools ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ Actions ในการทดสอบโปรแกรมหลังจากที่ push code ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย Codecov และจะแสดง badge แสดงสถานะที่เกิดขึ้นไว้ด้วย","dateModified":"2020-11-04T11:54:00+07:00","headline":"ก้าวแรกกับการใช้ GitHub Actions","datePublished":"2020-11-04T11:54:00+07:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Karn"},"headline":"ก้าวแรกกับการใช้ GitHub Actions","dateModified":"2020-11-04T11:54:00+07:00","datePublished":"2020-11-04T11:54:00+07:00","url":"https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html","description":"GitHub Actions เป็นเครื่องมือ CI/CD หนึ่งที่จะช่วยให้เราทำงานแบบ automation ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ automation tools ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ Actions ในการทดสอบโปรแกรมหลังจากที่ push code ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย Codecov และจะแสดง badge แสดงสถานะที่เกิดขึ้นไว้ด้วย","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
   <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<title>ก้าวแรกกับการใช้ GitHub Actions</title>
+<script data-ad-client="ca-pub-1742525010164998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <title>ก้าวแรกกับการใช้ GitHub Actions</title>
 </head><body data-theme="dark">
     <div class="kz-progress"></div>
     <div class="kz-main-container"><nav class="kz-navbar">
@@ -175,145 +176,6 @@
     
   </div>
 </div> -->
-  <!-- <div class="kz-support-me">
-  <!-- <a href="https://www.buymeacoffee.com/karn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=karn&button_colour=BD5FFF&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a> -->
-
-  <a href='https://ko-fi.com/Z8Z12J9KQ' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-</div> -->
-  <!-- <div class="kz-related-blogs">
-  
-  
-  
-
-  
-    <h3>Related Blogs</h3>
-    <ol>
-      
-        
-        
-        
-        
-        
-          <li><a href="/dev/2020/11/18/ruby-refinement.html">Ruby Refinement</a></li>
-          
-          
-        
-      
-        
-        
-        
-        
-        
-      
-        
-        
-        
-        
-        
-      
-        
-        
-        
-        
-        
-      
-        
-        
-        
-        
-        
-      
-        
-        
-        
-        
-        
-      
-        
-        
-        
-        
-        
-      
-        
-        
-        
-        
-        
-      
-        
-        
-        
-        
-        
-          <li><a href="/dev/2020/10/22/methods-vs-instance-methods.html">งงๆ กับ Methods และ Instance Methods ใน Ruby</a></li>
-          
-          
-        
-      
-        
-        
-        
-        
-        
-          <li><a href="/dev/2020/10/19/ruby-variable-scopes.html">Variable Scopes</a></li>
-          
-          
-        
-      
-        
-        
-        
-        
-        
-          <li><a href="/dev/2020/10/15/memoization-in-ruby.html">Memoization in Ruby</a></li>
-          
-          
-        
-      
-        
-        
-        
-        
-        
-          <li><a href="/dev/2020/10/15/ruby-s-main-object.html">Ruby's Main Object</a></li>
-          
-          
-        
-      
-        
-        
-        
-        
-        
-      
-        
-        
-        
-        
-        
-      
-        
-        
-        
-        
-        
-      
-        
-        
-        
-        
-        
-          <li><a href="/dev/2020/10/13/change-to-sidekiq-scheduler.html">เปลี่ยนมาใช้ Sidekiq Scheduler ดีกว่า</a></li>
-          
-          
-              
-    </ol>
-  
-</div>
- -->
-  <script data-ad-client="ca-pub-1742525010164998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
 </div>
 
 
