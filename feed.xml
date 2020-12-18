@@ -1,211 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-12-16T09:59:37+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">มีอะไรใหม่ใน Stimulus 2.0</title><link href="https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0.html" rel="alternate" type="text/html" title="มีอะไรใหม่ใน Stimulus 2.0" /><published>2020-12-15T23:08:00+07:00</published><updated>2020-12-15T23:08:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0.html">&lt;p&gt;หลังจากที่ &lt;strong&gt;Stimulus&lt;/strong&gt; ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-12-18T12:23:45+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Refactoring with Flocking Rules</title><link href="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html" rel="alternate" type="text/html" title="Refactoring with Flocking Rules" /><published>2020-12-18T12:23:00+07:00</published><updated>2020-12-18T12:23:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html">&lt;p&gt;ได้อ่านหนังสือ &lt;a href=&quot;https://sandimetz.com/99bottles&quot;&gt;99 Bottles&lt;/a&gt; ของ &lt;strong&gt;Sandi Metz&lt;/strong&gt; แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค &lt;strong&gt;Flocking Rules&lt;/strong&gt; ก็เลยหยิบยกมาเล่าให้ฟัง&lt;/p&gt;
+
+&lt;p&gt;ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง
+ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ&lt;/p&gt;
 &lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;เพิ่ม &lt;strong&gt;API&lt;/strong&gt; ขึ้นมา 2 ตัวคือ &lt;strong&gt;values&lt;/strong&gt; และ &lt;strong&gt;CSS classes&lt;/strong&gt; ซึ่งก็เอามาใช้แทนที่ &lt;strong&gt;data map&lt;/strong&gt; ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ &lt;strong&gt;document&lt;/strong&gt; จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Value&lt;/strong&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_01.png&quot; alt=&quot;01&quot; /&gt;
- &lt;em&gt;Controller V1&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_02.png&quot; alt=&quot;02&quot; /&gt;
- &lt;em&gt;Controller V2&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_03.png&quot; alt=&quot;03&quot; /&gt;
- &lt;em&gt;HTML V1&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_04.png&quot; alt=&quot;04&quot; /&gt;
- &lt;em&gt;HTML V2&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;จะเห็นว่าใน &lt;strong&gt;Controller&lt;/strong&gt; ของเวอร์ชัน 2 จะมีการใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;static values&lt;/code&gt; เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1
- ส่วนในฝั่ง &lt;strong&gt;HTML&lt;/strong&gt; ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-value&lt;/code&gt; ตามหลัง data attributes&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Class&lt;/strong&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_05.png&quot; alt=&quot;05&quot; /&gt;
- &lt;em&gt;Controller V2&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_06.png&quot; alt=&quot;06&quot; /&gt;
- &lt;em&gt;HTML V2&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;ตัวอย่างข้างต้นจะเป็นการใช้ &lt;strong&gt;CSS&lt;/strong&gt; ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน &lt;strong&gt;Contrller&lt;/strong&gt; เป็นการใช้ static &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;classes&lt;/code&gt; ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน &lt;strong&gt;HTML&lt;/strong&gt; โดยใช้รูปแบบ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data-[identifier]-[name]-class=&quot;className&quot;&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;รองรับ &lt;strong&gt;DOM event listener options&lt;/strong&gt; เมื่อมีการเรียกใช้งาน &lt;strong&gt;action&lt;/strong&gt; ซึ่งก็ไปตามดูได้ใน&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener&quot;&gt;มาตรฐาน&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง &lt;strong&gt;identifier&lt;/strong&gt; กับ &lt;strong&gt;target&lt;/strong&gt; จากเดิมที่เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data-target=&quot;[identifier].[name]&quot;&lt;/code&gt; เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data-[identifier]-target=&quot;[name]&quot;&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง&lt;/li&gt;
+  &lt;li&gt;หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่&lt;/li&gt;
+  &lt;li&gt;เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://discourse.stimulusjs.org/t/announcing-stimulus-2-0/1482&quot;&gt;Announcing Stimulus 2.0&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://stimulusjs.org/&quot;&gt;StimulusJS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><summary type="html">หลังจากที่ Stimulus ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง เพิ่ม API ขึ้นมา 2 ตัวคือ values และ CSS classes ซึ่งก็เอามาใช้แทนที่ data map ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ document จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว Value Controller V1 Controller V2 HTML V1 HTML V2 จะเห็นว่าใน Controller ของเวอร์ชัน 2 จะมีการใช้ static values เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1 ส่วนในฝั่ง HTML ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม -value ตามหลัง data attributes Class บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง Controller V2 HTML V2 ตัวอย่างข้างต้นจะเป็นการใช้ CSS ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน Contrller เป็นการใช้ static classes ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน HTML โดยใช้รูปแบบ data-[identifier]-[name]-class=&quot;className&quot; รองรับ DOM event listener options เมื่อมีการเรียกใช้งาน action ซึ่งก็ไปตามดูได้ในมาตรฐาน เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง identifier กับ target จากเดิมที่เป็น data-target=&quot;[identifier].[name]&quot; เป็น data-[identifier]-target=&quot;[name]&quot; References Announcing Stimulus 2.0 StimulusJS</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ruby Refinement</title><link href="https://karn18.github.io/dev/2020/11/18/ruby-refinement.html" rel="alternate" type="text/html" title="Ruby Refinement" /><published>2020-11-18T22:42:00+07:00</published><updated>2020-11-18T22:42:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/18/ruby-refinement</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/18/ruby-refinement.html">&lt;p&gt;เป็นที่รู้กันดีว่า &lt;strong&gt;Ruby&lt;/strong&gt; ถูกออกมาแบบมาด้วยหลักการ &lt;strong&gt;Open/Closed&lt;/strong&gt; ซึ่งก็ทำให้เราสามารถที่จะทำ &lt;strong&gt;Monkey Patching&lt;/strong&gt; ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม &lt;strong&gt;Monkey Patching&lt;/strong&gt; ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้&lt;/p&gt;
+&lt;p&gt;อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน&lt;/p&gt;
 
-&lt;h2 id=&quot;messagerb&quot;&gt;message.rb&lt;/h2&gt;
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Message&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initailize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;vi&quot;&gt;@message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@message&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;patched_messagerb-monkey-patching&quot;&gt;patched_message.rb (Monkey Patching)&lt;/h2&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Message&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[Patched]: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@message&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;apprb-before-patch&quot;&gt;app.rb (Before Patch)&lt;/h2&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./message'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Great Day&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; Great Day&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Awesome Day'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; Awesome Day&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;apprb-after-patch&quot;&gt;app.rb (After Patch)&lt;/h2&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./message'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./patched_message'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Great Day&quot;&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; [Patched]: Great Day&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Awesome Day'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; [Patched]: Awesome Day&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;ที่นี้แหละ &lt;strong&gt;Refinement&lt;/strong&gt; จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย &lt;strong&gt;Refinement&lt;/strong&gt; จะคล้ายๆ กับ &lt;strong&gt;Moneky Patching&lt;/strong&gt; แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง&lt;/p&gt;
-
-&lt;h2 id=&quot;refined_messagerb&quot;&gt;refined_message.rb&lt;/h2&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;RefinedMessage&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;refine&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[Refined]: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@message&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;apprb-using-refinement&quot;&gt;app.rb (Using Refinement)&lt;/h2&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./message'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./refinement_message.rb'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Great Day'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; Great Day&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RefinedMessage&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Awesome Day'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; [Patched]: Awesome Day&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;การใช้งาน refinement ก็จะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;using&lt;/code&gt; ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;สำหรับการใช้ &lt;strong&gt;Refinement&lt;/strong&gt; ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.ruby-lang.org/en/2.4.0/syntax/refinements_rdoc.html&quot;&gt;Refinement&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://rollout.io/blog/ruby-refinements/&quot;&gt;ruby-refinement&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">เป็นที่รู้กันดีว่า Ruby ถูกออกมาแบบมาด้วยหลักการ Open/Closed ซึ่งก็ทำให้เราสามารถที่จะทำ Monkey Patching ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม Monkey Patching ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้ message.rb 1 2 3 4 5 6 7 8 9 class Message def initailize(message) @message = message end def print puts @message end end patched_message.rb (Monkey Patching) 1 2 3 4 5 class Message def print puts &quot;[Patched]: #{@message}&quot; end end app.rb (Before Patch) 1 2 3 4 5 6 require_relative './message' msg = Message.new &quot;Great Day&quot; msg.print # --&amp;gt; Great Day msg = Message.new('Awesome Day') msg.print # --&amp;gt; Awesome Day app.rb (After Patch) 1 2 3 4 5 6 7 require_relative './message' require_relative './patched_message' msg = Message.new &quot;Great Day&quot; msg.print # --&amp;gt; [Patched]: Great Day msg = Message.new('Awesome Day') msg.print # --&amp;gt; [Patched]: Awesome Day ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print ที่นี้แหละ Refinement จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย Refinement จะคล้ายๆ กับ Moneky Patching แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง refined_message.rb 1 2 3 4 5 6 7 module RefinedMessage refine Message do def print puts &quot;[Refined]: #{@message}&quot; end end end การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล app.rb (Using Refinement) 1 2 3 4 5 6 7 8 9 require_relative './message' require_relative './refinement_message.rb' msg = Message.new('Great Day') msg.print # --&amp;gt; Great Day using RefinedMessage msg = Message.new('Awesome Day') msg.print # --&amp;gt; [Patched]: Awesome Day การใช้งาน refinement ก็จะใช้ using ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้ สำหรับการใช้ Refinement ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่ References Refinement ruby-refinement</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Interactive Fun Cards</title><link href="https://karn18.github.io/dev/2020/11/11/interactive-fun-cards.html" rel="alternate" type="text/html" title="Interactive Fun Cards" /><published>2020-11-11T11:42:00+07:00</published><updated>2020-11-11T11:42:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/11/interactive-fun-cards</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/11/interactive-fun-cards.html">&lt;p&gt;⚡ ปัจจุบันนี้ถ้าจะพัฒนาเว็บให้ดึงดูดผู้ใช้งาน คงหลีกเลี่ยงไม่ได้ที่จะทำให้เว็บดูสวยๆ และต้องมี interactive กับผู้ใช้ด้วยการแสดงอนิเมชันต่างๆ แน่นอนว่าในบทความนี้จะแสดงตัวอย่างการใช้ &lt;strong&gt;StimuluJS&lt;/strong&gt; 🌈 มาช่วยจัดการเว็บกันหน่อย&lt;!--more--&gt; เรามาดูกันว่าโจทย์สำหรับบทความนี้จะเป็นอะไร&lt;/p&gt;
-
-&lt;h2 id=&quot;โจทย์&quot;&gt;โจทย์&lt;/h2&gt;
-
-&lt;p&gt;สุ่มตัวเลขตามจำนวนการ์ดที่กำหนดไว้ 🎲 โดยในเบื้องต้นจะให้คว่ำการ์ดเอาไว้ก่อน จนกว่าจะมีการคลิกจึงจะเปิดหน้าการ์ดขึ้นมาเพื่อแสดงตัวเลข โจทย์ในวันนี้ช่างง่ายดายจริงๆ มาลองพัฒนากันดู&lt;/p&gt;
-
-&lt;h2 id=&quot;แนวทางการพัฒนา&quot;&gt;แนวทางการพัฒนา&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;โดยหลักๆ แล้ววันนี้เราจะใช้ stimulus controller 2 ตัวมาใช้ในการควบคุมด้วยกัน
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;GameController โดยเมื่อถูกสร้างขึ้นมาจะมีการสุ่มตัวเลข ตามจำนวนการ์ดที่ได้รับมาจากหลังบ้าน (Backend) และเก็บเอาไว้ ทันทีที่การ์ดแต่ละใบถูกสั่งให้เปิดก็จะแสดงตัวเลข&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;CardController ใช้สำหรับควบคุมการเปิด/ปิดการ์ดแต่ละใบ โดยเมื่อการ์ดถูกเปิดแล้วจะมีระยะเวลาจำกัด 2 วินาที และจะปิดการ์ดทันที&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;ผลลัพธ์&quot;&gt;ผลลัพธ์&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/interactive-fun-cards/fun_game.gif&quot; alt=&quot;fun game&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;เรียนรู้อะไรบ้าง&quot;&gt;เรียนรู้อะไรบ้าง&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เราสามารถใช้ &lt;strong&gt;controller&lt;/strong&gt; หลายๆ ตัวร่วมกันได้&lt;/li&gt;
-  &lt;li&gt;ถ้าเราออกแบบดีๆ เราก็สามารถนำ &lt;strong&gt;controller&lt;/strong&gt; ไป reuse ใช้ได้กับ component อื่นๆ ได้ จากตัวอย่างก็จะเห็นว่าการ์ดแต่ละใบก็จะใช้ &lt;strong&gt;Card Controller&lt;/strong&gt; แยกออกจากกัน&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
 3
 4
@@ -215,319 +26,405 @@
 8
 9
 10
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-card-openned=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;false&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;game.card card.element&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-game-index=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;data-action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;click-&amp;gt;game#showCard click-&amp;gt;card#flip&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card__inner&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card__front&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;image_tag&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'back.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;image&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card__back&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+11
+12
+13
+14
+15
+16
+17
+18
+19
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;3 bottles of beer on the wall, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;3 bottles of beer.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;Take one down and pass it around, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;2 bottle of beer on the wall.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;4 bottles of beer on the wall, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;4 bottles of beer.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;Take one down and pass it around, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;3 bottle of beer on the wall.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;5 bottles of beer on the wall, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;5 bottles of beer.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;Take one down and pass it around, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;4 bottle of beer on the wall.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;ถ้าอยากดูรายละเอียดเพิ่มเติมดูได้จาก repo ที่แชร์ไว้ด้านล่างนะครับ 👇&lt;/p&gt;
+&lt;p&gt;ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้&lt;/p&gt;
 
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/fun_games&quot;&gt;Fun Games&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://codepen.io/james_gillen/pen/NGwqML&quot;&gt;CSS for fliping card&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><summary type="html">⚡ ปัจจุบันนี้ถ้าจะพัฒนาเว็บให้ดึงดูดผู้ใช้งาน คงหลีกเลี่ยงไม่ได้ที่จะทำให้เว็บดูสวยๆ และต้องมี interactive กับผู้ใช้ด้วยการแสดงอนิเมชันต่างๆ แน่นอนว่าในบทความนี้จะแสดงตัวอย่างการใช้ StimuluJS 🌈 มาช่วยจัดการเว็บกันหน่อย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/interactive-fun-cards/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/interactive-fun-cards/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">รู้ได้ยังไงว่า Private Key เข้าคู่หรือไม่เข้าคู่กับ Certificate</title><link href="https://karn18.github.io/dev/2020/11/09/verifying-a-private-key-that-matchs-a-certificate.html" rel="alternate" type="text/html" title="รู้ได้ยังไงว่า Private Key เข้าคู่หรือไม่เข้าคู่กับ Certificate" /><published>2020-11-09T11:26:00+07:00</published><updated>2020-11-09T11:26:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/09/verifying-a-private-key-that-matchs-a-certificate</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/09/verifying-a-private-key-that-matchs-a-certificate.html">&lt;p&gt;เมื่ออยากกำหนดให้เว็บไซด์ที่เรารันบน &lt;strong&gt;Nginx&lt;/strong&gt; สามารถใช้งาน &lt;strong&gt;HTTPS&lt;/strong&gt; วิธีที่ง่ายที่เราคุ้นชินก็คงใช้ &lt;strong&gt;Certbot&lt;/strong&gt; ในการสร้างไฟล์ SSL certificate และ config ค่าต่างๆ ให้เรียบร้อยไปเลย
- ซึ่งก็จะประกอบด้วยไฟล์ private key และ certificate แต่เกิดเราต้องสร้างไฟล์ private key และ certicate ขึ้นมาเองหละ เราจะมั่นใจได้ยังไงว่า เราสร้างไฟล์ขึ้นมาได้ถูกต้องพร้อมนำไปใช้งาน&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ปัญหาที่ผมเจอคือ ผมได้รับไฟล์ private.key มาพร้อมกับ domain.crt และ intermediate.crt มาเพื่อมาจัดการ &lt;strong&gt;HTTPS&lt;/strong&gt; ของเว็บไซด์อันหนึ่ง&lt;/li&gt;
-  &lt;li&gt;อันดับแรกก็คือการสร้างไฟล์ ​SSL certificate สำหรับโดเมนนี้ขึ้นมา โดยการรวมไฟล์ domain.crt และ intermediate.crt เข้าด้วยกัน จากนั้นก็นำไปติดตั้งใน &lt;strong&gt;Nginx&lt;/strong&gt; 👉 &lt;a href=&quot;https://www.ssldragon.com/blog/how-to-install-an-ssl-certificate-on-nginx/&quot;&gt;Here&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;ก่อนที่จะ reload config ก็ต้องตรวจสอบกันเล็กน้อยว่า config ถูกต้องหรือไม่&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/verifying-a-private-key-that-matchs-a-certificate/nginx-validate.png&quot; alt=&quot;key_mismatch&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ชัดเจนเลยว่ามันมีปัญหา และคงรันไม่ผ่านแน่ๆ ทั้งนี้เราก็สามารถตรวจสอบเองได้ง่ายๆ ด้วยคำสั่งนี้&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;openssl rsa &lt;span class=&quot;nt&quot;&gt;-noout&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-modulus&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-in&lt;/span&gt; private.key |md5sum
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;openssl x509 &lt;span class=&quot;nt&quot;&gt;-noout&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-modulus&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-in&lt;/span&gt; certificate.crt |md5sum
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;โดยผลลัพท์ของ MD5 ที่ออกมาจากทั้งสองคำสั่งจะได้ค่าเดียวกัน นั้นแสดงว่าไฟล์ทั้งเข้าคู่กัน และสามารถนำไปใช้งานได้ แต่ถ้าเกิดผลลัพธ์ออกมาไม่เท่ากัน นั้นแสดงว่าเราอาจจะสร้างไฟล์ certificate ผิด&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;การตรวจสอบค่าอาจจะใช้ algorithm อื่นแทน MD5 ก็ได้ ไม่ว่าจะเป็น SHA1 หรือ SHA256&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://comodosslstore.com/ssltools/cert-key-matcher.php&quot;&gt;Cert Key Matcher&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.looklinux.com/check-if-certificate-private-key-and-csr-match/&quot;&gt;Check if certificate private key and csr match&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="nginx" /><category term="ssl" /><summary type="html">เมื่ออยากกำหนดให้เว็บไซด์ที่เรารันบน Nginx สามารถใช้งาน HTTPS วิธีที่ง่ายที่เราคุ้นชินก็คงใช้ Certbot ในการสร้างไฟล์ SSL certificate และ config ค่าต่างๆ ให้เรียบร้อยไปเลย ซึ่งก็จะประกอบด้วยไฟล์ private key และ certificate แต่เกิดเราต้องสร้างไฟล์ private key และ certicate ขึ้นมาเองหละ เราจะมั่นใจได้ยังไงว่า เราสร้างไฟล์ขึ้นมาได้ถูกต้องพร้อมนำไปใช้งาน</summary></entry><entry><title type="html">ก้าวแรกกับการใช้ GitHub Actions</title><link href="https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html" rel="alternate" type="text/html" title="ก้าวแรกกับการใช้ GitHub Actions" /><published>2020-11-04T11:54:00+07:00</published><updated>2020-11-04T11:54:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html">&lt;p&gt;&lt;strong&gt;GitHub Actions&lt;/strong&gt; เป็นเครื่องมือ &lt;strong&gt;CI/CD&lt;/strong&gt; หนึ่งที่จะช่วยให้เราทำงานแบบ &lt;strong&gt;automation&lt;/strong&gt; ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ &lt;strong&gt;automation tools&lt;/strong&gt; ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ &lt;strong&gt;Actions&lt;/strong&gt; ในการทดสอบโปรแกรมหลังจากที่ &lt;strong&gt;push code&lt;/strong&gt; ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย &lt;strong&gt;Codecov&lt;/strong&gt; และจะแสดง &lt;strong&gt;badge&lt;/strong&gt; แสดงสถานะที่เกิดขึ้นไว้ด้วย&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;ตัวอย่างที่สำเร็จแล้ว&quot;&gt;ตัวอย่างที่สำเร็จแล้ว&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ruby-actions.png&quot; alt=&quot;Ruby Actions&quot; /&gt;
-&lt;em&gt;&lt;a href=&quot;https://github.com/karn18/ruby-actions&quot;&gt;Ruby Actions&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;เริ่มต้นกันเลย&quot;&gt;เริ่มต้นกันเลย&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;สร้างโปรเจค เขียนเทส และก็โค้ด&lt;/li&gt;
-  &lt;li&gt;สร้าง repository บน &lt;strong&gt;GitHub&lt;/strong&gt; และอัพโหลดโค้ดขึ้นไป&lt;/li&gt;
-  &lt;li&gt;เข้าไปที่เมนู &lt;strong&gt;Actions&lt;/strong&gt; จากนั้นก็เลือก &lt;strong&gt;Workflows&lt;/strong&gt; ที่จะใช้งาน อันนี้ก็ขึ้นอยู่กับภาษาที่ใช้ สำหรับของผมก็จะเลือกใช้ &lt;strong&gt;Workflow สำหรับ Ruby&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ra-1.png&quot; alt=&quot;RA1&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;โดยเบื้องต้นเมื่อกด setup ก็จะมีการสร้างไฟล์ yml ตามชื่อภาษาที่เราใช้ หรือเราสามารถเปลี่ยนชื่อก็ได้ และสร้างไว้ในโฟลเดอร์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.github/workflows&lt;/code&gt; จากนั้นก็ปรับค่าต่างๆ เช่น
-    &lt;ul&gt;
-      &lt;li&gt;event ที่จะใช้ trigger ให้ทำงาน ซึ่งสนใจเฉพาะการ push โค้ดเข้ามาที่ branch &lt;strong&gt;main&lt;/strong&gt; เท่านั้น&lt;/li&gt;
-      &lt;li&gt;job ที่ระบุไว้ใน workflow นี้จะมีแค่ test เท่านั้น แต่จะเห็นว่าในการ test ประกอบไปด้วย step หลายๆ step ด้วยกัน&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ra-2.png&quot; alt=&quot;RA2&quot; width=&quot;440px&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;กดบันทึกไฟล์ workflow จากนั้นจะเห็นว่า &lt;strong&gt;GitHub Actions&lt;/strong&gt; เริ่มทำงานโดยอัตโนมัติในการทดสอบโค้ดให้กับเรา&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ra-3.png&quot; alt=&quot;RA3&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เพิ่ม step ให้กับ workflow ของเราให้อัพโหลด code covergage ไปยัง &lt;strong&gt;codecov.io&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ra-4.png&quot; alt=&quot;RA3&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เราสามารถเพิ่ม cache ให้กับ workflow ได้ด้วยเช่นกัน เพื่อให้การการทำงานดีขึ้น&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ra-5.png&quot; alt=&quot;RA3&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;สุดท้ายก็ใส่ badge เข้าไปที่ &lt;strong&gt;README&lt;/strong&gt; เพื่อใช้แสดงสถานะปัจจุบันของโค้ดเราว่าทดสอบผ่านหรือไม่ รวมถึง code coverage ได้กี่เปอร์เซนต์&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/features/actions&quot;&gt;GitHub Actions&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/actions/cache&quot;&gt;Actions Cache&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://codecov.io/&quot;&gt;Codecov&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/ruby-actions&quot;&gt;ตัวอย่างการใช้ GitHub Actions&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="github" /><category term="actions" /><summary type="html">GitHub Actions เป็นเครื่องมือ CI/CD หนึ่งที่จะช่วยให้เราทำงานแบบ automation ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ automation tools ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ Actions ในการทดสอบโปรแกรมหลังจากที่ push code ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย Codecov และจะแสดง badge แสดงสถานะที่เกิดขึ้นไว้ด้วย</summary></entry><entry><title type="html">เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski</title><link href="https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html" rel="alternate" type="text/html" title="เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski" /><published>2020-11-01T22:32:00+07:00</published><updated>2020-11-01T22:32:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html">&lt;p&gt;ต้องแนะนำแอพ &lt;strong&gt;Gifski&lt;/strong&gt; นี้เลยครับสำหรับใครที่ต้องการจะแปลงไฟล์วิดีโอให้เป็นไฟล์ &lt;strong&gt;gif&lt;/strong&gt; ซึ่งใช้งานได้อย่างง่ายดาย
-เพียงแค่เปิดโปรแกรมขึ้น และลากไฟล์ที่เราต้องการจะแปลงเข้าไป&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/create-gif-from-video-with-gifski/drop_file.png&quot; alt=&quot;drop_file&quot; width=&quot;400px&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;จากนั้นก็เลือกปรับขนาดของภาพ, FPS, และ Quality ตามต้องการ ซึ่งการปรับแต่งก็จะส่งผลต่อขนาดไฟล์ สำหรับผมต้องการไฟล์ &lt;strong&gt;gif&lt;/strong&gt; ไปแสดงอยู่บนเว็บบทความของผมซึ่งก็จะกังวลเรื่องของขนาด โดยที่ไม่อยากให้มันใหญ่มากก็จะพยายามปรับขนาดภาพให้เล็ก ส่วน FPS และ Quality ก็จะให้ค่าต่ำๆ หน่อย เพียงให้พอดูออก&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/create-gif-from-video-with-gifski/config.png&quot; alt=&quot;config&quot; width=&quot;400px&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;ปรับเรียบร้อยก็กดปุ่ม convert&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/create-gif-from-video-with-gifski/final.gif&quot; alt=&quot;final&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;เพียงเท่านี้เราก็ได้ไฟล์ &lt;strong&gt;gif&lt;/strong&gt; ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้&lt;strong&gt;ฟรี&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://gif.ski/&quot;&gt;Gifski&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="gif" /><category term="gifski" /><category term="video" /><summary type="html">ต้องแนะนำแอพ Gifski นี้เลยครับสำหรับใครที่ต้องการจะแปลงไฟล์วิดีโอให้เป็นไฟล์ gif ซึ่งใช้งานได้อย่างง่ายดาย เพียงแค่เปิดโปรแกรมขึ้น และลากไฟล์ที่เราต้องการจะแปลงเข้าไป จากนั้นก็เลือกปรับขนาดของภาพ, FPS, และ Quality ตามต้องการ ซึ่งการปรับแต่งก็จะส่งผลต่อขนาดไฟล์ สำหรับผมต้องการไฟล์ gif ไปแสดงอยู่บนเว็บบทความของผมซึ่งก็จะกังวลเรื่องของขนาด โดยที่ไม่อยากให้มันใหญ่มากก็จะพยายามปรับขนาดภาพให้เล็ก ส่วน FPS และ Quality ก็จะให้ค่าต่ำๆ หน่อย เพียงให้พอดูออก ปรับเรียบร้อยก็กดปุ่ม convert เพียงเท่านี้เราก็ได้ไฟล์ gif ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้ฟรี References Gifski</summary></entry><entry><title type="html">Yummy 🍬</title><link href="https://karn18.github.io/stem/2020/10/31/yummy-candy.html" rel="alternate" type="text/html" title="Yummy 🍬" /><published>2020-10-31T22:50:00+07:00</published><updated>2020-10-31T22:50:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/31/yummy-candy</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/31/yummy-candy.html">&lt;p&gt;ลองมาใช้ &lt;strong&gt;micro:bit&lt;/strong&gt; ควบคุมตัวละครใน &lt;strong&gt;scratch&lt;/strong&gt; ให้เคลื่อนไหวตามการเคลื่อนไหวของ &lt;strong&gt;micro:bit&lt;/strong&gt; กันดีกว่า เนื่องในวัน &lt;strong&gt;Halloween&lt;/strong&gt; ก็ขอเลือก &lt;strong&gt;theme&lt;/strong&gt; เป็น &lt;strong&gt;Halloween&lt;/strong&gt; กัน&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ตัวละครจะเป็นผีน้อยสวมหมวกสีแดง ที่จะแสดงข้อความ ‘Where is candy?’ อยู่เรื่อยๆ ผ่านการสุ่มระยะเวลา&lt;/li&gt;
-  &lt;li&gt;Candy 🍬 ของเราจะมีด้วยกัน 3 รูปแบบ และจะถูกสุ่มขึ้นมาแสดงบนหน้าจอ จนกว่าเจ้าผีน้อยจะมากิน จึงจะเริ่มสุ่มใหม่&lt;/li&gt;
-  &lt;li&gt;micro:bit จะควบคุมการเคลื่อนไหวของผีน้อยผ่านตัว &lt;strong&gt;micro:bit&lt;/strong&gt; โดยถ้าเราเอียงไปทางซ้าย ตัวละครก็จะไปทางซ้าย พร้อมแสดงล
-ุกศรปรากฏขึ้นบน &lt;strong&gt;micro:bit&lt;/strong&gt; และเช่นเดียวกันถ้าเอียงไปทางขวา ก็จะเคลื่อนไปทางขวา พร้อมแสดงลูกศร&lt;/li&gt;
-  &lt;li&gt;ตัวละครจะวิ่งไปเรื่อยๆ ถ้าเราจะหยุดการเคลื่อนไหวจะใช้การเอียง &lt;strong&gt;micro:bit&lt;/strong&gt; ไปทางด้านหน้าหรือหลังก็ได้&lt;/li&gt;
-  &lt;li&gt;เมื่อผีน้อยมีการกิน Candy 🍬 จะแสดงข้อความ ‘Yummy’ และแสดงจำนวน Candy ที่กินเข้าไปบน &lt;strong&gt;micro:bit&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/yummy-candy/sample1.png&quot; alt=&quot;sample1&quot; width=&quot;200px&quot; /&gt;
-&lt;em&gt;บล็อกรับคำสั่งการเอียง micro:bit&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/yummy-candy/sample2.png&quot; alt=&quot;sample2&quot; /&gt;
-&lt;em&gt;ตัวอย่างโค้ด&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/yummy-candy/cut.gif&quot; alt=&quot;showcase&quot; /&gt;
-&lt;em&gt;Yummy&lt;/em&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://scratch.mit.edu&quot;&gt;Scratch&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://microbit.org/&quot;&gt;micro:bit&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="stem" /><category term="basic" /><category term="microbit" /><category term="scratch" /><summary type="html">ลองมาใช้ micro:bit ควบคุมตัวละครใน scratch ให้เคลื่อนไหวตามการเคลื่อนไหวของ micro:bit กันดีกว่า เนื่องในวัน Halloween ก็ขอเลือก theme เป็น Halloween กัน</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/yummy-candy/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/yummy-candy/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่</title><link href="https://karn18.github.io/dev/2020/10/26/git-lfs.html" rel="alternate" type="text/html" title="ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่" /><published>2020-10-26T22:30:00+07:00</published><updated>2020-10-26T22:30:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/26/git-lfs</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/26/git-lfs.html">&lt;p&gt;ไม่ว่าจะเป็นความตั้งใจ หรือบังเอิญที่ต้องมีการใส่ไฟล์ประเภทภาพ เสียง หรือวิดีโอเข้าไปยัง &lt;strong&gt;git repository&lt;/strong&gt; ถ้าไฟล์เหล่าไม่ได้มีจำนวนเยอะ มีการอัพเดตบ่อยๆ หรือมีขนาดใหญ่ ก็คงไม่ต้องซีเรียสอะไรมากปล่อยผ่านไปก็ได้ แต่ถ้าเกิดต้องมีการอัพเดตไฟล์อยู่บ่อยๆ ขนาดไฟล์ก็ใหญ่ขึ้นเรื่อยๆ อันนี้แหละเราจะต้องมาดูก่อนหน่อย เพราะมีผลกระทบที่เกิดขึ้นกับ &lt;strong&gt;git repository&lt;/strong&gt; ของเราแน่ๆ ไม่ว่าจะเป็น &lt;strong&gt;git history&lt;/strong&gt; ที่จะใหญ่ขึ้นตาม การ pull หรือ fetch ข้อมูลก็จะช้าขึ้นนั้นเอง&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;สำหรับวิธีการแก้ปัญหารการต้องอัพไฟล์ขนาดใหญ่เข้าไปใน &lt;strong&gt;git repository&lt;/strong&gt; ของเราก็สามารถทำได้โดยใช้ &lt;strong&gt;Git LFS (Large File Storage)&lt;/strong&gt; ซึ่งเป็น extension หนึ่งของ &lt;strong&gt;Git&lt;/strong&gt; โดยหลักการทำงานของ &lt;strong&gt;Git LFS&lt;/strong&gt; จะ &lt;strong&gt;hook event&lt;/strong&gt; เมื่อมีการ &lt;strong&gt;push&lt;/strong&gt; ไฟล์ไปยัง &lt;strong&gt;git repository&lt;/strong&gt; และแทนที่ไฟล์จริงๆ ด้วย &lt;strong&gt;pointer&lt;/strong&gt; ของไฟล์ ด้วยการอัพโหลดไปยัง &lt;strong&gt;Git LFS Store&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;วิธีใช้งาน&quot;&gt;วิธีใช้งาน&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;ดาว์นโหลดตัวติดตั้งจาก&lt;a href=&quot;https://git-lfs.github.com/&quot;&gt;ที่นี่&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;ถ้าเป็น &lt;strong&gt;Mac&lt;/strong&gt; หรือ &lt;strong&gt;Linux&lt;/strong&gt; ก็ติดตั้งผ่าน package manger&lt;/li&gt;
-      &lt;li&gt;ส่วน &lt;strong&gt;Windows&lt;/strong&gt; ก็ไม่ต้องทำอะไรเพิ่ม เพราะ &lt;strong&gt;Git LFS&lt;/strong&gt; ติดตั้งมาพร้อมกับ &lt;strong&gt;Git&lt;/strong&gt; ตั้งแต่แรกอยู่แล้ว&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;ติดตั้ง &lt;strong&gt;Git LFS&lt;/strong&gt; ให้กับ &lt;strong&gt;repository&lt;/strong&gt; ซึ่งสามารถใช้ได้ทั้งกับ &lt;strong&gt;repository&lt;/strong&gt; ใหม่ หรือของเดิมที่มีอยู่แล้ว&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git lfs &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;กำหนดประเภทไฟล์ที่ต้องการให้จัดการโดย &lt;strong&gt;Git LFS&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git lfs track &lt;span class=&quot;s2&quot;&gt;&quot;*.jpg&quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;จากนั้น &lt;strong&gt;Git LFS&lt;/strong&gt; จะสร้างไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gitattributes&lt;/code&gt; ขึ้นมา&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;*.png filter=lfs diff=lfs merge=lfs -text
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ใช้งาน &lt;strong&gt;git repository&lt;/strong&gt; ตามปกติ แต่อย่าลืมเพิ่ม &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gitattributes&lt;/code&gt; เข้าไปด้วย&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git add .gitattributes &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.jpg
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;track *.jpg files using Git LFS&quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เมื่อมีการ &lt;strong&gt;push&lt;/strong&gt; ไฟล์ขึ้นไปยัง server &lt;strong&gt;Git LFS&lt;/strong&gt; จะดักจับและตรวจสอบประเภทไฟล์ที่ตรงตามที่กำหนดไว้ และทำการอัพโหลดไฟล์ขึ้นไปยัง &lt;strong&gt;Git LFS Store&lt;/strong&gt; แทน สังเกตได้จากรูปด้านล่าง&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/git-lfs/cmd3.png&quot; alt=&quot;cmd3&quot; width=&quot;600px&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ตรวจสอบไฟล์ที่จัดการโดย &lt;strong&gt;Git LFS&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git lfs ls-files
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://git-lfs.github.com/&quot;&gt;Git LFS&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/git-lfs/&quot;&gt;Handling Large Files with LFS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="git" /><summary type="html">ไม่ว่าจะเป็นความตั้งใจ หรือบังเอิญที่ต้องมีการใส่ไฟล์ประเภทภาพ เสียง หรือวิดีโอเข้าไปยัง git repository ถ้าไฟล์เหล่าไม่ได้มีจำนวนเยอะ มีการอัพเดตบ่อยๆ หรือมีขนาดใหญ่ ก็คงไม่ต้องซีเรียสอะไรมากปล่อยผ่านไปก็ได้ แต่ถ้าเกิดต้องมีการอัพเดตไฟล์อยู่บ่อยๆ ขนาดไฟล์ก็ใหญ่ขึ้นเรื่อยๆ อันนี้แหละเราจะต้องมาดูก่อนหน่อย เพราะมีผลกระทบที่เกิดขึ้นกับ git repository ของเราแน่ๆ ไม่ว่าจะเป็น git history ที่จะใหญ่ขึ้นตาม การ pull หรือ fetch ข้อมูลก็จะช้าขึ้นนั้นเอง</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/git-lfs/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/git-lfs/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ป้ายไฟแสดงชื่อด้วย micro:bit</title><link href="https://karn18.github.io/stem/2020/10/25/moving-display.html" rel="alternate" type="text/html" title="ป้ายไฟแสดงชื่อด้วย micro:bit" /><published>2020-10-25T15:29:00+07:00</published><updated>2020-10-25T15:29:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/25/moving-display</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/25/moving-display.html">&lt;p&gt;&lt;strong&gt;micro:bit&lt;/strong&gt; สามารถนำมาทำเป็นป้ายไฟได้ด้วยนะ ซึ่งการเขียนโค้ดแสดงป้ายไฟนี้
-น้องๆ จะได้เรียนรู้การแสดงผลตัวอักษรผ่านบล็อก &lt;strong&gt;show leds&lt;/strong&gt; การหน่วงเวลาการแสดงผลโดยใช้บล็อก &lt;strong&gt;pause&lt;/strong&gt; และการทำงานของโปรแกรมต่อเนื่องตามลำดับจากบล็อกสู่บล็อก 🌈&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;เริ่มต้นกันเลย&quot;&gt;เริ่มต้นกันเลย&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เปิดโปรแกรม &lt;strong&gt;Microsoft MakeCode&lt;/strong&gt; ขึ้นมาและสร้างโปรเจคใหม่ว่า &lt;strong&gt;ป้ายไฟ&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/new_project.png&quot; alt=&quot;new project&quot; /&gt;
-&lt;em&gt;สร้างโปรเจค ป้ายไฟ&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;สำหรับป้ายไฟปกติแล้วจะแสดงข้อความวนไปเรื่อยๆ ดังนั้นเราจะใช้บล็อก &lt;strong&gt;forever&lt;/strong&gt; เพื่อให้โปรแกรมสามารถทำงานวนไปเรื่อยๆ ไม่มีที่สิ้นสุดได้&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/makecode1.png&quot; alt=&quot;makecode1&quot; /&gt;
-&lt;em&gt;บล็อก leds ต่อเข้ากับบล็อก forever&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ป้ายไฟในวันนี้จะแสดงชื่อของเราเอง ซึ่งป้ายไฟของผมก็จะเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;KARN&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;เริ่มลากบล็อก &lt;strong&gt;show leds&lt;/strong&gt; มาต่อกับบล็อก &lt;strong&gt;forever&lt;/strong&gt; จากนั้นปรับ leds ให้แสดงตัวอักษร โดยแต่ละบล็อกแสดง 1 ตัวอักษรเท่านั้น&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/makecode2.png&quot; alt=&quot;makecode2&quot; width=&quot;200px&quot; /&gt;
-&lt;em&gt;ปรับบล็อก show leds ให้แสดงตัวอักษร K&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ต่อตัวอักษรให้เป็นคำตามที่ต้องการ และตรวจสอบผลลัพท์บนบอร์ด &lt;strong&gt;micro:bit&lt;/strong&gt; จำลอง&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/simulator1.gif&quot; alt=&quot;simulator1&quot; /&gt;
-&lt;em&gt;ป้ายไฟแสดงข้อความ KARN&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;จะสังเกตเห็นว่าตอนนี้ตัวอักษรจะวิ่งค่อนข้างเร็ว จนทำให้ตาเรามองมันทันว่าป้ายไฟของเราพยายามจะแสดงคำว่าอะไร&lt;/li&gt;
-  &lt;li&gt;เพื่อหน่วงเวลาในการแสดงผลตัวอักษรแต่ละตัวให้ช้าขึ้น ให้เราลากบล็อก &lt;strong&gt;pause&lt;/strong&gt; ระหว่างตัวอักษร&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/makecode3.png&quot; alt=&quot;simulator1&quot; /&gt;
-&lt;em&gt;บล็อก pause&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ทดลองปรับเวลาในการหน่วงบนบล็อก &lt;strong&gt;pause&lt;/strong&gt; และสังเกตความแตกต่าง&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/makecode4.png&quot; alt=&quot;simulator1&quot; width=&quot;200px&quot; /&gt;
-&lt;em&gt;บล็อกคำสั่งที่สมบูรณ์&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/simulator2.gif&quot; alt=&quot;simulator1&quot; /&gt;
-&lt;em&gt;ป้ายไฟที่ปรับความเร็วในการแสดงผลแล้ว&lt;/em&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;💡 นอกจากการใช้บล็อก &lt;strong&gt;show leds&lt;/strong&gt; มาใช้แสดงตัวอักษร เรายังสามารถใช้บล็อก &lt;strong&gt;show string&lt;/strong&gt; มาใช้แทนได้ด้วยนะ ลองไปทดลองเล่นกันดู&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เมื่อปรับเปลี่ยนความเร็วในการแสดงผลเป็นที่พอใจแล้ว ที่นี่เรามาโหลดโปรแกรมเข้าไปยัง &lt;strong&gt;micro:bit&lt;/strong&gt; ดู&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/microbit.gif&quot; alt=&quot;microbit&quot; /&gt;
-&lt;em&gt;รันโค้ดป้ายไฟบน micro:bit&lt;/em&gt;&lt;/p&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="basic" /><category term="microbit" /><summary type="html">micro:bit สามารถนำมาทำเป็นป้ายไฟได้ด้วยนะ ซึ่งการเขียนโค้ดแสดงป้ายไฟนี้ น้องๆ จะได้เรียนรู้การแสดงผลตัวอักษรผ่านบล็อก show leds การหน่วงเวลาการแสดงผลโดยใช้บล็อก pause และการทำงานของโปรแกรมต่อเนื่องตามลำดับจากบล็อกสู่บล็อก 🌈</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/moving-display/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/moving-display/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">งงๆ กับ Methods และ Instance Methods ใน Ruby</title><link href="https://karn18.github.io/dev/2020/10/22/methods-vs-instance-methods.html" rel="alternate" type="text/html" title="งงๆ กับ Methods และ Instance Methods ใน Ruby" /><published>2020-10-22T12:07:00+07:00</published><updated>2020-10-22T12:07:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/22/methods-vs-instance-methods</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/22/methods-vs-instance-methods.html">&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
 3
 4
 5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;forward&lt;/span&gt;
-   &lt;span class=&quot;vi&quot;&gt;@distance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+6
+7
+8
+9
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; 
+  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; bottles of beer on the wall, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; bottles of beer.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;Take one down and pass it around, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; bottle of beer on the wall.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;จาก &lt;strong&gt;Class&lt;/strong&gt; ด้านบน ถ้ามีคนมาถามเราว่าคลาส &lt;strong&gt;Car&lt;/strong&gt; มี methods อะไรบ้าง คำตอบก็คือมี method ที่ชื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forward&lt;/code&gt; ไงหละ ถูกต้องแล้วครับ&lt;!--more--&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;c &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Car.new
-Car.methods &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; c.methods           &lt;span class=&quot;c&quot;&gt;# false&lt;/span&gt;
-Car.instance_methods &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; c.methods  &lt;span class=&quot;c&quot;&gt;# true&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;ที่นี้ลองดูโค้ดเปรียบเทียบ methods ที่อยู่ภายใต้ &lt;strong&gt;Instance&lt;/strong&gt; และ &lt;strong&gt;Class&lt;/strong&gt; กัน สังเกตเห็นอะไรมั้ยครับ&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;c&lt;/strong&gt; เป็น object ที่สร้างขึ้นจาก class &lt;strong&gt;Car&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;methods ของ class &lt;strong&gt;Car&lt;/strong&gt; ไม่เท่ากับ methods ของ object &lt;strong&gt;c&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;instance methods ของ class &lt;strong&gt;Car&lt;/strong&gt; กับเท่ากันกับ methods ของ object &lt;strong&gt;c&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ไม่รู้จะงงมากขึ้นกว่าเดิมหรือเปล่า เพียงแต่สิ่งที่โค้ดพยายามจะบอกเราก็คือ&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;เมื่ออ้างอิงจาก object เราจะเรียกมันว่า &lt;strong&gt;methods&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;เมื่ออ้างอิงจาก class มันจะมี &lt;strong&gt;methods&lt;/strong&gt; ด้วยกัน 2 ประเภทคือ &lt;strong&gt;Instance methods&lt;/strong&gt; และ &lt;strong&gt;Class methods&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;ถ้าจะบอกว่าภายใน class &lt;strong&gt;Car&lt;/strong&gt; มี methods อะไรบ้าง อันนั้นจะหมายถึง &lt;strong&gt;Class methods&lt;/strong&gt; ซึ่ง method &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forward&lt;/code&gt; ไม่ใช่ &lt;strong&gt;Class methods&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;ส่วนถ้าจะบอกว่าใน class &lt;strong&gt;Car&lt;/strong&gt; มี &lt;strong&gt;Instance methods&lt;/strong&gt; อะไรบ้าง สามารถตอบทันทีเลยว่า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forward&lt;/code&gt; เป็นหนึ่งในนั้น&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor&lt;/p&gt;
 
 &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://pragprog.com/titles/ppmetr2/metaprogramming-ruby-2&quot;&gt;Metaprogramming Ruby 2&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">1 2 3 4 5 class Car def forward @distance = 1 end end จาก Class ด้านบน ถ้ามีคนมาถามเราว่าคลาส Car มี methods อะไรบ้าง คำตอบก็คือมี method ที่ชื่อ forward ไงหละ ถูกต้องแล้วครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/methods-vs-instance-methods/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/methods-vs-instance-methods/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+  &lt;li&gt;&lt;a href=&quot;https://sandimetz.com/99bottles&quot;&gt;99 Bottles&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="refactoring" /><category term="ruby" /><summary type="html">ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \ &quot;3 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;2 bottle of beer on the wall.\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \ &quot;4 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;3 bottle of beer on the wall.\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \ &quot;5 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;4 bottle of beer on the wall.\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ 1 2 3 4 5 6 7 8 9 case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \ &quot;#{number} bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;#{number - 1} bottle of beer on the wall.\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">มีอะไรใหม่ใน Stimulus 2.0</title><link href="https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0.html" rel="alternate" type="text/html" title="มีอะไรใหม่ใน Stimulus 2.0" /><published>2020-12-15T23:08:00+07:00</published><updated>2020-12-15T23:08:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0.html">หลังจากที่ **Stimulus** ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง
+1. เพิ่ม **API** ขึ้นมา 2 ตัวคือ **values** และ **CSS classes** ซึ่งก็เอามาใช้แทนที่ **data map** ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ **document** จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว
+
+    - **Value**
+
+    ![01](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_01.png)
+    *Controller V1*
+
+    ![02](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_02.png)
+    *Controller V2*
+
+    ![03](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_03.png)
+    *HTML V1*
+
+    ![04](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_04.png)
+    *HTML V2*
+
+    จะเห็นว่าใน **Controller** ของเวอร์ชัน 2 จะมีการใช้ `static values` เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1
+    ส่วนในฝั่ง **HTML** ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม `-value` ตามหลัง data attributes
+
+    - **Class**
+
+    บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง 
+
+    ![05](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_05.png)
+    *Controller V2*
+
+    ![06](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_06.png)
+    *HTML V2*
+
+    ตัวอย่างข้างต้นจะเป็นการใช้ **CSS** ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน **Contrller** เป็นการใช้ static `classes` ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน **HTML** โดยใช้รูปแบบ `data-[identifier]-[name]-class=&quot;className&quot;`
+
+2. รองรับ **DOM event listener options** เมื่อมีการเรียกใช้งาน **action** ซึ่งก็ไปตามดูได้ใน[มาตรฐาน](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+
+3. เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง **identifier** กับ **target** จากเดิมที่เป็น `data-target=&quot;[identifier].[name]&quot;` เป็น `data-[identifier]-target=&quot;[name]&quot;`
+
+# References
+- [Announcing Stimulus 2.0](https://discourse.stimulusjs.org/t/announcing-stimulus-2-0/1482)
+- [StimulusJS](https://stimulusjs.org/)</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><summary type="html">หลังจากที่ Stimulus ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง เพิ่ม API ขึ้นมา 2 ตัวคือ values และ CSS classes ซึ่งก็เอามาใช้แทนที่ data map ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ document จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว Value Controller V1 Controller V2 HTML V1 HTML V2 จะเห็นว่าใน Controller ของเวอร์ชัน 2 จะมีการใช้ static values เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1 ส่วนในฝั่ง HTML ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม -value ตามหลัง data attributes Class บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง Controller V2 HTML V2 ตัวอย่างข้างต้นจะเป็นการใช้ CSS ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน Contrller เป็นการใช้ static classes ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน HTML โดยใช้รูปแบบ data-[identifier]-[name]-class=&quot;className&quot; รองรับ DOM event listener options เมื่อมีการเรียกใช้งาน action ซึ่งก็ไปตามดูได้ในมาตรฐาน เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง identifier กับ target จากเดิมที่เป็น data-target=&quot;[identifier].[name]&quot; เป็น data-[identifier]-target=&quot;[name]&quot; References Announcing Stimulus 2.0 StimulusJS</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ruby Refinement</title><link href="https://karn18.github.io/dev/2020/11/18/ruby-refinement.html" rel="alternate" type="text/html" title="Ruby Refinement" /><published>2020-11-18T22:42:00+07:00</published><updated>2020-11-18T22:42:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/18/ruby-refinement</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/18/ruby-refinement.html">เป็นที่รู้กันดีว่า **Ruby** ถูกออกมาแบบมาด้วยหลักการ **Open/Closed** ซึ่งก็ทำให้เราสามารถที่จะทำ **Monkey Patching** ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม **Monkey Patching** ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้
+
+## message.rb
+```ruby
+class Message
+  def initailize(message)
+    @message = message
+  end
+
+  def print
+    puts @message
+  end
+end
+```
+
+## patched_message.rb (Monkey Patching)
+```ruby
+class Message
+  def print
+    puts &quot;[Patched]: #{@message}&quot;
+  end
+end
+```
+
+## app.rb (Before Patch)
+```ruby
+require_relative './message'
+
+msg = Message.new &quot;Great Day&quot;
+msg.print # --&gt; Great Day
+msg = Message.new('Awesome Day')
+msg.print # --&gt; Awesome Day
+```
+
+## app.rb (After Patch)
+```ruby
+require_relative './message'
+require_relative './patched_message'
+
+msg = Message.new &quot;Great Day&quot; 
+msg.print # --&gt; [Patched]: Great Day
+msg = Message.new('Awesome Day')
+msg.print # --&gt; [Patched]: Awesome Day
+```
+
+&gt; ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print
+
+ที่นี้แหละ **Refinement** จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย **Refinement** จะคล้ายๆ กับ **Moneky Patching** แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง
+
+## refined_message.rb
+```ruby
+module RefinedMessage
+  refine Message do
+    def print
+      puts &quot;[Refined]: #{@message}&quot;
+    end
+  end
+end
+```
+&gt; การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล
+
+## app.rb (Using Refinement)
+```ruby
+require_relative './message'
+require_relative './refinement_message.rb'
+
+msg = Message.new('Great Day')
+msg.print # --&gt; Great Day
+
+using RefinedMessage
+msg = Message.new('Awesome Day')
+msg.print # --&gt; [Patched]: Awesome Day
+```
+
+&gt; การใช้งาน refinement ก็จะใช้ `using` ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้
+
+สำหรับการใช้ **Refinement** ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่
+
+## References
+- [Refinement](https://docs.ruby-lang.org/en/2.4.0/syntax/refinements_rdoc.html)
+- [ruby-refinement](https://rollout.io/blog/ruby-refinements/)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">เป็นที่รู้กันดีว่า Ruby ถูกออกมาแบบมาด้วยหลักการ Open/Closed ซึ่งก็ทำให้เราสามารถที่จะทำ Monkey Patching ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม Monkey Patching ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้ message.rb 1 2 3 4 5 6 7 8 9 class Message def initailize(message) @message = message end def print puts @message end end patched_message.rb (Monkey Patching) 1 2 3 4 5 class Message def print puts &quot;[Patched]: #{@message}&quot; end end app.rb (Before Patch) 1 2 3 4 5 6 require_relative './message' msg = Message.new &quot;Great Day&quot; msg.print # --&amp;gt; Great Day msg = Message.new('Awesome Day') msg.print # --&amp;gt; Awesome Day app.rb (After Patch) 1 2 3 4 5 6 7 require_relative './message' require_relative './patched_message' msg = Message.new &quot;Great Day&quot; msg.print # --&amp;gt; [Patched]: Great Day msg = Message.new('Awesome Day') msg.print # --&amp;gt; [Patched]: Awesome Day ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print ที่นี้แหละ Refinement จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย Refinement จะคล้ายๆ กับ Moneky Patching แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง refined_message.rb 1 2 3 4 5 6 7 module RefinedMessage refine Message do def print puts &quot;[Refined]: #{@message}&quot; end end end การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล app.rb (Using Refinement) 1 2 3 4 5 6 7 8 9 require_relative './message' require_relative './refinement_message.rb' msg = Message.new('Great Day') msg.print # --&amp;gt; Great Day using RefinedMessage msg = Message.new('Awesome Day') msg.print # --&amp;gt; [Patched]: Awesome Day การใช้งาน refinement ก็จะใช้ using ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้ สำหรับการใช้ Refinement ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่ References Refinement ruby-refinement</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Interactive Fun Cards</title><link href="https://karn18.github.io/dev/2020/11/11/interactive-fun-cards.html" rel="alternate" type="text/html" title="Interactive Fun Cards" /><published>2020-11-11T11:42:00+07:00</published><updated>2020-11-11T11:42:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/11/interactive-fun-cards</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/11/interactive-fun-cards.html">⚡ ปัจจุบันนี้ถ้าจะพัฒนาเว็บให้ดึงดูดผู้ใช้งาน คงหลีกเลี่ยงไม่ได้ที่จะทำให้เว็บดูสวยๆ และต้องมี interactive กับผู้ใช้ด้วยการแสดงอนิเมชันต่างๆ แน่นอนว่าในบทความนี้จะแสดงตัวอย่างการใช้ **StimuluJS** 🌈 มาช่วยจัดการเว็บกันหน่อย&lt;!--more--&gt; เรามาดูกันว่าโจทย์สำหรับบทความนี้จะเป็นอะไร
+
+## โจทย์
+
+สุ่มตัวเลขตามจำนวนการ์ดที่กำหนดไว้ 🎲 โดยในเบื้องต้นจะให้คว่ำการ์ดเอาไว้ก่อน จนกว่าจะมีการคลิกจึงจะเปิดหน้าการ์ดขึ้นมาเพื่อแสดงตัวเลข โจทย์ในวันนี้ช่างง่ายดายจริงๆ มาลองพัฒนากันดู
+
+## แนวทางการพัฒนา
+
+- โดยหลักๆ แล้ววันนี้เราจะใช้ stimulus controller 2 ตัวมาใช้ในการควบคุมด้วยกัน
+  - GameController โดยเมื่อถูกสร้างขึ้นมาจะมีการสุ่มตัวเลข ตามจำนวนการ์ดที่ได้รับมาจากหลังบ้าน (Backend) และเก็บเอาไว้ ทันทีที่การ์ดแต่ละใบถูกสั่งให้เปิดก็จะแสดงตัวเลข
+
+  - CardController ใช้สำหรับควบคุมการเปิด/ปิดการ์ดแต่ละใบ โดยเมื่อการ์ดถูกเปิดแล้วจะมีระยะเวลาจำกัด 2 วินาที และจะปิดการ์ดทันที
+
+## ผลลัพธ์
+
+![fun game](/assets/images/posts/2020/interactive-fun-cards/fun_game.gif)
+
+## เรียนรู้อะไรบ้าง
+
+- เราสามารถใช้ **controller** หลายๆ ตัวร่วมกันได้
+- ถ้าเราออกแบบดีๆ เราก็สามารถนำ **controller** ไป reuse ใช้ได้กับ component อื่นๆ ได้ จากตัวอย่างก็จะเห็นว่าการ์ดแต่ละใบก็จะใช้ **Card Controller** แยกออกจากกัน
+
+```erb
+&lt;div class=&quot;card&quot; data-controller=&quot;card&quot; data-card-openned=&quot;false&quot; data-target=&quot;game.card card.element&quot; data-game-index=&quot;&lt;%= index %&gt;&quot;
+  data-action=&quot;click-&gt;game#showCard click-&gt;card#flip&quot;&gt;
+  &lt;div class=&quot;card__inner&quot;&gt;
+    &lt;div class=&quot;card__front&quot;&gt;
+        &lt;%= image_tag 'back.png', class: &quot;image&quot; %&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card__back&quot;&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+```
+
+ถ้าอยากดูรายละเอียดเพิ่มเติมดูได้จาก repo ที่แชร์ไว้ด้านล่างนะครับ 👇
+
+# References
+- [Fun Games](https://github.com/karn18/fun_games)
+- [CSS for fliping card](https://codepen.io/james_gillen/pen/NGwqML)</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><summary type="html">⚡ ปัจจุบันนี้ถ้าจะพัฒนาเว็บให้ดึงดูดผู้ใช้งาน คงหลีกเลี่ยงไม่ได้ที่จะทำให้เว็บดูสวยๆ และต้องมี interactive กับผู้ใช้ด้วยการแสดงอนิเมชันต่างๆ แน่นอนว่าในบทความนี้จะแสดงตัวอย่างการใช้ StimuluJS 🌈 มาช่วยจัดการเว็บกันหน่อย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/interactive-fun-cards/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/interactive-fun-cards/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">รู้ได้ยังไงว่า Private Key เข้าคู่หรือไม่เข้าคู่กับ Certificate</title><link href="https://karn18.github.io/dev/2020/11/09/verifying-a-private-key-that-matchs-a-certificate.html" rel="alternate" type="text/html" title="รู้ได้ยังไงว่า Private Key เข้าคู่หรือไม่เข้าคู่กับ Certificate" /><published>2020-11-09T11:26:00+07:00</published><updated>2020-11-09T11:26:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/09/verifying-a-private-key-that-matchs-a-certificate</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/09/verifying-a-private-key-that-matchs-a-certificate.html">เมื่ออยากกำหนดให้เว็บไซด์ที่เรารันบน **Nginx** สามารถใช้งาน **HTTPS** วิธีที่ง่ายที่เราคุ้นชินก็คงใช้ **Certbot** ในการสร้างไฟล์ SSL certificate และ config ค่าต่างๆ ให้เรียบร้อยไปเลย
+ ซึ่งก็จะประกอบด้วยไฟล์ private key และ certificate แต่เกิดเราต้องสร้างไฟล์ private key และ certicate ขึ้นมาเองหละ เราจะมั่นใจได้ยังไงว่า เราสร้างไฟล์ขึ้นมาได้ถูกต้องพร้อมนำไปใช้งาน&lt;!--more--&gt;
+
+- ปัญหาที่ผมเจอคือ ผมได้รับไฟล์ private.key มาพร้อมกับ domain.crt และ intermediate.crt มาเพื่อมาจัดการ **HTTPS** ของเว็บไซด์อันหนึ่ง
+- อันดับแรกก็คือการสร้างไฟล์ ​SSL certificate สำหรับโดเมนนี้ขึ้นมา โดยการรวมไฟล์ domain.crt และ intermediate.crt เข้าด้วยกัน จากนั้นก็นำไปติดตั้งใน **Nginx** 👉 [Here](https://www.ssldragon.com/blog/how-to-install-an-ssl-certificate-on-nginx/)
+- ก่อนที่จะ reload config ก็ต้องตรวจสอบกันเล็กน้อยว่า config ถูกต้องหรือไม่
+
+![key_mismatch](/assets/images/posts/2020/verifying-a-private-key-that-matchs-a-certificate/nginx-validate.png)
+
+- ชัดเจนเลยว่ามันมีปัญหา และคงรันไม่ผ่านแน่ๆ ทั้งนี้เราก็สามารถตรวจสอบเองได้ง่ายๆ ด้วยคำสั่งนี้
+
+```bash
+$ sudo openssl rsa -noout -modulus -in private.key |md5sum
+$ sudo openssl x509 -noout -modulus -in certificate.crt |md5sum
+```
+
+- โดยผลลัพท์ของ MD5 ที่ออกมาจากทั้งสองคำสั่งจะได้ค่าเดียวกัน นั้นแสดงว่าไฟล์ทั้งเข้าคู่กัน และสามารถนำไปใช้งานได้ แต่ถ้าเกิดผลลัพธ์ออกมาไม่เท่ากัน นั้นแสดงว่าเราอาจจะสร้างไฟล์ certificate ผิด
+
+&gt; การตรวจสอบค่าอาจจะใช้ algorithm อื่นแทน MD5 ก็ได้ ไม่ว่าจะเป็น SHA1 หรือ SHA256
+
+# References
+- [Cert Key Matcher](https://comodosslstore.com/ssltools/cert-key-matcher.php)
+- [Check if certificate private key and csr match](https://www.looklinux.com/check-if-certificate-private-key-and-csr-match/)</content><author><name>Karn</name></author><category term="dev" /><category term="nginx" /><category term="ssl" /><summary type="html">เมื่ออยากกำหนดให้เว็บไซด์ที่เรารันบน Nginx สามารถใช้งาน HTTPS วิธีที่ง่ายที่เราคุ้นชินก็คงใช้ Certbot ในการสร้างไฟล์ SSL certificate และ config ค่าต่างๆ ให้เรียบร้อยไปเลย ซึ่งก็จะประกอบด้วยไฟล์ private key และ certificate แต่เกิดเราต้องสร้างไฟล์ private key และ certicate ขึ้นมาเองหละ เราจะมั่นใจได้ยังไงว่า เราสร้างไฟล์ขึ้นมาได้ถูกต้องพร้อมนำไปใช้งาน</summary></entry><entry><title type="html">ก้าวแรกกับการใช้ GitHub Actions</title><link href="https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html" rel="alternate" type="text/html" title="ก้าวแรกกับการใช้ GitHub Actions" /><published>2020-11-04T11:54:00+07:00</published><updated>2020-11-04T11:54:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html">**GitHub Actions** เป็นเครื่องมือ **CI/CD** หนึ่งที่จะช่วยให้เราทำงานแบบ **automation** ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ **automation tools** ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ **Actions** ในการทดสอบโปรแกรมหลังจากที่ **push code** ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย **Codecov** และจะแสดง **badge** แสดงสถานะที่เกิดขึ้นไว้ด้วย&lt;!--more--&gt;
+
+## ตัวอย่างที่สำเร็จแล้ว
+
+![Ruby Actions](/assets/images/posts/2020/first-step-to-github-actions/ruby-actions.png)
+*[Ruby Actions](https://github.com/karn18/ruby-actions)*
+
+## เริ่มต้นกันเลย
+- สร้างโปรเจค เขียนเทส และก็โค้ด
+- สร้าง repository บน **GitHub** และอัพโหลดโค้ดขึ้นไป
+- เข้าไปที่เมนู **Actions** จากนั้นก็เลือก **Workflows** ที่จะใช้งาน อันนี้ก็ขึ้นอยู่กับภาษาที่ใช้ สำหรับของผมก็จะเลือกใช้ **Workflow สำหรับ Ruby** 
+
+![RA1](/assets/images/posts/2020/first-step-to-github-actions/ra-1.png)
+
+- โดยเบื้องต้นเมื่อกด setup ก็จะมีการสร้างไฟล์ yml ตามชื่อภาษาที่เราใช้ หรือเราสามารถเปลี่ยนชื่อก็ได้ และสร้างไว้ในโฟลเดอร์ `.github/workflows` จากนั้นก็ปรับค่าต่างๆ เช่น 
+  - event ที่จะใช้ trigger ให้ทำงาน ซึ่งสนใจเฉพาะการ push โค้ดเข้ามาที่ branch **main** เท่านั้น
+  - job ที่ระบุไว้ใน workflow นี้จะมีแค่ test เท่านั้น แต่จะเห็นว่าในการ test ประกอบไปด้วย step หลายๆ step ด้วยกัน
+
+![RA2](/assets/images/posts/2020/first-step-to-github-actions/ra-2.png){:width=&quot;440px&quot;}
+
+- กดบันทึกไฟล์ workflow จากนั้นจะเห็นว่า **GitHub Actions** เริ่มทำงานโดยอัตโนมัติในการทดสอบโค้ดให้กับเรา
+
+![RA3](/assets/images/posts/2020/first-step-to-github-actions/ra-3.png)
+
+- เพิ่ม step ให้กับ workflow ของเราให้อัพโหลด code covergage ไปยัง **codecov.io**
+
+![RA3](/assets/images/posts/2020/first-step-to-github-actions/ra-4.png)
+
+- เราสามารถเพิ่ม cache ให้กับ workflow ได้ด้วยเช่นกัน เพื่อให้การการทำงานดีขึ้น
+
+![RA3](/assets/images/posts/2020/first-step-to-github-actions/ra-5.png)
+
+- สุดท้ายก็ใส่ badge เข้าไปที่ **README** เพื่อใช้แสดงสถานะปัจจุบันของโค้ดเราว่าทดสอบผ่านหรือไม่ รวมถึง code coverage ได้กี่เปอร์เซนต์
+
+## References
+- [GitHub Actions](https://github.com/features/actions)
+- [Actions Cache](https://github.com/actions/cache)
+- [Codecov](https://codecov.io/)
+- [ตัวอย่างการใช้ GitHub Actions](https://github.com/karn18/ruby-actions)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="github" /><category term="actions" /><summary type="html">GitHub Actions เป็นเครื่องมือ CI/CD หนึ่งที่จะช่วยให้เราทำงานแบบ automation ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ automation tools ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ Actions ในการทดสอบโปรแกรมหลังจากที่ push code ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย Codecov และจะแสดง badge แสดงสถานะที่เกิดขึ้นไว้ด้วย</summary></entry><entry><title type="html">เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski</title><link href="https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html" rel="alternate" type="text/html" title="เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski" /><published>2020-11-01T22:32:00+07:00</published><updated>2020-11-01T22:32:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html">ต้องแนะนำแอพ **Gifski** นี้เลยครับสำหรับใครที่ต้องการจะแปลงไฟล์วิดีโอให้เป็นไฟล์ **gif** ซึ่งใช้งานได้อย่างง่ายดาย
+เพียงแค่เปิดโปรแกรมขึ้น และลากไฟล์ที่เราต้องการจะแปลงเข้าไป
+
+![drop_file](/assets/images/posts/2020/create-gif-from-video-with-gifski/drop_file.png){:width=&quot;400px&quot;}
+
+จากนั้นก็เลือกปรับขนาดของภาพ, FPS, และ Quality ตามต้องการ ซึ่งการปรับแต่งก็จะส่งผลต่อขนาดไฟล์ สำหรับผมต้องการไฟล์ **gif** ไปแสดงอยู่บนเว็บบทความของผมซึ่งก็จะกังวลเรื่องของขนาด โดยที่ไม่อยากให้มันใหญ่มากก็จะพยายามปรับขนาดภาพให้เล็ก ส่วน FPS และ Quality ก็จะให้ค่าต่ำๆ หน่อย เพียงให้พอดูออก
+
+![config](/assets/images/posts/2020/create-gif-from-video-with-gifski/config.png){:width=&quot;400px&quot;}
+
+ปรับเรียบร้อยก็กดปุ่ม convert
+
+![final](/assets/images/posts/2020/create-gif-from-video-with-gifski/final.gif)
+
+เพียงเท่านี้เราก็ได้ไฟล์ **gif** ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้**ฟรี**
+
+# References
+- [Gifski](https://gif.ski/)</content><author><name>Karn</name></author><category term="dev" /><category term="gif" /><category term="gifski" /><category term="video" /><summary type="html">ต้องแนะนำแอพ Gifski นี้เลยครับสำหรับใครที่ต้องการจะแปลงไฟล์วิดีโอให้เป็นไฟล์ gif ซึ่งใช้งานได้อย่างง่ายดาย เพียงแค่เปิดโปรแกรมขึ้น และลากไฟล์ที่เราต้องการจะแปลงเข้าไป จากนั้นก็เลือกปรับขนาดของภาพ, FPS, และ Quality ตามต้องการ ซึ่งการปรับแต่งก็จะส่งผลต่อขนาดไฟล์ สำหรับผมต้องการไฟล์ gif ไปแสดงอยู่บนเว็บบทความของผมซึ่งก็จะกังวลเรื่องของขนาด โดยที่ไม่อยากให้มันใหญ่มากก็จะพยายามปรับขนาดภาพให้เล็ก ส่วน FPS และ Quality ก็จะให้ค่าต่ำๆ หน่อย เพียงให้พอดูออก ปรับเรียบร้อยก็กดปุ่ม convert เพียงเท่านี้เราก็ได้ไฟล์ gif ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้ฟรี References Gifski</summary></entry><entry><title type="html">Yummy 🍬</title><link href="https://karn18.github.io/stem/2020/10/31/yummy-candy.html" rel="alternate" type="text/html" title="Yummy 🍬" /><published>2020-10-31T22:50:00+07:00</published><updated>2020-10-31T22:50:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/31/yummy-candy</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/31/yummy-candy.html">ลองมาใช้ **micro:bit** ควบคุมตัวละครใน **scratch** ให้เคลื่อนไหวตามการเคลื่อนไหวของ **micro:bit** กันดีกว่า เนื่องในวัน **Halloween** ก็ขอเลือก **theme** เป็น **Halloween** กัน&lt;!--more--&gt;
+
+- ตัวละครจะเป็นผีน้อยสวมหมวกสีแดง ที่จะแสดงข้อความ 'Where is candy?' อยู่เรื่อยๆ ผ่านการสุ่มระยะเวลา
+- Candy 🍬 ของเราจะมีด้วยกัน 3 รูปแบบ และจะถูกสุ่มขึ้นมาแสดงบนหน้าจอ จนกว่าเจ้าผีน้อยจะมากิน จึงจะเริ่มสุ่มใหม่
+- micro:bit จะควบคุมการเคลื่อนไหวของผีน้อยผ่านตัว **micro:bit** โดยถ้าเราเอียงไปทางซ้าย ตัวละครก็จะไปทางซ้าย พร้อมแสดงล
+ุกศรปรากฏขึ้นบน **micro:bit** และเช่นเดียวกันถ้าเอียงไปทางขวา ก็จะเคลื่อนไปทางขวา พร้อมแสดงลูกศร
+- ตัวละครจะวิ่งไปเรื่อยๆ ถ้าเราจะหยุดการเคลื่อนไหวจะใช้การเอียง **micro:bit** ไปทางด้านหน้าหรือหลังก็ได้
+- เมื่อผีน้อยมีการกิน Candy 🍬 จะแสดงข้อความ 'Yummy' และแสดงจำนวน Candy ที่กินเข้าไปบน **micro:bit**
+
+![sample1](/assets/images/posts/2020/yummy-candy/sample1.png){:width=&quot;200px&quot;}
+*บล็อกรับคำสั่งการเอียง micro:bit*
+
+![sample2](/assets/images/posts/2020/yummy-candy/sample2.png)
+*ตัวอย่างโค้ด*
+
+![showcase](/assets/images/posts/2020/yummy-candy/cut.gif)
+*Yummy*
+
+# References
+- [Scratch](https://scratch.mit.edu)
+- [micro:bit](https://microbit.org/)</content><author><name></name></author><category term="stem" /><category term="basic" /><category term="microbit" /><category term="scratch" /><summary type="html">ลองมาใช้ micro:bit ควบคุมตัวละครใน scratch ให้เคลื่อนไหวตามการเคลื่อนไหวของ micro:bit กันดีกว่า เนื่องในวัน Halloween ก็ขอเลือก theme เป็น Halloween กัน</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/yummy-candy/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/yummy-candy/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่</title><link href="https://karn18.github.io/dev/2020/10/26/git-lfs.html" rel="alternate" type="text/html" title="ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่" /><published>2020-10-26T22:30:00+07:00</published><updated>2020-10-26T22:30:00+07:00</updated><id>https://karn18.github.io/dev/2020/10/26/git-lfs</id><content type="html" xml:base="https://karn18.github.io/dev/2020/10/26/git-lfs.html">ไม่ว่าจะเป็นความตั้งใจ หรือบังเอิญที่ต้องมีการใส่ไฟล์ประเภทภาพ เสียง หรือวิดีโอเข้าไปยัง **git repository** ถ้าไฟล์เหล่าไม่ได้มีจำนวนเยอะ มีการอัพเดตบ่อยๆ หรือมีขนาดใหญ่ ก็คงไม่ต้องซีเรียสอะไรมากปล่อยผ่านไปก็ได้ แต่ถ้าเกิดต้องมีการอัพเดตไฟล์อยู่บ่อยๆ ขนาดไฟล์ก็ใหญ่ขึ้นเรื่อยๆ อันนี้แหละเราจะต้องมาดูก่อนหน่อย เพราะมีผลกระทบที่เกิดขึ้นกับ **git repository** ของเราแน่ๆ ไม่ว่าจะเป็น **git history** ที่จะใหญ่ขึ้นตาม การ pull หรือ fetch ข้อมูลก็จะช้าขึ้นนั้นเอง&lt;!--more--&gt;
+
+สำหรับวิธีการแก้ปัญหารการต้องอัพไฟล์ขนาดใหญ่เข้าไปใน **git repository** ของเราก็สามารถทำได้โดยใช้ **Git LFS (Large File Storage)** ซึ่งเป็น extension หนึ่งของ **Git** โดยหลักการทำงานของ **Git LFS** จะ **hook event** เมื่อมีการ **push** ไฟล์ไปยัง **git repository** และแทนที่ไฟล์จริงๆ ด้วย **pointer** ของไฟล์ ด้วยการอัพโหลดไปยัง **Git LFS Store**
+
+# วิธีใช้งาน
+- ดาว์นโหลดตัวติดตั้งจาก[ที่นี่](https://git-lfs.github.com/)
+  - ถ้าเป็น **Mac** หรือ **Linux** ก็ติดตั้งผ่าน package manger
+  - ส่วน **Windows** ก็ไม่ต้องทำอะไรเพิ่ม เพราะ **Git LFS** ติดตั้งมาพร้อมกับ **Git** ตั้งแต่แรกอยู่แล้ว
+
+- ติดตั้ง **Git LFS** ให้กับ **repository** ซึ่งสามารถใช้ได้ทั้งกับ **repository** ใหม่ หรือของเดิมที่มีอยู่แล้ว
+
+```bash
+$ git lfs install
+```
+
+- กำหนดประเภทไฟล์ที่ต้องการให้จัดการโดย **Git LFS**
+
+```bash
+$ git lfs track &quot;*.jpg&quot;
+```
+
+- จากนั้น **Git LFS** จะสร้างไฟล์ `.gitattributes` ขึ้นมา
+
+```text
+*.png filter=lfs diff=lfs merge=lfs -text
+```
+
+- ใช้งาน **git repository** ตามปกติ แต่อย่าลืมเพิ่ม `.gitattributes` เข้าไปด้วย
+
+```bash
+$ git add .gitattributes *.jpg
+$ git commit -m &quot;track *.jpg files using Git LFS&quot;
+```
+
+- เมื่อมีการ **push** ไฟล์ขึ้นไปยัง server **Git LFS** จะดักจับและตรวจสอบประเภทไฟล์ที่ตรงตามที่กำหนดไว้ และทำการอัพโหลดไฟล์ขึ้นไปยัง **Git LFS Store** แทน สังเกตได้จากรูปด้านล่าง
+
+![cmd3](/assets/images/posts/2020/git-lfs/cmd3.png){:width=&quot;600px&quot;}
+
+- ตรวจสอบไฟล์ที่จัดการโดย **Git LFS**
+
+```bash
+$ git lfs ls-files
+```
+
+# References
+- [Git LFS](https://git-lfs.github.com/)
+- [Handling Large Files with LFS](https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/git-lfs/)</content><author><name>Karn</name></author><category term="dev" /><category term="git" /><summary type="html">ไม่ว่าจะเป็นความตั้งใจ หรือบังเอิญที่ต้องมีการใส่ไฟล์ประเภทภาพ เสียง หรือวิดีโอเข้าไปยัง git repository ถ้าไฟล์เหล่าไม่ได้มีจำนวนเยอะ มีการอัพเดตบ่อยๆ หรือมีขนาดใหญ่ ก็คงไม่ต้องซีเรียสอะไรมากปล่อยผ่านไปก็ได้ แต่ถ้าเกิดต้องมีการอัพเดตไฟล์อยู่บ่อยๆ ขนาดไฟล์ก็ใหญ่ขึ้นเรื่อยๆ อันนี้แหละเราจะต้องมาดูก่อนหน่อย เพราะมีผลกระทบที่เกิดขึ้นกับ git repository ของเราแน่ๆ ไม่ว่าจะเป็น git history ที่จะใหญ่ขึ้นตาม การ pull หรือ fetch ข้อมูลก็จะช้าขึ้นนั้นเอง</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/git-lfs/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/git-lfs/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ป้ายไฟแสดงชื่อด้วย micro:bit</title><link href="https://karn18.github.io/stem/2020/10/25/moving-display.html" rel="alternate" type="text/html" title="ป้ายไฟแสดงชื่อด้วย micro:bit" /><published>2020-10-25T15:29:00+07:00</published><updated>2020-10-25T15:29:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/25/moving-display</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/25/moving-display.html">**micro:bit** สามารถนำมาทำเป็นป้ายไฟได้ด้วยนะ ซึ่งการเขียนโค้ดแสดงป้ายไฟนี้
+น้องๆ จะได้เรียนรู้การแสดงผลตัวอักษรผ่านบล็อก **show leds** การหน่วงเวลาการแสดงผลโดยใช้บล็อก **pause** และการทำงานของโปรแกรมต่อเนื่องตามลำดับจากบล็อกสู่บล็อก 🌈&lt;!--more--&gt;
+
+## เริ่มต้นกันเลย
+
+- เปิดโปรแกรม **Microsoft MakeCode** ขึ้นมาและสร้างโปรเจคใหม่ว่า **ป้ายไฟ**
+
+![new project](/assets/images/posts/2020/moving-display/new_project.png)
+*สร้างโปรเจค ป้ายไฟ*
+
+- สำหรับป้ายไฟปกติแล้วจะแสดงข้อความวนไปเรื่อยๆ ดังนั้นเราจะใช้บล็อก **forever** เพื่อให้โปรแกรมสามารถทำงานวนไปเรื่อยๆ ไม่มีที่สิ้นสุดได้
+
+![makecode1](/assets/images/posts/2020/moving-display/makecode1.png)
+*บล็อก leds ต่อเข้ากับบล็อก forever*
+
+- ป้ายไฟในวันนี้จะแสดงชื่อของเราเอง ซึ่งป้ายไฟของผมก็จะเป็น `KARN`
+- เริ่มลากบล็อก **show leds** มาต่อกับบล็อก **forever** จากนั้นปรับ leds ให้แสดงตัวอักษร โดยแต่ละบล็อกแสดง 1 ตัวอักษรเท่านั้น
+
+![makecode2](/assets/images/posts/2020/moving-display/makecode2.png){:width=&quot;200px&quot;}
+*ปรับบล็อก show leds ให้แสดงตัวอักษร K*
+
+- ต่อตัวอักษรให้เป็นคำตามที่ต้องการ และตรวจสอบผลลัพท์บนบอร์ด **micro:bit** จำลอง
+
+![simulator1](/assets/images/posts/2020/moving-display/simulator1.gif)
+*ป้ายไฟแสดงข้อความ KARN*
+
+- จะสังเกตเห็นว่าตอนนี้ตัวอักษรจะวิ่งค่อนข้างเร็ว จนทำให้ตาเรามองมันทันว่าป้ายไฟของเราพยายามจะแสดงคำว่าอะไร
+- เพื่อหน่วงเวลาในการแสดงผลตัวอักษรแต่ละตัวให้ช้าขึ้น ให้เราลากบล็อก **pause** ระหว่างตัวอักษร 
+
+![simulator1](/assets/images/posts/2020/moving-display/makecode3.png)
+*บล็อก pause*
+
+- ทดลองปรับเวลาในการหน่วงบนบล็อก **pause** และสังเกตความแตกต่าง
+
+![simulator1](/assets/images/posts/2020/moving-display/makecode4.png){:width=&quot;200px&quot;}
+*บล็อกคำสั่งที่สมบูรณ์*
+
+![simulator1](/assets/images/posts/2020/moving-display/simulator2.gif)
+*ป้ายไฟที่ปรับความเร็วในการแสดงผลแล้ว*
+
+&gt; 💡 นอกจากการใช้บล็อก **show leds** มาใช้แสดงตัวอักษร เรายังสามารถใช้บล็อก **show string** มาใช้แทนได้ด้วยนะ ลองไปทดลองเล่นกันดู
+
+- เมื่อปรับเปลี่ยนความเร็วในการแสดงผลเป็นที่พอใจแล้ว ที่นี่เรามาโหลดโปรแกรมเข้าไปยัง **micro:bit** ดู
+
+![microbit](/assets/images/posts/2020/moving-display/microbit.gif)
+*รันโค้ดป้ายไฟบน micro:bit*</content><author><name>Karn</name></author><category term="stem" /><category term="basic" /><category term="microbit" /><summary type="html">micro:bit สามารถนำมาทำเป็นป้ายไฟได้ด้วยนะ ซึ่งการเขียนโค้ดแสดงป้ายไฟนี้ น้องๆ จะได้เรียนรู้การแสดงผลตัวอักษรผ่านบล็อก show leds การหน่วงเวลาการแสดงผลโดยใช้บล็อก pause และการทำงานของโปรแกรมต่อเนื่องตามลำดับจากบล็อกสู่บล็อก 🌈</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/moving-display/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/moving-display/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
