@@ -26,30 +26,40 @@
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"headline":"ลองพัฒนา markdown preview","dateModified":"2020-06-03T22:30:00+07:00","datePublished":"2020-06-03T22:30:00+07:00","image":"https://karn18.github.io/assets/images/posts/2020/create-markdown-preview/thumbnail.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/06/03/create-markdown-preview.html"},"author":{"@type":"Person","name":"Karn"},"description":"ลองมาเพิ่มฟีเจอร์ Markdown Preview ให้กับโปรแกรม Splendid Team ดู โดยใช้ Stimulus เป็นต้วจัดการเหตุการณ์ และ UI","url":"https://karn18.github.io/dev/2020/06/03/create-markdown-preview.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"image":"https://karn18.github.io/assets/images/posts/2020/create-markdown-preview/thumbnail.jpg","headline":"ลองพัฒนา markdown preview","dateModified":"2020-06-03T22:30:00+07:00","datePublished":"2020-06-03T22:30:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/06/03/create-markdown-preview.html"},"description":"ลองมาเพิ่มฟีเจอร์ Markdown Preview ให้กับโปรแกรม Splendid Team ดู โดยใช้ Stimulus เป็นต้วจัดการเหตุการณ์ และ UI","url":"https://karn18.github.io/dev/2020/06/03/create-markdown-preview.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
   <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<script data-ad-client="ca-pub-1742525010164998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <title>ลองพัฒนา markdown preview</title>
-</head><body data-theme="dark">
-    <div class="kz-progress"></div>
-    <div class="kz-main-container"><nav class="kz-navbar">
-  <a href="/" class="kz-navbar__logo">KT</a>
-  <div class="kz-navbar__menu">
-    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
-    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
-    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
-    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
-    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+<title>ลองพัฒนา markdown preview</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
   </div>
 </nav>
-<div class="kz-content">
-        <div class="kz-blog">
-  <div class="kz-blog__header">
-  <h1 class="kz-blog__title">ลองพัฒนา markdown preview</h1>
-  <div class="kz-blog__info">
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">ลองพัฒนา markdown preview</h1>
+  <div class="blog__info">
     <i class="typcn typcn-calendar-outline"></i> 03-06-2020
     
       | <i class="typcn typcn-tag"></i>
@@ -67,7 +77,7 @@
 </div>
 
   
-  <div class="blog-content is-family-secondary">
+  <div class="blog__content">
     <p>ลองมาเพิ่มฟีเจอร์ <strong>Markdown Preview</strong> ให้กับโปรแกรม <strong>Splendid Team</strong> ดู โดยใช้ <strong>Stimulus</strong> เป็นต้วจัดการเหตุการณ์ และ UI
 <!--more--></p>
 
@@ -134,13 +144,12 @@
 
 
 
-      </div>
-    </div><script>
+    </main><script>
   const h = document.documentElement;
   const b = document.body;
   const st = 'scrollTop';
   const sh = 'scrollHeight';
-  const progress = document.querySelector('.kz-progress');
+  const progress = document.querySelector('.progress');
   let scroll;
 
   document.addEventListener('scroll', function() {

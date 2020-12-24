@@ -27,25 +27,35 @@
 
   <link rel="stylesheet" href="/assets/css/main.css" />
   <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<script data-ad-client="ca-pub-1742525010164998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <title>Monkey Path to History.pushState</title>
-</head><body data-theme="dark">
-    <div class="kz-progress"></div>
-    <div class="kz-main-container"><nav class="kz-navbar">
-  <a href="/" class="kz-navbar__logo">KT</a>
-  <div class="kz-navbar__menu">
-    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
-    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
-    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
-    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
-    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+<title>Monkey Path to History.pushState</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
   </div>
 </nav>
-<div class="kz-content">
-        <div class="kz-blog">
-  <div class="kz-blog__header">
-  <h1 class="kz-blog__title">Monkey Path to History.pushState</h1>
-  <div class="kz-blog__info">
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">Monkey Path to History.pushState</h1>
+  <div class="blog__info">
     <i class="typcn typcn-calendar-outline"></i> 26-06-2020
     
       | <i class="typcn typcn-tag"></i>
@@ -59,7 +69,7 @@
 </div>
 
   
-  <div class="blog-content is-family-secondary">
+  <div class="blog__content">
     <p>เพื่อให้ผู้ใช้งานเว็บได้รับประสบการณ์ที่ดีในการท่องเว็บเมื่อมีการคลิกเปลี่ยนหน้าเว็บ แทนที่จะต้องโหลดหน้าเว็บทั้งหน้า ก็จะเลือกใช้แนวทางที่จะโหลดเฉพาะบางส่วนมาแสดงผลผ่านการเรียกใช้ <strong>Ajax Request</strong> ร่วมกับ <strong>History API</strong>
 หรือเรียกสั้นๆ ว่า <strong>pjax (PushState + Ajax)</strong> สำหรับผู้ใช้ <strong>Rails</strong> เราก็มี <strong>turbolinks</strong> เป็นตัวจัดการให้เราได้อย่างง่ายดาย<!--more--></p>
 
@@ -68,20 +78,7 @@
 
 <h1 id="monkey-patch">Monkey Patch</h1>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-</pre></td><td class="rouge-code"><pre>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="kd">function</span> <span class="nx">stateListener</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">orig</span> <span class="o">=</span> <span class="nx">his</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span>
   <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -94,7 +91,7 @@
 <span class="p">}</span>
 
 <span class="nx">history</span><span class="p">.</span><span class="nx">pushState</span> <span class="o">=</span> <span class="nx">stateListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">pushState</span><span class="dl">"</span><span class="p">)</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>เพียงเท่านี้เราก็สามารถจะ <code class="language-plaintext highlighter-rouge">addEventListener</code> ให้กับ <code class="language-plaintext highlighter-rouge">pushState</code> ได้แล้ว แถมให้อีกนิดหนึ่งสำหรับการใช้ <strong>turbolinks</strong> เราก็จะใช้ <code class="language-plaintext highlighter-rouge">addEventListener</code> ให้กับ custom event ที่ชื่อว่า <code class="language-plaintext highlighter-rouge">turbolinks:load</code></p>
 
@@ -163,13 +160,12 @@
 
 
 
-      </div>
-    </div><script>
+    </main><script>
   const h = document.documentElement;
   const b = document.body;
   const st = 'scrollTop';
   const sh = 'scrollHeight';
-  const progress = document.querySelector('.kz-progress');
+  const progress = document.querySelector('.progress');
   let scroll;
 
   document.addEventListener('scroll', function() {

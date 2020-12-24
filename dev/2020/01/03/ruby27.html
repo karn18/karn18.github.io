@@ -26,30 +26,40 @@
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"headline":"Ruby 2.7","dateModified":"2020-01-03T14:39:00+07:00","datePublished":"2020-01-03T14:39:00+07:00","image":"https://karn18.github.io/assets/images/posts/2020/ruby27/cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/01/03/ruby27.html"},"author":{"@type":"Person","name":"Karn"},"description":"นอกจากวันคริสต์มาสจะเป็นวันประสูติของพระเยชูแล้ว เราเหล่า Rubyist ก็ให้ความสำคัญกับวันคริสต์มาสเช่นเดียวกัน เนื่องจากเป็นวันที่มีการปล่อย Ruby เวอร์ชันใหม่ออกมานั้นเอง สำหรับวันคริสต์มาสที่ผ่านมา (25/12/2562) ก็ได้มีการประกาศปล่อย Ruby เวอร์ชัน 2.7 ออกมาอย่างเป็นทางการ ซึ่งน่าเป็นเวอร์ชัน 2 ตัวสุดท้ายก่อนที่จะกลายเป็นเวอร์ชัน 3 ที่ทางทีมพัฒนาได้วางแผนที่จะปล่อยออกมาในวันคริสต์มาสในปีนี้ (แต่ก็แอบเห็นมีเวอร์ชัน 2.8-DEV ในรายการติดตั้งของ rbenv) เกริ่นกันมาพอสมควรแหละ มาดูกันว่าเวอร์ชัน 2.7 นี้มีฟีเจอร์อะไรใหม่ ปรับปรุงแก้ไขอะไรบ้าง","url":"https://karn18.github.io/dev/2020/01/03/ruby27.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"image":"https://karn18.github.io/assets/images/posts/2020/ruby27/cover.jpg","headline":"Ruby 2.7","dateModified":"2020-01-03T14:39:00+07:00","datePublished":"2020-01-03T14:39:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/01/03/ruby27.html"},"description":"นอกจากวันคริสต์มาสจะเป็นวันประสูติของพระเยชูแล้ว เราเหล่า Rubyist ก็ให้ความสำคัญกับวันคริสต์มาสเช่นเดียวกัน เนื่องจากเป็นวันที่มีการปล่อย Ruby เวอร์ชันใหม่ออกมานั้นเอง สำหรับวันคริสต์มาสที่ผ่านมา (25/12/2562) ก็ได้มีการประกาศปล่อย Ruby เวอร์ชัน 2.7 ออกมาอย่างเป็นทางการ ซึ่งน่าเป็นเวอร์ชัน 2 ตัวสุดท้ายก่อนที่จะกลายเป็นเวอร์ชัน 3 ที่ทางทีมพัฒนาได้วางแผนที่จะปล่อยออกมาในวันคริสต์มาสในปีนี้ (แต่ก็แอบเห็นมีเวอร์ชัน 2.8-DEV ในรายการติดตั้งของ rbenv) เกริ่นกันมาพอสมควรแหละ มาดูกันว่าเวอร์ชัน 2.7 นี้มีฟีเจอร์อะไรใหม่ ปรับปรุงแก้ไขอะไรบ้าง","url":"https://karn18.github.io/dev/2020/01/03/ruby27.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
   <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<script data-ad-client="ca-pub-1742525010164998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <title>Ruby 2.7</title>
-</head><body data-theme="dark">
-    <div class="kz-progress"></div>
-    <div class="kz-main-container"><nav class="kz-navbar">
-  <a href="/" class="kz-navbar__logo">KT</a>
-  <div class="kz-navbar__menu">
-    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
-    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
-    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
-    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
-    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+<title>Ruby 2.7</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
   </div>
 </nav>
-<div class="kz-content">
-        <div class="kz-blog">
-  <div class="kz-blog__header">
-  <h1 class="kz-blog__title">Ruby 2.7</h1>
-  <div class="kz-blog__info">
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">Ruby 2.7</h1>
+  <div class="blog__info">
     <i class="typcn typcn-calendar-outline"></i> 03-01-2020
     
       | <i class="typcn typcn-tag"></i>
@@ -65,7 +75,7 @@
       <img src="/assets/images/posts/2020/ruby27/cover.jpg">
     </figure>
   
-  <div class="blog-content is-family-secondary">
+  <div class="blog__content">
     <p>นอกจากวันคริสต์มาสจะเป็นวันประสูติของพระเยชูแล้ว เราเหล่า Rubyist ก็ให้ความสำคัญกับวันคริสต์มาสเช่นเดียวกัน เนื่องจากเป็นวันที่มีการปล่อย <strong>Ruby</strong> เวอร์ชันใหม่ออกมานั้นเอง สำหรับวันคริสต์มาสที่ผ่านมา (25/12/2562) ก็ได้มีการประกาศปล่อย <strong>Ruby</strong> เวอร์ชัน 2.7 ออกมาอย่างเป็นทางการ ซึ่งน่าเป็นเวอร์ชัน 2 ตัวสุดท้ายก่อนที่จะกลายเป็นเวอร์ชัน 3 ที่ทางทีมพัฒนาได้วางแผนที่จะปล่อยออกมาในวันคริสต์มาสในปีนี้ (แต่ก็แอบเห็นมีเวอร์ชัน 2.8-DEV ในรายการติดตั้งของ <strong>rbenv</strong>) เกริ่นกันมาพอสมควรแหละ มาดูกันว่าเวอร์ชัน 2.7 นี้มีฟีเจอร์อะไรใหม่ ปรับปรุงแก้ไขอะไรบ้าง</p>
 
 <!--more-->
@@ -74,15 +84,7 @@
 <h3 id="pattern-matching-experimental">Pattern Matching (Experimental)</h3>
 <p>Pattern Matching เป็นฟีเจอร์ที่ใช้ตรวจสอบจับคู่เพื่อเปรียบเทียบข้อมูล ในเวอร์ชันนี้เราสามารถนำมาใช้งานในชุดคำสั่งแบบ  <code class="language-plaintext highlighter-rouge">case</code> ซึ่งโดยปกติเราจะใช้ชุดคำสั่ง <code class="language-plaintext highlighter-rouge">case/when</code> แต่ในกรณีที่จะใช้งานร่วมกับ Pattern Matching เราจะใช้ชุดคำสั่ง <code class="language-plaintext highlighter-rouge">case/in</code> แทน นอกจากนี้ยังรับการใช้งานร่วมกับ <code class="language-plaintext highlighter-rouge">if</code> หรือ <code class="language-plaintext highlighter-rouge">unless</code> ด้วยดังแสดงในรูปแบบด้านล่าง</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="rouge-code"><pre><span class="k">case</span> <span class="p">[</span><span class="n">variable</span> <span class="n">or</span> <span class="n">expression</span><span class="p">]</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">case</span> <span class="p">[</span><span class="n">variable</span> <span class="n">or</span> <span class="n">expression</span><span class="p">]</span>
 <span class="k">in</span> <span class="p">[</span><span class="n">pattern</span><span class="p">]</span> <span class="p">[</span><span class="k">if</span><span class="o">|</span><span class="k">unless</span> <span class="n">condition</span><span class="p">]</span>
   <span class="o">...</span>
 <span class="k">in</span> <span class="p">[</span><span class="n">pattern</span><span class="p">]</span> <span class="p">[</span><span class="k">if</span><span class="o">|</span><span class="k">unless</span> <span class="n">condition</span><span class="p">]</span>
@@ -90,30 +92,13 @@
 <span class="k">else</span>
   <span class="o">...</span>
 <span class="k">end</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <ul>
   <li>ตัวอย่างการใช้งานกับชุดข้อมูล Array</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-</pre></td><td class="rouge-code"><pre><span class="c1"># Simple array</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Simple array</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'John'</span><span class="p">,</span> <span class="s1">'Doe'</span><span class="p">,</span> <span class="mi">27</span><span class="p">]</span>
 <span class="k">case</span> <span class="n">data</span>
 <span class="k">in</span> <span class="p">[</span><span class="nb">name</span><span class="p">,</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">age</span><span class="p">]</span>
@@ -130,46 +115,25 @@
 <span class="k">else</span>
   <span class="nb">puts</span> <span class="s2">"Unknown language"</span>
 <span class="k">end</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <ul>
   <li>ตัวอย่างการใช้งานกับชุดข้อมูล Hash</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="c1"># Hash</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Hash</span>
 <span class="n">user</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">username: </span><span class="s1">'bob123'</span><span class="p">,</span> <span class="ss">nickname: </span><span class="s1">'bob'</span><span class="p">,</span> <span class="ss">language: </span><span class="s1">'th'</span> <span class="p">}</span>
 <span class="k">case</span> <span class="n">user</span>
 <span class="k">in</span> <span class="p">{</span> <span class="ss">username: </span><span class="s1">'bob123'</span><span class="p">,</span> <span class="ss">nickname: </span><span class="n">nickname</span><span class="p">,</span> <span class="ss">language: </span><span class="n">language</span> <span class="p">}</span>
   <span class="nb">puts</span> <span class="s2">"bob123 (</span><span class="si">#{</span><span class="n">nickname</span><span class="si">}</span><span class="s2">) uses </span><span class="si">#{</span><span class="n">language</span><span class="si">}</span><span class="s2"> language"</span>
 <span class="k">end</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <ul>
   <li>ตัวอย่างการใช้งานกับชุดข้อมูล JSON</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-</pre></td><td class="rouge-code"><pre><span class="c1"># JSON</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># JSON</span>
 <span class="n">person</span> <span class="o">=</span> <span class="p">{</span>
   <span class="ss">username: </span><span class="s1">'karn18'</span><span class="p">,</span>
   <span class="ss">profile: </span><span class="p">{</span>
@@ -184,7 +148,7 @@
 <span class="k">in</span> <span class="p">{</span> <span class="ss">username: </span><span class="s2">"karn18"</span><span class="p">,</span> <span class="ss">profile: </span><span class="p">{</span> <span class="ss">firstName: </span><span class="n">first_name</span> <span class="p">}</span> <span class="p">}</span>
   <span class="nb">puts</span> <span class="s2">"Username: karn18, First Name: </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">"</span>
 <span class="k">end</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>สำหรับการใช้งาน Pattern Matching นั้นมีความหลากหลาย ดังนั้นสามารถศึกษาเพิ่มเติมได้ที่ <a href="https://www.toptal.com/ruby/ruby-pattern-matching-tutorial">https://www.toptal.com/ruby/ruby-pattern-matching-tutorial</a></p>
 
@@ -195,17 +159,12 @@
 <h3 id="numbered-parameters-experimental">Numbered Parameters (Experimental)</h3>
 <p>พารามิเตอร์ตัวเลขถูกนำมาใช้เป็นค่ามาตรฐานสำหรับพารามิเตอร์ในบล็อก ทำให้เราสามารถละการใช้งาน |value| ได้</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="c1"># Array</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Array</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">].</span><span class="nf">map</span> <span class="p">{</span> <span class="nb">puts</span> <span class="n">_1</span> <span class="p">}</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span>
 
 <span class="c1"># Hash</span>
 <span class="p">{</span> <span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'ruby 101'</span><span class="p">,</span> <span class="ss">price: </span><span class="mi">30</span> <span class="p">}.</span><span class="nf">map</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">_1</span><span class="si">}</span><span class="s2"> - </span><span class="si">#{</span><span class="n">_2</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span> <span class="o">=&gt;</span> <span class="nb">id</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">name</span> <span class="o">-</span> <span class="n">ruby</span> <span class="mi">101</span><span class="p">,</span> <span class="n">price</span> <span class="o">-</span> <span class="mi">30</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h3 id="separation-of-positional-and-keyword-arguments">Separation of positional and keyword arguments</h3>
 <p>ปกติการส่งพารามิเตอร์ที่มีการจัดลำดับตำแหน่ง และแบบคีย์เวิร์ดร่วมกันนั้น <strong>Ruby</strong> จะทำการตรวจสอบและจัดการให้อัตโนมัติ แต่สำหรับในเวอร์ชัน 3 การส่งพารามิเตอร์เข้าไปในฟังก์ชันจะต้องระบุให้ชัดเจนว่าเป็นการส่งพารามิเตอร์แบบใดเข้าไป ซึ่งในเวอร์ชัน 2.7 นี้จะเพียงแค่แสดงคำเตือนขึ้นมาเมื่อเราไม่ได้มีการระบุรูปแบบที่ถูกต้องเท่านั้น ที่นี้เรามาดูมันแตกต่างจากเดิมอย่างไร</p>
@@ -214,112 +173,87 @@
   <li>เมื่อฟังก์ชันนิยามให้รับคีย์เวิร์ดเป็นพารามิเตอร์ตัวสุดท้าย แต่ฟังก์ชันถูกเรียกใช้งานโดยการส่ง Hash เข้าไปจะต้องทำการใส่ ** นำหน้า { } ไว้ด้วย ทั้งนี้โดยเวอร์ชันก่อนหน้า <strong>Ruby</strong> จะทำการแปลงข้อมูลที่อยู่ใน Hash ให้อยู่ในรูปคีย์เวิร์ดให้อัตโนมัติ</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># warned</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># warned</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># warned</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <ul>
   <li>เมื่อฟังก์ชันนิยามให้รับพารามิเตอร์แบบลำดับ และคีย์เวิร์ดแบบไม่จำกัดจำนวน เมื่อมีการเรียกใช้ฟังก์ชันโดยไม่ได้ระบุพารามิเตอร์แบบลำดับ แต่ระบุพารามิเตอร์แบบคีย์เวิร์ดเท่านั้น ซึ่งปกติพารามิเตอร์แบบคียเวิร์ดจะถูกว่าเป็นพารามิเตอร์ตัวสุดท้าย เมื่อรันโปรแกรม <strong>Ruby</strong> จะแสดงคำเตือนขึ้นมา ดังนั้นถ้าจะการเรียกใช้งานทำได้ถูกต้องจะต้องใส่ { } คลอบไว้ด้วย</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>      <span class="c1"># warned</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>      <span class="c1"># warned</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># warned</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>    <span class="c1"># OK</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <ul>
   <li>เมื่อฟังก์ชันนิยามให้รับพารามิเตอร์ที่เป็น Hash และคีย์เวิร์ดร่วมกัน และมีการส่งพารามิเตอร์ที่เป็น Hash มีคีย์ที่เป็นทั้ง Symbol และไม่เป็น Symbol ถ้าไม่ได้ระบุประเภทที่ชัดเจน <strong>Ruby</strong> จะแสดงคำเตือนขึ้นมา ดังนั้นเวลาใช้งานควรระบุประเภทให้ชัดเจนว่าเป็น Hash หรือคีย์เวิร์ด</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># warned</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># warned</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># warned</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span> <span class="c1"># OK</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <ul>
   <li>เมื่อฟังก์ชันนิยามให้รับพารามิเตอร์ที่เป็น Hash เมื่อมีการเรียกใช้งานฟังก์ชันโดยส่งพารามิเตอร์แบบคีย์เวิร์ด <strong>Ruby</strong> ยังคงทำงานได้ถูกต้องไม่แสดงคำเตือนขึ้นมา</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="p">{});</span>  <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span> <span class="ss">key: </span><span class="mi">42</span> <span class="p">)</span>   <span class="c1"># OK</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="p">{});</span>  <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span> <span class="ss">key: </span><span class="mi">42</span> <span class="p">)</span>   <span class="c1"># OK</span>
+</code></pre></div></div>
 
 <ul>
   <li>ไม่อนุญาตให้ส่งพารามิเตอร์แบบคีย์เวิร์ดที่ไม่เป็น Symbol ในกรณีที่ฟังก์ชันนิยามพารามิเตอร์แบบคีย์เวิร์ดไม่จำกัดจำนวน</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="nb">p</span> <span class="n">kw</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#=&gt; {"str"=&gt;1}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="nb">p</span> <span class="n">kw</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#=&gt; {"str"=&gt;1}</span>
+</code></pre></div></div>
 
 <ul>
   <li>อนุญาตให้ประกาศ <code class="language-plaintext highlighter-rouge">**nil</code> ในฟังก์ชัน เพื่อระบุว่าฟังก์ชันไม่รับพารามิเตอร์แบบคีย์เวิร์ด ถ้าหากมีการเรียกฟังก์ชันโดยการส่งพารามิเตอร์เป็นแบบคีย์เวิร์ดเข้าไปจะแแสดง <strong>ArgumentError</strong> ออกมา</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># ArgumentError</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># ArgumentError</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>   <span class="c1"># ArgumentError</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># ArgumentError</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>     <span class="c1"># OK</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">})</span> <span class="c1"># OK</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h3 id="argument-forwarding">Argument Forwarding</h3>
 <p>เราสามารถส่งต่อพารามิเตอร์จากฟังก์ชันที่ถูกเรียกไปยังฟังก์ชันอื่นได้ด้วย  <code class="language-plaintext highlighter-rouge">...</code></p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
   <span class="n">bar</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="k">end</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h3 id="ฟังก์ชันใหม่ใน-array">ฟังก์ชันใหม่ใน Array</h3>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">#intersection</code> เป็นฟังก์ชันที่หาข้อมูลที่เหมือนกันระหว่าง Array 2 ตัว หรือจะใช้ <code class="language-plaintext highlighter-rouge">&amp;</code> แทนได้เหมือนกัน</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nf">intersection</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nf">intersection</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&amp;</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h3 id="ฟังก์ชันใหม่ใน-enumerable">ฟังก์ชันใหม่ใน Enumerable</h3>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">#tally</code> ส่งคืนผลลัพท์เป็น Hash ของข้อมูลพร้อมจำนวน</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="sx">%w(a a a b b c)</span><span class="p">.</span><span class="nf">tally</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">"a"</span><span class="o">=&gt;</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"b"</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"c"</span><span class="o">=&gt;</span><span class="mi">1</span> <span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sx">%w(a a a b b c)</span><span class="p">.</span><span class="nf">tally</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">"a"</span><span class="o">=&gt;</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"b"</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"c"</span><span class="o">=&gt;</span><span class="mi">1</span> <span class="p">}</span>
+</code></pre></div></div>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">#filter_map</code> จากการที่ <code class="language-plaintext highlighter-rouge">#select</code> และ <code class="language-plaintext highlighter-rouge">#map</code> ถูกใช้งานบ่อยในการแปลงข้อมูลเป็น Array ขณะที่มีการกรองข้อมูลบางอย่างด้วย ดังนั้นจึงได้มีการเพิ่มฟังก์ชัน <code class="language-plaintext highlighter-rouge">filter_map</code> ขึ้นมาเพื่อทำให้ใช้งานได้ง่ายขึ้น</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nf">filter_map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="nf">odd?</span> <span class="p">?</span> <span class="n">x</span><span class="p">.</span><span class="nf">to_s</span> <span class="p">:</span> <span class="kp">nil</span> <span class="p">}</span> <span class="c1">#=&gt; ["1", "3"]</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nf">filter_map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="nf">odd?</span> <span class="p">?</span> <span class="n">x</span><span class="p">.</span><span class="nf">to_s</span> <span class="p">:</span> <span class="kp">nil</span> <span class="p">}</span> <span class="c1">#=&gt; ["1", "3"]</span>
+</code></pre></div></div>
 
 <h3 id="ฟังก์ชันใหม่ใน-enumerator">ฟังก์ชันใหม่ใน Enumerator</h3>
 <ul>
@@ -327,9 +261,8 @@
 เป็นฟังก์ชันสำหรับการสร้างลำดับที่ไม่สิ้นสุด โดยการส่งค่าล่าสุดที่ได้ไปในบล็อกถัดไป</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="no">Enumerator</span><span class="p">.</span><span class="nf">produce</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="ss">:next</span><span class="p">).</span><span class="nf">take</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Enumerator</span><span class="p">.</span><span class="nf">produce</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="ss">:next</span><span class="p">).</span><span class="nf">take</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p>สำหรับฟีเจอร์ในเวอร์ชัน 2.7 นั้นยังมีอีก แต่ในบทความนี้จะขอสรุปไว้เพียงเท่านี้ หากต้องการศึกษาเพิ่มเติมสามารถค้นหาได้จากลิงค์ด้านล่าง</p>
 
@@ -399,13 +332,12 @@
 
 
 
-      </div>
-    </div><script>
+    </main><script>
   const h = document.documentElement;
   const b = document.body;
   const st = 'scrollTop';
   const sh = 'scrollHeight';
-  const progress = document.querySelector('.kz-progress');
+  const progress = document.querySelector('.progress');
   let scroll;
 
   document.addEventListener('scroll', function() {

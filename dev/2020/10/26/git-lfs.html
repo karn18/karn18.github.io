@@ -28,30 +28,40 @@
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"headline":"ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่","dateModified":"2020-10-26T22:30:00+07:00","datePublished":"2020-10-26T22:30:00+07:00","image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/git-lfs/cover.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/10/26/git-lfs.html"},"author":{"@type":"Person","name":"Karn"},"description":"ไม่ว่าจะเป็นความตั้งใจ หรือบังเอิญที่ต้องมีการใส่ไฟล์ประเภทภาพ เสียง หรือวิดีโอเข้าไปยัง git repository ถ้าไฟล์เหล่าไม่ได้มีจำนวนเยอะ มีการอัพเดตบ่อยๆ หรือมีขนาดใหญ่ ก็คงไม่ต้องซีเรียสอะไรมากปล่อยผ่านไปก็ได้ แต่ถ้าเกิดต้องมีการอัพเดตไฟล์อยู่บ่อยๆ ขนาดไฟล์ก็ใหญ่ขึ้นเรื่อยๆ อันนี้แหละเราจะต้องมาดูก่อนหน่อย เพราะมีผลกระทบที่เกิดขึ้นกับ git repository ของเราแน่ๆ ไม่ว่าจะเป็น git history ที่จะใหญ่ขึ้นตาม การ pull หรือ fetch ข้อมูลก็จะช้าขึ้นนั้นเอง","url":"https://karn18.github.io/dev/2020/10/26/git-lfs.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/git-lfs/cover.png","@type":"imageObject"},"headline":"ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่","dateModified":"2020-10-26T22:30:00+07:00","datePublished":"2020-10-26T22:30:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/10/26/git-lfs.html"},"description":"ไม่ว่าจะเป็นความตั้งใจ หรือบังเอิญที่ต้องมีการใส่ไฟล์ประเภทภาพ เสียง หรือวิดีโอเข้าไปยัง git repository ถ้าไฟล์เหล่าไม่ได้มีจำนวนเยอะ มีการอัพเดตบ่อยๆ หรือมีขนาดใหญ่ ก็คงไม่ต้องซีเรียสอะไรมากปล่อยผ่านไปก็ได้ แต่ถ้าเกิดต้องมีการอัพเดตไฟล์อยู่บ่อยๆ ขนาดไฟล์ก็ใหญ่ขึ้นเรื่อยๆ อันนี้แหละเราจะต้องมาดูก่อนหน่อย เพราะมีผลกระทบที่เกิดขึ้นกับ git repository ของเราแน่ๆ ไม่ว่าจะเป็น git history ที่จะใหญ่ขึ้นตาม การ pull หรือ fetch ข้อมูลก็จะช้าขึ้นนั้นเอง","url":"https://karn18.github.io/dev/2020/10/26/git-lfs.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
   <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<script data-ad-client="ca-pub-1742525010164998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <title>ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่</title>
-</head><body data-theme="dark">
-    <div class="kz-progress"></div>
-    <div class="kz-main-container"><nav class="kz-navbar">
-  <a href="/" class="kz-navbar__logo">KT</a>
-  <div class="kz-navbar__menu">
-    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
-    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
-    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
-    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
-    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+<title>ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
   </div>
 </nav>
-<div class="kz-content">
-        <div class="kz-blog">
-  <div class="kz-blog__header">
-  <h1 class="kz-blog__title">ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่</h1>
-  <div class="kz-blog__info">
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่</h1>
+  <div class="blog__info">
     <i class="typcn typcn-calendar-outline"></i> 26-10-2020
     
       | <i class="typcn typcn-tag"></i>
@@ -67,7 +77,7 @@
       <img src="/assets/images/posts/2020/git-lfs/cover.png">
     </figure>
   
-  <div class="blog-content is-family-secondary">
+  <div class="blog__content">
     <p>ไม่ว่าจะเป็นความตั้งใจ หรือบังเอิญที่ต้องมีการใส่ไฟล์ประเภทภาพ เสียง หรือวิดีโอเข้าไปยัง <strong>git repository</strong> ถ้าไฟล์เหล่าไม่ได้มีจำนวนเยอะ มีการอัพเดตบ่อยๆ หรือมีขนาดใหญ่ ก็คงไม่ต้องซีเรียสอะไรมากปล่อยผ่านไปก็ได้ แต่ถ้าเกิดต้องมีการอัพเดตไฟล์อยู่บ่อยๆ ขนาดไฟล์ก็ใหญ่ขึ้นเรื่อยๆ อันนี้แหละเราจะต้องมาดูก่อนหน่อย เพราะมีผลกระทบที่เกิดขึ้นกับ <strong>git repository</strong> ของเราแน่ๆ ไม่ว่าจะเป็น <strong>git history</strong> ที่จะใหญ่ขึ้นตาม การ pull หรือ fetch ข้อมูลก็จะช้าขึ้นนั้นเอง<!--more--></p>
 
 <p>สำหรับวิธีการแก้ปัญหารการต้องอัพไฟล์ขนาดใหญ่เข้าไปใน <strong>git repository</strong> ของเราก็สามารถทำได้โดยใช้ <strong>Git LFS (Large File Storage)</strong> ซึ่งเป็น extension หนึ่งของ <strong>Git</strong> โดยหลักการทำงานของ <strong>Git LFS</strong> จะ <strong>hook event</strong> เมื่อมีการ <strong>push</strong> ไฟล์ไปยัง <strong>git repository</strong> และแทนที่ไฟล์จริงๆ ด้วย <strong>pointer</strong> ของไฟล์ ด้วยการอัพโหลดไปยัง <strong>Git LFS Store</strong></p>
@@ -83,35 +93,30 @@
   <li>ติดตั้ง <strong>Git LFS</strong> ให้กับ <strong>repository</strong> ซึ่งสามารถใช้ได้ทั้งกับ <strong>repository</strong> ใหม่ หรือของเดิมที่มีอยู่แล้ว</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git lfs <span class="nb">install</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git lfs <span class="nb">install</span>
+</code></pre></div></div>
 
 <ul>
   <li>กำหนดประเภทไฟล์ที่ต้องการให้จัดการโดย <strong>Git LFS</strong></li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git lfs track <span class="s2">"*.jpg"</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git lfs track <span class="s2">"*.jpg"</span>
+</code></pre></div></div>
 
 <ul>
   <li>จากนั้น <strong>Git LFS</strong> จะสร้างไฟล์ <code class="language-plaintext highlighter-rouge">.gitattributes</code> ขึ้นมา</li>
 </ul>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>*.png filter=lfs diff=lfs merge=lfs -text
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*.png filter=lfs diff=lfs merge=lfs -text
+</code></pre></div></div>
 
 <ul>
   <li>ใช้งาน <strong>git repository</strong> ตามปกติ แต่อย่าลืมเพิ่ม <code class="language-plaintext highlighter-rouge">.gitattributes</code> เข้าไปด้วย</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git add .gitattributes <span class="k">*</span>.jpg
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add .gitattributes <span class="k">*</span>.jpg
 <span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"track *.jpg files using Git LFS"</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <ul>
   <li>เมื่อมีการ <strong>push</strong> ไฟล์ขึ้นไปยัง server <strong>Git LFS</strong> จะดักจับและตรวจสอบประเภทไฟล์ที่ตรงตามที่กำหนดไว้ และทำการอัพโหลดไฟล์ขึ้นไปยัง <strong>Git LFS Store</strong> แทน สังเกตได้จากรูปด้านล่าง</li>
@@ -123,9 +128,8 @@
   <li>ตรวจสอบไฟล์ที่จัดการโดย <strong>Git LFS</strong></li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git lfs ls-files
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git lfs ls-files
+</code></pre></div></div>
 
 <h1 id="references">References</h1>
 <ul>
@@ -192,13 +196,12 @@
 
 
 
-      </div>
-    </div><script>
+    </main><script>
   const h = document.documentElement;
   const b = document.body;
   const st = 'scrollTop';
   const sh = 'scrollHeight';
-  const progress = document.querySelector('.kz-progress');
+  const progress = document.querySelector('.progress');
   let scroll;
 
   document.addEventListener('scroll', function() {

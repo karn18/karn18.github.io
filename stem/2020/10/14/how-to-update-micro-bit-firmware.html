@@ -28,30 +28,40 @@
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"headline":"How to update micro:bit firmware","dateModified":"2020-10-14T22:29:00+07:00","datePublished":"2020-10-14T22:29:00+07:00","image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html"},"author":{"@type":"Person","name":"Karn"},"description":"Firmware คือโปรแกรมแกรม (Software) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (Hardware) ให้ทำงานได้ราบรื่น แม้กระทั่ง micro:bit เองก็ต้องมี Firmware เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ Firmware ให้ทันสมัยก็จะช่วยให้การทำงาน micro:bit ดียิ่งขึ้น ตรวจสอบเวอร์ชันของ Firmware เราสามารถตรวจสอบเวอร์ชันของ Firmware ที่ติดตั้งอยู่บน micro:bit ได้ไม่ยาก เพียงแค่ต่อบอร์ด micro:bit ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ DETAILS.TXT บนไดรฟ์ MICROBIT MICROBIT Drive Firmware: 0250 ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า Interface Version ซึ่งจะเห็นว่า micro:bit มีเวอร์ชันของ Firmware เป็น 0250 อัพเดตกันได้เลย มาดูที่วิธีการอัพเดต Firmware กันบ้าง โดยเวอร์ชันของ Firmware ล่าสุดจะเป็นเวอร์ชัน 0253 ดาว์นโหลด Firmware มาไว้ที่เครื่องจากที่นี่ ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ .hex ถอดสาย USB ที่เชื่อมต่อออกจาก micro:bit รวมถึงไฟเลี้ยงด้วย กดปุ่ม Reset แช่เอาไว้ พร้อมกับต่อสาย USB เข้ากับตัว micro:bit โดยในคราวนี้จะปรากฏเป็นไดรฟ์ MAINTENANCE ขึ้นมาแทนที่จะเป็น MICROBIT ลากไฟล์ .hex เข้าไปยังไดรฟ์ MAINTENANCE ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ MICROBIT ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต Firmware ใหม่สำเร็จเรียบร้อย ตรวจสอบไฟล์ DETAILS.TXT ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น 0253 ถูกต้องหรือไม่ Firmware: 0253 References https://microbit.org/get-started/user-guide/firmware/","url":"https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png","@type":"imageObject"},"headline":"How to update micro:bit firmware","dateModified":"2020-10-14T22:29:00+07:00","datePublished":"2020-10-14T22:29:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html"},"description":"Firmware คือโปรแกรมแกรม (Software) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (Hardware) ให้ทำงานได้ราบรื่น แม้กระทั่ง micro:bit เองก็ต้องมี Firmware เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ Firmware ให้ทันสมัยก็จะช่วยให้การทำงาน micro:bit ดียิ่งขึ้น ตรวจสอบเวอร์ชันของ Firmware เราสามารถตรวจสอบเวอร์ชันของ Firmware ที่ติดตั้งอยู่บน micro:bit ได้ไม่ยาก เพียงแค่ต่อบอร์ด micro:bit ผ่านสาย USB เข้ากับเครื่องคอมพิวเตอร์ของเรา จากนั้นให้เปิดไฟล์ DETAILS.TXT บนไดรฟ์ MICROBIT MICROBIT Drive Firmware: 0250 ใ้ห้เราสังเกตที่บันทัดที่ขึ้นต้นว่า Interface Version ซึ่งจะเห็นว่า micro:bit มีเวอร์ชันของ Firmware เป็น 0250 อัพเดตกันได้เลย มาดูที่วิธีการอัพเดต Firmware กันบ้าง โดยเวอร์ชันของ Firmware ล่าสุดจะเป็นเวอร์ชัน 0253 ดาว์นโหลด Firmware มาไว้ที่เครื่องจากที่นี่ ไฟล์ที่ดาว์นโหลดมาจะเป็นไฟล์ .hex ถอดสาย USB ที่เชื่อมต่อออกจาก micro:bit รวมถึงไฟเลี้ยงด้วย กดปุ่ม Reset แช่เอาไว้ พร้อมกับต่อสาย USB เข้ากับตัว micro:bit โดยในคราวนี้จะปรากฏเป็นไดรฟ์ MAINTENANCE ขึ้นมาแทนที่จะเป็น MICROBIT ลากไฟล์ .hex เข้าไปยังไดรฟ์ MAINTENANCE ขณะที่ทำการอัพเดตจะปรากฏไฟสีเหลืองกระพริบที่ด้านหลังของบอร์ด รอจนกว่าไฟจะหยุดกระพริบ และบอร์ดทำการรีเซทตัวเองและปรากฏไดรฟ์ MICROBIT ขึ้นมาอีกรอบ นั้นแสดงว่าเราได้ทำการอัพเดต Firmware ใหม่สำเร็จเรียบร้อย ตรวจสอบไฟล์ DETAILS.TXT ดูอีกรอบว่ามีแสดงเลขเวอร์ชันเป็น 0253 ถูกต้องหรือไม่ Firmware: 0253 References https://microbit.org/get-started/user-guide/firmware/","url":"https://karn18.github.io/stem/2020/10/14/how-to-update-micro-bit-firmware.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
   <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<script data-ad-client="ca-pub-1742525010164998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <title>How to update micro:bit firmware</title>
-</head><body data-theme="dark">
-    <div class="kz-progress"></div>
-    <div class="kz-main-container"><nav class="kz-navbar">
-  <a href="/" class="kz-navbar__logo">KT</a>
-  <div class="kz-navbar__menu">
-    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
-    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
-    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
-    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
-    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+<title>How to update micro:bit firmware</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
   </div>
 </nav>
-<div class="kz-content">
-        <div class="kz-blog">
-  <div class="kz-blog__header">
-  <h1 class="kz-blog__title">How to update micro:bit firmware</h1>
-  <div class="kz-blog__info">
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">How to update micro:bit firmware</h1>
+  <div class="blog__info">
     <i class="typcn typcn-calendar-outline"></i> 14-10-2020
     
       | <i class="typcn typcn-tag"></i>
@@ -67,7 +77,7 @@
       <img src="/assets/images/posts/2020/how-to-update-micro-bit-firmware/cover.png">
     </figure>
   
-  <div class="blog-content is-family-secondary">
+  <div class="blog__content">
     <p><strong>Firmware</strong> คือโปรแกรมแกรม (<strong>Software</strong>) ที่ถูกพัฒนาเพื่อใช้สำหรับควบคุมการทำงานของอุปกรณ์ต่างๆ (<strong>Hardware</strong>) ให้ทำงานได้ราบรื่น แม้กระทั่ง <strong>micro:bit</strong> เองก็ต้องมี <strong>Firmware</strong> เช่นกันซึ่งถูกฝังอยู่ในชิปบนบอร์ด สำหรับการอัพเดตเวอร์ชันของ <strong>Firmware</strong> ให้ทันสมัยก็จะช่วยให้การทำงาน <strong>micro:bit</strong> ดียิ่งขึ้น</p>
 
 <h2 id="ตรวจสอบเวอร์ชันของ-firmware">ตรวจสอบเวอร์ชันของ Firmware</h2>
@@ -170,13 +180,12 @@
 
 
 
-      </div>
-    </div><script>
+    </main><script>
   const h = document.documentElement;
   const b = document.body;
   const st = 'scrollTop';
   const sh = 'scrollHeight';
-  const progress = document.querySelector('.kz-progress');
+  const progress = document.querySelector('.progress');
   let scroll;
 
   document.addEventListener('scroll', function() {

@@ -24,30 +24,40 @@
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"headline":"ก้าวแรกกับการใช้ GitHub Actions","dateModified":"2020-11-04T11:54:00+07:00","datePublished":"2020-11-04T11:54:00+07:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html"},"author":{"@type":"Person","name":"Karn"},"description":"GitHub Actions เป็นเครื่องมือ CI/CD หนึ่งที่จะช่วยให้เราทำงานแบบ automation ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ automation tools ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ Actions ในการทดสอบโปรแกรมหลังจากที่ push code ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย Codecov และจะแสดง badge แสดงสถานะที่เกิดขึ้นไว้ด้วย","url":"https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"ก้าวแรกกับการใช้ GitHub Actions","dateModified":"2020-11-04T11:54:00+07:00","datePublished":"2020-11-04T11:54:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html"},"description":"GitHub Actions เป็นเครื่องมือ CI/CD หนึ่งที่จะช่วยให้เราทำงานแบบ automation ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ automation tools ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ Actions ในการทดสอบโปรแกรมหลังจากที่ push code ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย Codecov และจะแสดง badge แสดงสถานะที่เกิดขึ้นไว้ด้วย","url":"https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
   <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<script data-ad-client="ca-pub-1742525010164998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <title>ก้าวแรกกับการใช้ GitHub Actions</title>
-</head><body data-theme="dark">
-    <div class="kz-progress"></div>
-    <div class="kz-main-container"><nav class="kz-navbar">
-  <a href="/" class="kz-navbar__logo">KT</a>
-  <div class="kz-navbar__menu">
-    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
-    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
-    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
-    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
-    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+<title>ก้าวแรกกับการใช้ GitHub Actions</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
   </div>
 </nav>
-<div class="kz-content">
-        <div class="kz-blog">
-  <div class="kz-blog__header">
-  <h1 class="kz-blog__title">ก้าวแรกกับการใช้ GitHub Actions</h1>
-  <div class="kz-blog__info">
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">ก้าวแรกกับการใช้ GitHub Actions</h1>
+  <div class="blog__info">
     <i class="typcn typcn-calendar-outline"></i> 04-11-2020
     
       | <i class="typcn typcn-tag"></i>
@@ -63,7 +73,7 @@
 </div>
 
   
-  <div class="blog-content is-family-secondary">
+  <div class="blog__content">
     <p><strong>GitHub Actions</strong> เป็นเครื่องมือ <strong>CI/CD</strong> หนึ่งที่จะช่วยให้เราทำงานแบบ <strong>automation</strong> ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ <strong>automation tools</strong> ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ <strong>Actions</strong> ในการทดสอบโปรแกรมหลังจากที่ <strong>push code</strong> ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย <strong>Codecov</strong> และจะแสดง <strong>badge</strong> แสดงสถานะที่เกิดขึ้นไว้ด้วย<!--more--></p>
 
 <h2 id="ตัวอย่างที่สำเร็จแล้ว">ตัวอย่างที่สำเร็จแล้ว</h2>
@@ -180,13 +190,12 @@
 
 
 
-      </div>
-    </div><script>
+    </main><script>
   const h = document.documentElement;
   const b = document.body;
   const st = 'scrollTop';
   const sh = 'scrollHeight';
-  const progress = document.querySelector('.kz-progress');
+  const progress = document.querySelector('.progress');
   let scroll;
 
   document.addEventListener('scroll', function() {

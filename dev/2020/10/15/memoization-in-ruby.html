@@ -28,30 +28,40 @@
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"headline":"Memoization in Ruby","dateModified":"2020-10-15T22:22:00+07:00","datePublished":"2020-10-15T22:22:00+07:00","image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/memoization-in-ruby/cover.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html"},"author":{"@type":"Person","name":"Karn"},"description":"อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา Ruby ก็คือ Memoization แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค Memoization จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว","url":"https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/memoization-in-ruby/cover.png","@type":"imageObject"},"headline":"Memoization in Ruby","dateModified":"2020-10-15T22:22:00+07:00","datePublished":"2020-10-15T22:22:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html"},"description":"อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา Ruby ก็คือ Memoization แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค Memoization จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว","url":"https://karn18.github.io/dev/2020/10/15/memoization-in-ruby.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
   <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<script data-ad-client="ca-pub-1742525010164998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <title>Memoization in Ruby</title>
-</head><body data-theme="dark">
-    <div class="kz-progress"></div>
-    <div class="kz-main-container"><nav class="kz-navbar">
-  <a href="/" class="kz-navbar__logo">KT</a>
-  <div class="kz-navbar__menu">
-    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
-    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
-    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
-    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
-    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+<title>Memoization in Ruby</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
   </div>
 </nav>
-<div class="kz-content">
-        <div class="kz-blog">
-  <div class="kz-blog__header">
-  <h1 class="kz-blog__title">Memoization in Ruby</h1>
-  <div class="kz-blog__info">
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">Memoization in Ruby</h1>
+  <div class="blog__info">
     <i class="typcn typcn-calendar-outline"></i> 15-10-2020
     
       | <i class="typcn typcn-tag"></i>
@@ -69,7 +79,7 @@
       <img src="/assets/images/posts/2020/memoization-in-ruby/cover.png">
     </figure>
   
-  <div class="blog-content is-family-secondary">
+  <div class="blog__content">
     <p>อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา <strong>Ruby</strong> ก็คือ <strong>Memoization</strong> แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค <strong>Memoization</strong> จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว<!--more--></p>
 
 <h2 id="memoization-คืออะไร">Memoization คืออะไร</h2>
@@ -90,13 +100,10 @@
   <li>ก่อนอื่นลงสังเกต โค้ดด้านล่าง จะเห็นว่ามีการเรียกใช้ <code class="language-plaintext highlighter-rouge">user_score</code> ซึ่งจะทำการดึงข้อมูลคะแนนของผู้ใช้งานจากฐานข้อมูล</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">user_score</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">user_score</span>
   <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Sam'</span><span class="p">).</span><span class="nf">try</span><span class="p">(</span><span class="ss">:score</span><span class="p">)</span>
 <span class="k">end</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <ul>
   <li>เมื่อ <code class="language-plaintext highlighter-rouge">user_score</code> ถูกเรียกใช้ ไม่ว่าจะกี่ครั้งสิ่งที่เกิดขึ้นคือจะต้องไปดึงข้อมูลจากฐานข้อมูลทุกรอบ ซึ่งก็เป็นกระบวนการที่เสียเวลา ให้เปลืองทรัพยากร</li>
@@ -107,13 +114,10 @@
   <p>Memoization มักจะใช้เครื่องหมาย <code class="language-plaintext highlighter-rouge">||=</code></p>
 </blockquote>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">user_score</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">user_score</span>
   <span class="vi">@user_score</span> <span class="o">||=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Sam'</span><span class="p">).</span><span class="nf">try</span><span class="p">(</span><span class="ss">:score</span><span class="p">)</span>
 <span class="k">end</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <blockquote>
   <p>พูดง่ายๆ Memoization ก็เป็นการ Caching ข้อมูลนั้นเอง</p>
@@ -185,13 +189,12 @@
 
 
 
-      </div>
-    </div><script>
+    </main><script>
   const h = document.documentElement;
   const b = document.body;
   const st = 'scrollTop';
   const sh = 'scrollHeight';
-  const progress = document.querySelector('.kz-progress');
+  const progress = document.querySelector('.progress');
   let scroll;
 
   document.addEventListener('scroll', function() {

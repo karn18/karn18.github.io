@@ -12,8 +12,8 @@
 <meta property="og:title" content="Refactoring with Flocking Rules" />
 <meta name="author" content="Karn" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \ &quot;3 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;2 bottle of beer on the wall.\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \ &quot;4 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;3 bottle of beer on the wall.\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \ &quot;5 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;4 bottle of beer on the wall.\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ 1 2 3 4 5 6 7 8 9 case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \ &quot;#{number} bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;#{number - 1} bottle of beer on the wall.\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles" />
-<meta property="og:description" content="ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \ &quot;3 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;2 bottle of beer on the wall.\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \ &quot;4 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;3 bottle of beer on the wall.\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \ &quot;5 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;4 bottle of beer on the wall.\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ 1 2 3 4 5 6 7 8 9 case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \ &quot;#{number} bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;#{number - 1} bottle of beer on the wall.\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles" />
+<meta name="description" content="ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \ &quot;3 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;2 bottle of beer on the wall.\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \ &quot;4 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;3 bottle of beer on the wall.\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \ &quot;5 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;4 bottle of beer on the wall.\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \ &quot;#{number} bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;#{number - 1} bottle of beer on the wall.\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles" />
+<meta property="og:description" content="ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \ &quot;3 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;2 bottle of beer on the wall.\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \ &quot;4 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;3 bottle of beer on the wall.\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \ &quot;5 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;4 bottle of beer on the wall.\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \ &quot;#{number} bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;#{number - 1} bottle of beer on the wall.\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles" />
 <link rel="canonical" href="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html" />
 <meta property="og:url" content="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html" />
 <meta property="og:site_name" content="KT" />
@@ -28,30 +28,40 @@
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"headline":"Refactoring with Flocking Rules","dateModified":"2020-12-18T12:23:00+07:00","datePublished":"2020-12-18T12:23:00+07:00","image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html"},"author":{"@type":"Person","name":"Karn"},"description":"ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \\ &quot;3 bottles of beer.\\n&quot; \\ &quot;Take one down and pass it around, &quot; \\ &quot;2 bottle of beer on the wall.\\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \\ &quot;4 bottles of beer.\\n&quot; \\ &quot;Take one down and pass it around, &quot; \\ &quot;3 bottle of beer on the wall.\\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \\ &quot;5 bottles of beer.\\n&quot; \\ &quot;Take one down and pass it around, &quot; \\ &quot;4 bottle of beer on the wall.\\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ 1 2 3 4 5 6 7 8 9 case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \\ &quot;#{number} bottles of beer.\\n&quot; \\ &quot;Take one down and pass it around, &quot; \\ &quot;#{number - 1} bottle of beer on the wall.\\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles","url":"https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png","@type":"imageObject"},"headline":"Refactoring with Flocking Rules","dateModified":"2020-12-18T12:23:00+07:00","datePublished":"2020-12-18T12:23:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html"},"description":"ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \\ &quot;3 bottles of beer.\\n&quot; \\ &quot;Take one down and pass it around, &quot; \\ &quot;2 bottle of beer on the wall.\\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \\ &quot;4 bottles of beer.\\n&quot; \\ &quot;Take one down and pass it around, &quot; \\ &quot;3 bottle of beer on the wall.\\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \\ &quot;5 bottles of beer.\\n&quot; \\ &quot;Take one down and pass it around, &quot; \\ &quot;4 bottle of beer on the wall.\\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \\ &quot;#{number} bottles of beer.\\n&quot; \\ &quot;Take one down and pass it around, &quot; \\ &quot;#{number - 1} bottle of beer on the wall.\\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles","url":"https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
   <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<script data-ad-client="ca-pub-1742525010164998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <title>Refactoring with Flocking Rules</title>
-</head><body data-theme="dark">
-    <div class="kz-progress"></div>
-    <div class="kz-main-container"><nav class="kz-navbar">
-  <a href="/" class="kz-navbar__logo">KT</a>
-  <div class="kz-navbar__menu">
-    <span class="kz-theme-switcher typcn typcn-flash" id="themeSwitcher"></span>
-    <a href="/" class="kz-navbar__item kz-navbar__item--active"><i class="typcn typcn-pen"></i><span>บทความ</span></a>
-    <a href="/archive" class="kz-navbar__item"><i class="typcn typcn-archive"></i><span>archive</span></a>
-    <a href="/about" class="kz-navbar__item"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
-    <a href="/feed.xml" class="kz-navbar__item"><i class="typcn typcn-rss"></i><span>rss</span></a>
+<title>Refactoring with Flocking Rules</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
   </div>
 </nav>
-<div class="kz-content">
-        <div class="kz-blog">
-  <div class="kz-blog__header">
-  <h1 class="kz-blog__title">Refactoring with Flocking Rules</h1>
-  <div class="kz-blog__info">
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">Refactoring with Flocking Rules</h1>
+  <div class="blog__info">
     <i class="typcn typcn-calendar-outline"></i> 18-12-2020
     
       | <i class="typcn typcn-tag"></i>
@@ -69,7 +79,7 @@
       <img src="/assets/images/posts/2020/flocking-rules/cover.png">
     </figure>
   
-  <div class="blog-content is-family-secondary">
+  <div class="blog__content">
     <p>ได้อ่านหนังสือ <a href="https://sandimetz.com/99bottles">99 Bottles</a> ของ <strong>Sandi Metz</strong> แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค <strong>Flocking Rules</strong> ก็เลยหยิบยกมาเล่าให้ฟัง</p>
 
 <p>ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง
@@ -88,26 +98,7 @@
 
 <p>อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-</pre></td><td class="rouge-code"><pre><span class="k">case</span> <span class="n">number</span> 
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">case</span> <span class="n">number</span> 
 <span class="k">when</span> <span class="mi">0</span><span class="o">..</span><span class="mi">2</span>
 <span class="o">...</span>
 <span class="k">when</span> <span class="mi">3</span>
@@ -126,20 +117,11 @@
   <span class="s2">"Take one down and pass it around, "</span> <span class="p">\</span>
   <span class="s2">"4 bottle of beer on the wall.</span><span class="se">\n</span><span class="s2">"</span>
 <span class="k">end</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="rouge-code"><pre><span class="k">case</span> <span class="n">number</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">case</span> <span class="n">number</span>
 <span class="k">when</span> <span class="mi">0</span><span class="o">..</span><span class="mi">2</span>
 <span class="o">...</span>
 <span class="k">else</span> 
@@ -148,7 +130,7 @@
   <span class="s2">"Take one down and pass it around, "</span> <span class="p">\</span>
   <span class="s2">"</span><span class="si">#{</span><span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="si">}</span><span class="s2"> bottle of beer on the wall.</span><span class="se">\n</span><span class="s2">"</span>
 <span class="k">end</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor</p>
 
@@ -214,13 +196,12 @@
 
 
 
-      </div>
-    </div><script>
+    </main><script>
   const h = document.documentElement;
   const b = document.body;
   const st = 'scrollTop';
   const sh = 'scrollHeight';
-  const progress = document.querySelector('.kz-progress');
+  const progress = document.querySelector('.progress');
   let scroll;
 
   document.addEventListener('scroll', function() {
