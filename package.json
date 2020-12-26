@@ -1,0 +1,24 @@
+{
+  "name": "bookcase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "rollup": "^2.35.1",
+    "terser": "^5.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karn18/bookcase.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karn18/bookcase/issues"
+  },
+  "homepage": "https://github.com/karn18/bookcase#readme"
+}

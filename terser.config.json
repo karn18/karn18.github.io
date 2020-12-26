@@ -1,0 +1,6 @@
+{
+    "parse": { "ecma": 8 }, 
+    "compress": { "ecma": 5, "warnings": false, "comparisons": false, "pure_funcs": [ "console.log" ] },
+    "mangle": { "safari10": true },
+    "output": { "ecma": 5, "comments": false, "ascii_only": true }
+}
