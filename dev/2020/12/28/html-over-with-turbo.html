@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en"><!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>HTML over with Turbo | KT</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="HTML over with Turbo" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Turbo เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย" />
+<meta property="og:description" content="Turbo เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย" />
+<link rel="canonical" href="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-28T11:14:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" />
+<meta property="twitter:title" content="HTML over with Turbo" />
+<meta name="twitter:site" content="@karn18" />
+<meta name="twitter:creator" content="@Karn" />
+<script type="application/ld+json">
+{"image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png","@type":"imageObject"},"headline":"HTML over with Turbo","dateModified":"2020-12-28T11:14:00+07:00","datePublished":"2020-12-28T11:14:00+07:00","author":{"@type":"Person","name":"Karn"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html"},"description":"Turbo เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย","url":"https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
+<title>HTML over with Turbo</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">HTML over with Turbo</h1>
+  <div class="blog__info">
+    <i class="typcn typcn-calendar-outline"></i> 28-12-2020
+    
+      | <i class="typcn typcn-tag"></i>
+      
+        <span>ruby</span>
+      
+        <span>rails</span>
+      
+        <span>turbo</span>
+      
+    
+  </div>
+</div>
+
+  
+    <figure class="image blog-image-header">
+      <img src="/assets/images/posts/2020/ruby-refinement/cover.png">
+    </figure>
+  
+  <div class="blog__content">
+    <h2 id="turbo">Turbo</h2>
+<p>เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย<!--more--></p>
+
+<p>สามารถเข้าไปศึกษาวิธีการใช้ <strong>Turbo</strong> ได้จาก<a href="https://turbo.hotwire.dev">ที่นี่</a> หรือจะดูจากวิดีโอด้านล่างก็ได้นะครับ</p>
+
+<div class="video">
+  <video controls="" playsinline="">
+    <source src="https://s3.amazonaws.com/hotwire.dev/hotwire-screencast.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<hr />
+<blockquote>
+  <p>สำหรับความคิดเห็นส่วนตัวนั้นต้องบอกเลยว่าชอบเทคนิคอันนี้มาก เนื่องจากโดยส่วนตัวไม่ชอบการเขียน JavaScript และเลือกที่จะใช้ HTML มากกว่า JSON Object</p>
+</blockquote>
+
+<p>ในบทความนี้จะขอเล่าผ่านตัวอย่างแอพ Todo ที่สร้างขึ้นมา ซึ่งมีโมเดล <code class="language-plaintext highlighter-rouge">Todo</code> ในการเก็บงานสิ่งที่ทำ (<code class="language-plaintext highlighter-rouge">task:string</code>) และ flag ว่าทำเสร็จแล้วหรือไม่ (<code class="language-plaintext highlighter-rouge">done:boolean</code>) โดยตัวแอพจะมี form สำหรับให้เราบันทึก task ที่จะทำ จากนั้น task ก็จะถูกสร้างเก็บไว้ในฐานข้อมูล และแสดงผลอยู่บนบัญชีงานที่อยู่ด้านล่าง
+โดยแต่ละงาน เราสามารถที่จะกด Done เพื่อเสร็จสิ้นงาน และกด Delete เพื่อลบออกจากฐานข้อมูลได้ สำหรับ <strong>Turbo</strong> จะทำให้แอพของเรามีการ sync หน้าเว็บในกรณีที่เราเปิดหลายแท็บ หรือวินโดวส์ผ่าน Websocket</p>
+
+<h2 id="appviewstodosindexhtmlerb">app/views/todos/index.html.erb</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nb">p</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"notice"</span><span class="o">&gt;&lt;</span><span class="sx">%= notice %&gt;&lt;/p&gt;
+
+&lt;h1&gt;Todos&lt;/h1&gt;
+
+&lt;%=</span> <span class="n">turbo_stream_from</span> <span class="ss">:todos</span> <span class="o">%&gt;</span>
+
+<span class="o">&lt;</span><span class="sx">%= turbo_frame_tag :new_todo do %&gt;
+  &lt;%=</span> <span class="n">render</span> <span class="s1">'form'</span><span class="p">,</span> <span class="ss">todo: </span><span class="vi">@todo</span> <span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
+
+<span class="o">&lt;</span><span class="sx">%= turbo_frame_tag :todos do %&gt;
+  &lt;%=</span> <span class="n">render</span> <span class="vi">@todos</span> <span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
+</code></pre></div></div>
+
+<h2 id="appmodelstodorb">app/models/todo.rb</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Todo</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">after_create_commit</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">broadcast_append_to</span> <span class="ss">:todos</span><span class="p">,</span> <span class="ss">partial: </span><span class="s1">'todos/todo'</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">todo: </span><span class="nb">self</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="n">after_update_commit</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">broadcast_action_to</span> <span class="ss">:todos</span><span class="p">,</span> <span class="ss">action: </span><span class="s2">"replace"</span><span class="p">,</span> <span class="ss">target: </span><span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">downcase</span><span class="si">}</span><span class="s2">_</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="ss">partial: </span><span class="s1">'todos/todo'</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">todo: </span><span class="nb">self</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="n">after_destroy_commit</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">broadcast_action_to</span> <span class="ss">:todos</span><span class="p">,</span> <span class="ss">action: </span><span class="s2">"remove"</span><span class="p">,</span> <span class="ss">target: </span><span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">downcase</span><span class="si">}</span><span class="s2">_</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>โดยหลักๆ ของแอพจะใช้</p>
+<ul>
+  <li><strong>Turbo Frames</strong> ในการแยกคอมโพเนนต์ และจัดการแบบอิสระต่อกัน</li>
+  <li><strong>Turbo Streams</strong> ในการรับ partial page ผ่าน HTML และอัพเดตไปยังคอมโพแนนต์ที่กำหนดไว้</li>
+</ul>
+
+<div class="video">
+  <video controls="" playsinline="">
+    <source src="/assets/videos/todo-example.mov" type="video/mp4" />
+  </video>
+</div>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://turbo.hotwire.dev/">Turbo</a></li>
+</ul>
+
+  </div>
+  <div class="pagination">
+  <div class="pagination__newer">
+    
+  </div>
+  <div class="pagination__older">
+    
+      <a class="pagination__button" href="/dev/2020/12/18/refactoring-with-flocking-rules.html">Older &rarr;</a>
+    
+  </div>
+</div>
+</div>
+
+
+
+    </main><div class="footer">
+  <p>
+    Crafted by <strong>Karn Tirasoontorn</strong> with <strong><i class="typcn typcn-heart"></i></strong>
+  </p>
+  <p>
+    <i class="typcn typcn-social-twitter-circular"></i><a href="https://twitter.com/@karn18"><i class="fab fa-twitter"></i> @karn18</a>
+  </p>
+</div></body>
+</html>

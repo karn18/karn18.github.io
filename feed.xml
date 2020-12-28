@@ -1,4 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-12-27T20:35:24+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Refactoring with Flocking Rules</title><link href="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html" rel="alternate" type="text/html" title="Refactoring with Flocking Rules" /><published>2020-12-18T12:23:00+07:00</published><updated>2020-12-18T12:23:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html">&lt;p&gt;ได้อ่านหนังสือ &lt;a href=&quot;https://sandimetz.com/99bottles&quot;&gt;99 Bottles&lt;/a&gt; ของ &lt;strong&gt;Sandi Metz&lt;/strong&gt; แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค &lt;strong&gt;Flocking Rules&lt;/strong&gt; ก็เลยหยิบยกมาเล่าให้ฟัง&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-12-28T11:14:43+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">HTML over with Turbo</title><link href="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html" rel="alternate" type="text/html" title="HTML over with Turbo" /><published>2020-12-28T11:14:00+07:00</published><updated>2020-12-28T11:14:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/28/html-over-with-turbo</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html">&lt;h2 id=&quot;turbo&quot;&gt;Turbo&lt;/h2&gt;
+&lt;p&gt;เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;สามารถเข้าไปศึกษาวิธีการใช้ &lt;strong&gt;Turbo&lt;/strong&gt; ได้จาก&lt;a href=&quot;https://turbo.hotwire.dev&quot;&gt;ที่นี่&lt;/a&gt; หรือจะดูจากวิดีโอด้านล่างก็ได้นะครับ&lt;/p&gt;
+
+&lt;div class=&quot;video&quot;&gt;
+  &lt;video controls=&quot;&quot; playsinline=&quot;&quot;&gt;
+    &lt;source src=&quot;https://s3.amazonaws.com/hotwire.dev/hotwire-screencast.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  &lt;/video&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;สำหรับความคิดเห็นส่วนตัวนั้นต้องบอกเลยว่าชอบเทคนิคอันนี้มาก เนื่องจากโดยส่วนตัวไม่ชอบการเขียน JavaScript และเลือกที่จะใช้ HTML มากกว่า JSON Object&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ในบทความนี้จะขอเล่าผ่านตัวอย่างแอพ Todo ที่สร้างขึ้นมา ซึ่งมีโมเดล &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Todo&lt;/code&gt; ในการเก็บงานสิ่งที่ทำ (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;task:string&lt;/code&gt;) และ flag ว่าทำเสร็จแล้วหรือไม่ (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;done:boolean&lt;/code&gt;) โดยตัวแอพจะมี form สำหรับให้เราบันทึก task ที่จะทำ จากนั้น task ก็จะถูกสร้างเก็บไว้ในฐานข้อมูล และแสดงผลอยู่บนบัญชีงานที่อยู่ด้านล่าง
+โดยแต่ละงาน เราสามารถที่จะกด Done เพื่อเสร็จสิ้นงาน และกด Delete เพื่อลบออกจากฐานข้อมูลได้ สำหรับ &lt;strong&gt;Turbo&lt;/strong&gt; จะทำให้แอพของเรามีการ sync หน้าเว็บในกรณีที่เราเปิดหลายแท็บ หรือวินโดวส์ผ่าน Websocket&lt;/p&gt;
+
+&lt;h2 id=&quot;appviewstodosindexhtmlerb&quot;&gt;app/views/todos/index.html.erb&lt;/h2&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;notice&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= notice %&amp;gt;&amp;lt;/p&amp;gt;
+
+&amp;lt;h1&amp;gt;Todos&amp;lt;/h1&amp;gt;
+
+&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;turbo_stream_from&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:todos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= turbo_frame_tag :new_todo do %&amp;gt;
+  &amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'form'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;todo: &lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@todo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;% end &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= turbo_frame_tag :todos do %&amp;gt;
+  &amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@todos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;% end &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;appmodelstodorb&quot;&gt;app/models/todo.rb&lt;/h2&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Todo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;after_create_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_append_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:todos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'todos/todo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;todo: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;after_update_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_action_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:todos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;action: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;replace&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;target: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;downcase&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'todos/todo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;todo: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;after_destroy_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_action_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:todos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;action: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;remove&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;target: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;downcase&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;โดยหลักๆ ของแอพจะใช้&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Turbo Frames&lt;/strong&gt; ในการแยกคอมโพเนนต์ และจัดการแบบอิสระต่อกัน&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Turbo Streams&lt;/strong&gt; ในการรับ partial page ผ่าน HTML และอัพเดตไปยังคอมโพแนนต์ที่กำหนดไว้&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;video&quot;&gt;
+  &lt;video controls=&quot;&quot; playsinline=&quot;&quot;&gt;
+    &lt;source src=&quot;/assets/videos/todo-example.mov&quot; type=&quot;video/mp4&quot; /&gt;
+  &lt;/video&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://turbo.hotwire.dev/&quot;&gt;Turbo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="rails" /><category term="turbo" /><summary type="html">Turbo เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Refactoring with Flocking Rules</title><link href="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html" rel="alternate" type="text/html" title="Refactoring with Flocking Rules" /><published>2020-12-18T12:23:00+07:00</published><updated>2020-12-18T12:23:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html">&lt;p&gt;ได้อ่านหนังสือ &lt;a href=&quot;https://sandimetz.com/99bottles&quot;&gt;99 Bottles&lt;/a&gt; ของ &lt;strong&gt;Sandi Metz&lt;/strong&gt; แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค &lt;strong&gt;Flocking Rules&lt;/strong&gt; ก็เลยหยิบยกมาเล่าให้ฟัง&lt;/p&gt;
 
 &lt;p&gt;ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง
 ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง&lt;/p&gt;
@@ -103,7 +163,7 @@
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://discourse.stimulusjs.org/t/announcing-stimulus-2-0/1482&quot;&gt;Announcing Stimulus 2.0&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://stimulusjs.org/&quot;&gt;StimulusJS&lt;/a&gt;&lt;/li&gt;
@@ -235,7 +295,7 @@
 
 &lt;p&gt;ถ้าอยากดูรายละเอียดเพิ่มเติมดูได้จาก repo ที่แชร์ไว้ด้านล่างนะครับ 👇&lt;/p&gt;
 
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/fun_games&quot;&gt;Fun Games&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://codepen.io/james_gillen/pen/NGwqML&quot;&gt;CSS for fliping card&lt;/a&gt;&lt;/li&gt;
@@ -266,7 +326,7 @@
   &lt;p&gt;การตรวจสอบค่าอาจจะใช้ algorithm อื่นแทน MD5 ก็ได้ ไม่ว่าจะเป็น SHA1 หรือ SHA256&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://comodosslstore.com/ssltools/cert-key-matcher.php&quot;&gt;Cert Key Matcher&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.looklinux.com/check-if-certificate-private-key-and-csr-match/&quot;&gt;Check if certificate private key and csr match&lt;/a&gt;&lt;/li&gt;
@@ -340,7 +400,7 @@
 
 &lt;p&gt;เพียงเท่านี้เราก็ได้ไฟล์ &lt;strong&gt;gif&lt;/strong&gt; ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้&lt;strong&gt;ฟรี&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://gif.ski/&quot;&gt;Gifski&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="gif" /><category term="gifski" /><category term="video" /><summary type="html">ต้องแนะนำแอพ Gifski นี้เลยครับสำหรับใครที่ต้องการจะแปลงไฟล์วิดีโอให้เป็นไฟล์ gif ซึ่งใช้งานได้อย่างง่ายดาย เพียงแค่เปิดโปรแกรมขึ้น และลากไฟล์ที่เราต้องการจะแปลงเข้าไป จากนั้นก็เลือกปรับขนาดของภาพ, FPS, และ Quality ตามต้องการ ซึ่งการปรับแต่งก็จะส่งผลต่อขนาดไฟล์ สำหรับผมต้องการไฟล์ gif ไปแสดงอยู่บนเว็บบทความของผมซึ่งก็จะกังวลเรื่องของขนาด โดยที่ไม่อยากให้มันใหญ่มากก็จะพยายามปรับขนาดภาพให้เล็ก ส่วน FPS และ Quality ก็จะให้ค่าต่ำๆ หน่อย เพียงให้พอดูออก ปรับเรียบร้อยก็กดปุ่ม convert เพียงเท่านี้เราก็ได้ไฟล์ gif ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้ฟรี References Gifski</summary></entry><entry><title type="html">Yummy 🍬</title><link href="https://karn18.github.io/stem/2020/10/31/yummy-candy.html" rel="alternate" type="text/html" title="Yummy 🍬" /><published>2020-10-31T22:50:00+07:00</published><updated>2020-10-31T22:50:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/31/yummy-candy</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/31/yummy-candy.html">&lt;p&gt;ลองมาใช้ &lt;strong&gt;micro:bit&lt;/strong&gt; ควบคุมตัวละครใน &lt;strong&gt;scratch&lt;/strong&gt; ให้เคลื่อนไหวตามการเคลื่อนไหวของ &lt;strong&gt;micro:bit&lt;/strong&gt; กันดีกว่า เนื่องในวัน &lt;strong&gt;Halloween&lt;/strong&gt; ก็ขอเลือก &lt;strong&gt;theme&lt;/strong&gt; เป็น &lt;strong&gt;Halloween&lt;/strong&gt; กัน&lt;!--more--&gt;&lt;/p&gt;
@@ -363,7 +423,7 @@
 &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/yummy-candy/cut.gif&quot; alt=&quot;showcase&quot; /&gt;
 &lt;em&gt;Yummy&lt;/em&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://scratch.mit.edu&quot;&gt;Scratch&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://microbit.org/&quot;&gt;micro:bit&lt;/a&gt;&lt;/li&gt;
@@ -420,69 +480,8 @@
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git lfs ls-files
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://git-lfs.github.com/&quot;&gt;Git LFS&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/git-lfs/&quot;&gt;Handling Large Files with LFS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="git" /><summary type="html">ไม่ว่าจะเป็นความตั้งใจ หรือบังเอิญที่ต้องมีการใส่ไฟล์ประเภทภาพ เสียง หรือวิดีโอเข้าไปยัง git repository ถ้าไฟล์เหล่าไม่ได้มีจำนวนเยอะ มีการอัพเดตบ่อยๆ หรือมีขนาดใหญ่ ก็คงไม่ต้องซีเรียสอะไรมากปล่อยผ่านไปก็ได้ แต่ถ้าเกิดต้องมีการอัพเดตไฟล์อยู่บ่อยๆ ขนาดไฟล์ก็ใหญ่ขึ้นเรื่อยๆ อันนี้แหละเราจะต้องมาดูก่อนหน่อย เพราะมีผลกระทบที่เกิดขึ้นกับ git repository ของเราแน่ๆ ไม่ว่าจะเป็น git history ที่จะใหญ่ขึ้นตาม การ pull หรือ fetch ข้อมูลก็จะช้าขึ้นนั้นเอง</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/git-lfs/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/git-lfs/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ป้ายไฟแสดงชื่อด้วย micro:bit</title><link href="https://karn18.github.io/stem/2020/10/25/moving-display.html" rel="alternate" type="text/html" title="ป้ายไฟแสดงชื่อด้วย micro:bit" /><published>2020-10-25T15:29:00+07:00</published><updated>2020-10-25T15:29:00+07:00</updated><id>https://karn18.github.io/stem/2020/10/25/moving-display</id><content type="html" xml:base="https://karn18.github.io/stem/2020/10/25/moving-display.html">&lt;p&gt;&lt;strong&gt;micro:bit&lt;/strong&gt; สามารถนำมาทำเป็นป้ายไฟได้ด้วยนะ ซึ่งการเขียนโค้ดแสดงป้ายไฟนี้
-น้องๆ จะได้เรียนรู้การแสดงผลตัวอักษรผ่านบล็อก &lt;strong&gt;show leds&lt;/strong&gt; การหน่วงเวลาการแสดงผลโดยใช้บล็อก &lt;strong&gt;pause&lt;/strong&gt; และการทำงานของโปรแกรมต่อเนื่องตามลำดับจากบล็อกสู่บล็อก 🌈&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;เริ่มต้นกันเลย&quot;&gt;เริ่มต้นกันเลย&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เปิดโปรแกรม &lt;strong&gt;Microsoft MakeCode&lt;/strong&gt; ขึ้นมาและสร้างโปรเจคใหม่ว่า &lt;strong&gt;ป้ายไฟ&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/new_project.png&quot; alt=&quot;new project&quot; /&gt;
-&lt;em&gt;สร้างโปรเจค ป้ายไฟ&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;สำหรับป้ายไฟปกติแล้วจะแสดงข้อความวนไปเรื่อยๆ ดังนั้นเราจะใช้บล็อก &lt;strong&gt;forever&lt;/strong&gt; เพื่อให้โปรแกรมสามารถทำงานวนไปเรื่อยๆ ไม่มีที่สิ้นสุดได้&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/makecode1.png&quot; alt=&quot;makecode1&quot; /&gt;
-&lt;em&gt;บล็อก leds ต่อเข้ากับบล็อก forever&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ป้ายไฟในวันนี้จะแสดงชื่อของเราเอง ซึ่งป้ายไฟของผมก็จะเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;KARN&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;เริ่มลากบล็อก &lt;strong&gt;show leds&lt;/strong&gt; มาต่อกับบล็อก &lt;strong&gt;forever&lt;/strong&gt; จากนั้นปรับ leds ให้แสดงตัวอักษร โดยแต่ละบล็อกแสดง 1 ตัวอักษรเท่านั้น&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/makecode2.png&quot; alt=&quot;makecode2&quot; width=&quot;200px&quot; /&gt;
-&lt;em&gt;ปรับบล็อก show leds ให้แสดงตัวอักษร K&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ต่อตัวอักษรให้เป็นคำตามที่ต้องการ และตรวจสอบผลลัพท์บนบอร์ด &lt;strong&gt;micro:bit&lt;/strong&gt; จำลอง&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/simulator1.gif&quot; alt=&quot;simulator1&quot; /&gt;
-&lt;em&gt;ป้ายไฟแสดงข้อความ KARN&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;จะสังเกตเห็นว่าตอนนี้ตัวอักษรจะวิ่งค่อนข้างเร็ว จนทำให้ตาเรามองมันทันว่าป้ายไฟของเราพยายามจะแสดงคำว่าอะไร&lt;/li&gt;
-  &lt;li&gt;เพื่อหน่วงเวลาในการแสดงผลตัวอักษรแต่ละตัวให้ช้าขึ้น ให้เราลากบล็อก &lt;strong&gt;pause&lt;/strong&gt; ระหว่างตัวอักษร&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/makecode3.png&quot; alt=&quot;simulator1&quot; /&gt;
-&lt;em&gt;บล็อก pause&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ทดลองปรับเวลาในการหน่วงบนบล็อก &lt;strong&gt;pause&lt;/strong&gt; และสังเกตความแตกต่าง&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/makecode4.png&quot; alt=&quot;simulator1&quot; width=&quot;200px&quot; /&gt;
-&lt;em&gt;บล็อกคำสั่งที่สมบูรณ์&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/simulator2.gif&quot; alt=&quot;simulator1&quot; /&gt;
-&lt;em&gt;ป้ายไฟที่ปรับความเร็วในการแสดงผลแล้ว&lt;/em&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;💡 นอกจากการใช้บล็อก &lt;strong&gt;show leds&lt;/strong&gt; มาใช้แสดงตัวอักษร เรายังสามารถใช้บล็อก &lt;strong&gt;show string&lt;/strong&gt; มาใช้แทนได้ด้วยนะ ลองไปทดลองเล่นกันดู&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เมื่อปรับเปลี่ยนความเร็วในการแสดงผลเป็นที่พอใจแล้ว ที่นี่เรามาโหลดโปรแกรมเข้าไปยัง &lt;strong&gt;micro:bit&lt;/strong&gt; ดู&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/moving-display/microbit.gif&quot; alt=&quot;microbit&quot; /&gt;
-&lt;em&gt;รันโค้ดป้ายไฟบน micro:bit&lt;/em&gt;&lt;/p&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="basic" /><category term="microbit" /><summary type="html">micro:bit สามารถนำมาทำเป็นป้ายไฟได้ด้วยนะ ซึ่งการเขียนโค้ดแสดงป้ายไฟนี้ น้องๆ จะได้เรียนรู้การแสดงผลตัวอักษรผ่านบล็อก show leds การหน่วงเวลาการแสดงผลโดยใช้บล็อก pause และการทำงานของโปรแกรมต่อเนื่องตามลำดับจากบล็อกสู่บล็อก 🌈</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/moving-display/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/moving-display/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="git" /><summary type="html">ไม่ว่าจะเป็นความตั้งใจ หรือบังเอิญที่ต้องมีการใส่ไฟล์ประเภทภาพ เสียง หรือวิดีโอเข้าไปยัง git repository ถ้าไฟล์เหล่าไม่ได้มีจำนวนเยอะ มีการอัพเดตบ่อยๆ หรือมีขนาดใหญ่ ก็คงไม่ต้องซีเรียสอะไรมากปล่อยผ่านไปก็ได้ แต่ถ้าเกิดต้องมีการอัพเดตไฟล์อยู่บ่อยๆ ขนาดไฟล์ก็ใหญ่ขึ้นเรื่อยๆ อันนี้แหละเราจะต้องมาดูก่อนหน่อย เพราะมีผลกระทบที่เกิดขึ้นกับ git repository ของเราแน่ๆ ไม่ว่าจะเป็น git history ที่จะใหญ่ขึ้นตาม การ pull หรือ fetch ข้อมูลก็จะช้าขึ้นนั้นเอง</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/git-lfs/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/git-lfs/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
