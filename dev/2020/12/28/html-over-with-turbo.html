@@ -32,8 +32,7 @@
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
-  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
-<title>ส่งผ่าน HTML ไปยังแอพด้วย Turbo</title>
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><title>ส่งผ่าน HTML ไปยังแอพด้วย Turbo</title>
 </head><body>
     <div class="progress"></div>
     <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
@@ -239,6 +238,15 @@
   <span class="n">after_update_commit</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">broadcast_replace_to</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">target: </span><span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">downcase</span><span class="si">}</span><span class="s2">_</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="ss">partial: </span><span class="s1">'tasks/task'</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">task: </span><span class="nb">self</span> <span class="p">}</span> <span class="p">}</span>
   <span class="n">after_destroy_commit</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">broadcast_action_to</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">action: </span><span class="s2">"remove"</span><span class="p">,</span> <span class="ss">target: </span><span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">downcase</span><span class="si">}</span><span class="s2">_</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
 <span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เพิ่ม <code class="language-plaintext highlighter-rouge">Turbo Stream</code> เข้าไปใน <code class="language-plaintext highlighter-rouge">index</code></p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+<span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"title"</span><span class="nt">&gt;</span>Todo<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;</span><span class="err">%=</span> <span class="na">turbo_stream_from</span> <span class="na">:tasks</span> <span class="err">%</span><span class="nt">&gt;</span>
 </code></pre></div>    </div>
   </li>
   <li>
