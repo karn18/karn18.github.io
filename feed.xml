@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-12-28T11:38:04+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">HTML over with Turbo</title><link href="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html" rel="alternate" type="text/html" title="HTML over with Turbo" /><published>2020-12-28T11:14:00+07:00</published><updated>2020-12-28T11:14:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/28/html-over-with-turbo</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html">&lt;h2 id=&quot;turbo&quot;&gt;Turbo&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2020-12-30T14:57:07+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ส่งผ่าน HTML ไปยังแอพด้วย Turbo</title><link href="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html" rel="alternate" type="text/html" title="ส่งผ่าน HTML ไปยังแอพด้วย Turbo" /><published>2020-12-28T11:14:00+07:00</published><updated>2020-12-28T11:14:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/28/html-over-with-turbo</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html">&lt;h2 id=&quot;turbo&quot;&gt;Turbo&lt;/h2&gt;
 &lt;p&gt;เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;สามารถเข้าไปศึกษาวิธีการใช้ &lt;strong&gt;Turbo&lt;/strong&gt; ได้จาก&lt;a href=&quot;https://turbo.hotwire.dev&quot;&gt;ที่นี่&lt;/a&gt; หรือจะดูจากวิดีโอด้านล่างก็ได้นะครับ&lt;/p&gt;
@@ -11,53 +11,202 @@
 
 &lt;hr /&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;สำหรับความคิดเห็นส่วนตัวนั้นต้องบอกเลยว่าชอบเทคนิคอันนี้มาก เนื่องจากโดยส่วนตัวไม่ชอบการเขียน JavaScript และเลือกที่จะใช้ HTML มากกว่า JSON Object&lt;/p&gt;
+  &lt;p&gt;โดยส่วนตัวนั้นต้องบอกเลยว่าชอบเทคนิคอันนี้มาก เนื่องจากโดยส่วนตัวไม่ชอบการเขียน JavaScript และเลือกที่จะใช้ HTML มากกว่าการจัดการกับ JSON&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;ในบทความนี้จะขอเล่าผ่านตัวอย่างแอพ Todo ที่สร้างขึ้นมา ซึ่งมีโมเดล &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Todo&lt;/code&gt; ในการเก็บงานสิ่งที่ทำ (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;task:string&lt;/code&gt;) และ flag ว่าทำเสร็จแล้วหรือไม่ (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;done:boolean&lt;/code&gt;) โดยตัวแอพจะมี form สำหรับให้เราบันทึก task ที่จะทำ จากนั้น task ก็จะถูกสร้างเก็บไว้ในฐานข้อมูล และแสดงผลอยู่บนบัญชีงานที่อยู่ด้านล่าง
-โดยแต่ละงาน เราสามารถที่จะกด Done เพื่อเสร็จสิ้นงาน และกด Delete เพื่อลบออกจากฐานข้อมูลได้ สำหรับ &lt;strong&gt;Turbo&lt;/strong&gt; จะทำให้แอพของเรามีการ sync หน้าเว็บในกรณีที่เราเปิดหลายแท็บ หรือวินโดวส์ผ่าน Websocket&lt;/p&gt;
-
-&lt;h2 id=&quot;appviewstodosindexhtmlerb&quot;&gt;app/views/todos/index.html.erb&lt;/h2&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;notice&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= notice %&amp;gt;&amp;lt;/p&amp;gt;
-
-&amp;lt;h1&amp;gt;Todos&amp;lt;/h1&amp;gt;
-
-&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;turbo_stream_from&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:todos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= turbo_frame_tag :new_todo do %&amp;gt;
-  &amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'form'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;todo: &lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@todo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;% end &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= turbo_frame_tag :todos do %&amp;gt;
-  &amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@todos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;% end &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;appmodelstodorb&quot;&gt;app/models/todo.rb&lt;/h2&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Todo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;after_create_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_append_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:todos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'todos/todo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;todo: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;after_update_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_action_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:todos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;action: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;replace&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;target: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;downcase&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'todos/todo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;todo: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;after_destroy_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_action_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:todos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;action: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;remove&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;target: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;downcase&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;โดยหลักๆ ของแอพจะใช้&lt;/p&gt;
+&lt;p&gt;ในบทความนี้จะมาลองพัฒนาแอพ Todo โดยใช้ความสามารถของ &lt;strong&gt;Turbo&lt;/strong&gt; กัน มาดูโจทย์ของเรากันก่อนเลย&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Turbo Frames&lt;/strong&gt; ในการแยกคอมโพเนนต์ และจัดการแบบอิสระต่อกัน&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Turbo Streams&lt;/strong&gt; ในการรับ partial page ผ่าน HTML และอัพเดตไปยังคอมโพแนนต์ที่กำหนดไว้&lt;/li&gt;
+  &lt;li&gt;แอพจะมีโมเดล &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ในการเก็บบันทึกสิ่งที่จะทำ (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;name:string&lt;/code&gt;) และ flag สำหรับระบุว่างานนั้นๆ ทำเสร็จแล้วหรือยัง (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;done:boolean&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;แอพจะมีเพียงหน้าเดียว แบบเดียวกับ SPA โดยแยกออกเป็น 2 ส่วนคือ
+    &lt;ol&gt;
+      &lt;li&gt;ฟอร์มสำหรับบันทึก &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ซึ่งจะใช้ร่วมกันไม่ว่าจะเป็นการสร้างข้อมูลใหม่ หรือแก้ไขของเดิม&lt;/li&gt;
+      &lt;li&gt;ส่วนของการแสดงผล &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ทั้งหมดที่มีการสร้างขึ้นทั้งหมด (Task List)&lt;/li&gt;
+      &lt;li&gt;Task หนึ่งๆ ที่แสดงผลจะมีปุ่มสำหรับคลิกเพื่อแก้ไข (Edit) ปุ่มสำหรับเช็คว่างานนั้นทำเสร็จแล้ว (Done) และปุ่มสำหรับลบ (Delete)&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;แอพสามารถ sync ข้อมูลอัตโนมัติ ไม่ว่าเราจะเปิดหน้าเว็บไว้กี่ tab ก็ตามผ่าน Websocket&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ใช้ &lt;strong&gt;Bulma&lt;/strong&gt; เพื่อเพิ่มความสวยงาม&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/html-over-with-turbo/components.png&quot; alt=&quot;compnents&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h2 id=&quot;มาลงมือกันเลย&quot;&gt;มาลงมือกันเลย&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;สร้างแอพใหม่ขึ้นมากันก่อน&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails new awesome_todo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เพิ่ม gem &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotwire-rails&lt;/code&gt; เข้าไปยัง Gemfile&lt;/p&gt;
+
+    &lt;p&gt;❗️ ที่ใช้เลือกใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotwire-rails&lt;/code&gt; นั้นเพราะในแอพต้องการใช้ความสามารถของ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Stimulus&lt;/code&gt; ด้วยดังนั้นจึงเลือกใช้ gem ตัวนี้ แต่ถ้าต้องการใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo&lt;/code&gt; เพียงอย่างเดียว เราสามารถเลือกติดตั้ง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turbo-rails&lt;/code&gt; แทนได้&lt;/p&gt;
+
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# gem 'turbo-rails'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hotwire-rails'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ติดตั้ง gem และ dependency ของ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# $ rails turbo:install&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails hotwire:install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;คำสั่งข้างต้นจะติดตั้งส่วนที่จำเป็นให้กับแอพของเรา ไม่ว่าจะเป็น config สำหรับ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Action Cable&lt;/code&gt;, include tag ใน layout และ JavaScript ที่ใช้งาน&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;คอมเมนต์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;require(&quot;turbolinks&quot;).start()&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/javascript/packs/application.js&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;ตรวจสอบค่าการเชื่อมต่อกับฐานข้อมูลที่จะใช้งาน&lt;/li&gt;
+  &lt;li&gt;ติดตั้ง &lt;strong&gt;Bulma CSS&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;สร้างโมเดล &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails g scaffold Task name:string &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;:boolean
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เริ่มแก้ไขหน้า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt; (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/app/views/tasks/index.html.erb&lt;/code&gt;) ให้มีคอมโพเนนต์ตามที่กำหนดไว้ คือ ส่วนแรกแสดงฟอร์มในการบันทึก และส่วนที่สองแสดงรายการสิ่งที่จะทำ โดยแต่ละส่วนจะถูกครอบด้วย &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo Frame&lt;/code&gt; :new_task และ :tasks ตามลำดับ&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;main&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;section&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Todo&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:new_task&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;',&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;box mt-2 mb-2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:tasks&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tasks&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/main&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;แก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;index&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@tasks&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;all&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;แก้ไข form สำหรับการบันทึกและแก้ไขข้อมูลใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/views/tasks/_form.html.erb&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form_with&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;local:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task.errors.any&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;error_explanation&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pluralize&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;task.errors.count&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; prohibited this task from being saved:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task.errors.full_messages.each&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;field has-addons&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;control&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form.text_field&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;placeholder:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;สิ่งที่จะทำ&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;control&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form.submit&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;บันทึก&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;is-primary&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;แก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;create&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt; เพื่อใช้ในการบันทึกสิ่งที่จะทำใหม่&lt;/p&gt;
+
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เพิ่ม action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;done&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt; เพื่อใช้เปลี่ยน flag&lt;/p&gt;
+
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;don&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;update!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;done: &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;แก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;destroy&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt; เพื่อใช้ในการลบรายการที่ทำออก&lt;/p&gt;
+
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;destroy!&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;จะเห็นได้ว่าโค้ดในส่วนของการ render response ข้างต้นนั้นหายไปเลย นั้นเพราะว่าเราจะใช้ความสามารถของ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo Stream&lt;/code&gt; ในการส่ง HTML ไปยังหน้าเว็บผ่านทาง Websocket แทน ซึ่งเราจะเข้าไปแก้ไขที่ model &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/models/task.rb&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;after_create_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_append_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/task'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;after_update_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_replace_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;target: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;downcase&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/task'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;after_destroy_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_action_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;action: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;remove&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;target: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;downcase&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ที่นี้ในส่วนของการแก้ไขรายการสิ่งที่จะทำอันเก่านั้น เราจะใช้ form เดิมที่อยู่ด้านบน ดังนั้นเราจะต้องแก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;edit&lt;/code&gt; และ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;edit&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;turbo_stream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;turbo_stream: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;turbo_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:new_task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/turbo_form'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;update!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;turbo_stream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;turbo_stream: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;turbo_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:new_task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/turbo_form'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เพิ่ม partial html &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_turbo_form.html.erb&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/views/tasks&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# app/views/tasks/_edit.html.erb
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:new_task&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'form'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เมื่อทดลองใช้งาน form ในการบันทึกหรือแก้ไข จะพบว่าข้อความที่อยู่ใน input ไม่ได้ถูกรีเซทเมื่อมีการบันทึกเรียบร้อยแล้ว ซึ่งเราจะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Stimulus&lt;/code&gt; มาช่วยในการ reset ค่าที่อยู่ใน input สร้างไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turbo_form_controller.js&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/assets/javascripts/controllers&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ใส่ controller เข้าไปใน form&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form_with&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;local:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;controller:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;turbo_form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;',&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;action:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;turbo:submit-end-&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;turbo_form#reset&quot; }) do |form| %&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;เพียงเท่านี้เราก็จะได้แอพ ​TODO ที่พร้อมใช้งานดังแสดงในวิดีโอด้านล่าง&lt;/p&gt;
 
 &lt;div class=&quot;video&quot;&gt;
   &lt;video controls=&quot;&quot; playsinline=&quot;&quot;&gt;
-    &lt;source src=&quot;/assets/videos/todo-example.mov&quot; type=&quot;video/mp4&quot; /&gt;
+    &lt;source src=&quot;/assets/videos/awesome_todo.mov&quot; type=&quot;video/mp4&quot; /&gt;
   &lt;/video&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://turbo.hotwire.dev/&quot;&gt;Turbo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/awesome_todo&quot;&gt;Awesome Todo&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="rails" /><category term="turbo" /><summary type="html">Turbo เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/html-over-with-turbo/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/html-over-with-turbo/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Refactoring with Flocking Rules</title><link href="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html" rel="alternate" type="text/html" title="Refactoring with Flocking Rules" /><published>2020-12-18T12:23:00+07:00</published><updated>2020-12-18T12:23:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html">&lt;p&gt;ได้อ่านหนังสือ &lt;a href=&quot;https://sandimetz.com/99bottles&quot;&gt;99 Bottles&lt;/a&gt; ของ &lt;strong&gt;Sandi Metz&lt;/strong&gt; แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค &lt;strong&gt;Flocking Rules&lt;/strong&gt; ก็เลยหยิบยกมาเล่าให้ฟัง&lt;/p&gt;
 
 &lt;p&gt;ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง
