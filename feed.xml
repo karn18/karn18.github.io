@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-01-07T16:44:53+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Stimulus Template</title><link href="https://karn18.github.io/dev/2021/01/07/stimulus-template.html" rel="alternate" type="text/html" title="Stimulus Template" /><published>2021-01-07T09:39:00+07:00</published><updated>2021-01-07T09:39:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/07/stimulus-template</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/07/stimulus-template.html">&lt;p&gt;ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ &lt;strong&gt;Stimulus&lt;/strong&gt; อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น &lt;strong&gt;node module&lt;/strong&gt; และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ &lt;strong&gt;Template&lt;/strong&gt; หรือ &lt;strong&gt;Boilerplate&lt;/strong&gt; ไว้ใช้ดีกว่า&lt;!--more--&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-01-07T22:47:26+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">เลือกหุ่นยนต์การศึกษาให้เหมาะกับเด็กๆ ได้อย่างไร</title><link href="https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids.html" rel="alternate" type="text/html" title="เลือกหุ่นยนต์การศึกษาให้เหมาะกับเด็กๆ ได้อย่างไร" /><published>2021-01-07T22:47:00+07:00</published><updated>2021-01-07T22:47:00+07:00</updated><id>https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids</id><content type="html" xml:base="https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids.html">&lt;p&gt;ในยุคปัจจุบันการเรียนรู้ของเด็กนั้นแตกต่างๆ จากสมัยก่อนมากเลยทีเดียว การเรียนรู้และศึกษาเกี่ยวกับ &lt;strong&gt;STEAM&lt;/strong&gt; (Science, Technology, Engineering, Art และ Mathermatics) ก็มีความทันสมัย และเข้าถึงได้ง่ายขึ้นผ่านการเรียนรู้จากหุ่นยนต์ (Robot) อีกทั้งยังช่วยสงเสริมความคิดสร้างสรรค์ การออกแบบ และแก้ไขปัญหาด้วย ในฐานะผู้ปกครองเราจะเลือกหุ่นยนต์ที่เหมาะสมเพื่อให้ลูกของเราได้เรียนรู้และศึกษาได้อย่างไร เมื่อในท้องตลาดนั้นมีหุ่นยนต์มากมาย และหลากหลายประเภทเหลือเกิน&lt;!--more--&gt; วันนี้เราจะมาลองทำความรู้จักกับประเภทของหุ่นยนต์การศึกษากันหน่อยซึ่งโดยหลักๆ แล้วจะแบ่งออกเป็น 4 ประเภทใหญ่ๆ ด้วยกันคือ&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;การจำแนกประเภทหุ่นยนต์นี้อ้างอิงจากลักษณะของหุ่นยนต์ รูปแบบการสอน และวิธิการเขียนโค้ดเป็นหลัก&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Physical Coded Robots&lt;/strong&gt; หุ่นยนต์ประเภทนี้จะเน้นที่การเขียนโค้ดโดยไม่ใช้หน้าจอ หรือจะเรียกอีกอย่างก็คือ Unplug Coding โดยรูปร่างของหุ่นยนต์จะออกไปในเชิงของเล่น น่ารักๆ เหมาะกับเด็กช่วงอายุ 4 - 9 ขวบ ลักษณะของการสอนก็จะให้เด็กๆ ได้เรียนรู้พื้นฐานการเขียนโค้ด ไม่ว่าจะเป็นการคำสั่ง การทำงานตามลำดับ การคิดแยกแยะปัญหาแบบง่ายผ่านกิจกรรมต่างๆ (Play-based learning) ตัวอย่างหุ่นยนต์ประเภทนี้ก็ได้แก่ Bee-bot, Cubetto หรือ Matatalab เป็นต้น&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Introductory Programmable Robots&lt;/strong&gt; หุ่นยนต์ประเภทนี้อัพเกรดขึ้นมาจากประเภทแรก เริ่มเน้นเรื่องคอนเซปต์การเขียนโค้ดมากขึ้นผ่านตัวโปรแกรม ซึ่งก็จะเริ่มใช้หน้าจอไม่ว่าจะผ่านทาง Controller, Tablet หรือ Computer แต่ยังคงความสนุกสนานผ่านการกิจกรรม หรือเกมส์ (Just for fun and learning to code) ลักษณะหุ่นยนต์ก็ยังคงคล้ายๆ กับประเภทแรก เช่น Botley หรือ Dash เป็นต้น&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Computer Programmable Robots&lt;/strong&gt; แน่นอนว่าหุ่นยนต์ประเภทนี้ก็จะอัพเกรตขึ้นมาจากประเภทที่สอง โดยหุ่นยนต์เริ่มมีเซนเซอร์อื่นๆ เข้ามาผสมด้วย ทำให้หุ่นยนต์นั้นมีความสามารถมากขึ้น น้องๆ ก็จะได้เรียนรู้เทคโนโลยีและวิธีการเขียนโค้ดที่ซับซ้อนขึ้น เช่น การเขียนบังคับให้หุ่นยนต์เดิน หลบหลีกสิ่งกีดขวาง หรือเคลื่อนไหวเมื่อมีเสียงก็ได้ การเขียนโค้ดก็จะอยู่ในรูป block-based และ text-based ขึ้นอยู่กับระดับการเรียนการสอน สำหรับรูปแบบการเรียนก็จะมุ่งเน้นผ่านกิจกรรม การออกแบบความคิดสร้างสรรค์เป็นโปรเจ็ค รวมถึงการแข่งขันในระดับต่างๆ หุ่นยนต์ประเภทนี้ได้แก่ Edison หรือ Sphero Bolt เป็นต้น&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Kit-based Robots&lt;/strong&gt; หุ่นยนต์ประเภทนี้เด็กๆ จะชอบกันมากเพราะตัวหุ่นยนต์จะแยกชิ้นส่วนมา และจะต้องประกอบร่างขึ้นมาให้สำเร็จ ซึ่งทำให้เด็กรู้สึกเหมือนได้สร้างหุ่นยนต์ขึ้นมาด้วยตัวเค้าเอง โดยหุ่นยนต์จะมีเซนเซอร์ หรือมอเตอร์ขับเคลื่อนมาด้วย ทำให้เมื่อการเขียนโค้ดสามารถไปควบคุมสั่งงานให้หุ่นยนต์มีการขยับ หรือเคลื่อนที่ตามที่ต้องการ การเขียนโค้ดก็จะผ่าน Tablet ซะเป็นส่วนใหญ่ หุ่นยนต์ประเภทนี้ก็ได้แก่ LEGO Mindstroms EV3 หรือ VEX เป็นต้น&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;ทั้งหมดนี้ก็เป็นประเภทของหุ่นยนต์การศึกษา ซึ่งแต่ละประเภทก็มีจุดเด่นกันคนละแบบขึ้นอยู่กับวัย และทักษะที่อยากจะส่งเสริมให้กับเด็กๆ&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://meetedison.com/how-to-choose-the-right-robot-for-your-classroom/&quot;&gt;Choose the right robot for your classroom&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="steam" /><category term="robot" /><summary type="html">ในยุคปัจจุบันการเรียนรู้ของเด็กนั้นแตกต่างๆ จากสมัยก่อนมากเลยทีเดียว การเรียนรู้และศึกษาเกี่ยวกับ STEAM (Science, Technology, Engineering, Art และ Mathermatics) ก็มีความทันสมัย และเข้าถึงได้ง่ายขึ้นผ่านการเรียนรู้จากหุ่นยนต์ (Robot) อีกทั้งยังช่วยสงเสริมความคิดสร้างสรรค์ การออกแบบ และแก้ไขปัญหาด้วย ในฐานะผู้ปกครองเราจะเลือกหุ่นยนต์ที่เหมาะสมเพื่อให้ลูกของเราได้เรียนรู้และศึกษาได้อย่างไร เมื่อในท้องตลาดนั้นมีหุ่นยนต์มากมาย และหลากหลายประเภทเหลือเกิน</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Stimulus Template</title><link href="https://karn18.github.io/dev/2021/01/07/stimulus-template.html" rel="alternate" type="text/html" title="Stimulus Template" /><published>2021-01-07T09:39:00+07:00</published><updated>2021-01-07T09:39:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/07/stimulus-template</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/07/stimulus-template.html">&lt;p&gt;ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ &lt;strong&gt;Stimulus&lt;/strong&gt; อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น &lt;strong&gt;node module&lt;/strong&gt; และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ &lt;strong&gt;Template&lt;/strong&gt; หรือ &lt;strong&gt;Boilerplate&lt;/strong&gt; ไว้ใช้ดีกว่า&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;วิธีการใช้งาน&quot;&gt;วิธีการใช้งาน&lt;/h2&gt;
 
@@ -598,59 +624,4 @@
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://comodosslstore.com/ssltools/cert-key-matcher.php&quot;&gt;Cert Key Matcher&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.looklinux.com/check-if-certificate-private-key-and-csr-match/&quot;&gt;Check if certificate private key and csr match&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="nginx" /><category term="ssl" /><summary type="html">เมื่ออยากกำหนดให้เว็บไซด์ที่เรารันบน Nginx สามารถใช้งาน HTTPS วิธีที่ง่ายที่เราคุ้นชินก็คงใช้ Certbot ในการสร้างไฟล์ SSL certificate และ config ค่าต่างๆ ให้เรียบร้อยไปเลย ซึ่งก็จะประกอบด้วยไฟล์ private key และ certificate แต่เกิดเราต้องสร้างไฟล์ private key และ certicate ขึ้นมาเองหละ เราจะมั่นใจได้ยังไงว่า เราสร้างไฟล์ขึ้นมาได้ถูกต้องพร้อมนำไปใช้งาน</summary></entry><entry><title type="html">ก้าวแรกกับการใช้ GitHub Actions</title><link href="https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html" rel="alternate" type="text/html" title="ก้าวแรกกับการใช้ GitHub Actions" /><published>2020-11-04T11:54:00+07:00</published><updated>2020-11-04T11:54:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/04/first-step-to-github-actions.html">&lt;p&gt;&lt;strong&gt;GitHub Actions&lt;/strong&gt; เป็นเครื่องมือ &lt;strong&gt;CI/CD&lt;/strong&gt; หนึ่งที่จะช่วยให้เราทำงานแบบ &lt;strong&gt;automation&lt;/strong&gt; ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ &lt;strong&gt;automation tools&lt;/strong&gt; ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ &lt;strong&gt;Actions&lt;/strong&gt; ในการทดสอบโปรแกรมหลังจากที่ &lt;strong&gt;push code&lt;/strong&gt; ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย &lt;strong&gt;Codecov&lt;/strong&gt; และจะแสดง &lt;strong&gt;badge&lt;/strong&gt; แสดงสถานะที่เกิดขึ้นไว้ด้วย&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;ตัวอย่างที่สำเร็จแล้ว&quot;&gt;ตัวอย่างที่สำเร็จแล้ว&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ruby-actions.png&quot; alt=&quot;Ruby Actions&quot; /&gt;
-&lt;em&gt;&lt;a href=&quot;https://github.com/karn18/ruby-actions&quot;&gt;Ruby Actions&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;เริ่มต้นกันเลย&quot;&gt;เริ่มต้นกันเลย&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;สร้างโปรเจค เขียนเทส และก็โค้ด&lt;/li&gt;
-  &lt;li&gt;สร้าง repository บน &lt;strong&gt;GitHub&lt;/strong&gt; และอัพโหลดโค้ดขึ้นไป&lt;/li&gt;
-  &lt;li&gt;เข้าไปที่เมนู &lt;strong&gt;Actions&lt;/strong&gt; จากนั้นก็เลือก &lt;strong&gt;Workflows&lt;/strong&gt; ที่จะใช้งาน อันนี้ก็ขึ้นอยู่กับภาษาที่ใช้ สำหรับของผมก็จะเลือกใช้ &lt;strong&gt;Workflow สำหรับ Ruby&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ra-1.png&quot; alt=&quot;RA1&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;โดยเบื้องต้นเมื่อกด setup ก็จะมีการสร้างไฟล์ yml ตามชื่อภาษาที่เราใช้ หรือเราสามารถเปลี่ยนชื่อก็ได้ และสร้างไว้ในโฟลเดอร์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.github/workflows&lt;/code&gt; จากนั้นก็ปรับค่าต่างๆ เช่น
-    &lt;ul&gt;
-      &lt;li&gt;event ที่จะใช้ trigger ให้ทำงาน ซึ่งสนใจเฉพาะการ push โค้ดเข้ามาที่ branch &lt;strong&gt;main&lt;/strong&gt; เท่านั้น&lt;/li&gt;
-      &lt;li&gt;job ที่ระบุไว้ใน workflow นี้จะมีแค่ test เท่านั้น แต่จะเห็นว่าในการ test ประกอบไปด้วย step หลายๆ step ด้วยกัน&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ra-2.png&quot; alt=&quot;RA2&quot; width=&quot;440px&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;กดบันทึกไฟล์ workflow จากนั้นจะเห็นว่า &lt;strong&gt;GitHub Actions&lt;/strong&gt; เริ่มทำงานโดยอัตโนมัติในการทดสอบโค้ดให้กับเรา&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ra-3.png&quot; alt=&quot;RA3&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เพิ่ม step ให้กับ workflow ของเราให้อัพโหลด code covergage ไปยัง &lt;strong&gt;codecov.io&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ra-4.png&quot; alt=&quot;RA3&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เราสามารถเพิ่ม cache ให้กับ workflow ได้ด้วยเช่นกัน เพื่อให้การการทำงานดีขึ้น&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/first-step-to-github-actions/ra-5.png&quot; alt=&quot;RA3&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;สุดท้ายก็ใส่ badge เข้าไปที่ &lt;strong&gt;README&lt;/strong&gt; เพื่อใช้แสดงสถานะปัจจุบันของโค้ดเราว่าทดสอบผ่านหรือไม่ รวมถึง code coverage ได้กี่เปอร์เซนต์&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/features/actions&quot;&gt;GitHub Actions&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/actions/cache&quot;&gt;Actions Cache&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://codecov.io/&quot;&gt;Codecov&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/ruby-actions&quot;&gt;ตัวอย่างการใช้ GitHub Actions&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="github" /><category term="actions" /><summary type="html">GitHub Actions เป็นเครื่องมือ CI/CD หนึ่งที่จะช่วยให้เราทำงานแบบ automation ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ automation tools ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ Actions ในการทดสอบโปรแกรมหลังจากที่ push code ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย Codecov และจะแสดง badge แสดงสถานะที่เกิดขึ้นไว้ด้วย</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="nginx" /><category term="ssl" /><summary type="html">เมื่ออยากกำหนดให้เว็บไซด์ที่เรารันบน Nginx สามารถใช้งาน HTTPS วิธีที่ง่ายที่เราคุ้นชินก็คงใช้ Certbot ในการสร้างไฟล์ SSL certificate และ config ค่าต่างๆ ให้เรียบร้อยไปเลย ซึ่งก็จะประกอบด้วยไฟล์ private key และ certificate แต่เกิดเราต้องสร้างไฟล์ private key และ certicate ขึ้นมาเองหละ เราจะมั่นใจได้ยังไงว่า เราสร้างไฟล์ขึ้นมาได้ถูกต้องพร้อมนำไปใช้งาน</summary></entry></feed>
