@@ -1,4 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-01-05T15:01:30+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">เติมแต่งสีสันให้กับข้อความใน Ruby</title><link href="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html" rel="alternate" type="text/html" title="เติมแต่งสีสันให้กับข้อความใน Ruby" /><published>2021-01-05T14:57:00+07:00</published><updated>2021-01-05T14:57:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html">เริ่มต้นปี 2564 กันด้วยบทความเบาๆ ก่อนแล้วกัน โดยวันนี้จะมาพูดถึงการเติมแต่งสีสันให้กับข้อความที่เราพ่นออกทาง terminal หรือ console ซึ่งการเพิ่มสีสันให้กับข้อความก็อาจจะทำให้เรามองเห็นได้ง่ายขึ้น หรือสนุกกับการอ่าน log ก็เป็นได้&lt;!--more--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-01-07T09:40:52+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Stimulus Template</title><link href="https://karn18.github.io/dev/2021/01/07/stimulus-template.html" rel="alternate" type="text/html" title="Stimulus Template" /><published>2021-01-07T09:39:00+07:00</published><updated>2021-01-07T09:39:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/07/stimulus-template</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/07/stimulus-template.html">ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ **Stimulus** อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น **node module** และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ **Template** หรือ **Boilerplate** ไว้ใช้ดีกว่า&lt;!--more--&gt;
+
+## วิธีการใช้งาน
+
+- โคลน [repository](https://github.com/karn18/stimulus-template) ลงมาไว้ที่เครื่อง
+
+    ```bash
+    $ git clone https://github.com/karn18/stimulus-template
+    ```
+  
+- ติดตั้ง dependencies ต่างๆ
+
+    ```bash
+    $ yarn install
+    # npm install
+    ```
+
+- แก้ไขชื่อโปรเจคในไฟล์ package.json
+- แก้ไขโค้ดในส่วนของ controller ใน `src/index.js`
+- รัน `build` เพื่อ transpile โค้ดของเราผ่าน `rollup`
+
+    ```bash
+    $ yarn build
+    # npm build
+    ```
+
+- เขียน test ใน `test/index.test.js`
+- ทดสอบ controller ผ่าน `jest`
+
+    ```bash
+    $ yarn test
+    # npm test
+    ```
+
+อันนี้เป็นเพียงขั้นแรกเท่านั้น ซึ่งพอนึกดูดีๆ แล้วเราสามารถนำ Stimulus Controller ที่เราจะแยกไปทำให้อยู่ในรูปของ gem น่าจะดีกว่า ไม่ว่าจะเป็นเรื่องของการติดตั้ง การเพิ่ม controller ตัวใหม่เข้าไปใน registry การจัดการกับ assets เอาเป็นว่าเดี่ยวจะมาอธิบายในบทความหน้าแล้วกัน 
+
+## References
+- [Testing Stimulus](https://damonbauer.dev/posts/testing-stimulus-with-jest/)
+- [Stimulus Template](https://github.com/karn18/stimulus-template)</content><author><name>Karn</name></author><category term="dev" /><category term="stimulus" /><category term="template" /><summary type="html">ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ Stimulus อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น node module และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ Template หรือ Boilerplate ไว้ใช้ดีกว่า</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/stimulus-template/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/stimulus-template/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เติมแต่งสีสันให้กับข้อความใน Ruby</title><link href="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html" rel="alternate" type="text/html" title="เติมแต่งสีสันให้กับข้อความใน Ruby" /><published>2021-01-05T14:57:00+07:00</published><updated>2021-01-05T14:57:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html">เริ่มต้นปี 2564 กันด้วยบทความเบาๆ ก่อนแล้วกัน โดยวันนี้จะมาพูดถึงการเติมแต่งสีสันให้กับข้อความที่เราพ่นออกทาง terminal หรือ console ซึ่งการเพิ่มสีสันให้กับข้อความก็อาจจะทำให้เรามองเห็นได้ง่ายขึ้น หรือสนุกกับการอ่าน log ก็เป็นได้&lt;!--more--&gt;
 
 วิธีการที่จะเพิ่มสีสันให้กับข้อความก็ง่ายๆ เพียงใช้ Gem ซึ่งจะแนะนำด้วยกัน 2 ตัว คือ `Colorize gem` และ `Rainbow gem` โดยทั้งสองตัวมีความสามารถที่คล้ายคลึงกัน แต่ถ้าดูในเรื่องการอัพเดตก็คงต้องเลือก `Rainbow` เพราะ `Colorize` นั้นดูแล้วไม่ได้รับการอัพเตดมามากว่า 2 ปีแล้ว
 
@@ -546,20 +584,4 @@ $ sudo openssl x509 -noout -modulus -in certificate.crt |md5sum
 - [GitHub Actions](https://github.com/features/actions)
 - [Actions Cache](https://github.com/actions/cache)
 - [Codecov](https://codecov.io/)
-- [ตัวอย่างการใช้ GitHub Actions](https://github.com/karn18/ruby-actions)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="github" /><category term="actions" /><summary type="html">GitHub Actions เป็นเครื่องมือ CI/CD หนึ่งที่จะช่วยให้เราทำงานแบบ automation ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ automation tools ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ Actions ในการทดสอบโปรแกรมหลังจากที่ push code ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย Codecov และจะแสดง badge แสดงสถานะที่เกิดขึ้นไว้ด้วย</summary></entry><entry><title type="html">เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski</title><link href="https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html" rel="alternate" type="text/html" title="เปลี่ยนวิดีโอให้กลายเป็น gif ด้วย Gifski" /><published>2020-11-01T22:32:00+07:00</published><updated>2020-11-01T22:32:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/01/create-gif-from-video-with-gifski.html">ต้องแนะนำแอพ **Gifski** นี้เลยครับสำหรับใครที่ต้องการจะแปลงไฟล์วิดีโอให้เป็นไฟล์ **gif** ซึ่งใช้งานได้อย่างง่ายดาย
-เพียงแค่เปิดโปรแกรมขึ้น และลากไฟล์ที่เราต้องการจะแปลงเข้าไป
-
-![drop_file](/assets/images/posts/2020/create-gif-from-video-with-gifski/drop_file.png){:width=&quot;400px&quot;}
-
-จากนั้นก็เลือกปรับขนาดของภาพ, FPS, และ Quality ตามต้องการ ซึ่งการปรับแต่งก็จะส่งผลต่อขนาดไฟล์ สำหรับผมต้องการไฟล์ **gif** ไปแสดงอยู่บนเว็บบทความของผมซึ่งก็จะกังวลเรื่องของขนาด โดยที่ไม่อยากให้มันใหญ่มากก็จะพยายามปรับขนาดภาพให้เล็ก ส่วน FPS และ Quality ก็จะให้ค่าต่ำๆ หน่อย เพียงให้พอดูออก
-
-![config](/assets/images/posts/2020/create-gif-from-video-with-gifski/config.png){:width=&quot;400px&quot;}
-
-ปรับเรียบร้อยก็กดปุ่ม convert
-
-![final](/assets/images/posts/2020/create-gif-from-video-with-gifski/final.gif)
-
-เพียงเท่านี้เราก็ได้ไฟล์ **gif** ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้**ฟรี**
-
-## References
-- [Gifski](https://gif.ski/)</content><author><name>Karn</name></author><category term="dev" /><category term="gif" /><category term="gifski" /><category term="video" /><summary type="html">ต้องแนะนำแอพ Gifski นี้เลยครับสำหรับใครที่ต้องการจะแปลงไฟล์วิดีโอให้เป็นไฟล์ gif ซึ่งใช้งานได้อย่างง่ายดาย เพียงแค่เปิดโปรแกรมขึ้น และลากไฟล์ที่เราต้องการจะแปลงเข้าไป จากนั้นก็เลือกปรับขนาดของภาพ, FPS, และ Quality ตามต้องการ ซึ่งการปรับแต่งก็จะส่งผลต่อขนาดไฟล์ สำหรับผมต้องการไฟล์ gif ไปแสดงอยู่บนเว็บบทความของผมซึ่งก็จะกังวลเรื่องของขนาด โดยที่ไม่อยากให้มันใหญ่มากก็จะพยายามปรับขนาดภาพให้เล็ก ส่วน FPS และ Quality ก็จะให้ค่าต่ำๆ หน่อย เพียงให้พอดูออก ปรับเรียบร้อยก็กดปุ่ม convert เพียงเท่านี้เราก็ได้ไฟล์ gif ไปใช้งานเพียงไม่กี่ขั้นตอน และที่สำคัญโปรแกรมนี้ฟรี References Gifski</summary></entry></feed>
+- [ตัวอย่างการใช้ GitHub Actions](https://github.com/karn18/ruby-actions)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="github" /><category term="actions" /><summary type="html">GitHub Actions เป็นเครื่องมือ CI/CD หนึ่งที่จะช่วยให้เราทำงานแบบ automation ได้ หวังว่าบทความจะเป็นก้าวแรกที่จะจุดประกายให้นำ automation tools ต่างๆ เข้าไปใช้ในโปรเจ็คกัน สำหรับตัวอย่างในบทความนี้ก็จะเป็นโจทย์ง่ายๆ ที่จะใช้ Actions ในการทดสอบโปรแกรมหลังจากที่ push code ขี้นไป รวมถึงมีการตรวจสอบความครอบคลุมในการทดสอบด้วย Codecov และจะแสดง badge แสดงสถานะที่เกิดขึ้นไว้ด้วย</summary></entry></feed>
