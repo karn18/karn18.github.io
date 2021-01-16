@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en"><!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>ลองสร้าง Audit Log ในรูปแบบ Rails Plugin | KT</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="ลองสร้าง Audit Log ในรูปแบบ Rails Plugin" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="โดยมากแล้วโปรแกรมที่พัฒนาด้วย Rails จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ Rails จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก" />
+<meta property="og:description" content="โดยมากแล้วโปรแกรมที่พัฒนาด้วย Rails จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ Rails จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก" />
+<link rel="canonical" href="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-16T18:50:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png" />
+<meta property="twitter:title" content="ลองสร้าง Audit Log ในรูปแบบ Rails Plugin" />
+<meta name="twitter:site" content="@karn18" />
+<meta name="twitter:creator" content="@Karn" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html"},"image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png","@type":"imageObject"},"author":{"@type":"Person","name":"Karn"},"headline":"ลองสร้าง Audit Log ในรูปแบบ Rails Plugin","dateModified":"2021-01-16T18:50:00+07:00","datePublished":"2021-01-16T18:50:00+07:00","description":"โดยมากแล้วโปรแกรมที่พัฒนาด้วย Rails จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ Rails จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก","url":"https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
+<title>ลองสร้าง Audit Log ในรูปแบบ Rails Plugin</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">ลองสร้าง Audit Log ในรูปแบบ Rails Plugin</h1>
+  <div class="blog__info">
+    <i class="typcn typcn-calendar-outline"></i> 16-01-2021
+    
+      | <i class="typcn typcn-tag"></i>
+      
+        <span>rails</span>
+      
+        <span>plugin</span>
+      
+        <span>ruby</span>
+      
+        <span>audit</span>
+      
+        <span>log</span>
+      
+    
+  </div>
+</div>
+
+  
+    <figure class="image blog-image-header">
+      <img src="/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png">
+    </figure>
+  
+  <div class="blog__content">
+    <p>โดยมากแล้วโปรแกรมที่พัฒนาด้วย <strong>Rails</strong> จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ <strong>Rails</strong> จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก<!--more--></p>
+
+<p>จึงได้ลองใช้ <strong>Timber</strong> 3rd Party Service ในการเก็บ log ดู ซึ่งเราสามารถเข้าไปดู log ได้แบบ real time วิธีการใช้งานก็ง่าย อีกทั้งการค้นหาสิ่งที่เราสนใจก็ทำได้ง่าย <strong>แต่</strong>ของฟรีและดีอย่างที่เราต้องการนั้นไม่มีอยู่จริง เพราะ <strong>Timber</strong> แบบฟรีนั้นให้เราเก็บ log ได้ขนาดจำกัด และ retention ในการดูข้อมูลย้อนหลังก็ทำได้เพียงแค่วันเดียวเท่านั้น</p>
+
+<blockquote>
+  <p>อยากได้ของดี ก็ต้องเสียตังเอานะครับ</p>
+</blockquote>
+
+<p>กลายเป็นว่าจะทำอย่างไรดีให้เราสามารถดู log ได้ง่ายขึ้น และตอบโจทย์ของเรา รวมถึงสามารถนำไปใช้งานในโปรเจ็คอื่นๆ ได้ด้วย ก็นึกขึ้นมาได้ว่าเราควรจะทำเป็น <strong>Rails Plugin</strong> เอาไว้ดีกว่า (กว่าจะเข้าเรื่องสักที)</p>
+
+<p>Audit Log ที่พัฒนาขึ้นไว้ใช้งานนี้ก็จะเก็บข้อมูลด้วยคอนเซปต์ที่ว่า <strong>ใคร ทำอะไร เมื่อไหร่</strong> เริ่มต้นก็สร้าง plugin กันเลย ซึ่งเราสามารถศึกษาได้จาก<a href="https://guides.rubyonrails.org/plugins.html">ที่นี่</a> โดยเจ้า plugin นี้สามารถเรียกใช้งานผ่าน global method ที่ชื่อ <code class="language-plaintext highlighter-rouge">with_audit</code> ดังตัวอย่างด้านล่าง</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">with_audit</span><span class="p">(</span><span class="s2">"Bob"</span><span class="p">,</span> <span class="s2">"login"</span><span class="p">,</span> <span class="s2">"User is logged in to the system"</span><span class="p">)</span>
+<span class="n">with_audit</span><span class="p">(</span><span class="s2">"System"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"sidekiq"</span><span class="p">,</span> <span class="s2">"email"</span><span class="p">])</span> <span class="k">do</span>
+  <span class="s2">"Sending alert email to administrator"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>และนอกจากนี้การบันทึกข้อมูลลงในฐานข้อมูลจะมีด้วยกัน 2 โหมด คือ</p>
+<ol>
+  <li>async ซึ่งจะเรียกใช้งานผ่าน Active Job หรือบันทึกข้อมูลผ่าน Background Process</li>
+  <li>sync ซึ่งจะเรียกบันทึกข้อมูลทันที</li>
+</ol>
+
+<blockquote>
+  <p>ใครสนใจพัฒนาต่อยอดก็สามารถ clone ได้จากด้านล่างนะครับ ส่วนถ้ามีฟีเจอร์ไรอัพเดตก็ PR กันเข้ามาได้ครับ 👇</p>
+</blockquote>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://guides.rubyonrails.org/plugins.html">Rails Plugin</a></li>
+  <li><a href="https://guides.rubyonrails.org/generators.html">Rails Generator</a></li>
+  <li><a href="https://github.com/karn18/latias-auditor">Latias Auditor</a></li>
+</ul>
+
+  </div>
+  <div class="pagination">
+  <div class="pagination__newer">
+    
+  </div>
+  <div class="pagination__older">
+    
+      <a class="pagination__button" href="/stem/2021/01/07/choose-the-right-robot-for-your-kids.html">Older &rarr;</a>
+    
+  </div>
+</div>
+</div>
+
+
+
+    </main><div class="footer">
+  <p>
+    Crafted by <strong>Karn Tirasoontorn</strong> with <strong><i class="typcn typcn-heart"></i></strong>
+  </p>
+  <p>
+    <i class="typcn typcn-social-twitter-circular"></i><a href="https://twitter.com/@karn18"><i class="fab fa-twitter"></i> @karn18</a>
+  </p>
+</div></body>
+</html>
