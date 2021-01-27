@@ -1,4 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-01-21T15:53:08+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ลองสร้าง Audit Log ในรูปแบบ Rails Plugin</title><link href="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html" rel="alternate" type="text/html" title="ลองสร้าง Audit Log ในรูปแบบ Rails Plugin" /><published>2021-01-16T18:50:00+07:00</published><updated>2021-01-16T18:50:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html">&lt;p&gt;โดยมากแล้วโปรแกรมที่พัฒนาด้วย &lt;strong&gt;Rails&lt;/strong&gt; จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ &lt;strong&gt;Rails&lt;/strong&gt; จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก&lt;!--more--&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-01-27T22:43:19+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ตรวจสอบข้อมูลก่อนบันทึก (Validations)</title><link href="https://karn18.github.io/dev/2021/01/27/rails-validations.html" rel="alternate" type="text/html" title="ตรวจสอบข้อมูลก่อนบันทึก (Validations)" /><published>2021-01-27T22:43:00+07:00</published><updated>2021-01-27T22:43:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/27/rails-validations</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/27/rails-validations.html">&lt;p&gt;โดยทั่วไปเวลาที่เราสร้าง &lt;strong&gt;Model&lt;/strong&gt; สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (&lt;strong&gt;Constraint&lt;/strong&gt;) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน &lt;strong&gt;ActiveRecord&lt;/strong&gt; จะมีการเขียน &lt;strong&gt;Validations&lt;/strong&gt; ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด&lt;!--more--&gt; และแน่นอนว่าเมื่อโลจิกของโปรแกรมเริ่มมีความซับซ้อนขึ้น เงื่อนไขในการตรวจสอบก็ย่อมจะซับซ้อนขึ้นตาม ซึ่งการใช้ built-in &lt;strong&gt;Validations&lt;/strong&gt; ไม่สามารถตอบโจทย์ได้ ทำให้เราจะต้องสร้าง &lt;strong&gt;Validator&lt;/strong&gt; ของเราขึ้นมาเอง ซึ่งก็ทำได้ไม่ยากมาดูกันเลย&lt;/p&gt;
+
+&lt;h2 id=&quot;โจทย์&quot;&gt;โจทย์&lt;/h2&gt;
+&lt;p&gt;สำหรับโจทย์วันนี้ที่เราจะแก้ไขก็มาจากที่ว่า โปรแกรมที่พัฒนาจะมีการบันทึกข้อมูลคนไข้เยี่ยมบ้าน ซึ่งในแต่ละปีงบประมาณจะอนุญาตให้สร้างคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันเกิดขึ้นไม่ได้โดยอ้างอิงจากวันที่สำรวจ ซึ่งหน้าตาของตาราง Patient นั้นก็เป็นดังตารางด้านล่าง (เอามาเฉพาะบางฟิลด์เท่านั้นนะ)&lt;/p&gt;
+
+&lt;h3 id=&quot;ตาราง-patient&quot;&gt;ตาราง Patient&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;pid&lt;/th&gt;
+      &lt;th&gt;first_name&lt;/th&gt;
+      &lt;th&gt;surveyed_date&lt;/th&gt;
+      &lt;th&gt;created_at&lt;/th&gt;
+      &lt;th&gt;updated_at&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;183xxxxxxx515&lt;/td&gt;
+      &lt;td&gt;demo&lt;/td&gt;
+      &lt;td&gt;2020-08-19&lt;/td&gt;
+      &lt;td&gt;2020-08-19&lt;/td&gt;
+      &lt;td&gt;2020-08-19 11:05:57&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;183xxxxxxx515&lt;/td&gt;
+      &lt;td&gt;demo&lt;/td&gt;
+      &lt;td&gt;2021-05-02&lt;/td&gt;
+      &lt;td&gt;2021-05-02&lt;/td&gt;
+      &lt;td&gt;2021-05-02 14:27:12&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;จากตารางจะพบว่าเราสามารถบันทึกข้อมูลคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันได้ก็ต่อเมื่อวันที่เยี่ยมบ้าน (surveyed_date) จะต้องอยู่คนละปีงบประมาณกัน
+แถวแรกจะเป็นปีงบประมาณ 2563 (1 ตุลาคม 2562 - 20 กันยายน 2563) และแถวที่สองเป็นปีงบประมาณ 2564 (1 ตุลาคม 2563 - 30 กันยายน 2564)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;ก่อนจะไปถึงวิธีแก้ไขโจทย์ของเรา ถ้าย้อนกลับไปเป็นโจทย์ที่ว่าเราสามารถบันทึกข้อมูลคนไข้ซ้ำกันไม่ได้เลย การตรวจสอบข้อมูลก็สามารถเขียนได้ดังนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Patient&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uniqueness: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ที่นี้ก็มาสร้าง &lt;strong&gt;Validator&lt;/strong&gt; ของเรากันเลย ก็สามารถทำได้ง่ายๆ โดยการสร้าง class ที่สืบทอดความสามารถต่อจาก class &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ActiveModel::Validator&lt;/code&gt; และก็ต้อง implement เมธอดที่ชื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;validate&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;appvalidatorspatient_validatorrb&quot;&gt;app/validators/patient_validator.rb&lt;/h3&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PatientValidator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveModel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Validator&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;validate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;budget_year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_budget_year&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;results&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;constantize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;pid = :pid and extract(year from surveyed_date) = :budget_year&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;pid: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;budget_year: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;budget_year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;errors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:duplicated_pid_per_budget_year&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;results&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;zero?&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ในกรณีที่เราเขียนเงื่อนไขตรวจสอบแล้วไม่ถูกต้อง เราจะทำการเพิ่ม error เข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;record.errors&lt;/code&gt; ซึ่งก็จะระบุฟิลด์ กับข้อความที่จะแสดง แต่ถ้าไม่มีอะไรผิดผ่านเราก็ปล่อยผ่านไปเลย ทันทีที่โมเดลเราทำการตรวจสอบด้วย &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;valid?&lt;/code&gt; และพบว่ามี errors ปรากฏอยู่ข้อมูลก็จะไม่บันทึกลงในฐานข้อมูล&lt;/p&gt;
+
+&lt;p&gt;สำหรับวิธีการเรียกใช้ &lt;strong&gt;PatientValidator&lt;/strong&gt; ก็สามารถทำได้ดังนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Patient&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# แบบแรก&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates_with&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PatientValidator&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# แบบที่สอง&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:once_in_budget_year&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;once_in_budget_year&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;validates_with&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PatientValidator&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เพียงเท่านี้เราก็สามารถตอบโจทย์เราได้แล้ว แต่ถ้าเราลองพิจารณาเพิ่มไปอีกนิดจะพบว่าถ้าเราเพิ่มฟิลด์ &lt;strong&gt;budget_year&lt;/strong&gt; เข้าไปในตารางก็น่าจะทำให้การตรวจสอบทำได้โดยไม่ต้องสร้าง &lt;strong&gt;Validator&lt;/strong&gt; ใหม่ขึ้นมาได้ และโค้ดของเราก็จะเป็นประมาณนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Patient&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uniqueness: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;scope: :budget_year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;message: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Should happen once per budget year&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://guides.rubyonrails.org/active_record_validations.html&quot;&gt;Validations&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="ruby" /><category term="validations" /><summary type="html">โดยทั่วไปเวลาที่เราสร้าง Model สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (Constraint) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน ActiveRecord จะมีการเขียน Validations ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ลองสร้าง Audit Log ในรูปแบบ Rails Plugin</title><link href="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html" rel="alternate" type="text/html" title="ลองสร้าง Audit Log ในรูปแบบ Rails Plugin" /><published>2021-01-16T18:50:00+07:00</published><updated>2021-01-16T18:50:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html">&lt;p&gt;โดยมากแล้วโปรแกรมที่พัฒนาด้วย &lt;strong&gt;Rails&lt;/strong&gt; จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ &lt;strong&gt;Rails&lt;/strong&gt; จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;จึงได้ลองใช้ &lt;strong&gt;Timber&lt;/strong&gt; 3rd Party Service ในการเก็บ log ดู ซึ่งเราสามารถเข้าไปดู log ได้แบบ real time วิธีการใช้งานก็ง่าย อีกทั้งการค้นหาสิ่งที่เราสนใจก็ทำได้ง่าย &lt;strong&gt;แต่&lt;/strong&gt;ของฟรีและดีอย่างที่เราต้องการนั้นไม่มีอยู่จริง เพราะ &lt;strong&gt;Timber&lt;/strong&gt; แบบฟรีนั้นให้เราเก็บ log ได้ขนาดจำกัด และ retention ในการดูข้อมูลย้อนหลังก็ทำได้เพียงแค่วันเดียวเท่านั้น&lt;/p&gt;
 
@@ -590,54 +682,4 @@
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://docs.ruby-lang.org/en/2.4.0/syntax/refinements_rdoc.html&quot;&gt;Refinement&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://rollout.io/blog/ruby-refinements/&quot;&gt;ruby-refinement&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">เป็นที่รู้กันดีว่า Ruby ถูกออกมาแบบมาด้วยหลักการ Open/Closed ซึ่งก็ทำให้เราสามารถที่จะทำ Monkey Patching ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม Monkey Patching ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้ message.rb class Message def initailize(message) @message = message end def print puts @message end end patched_message.rb (Monkey Patching) class Message def print puts &quot;[Patched]: #{@message}&quot; end end app.rb (Before Patch) require_relative './message' msg = Message.new &quot;Great Day&quot; msg.print # --&amp;gt; Great Day msg = Message.new('Awesome Day') msg.print # --&amp;gt; Awesome Day app.rb (After Patch) require_relative './message' require_relative './patched_message' msg = Message.new &quot;Great Day&quot; msg.print # --&amp;gt; [Patched]: Great Day msg = Message.new('Awesome Day') msg.print # --&amp;gt; [Patched]: Awesome Day ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print ที่นี้แหละ Refinement จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย Refinement จะคล้ายๆ กับ Moneky Patching แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง refined_message.rb module RefinedMessage refine Message do def print puts &quot;[Refined]: #{@message}&quot; end end end การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล app.rb (Using Refinement) require_relative './message' require_relative './refinement_message.rb' msg = Message.new('Great Day') msg.print # --&amp;gt; Great Day using RefinedMessage msg = Message.new('Awesome Day') msg.print # --&amp;gt; [Patched]: Awesome Day การใช้งาน refinement ก็จะใช้ using ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้ สำหรับการใช้ Refinement ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่ References Refinement ruby-refinement</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Interactive Fun Cards</title><link href="https://karn18.github.io/dev/2020/11/11/interactive-fun-cards.html" rel="alternate" type="text/html" title="Interactive Fun Cards" /><published>2020-11-11T11:42:00+07:00</published><updated>2020-11-11T11:42:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/11/interactive-fun-cards</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/11/interactive-fun-cards.html">&lt;p&gt;⚡ ปัจจุบันนี้ถ้าจะพัฒนาเว็บให้ดึงดูดผู้ใช้งาน คงหลีกเลี่ยงไม่ได้ที่จะทำให้เว็บดูสวยๆ และต้องมี interactive กับผู้ใช้ด้วยการแสดงอนิเมชันต่างๆ แน่นอนว่าในบทความนี้จะแสดงตัวอย่างการใช้ &lt;strong&gt;StimuluJS&lt;/strong&gt; 🌈 มาช่วยจัดการเว็บกันหน่อย&lt;!--more--&gt; เรามาดูกันว่าโจทย์สำหรับบทความนี้จะเป็นอะไร&lt;/p&gt;
-
-&lt;h2 id=&quot;โจทย์&quot;&gt;โจทย์&lt;/h2&gt;
-
-&lt;p&gt;สุ่มตัวเลขตามจำนวนการ์ดที่กำหนดไว้ 🎲 โดยในเบื้องต้นจะให้คว่ำการ์ดเอาไว้ก่อน จนกว่าจะมีการคลิกจึงจะเปิดหน้าการ์ดขึ้นมาเพื่อแสดงตัวเลข โจทย์ในวันนี้ช่างง่ายดายจริงๆ มาลองพัฒนากันดู&lt;/p&gt;
-
-&lt;h2 id=&quot;แนวทางการพัฒนา&quot;&gt;แนวทางการพัฒนา&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;โดยหลักๆ แล้ววันนี้เราจะใช้ stimulus controller 2 ตัวมาใช้ในการควบคุมด้วยกัน
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;GameController โดยเมื่อถูกสร้างขึ้นมาจะมีการสุ่มตัวเลข ตามจำนวนการ์ดที่ได้รับมาจากหลังบ้าน (Backend) และเก็บเอาไว้ ทันทีที่การ์ดแต่ละใบถูกสั่งให้เปิดก็จะแสดงตัวเลข&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;CardController ใช้สำหรับควบคุมการเปิด/ปิดการ์ดแต่ละใบ โดยเมื่อการ์ดถูกเปิดแล้วจะมีระยะเวลาจำกัด 2 วินาที และจะปิดการ์ดทันที&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;ผลลัพธ์&quot;&gt;ผลลัพธ์&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/interactive-fun-cards/fun_game.gif&quot; alt=&quot;fun game&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;เรียนรู้อะไรบ้าง&quot;&gt;เรียนรู้อะไรบ้าง&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;เราสามารถใช้ &lt;strong&gt;controller&lt;/strong&gt; หลายๆ ตัวร่วมกันได้&lt;/li&gt;
-  &lt;li&gt;ถ้าเราออกแบบดีๆ เราก็สามารถนำ &lt;strong&gt;controller&lt;/strong&gt; ไป reuse ใช้ได้กับ component อื่นๆ ได้ จากตัวอย่างก็จะเห็นว่าการ์ดแต่ละใบก็จะใช้ &lt;strong&gt;Card Controller&lt;/strong&gt; แยกออกจากกัน&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-card-openned=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;false&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;game.card card.element&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-game-index=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;data-action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;click-&amp;gt;game#showCard click-&amp;gt;card#flip&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card__inner&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card__front&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;image_tag&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'back.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;image&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card__back&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;ถ้าอยากดูรายละเอียดเพิ่มเติมดูได้จาก repo ที่แชร์ไว้ด้านล่างนะครับ 👇&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/fun_games&quot;&gt;Fun Games&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://codepen.io/james_gillen/pen/NGwqML&quot;&gt;CSS for fliping card&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><summary type="html">⚡ ปัจจุบันนี้ถ้าจะพัฒนาเว็บให้ดึงดูดผู้ใช้งาน คงหลีกเลี่ยงไม่ได้ที่จะทำให้เว็บดูสวยๆ และต้องมี interactive กับผู้ใช้ด้วยการแสดงอนิเมชันต่างๆ แน่นอนว่าในบทความนี้จะแสดงตัวอย่างการใช้ StimuluJS 🌈 มาช่วยจัดการเว็บกันหน่อย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/interactive-fun-cards/cover.jpg" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/interactive-fun-cards/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">เป็นที่รู้กันดีว่า Ruby ถูกออกมาแบบมาด้วยหลักการ Open/Closed ซึ่งก็ทำให้เราสามารถที่จะทำ Monkey Patching ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม Monkey Patching ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้ message.rb class Message def initailize(message) @message = message end def print puts @message end end patched_message.rb (Monkey Patching) class Message def print puts &quot;[Patched]: #{@message}&quot; end end app.rb (Before Patch) require_relative './message' msg = Message.new &quot;Great Day&quot; msg.print # --&amp;gt; Great Day msg = Message.new('Awesome Day') msg.print # --&amp;gt; Awesome Day app.rb (After Patch) require_relative './message' require_relative './patched_message' msg = Message.new &quot;Great Day&quot; msg.print # --&amp;gt; [Patched]: Great Day msg = Message.new('Awesome Day') msg.print # --&amp;gt; [Patched]: Awesome Day ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print ที่นี้แหละ Refinement จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย Refinement จะคล้ายๆ กับ Moneky Patching แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง refined_message.rb module RefinedMessage refine Message do def print puts &quot;[Refined]: #{@message}&quot; end end end การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล app.rb (Using Refinement) require_relative './message' require_relative './refinement_message.rb' msg = Message.new('Great Day') msg.print # --&amp;gt; Great Day using RefinedMessage msg = Message.new('Awesome Day') msg.print # --&amp;gt; [Patched]: Awesome Day การใช้งาน refinement ก็จะใช้ using ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้ สำหรับการใช้ Refinement ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่ References Refinement ruby-refinement</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en"><!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>ตรวจสอบข้อมูลก่อนบันทึก (Validations) | KT</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="ตรวจสอบข้อมูลก่อนบันทึก (Validations)" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="โดยทั่วไปเวลาที่เราสร้าง Model สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (Constraint) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน ActiveRecord จะมีการเขียน Validations ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด" />
+<meta property="og:description" content="โดยทั่วไปเวลาที่เราสร้าง Model สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (Constraint) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน ActiveRecord จะมีการเขียน Validations ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด" />
+<link rel="canonical" href="https://karn18.github.io/dev/2021/01/27/rails-validations.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2021/01/27/rails-validations.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-27T22:43:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" />
+<meta property="twitter:title" content="ตรวจสอบข้อมูลก่อนบันทึก (Validations)" />
+<meta name="twitter:site" content="@karn18" />
+<meta name="twitter:creator" content="@Karn" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2021/01/27/rails-validations.html"},"image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png","@type":"imageObject"},"author":{"@type":"Person","name":"Karn"},"headline":"ตรวจสอบข้อมูลก่อนบันทึก (Validations)","dateModified":"2021-01-27T22:43:00+07:00","datePublished":"2021-01-27T22:43:00+07:00","description":"โดยทั่วไปเวลาที่เราสร้าง Model สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (Constraint) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน ActiveRecord จะมีการเขียน Validations ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด","url":"https://karn18.github.io/dev/2021/01/27/rails-validations.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
+<title>ตรวจสอบข้อมูลก่อนบันทึก (Validations)</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">ตรวจสอบข้อมูลก่อนบันทึก (Validations)</h1>
+  <div class="blog__info">
+    <i class="typcn typcn-calendar-outline"></i> 27-01-2021
+    
+      | <i class="typcn typcn-tag"></i>
+      
+        <span>rails</span>
+      
+        <span>ruby</span>
+      
+        <span>validations</span>
+      
+    
+  </div>
+</div>
+
+  
+    <figure class="image blog-image-header">
+      <img src="/assets/images/posts/2021/rails-validations/cover.png">
+    </figure>
+  
+  <div class="blog__content">
+    <p>โดยทั่วไปเวลาที่เราสร้าง <strong>Model</strong> สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (<strong>Constraint</strong>) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน <strong>ActiveRecord</strong> จะมีการเขียน <strong>Validations</strong> ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด<!--more--> และแน่นอนว่าเมื่อโลจิกของโปรแกรมเริ่มมีความซับซ้อนขึ้น เงื่อนไขในการตรวจสอบก็ย่อมจะซับซ้อนขึ้นตาม ซึ่งการใช้ built-in <strong>Validations</strong> ไม่สามารถตอบโจทย์ได้ ทำให้เราจะต้องสร้าง <strong>Validator</strong> ของเราขึ้นมาเอง ซึ่งก็ทำได้ไม่ยากมาดูกันเลย</p>
+
+<h2 id="โจทย์">โจทย์</h2>
+<p>สำหรับโจทย์วันนี้ที่เราจะแก้ไขก็มาจากที่ว่า โปรแกรมที่พัฒนาจะมีการบันทึกข้อมูลคนไข้เยี่ยมบ้าน ซึ่งในแต่ละปีงบประมาณจะอนุญาตให้สร้างคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันเกิดขึ้นไม่ได้โดยอ้างอิงจากวันที่สำรวจ ซึ่งหน้าตาของตาราง Patient นั้นก็เป็นดังตารางด้านล่าง (เอามาเฉพาะบางฟิลด์เท่านั้นนะ)</p>
+
+<h3 id="ตาราง-patient">ตาราง Patient</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>pid</th>
+      <th>first_name</th>
+      <th>surveyed_date</th>
+      <th>created_at</th>
+      <th>updated_at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>183xxxxxxx515</td>
+      <td>demo</td>
+      <td>2020-08-19</td>
+      <td>2020-08-19</td>
+      <td>2020-08-19 11:05:57</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>183xxxxxxx515</td>
+      <td>demo</td>
+      <td>2021-05-02</td>
+      <td>2021-05-02</td>
+      <td>2021-05-02 14:27:12</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>จากตารางจะพบว่าเราสามารถบันทึกข้อมูลคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันได้ก็ต่อเมื่อวันที่เยี่ยมบ้าน (surveyed_date) จะต้องอยู่คนละปีงบประมาณกัน
+แถวแรกจะเป็นปีงบประมาณ 2563 (1 ตุลาคม 2562 - 20 กันยายน 2563) และแถวที่สองเป็นปีงบประมาณ 2564 (1 ตุลาคม 2563 - 30 กันยายน 2564)</p>
+
+<hr />
+
+<p>ก่อนจะไปถึงวิธีแก้ไขโจทย์ของเรา ถ้าย้อนกลับไปเป็นโจทย์ที่ว่าเราสามารถบันทึกข้อมูลคนไข้ซ้ำกันไม่ได้เลย การตรวจสอบข้อมูลก็สามารถเขียนได้ดังนี้</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Patient</span>
+  <span class="n">validates</span> <span class="ss">:pid</span><span class="p">,</span> <span class="ss">uniqueness: </span><span class="kp">true</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>ที่นี้ก็มาสร้าง <strong>Validator</strong> ของเรากันเลย ก็สามารถทำได้ง่ายๆ โดยการสร้าง class ที่สืบทอดความสามารถต่อจาก class <code class="language-plaintext highlighter-rouge">ActiveModel::Validator</code> และก็ต้อง implement เมธอดที่ชื่อ <code class="language-plaintext highlighter-rouge">validate</code></p>
+
+<h3 id="appvalidatorspatient_validatorrb">app/validators/patient_validator.rb</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PatientValidator</span> <span class="o">&lt;</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Validator</span>
+  <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+    <span class="n">budget_year</span> <span class="o">=</span> <span class="n">current_budget_year</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">record</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">constantize</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s2">"pid = :pid and extract(year from surveyed_date) = :budget_year"</span><span class="p">,</span> <span class="ss">pid: </span><span class="n">record</span><span class="p">.</span><span class="nf">pid</span><span class="p">,</span> <span class="ss">budget_year: </span><span class="n">budget_year</span><span class="p">)</span>
+
+    <span class="n">record</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">add</span> <span class="ss">:pid</span><span class="p">,</span> <span class="ss">:duplicated_pid_per_budget_year</span> <span class="k">unless</span> <span class="n">results</span><span class="p">.</span><span class="nf">size</span><span class="p">.</span><span class="nf">zero?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>ในกรณีที่เราเขียนเงื่อนไขตรวจสอบแล้วไม่ถูกต้อง เราจะทำการเพิ่ม error เข้าไปใน <code class="language-plaintext highlighter-rouge">record.errors</code> ซึ่งก็จะระบุฟิลด์ กับข้อความที่จะแสดง แต่ถ้าไม่มีอะไรผิดผ่านเราก็ปล่อยผ่านไปเลย ทันทีที่โมเดลเราทำการตรวจสอบด้วย <code class="language-plaintext highlighter-rouge">valid?</code> และพบว่ามี errors ปรากฏอยู่ข้อมูลก็จะไม่บันทึกลงในฐานข้อมูล</p>
+
+<p>สำหรับวิธีการเรียกใช้ <strong>PatientValidator</strong> ก็สามารถทำได้ดังนี้</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Patient</span>
+  <span class="c1"># แบบแรก</span>
+  <span class="n">validates_with</span> <span class="no">PatientValidator</span>
+
+  <span class="c1"># แบบที่สอง</span>
+  <span class="n">validates</span> <span class="ss">:once_in_budget_year</span>
+
+  <span class="k">def</span> <span class="nf">once_in_budget_year</span>
+    <span class="n">validates_with</span> <span class="no">PatientValidator</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>เพียงเท่านี้เราก็สามารถตอบโจทย์เราได้แล้ว แต่ถ้าเราลองพิจารณาเพิ่มไปอีกนิดจะพบว่าถ้าเราเพิ่มฟิลด์ <strong>budget_year</strong> เข้าไปในตารางก็น่าจะทำให้การตรวจสอบทำได้โดยไม่ต้องสร้าง <strong>Validator</strong> ใหม่ขึ้นมาได้ และโค้ดของเราก็จะเป็นประมาณนี้</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Patient</span>
+  <span class="n">validates</span> <span class="ss">:pid</span><span class="p">,</span> <span class="ss">uniqueness: </span><span class="p">{</span> <span class="ss">scope: :budget_year</span><span class="p">,</span>
+    <span class="ss">message: </span><span class="s2">"Should happen once per budget year"</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://guides.rubyonrails.org/active_record_validations.html">Validations</a></li>
+</ul>
+
+  </div>
+  <div class="pagination">
+  <div class="pagination__newer">
+    
+  </div>
+  <div class="pagination__older">
+    
+      <a class="pagination__button" href="/dev/2021/01/16/create-audit-log-using-rails-plugin.html">Older &rarr;</a>
+    
+  </div>
+</div>
+</div>
+
+
+
+    </main><div class="footer">
+  <p>
+    Crafted by <strong>Karn Tirasoontorn</strong> with <strong><i class="typcn typcn-heart"></i></strong>
+  </p>
+  <p>
+    <i class="typcn typcn-social-twitter-circular"></i><a href="https://twitter.com/@karn18"><i class="fab fa-twitter"></i> @karn18</a>
+  </p>
+</div></body>
+</html>
