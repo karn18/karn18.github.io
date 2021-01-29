@@ -1,4 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-01-27T22:43:19+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ตรวจสอบข้อมูลก่อนบันทึก (Validations)</title><link href="https://karn18.github.io/dev/2021/01/27/rails-validations.html" rel="alternate" type="text/html" title="ตรวจสอบข้อมูลก่อนบันทึก (Validations)" /><published>2021-01-27T22:43:00+07:00</published><updated>2021-01-27T22:43:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/27/rails-validations</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/27/rails-validations.html">&lt;p&gt;โดยทั่วไปเวลาที่เราสร้าง &lt;strong&gt;Model&lt;/strong&gt; สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (&lt;strong&gt;Constraint&lt;/strong&gt;) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน &lt;strong&gt;ActiveRecord&lt;/strong&gt; จะมีการเขียน &lt;strong&gt;Validations&lt;/strong&gt; ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด&lt;!--more--&gt; และแน่นอนว่าเมื่อโลจิกของโปรแกรมเริ่มมีความซับซ้อนขึ้น เงื่อนไขในการตรวจสอบก็ย่อมจะซับซ้อนขึ้นตาม ซึ่งการใช้ built-in &lt;strong&gt;Validations&lt;/strong&gt; ไม่สามารถตอบโจทย์ได้ ทำให้เราจะต้องสร้าง &lt;strong&gt;Validator&lt;/strong&gt; ของเราขึ้นมาเอง ซึ่งก็ทำได้ไม่ยากมาดูกันเลย&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-01-29T22:42:18+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ติดตั้ง gem และ node module จาก private repository</title><link href="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" rel="alternate" type="text/html" title="ติดตั้ง gem และ node module จาก private repository" /><published>2021-01-29T22:40:00+07:00</published><updated>2021-01-29T22:40:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html">&lt;p&gt;คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private&lt;/p&gt;
+
+&lt;p&gt;สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ &lt;strong&gt;Rails&lt;/strong&gt; จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ &lt;a href=&quot;https://rubygems.org&quot;&gt;RubyGem&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ &lt;a href=&quot;https://www.npmjs.com/&quot;&gt;NPM&lt;/a&gt;&lt;!--more--&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;โดยส่วนมากก็จะเป็น Open Source และเก็บเอาไว้ใน GitHub&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ที่นี้ก็มาถึง lib ที่เป็นของเราเองที่พัฒนาขึ้นแบบส่วนตัว ภายใต้องค์กรหรือบริษัท ซึ่งจะถูกเก็บเอาไว้อยู่ใน git repository ต่างๆ ไม่ว่าจะเป็น GitHub, Gitlab, BitBucket โดยจะมีการกำหนดสิทธิ์ในการเข้าถึงได้แบบ private ทำให้เราไม่สามารถเข้าถึงได้ ถ้าไม่ได้ sign-in เข้าไปซะก่อน ดังนั้นเราจะต้องทำการสร้าง &lt;strong&gt;access token&lt;/strong&gt; ขึ้นมา เพื่อใช้ในการติดตั้งโดยเฉพาะ และแน่นอนว่า git repostiory ที่กล่าวไปข้างต้นมี feature นี้อยู่&lt;/p&gt;
+
+&lt;p&gt;สำหรับในบทความนี้ผมก็ขอยกตัวอย่างเป็น &lt;strong&gt;GitLab&lt;/strong&gt; แล้วกันเพราะทางองค์กรใช้ตัวนี้เป็นหลักในการทำงาน โดยก่อนอื่นเราจะต้องเข้าไปสร้าง &lt;strong&gt;access token&lt;/strong&gt; ขึ้นมา ให้เราเข้าไปที่ profile ของตัวเอง จากนั้นสังเกตที่เมนูด้านซ้ายมือ และเข้าไปที่ Access Token&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ให้เรากำหนดชื่อที่ตัวเองชอบ และเข้าใจว่าจะใช้ทำอะไร&lt;/li&gt;
+  &lt;li&gt;กำหนดวันหมดอายุ ถ้าขี้เกียจต้องมา revoke ก็ไม่ต้องใส่ค่า token ตัวนี้จะไม่มีวันหมดอายุ&lt;/li&gt;
+  &lt;li&gt;เลือกสิทธิการเข้าถึงเป็นแบบ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read_repository&lt;/code&gt; ก็ให้เข้าไปอ่านได้อย่างเดียวก็พอแล้ว&lt;/li&gt;
+  &lt;li&gt;กดสร้าง &lt;strong&gt;access token&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;❗️ตรงนี้สำคัญ❗️ ให้ copy token ที่ถูกสร้างขึ้นมาเก็บเอาไว้ให้ดี เพราะเราจะไม่ได้เห็นมันอีกแล้ว&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/create-access-token.png&quot; alt=&quot;Create Access Token&quot; /&gt;
+&lt;em&gt;สร้าง Access Token&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;การติดตั้ง-gem&quot;&gt;การติดตั้ง Gem&lt;/h2&gt;
+
+&lt;p&gt;ให้เราใส่ gem ที่จะใช้งานเข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; เพียงแต่สิ่งที่ต้องทำเพิ่มคือการระบุที่อยู่ที่เป็น private repository เข้าไปด้วย และที่สำคัญเราจะต้องเอา &lt;strong&gt;access token&lt;/strong&gt; ที่ได้เมื่อกี้แนบไปพร้อมกับ account ที่ใช้ด้วย&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ยกตัวอย่าง&lt;/strong&gt; ให้ account ที่ใช้งานเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;karn&lt;/code&gt; มี access token เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JNb1ri7fWfAPbBwqaSD&lt;/code&gt; และ git repo สามารถเข้าถึงได้ผ่าน url &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git&lt;/code&gt; เราก็จะประกอบร่างเป็นดังโค้ดด้านล่าง&lt;/p&gt;
+
+&lt;h3 id=&quot;gemfile&quot;&gt;Gemfile&lt;/h3&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;latias-auditor&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;git: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ติดตั้ง gem ผ่าน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;การติดตั้ง-node-module&quot;&gt;การติดตั้ง Node Module&lt;/h2&gt;
+
+&lt;p&gt;มาดูในฝั่ง Frontend กันบ้าง ถ้าเป็น Node ก็ต้องใส่เข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;package.json&lt;/code&gt; และเช่นกันรูปแบบการใช้งานก็คล้ายคลึงกับด้านบน เพียงแต่ปกติที่เราจะระบุเลข version ตามหลังชื่อ module ก็ให้ใส่เป็น url แทน ❗️ระวังนิดหนึงคือ protocal ที่ใช้จะต้องเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git+https&lt;/code&gt; หรือถ้าใครใช้ ssh ก็จะเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git+ssh&lt;/code&gt; อ่านเพิ่มเติมได้จากลิงค์ด้านล่างนะ&lt;/p&gt;
+
+&lt;h3 id=&quot;packagejson&quot;&gt;package.json&lt;/h3&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;YOUR-PROJECT&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;dependencies&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;latias-date-format&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;git+https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-date-format.git&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ไม่ต้องห่วงว่า account กับ access token ที่อยู่ในตัวอย่างจะเข้าถึงโค้ดได้จริงนะครับ แต่ถ้าเผอิญเกิดเข้าได้จริงก็แจ้งมาด้วยแล้วกันนะ&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;เพียงเท่านี้ก็เรียบร้อย เราสามารถที่จะติดตั้ง lib ของเราจาก private git repository ได้&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://bundler.io/man/gemfile.5.html&quot;&gt;Gemfile&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.npmjs.com/about-packages-and-modules&quot;&gt;NPM Packages and Modules&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="gem" /><category term="node" /><category term="module" /><summary type="html">คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ตรวจสอบข้อมูลก่อนบันทึก (Validations)</title><link href="https://karn18.github.io/dev/2021/01/27/rails-validations.html" rel="alternate" type="text/html" title="ตรวจสอบข้อมูลก่อนบันทึก (Validations)" /><published>2021-01-27T22:43:00+07:00</published><updated>2021-01-27T22:43:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/27/rails-validations</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/27/rails-validations.html">&lt;p&gt;โดยทั่วไปเวลาที่เราสร้าง &lt;strong&gt;Model&lt;/strong&gt; สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (&lt;strong&gt;Constraint&lt;/strong&gt;) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน &lt;strong&gt;ActiveRecord&lt;/strong&gt; จะมีการเขียน &lt;strong&gt;Validations&lt;/strong&gt; ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด&lt;!--more--&gt; และแน่นอนว่าเมื่อโลจิกของโปรแกรมเริ่มมีความซับซ้อนขึ้น เงื่อนไขในการตรวจสอบก็ย่อมจะซับซ้อนขึ้นตาม ซึ่งการใช้ built-in &lt;strong&gt;Validations&lt;/strong&gt; ไม่สามารถตอบโจทย์ได้ ทำให้เราจะต้องสร้าง &lt;strong&gt;Validator&lt;/strong&gt; ของเราขึ้นมาเอง ซึ่งก็ทำได้ไม่ยากมาดูกันเลย&lt;/p&gt;
 
 &lt;h2 id=&quot;โจทย์&quot;&gt;โจทย์&lt;/h2&gt;
 &lt;p&gt;สำหรับโจทย์วันนี้ที่เราจะแก้ไขก็มาจากที่ว่า โปรแกรมที่พัฒนาจะมีการบันทึกข้อมูลคนไข้เยี่ยมบ้าน ซึ่งในแต่ละปีงบประมาณจะอนุญาตให้สร้างคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันเกิดขึ้นไม่ได้โดยอ้างอิงจากวันที่สำรวจ ซึ่งหน้าตาของตาราง Patient นั้นก็เป็นดังตารางด้านล่าง (เอามาเฉพาะบางฟิลด์เท่านั้นนะ)&lt;/p&gt;
@@ -600,86 +663,4 @@
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://discourse.stimulusjs.org/t/announcing-stimulus-2-0/1482&quot;&gt;Announcing Stimulus 2.0&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://stimulusjs.org/&quot;&gt;StimulusJS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><summary type="html">หลังจากที่ Stimulus ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง เพิ่ม API ขึ้นมา 2 ตัวคือ values และ CSS classes ซึ่งก็เอามาใช้แทนที่ data map ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ document จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว Value Controller V1 Controller V2 HTML V1 HTML V2 จะเห็นว่าใน Controller ของเวอร์ชัน 2 จะมีการใช้ static values เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1 ส่วนในฝั่ง HTML ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม -value ตามหลัง data attributes Class บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง Controller V2 HTML V2 ตัวอย่างข้างต้นจะเป็นการใช้ CSS ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน Contrller เป็นการใช้ static classes ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน HTML โดยใช้รูปแบบ data-[identifier]-[name]-class=&quot;className&quot; รองรับ DOM event listener options เมื่อมีการเรียกใช้งาน action ซึ่งก็ไปตามดูได้ในมาตรฐาน เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง identifier กับ target จากเดิมที่เป็น data-target=&quot;[identifier].[name]&quot; เป็น data-[identifier]-target=&quot;[name]&quot; References Announcing Stimulus 2.0 StimulusJS</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ruby Refinement</title><link href="https://karn18.github.io/dev/2020/11/18/ruby-refinement.html" rel="alternate" type="text/html" title="Ruby Refinement" /><published>2020-11-18T22:42:00+07:00</published><updated>2020-11-18T22:42:00+07:00</updated><id>https://karn18.github.io/dev/2020/11/18/ruby-refinement</id><content type="html" xml:base="https://karn18.github.io/dev/2020/11/18/ruby-refinement.html">&lt;p&gt;เป็นที่รู้กันดีว่า &lt;strong&gt;Ruby&lt;/strong&gt; ถูกออกมาแบบมาด้วยหลักการ &lt;strong&gt;Open/Closed&lt;/strong&gt; ซึ่งก็ทำให้เราสามารถที่จะทำ &lt;strong&gt;Monkey Patching&lt;/strong&gt; ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม &lt;strong&gt;Monkey Patching&lt;/strong&gt; ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้&lt;/p&gt;
-
-&lt;h2 id=&quot;messagerb&quot;&gt;message.rb&lt;/h2&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Message&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initailize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;vi&quot;&gt;@message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@message&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;patched_messagerb-monkey-patching&quot;&gt;patched_message.rb (Monkey Patching)&lt;/h2&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Message&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[Patched]: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@message&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;apprb-before-patch&quot;&gt;app.rb (Before Patch)&lt;/h2&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./message'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Great Day&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; Great Day&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Awesome Day'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; Awesome Day&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;apprb-after-patch&quot;&gt;app.rb (After Patch)&lt;/h2&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./message'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./patched_message'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Great Day&quot;&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; [Patched]: Great Day&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Awesome Day'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; [Patched]: Awesome Day&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;ที่นี้แหละ &lt;strong&gt;Refinement&lt;/strong&gt; จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย &lt;strong&gt;Refinement&lt;/strong&gt; จะคล้ายๆ กับ &lt;strong&gt;Moneky Patching&lt;/strong&gt; แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง&lt;/p&gt;
-
-&lt;h2 id=&quot;refined_messagerb&quot;&gt;refined_message.rb&lt;/h2&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;RefinedMessage&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;refine&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[Refined]: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@message&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;apprb-using-refinement&quot;&gt;app.rb (Using Refinement)&lt;/h2&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./message'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./refinement_message.rb'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Great Day'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; Great Day&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RefinedMessage&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Awesome Day'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# --&amp;gt; [Patched]: Awesome Day&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;การใช้งาน refinement ก็จะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;using&lt;/code&gt; ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;สำหรับการใช้ &lt;strong&gt;Refinement&lt;/strong&gt; ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.ruby-lang.org/en/2.4.0/syntax/refinements_rdoc.html&quot;&gt;Refinement&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://rollout.io/blog/ruby-refinements/&quot;&gt;ruby-refinement&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="101" /><summary type="html">เป็นที่รู้กันดีว่า Ruby ถูกออกมาแบบมาด้วยหลักการ Open/Closed ซึ่งก็ทำให้เราสามารถที่จะทำ Monkey Patching ให้กับคลาสหรือโมดูลได้ง่ายดาย แต่อย่างไรก็ตาม Monkey Patching ก็เป็นดาบสองคม เพราะการ patch จะส่งผลต่อทุกๆ instance ของคลาส ซึ่งถ้าเป็นการเพิ่มเมธอดใหม่ก็ดูจะไม่กระทบอะไรเท่าไหร่ แต่ถ้าเป็นการ override เมธอดเดิมที่มีอยู่ ก็จะทำให้เกิดบั๊คกับโค้ดเราได้ message.rb class Message def initailize(message) @message = message end def print puts @message end end patched_message.rb (Monkey Patching) class Message def print puts &quot;[Patched]: #{@message}&quot; end end app.rb (Before Patch) require_relative './message' msg = Message.new &quot;Great Day&quot; msg.print # --&amp;gt; Great Day msg = Message.new('Awesome Day') msg.print # --&amp;gt; Awesome Day app.rb (After Patch) require_relative './message' require_relative './patched_message' msg = Message.new &quot;Great Day&quot; msg.print # --&amp;gt; [Patched]: Great Day msg = Message.new('Awesome Day') msg.print # --&amp;gt; [Patched]: Awesome Day ทันที่ที่เรียก Monkey Patching การแสดงผลของทุกๆ instance ก็จะเปลี่ยนไปเมื่อเรียกใช้ print ที่นี้แหละ Refinement จึงได้กลายมาเป็นพระเอก ที่จะเข้ามาแก้ไขปัญหาข้างต้น โดย Refinement จะคล้ายๆ กับ Moneky Patching แต่จะส่งผลกระทบกับโค้ดที่มีเรียกใช้งานเท่านั้น หรืออยู่ภายใต้ scope ที่เราต้องการนั้นเอง refined_message.rb module RefinedMessage refine Message do def print puts &quot;[Refined]: #{@message}&quot; end end end การนิยาม refinement ให้กับคลาสใดๆ จะต้องอยู่ภายใต้โมดูล app.rb (Using Refinement) require_relative './message' require_relative './refinement_message.rb' msg = Message.new('Great Day') msg.print # --&amp;gt; Great Day using RefinedMessage msg = Message.new('Awesome Day') msg.print # --&amp;gt; [Patched]: Awesome Day การใช้งาน refinement ก็จะใช้ using ตามด้วยโมดูลที่เราได้นิยาม refinement เอาไว้ สำหรับการใช้ Refinement ก็ประมาณนี้ก็จะช่วยให้เราเพิ่มความสามารถให้กับคลาสเดิมของเราได้ โดยที่ไม่ส่งผลกระทบกับโค้ดเดิมที่เราใช้งานอยู่ References Refinement ruby-refinement</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/ruby-refinement/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><summary type="html">หลังจากที่ Stimulus ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง เพิ่ม API ขึ้นมา 2 ตัวคือ values และ CSS classes ซึ่งก็เอามาใช้แทนที่ data map ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ document จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว Value Controller V1 Controller V2 HTML V1 HTML V2 จะเห็นว่าใน Controller ของเวอร์ชัน 2 จะมีการใช้ static values เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1 ส่วนในฝั่ง HTML ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม -value ตามหลัง data attributes Class บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง Controller V2 HTML V2 ตัวอย่างข้างต้นจะเป็นการใช้ CSS ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน Contrller เป็นการใช้ static classes ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน HTML โดยใช้รูปแบบ data-[identifier]-[name]-class=&quot;className&quot; รองรับ DOM event listener options เมื่อมีการเรียกใช้งาน action ซึ่งก็ไปตามดูได้ในมาตรฐาน เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง identifier กับ target จากเดิมที่เป็น data-target=&quot;[identifier].[name]&quot; เป็น data-[identifier]-target=&quot;[name]&quot; References Announcing Stimulus 2.0 StimulusJS</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en"><!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png">
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>ติดตั้ง gem และ node module จาก private repository | KT</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="ติดตั้ง gem และ node module จาก private repository" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM" />
+<meta property="og:description" content="คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM" />
+<link rel="canonical" href="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" />
+<meta property="og:url" content="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-29T22:40:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" />
+<meta property="twitter:title" content="ติดตั้ง gem และ node module จาก private repository" />
+<meta name="twitter:site" content="@karn18" />
+<meta name="twitter:creator" content="@Karn" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html"},"image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png","@type":"imageObject"},"author":{"@type":"Person","name":"Karn"},"headline":"ติดตั้ง gem และ node module จาก private repository","dateModified":"2021-01-29T22:40:00+07:00","datePublished":"2021-01-29T22:40:00+07:00","description":"คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM","url":"https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/javascripts/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://karn18.github.io/feed.xml" title="KT" /><meta name="robots" content="index,follow" /><script async defer src="https://lightseed.karn.tech/script.js" seedId="CDNzsBrdni" skip-dnt="true"></script>
+<title>ติดตั้ง gem และ node module จาก private repository</title>
+</head><body>
+    <div class="progress"></div>
+    <main><!-- <input type="checkbox" id="hamburger" class="nav-checkbox"/> -->
+<!-- <label class="nav-mobile-button" for="hamburger">Menu</label> -->
+
+<nav class="nav">
+  <div class="nav__menu">
+    <!-- <label class="nav-mobile-button nav-mobile-button--close" for="hamburger"><span></span> close</label> -->
+    <ul class="nav__list nav__list--horizontal">
+      <li>
+        <a href="/" class="nav__list-link"><i class="typcn typcn-pen"></i>บทความ</a>
+      </li>
+      <li>
+        <a href="/archives" class="nav__list-link"><i class="typcn typcn-archive"></i><span>คลัง</span></a>
+      </li>
+      <!-- <li>
+        <a href="/about" class="nav__list-link"><i class="typcn typcn-user"></i><span>เกี่ยวกับเรา</span></a>
+      </li> -->
+      <li>
+        <a href="/feed.xml" class="nav__list-link"><i class="typcn typcn-rss"></i><span>rss</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="blog">
+  <div class="blog__header">
+  <h1 class="blog__title">ติดตั้ง gem และ node module จาก private repository</h1>
+  <div class="blog__info">
+    <i class="typcn typcn-calendar-outline"></i> 29-01-2021
+    
+      | <i class="typcn typcn-tag"></i>
+      
+        <span>gem</span>
+      
+        <span>node</span>
+      
+        <span>module</span>
+      
+    
+  </div>
+</div>
+
+  
+    <figure class="image blog-image-header">
+      <img src="/assets/images/posts/2021/rails-validations/cover.png">
+    </figure>
+  
+  <div class="blog__content">
+    <p>คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private</p>
+
+<p>สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ <strong>Rails</strong> จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ</p>
+
+<ol>
+  <li>Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ <a href="https://rubygems.org">RubyGem</a></li>
+  <li>Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ <a href="https://www.npmjs.com/">NPM</a><!--more--></li>
+</ol>
+
+<blockquote>
+  <p>โดยส่วนมากก็จะเป็น Open Source และเก็บเอาไว้ใน GitHub</p>
+</blockquote>
+
+<p>ที่นี้ก็มาถึง lib ที่เป็นของเราเองที่พัฒนาขึ้นแบบส่วนตัว ภายใต้องค์กรหรือบริษัท ซึ่งจะถูกเก็บเอาไว้อยู่ใน git repository ต่างๆ ไม่ว่าจะเป็น GitHub, Gitlab, BitBucket โดยจะมีการกำหนดสิทธิ์ในการเข้าถึงได้แบบ private ทำให้เราไม่สามารถเข้าถึงได้ ถ้าไม่ได้ sign-in เข้าไปซะก่อน ดังนั้นเราจะต้องทำการสร้าง <strong>access token</strong> ขึ้นมา เพื่อใช้ในการติดตั้งโดยเฉพาะ และแน่นอนว่า git repostiory ที่กล่าวไปข้างต้นมี feature นี้อยู่</p>
+
+<p>สำหรับในบทความนี้ผมก็ขอยกตัวอย่างเป็น <strong>GitLab</strong> แล้วกันเพราะทางองค์กรใช้ตัวนี้เป็นหลักในการทำงาน โดยก่อนอื่นเราจะต้องเข้าไปสร้าง <strong>access token</strong> ขึ้นมา ให้เราเข้าไปที่ profile ของตัวเอง จากนั้นสังเกตที่เมนูด้านซ้ายมือ และเข้าไปที่ Access Token</p>
+
+<ul>
+  <li>ให้เรากำหนดชื่อที่ตัวเองชอบ และเข้าใจว่าจะใช้ทำอะไร</li>
+  <li>กำหนดวันหมดอายุ ถ้าขี้เกียจต้องมา revoke ก็ไม่ต้องใส่ค่า token ตัวนี้จะไม่มีวันหมดอายุ</li>
+  <li>เลือกสิทธิการเข้าถึงเป็นแบบ <code class="language-plaintext highlighter-rouge">read_repository</code> ก็ให้เข้าไปอ่านได้อย่างเดียวก็พอแล้ว</li>
+  <li>กดสร้าง <strong>access token</strong></li>
+  <li>❗️ตรงนี้สำคัญ❗️ ให้ copy token ที่ถูกสร้างขึ้นมาเก็บเอาไว้ให้ดี เพราะเราจะไม่ได้เห็นมันอีกแล้ว</li>
+</ul>
+
+<p><img src="/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/create-access-token.png" alt="Create Access Token" />
+<em>สร้าง Access Token</em></p>
+
+<h2 id="การติดตั้ง-gem">การติดตั้ง Gem</h2>
+
+<p>ให้เราใส่ gem ที่จะใช้งานเข้าไปใน <code class="language-plaintext highlighter-rouge">Gemfile</code> เพียงแต่สิ่งที่ต้องทำเพิ่มคือการระบุที่อยู่ที่เป็น private repository เข้าไปด้วย และที่สำคัญเราจะต้องเอา <strong>access token</strong> ที่ได้เมื่อกี้แนบไปพร้อมกับ account ที่ใช้ด้วย</p>
+
+<p><strong>ยกตัวอย่าง</strong> ให้ account ที่ใช้งานเป็น <code class="language-plaintext highlighter-rouge">karn</code> มี access token เป็น <code class="language-plaintext highlighter-rouge">JNb1ri7fWfAPbBwqaSD</code> และ git repo สามารถเข้าถึงได้ผ่าน url <code class="language-plaintext highlighter-rouge">https://gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git</code> เราก็จะประกอบร่างเป็นดังโค้ดด้านล่าง</p>
+
+<h3 id="gemfile">Gemfile</h3>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s2">"latias-auditor"</span><span class="p">,</span> <span class="ss">git: </span><span class="s1">'https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git'</span>
+</code></pre></div></div>
+
+<p>ติดตั้ง gem ผ่าน <code class="language-plaintext highlighter-rouge">bundle install</code></p>
+
+<h2 id="การติดตั้ง-node-module">การติดตั้ง Node Module</h2>
+
+<p>มาดูในฝั่ง Frontend กันบ้าง ถ้าเป็น Node ก็ต้องใส่เข้าไปใน <code class="language-plaintext highlighter-rouge">package.json</code> และเช่นกันรูปแบบการใช้งานก็คล้ายคลึงกับด้านบน เพียงแต่ปกติที่เราจะระบุเลข version ตามหลังชื่อ module ก็ให้ใส่เป็น url แทน ❗️ระวังนิดหนึงคือ protocal ที่ใช้จะต้องเป็น <code class="language-plaintext highlighter-rouge">git+https</code> หรือถ้าใครใช้ ssh ก็จะเป็น <code class="language-plaintext highlighter-rouge">git+ssh</code> อ่านเพิ่มเติมได้จากลิงค์ด้านล่างนะ</p>
+
+<h3 id="packagejson">package.json</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR-PROJECT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"latias-date-format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git+https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-date-format.git"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <p>ไม่ต้องห่วงว่า account กับ access token ที่อยู่ในตัวอย่างจะเข้าถึงโค้ดได้จริงนะครับ แต่ถ้าเผอิญเกิดเข้าได้จริงก็แจ้งมาด้วยแล้วกันนะ</p>
+</blockquote>
+
+<p>เพียงเท่านี้ก็เรียบร้อย เราสามารถที่จะติดตั้ง lib ของเราจาก private git repository ได้</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://bundler.io/man/gemfile.5.html">Gemfile</a></li>
+  <li><a href="https://docs.npmjs.com/about-packages-and-modules">NPM Packages and Modules</a></li>
+</ul>
+
+  </div>
+  <div class="pagination">
+  <div class="pagination__newer">
+    
+  </div>
+  <div class="pagination__older">
+    
+      <a class="pagination__button" href="/dev/2021/01/27/rails-validations.html">Older &rarr;</a>
+    
+  </div>
+</div>
+</div>
+
+
+
+    </main><div class="footer">
+  <p>
+    Crafted by <strong>Karn Tirasoontorn</strong> with <strong><i class="typcn typcn-heart"></i></strong>
+  </p>
+  <p>
+    <i class="typcn typcn-social-twitter-circular"></i><a href="https://twitter.com/@karn18"><i class="fab fa-twitter"></i> @karn18</a>
+  </p>
+</div></body>
+</html>
