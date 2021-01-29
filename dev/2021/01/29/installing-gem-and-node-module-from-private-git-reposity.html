@@ -17,18 +17,18 @@
 <link rel="canonical" href="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" />
 <meta property="og:url" content="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" />
 <meta property="og:site_name" content="KT" />
-<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" />
+<meta property="og:image" content="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-01-29T22:40:00+07:00" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" />
+<meta property="twitter:image" content="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" />
 <meta property="twitter:title" content="ติดตั้ง gem และ node module จาก private repository" />
 <meta name="twitter:site" content="@karn18" />
 <meta name="twitter:creator" content="@Karn" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html"},"image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png","@type":"imageObject"},"author":{"@type":"Person","name":"Karn"},"headline":"ติดตั้ง gem และ node module จาก private repository","dateModified":"2021-01-29T22:40:00+07:00","datePublished":"2021-01-29T22:40:00+07:00","description":"คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM","url":"https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html"},"author":{"@type":"Person","name":"Karn"},"image":{"width":1200,"height":630,"url":"https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png","@type":"imageObject"},"description":"คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM","headline":"ติดตั้ง gem และ node module จาก private repository","dateModified":"2021-01-29T22:40:00+07:00","url":"https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html","datePublished":"2021-01-29T22:40:00+07:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/main.css" />
@@ -78,7 +78,7 @@
 
   
     <figure class="image blog-image-header">
-      <img src="/assets/images/posts/2021/rails-validations/cover.png">
+      <img src="/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png">
     </figure>
   
   <div class="blog__content">

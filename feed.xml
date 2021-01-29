@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-01-29T22:42:18+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ติดตั้ง gem และ node module จาก private repository</title><link href="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" rel="alternate" type="text/html" title="ติดตั้ง gem และ node module จาก private repository" /><published>2021-01-29T22:40:00+07:00</published><updated>2021-01-29T22:40:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html">&lt;p&gt;คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-01-29T22:47:20+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ติดตั้ง gem และ node module จาก private repository</title><link href="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" rel="alternate" type="text/html" title="ติดตั้ง gem และ node module จาก private repository" /><published>2021-01-29T22:40:00+07:00</published><updated>2021-01-29T22:40:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html">&lt;p&gt;คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private&lt;/p&gt;
 
 &lt;p&gt;สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ &lt;strong&gt;Rails&lt;/strong&gt; จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ&lt;/p&gt;
 
@@ -61,606 +61,533 @@
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://bundler.io/man/gemfile.5.html&quot;&gt;Gemfile&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://docs.npmjs.com/about-packages-and-modules&quot;&gt;NPM Packages and Modules&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="gem" /><category term="node" /><category term="module" /><summary type="html">คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ตรวจสอบข้อมูลก่อนบันทึก (Validations)</title><link href="https://karn18.github.io/dev/2021/01/27/rails-validations.html" rel="alternate" type="text/html" title="ตรวจสอบข้อมูลก่อนบันทึก (Validations)" /><published>2021-01-27T22:43:00+07:00</published><updated>2021-01-27T22:43:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/27/rails-validations</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/27/rails-validations.html">&lt;p&gt;โดยทั่วไปเวลาที่เราสร้าง &lt;strong&gt;Model&lt;/strong&gt; สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (&lt;strong&gt;Constraint&lt;/strong&gt;) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน &lt;strong&gt;ActiveRecord&lt;/strong&gt; จะมีการเขียน &lt;strong&gt;Validations&lt;/strong&gt; ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด&lt;!--more--&gt; และแน่นอนว่าเมื่อโลจิกของโปรแกรมเริ่มมีความซับซ้อนขึ้น เงื่อนไขในการตรวจสอบก็ย่อมจะซับซ้อนขึ้นตาม ซึ่งการใช้ built-in &lt;strong&gt;Validations&lt;/strong&gt; ไม่สามารถตอบโจทย์ได้ ทำให้เราจะต้องสร้าง &lt;strong&gt;Validator&lt;/strong&gt; ของเราขึ้นมาเอง ซึ่งก็ทำได้ไม่ยากมาดูกันเลย&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="gem" /><category term="node" /><category term="module" /><summary type="html">คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ตรวจสอบข้อมูลก่อนบันทึก (Validations)</title><link href="https://karn18.github.io/dev/2021/01/27/rails-validations.html" rel="alternate" type="text/html" title="ตรวจสอบข้อมูลก่อนบันทึก (Validations)" /><published>2021-01-27T22:43:00+07:00</published><updated>2021-01-27T22:43:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/27/rails-validations</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/27/rails-validations.html">โดยทั่วไปเวลาที่เราสร้าง **Model** สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (**Constraint**) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน **ActiveRecord** จะมีการเขียน **Validations** ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด&lt;!--more--&gt; และแน่นอนว่าเมื่อโลจิกของโปรแกรมเริ่มมีความซับซ้อนขึ้น เงื่อนไขในการตรวจสอบก็ย่อมจะซับซ้อนขึ้นตาม ซึ่งการใช้ built-in **Validations** ไม่สามารถตอบโจทย์ได้ ทำให้เราจะต้องสร้าง **Validator** ของเราขึ้นมาเอง ซึ่งก็ทำได้ไม่ยากมาดูกันเลย
 
-&lt;h2 id=&quot;โจทย์&quot;&gt;โจทย์&lt;/h2&gt;
-&lt;p&gt;สำหรับโจทย์วันนี้ที่เราจะแก้ไขก็มาจากที่ว่า โปรแกรมที่พัฒนาจะมีการบันทึกข้อมูลคนไข้เยี่ยมบ้าน ซึ่งในแต่ละปีงบประมาณจะอนุญาตให้สร้างคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันเกิดขึ้นไม่ได้โดยอ้างอิงจากวันที่สำรวจ ซึ่งหน้าตาของตาราง Patient นั้นก็เป็นดังตารางด้านล่าง (เอามาเฉพาะบางฟิลด์เท่านั้นนะ)&lt;/p&gt;
+## โจทย์
+สำหรับโจทย์วันนี้ที่เราจะแก้ไขก็มาจากที่ว่า โปรแกรมที่พัฒนาจะมีการบันทึกข้อมูลคนไข้เยี่ยมบ้าน ซึ่งในแต่ละปีงบประมาณจะอนุญาตให้สร้างคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันเกิดขึ้นไม่ได้โดยอ้างอิงจากวันที่สำรวจ ซึ่งหน้าตาของตาราง Patient นั้นก็เป็นดังตารางด้านล่าง (เอามาเฉพาะบางฟิลด์เท่านั้นนะ)
 
-&lt;h3 id=&quot;ตาราง-patient&quot;&gt;ตาราง Patient&lt;/h3&gt;
+### ตาราง Patient
 
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;id&lt;/th&gt;
-      &lt;th&gt;pid&lt;/th&gt;
-      &lt;th&gt;first_name&lt;/th&gt;
-      &lt;th&gt;surveyed_date&lt;/th&gt;
-      &lt;th&gt;created_at&lt;/th&gt;
-      &lt;th&gt;updated_at&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;183xxxxxxx515&lt;/td&gt;
-      &lt;td&gt;demo&lt;/td&gt;
-      &lt;td&gt;2020-08-19&lt;/td&gt;
-      &lt;td&gt;2020-08-19&lt;/td&gt;
-      &lt;td&gt;2020-08-19 11:05:57&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;183xxxxxxx515&lt;/td&gt;
-      &lt;td&gt;demo&lt;/td&gt;
-      &lt;td&gt;2021-05-02&lt;/td&gt;
-      &lt;td&gt;2021-05-02&lt;/td&gt;
-      &lt;td&gt;2021-05-02 14:27:12&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+id | pid | first_name | surveyed_date | created_at | updated_at
+--- |--- | ---
+1| 183xxxxxxx515 | demo | 2020-08-19 | 2020-08-19 | 2020-08-19 11:05:57
+2| 183xxxxxxx515 | demo | 2021-05-02 | 2021-05-02 | 2021-05-02 14:27:12
 
-&lt;p&gt;จากตารางจะพบว่าเราสามารถบันทึกข้อมูลคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันได้ก็ต่อเมื่อวันที่เยี่ยมบ้าน (surveyed_date) จะต้องอยู่คนละปีงบประมาณกัน
-แถวแรกจะเป็นปีงบประมาณ 2563 (1 ตุลาคม 2562 - 20 กันยายน 2563) และแถวที่สองเป็นปีงบประมาณ 2564 (1 ตุลาคม 2563 - 30 กันยายน 2564)&lt;/p&gt;
+จากตารางจะพบว่าเราสามารถบันทึกข้อมูลคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันได้ก็ต่อเมื่อวันที่เยี่ยมบ้าน (surveyed_date) จะต้องอยู่คนละปีงบประมาณกัน
+แถวแรกจะเป็นปีงบประมาณ 2563 (1 ตุลาคม 2562 - 20 กันยายน 2563) และแถวที่สองเป็นปีงบประมาณ 2564 (1 ตุลาคม 2563 - 30 กันยายน 2564)
 
-&lt;hr /&gt;
+-----
 
-&lt;p&gt;ก่อนจะไปถึงวิธีแก้ไขโจทย์ของเรา ถ้าย้อนกลับไปเป็นโจทย์ที่ว่าเราสามารถบันทึกข้อมูลคนไข้ซ้ำกันไม่ได้เลย การตรวจสอบข้อมูลก็สามารถเขียนได้ดังนี้&lt;/p&gt;
+ก่อนจะไปถึงวิธีแก้ไขโจทย์ของเรา ถ้าย้อนกลับไปเป็นโจทย์ที่ว่าเราสามารถบันทึกข้อมูลคนไข้ซ้ำกันไม่ได้เลย การตรวจสอบข้อมูลก็สามารถเขียนได้ดังนี้
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Patient&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uniqueness: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+class Patient
+  validates :pid, uniqueness: true
+end
+```
 
-&lt;p&gt;ที่นี้ก็มาสร้าง &lt;strong&gt;Validator&lt;/strong&gt; ของเรากันเลย ก็สามารถทำได้ง่ายๆ โดยการสร้าง class ที่สืบทอดความสามารถต่อจาก class &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ActiveModel::Validator&lt;/code&gt; และก็ต้อง implement เมธอดที่ชื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;validate&lt;/code&gt;&lt;/p&gt;
+ที่นี้ก็มาสร้าง **Validator** ของเรากันเลย ก็สามารถทำได้ง่ายๆ โดยการสร้าง class ที่สืบทอดความสามารถต่อจาก class `ActiveModel::Validator` และก็ต้อง implement เมธอดที่ชื่อ `validate`
 
-&lt;h3 id=&quot;appvalidatorspatient_validatorrb&quot;&gt;app/validators/patient_validator.rb&lt;/h3&gt;
+### app/validators/patient_validator.rb
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PatientValidator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveModel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Validator&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;validate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;budget_year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_budget_year&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;results&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;constantize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;pid = :pid and extract(year from surveyed_date) = :budget_year&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;pid: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;budget_year: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;budget_year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+```ruby
+class PatientValidator &lt; ActiveModel::Validator
+  def validate(record)
+    budget_year = current_budget_year
+    results = record.class.name.constantize.where(&quot;pid = :pid and extract(year from surveyed_date) = :budget_year&quot;, pid: record.pid, budget_year: budget_year)
 
-    &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;errors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:duplicated_pid_per_budget_year&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;results&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;zero?&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+    record.errors.add :pid, :duplicated_pid_per_budget_year unless results.size.zero?
+  end
+end
+```
 
-&lt;p&gt;ในกรณีที่เราเขียนเงื่อนไขตรวจสอบแล้วไม่ถูกต้อง เราจะทำการเพิ่ม error เข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;record.errors&lt;/code&gt; ซึ่งก็จะระบุฟิลด์ กับข้อความที่จะแสดง แต่ถ้าไม่มีอะไรผิดผ่านเราก็ปล่อยผ่านไปเลย ทันทีที่โมเดลเราทำการตรวจสอบด้วย &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;valid?&lt;/code&gt; และพบว่ามี errors ปรากฏอยู่ข้อมูลก็จะไม่บันทึกลงในฐานข้อมูล&lt;/p&gt;
+ในกรณีที่เราเขียนเงื่อนไขตรวจสอบแล้วไม่ถูกต้อง เราจะทำการเพิ่ม error เข้าไปใน `record.errors` ซึ่งก็จะระบุฟิลด์ กับข้อความที่จะแสดง แต่ถ้าไม่มีอะไรผิดผ่านเราก็ปล่อยผ่านไปเลย ทันทีที่โมเดลเราทำการตรวจสอบด้วย `valid?` และพบว่ามี errors ปรากฏอยู่ข้อมูลก็จะไม่บันทึกลงในฐานข้อมูล
 
-&lt;p&gt;สำหรับวิธีการเรียกใช้ &lt;strong&gt;PatientValidator&lt;/strong&gt; ก็สามารถทำได้ดังนี้&lt;/p&gt;
+สำหรับวิธีการเรียกใช้ **PatientValidator** ก็สามารถทำได้ดังนี้
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Patient&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# แบบแรก&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;validates_with&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PatientValidator&lt;/span&gt;
+```ruby
+class Patient
+  # แบบแรก
+  validates_with PatientValidator
 
-  &lt;span class=&quot;c1&quot;&gt;# แบบที่สอง&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:once_in_budget_year&lt;/span&gt;
+  # แบบที่สอง
+  validates :once_in_budget_year
 
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;once_in_budget_year&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;validates_with&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PatientValidator&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+  def once_in_budget_year
+    validates_with PatientValidator
+  end
+end
+```
 
-&lt;p&gt;เพียงเท่านี้เราก็สามารถตอบโจทย์เราได้แล้ว แต่ถ้าเราลองพิจารณาเพิ่มไปอีกนิดจะพบว่าถ้าเราเพิ่มฟิลด์ &lt;strong&gt;budget_year&lt;/strong&gt; เข้าไปในตารางก็น่าจะทำให้การตรวจสอบทำได้โดยไม่ต้องสร้าง &lt;strong&gt;Validator&lt;/strong&gt; ใหม่ขึ้นมาได้ และโค้ดของเราก็จะเป็นประมาณนี้&lt;/p&gt;
+เพียงเท่านี้เราก็สามารถตอบโจทย์เราได้แล้ว แต่ถ้าเราลองพิจารณาเพิ่มไปอีกนิดจะพบว่าถ้าเราเพิ่มฟิลด์ **budget_year** เข้าไปในตารางก็น่าจะทำให้การตรวจสอบทำได้โดยไม่ต้องสร้าง **Validator** ใหม่ขึ้นมาได้ และโค้ดของเราก็จะเป็นประมาณนี้
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Patient&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uniqueness: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;scope: :budget_year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;message: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Should happen once per budget year&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+class Patient
+  validates :pid, uniqueness: { scope: :budget_year,
+    message: &quot;Should happen once per budget year&quot; }
+end
+```
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://guides.rubyonrails.org/active_record_validations.html&quot;&gt;Validations&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="ruby" /><category term="validations" /><summary type="html">โดยทั่วไปเวลาที่เราสร้าง Model สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (Constraint) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน ActiveRecord จะมีการเขียน Validations ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ลองสร้าง Audit Log ในรูปแบบ Rails Plugin</title><link href="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html" rel="alternate" type="text/html" title="ลองสร้าง Audit Log ในรูปแบบ Rails Plugin" /><published>2021-01-16T18:50:00+07:00</published><updated>2021-01-16T18:50:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html">&lt;p&gt;โดยมากแล้วโปรแกรมที่พัฒนาด้วย &lt;strong&gt;Rails&lt;/strong&gt; จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ &lt;strong&gt;Rails&lt;/strong&gt; จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก&lt;!--more--&gt;&lt;/p&gt;
+## References
+- [Validations](https://guides.rubyonrails.org/active_record_validations.html)</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="ruby" /><category term="validations" /><summary type="html">โดยทั่วไปเวลาที่เราสร้าง Model สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (Constraint) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน ActiveRecord จะมีการเขียน Validations ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ลองสร้าง Audit Log ในรูปแบบ Rails Plugin</title><link href="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html" rel="alternate" type="text/html" title="ลองสร้าง Audit Log ในรูปแบบ Rails Plugin" /><published>2021-01-16T18:50:00+07:00</published><updated>2021-01-16T18:50:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html">โดยมากแล้วโปรแกรมที่พัฒนาด้วย **Rails** จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ **Rails** จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก&lt;!--more--&gt;
 
-&lt;p&gt;จึงได้ลองใช้ &lt;strong&gt;Timber&lt;/strong&gt; 3rd Party Service ในการเก็บ log ดู ซึ่งเราสามารถเข้าไปดู log ได้แบบ real time วิธีการใช้งานก็ง่าย อีกทั้งการค้นหาสิ่งที่เราสนใจก็ทำได้ง่าย &lt;strong&gt;แต่&lt;/strong&gt;ของฟรีและดีอย่างที่เราต้องการนั้นไม่มีอยู่จริง เพราะ &lt;strong&gt;Timber&lt;/strong&gt; แบบฟรีนั้นให้เราเก็บ log ได้ขนาดจำกัด และ retention ในการดูข้อมูลย้อนหลังก็ทำได้เพียงแค่วันเดียวเท่านั้น&lt;/p&gt;
+จึงได้ลองใช้ **Timber** 3rd Party Service ในการเก็บ log ดู ซึ่งเราสามารถเข้าไปดู log ได้แบบ real time วิธีการใช้งานก็ง่าย อีกทั้งการค้นหาสิ่งที่เราสนใจก็ทำได้ง่าย **แต่**ของฟรีและดีอย่างที่เราต้องการนั้นไม่มีอยู่จริง เพราะ **Timber** แบบฟรีนั้นให้เราเก็บ log ได้ขนาดจำกัด และ retention ในการดูข้อมูลย้อนหลังก็ทำได้เพียงแค่วันเดียวเท่านั้น
 
-&lt;blockquote&gt;
-  &lt;p&gt;อยากได้ของดี ก็ต้องเสียตังเอานะครับ&lt;/p&gt;
-&lt;/blockquote&gt;
+&gt; อยากได้ของดี ก็ต้องเสียตังเอานะครับ
 
-&lt;p&gt;กลายเป็นว่าจะทำอย่างไรดีให้เราสามารถดู log ได้ง่ายขึ้น และตอบโจทย์ของเรา รวมถึงสามารถนำไปใช้งานในโปรเจ็คอื่นๆ ได้ด้วย ก็นึกขึ้นมาได้ว่าเราควรจะทำเป็น &lt;strong&gt;Rails Plugin&lt;/strong&gt; เอาไว้ดีกว่า (กว่าจะเข้าเรื่องสักที)&lt;/p&gt;
+กลายเป็นว่าจะทำอย่างไรดีให้เราสามารถดู log ได้ง่ายขึ้น และตอบโจทย์ของเรา รวมถึงสามารถนำไปใช้งานในโปรเจ็คอื่นๆ ได้ด้วย ก็นึกขึ้นมาได้ว่าเราควรจะทำเป็น **Rails Plugin** เอาไว้ดีกว่า (กว่าจะเข้าเรื่องสักที)
 
-&lt;p&gt;Audit Log ที่พัฒนาขึ้นไว้ใช้งานนี้ก็จะเก็บข้อมูลด้วยคอนเซปต์ที่ว่า &lt;strong&gt;ใคร ทำอะไร เมื่อไหร่&lt;/strong&gt; เริ่มต้นก็สร้าง plugin กันเลย ซึ่งเราสามารถศึกษาได้จาก&lt;a href=&quot;https://guides.rubyonrails.org/plugins.html&quot;&gt;ที่นี่&lt;/a&gt; โดยเจ้า plugin นี้สามารถเรียกใช้งานผ่าน global method ที่ชื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;with_audit&lt;/code&gt; ดังตัวอย่างด้านล่าง&lt;/p&gt;
+Audit Log ที่พัฒนาขึ้นไว้ใช้งานนี้ก็จะเก็บข้อมูลด้วยคอนเซปต์ที่ว่า **ใคร ทำอะไร เมื่อไหร่** เริ่มต้นก็สร้าง plugin กันเลย ซึ่งเราสามารถศึกษาได้จาก[ที่นี่](https://guides.rubyonrails.org/plugins.html) โดยเจ้า plugin นี้สามารถเรียกใช้งานผ่าน global method ที่ชื่อ `with_audit` ดังตัวอย่างด้านล่าง
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;with_audit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Bob&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;login&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;User is logged in to the system&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;with_audit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;System&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sidekiq&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;email&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;Sending alert email to administrator&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```ruby
+with_audit(&quot;Bob&quot;, &quot;login&quot;, &quot;User is logged in to the system&quot;)
+with_audit(&quot;System&quot;, [&quot;sidekiq&quot;, &quot;email&quot;]) do
+  &quot;Sending alert email to administrator&quot;
+end
+```
 
-&lt;p&gt;และนอกจากนี้การบันทึกข้อมูลลงในฐานข้อมูลจะมีด้วยกัน 2 โหมด คือ&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;async ซึ่งจะเรียกใช้งานผ่าน Active Job หรือบันทึกข้อมูลผ่าน Background Process&lt;/li&gt;
-  &lt;li&gt;sync ซึ่งจะเรียกบันทึกข้อมูลทันที&lt;/li&gt;
-&lt;/ol&gt;
+และนอกจากนี้การบันทึกข้อมูลลงในฐานข้อมูลจะมีด้วยกัน 2 โหมด คือ
+1. async ซึ่งจะเรียกใช้งานผ่าน Active Job หรือบันทึกข้อมูลผ่าน Background Process
+2. sync ซึ่งจะเรียกบันทึกข้อมูลทันที
 
-&lt;blockquote&gt;
-  &lt;p&gt;ใครสนใจพัฒนาต่อยอดก็สามารถ clone ได้จากด้านล่างนะครับ ส่วนถ้ามีฟีเจอร์ไรอัพเดตก็ PR กันเข้ามาได้ครับ 👇&lt;/p&gt;
-&lt;/blockquote&gt;
+&gt; ใครสนใจพัฒนาต่อยอดก็สามารถ clone ได้จากด้านล่างนะครับ ส่วนถ้ามีฟีเจอร์ไรอัพเดตก็ PR กันเข้ามาได้ครับ 👇
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://guides.rubyonrails.org/plugins.html&quot;&gt;Rails Plugin&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://guides.rubyonrails.org/generators.html&quot;&gt;Rails Generator&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/latias-auditor&quot;&gt;Latias Auditor&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="plugin" /><category term="ruby" /><category term="audit" /><category term="log" /><summary type="html">โดยมากแล้วโปรแกรมที่พัฒนาด้วย Rails จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ Rails จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เลือกหุ่นยนต์การศึกษาให้เหมาะกับเด็กๆ ได้อย่างไร</title><link href="https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids.html" rel="alternate" type="text/html" title="เลือกหุ่นยนต์การศึกษาให้เหมาะกับเด็กๆ ได้อย่างไร" /><published>2021-01-07T22:47:00+07:00</published><updated>2021-01-07T22:47:00+07:00</updated><id>https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids</id><content type="html" xml:base="https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids.html">&lt;p&gt;ในยุคปัจจุบันการเรียนรู้ของเด็กนั้นแตกต่างๆ จากสมัยก่อนมากเลยทีเดียว การเรียนรู้และศึกษาเกี่ยวกับ &lt;strong&gt;STEAM&lt;/strong&gt; (Science, Technology, Engineering, Art และ Mathermatics) ก็มีความทันสมัย และเข้าถึงได้ง่ายขึ้นผ่านการเรียนรู้จากหุ่นยนต์ (Robot) อีกทั้งยังช่วยสงเสริมความคิดสร้างสรรค์ การออกแบบ และแก้ไขปัญหาด้วย ในฐานะผู้ปกครองเราจะเลือกหุ่นยนต์ที่เหมาะสมเพื่อให้ลูกของเราได้เรียนรู้และศึกษาได้อย่างไร เมื่อในท้องตลาดนั้นมีหุ่นยนต์มากมาย และหลากหลายประเภทเหลือเกิน&lt;!--more--&gt; วันนี้เราจะมาลองทำความรู้จักกับประเภทของหุ่นยนต์การศึกษากันหน่อยซึ่งโดยหลักๆ แล้วจะแบ่งออกเป็น 4 ประเภทใหญ่ๆ ด้วยกันคือ&lt;/p&gt;
+## References
+- [Rails Plugin](https://guides.rubyonrails.org/plugins.html)
+- [Rails Generator](https://guides.rubyonrails.org/generators.html)
+- [Latias Auditor](https://github.com/karn18/latias-auditor)</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="plugin" /><category term="ruby" /><category term="audit" /><category term="log" /><summary type="html">โดยมากแล้วโปรแกรมที่พัฒนาด้วย Rails จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ Rails จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เลือกหุ่นยนต์การศึกษาให้เหมาะกับเด็กๆ ได้อย่างไร</title><link href="https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids.html" rel="alternate" type="text/html" title="เลือกหุ่นยนต์การศึกษาให้เหมาะกับเด็กๆ ได้อย่างไร" /><published>2021-01-07T22:47:00+07:00</published><updated>2021-01-07T22:47:00+07:00</updated><id>https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids</id><content type="html" xml:base="https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids.html">ในยุคปัจจุบันการเรียนรู้ของเด็กนั้นแตกต่างๆ จากสมัยก่อนมากเลยทีเดียว การเรียนรู้และศึกษาเกี่ยวกับ **STEAM** (Science, Technology, Engineering, Art และ Mathermatics) ก็มีความทันสมัย และเข้าถึงได้ง่ายขึ้นผ่านการเรียนรู้จากหุ่นยนต์ (Robot) อีกทั้งยังช่วยสงเสริมความคิดสร้างสรรค์ การออกแบบ และแก้ไขปัญหาด้วย ในฐานะผู้ปกครองเราจะเลือกหุ่นยนต์ที่เหมาะสมเพื่อให้ลูกของเราได้เรียนรู้และศึกษาได้อย่างไร เมื่อในท้องตลาดนั้นมีหุ่นยนต์มากมาย และหลากหลายประเภทเหลือเกิน&lt;!--more--&gt; วันนี้เราจะมาลองทำความรู้จักกับประเภทของหุ่นยนต์การศึกษากันหน่อยซึ่งโดยหลักๆ แล้วจะแบ่งออกเป็น 4 ประเภทใหญ่ๆ ด้วยกันคือ
 
-&lt;blockquote&gt;
-  &lt;p&gt;การจำแนกประเภทหุ่นยนต์นี้อ้างอิงจากลักษณะของหุ่นยนต์ รูปแบบการสอน และวิธิการเขียนโค้ดเป็นหลัก&lt;/p&gt;
-&lt;/blockquote&gt;
+&gt; การจำแนกประเภทหุ่นยนต์นี้อ้างอิงจากลักษณะของหุ่นยนต์ รูปแบบการสอน และวิธิการเขียนโค้ดเป็นหลัก
 
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Physical Coded Robots&lt;/strong&gt; หุ่นยนต์ประเภทนี้จะเน้นที่การเขียนโค้ดโดยไม่ใช้หน้าจอ หรือจะเรียกอีกอย่างก็คือ Unplug Coding โดยรูปร่างของหุ่นยนต์จะออกไปในเชิงของเล่น น่ารักๆ เหมาะกับเด็กช่วงอายุ 4 - 9 ขวบ ลักษณะของการสอนก็จะให้เด็กๆ ได้เรียนรู้พื้นฐานการเขียนโค้ด ไม่ว่าจะเป็นการคำสั่ง การทำงานตามลำดับ การคิดแยกแยะปัญหาแบบง่ายผ่านกิจกรรมต่างๆ (Play-based learning) ตัวอย่างหุ่นยนต์ประเภทนี้ก็ได้แก่ Bee-bot, Cubetto หรือ Matatalab เป็นต้น&lt;/li&gt;
-&lt;/ol&gt;
+1. **Physical Coded Robots** หุ่นยนต์ประเภทนี้จะเน้นที่การเขียนโค้ดโดยไม่ใช้หน้าจอ หรือจะเรียกอีกอย่างก็คือ Unplug Coding โดยรูปร่างของหุ่นยนต์จะออกไปในเชิงของเล่น น่ารักๆ เหมาะกับเด็กช่วงอายุ 4 - 9 ขวบ ลักษณะของการสอนก็จะให้เด็กๆ ได้เรียนรู้พื้นฐานการเขียนโค้ด ไม่ว่าจะเป็นการคำสั่ง การทำงานตามลำดับ การคิดแยกแยะปัญหาแบบง่ายผ่านกิจกรรมต่างๆ (Play-based learning) ตัวอย่างหุ่นยนต์ประเภทนี้ก็ได้แก่ Bee-bot, Cubetto หรือ Matatalab เป็นต้น
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cubetto.png&quot; alt=&quot;cubetto&quot; width=&quot;400px&quot; /&gt;
-&lt;em&gt;Cubetto&lt;/em&gt;&lt;/p&gt;
+![cubetto](/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cubetto.png){:width=&quot;400px&quot;}
+*Cubetto*
+  
+1. **Introductory Programmable Robots** หุ่นยนต์ประเภทนี้อัพเกรดขึ้นมาจากประเภทแรก เริ่มเน้นเรื่องคอนเซปต์การเขียนโค้ดมากขึ้นผ่านตัวโปรแกรม ซึ่งก็จะเริ่มใช้หน้าจอไม่ว่าจะผ่านทาง Controller, Tablet หรือ Computer แต่ยังคงความสนุกสนานผ่านการกิจกรรม หรือเกมส์ (Just for fun and learning to code) ลักษณะหุ่นยนต์ก็ยังคงคล้ายๆ กับประเภทแรก เช่น Botley หรือ Dash เป็นต้น
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Introductory Programmable Robots&lt;/strong&gt; หุ่นยนต์ประเภทนี้อัพเกรดขึ้นมาจากประเภทแรก เริ่มเน้นเรื่องคอนเซปต์การเขียนโค้ดมากขึ้นผ่านตัวโปรแกรม ซึ่งก็จะเริ่มใช้หน้าจอไม่ว่าจะผ่านทาง Controller, Tablet หรือ Computer แต่ยังคงความสนุกสนานผ่านการกิจกรรม หรือเกมส์ (Just for fun and learning to code) ลักษณะหุ่นยนต์ก็ยังคงคล้ายๆ กับประเภทแรก เช่น Botley หรือ Dash เป็นต้น&lt;/p&gt;
+    ![dash](/assets/images/posts/2021/choose-the-right-robot-for-your-kids/dash.jpg){:width=&quot;400px&quot;}
+    *Dash*
 
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/choose-the-right-robot-for-your-kids/dash.jpg&quot; alt=&quot;dash&quot; width=&quot;400px&quot; /&gt;
- &lt;em&gt;Dash&lt;/em&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Computer Programmable Robots&lt;/strong&gt; แน่นอนว่าหุ่นยนต์ประเภทนี้ก็จะอัพเกรตขึ้นมาจากประเภทที่สอง โดยหุ่นยนต์เริ่มมีเซนเซอร์อื่นๆ เข้ามาผสมด้วย ทำให้หุ่นยนต์นั้นมีความสามารถมากขึ้น น้องๆ ก็จะได้เรียนรู้เทคโนโลยีและวิธีการเขียนโค้ดที่ซับซ้อนขึ้น เช่น การเขียนบังคับให้หุ่นยนต์เดิน หลบหลีกสิ่งกีดขวาง หรือเคลื่อนไหวเมื่อมีเสียงก็ได้ การเขียนโค้ดก็จะอยู่ในรูป block-based และ text-based ขึ้นอยู่กับระดับการเรียนการสอน สำหรับรูปแบบการเรียนก็จะมุ่งเน้นผ่านกิจกรรม การออกแบบความคิดสร้างสรรค์เป็นโปรเจ็ค รวมถึงการแข่งขันในระดับต่างๆ หุ่นยนต์ประเภทนี้ได้แก่ Edison หรือ Sphero Bolt เป็นต้น&lt;/p&gt;
+2. **Computer Programmable Robots** แน่นอนว่าหุ่นยนต์ประเภทนี้ก็จะอัพเกรตขึ้นมาจากประเภทที่สอง โดยหุ่นยนต์เริ่มมีเซนเซอร์อื่นๆ เข้ามาผสมด้วย ทำให้หุ่นยนต์นั้นมีความสามารถมากขึ้น น้องๆ ก็จะได้เรียนรู้เทคโนโลยีและวิธีการเขียนโค้ดที่ซับซ้อนขึ้น เช่น การเขียนบังคับให้หุ่นยนต์เดิน หลบหลีกสิ่งกีดขวาง หรือเคลื่อนไหวเมื่อมีเสียงก็ได้ การเขียนโค้ดก็จะอยู่ในรูป block-based และ text-based ขึ้นอยู่กับระดับการเรียนการสอน สำหรับรูปแบบการเรียนก็จะมุ่งเน้นผ่านกิจกรรม การออกแบบความคิดสร้างสรรค์เป็นโปรเจ็ค รวมถึงการแข่งขันในระดับต่างๆ หุ่นยนต์ประเภทนี้ได้แก่ Edison หรือ Sphero Bolt เป็นต้น
 
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/choose-the-right-robot-for-your-kids/edison.png&quot; alt=&quot;edison&quot; width=&quot;300px&quot; /&gt;
- &lt;em&gt;Edison&lt;/em&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Kit-based Robots&lt;/strong&gt; หุ่นยนต์ประเภทนี้เด็กๆ จะชอบกันมากเพราะตัวหุ่นยนต์จะแยกชิ้นส่วนมา และจะต้องประกอบร่างขึ้นมาให้สำเร็จ ซึ่งทำให้เด็กรู้สึกเหมือนได้สร้างหุ่นยนต์ขึ้นมาด้วยตัวเค้าเอง โดยหุ่นยนต์จะมีเซนเซอร์ หรือมอเตอร์ขับเคลื่อนมาด้วย ทำให้เมื่อการเขียนโค้ดสามารถไปควบคุมสั่งงานให้หุ่นยนต์มีการขยับ หรือเคลื่อนที่ตามที่ต้องการ การเขียนโค้ดก็จะผ่าน Tablet ซะเป็นส่วนใหญ่ หุ่นยนต์ประเภทนี้ก็ได้แก่ LEGO Mindstorms EV3 หรือ VEX เป็นต้น&lt;/p&gt;
+    ![edison](/assets/images/posts/2021/choose-the-right-robot-for-your-kids/edison.png){:width=&quot;300px&quot;}
+    *Edison*
 
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/choose-the-right-robot-for-your-kids/lego-mindstorm.jpg&quot; alt=&quot;mindstorm&quot; width=&quot;300px&quot; /&gt;
- &lt;em&gt;LEGO Mindstorm EV3&lt;/em&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+3. **Kit-based Robots** หุ่นยนต์ประเภทนี้เด็กๆ จะชอบกันมากเพราะตัวหุ่นยนต์จะแยกชิ้นส่วนมา และจะต้องประกอบร่างขึ้นมาให้สำเร็จ ซึ่งทำให้เด็กรู้สึกเหมือนได้สร้างหุ่นยนต์ขึ้นมาด้วยตัวเค้าเอง โดยหุ่นยนต์จะมีเซนเซอร์ หรือมอเตอร์ขับเคลื่อนมาด้วย ทำให้เมื่อการเขียนโค้ดสามารถไปควบคุมสั่งงานให้หุ่นยนต์มีการขยับ หรือเคลื่อนที่ตามที่ต้องการ การเขียนโค้ดก็จะผ่าน Tablet ซะเป็นส่วนใหญ่ หุ่นยนต์ประเภทนี้ก็ได้แก่ LEGO Mindstorms EV3 หรือ VEX เป็นต้น
 
-&lt;p&gt;ทั้งหมดนี้ก็เป็นประเภทของหุ่นยนต์การศึกษา ซึ่งแต่ละประเภทก็มีจุดเด่นกันคนละแบบขึ้นอยู่กับวัย และทักษะที่อยากจะส่งเสริมให้กับเด็กๆ&lt;/p&gt;
+    ![mindstorm](/assets/images/posts/2021/choose-the-right-robot-for-your-kids/lego-mindstorm.jpg){:width=&quot;300px&quot;}
+    *LEGO Mindstorm EV3*
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://meetedison.com/how-to-choose-the-right-robot-for-your-classroom/&quot;&gt;Choose the right robot for your classroom&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="steam" /><category term="robot" /><summary type="html">ในยุคปัจจุบันการเรียนรู้ของเด็กนั้นแตกต่างๆ จากสมัยก่อนมากเลยทีเดียว การเรียนรู้และศึกษาเกี่ยวกับ STEAM (Science, Technology, Engineering, Art และ Mathermatics) ก็มีความทันสมัย และเข้าถึงได้ง่ายขึ้นผ่านการเรียนรู้จากหุ่นยนต์ (Robot) อีกทั้งยังช่วยสงเสริมความคิดสร้างสรรค์ การออกแบบ และแก้ไขปัญหาด้วย ในฐานะผู้ปกครองเราจะเลือกหุ่นยนต์ที่เหมาะสมเพื่อให้ลูกของเราได้เรียนรู้และศึกษาได้อย่างไร เมื่อในท้องตลาดนั้นมีหุ่นยนต์มากมาย และหลากหลายประเภทเหลือเกิน</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Stimulus Template</title><link href="https://karn18.github.io/dev/2021/01/07/stimulus-template.html" rel="alternate" type="text/html" title="Stimulus Template" /><published>2021-01-07T09:39:00+07:00</published><updated>2021-01-07T09:39:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/07/stimulus-template</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/07/stimulus-template.html">&lt;p&gt;ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ &lt;strong&gt;Stimulus&lt;/strong&gt; อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น &lt;strong&gt;node module&lt;/strong&gt; และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ &lt;strong&gt;Template&lt;/strong&gt; หรือ &lt;strong&gt;Boilerplate&lt;/strong&gt; ไว้ใช้ดีกว่า&lt;!--more--&gt;&lt;/p&gt;
+ทั้งหมดนี้ก็เป็นประเภทของหุ่นยนต์การศึกษา ซึ่งแต่ละประเภทก็มีจุดเด่นกันคนละแบบขึ้นอยู่กับวัย และทักษะที่อยากจะส่งเสริมให้กับเด็กๆ
 
-&lt;h2 id=&quot;วิธีการใช้งาน&quot;&gt;วิธีการใช้งาน&lt;/h2&gt;
+## References
+- [Choose the right robot for your classroom](https://meetedison.com/how-to-choose-the-right-robot-for-your-classroom/)</content><author><name>Karn</name></author><category term="stem" /><category term="steam" /><category term="robot" /><summary type="html">ในยุคปัจจุบันการเรียนรู้ของเด็กนั้นแตกต่างๆ จากสมัยก่อนมากเลยทีเดียว การเรียนรู้และศึกษาเกี่ยวกับ STEAM (Science, Technology, Engineering, Art และ Mathermatics) ก็มีความทันสมัย และเข้าถึงได้ง่ายขึ้นผ่านการเรียนรู้จากหุ่นยนต์ (Robot) อีกทั้งยังช่วยสงเสริมความคิดสร้างสรรค์ การออกแบบ และแก้ไขปัญหาด้วย ในฐานะผู้ปกครองเราจะเลือกหุ่นยนต์ที่เหมาะสมเพื่อให้ลูกของเราได้เรียนรู้และศึกษาได้อย่างไร เมื่อในท้องตลาดนั้นมีหุ่นยนต์มากมาย และหลากหลายประเภทเหลือเกิน</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Stimulus Template</title><link href="https://karn18.github.io/dev/2021/01/07/stimulus-template.html" rel="alternate" type="text/html" title="Stimulus Template" /><published>2021-01-07T09:39:00+07:00</published><updated>2021-01-07T09:39:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/07/stimulus-template</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/07/stimulus-template.html">ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ **Stimulus** อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น **node module** และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ **Template** หรือ **Boilerplate** ไว้ใช้ดีกว่า&lt;!--more--&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;โคลน &lt;a href=&quot;https://github.com/karn18/stimulus-template&quot;&gt;repository&lt;/a&gt; ลงมาไว้ที่เครื่อง&lt;/p&gt;
+## วิธีการใช้งาน
 
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/karn18/stimulus-template
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ติดตั้ง dependencies ต่างๆ&lt;/p&gt;
+- โคลน [repository](https://github.com/karn18/stimulus-template) ลงมาไว้ที่เครื่อง
 
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yarn &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
-  &lt;span class=&quot;c&quot;&gt;# npm install&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;แก้ไขชื่อโปรเจคในไฟล์ package.json&lt;/li&gt;
-  &lt;li&gt;แก้ไขโค้ดในส่วนของ controller ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/index.js&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;รัน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build&lt;/code&gt; เพื่อ transpile โค้ดของเราผ่าน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rollup&lt;/code&gt;&lt;/p&gt;
+    ```bash
+    $ git clone https://github.com/karn18/stimulus-template
+    ```
+  
+- ติดตั้ง dependencies ต่างๆ
 
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yarn build
-  &lt;span class=&quot;c&quot;&gt;# npm build&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;เขียน test ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test/index.test.js&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ทดสอบ controller ผ่าน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jest&lt;/code&gt;&lt;/p&gt;
+    ```bash
+    $ yarn install
+    # npm install
+    ```
 
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yarn &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;
-  &lt;span class=&quot;c&quot;&gt;# npm test&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+- แก้ไขชื่อโปรเจคในไฟล์ package.json
+- แก้ไขโค้ดในส่วนของ controller ใน `src/index.js`
+- รัน `build` เพื่อ transpile โค้ดของเราผ่าน `rollup`
+
+    ```bash
+    $ yarn build
+    # npm build
+    ```
+
+- เขียน test ใน `test/index.test.js`
+- ทดสอบ controller ผ่าน `jest`
+
+    ```bash
+    $ yarn test
+    # npm test
+    ```
 
 &lt;!-- อันนี้เป็นเพียงขั้นแรกเท่านั้น ซึ่งพอนึกดูดีๆ แล้วเราสามารถนำ Stimulus Controller ที่เราจะแยกไปทำให้อยู่ในรูปของ gem น่าจะดีกว่า ไม่ว่าจะเป็นเรื่องของการติดตั้ง การเพิ่ม controller ตัวใหม่เข้าไปใน registry การจัดการกับ assets เอาเป็นว่าเดี่ยวจะมาอธิบายในบทความหน้าแล้วกัน  --&gt;
-&lt;p&gt;เพียงเท่านี้เราก็สามารถจะพัฒนา &lt;strong&gt;stimulus controller&lt;/strong&gt; ได้แล้ว&lt;/p&gt;
+เพียงเท่านี้เราก็สามารถจะพัฒนา **stimulus controller** ได้แล้ว
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://damonbauer.dev/posts/testing-stimulus-with-jest/&quot;&gt;Testing Stimulus&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/stimulus-template&quot;&gt;Stimulus Template&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="stimulus" /><category term="template" /><summary type="html">ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ Stimulus อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น node module และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ Template หรือ Boilerplate ไว้ใช้ดีกว่า</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/stimulus-template/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/stimulus-template/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เติมแต่งสีสันให้กับข้อความใน Ruby</title><link href="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html" rel="alternate" type="text/html" title="เติมแต่งสีสันให้กับข้อความใน Ruby" /><published>2021-01-05T14:57:00+07:00</published><updated>2021-01-05T14:57:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html">&lt;p&gt;เริ่มต้นปี 2564 กันด้วยบทความเบาๆ ก่อนแล้วกัน โดยวันนี้จะมาพูดถึงการเติมแต่งสีสันให้กับข้อความที่เราพ่นออกทาง terminal หรือ console ซึ่งการเพิ่มสีสันให้กับข้อความก็อาจจะทำให้เรามองเห็นได้ง่ายขึ้น หรือสนุกกับการอ่าน log ก็เป็นได้&lt;!--more--&gt;&lt;/p&gt;
+## References
+- [Testing Stimulus](https://damonbauer.dev/posts/testing-stimulus-with-jest/)
+- [Stimulus Template](https://github.com/karn18/stimulus-template)</content><author><name>Karn</name></author><category term="dev" /><category term="stimulus" /><category term="template" /><summary type="html">ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ Stimulus อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น node module และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ Template หรือ Boilerplate ไว้ใช้ดีกว่า</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/stimulus-template/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/stimulus-template/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เติมแต่งสีสันให้กับข้อความใน Ruby</title><link href="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html" rel="alternate" type="text/html" title="เติมแต่งสีสันให้กับข้อความใน Ruby" /><published>2021-01-05T14:57:00+07:00</published><updated>2021-01-05T14:57:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html">เริ่มต้นปี 2564 กันด้วยบทความเบาๆ ก่อนแล้วกัน โดยวันนี้จะมาพูดถึงการเติมแต่งสีสันให้กับข้อความที่เราพ่นออกทาง terminal หรือ console ซึ่งการเพิ่มสีสันให้กับข้อความก็อาจจะทำให้เรามองเห็นได้ง่ายขึ้น หรือสนุกกับการอ่าน log ก็เป็นได้&lt;!--more--&gt;
 
-&lt;p&gt;วิธีการที่จะเพิ่มสีสันให้กับข้อความก็ง่ายๆ เพียงใช้ Gem ซึ่งจะแนะนำด้วยกัน 2 ตัว คือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Colorize gem&lt;/code&gt; และ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rainbow gem&lt;/code&gt; โดยทั้งสองตัวมีความสามารถที่คล้ายคลึงกัน แต่ถ้าดูในเรื่องการอัพเดตก็คงต้องเลือก &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rainbow&lt;/code&gt; เพราะ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Colorize&lt;/code&gt; นั้นดูแล้วไม่ได้รับการอัพเตดมามากว่า 2 ปีแล้ว&lt;/p&gt;
+วิธีการที่จะเพิ่มสีสันให้กับข้อความก็ง่ายๆ เพียงใช้ Gem ซึ่งจะแนะนำด้วยกัน 2 ตัว คือ `Colorize gem` และ `Rainbow gem` โดยทั้งสองตัวมีความสามารถที่คล้ายคลึงกัน แต่ถ้าดูในเรื่องการอัพเดตก็คงต้องเลือก `Rainbow` เพราะ `Colorize` นั้นดูแล้วไม่ได้รับการอัพเตดมามากว่า 2 ปีแล้ว
 
-&lt;h2 id=&quot;rainbow&quot;&gt;Rainbow&lt;/h2&gt;
+## Rainbow
 
-&lt;p&gt;สำหรับวิธีการใช้งาน Rainbow นั้นสามารถทำได้ 2 วิธี คือ&lt;/p&gt;
+สำหรับวิธีการใช้งาน Rainbow นั้นสามารถทำได้ 2 วิธี คือ
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;เรียกผ่าน Presentation Object&lt;/p&gt;
+1. เรียกผ่าน Presentation Object
 
-    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rainbow&quot;&lt;/span&gt;
+    ```ruby
+    require &quot;rainbow&quot;
 
- &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rainbow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;green&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;underline&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ใช้ Refinement เพื่อเพิ่มความสามารถให้กับ String&lt;/p&gt;
+    puts Rainbow(&quot;Hello World&quot;).green.underline
+    ```
 
-    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rainbow/refinement&quot;&lt;/span&gt;
- &lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rainbow&lt;/span&gt;
 
- &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;blue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;underline&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+2. ใช้ Refinement เพื่อเพิ่มความสามารถให้กับ String
 
-&lt;p&gt;จากโค้ดข้างต้นจะให้ผลลัพท์เหมือนกันดังแสดงในรูปด้านล่าง&lt;/p&gt;
+    ```ruby
+    require &quot;rainbow/refinement&quot;
+    using Rainbow
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_1.png&quot; alt=&quot;rainbow_1&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Colorizing 1&lt;/em&gt;&lt;/p&gt;
+    puts &quot;Hello World&quot;.blue.underline
+    ```
 
-&lt;p&gt;นอกจากสีที่เป็น ANSI แล้ว เรายังสามารถใช้สีที่เป็น RGB ได้ด้วย ไม่ว่าจะใช้เป็น Hex String หรือ Decimal&lt;/p&gt;
+จากโค้ดข้างต้นจะให้ผลลัพท์เหมือนกันดังแสดงในรูปด้านล่าง
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rainbow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Blue Green Color&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;15b5b0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# .color(21, 181, 176) &lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+![rainbow_1](/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_1.png){:width=&quot;500px&quot;}
+*Colorizing 1*
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_2.png&quot; alt=&quot;rainbow_2&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Colorizing 2&lt;/em&gt;&lt;/p&gt;
+นอกจากสีที่เป็น ANSI แล้ว เรายังสามารถใช้สีที่เป็น RGB ได้ด้วย ไม่ว่าจะใช้เป็น Hex String หรือ Decimal
 
-&lt;p&gt;เพิ่มความ advance ให้กับการแสดงผลอีกหน่อย โดยการแสดงข้อความแบบไล่สี&lt;/p&gt;
+```ruby
+puts Rainbow(&quot;Blue Green Color&quot;).color(&quot;15b5b0&quot;) # .color(21, 181, 176) 
+```
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'009292'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'f65156'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'88070b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ffce13'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Color from https://www.canva.com/colors/color-palettes/fluorescent-fruit/&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;What a Wonderful World&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chars&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rainbow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+![rainbow_2](/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_2.png){:width=&quot;500px&quot;}
+*Colorizing 2*
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_3.png&quot; alt=&quot;rainbow_2&quot; width=&quot;500px&quot; /&gt;
-&lt;em&gt;Colorizing 3&lt;/em&gt;&lt;/p&gt;
+เพิ่มความ advance ให้กับการแสดงผลอีกหน่อย โดยการแสดงข้อความแบบไล่สี
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/sickill/rainbow&quot;&gt;Rainbow gem&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/fazibear/colorize&quot;&gt;Colorize gem&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="gem" /><summary type="html">เริ่มต้นปี 2564 กันด้วยบทความเบาๆ ก่อนแล้วกัน โดยวันนี้จะมาพูดถึงการเติมแต่งสีสันให้กับข้อความที่เราพ่นออกทาง terminal หรือ console ซึ่งการเพิ่มสีสันให้กับข้อความก็อาจจะทำให้เรามองเห็นได้ง่ายขึ้น หรือสนุกกับการอ่าน log ก็เป็นได้</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/colorizing-text-in-ruby/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/colorizing-text-in-ruby/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Happy New Year 2021</title><link href="https://karn18.github.io/dev/2020/12/31/happy-new-year-2021.html" rel="alternate" type="text/html" title="Happy New Year 2021" /><published>2020-12-31T22:10:00+07:00</published><updated>2020-12-31T22:10:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/31/happy-new-year-2021</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/31/happy-new-year-2021.html">&lt;p&gt;🎉🐮 Happy New Year 2021 🎉🐮 สวัสดีปีใหม่ 2564&lt;/p&gt;
+```ruby
+colors = ['009292', 'f65156', '88070b', 'ffce13'] # Color from https://www.canva.com/colors/color-palettes/fluorescent-fruit/
+i = -1
+puts &quot;What a Wonderful World&quot;.chars.map { |char| i += 1; Rainbow(char).color(colors[i % colors.size]) }.join
+```
 
-&lt;p&gt;ปี 2020 เป็นปีที่ยากสำหรับทุกๆ คนไม่ว่าจะเป็นเรื่องเศรษฐกิจ หรือการต้องเผชิญกับ &lt;strong&gt;Pandemic&lt;/strong&gt; จาก &lt;strong&gt;Coronavirus (COVID19)&lt;/strong&gt; แต่ก็หวังหว่าในปีหน้า (2021) อะไรๆ คงจะดีขึ้น ก็ขออวยพรให้ทุกคนพบเจอแต่สิ่งที่ดี สุขภาพแข็งแรง ฝ่าฝันอุปสรรคต่างๆ ไปได้ด้วยดี&lt;/p&gt;
+![rainbow_2](/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_3.png){:width=&quot;500px&quot;}
+*Colorizing 3*
 
-&lt;p&gt;จากปีที่ผ่านมาในเรื่องของบทความ 📝 ที่พยายามจะเขียนและนำเสนอให้เพื่อนๆ ได้อ่านทั้งหมด &lt;strong&gt;40 บทความ&lt;/strong&gt; ก็ถือเป็นจำนวนที่ผมพอใจระดับหนึ่ง เพราะไม่คิดว่าจะเขียนได้เยอะขนาดนี้ สำหรับในปีหน้าผมจะพยายามอัพเดตให้มากที่สุดเท่าที่จะทำได้ และจะเขียนให้กระชับ เข้าใจง่ายมากขึ้น ยังไงก็ฝากเพื่อนๆ ช่วยติดตามกันด้วยนะครับ&lt;/p&gt;
+## References
+- [Rainbow gem](https://github.com/sickill/rainbow)
+- [Colorize gem](https://github.com/fazibear/colorize)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="gem" /><summary type="html">เริ่มต้นปี 2564 กันด้วยบทความเบาๆ ก่อนแล้วกัน โดยวันนี้จะมาพูดถึงการเติมแต่งสีสันให้กับข้อความที่เราพ่นออกทาง terminal หรือ console ซึ่งการเพิ่มสีสันให้กับข้อความก็อาจจะทำให้เรามองเห็นได้ง่ายขึ้น หรือสนุกกับการอ่าน log ก็เป็นได้</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/colorizing-text-in-ruby/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/colorizing-text-in-ruby/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Happy New Year 2021</title><link href="https://karn18.github.io/dev/2020/12/31/happy-new-year-2021.html" rel="alternate" type="text/html" title="Happy New Year 2021" /><published>2020-12-31T22:10:00+07:00</published><updated>2020-12-31T22:10:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/31/happy-new-year-2021</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/31/happy-new-year-2021.html">🎉🐮 Happy New Year 2021 🎉🐮 สวัสดีปีใหม่ 2564 
 
-&lt;p&gt;สำหรับเรื่องอ่านหนังสือ 📖 ก็ยังรู้สึกว่ายังอ่านได้ไม่มากพอที่ตั้งใจไว้ อาจจะเพราะมัวเล่นเกมมากไปหน่อย เอาเป็นว่าก็จะพยายามอ่านให้มากขึ้น (&lt;strong&gt;Reading is a must-have skill for leader&lt;/strong&gt;)&lt;/p&gt;
+ปี 2020 เป็นปีที่ยากสำหรับทุกๆ คนไม่ว่าจะเป็นเรื่องเศรษฐกิจ หรือการต้องเผชิญกับ **Pandemic** จาก **Coronavirus (COVID19)** แต่ก็หวังหว่าในปีหน้า (2021) อะไรๆ คงจะดีขึ้น ก็ขออวยพรให้ทุกคนพบเจอแต่สิ่งที่ดี สุขภาพแข็งแรง ฝ่าฝันอุปสรรคต่างๆ ไปได้ด้วยดี
 
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.facebook.com/groups/318333299229590&quot;&gt;phuket.rb&lt;/a&gt;&lt;/strong&gt; เป็นอีกหนึ่ง community ที่พยายามสร้างขึ้นเพื่อแชร์ความรู้เกี่ยวกับ &lt;strong&gt;Ruby&lt;/strong&gt; ซึ่งสมาชิกตอนนี้ก็มีเพียงแค่ 15 คน ปีหน้าก็ตั้งใจจะขยายให้ใหญ่ขึ้นไปเรื่อยๆ&lt;/p&gt;
+จากปีที่ผ่านมาในเรื่องของบทความ 📝 ที่พยายามจะเขียนและนำเสนอให้เพื่อนๆ ได้อ่านทั้งหมด **40 บทความ** ก็ถือเป็นจำนวนที่ผมพอใจระดับหนึ่ง เพราะไม่คิดว่าจะเขียนได้เยอะขนาดนี้ สำหรับในปีหน้าผมจะพยายามอัพเดตให้มากที่สุดเท่าที่จะทำได้ และจะเขียนให้กระชับ เข้าใจง่ายมากขึ้น ยังไงก็ฝากเพื่อนๆ ช่วยติดตามกันด้วยนะครับ
 
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.facebook.com/codesphere.pkt/?view_public_for=104502421538752&quot;&gt;Code Sphere&lt;/a&gt;&lt;/strong&gt; ได้ถูกสร้างขึ้นเพื่อที่จะทำเป็นสัญลักษณ์ แหล่งให้ความรู้สำหรับเด็กๆ ที่สนใจจะเรียนรู้เกี่ยวกับ &lt;strong&gt;coding&lt;/strong&gt; ซึ่งตอนนี้ก็ได้สอนเด็กกลุ่มแรกไปแล้ว ปีหน้าฟ้าใหม่จะต้องมีเด็กๆ ที่มาเรียนกับเราให้มากขึ้น และพยายามจะหาเนื้อหาที่น่าสนใจมาสอนเด็กเรือ่ยๆ&lt;/p&gt;
+สำหรับเรื่องอ่านหนังสือ 📖 ก็ยังรู้สึกว่ายังอ่านได้ไม่มากพอที่ตั้งใจไว้ อาจจะเพราะมัวเล่นเกมมากไปหน่อย เอาเป็นว่าก็จะพยายามอ่านให้มากขึ้น (**Reading is a must-have skill for leader**)
 
-&lt;p&gt;สวัสดีปีใหม่เพื่อนๆ ทุกคน&lt;/p&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="review" /><summary type="html">🎉🐮 Happy New Year 2021 🎉🐮 สวัสดีปีใหม่ 2564 ปี 2020 เป็นปีที่ยากสำหรับทุกๆ คนไม่ว่าจะเป็นเรื่องเศรษฐกิจ หรือการต้องเผชิญกับ Pandemic จาก Coronavirus (COVID19) แต่ก็หวังหว่าในปีหน้า (2021) อะไรๆ คงจะดีขึ้น ก็ขออวยพรให้ทุกคนพบเจอแต่สิ่งที่ดี สุขภาพแข็งแรง ฝ่าฝันอุปสรรคต่างๆ ไปได้ด้วยดี จากปีที่ผ่านมาในเรื่องของบทความ 📝 ที่พยายามจะเขียนและนำเสนอให้เพื่อนๆ ได้อ่านทั้งหมด 40 บทความ ก็ถือเป็นจำนวนที่ผมพอใจระดับหนึ่ง เพราะไม่คิดว่าจะเขียนได้เยอะขนาดนี้ สำหรับในปีหน้าผมจะพยายามอัพเดตให้มากที่สุดเท่าที่จะทำได้ และจะเขียนให้กระชับ เข้าใจง่ายมากขึ้น ยังไงก็ฝากเพื่อนๆ ช่วยติดตามกันด้วยนะครับ สำหรับเรื่องอ่านหนังสือ 📖 ก็ยังรู้สึกว่ายังอ่านได้ไม่มากพอที่ตั้งใจไว้ อาจจะเพราะมัวเล่นเกมมากไปหน่อย เอาเป็นว่าก็จะพยายามอ่านให้มากขึ้น (Reading is a must-have skill for leader) phuket.rb เป็นอีกหนึ่ง community ที่พยายามสร้างขึ้นเพื่อแชร์ความรู้เกี่ยวกับ Ruby ซึ่งสมาชิกตอนนี้ก็มีเพียงแค่ 15 คน ปีหน้าก็ตั้งใจจะขยายให้ใหญ่ขึ้นไปเรื่อยๆ Code Sphere ได้ถูกสร้างขึ้นเพื่อที่จะทำเป็นสัญลักษณ์ แหล่งให้ความรู้สำหรับเด็กๆ ที่สนใจจะเรียนรู้เกี่ยวกับ coding ซึ่งตอนนี้ก็ได้สอนเด็กกลุ่มแรกไปแล้ว ปีหน้าฟ้าใหม่จะต้องมีเด็กๆ ที่มาเรียนกับเราให้มากขึ้น และพยายามจะหาเนื้อหาที่น่าสนใจมาสอนเด็กเรือ่ยๆ สวัสดีปีใหม่เพื่อนๆ ทุกคน</summary></entry><entry><title type="html">ส่งผ่าน HTML ไปยังแอพด้วย Turbo</title><link href="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html" rel="alternate" type="text/html" title="ส่งผ่าน HTML ไปยังแอพด้วย Turbo" /><published>2020-12-28T11:14:00+07:00</published><updated>2020-12-28T11:14:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/28/html-over-with-turbo</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html">&lt;h2 id=&quot;turbo&quot;&gt;Turbo&lt;/h2&gt;
-&lt;p&gt;เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย&lt;!--more--&gt;&lt;/p&gt;
+**[phuket.rb](https://www.facebook.com/groups/318333299229590)** เป็นอีกหนึ่ง community ที่พยายามสร้างขึ้นเพื่อแชร์ความรู้เกี่ยวกับ **Ruby** ซึ่งสมาชิกตอนนี้ก็มีเพียงแค่ 15 คน ปีหน้าก็ตั้งใจจะขยายให้ใหญ่ขึ้นไปเรื่อยๆ
 
-&lt;p&gt;สามารถเข้าไปศึกษาวิธีการใช้ &lt;strong&gt;Turbo&lt;/strong&gt; ได้จาก&lt;a href=&quot;https://turbo.hotwire.dev&quot;&gt;ที่นี่&lt;/a&gt; หรือจะดูจากวิดีโอด้านล่างก็ได้นะครับ&lt;/p&gt;
+**[Code Sphere](https://www.facebook.com/codesphere.pkt/?view_public_for=104502421538752)** ได้ถูกสร้างขึ้นเพื่อที่จะทำเป็นสัญลักษณ์ แหล่งให้ความรู้สำหรับเด็กๆ ที่สนใจจะเรียนรู้เกี่ยวกับ **coding** ซึ่งตอนนี้ก็ได้สอนเด็กกลุ่มแรกไปแล้ว ปีหน้าฟ้าใหม่จะต้องมีเด็กๆ ที่มาเรียนกับเราให้มากขึ้น และพยายามจะหาเนื้อหาที่น่าสนใจมาสอนเด็กเรือ่ยๆ
 
+สวัสดีปีใหม่เพื่อนๆ ทุกคน</content><author><name>Karn</name></author><category term="dev" /><category term="review" /><summary type="html">🎉🐮 Happy New Year 2021 🎉🐮 สวัสดีปีใหม่ 2564 ปี 2020 เป็นปีที่ยากสำหรับทุกๆ คนไม่ว่าจะเป็นเรื่องเศรษฐกิจ หรือการต้องเผชิญกับ Pandemic จาก Coronavirus (COVID19) แต่ก็หวังหว่าในปีหน้า (2021) อะไรๆ คงจะดีขึ้น ก็ขออวยพรให้ทุกคนพบเจอแต่สิ่งที่ดี สุขภาพแข็งแรง ฝ่าฝันอุปสรรคต่างๆ ไปได้ด้วยดี จากปีที่ผ่านมาในเรื่องของบทความ 📝 ที่พยายามจะเขียนและนำเสนอให้เพื่อนๆ ได้อ่านทั้งหมด 40 บทความ ก็ถือเป็นจำนวนที่ผมพอใจระดับหนึ่ง เพราะไม่คิดว่าจะเขียนได้เยอะขนาดนี้ สำหรับในปีหน้าผมจะพยายามอัพเดตให้มากที่สุดเท่าที่จะทำได้ และจะเขียนให้กระชับ เข้าใจง่ายมากขึ้น ยังไงก็ฝากเพื่อนๆ ช่วยติดตามกันด้วยนะครับ สำหรับเรื่องอ่านหนังสือ 📖 ก็ยังรู้สึกว่ายังอ่านได้ไม่มากพอที่ตั้งใจไว้ อาจจะเพราะมัวเล่นเกมมากไปหน่อย เอาเป็นว่าก็จะพยายามอ่านให้มากขึ้น (Reading is a must-have skill for leader) phuket.rb เป็นอีกหนึ่ง community ที่พยายามสร้างขึ้นเพื่อแชร์ความรู้เกี่ยวกับ Ruby ซึ่งสมาชิกตอนนี้ก็มีเพียงแค่ 15 คน ปีหน้าก็ตั้งใจจะขยายให้ใหญ่ขึ้นไปเรื่อยๆ Code Sphere ได้ถูกสร้างขึ้นเพื่อที่จะทำเป็นสัญลักษณ์ แหล่งให้ความรู้สำหรับเด็กๆ ที่สนใจจะเรียนรู้เกี่ยวกับ coding ซึ่งตอนนี้ก็ได้สอนเด็กกลุ่มแรกไปแล้ว ปีหน้าฟ้าใหม่จะต้องมีเด็กๆ ที่มาเรียนกับเราให้มากขึ้น และพยายามจะหาเนื้อหาที่น่าสนใจมาสอนเด็กเรือ่ยๆ สวัสดีปีใหม่เพื่อนๆ ทุกคน</summary></entry><entry><title type="html">ส่งผ่าน HTML ไปยังแอพด้วย Turbo</title><link href="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html" rel="alternate" type="text/html" title="ส่งผ่าน HTML ไปยังแอพด้วย Turbo" /><published>2020-12-28T11:14:00+07:00</published><updated>2020-12-28T11:14:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/28/html-over-with-turbo</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html">## Turbo
+เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย&lt;!--more--&gt;
+
+สามารถเข้าไปศึกษาวิธีการใช้ **Turbo** ได้จาก[ที่นี่](https://turbo.hotwire.dev) หรือจะดูจากวิดีโอด้านล่างก็ได้นะครับ
+
+{% raw %}
 &lt;div class=&quot;video&quot;&gt;
-  &lt;video controls=&quot;&quot; playsinline=&quot;&quot;&gt;
-    &lt;source src=&quot;https://s3.amazonaws.com/hotwire.dev/hotwire-screencast.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  &lt;video controls playsinline&gt;
+    &lt;source src=&quot;https://s3.amazonaws.com/hotwire.dev/hotwire-screencast.mp4&quot; type=&quot;video/mp4&quot;&gt;
   &lt;/video&gt;
 &lt;/div&gt;
+{% endraw %}
 
-&lt;hr /&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;โดยส่วนตัวนั้นต้องบอกเลยว่าชอบเทคนิคอันนี้มาก เนื่องจากโดยส่วนตัวไม่ชอบการเขียน JavaScript และเลือกที่จะใช้ HTML มากกว่าการจัดการกับ JSON&lt;/p&gt;
-&lt;/blockquote&gt;
+---
+&gt; โดยส่วนตัวนั้นต้องบอกเลยว่าชอบเทคนิคอันนี้มาก เนื่องจากโดยส่วนตัวไม่ชอบการเขียน JavaScript และเลือกที่จะใช้ HTML มากกว่าการจัดการกับ JSON
 
-&lt;p&gt;ในบทความนี้จะมาลองพัฒนาแอพ Todo โดยใช้ความสามารถของ &lt;strong&gt;Turbo&lt;/strong&gt; กัน มาดูโจทย์ของเรากันก่อนเลย&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;แอพจะมีโมเดล &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ในการเก็บบันทึกสิ่งที่จะทำ (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;name:string&lt;/code&gt;) และ flag สำหรับระบุว่างานนั้นๆ ทำเสร็จแล้วหรือยัง (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;done:boolean&lt;/code&gt;)&lt;/li&gt;
-  &lt;li&gt;แอพจะมีเพียงหน้าเดียว แบบเดียวกับ SPA โดยแยกออกเป็น 2 ส่วนคือ
-    &lt;ol&gt;
-      &lt;li&gt;ฟอร์มสำหรับบันทึก &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ซึ่งจะใช้ร่วมกันไม่ว่าจะเป็นการสร้างข้อมูลใหม่ หรือแก้ไขของเดิม&lt;/li&gt;
-      &lt;li&gt;ส่วนของการแสดงผล &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ทั้งหมดที่มีการสร้างขึ้นทั้งหมด (Task List)&lt;/li&gt;
-      &lt;li&gt;Task หนึ่งๆ ที่แสดงผลจะมีปุ่มสำหรับคลิกเพื่อแก้ไข (Edit) ปุ่มสำหรับเช็คว่างานนั้นทำเสร็จแล้ว (Done) และปุ่มสำหรับลบ (Delete)&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;แอพสามารถ sync ข้อมูลอัตโนมัติ ไม่ว่าเราจะเปิดหน้าเว็บไว้กี่ tab ก็ตามผ่าน Websocket&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ใช้ &lt;strong&gt;Bulma&lt;/strong&gt; เพื่อเพิ่มความสวยงาม&lt;/p&gt;
+ในบทความนี้จะมาลองพัฒนาแอพ Todo โดยใช้ความสามารถของ **Turbo** กัน มาดูโจทย์ของเรากันก่อนเลย
+- แอพจะมีโมเดล `Task` ในการเก็บบันทึกสิ่งที่จะทำ (`name:string`) และ flag สำหรับระบุว่างานนั้นๆ ทำเสร็จแล้วหรือยัง (`done:boolean`)
+- แอพจะมีเพียงหน้าเดียว แบบเดียวกับ SPA โดยแยกออกเป็น 2 ส่วนคือ
+  1. ฟอร์มสำหรับบันทึก `Task` ซึ่งจะใช้ร่วมกันไม่ว่าจะเป็นการสร้างข้อมูลใหม่ หรือแก้ไขของเดิม
+  2. ส่วนของการแสดงผล `Task` ทั้งหมดที่มีการสร้างขึ้นทั้งหมด (Task List)
+  3. Task หนึ่งๆ ที่แสดงผลจะมีปุ่มสำหรับคลิกเพื่อแก้ไข (Edit) ปุ่มสำหรับเช็คว่างานนั้นทำเสร็จแล้ว (Done) และปุ่มสำหรับลบ (Delete)
+- แอพสามารถ sync ข้อมูลอัตโนมัติ ไม่ว่าเราจะเปิดหน้าเว็บไว้กี่ tab ก็ตามผ่าน Websocket
+- ใช้ **Bulma** เพื่อเพิ่มความสวยงาม
 
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/html-over-with-turbo/components.png&quot; alt=&quot;compnents&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+  ![compnents](/assets/images/posts/2020/html-over-with-turbo/components.png)
 
-&lt;h2 id=&quot;มาลงมือกันเลย&quot;&gt;มาลงมือกันเลย&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;สร้างแอพใหม่ขึ้นมากันก่อน&lt;/p&gt;
+## มาลงมือกันเลย
+- สร้างแอพใหม่ขึ้นมากันก่อน
 
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails new awesome_todo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;เพิ่ม gem &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotwire-rails&lt;/code&gt; เข้าไปยัง Gemfile&lt;/p&gt;
 
-    &lt;p&gt;❗️ ที่ใช้เลือกใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotwire-rails&lt;/code&gt; นั้นเพราะในแอพต้องการใช้ความสามารถของ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Stimulus&lt;/code&gt; ด้วยดังนั้นจึงเลือกใช้ gem ตัวนี้ แต่ถ้าต้องการใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo&lt;/code&gt; เพียงอย่างเดียว เราสามารถเลือกติดตั้ง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turbo-rails&lt;/code&gt; แทนได้&lt;/p&gt;
+  ```bash
+  $ rails new awesome_todo
+  ```
 
-    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# gem 'turbo-rails'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hotwire-rails'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ติดตั้ง gem และ dependency ของ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo&lt;/code&gt;&lt;/p&gt;
+- เพิ่ม gem `hotwire-rails` เข้าไปยัง Gemfile
 
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# $ rails turbo:install&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails hotwire:install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    ❗️ ที่ใช้เลือกใช้ `hotwire-rails` นั้นเพราะในแอพต้องการใช้ความสามารถของ `Stimulus` ด้วยดังนั้นจึงเลือกใช้ gem ตัวนี้ แต่ถ้าต้องการใช้ `Turbo` เพียงอย่างเดียว เราสามารถเลือกติดตั้ง `turbo-rails` แทนได้
 
-    &lt;p&gt;คำสั่งข้างต้นจะติดตั้งส่วนที่จำเป็นให้กับแอพของเรา ไม่ว่าจะเป็น config สำหรับ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Action Cable&lt;/code&gt;, include tag ใน layout และ JavaScript ที่ใช้งาน&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;คอมเมนต์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;require(&quot;turbolinks&quot;).start()&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/javascript/packs/application.js&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;ตรวจสอบค่าการเชื่อมต่อกับฐานข้อมูลที่จะใช้งาน&lt;/li&gt;
-  &lt;li&gt;ติดตั้ง &lt;strong&gt;Bulma CSS&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;สร้างโมเดล &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt;&lt;/p&gt;
+  ```ruby
+  # gem 'turbo-rails'
+  gem 'hotwire-rails'
+  ```
 
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails g scaffold Task name:string &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;:boolean
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;เริ่มแก้ไขหน้า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt; (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/app/views/tasks/index.html.erb&lt;/code&gt;) ให้มีคอมโพเนนต์ตามที่กำหนดไว้ คือ ส่วนแรกแสดงฟอร์มในการบันทึก และส่วนที่สองแสดงรายการสิ่งที่จะทำ โดยแต่ละส่วนจะถูกครอบด้วย &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo Frame&lt;/code&gt; :new_task และ :tasks ตามลำดับ&lt;/p&gt;
+- ติดตั้ง gem และ dependency ของ `Turbo`
 
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;main&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;section&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Todo&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+  ```bash
+  $ bundle install
+  # $ rails turbo:install
+  $ rails hotwire:install
+  ```
 
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:new_task&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;',&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
 
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;box mt-2 mb-2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:tasks&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tasks&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/main&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;แก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt;&lt;/p&gt;
+    คำสั่งข้างต้นจะติดตั้งส่วนที่จำเป็นให้กับแอพของเรา ไม่ว่าจะเป็น config สำหรับ `Action Cable`, include tag ใน layout และ JavaScript ที่ใช้งาน
 
-    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;index&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@tasks&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;all&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;แก้ไข form สำหรับการบันทึกและแก้ไขข้อมูลใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/views/tasks/_form.html.erb&lt;/code&gt;&lt;/p&gt;
 
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form_with&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;local:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task.errors.any&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;error_explanation&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pluralize&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;task.errors.count&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; prohibited this task from being saved:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+- คอมเมนต์ `require(&quot;turbolinks&quot;).start()` ใน `app/javascript/packs/application.js`
+- ตรวจสอบค่าการเชื่อมต่อกับฐานข้อมูลที่จะใช้งาน
+- ติดตั้ง **Bulma CSS**
+- สร้างโมเดล `Task`
 
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task.errors.full_messages.each&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;field has-addons&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;control&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form.text_field&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;placeholder:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;สิ่งที่จะทำ&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;control&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form.submit&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;บันทึก&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;is-primary&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;แก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;create&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt; เพื่อใช้ในการบันทึกสิ่งที่จะทำใหม่&lt;/p&gt;
+  ```bash
+  $ rails g scaffold Task name:string done:boolean
+  ```
 
-    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;เพิ่ม action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;done&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt; เพื่อใช้เปลี่ยน flag&lt;/p&gt;
+- เริ่มแก้ไขหน้า `index` (`/app/views/tasks/index.html.erb`) ให้มีคอมโพเนนต์ตามที่กำหนดไว้ คือ ส่วนแรกแสดงฟอร์มในการบันทึก และส่วนที่สองแสดงรายการสิ่งที่จะทำ โดยแต่ละส่วนจะถูกครอบด้วย `Turbo Frame` :new_task และ :tasks ตามลำดับ
 
-    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;don&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;update!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;done: &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;แก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;destroy&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt; เพื่อใช้ในการลบรายการที่ทำออก&lt;/p&gt;
+  ```html
+  &lt;main class=&quot;container&quot;&gt;
+    &lt;section class=&quot;section&quot;&gt;
+      &lt;h1 class=&quot;title&quot;&gt;Todo&lt;/h1&gt;
 
-    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;destroy!&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;จะเห็นได้ว่าโค้ดในส่วนของการ render response ข้างต้นนั้นหายไปเลย นั้นเพราะว่าเราจะใช้ความสามารถของ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo Stream&lt;/code&gt; ในการส่ง HTML ไปยังหน้าเว็บผ่านทาง Websocket แทน ซึ่งเราจะเข้าไปแก้ไขที่ model &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/models/task.rb&lt;/code&gt;&lt;/p&gt;
+      &lt;%= turbo_frame_tag :new_task do %&gt;
+        &lt;%= render 'form', task: @task %&gt;
+      &lt;% end %&gt;
 
-    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;after_create_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_append_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/task'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;after_update_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_replace_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;target: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;downcase&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/task'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;after_destroy_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_action_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;action: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;remove&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;target: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;downcase&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;เพิ่ม &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo Stream&lt;/code&gt; เข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt;&lt;/p&gt;
+      &lt;div class=&quot;box mt-2 mb-2&quot;&gt;
+        &lt;%= turbo_frame_tag :tasks do %&gt;
+          &lt;%= render @tasks %&gt;
+        &lt;% end %&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  ```
 
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;...
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Todo&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+- แก้ไข action `index` ใน `app/controllers/tasks_controller.rb`
 
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;turbo_stream_from&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:tasks&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ที่นี้ในส่วนของการแก้ไขรายการสิ่งที่จะทำอันเก่านั้น เราจะใช้ form เดิมที่อยู่ด้านบน ดังนั้นเราจะต้องแก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;edit&lt;/code&gt; และ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt;&lt;/p&gt;
+  ```ruby
+  def index
+    @tasks = Task.all
+    @task = Task.new
+  end
+  ```
 
-    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;edit&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;turbo_stream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;turbo_stream: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;turbo_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:new_task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/turbo_form'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+- แก้ไข form สำหรับการบันทึกและแก้ไขข้อมูลใน `app/views/tasks/_form.html.erb`
+  
+  ```html
+  &lt;%= form_with(model: task, local: true) do |form| %&gt;
+    &lt;% if task.errors.any? %&gt;
+      &lt;div id=&quot;error_explanation&quot;&gt;
+        &lt;h2&gt;&lt;%= pluralize(task.errors.count, &quot;error&quot;) %&gt; prohibited this task from being saved:&lt;/h2&gt;
 
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;update!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;turbo_stream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;turbo_stream: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;turbo_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:new_task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/turbo_form'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;เพิ่ม partial html &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_turbo_form.html.erb&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/views/tasks&lt;/code&gt;&lt;/p&gt;
+        &lt;ul&gt;
+          &lt;% task.errors.full_messages.each do |message| %&gt;
+            &lt;li&gt;&lt;%= message %&gt;&lt;/li&gt;
+          &lt;% end %&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;% end %&gt;
+    &lt;div class=&quot;field has-addons&quot;&gt;
+      &lt;p class=&quot;control&quot;&gt;
+        &lt;%= form.text_field :name, class: &quot;input&quot;, placeholder: &quot;สิ่งที่จะทำ&quot; %&gt;
+      &lt;/p&gt;
+      &lt;p class=&quot;control&quot;&gt;
+        &lt;%= form.submit &quot;บันทึก&quot;, class: &quot;button is-primary&quot; %&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;% end %&gt;
+  ```
 
-    &lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# app/views/tasks/_edit.html.erb
-&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:new_task&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'form'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;เมื่อทดลองใช้งาน form ในการบันทึกหรือแก้ไข จะพบว่าข้อความที่อยู่ใน input ไม่ได้ถูกรีเซทเมื่อมีการบันทึกเรียบร้อยแล้ว ซึ่งเราจะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Stimulus&lt;/code&gt; มาช่วยในการ reset ค่าที่อยู่ใน input สร้างไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turbo_form_controller.js&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/assets/javascripts/controllers&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ใส่ controller เข้าไปใน form&lt;/p&gt;
+- แก้ไข action `create` ใน `app/controllers/tasks_controller.rb` เพื่อใช้ในการบันทึกสิ่งที่จะทำใหม่
 
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form_with&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;local:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;controller:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;turbo_form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;',&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;action:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;turbo:submit-end-&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;turbo_form#reset&quot; }) do |form| %&amp;gt;
+  ```ruby
+  def create
+    @task = Task.create!(task_params)
+  end
+  ```
+
+- เพิ่ม action `done` ใน `app/controllers/tasks_controller.rb` เพื่อใช้เปลี่ยน flag
+
+   ```ruby
+   def don
+    @task.update!(done: !@task.done)
+  end
+   ```
+
+- แก้ไข action `destroy` ใน `app/controllers/tasks_controller.rb` เพื่อใช้ในการลบรายการที่ทำออก
+
+  ```ruby
+  def destroy
+    @task.destroy!
+  end
+  ```
+
+- จะเห็นได้ว่าโค้ดในส่วนของการ render response ข้างต้นนั้นหายไปเลย นั้นเพราะว่าเราจะใช้ความสามารถของ `Turbo Stream` ในการส่ง HTML ไปยังหน้าเว็บผ่านทาง Websocket แทน ซึ่งเราจะเข้าไปแก้ไขที่ model `Task` ใน `app/models/task.rb`
+
+  ```ruby
+  class Task &lt; ApplicationRecord
+    after_create_commit -&gt; { broadcast_append_to :tasks, partial: 'tasks/task', locals: { task: self } }
+    after_update_commit -&gt; { broadcast_replace_to :tasks, target: &quot;#{self.class.name.downcase}_#{id}&quot;, partial: 'tasks/task', locals: { task: self } }
+    after_destroy_commit -&gt; { broadcast_action_to :tasks, action: &quot;remove&quot;, target: &quot;#{self.class.name.downcase}_#{id}&quot; }
+  end
+  ```
+
+- เพิ่ม `Turbo Stream` เข้าไปใน `index`
+
+  ```html
+  ...
+  &lt;h1 class=&quot;title&quot;&gt;Todo&lt;/h1&gt;
+
+  &lt;%= turbo_stream_from :tasks %&gt;
+  ```
+
+- ที่นี้ในส่วนของการแก้ไขรายการสิ่งที่จะทำอันเก่านั้น เราจะใช้ form เดิมที่อยู่ด้านบน ดังนั้นเราจะต้องแก้ไข action `edit` และ `update` ใน `app/controllers/tasks_controller.rb`
+
+  ```ruby
+  def edit
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace(:new_task, partial: 'tasks/turbo_form', locals: { task: @task }) }
+    end
+  end
+
+  def update
+    @task.update!(task_params)
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace(:new_task, partial: 'tasks/turbo_form', locals: { task: Task.new }) }
+    end
+  end
+  ```
+
+- เพิ่ม partial html `_turbo_form.html.erb` ใน `app/views/tasks` 
+
+  ```erb
+  # app/views/tasks/_edit.html.erb
+  &lt;%= turbo_frame_tag :new_task do %&gt;
+    &lt;%= render 'form', task: task %&gt;
+  &lt;% end %&gt;
+  ```
+
+- เมื่อทดลองใช้งาน form ในการบันทึกหรือแก้ไข จะพบว่าข้อความที่อยู่ใน input ไม่ได้ถูกรีเซทเมื่อมีการบันทึกเรียบร้อยแล้ว ซึ่งเราจะใช้ `Stimulus` มาช่วยในการ reset ค่าที่อยู่ใน input สร้างไฟล์ `turbo_form_controller.js` ใน `app/assets/javascripts/controllers`
+
+
+- ใส่ controller เข้าไปใน form
+
+  ```html
+  &lt;%= form_with(model: task, local: true, data: { controller: 'turbo_form', action: &quot;turbo:submit-end-&gt;turbo_form#reset&quot; }) do |form| %&gt;
+  ...
+  ```
+
+เพียงเท่านี้เราก็จะได้แอพ ​TODO ที่พร้อมใช้งานดังแสดงในวิดีโอด้านล่าง
+
+{% raw %}
+&lt;div class=&quot;video&quot;&gt;
+  &lt;video controls playsinline&gt;
+    &lt;source src=&quot;/assets/videos/awesome_todo.mov&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;/video&gt;
+&lt;/div&gt;
+{% endraw %}
+
+## References
+- [Turbo](https://turbo.hotwire.dev/)
+- [Awesome Todo](https://github.com/karn18/awesome_todo)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="rails" /><category term="turbo" /><summary type="html">Turbo เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/html-over-with-turbo/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/html-over-with-turbo/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Refactoring with Flocking Rules</title><link href="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html" rel="alternate" type="text/html" title="Refactoring with Flocking Rules" /><published>2020-12-18T12:23:00+07:00</published><updated>2020-12-18T12:23:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html">ได้อ่านหนังสือ [99 Bottles](https://sandimetz.com/99bottles) ของ **Sandi Metz** แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค **Flocking Rules** ก็เลยหยิบยกมาเล่าให้ฟัง
+
+ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง
+ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง
+
+---
+
+&gt; เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม
+
+สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ
+1. ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง
+2. หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่
+3. เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก
+
+อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน
+
+```ruby
+case number 
+when 0..2
 ...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+when 3
+  &quot;3 bottles of beer on the wall, &quot; \
+  &quot;3 bottles of beer.\n&quot; \
+  &quot;Take one down and pass it around, &quot; \
+  &quot;2 bottle of beer on the wall.\n&quot;
+when 4
+  &quot;4 bottles of beer on the wall, &quot; \
+  &quot;4 bottles of beer.\n&quot; \
+  &quot;Take one down and pass it around, &quot; \
+  &quot;3 bottle of beer on the wall.\n&quot;
+when 5
+  &quot;5 bottles of beer on the wall, &quot; \
+  &quot;5 bottles of beer.\n&quot; \
+  &quot;Take one down and pass it around, &quot; \
+  &quot;4 bottle of beer on the wall.\n&quot;
+end
+```
 
-&lt;p&gt;เพียงเท่านี้เราก็จะได้แอพ ​TODO ที่พร้อมใช้งานดังแสดงในวิดีโอด้านล่าง&lt;/p&gt;
+ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้
 
-&lt;div class=&quot;video&quot;&gt;
-  &lt;video controls=&quot;&quot; playsinline=&quot;&quot;&gt;
-    &lt;source src=&quot;/assets/videos/awesome_todo.mov&quot; type=&quot;video/mp4&quot; /&gt;
-  &lt;/video&gt;
-&lt;/div&gt;
+```ruby
+case number
+when 0..2
+...
+else 
+  &quot;#{number} bottles of beer on the wall, &quot; \
+  &quot;#{number} bottles of beer.\n&quot; \
+  &quot;Take one down and pass it around, &quot; \
+  &quot;#{number - 1} bottle of beer on the wall.\n&quot;
+end
+```
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://turbo.hotwire.dev/&quot;&gt;Turbo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/awesome_todo&quot;&gt;Awesome Todo&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="rails" /><category term="turbo" /><summary type="html">Turbo เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/html-over-with-turbo/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/html-over-with-turbo/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Refactoring with Flocking Rules</title><link href="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html" rel="alternate" type="text/html" title="Refactoring with Flocking Rules" /><published>2020-12-18T12:23:00+07:00</published><updated>2020-12-18T12:23:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html">&lt;p&gt;ได้อ่านหนังสือ &lt;a href=&quot;https://sandimetz.com/99bottles&quot;&gt;99 Bottles&lt;/a&gt; ของ &lt;strong&gt;Sandi Metz&lt;/strong&gt; แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค &lt;strong&gt;Flocking Rules&lt;/strong&gt; ก็เลยหยิบยกมาเล่าให้ฟัง&lt;/p&gt;
+จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor
 
-&lt;p&gt;ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง
-ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง&lt;/p&gt;
+## References
+- [99 Bottles](https://sandimetz.com/99bottles)</content><author><name>Karn</name></author><category term="dev" /><category term="refactoring" /><category term="ruby" /><summary type="html">ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \ &quot;3 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;2 bottle of beer on the wall.\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \ &quot;4 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;3 bottle of beer on the wall.\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \ &quot;5 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;4 bottle of beer on the wall.\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \ &quot;#{number} bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;#{number - 1} bottle of beer on the wall.\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">มีอะไรใหม่ใน Stimulus 2.0</title><link href="https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0.html" rel="alternate" type="text/html" title="มีอะไรใหม่ใน Stimulus 2.0" /><published>2020-12-15T23:08:00+07:00</published><updated>2020-12-15T23:08:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0.html">หลังจากที่ **Stimulus** ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง
+1. เพิ่ม **API** ขึ้นมา 2 ตัวคือ **values** และ **CSS classes** ซึ่งก็เอามาใช้แทนที่ **data map** ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ **document** จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว
 
-&lt;hr /&gt;
+    - **Value**
 
-&lt;blockquote&gt;
-  &lt;p&gt;เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม&lt;/p&gt;
-&lt;/blockquote&gt;
+    ![01](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_01.png)
+    *Controller V1*
 
-&lt;p&gt;สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง&lt;/li&gt;
-  &lt;li&gt;หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่&lt;/li&gt;
-  &lt;li&gt;เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก&lt;/li&gt;
-&lt;/ol&gt;
+    ![02](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_02.png)
+    *Controller V2*
 
-&lt;p&gt;อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน&lt;/p&gt;
+    ![03](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_03.png)
+    *HTML V1*
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;3 bottles of beer on the wall, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;3 bottles of beer.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;Take one down and pass it around, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;2 bottle of beer on the wall.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;4 bottles of beer on the wall, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;4 bottles of beer.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;Take one down and pass it around, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;3 bottle of beer on the wall.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;5 bottles of beer on the wall, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;5 bottles of beer.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;Take one down and pass it around, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;4 bottle of beer on the wall.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+    ![04](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_04.png)
+    *HTML V2*
 
-&lt;p&gt;ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้&lt;/p&gt;
+    จะเห็นว่าใน **Controller** ของเวอร์ชัน 2 จะมีการใช้ `static values` เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1
+    ส่วนในฝั่ง **HTML** ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม `-value` ตามหลัง data attributes
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; 
-  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; bottles of beer on the wall, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; bottles of beer.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;Take one down and pass it around, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; bottle of beer on the wall.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+    - **Class**
 
-&lt;p&gt;จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor&lt;/p&gt;
+    บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง 
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://sandimetz.com/99bottles&quot;&gt;99 Bottles&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="refactoring" /><category term="ruby" /><summary type="html">ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \ &quot;3 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;2 bottle of beer on the wall.\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \ &quot;4 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;3 bottle of beer on the wall.\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \ &quot;5 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;4 bottle of beer on the wall.\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \ &quot;#{number} bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;#{number - 1} bottle of beer on the wall.\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">มีอะไรใหม่ใน Stimulus 2.0</title><link href="https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0.html" rel="alternate" type="text/html" title="มีอะไรใหม่ใน Stimulus 2.0" /><published>2020-12-15T23:08:00+07:00</published><updated>2020-12-15T23:08:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0.html">&lt;p&gt;หลังจากที่ &lt;strong&gt;Stimulus&lt;/strong&gt; ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;เพิ่ม &lt;strong&gt;API&lt;/strong&gt; ขึ้นมา 2 ตัวคือ &lt;strong&gt;values&lt;/strong&gt; และ &lt;strong&gt;CSS classes&lt;/strong&gt; ซึ่งก็เอามาใช้แทนที่ &lt;strong&gt;data map&lt;/strong&gt; ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ &lt;strong&gt;document&lt;/strong&gt; จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว&lt;/p&gt;
+    ![05](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_05.png)
+    *Controller V2*
 
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Value&lt;/strong&gt;&lt;/li&gt;
-    &lt;/ul&gt;
+    ![06](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_06.png)
+    *HTML V2*
 
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_01.png&quot; alt=&quot;01&quot; /&gt;
- &lt;em&gt;Controller V1&lt;/em&gt;&lt;/p&gt;
+    ตัวอย่างข้างต้นจะเป็นการใช้ **CSS** ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน **Contrller** เป็นการใช้ static `classes` ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน **HTML** โดยใช้รูปแบบ `data-[identifier]-[name]-class=&quot;className&quot;`
 
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_02.png&quot; alt=&quot;02&quot; /&gt;
- &lt;em&gt;Controller V2&lt;/em&gt;&lt;/p&gt;
+2. รองรับ **DOM event listener options** เมื่อมีการเรียกใช้งาน **action** ซึ่งก็ไปตามดูได้ใน[มาตรฐาน](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
 
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_03.png&quot; alt=&quot;03&quot; /&gt;
- &lt;em&gt;HTML V1&lt;/em&gt;&lt;/p&gt;
+3. เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง **identifier** กับ **target** จากเดิมที่เป็น `data-target=&quot;[identifier].[name]&quot;` เป็น `data-[identifier]-target=&quot;[name]&quot;`
 
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_04.png&quot; alt=&quot;04&quot; /&gt;
- &lt;em&gt;HTML V2&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;จะเห็นว่าใน &lt;strong&gt;Controller&lt;/strong&gt; ของเวอร์ชัน 2 จะมีการใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;static values&lt;/code&gt; เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1
- ส่วนในฝั่ง &lt;strong&gt;HTML&lt;/strong&gt; ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-value&lt;/code&gt; ตามหลัง data attributes&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Class&lt;/strong&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_05.png&quot; alt=&quot;05&quot; /&gt;
- &lt;em&gt;Controller V2&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_06.png&quot; alt=&quot;06&quot; /&gt;
- &lt;em&gt;HTML V2&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;ตัวอย่างข้างต้นจะเป็นการใช้ &lt;strong&gt;CSS&lt;/strong&gt; ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน &lt;strong&gt;Contrller&lt;/strong&gt; เป็นการใช้ static &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;classes&lt;/code&gt; ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน &lt;strong&gt;HTML&lt;/strong&gt; โดยใช้รูปแบบ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data-[identifier]-[name]-class=&quot;className&quot;&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;รองรับ &lt;strong&gt;DOM event listener options&lt;/strong&gt; เมื่อมีการเรียกใช้งาน &lt;strong&gt;action&lt;/strong&gt; ซึ่งก็ไปตามดูได้ใน&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener&quot;&gt;มาตรฐาน&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง &lt;strong&gt;identifier&lt;/strong&gt; กับ &lt;strong&gt;target&lt;/strong&gt; จากเดิมที่เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data-target=&quot;[identifier].[name]&quot;&lt;/code&gt; เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data-[identifier]-target=&quot;[name]&quot;&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://discourse.stimulusjs.org/t/announcing-stimulus-2-0/1482&quot;&gt;Announcing Stimulus 2.0&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://stimulusjs.org/&quot;&gt;StimulusJS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><summary type="html">หลังจากที่ Stimulus ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง เพิ่ม API ขึ้นมา 2 ตัวคือ values และ CSS classes ซึ่งก็เอามาใช้แทนที่ data map ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ document จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว Value Controller V1 Controller V2 HTML V1 HTML V2 จะเห็นว่าใน Controller ของเวอร์ชัน 2 จะมีการใช้ static values เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1 ส่วนในฝั่ง HTML ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม -value ตามหลัง data attributes Class บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง Controller V2 HTML V2 ตัวอย่างข้างต้นจะเป็นการใช้ CSS ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน Contrller เป็นการใช้ static classes ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน HTML โดยใช้รูปแบบ data-[identifier]-[name]-class=&quot;className&quot; รองรับ DOM event listener options เมื่อมีการเรียกใช้งาน action ซึ่งก็ไปตามดูได้ในมาตรฐาน เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง identifier กับ target จากเดิมที่เป็น data-target=&quot;[identifier].[name]&quot; เป็น data-[identifier]-target=&quot;[name]&quot; References Announcing Stimulus 2.0 StimulusJS</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+## References
+- [Announcing Stimulus 2.0](https://discourse.stimulusjs.org/t/announcing-stimulus-2-0/1482)
+- [StimulusJS](https://stimulusjs.org/)</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><summary type="html">หลังจากที่ Stimulus ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง เพิ่ม API ขึ้นมา 2 ตัวคือ values และ CSS classes ซึ่งก็เอามาใช้แทนที่ data map ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ document จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว Value Controller V1 Controller V2 HTML V1 HTML V2 จะเห็นว่าใน Controller ของเวอร์ชัน 2 จะมีการใช้ static values เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1 ส่วนในฝั่ง HTML ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม -value ตามหลัง data attributes Class บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง Controller V2 HTML V2 ตัวอย่างข้างต้นจะเป็นการใช้ CSS ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน Contrller เป็นการใช้ static classes ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน HTML โดยใช้รูปแบบ data-[identifier]-[name]-class=&quot;className&quot; รองรับ DOM event listener options เมื่อมีการเรียกใช้งาน action ซึ่งก็ไปตามดูได้ในมาตรฐาน เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง identifier กับ target จากเดิมที่เป็น data-target=&quot;[identifier].[name]&quot; เป็น data-[identifier]-target=&quot;[name]&quot; References Announcing Stimulus 2.0 StimulusJS</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
