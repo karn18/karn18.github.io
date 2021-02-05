@@ -1,67 +1,172 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-01-29T22:47:20+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">ติดตั้ง gem และ node module จาก private repository</title><link href="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" rel="alternate" type="text/html" title="ติดตั้ง gem และ node module จาก private repository" /><published>2021-01-29T22:40:00+07:00</published><updated>2021-01-29T22:40:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html">&lt;p&gt;คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-02-05T09:48:26+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">[Stimulus] ใช้ CustomEvent สื่อสารกันระหว่าง Controllers</title><link href="https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers.html" rel="alternate" type="text/html" title="[Stimulus] ใช้ CustomEvent สื่อสารกันระหว่าง Controllers" /><published>2021-02-05T09:48:00+07:00</published><updated>2021-02-05T09:48:00+07:00</updated><id>https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers</id><content type="html" xml:base="https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers.html">&lt;p&gt;บทความนี้จะสอนวิธีการง่ายๆ ของ Stimulus ในกรณีที่ต้องการให้ controller สื่อสารระหว่างกันผ่านการใช้ &lt;strong&gt;CustomEvent&lt;/strong&gt; จากโจทย์ที่ว่าเราต้องการหน้าเว็บที่ประกอบไปด้วยเมนู และเมื่อคลิกในแต่ละเมนูก็จะไปดึงเนื้อหาของแต่ละหน้ามาแสดง ทั้งนี้ทั้งนั้นเราจะทำเป็น SPA กล่าวคือเมื่อทำการคลิกเลือกแต่ละเมนู หน้าเว็บจะโหลดเฉพาะเนื้อหาที่เปลี่ยนแปลงเท่านั้น (Partial HTML)&lt;!--more--&gt;&lt;/p&gt;
 
-&lt;p&gt;สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ &lt;strong&gt;Rails&lt;/strong&gt; จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/example.png&quot; alt=&quot;example&quot; width=&quot;600px&quot; /&gt;
+&lt;em&gt;ตัวอย่างหน้าเว็บ&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;ก่อนที่จะเข้าเรื่อง ขอแวะเกริ่นในเรื่องการแบ่ง controller กันสักนิด ถ้าดูจากหน้าเว็บตัวอย่างข้างต้น เราคงคิดว่าใช้ controller เพียงตัวเดียวจัดการทั้งในส่วน &lt;strong&gt;sidebar&lt;/strong&gt; และ &lt;strong&gt;content&lt;/strong&gt; น่าจะใช้เพียง controller ตัวเดียวก็น่าจะดีที่สุด&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/single_controller.png&quot; alt=&quot;example&quot; width=&quot;600px&quot; /&gt;
+&lt;em&gt;ใช้ PageController ในการควบคุมหน้าเว็บ&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;!ถูกต้องแล้วหละครับ&lt;/strong&gt; ถ้าเรามองว่าหน้าเว็บของเราคงไม่มีฟีเจอร์อะไรเพิ่มเติม แต่ทันทีที่เราจะต้องมีคอมโพเนนต์อื่นๆ เพิ่มเข้ามาในหน้าเว็บการใช้ controller เพียงตัวเดียวอาจจะดูไม่เหมาะนัก ด้วยความที่โลจิกต่างๆ จะกองอยู่ที่เดียว ทำให้การกลับมาอ่านโค้ด หรือแก้ไขภายหลังเป็นเรื่องยากได้
+ดังนั้นสิ่งที่ผมทำคือการเลือกแบ่ง controller ออกเป็น 2 ตัวได้กัน คือ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/seperate_controller.png&quot; alt=&quot;example&quot; width=&quot;600px&quot; /&gt;
+&lt;em&gt;Sidebar และ Content Controller&lt;/em&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ &lt;a href=&quot;https://rubygems.org&quot;&gt;RubyGem&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ &lt;a href=&quot;https://www.npmjs.com/&quot;&gt;NPM&lt;/a&gt;&lt;!--more--&gt;&lt;/li&gt;
+  &lt;li&gt;SidebarController&lt;/li&gt;
+  &lt;li&gt;ContentController&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;โดยส่วนมากก็จะเป็น Open Source และเก็บเอาไว้ใน GitHub&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;ที่นี้ก็มาถึง lib ที่เป็นของเราเองที่พัฒนาขึ้นแบบส่วนตัว ภายใต้องค์กรหรือบริษัท ซึ่งจะถูกเก็บเอาไว้อยู่ใน git repository ต่างๆ ไม่ว่าจะเป็น GitHub, Gitlab, BitBucket โดยจะมีการกำหนดสิทธิ์ในการเข้าถึงได้แบบ private ทำให้เราไม่สามารถเข้าถึงได้ ถ้าไม่ได้ sign-in เข้าไปซะก่อน ดังนั้นเราจะต้องทำการสร้าง &lt;strong&gt;access token&lt;/strong&gt; ขึ้นมา เพื่อใช้ในการติดตั้งโดยเฉพาะ และแน่นอนว่า git repostiory ที่กล่าวไปข้างต้นมี feature นี้อยู่&lt;/p&gt;
+&lt;p&gt;ประเด็นถัดมาที่จะเกิดขึ้นเมื่อมีการแยก controller คือแต่ละ controller จะสื่อสารกันอย่างไร ยกตัวอย่างเช่นในกรณีที่ผู้ใช้งานคลิกเปลี่ยนเมนูที่ Sidebar แล้ว Content จะรับรู้ได้อย่างไร เพื่อเปลี่ยนเนื้อหาให้ถูกต้องกับเมนูที่ผู้ใช้เลือก มาถึงจุดนี้ก็ต้องใช้ &lt;strong&gt;CustomEvent&lt;/strong&gt; แล้วหละครับตามที่ได้เสนอไว้บนหัวเรื่อง&lt;/p&gt;
 
-&lt;p&gt;สำหรับในบทความนี้ผมก็ขอยกตัวอย่างเป็น &lt;strong&gt;GitLab&lt;/strong&gt; แล้วกันเพราะทางองค์กรใช้ตัวนี้เป็นหลักในการทำงาน โดยก่อนอื่นเราจะต้องเข้าไปสร้าง &lt;strong&gt;access token&lt;/strong&gt; ขึ้นมา ให้เราเข้าไปที่ profile ของตัวเอง จากนั้นสังเกตที่เมนูด้านซ้ายมือ และเข้าไปที่ Access Token&lt;/p&gt;
+&lt;p&gt;เริ่มจากการสร้าง HTML ที่แยกคอมโพเนนต์ได้เป็น 2 ส่วนด้วยกันคือ&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;คอมโพเนนต์ sidebar ที่ประกอบด้วยเมนู 2 เมนู และใช้ sidebar controller จัดการเหตุการณ์เมื่อมีการคลิก และส่งผ่าน url ขอเนื้อหาที่จะแสดง&lt;/li&gt;
+  &lt;li&gt;คอมโพเนนต์ content ที่ใช้ content controller ในการควบคุมจะทำหน้าที่ในการดึงเนื้อหาจากเมนูที่ผู้ใช้คลิกจากหลังบ้าน มาแสดงผลบนส่วนที่กำหนดไว้&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;ให้เรากำหนดชื่อที่ตัวเองชอบ และเข้าใจว่าจะใช้ทำอะไร&lt;/li&gt;
-  &lt;li&gt;กำหนดวันหมดอายุ ถ้าขี้เกียจต้องมา revoke ก็ไม่ต้องใส่ค่า token ตัวนี้จะไม่มีวันหมดอายุ&lt;/li&gt;
-  &lt;li&gt;เลือกสิทธิการเข้าถึงเป็นแบบ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read_repository&lt;/code&gt; ก็ให้เข้าไปอ่านได้อย่างเดียวก็พอแล้ว&lt;/li&gt;
-  &lt;li&gt;กดสร้าง &lt;strong&gt;access token&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;❗️ตรงนี้สำคัญ❗️ ให้ copy token ที่ถูกสร้างขึ้นมาเก็บเอาไว้ให้ดี เพราะเราจะไม่ได้เห็นมันอีกแล้ว&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&quot;indexhtml&quot;&gt;index.html&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/create-access-token.png&quot; alt=&quot;Create Access Token&quot; /&gt;
-&lt;em&gt;สร้าง Access Token&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;การติดตั้ง-gem&quot;&gt;การติดตั้ง Gem&lt;/h2&gt;
-
-&lt;p&gt;ให้เราใส่ gem ที่จะใช้งานเข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; เพียงแต่สิ่งที่ต้องทำเพิ่มคือการระบุที่อยู่ที่เป็น private repository เข้าไปด้วย และที่สำคัญเราจะต้องเอา &lt;strong&gt;access token&lt;/strong&gt; ที่ได้เมื่อกี้แนบไปพร้อมกับ account ที่ใช้ด้วย&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;ยกตัวอย่าง&lt;/strong&gt; ให้ account ที่ใช้งานเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;karn&lt;/code&gt; มี access token เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JNb1ri7fWfAPbBwqaSD&lt;/code&gt; และ git repo สามารถเข้าถึงได้ผ่าน url &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git&lt;/code&gt; เราก็จะประกอบร่างเป็นดังโค้ดด้านล่าง&lt;/p&gt;
-
-&lt;h3 id=&quot;gemfile&quot;&gt;Gemfile&lt;/h3&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;latias-auditor&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;git: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git'&lt;/span&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;main&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container section&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;columns&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;column is-one-third&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;aside&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;menu&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sidebar&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;menu-list&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;click-&amp;gt;sidebar#load&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/about&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;About&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;click-&amp;gt;sidebar#load&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/contact&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Contact&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/aside&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;column&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-content-target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;body&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/about&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/main&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;ติดตั้ง gem ผ่าน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;sidebar_controllerjs&quot;&gt;sidebar_controller.js&lt;/h2&gt;
 
-&lt;h2 id=&quot;การติดตั้ง-node-module&quot;&gt;การติดตั้ง Node Module&lt;/h2&gt;
+&lt;p&gt;มาถึง sidebar controller สิ่งที่ต้องทำคือการกำหนดเหตุการณ์เมื่อผู้ใช้งานทำการคลิกเมนู ในที่นี้จะเรียกใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;load&lt;/code&gt; และสร้าง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomEvent&lt;/code&gt; ซึ่งกำหนดชื่อตามที่เราต้องการ แต่ก็ควรจะสื่อความหมาย พร้อมกับแนบ url สำหรับเปิดไปด้วย จากนั้นก็จะเรียก &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;document.dispathEvent&lt;/code&gt; เพื่อส่งเหตุการณ์ออกไป&lt;/p&gt;
 
-&lt;p&gt;มาดูในฝั่ง Frontend กันบ้าง ถ้าเป็น Node ก็ต้องใส่เข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;package.json&lt;/code&gt; และเช่นกันรูปแบบการใช้งานก็คล้ายคลึงกับด้านบน เพียงแต่ปกติที่เราจะระบุเลข version ตามหลังชื่อ module ก็ให้ใส่เป็น url แทน ❗️ระวังนิดหนึงคือ protocal ที่ใช้จะต้องเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git+https&lt;/code&gt; หรือถ้าใครใช้ ssh ก็จะเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git+ssh&lt;/code&gt; อ่านเพิ่มเติมได้จากลิงค์ด้านล่างนะ&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
 
-&lt;h3 id=&quot;packagejson&quot;&gt;package.json&lt;/h3&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;YOUR-PROJECT&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;dependencies&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;latias-date-format&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;git+https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-date-format.git&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;ไม่ต้องห่วงว่า account กับ access token ที่อยู่ในตัวอย่างจะเข้าถึงโค้ดได้จริงนะครับ แต่ถ้าเผอิญเกิดเข้าได้จริงก็แจ้งมาด้วยแล้วกันนะ&lt;/p&gt;
-&lt;/blockquote&gt;
+  &lt;span class=&quot;nx&quot;&gt;load&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;data-url&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dispatchEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;sphere:load-content&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;detail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preventDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;p&gt;เพียงเท่านี้ก็เรียบร้อย เราสามารถที่จะติดตั้ง lib ของเราจาก private git repository ได้&lt;/p&gt;
+  &lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;li &amp;gt; a[data-url]&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;และในส่วน content controller จะต้องทำการรับเหตุการณ์เมื่อมีการคลิกเมนูผ่าน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;document.addEventListener&lt;/code&gt; เมื่อมีเหตุการณ์วิ่งเข้ามาก็จะแกะเอา url ไปดึงเนื้อหามาแสดงบน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;body&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;targets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;sphere:load-content&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadContent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;defaultURL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bodyTarget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;data-url&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;defaultURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;loadContent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;detail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;การใช้ &lt;strong&gt;CustomEvent&lt;/strong&gt; ในการสื่อสารระหว่างคอมโพเนนต์จะมีข้อดีตรงที่เมื่อเรามีคอมโพเนนต์ใหม่เกิดขึ้นมา เราก็สามารถเพิ่มการรับรู้เหตุการณ์เข้าไปได้ทันที และแยกโค้ดให้แต่ละ controller ทำงานของมันอย่างใดอย่างหนึ่งก็ทำให้โค้ดของเรา clean ขึ้นด้วย&lt;/p&gt;
+
+&lt;p&gt;สุดท้ายก่อนจะจบ สำหรับ Stimulus แล้วยังยังมีอีกวิธีหนึ่ง ที่ใช้สำหรับการสื่อสารระหว่าง controller นั้นก็คือการเรียก reference ของ controller ผ่านตัวผ่านตัวแปร &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;application&lt;/code&gt; ดังแสดงในโค้ดด้านล่าง&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listController&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getControllerForElementAndIdentifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://bundler.io/man/gemfile.5.html&quot;&gt;Gemfile&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.npmjs.com/about-packages-and-modules&quot;&gt;NPM Packages and Modules&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="gem" /><category term="node" /><category term="module" /><summary type="html">คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ตรวจสอบข้อมูลก่อนบันทึก (Validations)</title><link href="https://karn18.github.io/dev/2021/01/27/rails-validations.html" rel="alternate" type="text/html" title="ตรวจสอบข้อมูลก่อนบันทึก (Validations)" /><published>2021-01-27T22:43:00+07:00</published><updated>2021-01-27T22:43:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/27/rails-validations</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/27/rails-validations.html">โดยทั่วไปเวลาที่เราสร้าง **Model** สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (**Constraint**) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน **ActiveRecord** จะมีการเขียน **Validations** ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด&lt;!--more--&gt; และแน่นอนว่าเมื่อโลจิกของโปรแกรมเริ่มมีความซับซ้อนขึ้น เงื่อนไขในการตรวจสอบก็ย่อมจะซับซ้อนขึ้นตาม ซึ่งการใช้ built-in **Validations** ไม่สามารถตอบโจทย์ได้ ทำให้เราจะต้องสร้าง **Validator** ของเราขึ้นมาเอง ซึ่งก็ทำได้ไม่ยากมาดูกันเลย
+  &lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events&quot;&gt;Create Custom Events&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/hotwired/stimulus/issues/35&quot;&gt;Communication Between Controllers&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://twitter.com/_swanson/status/1356620139102306305&quot;&gt;Inspired by this tweet from Matt Swanson&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><category term="javascript" /><category term="customevent" /><summary type="html">บทความนี้จะสอนวิธีการง่ายๆ ของ Stimulus ในกรณีที่ต้องการให้ controller สื่อสารระหว่างกันผ่านการใช้ CustomEvent จากโจทย์ที่ว่าเราต้องการหน้าเว็บที่ประกอบไปด้วยเมนู และเมื่อคลิกในแต่ละเมนูก็จะไปดึงเนื้อหาของแต่ละหน้ามาแสดง ทั้งนี้ทั้งนั้นเราจะทำเป็น SPA กล่าวคือเมื่อทำการคลิกเลือกแต่ละเมนู หน้าเว็บจะโหลดเฉพาะเนื้อหาที่เปลี่ยนแปลงเท่านั้น (Partial HTML)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ติดตั้ง gem และ node module จาก private repository</title><link href="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" rel="alternate" type="text/html" title="ติดตั้ง gem และ node module จาก private repository" /><published>2021-01-29T22:40:00+07:00</published><updated>2021-01-29T22:40:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html">คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private
+
+สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ **Rails** จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ
+
+1. Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ [RubyGem](https://rubygems.org)
+2. Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ [NPM](https://www.npmjs.com/)&lt;!--more--&gt;
+
+&gt; โดยส่วนมากก็จะเป็น Open Source และเก็บเอาไว้ใน GitHub
+
+ที่นี้ก็มาถึง lib ที่เป็นของเราเองที่พัฒนาขึ้นแบบส่วนตัว ภายใต้องค์กรหรือบริษัท ซึ่งจะถูกเก็บเอาไว้อยู่ใน git repository ต่างๆ ไม่ว่าจะเป็น GitHub, Gitlab, BitBucket โดยจะมีการกำหนดสิทธิ์ในการเข้าถึงได้แบบ private ทำให้เราไม่สามารถเข้าถึงได้ ถ้าไม่ได้ sign-in เข้าไปซะก่อน ดังนั้นเราจะต้องทำการสร้าง **access token** ขึ้นมา เพื่อใช้ในการติดตั้งโดยเฉพาะ และแน่นอนว่า git repostiory ที่กล่าวไปข้างต้นมี feature นี้อยู่ 
+
+สำหรับในบทความนี้ผมก็ขอยกตัวอย่างเป็น **GitLab** แล้วกันเพราะทางองค์กรใช้ตัวนี้เป็นหลักในการทำงาน โดยก่อนอื่นเราจะต้องเข้าไปสร้าง **access token** ขึ้นมา ให้เราเข้าไปที่ profile ของตัวเอง จากนั้นสังเกตที่เมนูด้านซ้ายมือ และเข้าไปที่ Access Token
+
+- ให้เรากำหนดชื่อที่ตัวเองชอบ และเข้าใจว่าจะใช้ทำอะไร
+- กำหนดวันหมดอายุ ถ้าขี้เกียจต้องมา revoke ก็ไม่ต้องใส่ค่า token ตัวนี้จะไม่มีวันหมดอายุ
+- เลือกสิทธิการเข้าถึงเป็นแบบ `read_repository` ก็ให้เข้าไปอ่านได้อย่างเดียวก็พอแล้ว
+- กดสร้าง **access token**
+- ❗️ตรงนี้สำคัญ❗️ ให้ copy token ที่ถูกสร้างขึ้นมาเก็บเอาไว้ให้ดี เพราะเราจะไม่ได้เห็นมันอีกแล้ว
+
+![Create Access Token](/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/create-access-token.png)
+*สร้าง Access Token*
+
+## การติดตั้ง Gem
+
+ให้เราใส่ gem ที่จะใช้งานเข้าไปใน `Gemfile` เพียงแต่สิ่งที่ต้องทำเพิ่มคือการระบุที่อยู่ที่เป็น private repository เข้าไปด้วย และที่สำคัญเราจะต้องเอา **access token** ที่ได้เมื่อกี้แนบไปพร้อมกับ account ที่ใช้ด้วย
+
+**ยกตัวอย่าง** ให้ account ที่ใช้งานเป็น `karn` มี access token เป็น `JNb1ri7fWfAPbBwqaSD` และ git repo สามารถเข้าถึงได้ผ่าน url `https://gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git` เราก็จะประกอบร่างเป็นดังโค้ดด้านล่าง
+
+### Gemfile
+```ruby
+gem &quot;latias-auditor&quot;, git: 'https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git'
+```
+
+ติดตั้ง gem ผ่าน `bundle install`
+
+## การติดตั้ง Node Module
+
+มาดูในฝั่ง Frontend กันบ้าง ถ้าเป็น Node ก็ต้องใส่เข้าไปใน `package.json` และเช่นกันรูปแบบการใช้งานก็คล้ายคลึงกับด้านบน เพียงแต่ปกติที่เราจะระบุเลข version ตามหลังชื่อ module ก็ให้ใส่เป็น url แทน ❗️ระวังนิดหนึงคือ protocal ที่ใช้จะต้องเป็น `git+https` หรือถ้าใครใช้ ssh ก็จะเป็น `git+ssh` อ่านเพิ่มเติมได้จากลิงค์ด้านล่างนะ
+
+### package.json
+```json
+{
+  &quot;name&quot;: &quot;YOUR-PROJECT&quot;,
+  &quot;dependencies&quot;: {
+    &quot;latias-date-format&quot;: &quot;git+https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-date-format.git&quot;,
+  }
+}
+```
+
+&gt; ไม่ต้องห่วงว่า account กับ access token ที่อยู่ในตัวอย่างจะเข้าถึงโค้ดได้จริงนะครับ แต่ถ้าเผอิญเกิดเข้าได้จริงก็แจ้งมาด้วยแล้วกันนะ
+
+เพียงเท่านี้ก็เรียบร้อย เราสามารถที่จะติดตั้ง lib ของเราจาก private git repository ได้
+
+## References
+- [Gemfile](https://bundler.io/man/gemfile.5.html)
+- [NPM Packages and Modules](https://docs.npmjs.com/about-packages-and-modules)</content><author><name>Karn</name></author><category term="dev" /><category term="gem" /><category term="node" /><category term="module" /><summary type="html">คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ตรวจสอบข้อมูลก่อนบันทึก (Validations)</title><link href="https://karn18.github.io/dev/2021/01/27/rails-validations.html" rel="alternate" type="text/html" title="ตรวจสอบข้อมูลก่อนบันทึก (Validations)" /><published>2021-01-27T22:43:00+07:00</published><updated>2021-01-27T22:43:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/27/rails-validations</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/27/rails-validations.html">โดยทั่วไปเวลาที่เราสร้าง **Model** สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (**Constraint**) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน **ActiveRecord** จะมีการเขียน **Validations** ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด&lt;!--more--&gt; และแน่นอนว่าเมื่อโลจิกของโปรแกรมเริ่มมีความซับซ้อนขึ้น เงื่อนไขในการตรวจสอบก็ย่อมจะซับซ้อนขึ้นตาม ซึ่งการใช้ built-in **Validations** ไม่สามารถตอบโจทย์ได้ ทำให้เราจะต้องสร้าง **Validator** ของเราขึ้นมาเอง ซึ่งก็ทำได้ไม่ยากมาดูกันเลย
 
 ## โจทย์
 สำหรับโจทย์วันนี้ที่เราจะแก้ไขก็มาจากที่ว่า โปรแกรมที่พัฒนาจะมีการบันทึกข้อมูลคนไข้เยี่ยมบ้าน ซึ่งในแต่ละปีงบประมาณจะอนุญาตให้สร้างคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันเกิดขึ้นไม่ได้โดยอ้างอิงจากวันที่สำรวจ ซึ่งหน้าตาของตาราง Patient นั้นก็เป็นดังตารางด้านล่าง (เอามาเฉพาะบางฟิลด์เท่านั้นนะ)
@@ -552,42 +657,4 @@ end
 จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor
 
 ## References
-- [99 Bottles](https://sandimetz.com/99bottles)</content><author><name>Karn</name></author><category term="dev" /><category term="refactoring" /><category term="ruby" /><summary type="html">ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \ &quot;3 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;2 bottle of beer on the wall.\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \ &quot;4 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;3 bottle of beer on the wall.\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \ &quot;5 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;4 bottle of beer on the wall.\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \ &quot;#{number} bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;#{number - 1} bottle of beer on the wall.\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">มีอะไรใหม่ใน Stimulus 2.0</title><link href="https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0.html" rel="alternate" type="text/html" title="มีอะไรใหม่ใน Stimulus 2.0" /><published>2020-12-15T23:08:00+07:00</published><updated>2020-12-15T23:08:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/15/what-s-new-in-stimulus-2-0.html">หลังจากที่ **Stimulus** ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง
-1. เพิ่ม **API** ขึ้นมา 2 ตัวคือ **values** และ **CSS classes** ซึ่งก็เอามาใช้แทนที่ **data map** ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ **document** จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว
-
-    - **Value**
-
-    ![01](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_01.png)
-    *Controller V1*
-
-    ![02](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_02.png)
-    *Controller V2*
-
-    ![03](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_03.png)
-    *HTML V1*
-
-    ![04](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_04.png)
-    *HTML V2*
-
-    จะเห็นว่าใน **Controller** ของเวอร์ชัน 2 จะมีการใช้ `static values` เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1
-    ส่วนในฝั่ง **HTML** ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม `-value` ตามหลัง data attributes
-
-    - **Class**
-
-    บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง 
-
-    ![05](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_05.png)
-    *Controller V2*
-
-    ![06](/assets/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_06.png)
-    *HTML V2*
-
-    ตัวอย่างข้างต้นจะเป็นการใช้ **CSS** ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน **Contrller** เป็นการใช้ static `classes` ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน **HTML** โดยใช้รูปแบบ `data-[identifier]-[name]-class=&quot;className&quot;`
-
-2. รองรับ **DOM event listener options** เมื่อมีการเรียกใช้งาน **action** ซึ่งก็ไปตามดูได้ใน[มาตรฐาน](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
-
-3. เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง **identifier** กับ **target** จากเดิมที่เป็น `data-target=&quot;[identifier].[name]&quot;` เป็น `data-[identifier]-target=&quot;[name]&quot;`
-
-## References
-- [Announcing Stimulus 2.0](https://discourse.stimulusjs.org/t/announcing-stimulus-2-0/1482)
-- [StimulusJS](https://stimulusjs.org/)</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><summary type="html">หลังจากที่ Stimulus ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง เพิ่ม API ขึ้นมา 2 ตัวคือ values และ CSS classes ซึ่งก็เอามาใช้แทนที่ data map ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ document จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว Value Controller V1 Controller V2 HTML V1 HTML V2 จะเห็นว่าใน Controller ของเวอร์ชัน 2 จะมีการใช้ static values เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1 ส่วนในฝั่ง HTML ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม -value ตามหลัง data attributes Class บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง Controller V2 HTML V2 ตัวอย่างข้างต้นจะเป็นการใช้ CSS ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน Contrller เป็นการใช้ static classes ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน HTML โดยใช้รูปแบบ data-[identifier]-[name]-class=&quot;className&quot; รองรับ DOM event listener options เมื่อมีการเรียกใช้งาน action ซึ่งก็ไปตามดูได้ในมาตรฐาน เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง identifier กับ target จากเดิมที่เป็น data-target=&quot;[identifier].[name]&quot; เป็น data-[identifier]-target=&quot;[name]&quot; References Announcing Stimulus 2.0 StimulusJS</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+- [99 Bottles](https://sandimetz.com/99bottles)</content><author><name>Karn</name></author><category term="dev" /><category term="refactoring" /><category term="ruby" /><summary type="html">ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \ &quot;3 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;2 bottle of beer on the wall.\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \ &quot;4 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;3 bottle of beer on the wall.\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \ &quot;5 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;4 bottle of beer on the wall.\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \ &quot;#{number} bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;#{number - 1} bottle of beer on the wall.\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
