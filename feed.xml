@@ -1,117 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-02-05T09:48:26+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">[Stimulus] ใช้ CustomEvent สื่อสารกันระหว่าง Controllers</title><link href="https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers.html" rel="alternate" type="text/html" title="[Stimulus] ใช้ CustomEvent สื่อสารกันระหว่าง Controllers" /><published>2021-02-05T09:48:00+07:00</published><updated>2021-02-05T09:48:00+07:00</updated><id>https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers</id><content type="html" xml:base="https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers.html">&lt;p&gt;บทความนี้จะสอนวิธีการง่ายๆ ของ Stimulus ในกรณีที่ต้องการให้ controller สื่อสารระหว่างกันผ่านการใช้ &lt;strong&gt;CustomEvent&lt;/strong&gt; จากโจทย์ที่ว่าเราต้องการหน้าเว็บที่ประกอบไปด้วยเมนู และเมื่อคลิกในแต่ละเมนูก็จะไปดึงเนื้อหาของแต่ละหน้ามาแสดง ทั้งนี้ทั้งนั้นเราจะทำเป็น SPA กล่าวคือเมื่อทำการคลิกเลือกแต่ละเมนู หน้าเว็บจะโหลดเฉพาะเนื้อหาที่เปลี่ยนแปลงเท่านั้น (Partial HTML)&lt;!--more--&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-02-05T09:49:10+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">[Stimulus] ใช้ CustomEvent สื่อสารกันระหว่าง Controllers</title><link href="https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers.html" rel="alternate" type="text/html" title="[Stimulus] ใช้ CustomEvent สื่อสารกันระหว่าง Controllers" /><published>2021-02-05T09:48:00+07:00</published><updated>2021-02-05T09:48:00+07:00</updated><id>https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers</id><content type="html" xml:base="https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers.html">บทความนี้จะสอนวิธีการง่ายๆ ของ Stimulus ในกรณีที่ต้องการให้ controller สื่อสารระหว่างกันผ่านการใช้ **CustomEvent** จากโจทย์ที่ว่าเราต้องการหน้าเว็บที่ประกอบไปด้วยเมนู และเมื่อคลิกในแต่ละเมนูก็จะไปดึงเนื้อหาของแต่ละหน้ามาแสดง ทั้งนี้ทั้งนั้นเราจะทำเป็น SPA กล่าวคือเมื่อทำการคลิกเลือกแต่ละเมนู หน้าเว็บจะโหลดเฉพาะเนื้อหาที่เปลี่ยนแปลงเท่านั้น (Partial HTML)&lt;!--more--&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/example.png&quot; alt=&quot;example&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;ตัวอย่างหน้าเว็บ&lt;/em&gt;&lt;/p&gt;
+![example](/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/example.png){:width=&quot;600px&quot;}
+*ตัวอย่างหน้าเว็บ*
 
-&lt;p&gt;ก่อนที่จะเข้าเรื่อง ขอแวะเกริ่นในเรื่องการแบ่ง controller กันสักนิด ถ้าดูจากหน้าเว็บตัวอย่างข้างต้น เราคงคิดว่าใช้ controller เพียงตัวเดียวจัดการทั้งในส่วน &lt;strong&gt;sidebar&lt;/strong&gt; และ &lt;strong&gt;content&lt;/strong&gt; น่าจะใช้เพียง controller ตัวเดียวก็น่าจะดีที่สุด&lt;/p&gt;
+ก่อนที่จะเข้าเรื่อง ขอแวะเกริ่นในเรื่องการแบ่ง controller กันสักนิด ถ้าดูจากหน้าเว็บตัวอย่างข้างต้น เราคงคิดว่าใช้ controller เพียงตัวเดียวจัดการทั้งในส่วน **sidebar** และ **content** น่าจะใช้เพียง controller ตัวเดียวก็น่าจะดีที่สุด
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/single_controller.png&quot; alt=&quot;example&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;ใช้ PageController ในการควบคุมหน้าเว็บ&lt;/em&gt;&lt;/p&gt;
+![example](/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/single_controller.png){:width=&quot;600px&quot;}
+*ใช้ PageController ในการควบคุมหน้าเว็บ*
 
-&lt;p&gt;&lt;strong&gt;!ถูกต้องแล้วหละครับ&lt;/strong&gt; ถ้าเรามองว่าหน้าเว็บของเราคงไม่มีฟีเจอร์อะไรเพิ่มเติม แต่ทันทีที่เราจะต้องมีคอมโพเนนต์อื่นๆ เพิ่มเข้ามาในหน้าเว็บการใช้ controller เพียงตัวเดียวอาจจะดูไม่เหมาะนัก ด้วยความที่โลจิกต่างๆ จะกองอยู่ที่เดียว ทำให้การกลับมาอ่านโค้ด หรือแก้ไขภายหลังเป็นเรื่องยากได้
-ดังนั้นสิ่งที่ผมทำคือการเลือกแบ่ง controller ออกเป็น 2 ตัวได้กัน คือ&lt;/p&gt;
+**!ถูกต้องแล้วหละครับ** ถ้าเรามองว่าหน้าเว็บของเราคงไม่มีฟีเจอร์อะไรเพิ่มเติม แต่ทันทีที่เราจะต้องมีคอมโพเนนต์อื่นๆ เพิ่มเข้ามาในหน้าเว็บการใช้ controller เพียงตัวเดียวอาจจะดูไม่เหมาะนัก ด้วยความที่โลจิกต่างๆ จะกองอยู่ที่เดียว ทำให้การกลับมาอ่านโค้ด หรือแก้ไขภายหลังเป็นเรื่องยากได้
+ดังนั้นสิ่งที่ผมทำคือการเลือกแบ่ง controller ออกเป็น 2 ตัวได้กัน คือ
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/seperate_controller.png&quot; alt=&quot;example&quot; width=&quot;600px&quot; /&gt;
-&lt;em&gt;Sidebar และ Content Controller&lt;/em&gt;&lt;/p&gt;
+![example](/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/seperate_controller.png){:width=&quot;600px&quot;}
+*Sidebar และ Content Controller*
 
-&lt;ol&gt;
-  &lt;li&gt;SidebarController&lt;/li&gt;
-  &lt;li&gt;ContentController&lt;/li&gt;
-&lt;/ol&gt;
+1. SidebarController
+2. ContentController
 
-&lt;hr /&gt;
+-----
 
-&lt;p&gt;ประเด็นถัดมาที่จะเกิดขึ้นเมื่อมีการแยก controller คือแต่ละ controller จะสื่อสารกันอย่างไร ยกตัวอย่างเช่นในกรณีที่ผู้ใช้งานคลิกเปลี่ยนเมนูที่ Sidebar แล้ว Content จะรับรู้ได้อย่างไร เพื่อเปลี่ยนเนื้อหาให้ถูกต้องกับเมนูที่ผู้ใช้เลือก มาถึงจุดนี้ก็ต้องใช้ &lt;strong&gt;CustomEvent&lt;/strong&gt; แล้วหละครับตามที่ได้เสนอไว้บนหัวเรื่อง&lt;/p&gt;
+ประเด็นถัดมาที่จะเกิดขึ้นเมื่อมีการแยก controller คือแต่ละ controller จะสื่อสารกันอย่างไร ยกตัวอย่างเช่นในกรณีที่ผู้ใช้งานคลิกเปลี่ยนเมนูที่ Sidebar แล้ว Content จะรับรู้ได้อย่างไร เพื่อเปลี่ยนเนื้อหาให้ถูกต้องกับเมนูที่ผู้ใช้เลือก มาถึงจุดนี้ก็ต้องใช้ **CustomEvent** แล้วหละครับตามที่ได้เสนอไว้บนหัวเรื่อง
 
-&lt;p&gt;เริ่มจากการสร้าง HTML ที่แยกคอมโพเนนต์ได้เป็น 2 ส่วนด้วยกันคือ&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;คอมโพเนนต์ sidebar ที่ประกอบด้วยเมนู 2 เมนู และใช้ sidebar controller จัดการเหตุการณ์เมื่อมีการคลิก และส่งผ่าน url ขอเนื้อหาที่จะแสดง&lt;/li&gt;
-  &lt;li&gt;คอมโพเนนต์ content ที่ใช้ content controller ในการควบคุมจะทำหน้าที่ในการดึงเนื้อหาจากเมนูที่ผู้ใช้คลิกจากหลังบ้าน มาแสดงผลบนส่วนที่กำหนดไว้&lt;/li&gt;
-&lt;/ol&gt;
+เริ่มจากการสร้าง HTML ที่แยกคอมโพเนนต์ได้เป็น 2 ส่วนด้วยกันคือ
+1. คอมโพเนนต์ sidebar ที่ประกอบด้วยเมนู 2 เมนู และใช้ sidebar controller จัดการเหตุการณ์เมื่อมีการคลิก และส่งผ่าน url ขอเนื้อหาที่จะแสดง
+2. คอมโพเนนต์ content ที่ใช้ content controller ในการควบคุมจะทำหน้าที่ในการดึงเนื้อหาจากเมนูที่ผู้ใช้คลิกจากหลังบ้าน มาแสดงผลบนส่วนที่กำหนดไว้
 
-&lt;h2 id=&quot;indexhtml&quot;&gt;index.html&lt;/h2&gt;
+## index.html
 
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;main&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container section&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;columns&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;column is-one-third&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;aside&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;menu&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sidebar&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;menu-list&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;click-&amp;gt;sidebar#load&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/about&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;About&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;click-&amp;gt;sidebar#load&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/contact&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Contact&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/aside&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;column&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-content-target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;body&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/about&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/main&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```html
+&lt;main class=&quot;container section&quot;&gt;
+  &lt;div class=&quot;columns&quot;&gt;
+    &lt;div class=&quot;column is-one-third&quot;&gt;
+      &lt;aside class=&quot;menu&quot; data-controller=&quot;sidebar&quot;&gt;
+        &lt;ul class=&quot;menu-list&quot;&gt;
+          &lt;li&gt;&lt;a data-action=&quot;click-&gt;sidebar#load&quot; data-url=&quot;/about&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a data-action=&quot;click-&gt;sidebar#load&quot; data-url=&quot;/contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/aside&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;column&quot;&gt;
+      &lt;div class=&quot;card&quot; data-controller=&quot;content&quot; data-content-target=&quot;body&quot; data-url=&quot;/about&quot;&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/main&gt;
+```
 
-&lt;h2 id=&quot;sidebar_controllerjs&quot;&gt;sidebar_controller.js&lt;/h2&gt;
+## sidebar_controller.js
 
-&lt;p&gt;มาถึง sidebar controller สิ่งที่ต้องทำคือการกำหนดเหตุการณ์เมื่อผู้ใช้งานทำการคลิกเมนู ในที่นี้จะเรียกใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;load&lt;/code&gt; และสร้าง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomEvent&lt;/code&gt; ซึ่งกำหนดชื่อตามที่เราต้องการ แต่ก็ควรจะสื่อความหมาย พร้อมกับแนบ url สำหรับเปิดไปด้วย จากนั้นก็จะเรียก &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;document.dispathEvent&lt;/code&gt; เพื่อส่งเหตุการณ์ออกไป&lt;/p&gt;
+มาถึง sidebar controller สิ่งที่ต้องทำคือการกำหนดเหตุการณ์เมื่อผู้ใช้งานทำการคลิกเมนู ในที่นี้จะเรียกใช้ `load` และสร้าง `CustomEvent` ซึ่งกำหนดชื่อตามที่เราต้องการ แต่ก็ควรจะสื่อความหมาย พร้อมกับแนบ url สำหรับเปิดไปด้วย จากนั้นก็จะเรียก `document.dispathEvent` เพื่อส่งเหตุการณ์ออกไป
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+```javascript
+import { Controller } from &quot;stimulus&quot;
 
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+export default class extends Controller {
+  ...
 
-  &lt;span class=&quot;nx&quot;&gt;load&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;data-url&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dispatchEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;sphere:load-content&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;detail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preventDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  load (event) {
+    const url = event.target.getAttribute(&quot;data-url&quot;)
+    document.dispatchEvent(new CustomEvent('sphere:load-content', { detail: { url } }))
+    event.preventDefault()
+  }
 
-  &lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;li &amp;gt; a[data-url]&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+  list () {
+    return document.querySelectorAll(&quot;li &gt; a[data-url]&quot;)
+  }
+}
+```
 
-&lt;p&gt;และในส่วน content controller จะต้องทำการรับเหตุการณ์เมื่อมีการคลิกเมนูผ่าน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;document.addEventListener&lt;/code&gt; เมื่อมีเหตุการณ์วิ่งเข้ามาก็จะแกะเอา url ไปดึงเนื้อหามาแสดงบน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;body&lt;/code&gt;&lt;/p&gt;
+และในส่วน content controller จะต้องทำการรับเหตุการณ์เมื่อมีการคลิกเมนูผ่าน `document.addEventListener` เมื่อมีเหตุการณ์วิ่งเข้ามาก็จะแกะเอา url ไปดึงเนื้อหามาแสดงบน `body`
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;
+```javascript
+import { Controller } from 'stimulus'
 
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;targets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+export default class extends Controller {
+  static targets = [ &quot;body&quot; ]
 
-  &lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;sphere:load-content&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadContent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;defaultURL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bodyTarget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;data-url&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;defaultURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  connect () {
+    document.addEventListener('sphere:load-content', this.loadContent.bind(this))
+    let defaultURL = this.bodyTarget.getAttribute(&quot;data-url&quot;)
+    this.load(defaultURL)
+  }
 
-  &lt;span class=&quot;nx&quot;&gt;loadContent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;detail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  loadContent (event) {
+    let url = event.detail.url
+    this.load(url)
+  }
 
-  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  ...
+}
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;p&gt;การใช้ &lt;strong&gt;CustomEvent&lt;/strong&gt; ในการสื่อสารระหว่างคอมโพเนนต์จะมีข้อดีตรงที่เมื่อเรามีคอมโพเนนต์ใหม่เกิดขึ้นมา เราก็สามารถเพิ่มการรับรู้เหตุการณ์เข้าไปได้ทันที และแยกโค้ดให้แต่ละ controller ทำงานของมันอย่างใดอย่างหนึ่งก็ทำให้โค้ดของเรา clean ขึ้นด้วย&lt;/p&gt;
+การใช้ **CustomEvent** ในการสื่อสารระหว่างคอมโพเนนต์จะมีข้อดีตรงที่เมื่อเรามีคอมโพเนนต์ใหม่เกิดขึ้นมา เราก็สามารถเพิ่มการรับรู้เหตุการณ์เข้าไปได้ทันที และแยกโค้ดให้แต่ละ controller ทำงานของมันอย่างใดอย่างหนึ่งก็ทำให้โค้ดของเรา clean ขึ้นด้วย 
 
-&lt;p&gt;สุดท้ายก่อนจะจบ สำหรับ Stimulus แล้วยังยังมีอีกวิธีหนึ่ง ที่ใช้สำหรับการสื่อสารระหว่าง controller นั้นก็คือการเรียก reference ของ controller ผ่านตัวผ่านตัวแปร &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;application&lt;/code&gt; ดังแสดงในโค้ดด้านล่าง&lt;/p&gt;
+สุดท้ายก่อนจะจบ สำหรับ Stimulus แล้วยังยังมีอีกวิธีหนึ่ง ที่ใช้สำหรับการสื่อสารระหว่าง controller นั้นก็คือการเรียก reference ของ controller ผ่านตัวผ่านตัวแปร `application` ดังแสดงในโค้ดด้านล่าง
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+```javascript
+export default class extends Controller {
+  ...
 
-  &lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listController&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getControllerForElementAndIdentifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+  get listController () {
+    return this.application.getControllerForElementAndIdentifier(this.element, &quot;list&quot;)
+  }
+}
+```
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events&quot;&gt;Create Custom Events&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/hotwired/stimulus/issues/35&quot;&gt;Communication Between Controllers&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://twitter.com/_swanson/status/1356620139102306305&quot;&gt;Inspired by this tweet from Matt Swanson&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><category term="javascript" /><category term="customevent" /><summary type="html">บทความนี้จะสอนวิธีการง่ายๆ ของ Stimulus ในกรณีที่ต้องการให้ controller สื่อสารระหว่างกันผ่านการใช้ CustomEvent จากโจทย์ที่ว่าเราต้องการหน้าเว็บที่ประกอบไปด้วยเมนู และเมื่อคลิกในแต่ละเมนูก็จะไปดึงเนื้อหาของแต่ละหน้ามาแสดง ทั้งนี้ทั้งนั้นเราจะทำเป็น SPA กล่าวคือเมื่อทำการคลิกเลือกแต่ละเมนู หน้าเว็บจะโหลดเฉพาะเนื้อหาที่เปลี่ยนแปลงเท่านั้น (Partial HTML)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ติดตั้ง gem และ node module จาก private repository</title><link href="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" rel="alternate" type="text/html" title="ติดตั้ง gem และ node module จาก private repository" /><published>2021-01-29T22:40:00+07:00</published><updated>2021-01-29T22:40:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html">คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private
+## References
+- [Create Custom Events](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events)
+- [Communication Between Controllers](https://github.com/hotwired/stimulus/issues/35)
+- [Inspired by this tweet from Matt Swanson](https://twitter.com/_swanson/status/1356620139102306305)</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><category term="javascript" /><category term="customevent" /><summary type="html">บทความนี้จะสอนวิธีการง่ายๆ ของ Stimulus ในกรณีที่ต้องการให้ controller สื่อสารระหว่างกันผ่านการใช้ CustomEvent จากโจทย์ที่ว่าเราต้องการหน้าเว็บที่ประกอบไปด้วยเมนู และเมื่อคลิกในแต่ละเมนูก็จะไปดึงเนื้อหาของแต่ละหน้ามาแสดง ทั้งนี้ทั้งนั้นเราจะทำเป็น SPA กล่าวคือเมื่อทำการคลิกเลือกแต่ละเมนู หน้าเว็บจะโหลดเฉพาะเนื้อหาที่เปลี่ยนแปลงเท่านั้น (Partial HTML)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ติดตั้ง gem และ node module จาก private repository</title><link href="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" rel="alternate" type="text/html" title="ติดตั้ง gem และ node module จาก private repository" /><published>2021-01-29T22:40:00+07:00</published><updated>2021-01-29T22:40:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html">คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private
 
 สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ **Rails** จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ
 
