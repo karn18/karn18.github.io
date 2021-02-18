@@ -1,658 +1,827 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-02-05T09:49:10+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">[Stimulus] ใช้ CustomEvent สื่อสารกันระหว่าง Controllers</title><link href="https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers.html" rel="alternate" type="text/html" title="[Stimulus] ใช้ CustomEvent สื่อสารกันระหว่าง Controllers" /><published>2021-02-05T09:48:00+07:00</published><updated>2021-02-05T09:48:00+07:00</updated><id>https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers</id><content type="html" xml:base="https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers.html">บทความนี้จะสอนวิธีการง่ายๆ ของ Stimulus ในกรณีที่ต้องการให้ controller สื่อสารระหว่างกันผ่านการใช้ **CustomEvent** จากโจทย์ที่ว่าเราต้องการหน้าเว็บที่ประกอบไปด้วยเมนู และเมื่อคลิกในแต่ละเมนูก็จะไปดึงเนื้อหาของแต่ละหน้ามาแสดง ทั้งนี้ทั้งนั้นเราจะทำเป็น SPA กล่าวคือเมื่อทำการคลิกเลือกแต่ละเมนู หน้าเว็บจะโหลดเฉพาะเนื้อหาที่เปลี่ยนแปลงเท่านั้น (Partial HTML)&lt;!--more--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://karn18.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karn18.github.io/" rel="alternate" type="text/html" /><updated>2021-02-18T12:11:04+07:00</updated><id>https://karn18.github.io/feed.xml</id><title type="html">KT</title><subtitle>Love and enjoy coding</subtitle><entry><title type="html">Stimulus and Turbo</title><link href="https://karn18.github.io/dev/2021/02/18/stimulus-and-turbo.html" rel="alternate" type="text/html" title="Stimulus and Turbo" /><published>2021-02-18T12:10:00+07:00</published><updated>2021-02-18T12:10:00+07:00</updated><id>https://karn18.github.io/dev/2021/02/18/stimulus-and-turbo</id><content type="html" xml:base="https://karn18.github.io/dev/2021/02/18/stimulus-and-turbo.html">&lt;p&gt;จากบทความเรื่อง &lt;strong&gt;Turbo&lt;/strong&gt; 👉 &lt;a href=&quot;/dev/2020/12/28/html-over-with-turbo.html&quot;&gt;ลิงค์&lt;/a&gt; และตัวอย่างการใช้งาน &lt;strong&gt;CustomEvent&lt;/strong&gt; 👉 &lt;a href=&quot;/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers.html&quot;&gt;ลิงค์&lt;/a&gt; ทำให้เกิดความคิดว่าน่าจะลองนำ &lt;strong&gt;Turbo&lt;/strong&gt; มาใช้ในการแสดงเนื้อหาก็น่าจะได้นะ&lt;!--more--&gt;&lt;/p&gt;
 
-![example](/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/example.png){:width=&quot;600px&quot;}
-*ตัวอย่างหน้าเว็บ*
+&lt;p&gt;และโจทย์ในวันนี้ต่อยอดจากครั้งที่แล้ว โดยเริ่มต้นเราจะถอด &lt;strong&gt;CustomEvent&lt;/strong&gt; ที่ใช้สื่อสารกันระหว่าง controller ออก และใช้ &lt;strong&gt;Turbo Frame&lt;/strong&gt; แทน จากนั้นเพิ่ม controller เข้าไปอีกตัวใช้สำหรับการดึงเนื้อหาย่อยมาแสดงอีกรอบหนึ่ง ซึ่งตรงนี้จะเห็นได้ว่าเราจะมี controller ซ้อน controller อยู่ เรามาดูกันว่าการสื่อสารระหว่าง controller จะเป็นอย่างไร&lt;/p&gt;
 
-ก่อนที่จะเข้าเรื่อง ขอแวะเกริ่นในเรื่องการแบ่ง controller กันสักนิด ถ้าดูจากหน้าเว็บตัวอย่างข้างต้น เราคงคิดว่าใช้ controller เพียงตัวเดียวจัดการทั้งในส่วน **sidebar** และ **content** น่าจะใช้เพียง controller ตัวเดียวก็น่าจะดีที่สุด
+&lt;p&gt;ก่อนอื่นขอย้อนกลับไปที่บทความก่อนหน้า เราได้ใช้ &lt;strong&gt;CustomEvent&lt;/strong&gt; ในการสื่อสารกันระหว่าง controller ที่อยู่ในระนาบเดียวกัน แต่สำหรับบทความนี้เราจะใช้พูดถึงการสื่อสารระหว่าง controller ในแนวตั้ง ทั้งนี้ผมขอเรียกแบบนี้นะครับ&lt;/p&gt;
 
-![example](/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/single_controller.png){:width=&quot;600px&quot;}
-*ใช้ PageController ในการควบคุมหน้าเว็บ*
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;การสื่อสารในแนวราบ หรือการสื่อสารระหว่าง controller กับ controller ที่อยู่ข้างๆ กันหรือระนาบเดียวกัน&lt;/p&gt;
 
-**!ถูกต้องแล้วหละครับ** ถ้าเรามองว่าหน้าเว็บของเราคงไม่มีฟีเจอร์อะไรเพิ่มเติม แต่ทันทีที่เราจะต้องมีคอมโพเนนต์อื่นๆ เพิ่มเข้ามาในหน้าเว็บการใช้ controller เพียงตัวเดียวอาจจะดูไม่เหมาะนัก ด้วยความที่โลจิกต่างๆ จะกองอยู่ที่เดียว ทำให้การกลับมาอ่านโค้ด หรือแก้ไขภายหลังเป็นเรื่องยากได้
-ดังนั้นสิ่งที่ผมทำคือการเลือกแบ่ง controller ออกเป็น 2 ตัวได้กัน คือ
+    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/stimulus-and-turbo/side_by_side.png&quot; alt=&quot;Side by Side&quot; width=&quot;600px&quot; /&gt;&lt;/p&gt;
 
-![example](/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/seperate_controller.png){:width=&quot;600px&quot;}
-*Sidebar และ Content Controller*
+    &lt;blockquote&gt;
+      &lt;p&gt;สำหรับการสื่อสารระหว่าง controller ในรูปแบบนี้ ผมก็จะเลือกใช้ CustomEvent ส่งระหว่าง controller A ไปยัง controller B หรือจาก controller B กลับไปยัง controller A&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;การสื่อสารในแนวตั้ง หรือการสื่อสารระหว่าง controller แม่ กับ controller ลูก&lt;/p&gt;
 
-1. SidebarController
-2. ContentController
+    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/stimulus-and-turbo/inheritance.png&quot; alt=&quot;Inheritance&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
------
+&lt;hr /&gt;
 
-ประเด็นถัดมาที่จะเกิดขึ้นเมื่อมีการแยก controller คือแต่ละ controller จะสื่อสารกันอย่างไร ยกตัวอย่างเช่นในกรณีที่ผู้ใช้งานคลิกเปลี่ยนเมนูที่ Sidebar แล้ว Content จะรับรู้ได้อย่างไร เพื่อเปลี่ยนเนื้อหาให้ถูกต้องกับเมนูที่ผู้ใช้เลือก มาถึงจุดนี้ก็ต้องใช้ **CustomEvent** แล้วหละครับตามที่ได้เสนอไว้บนหัวเรื่อง
+&lt;h2 id=&quot;ลงมือแก้ไขกันเถอะ&quot;&gt;ลงมือแก้ไขกันเถอะ&lt;/h2&gt;
 
-เริ่มจากการสร้าง HTML ที่แยกคอมโพเนนต์ได้เป็น 2 ส่วนด้วยกันคือ
-1. คอมโพเนนต์ sidebar ที่ประกอบด้วยเมนู 2 เมนู และใช้ sidebar controller จัดการเหตุการณ์เมื่อมีการคลิก และส่งผ่าน url ขอเนื้อหาที่จะแสดง
-2. คอมโพเนนต์ content ที่ใช้ content controller ในการควบคุมจะทำหน้าที่ในการดึงเนื้อหาจากเมนูที่ผู้ใช้คลิกจากหลังบ้าน มาแสดงผลบนส่วนที่กำหนดไว้
+&lt;ul&gt;
+  &lt;li&gt;แรกเริ่มก็ให้เปลี่ยน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;div&lt;/code&gt; ที่ใช้แสดงเนื้อหาเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turbo_frame&lt;/code&gt; และก็ให้เอา &lt;strong&gt;Sidebar Controller&lt;/strong&gt; ออกเลย ระบุ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data-turbo-frame&lt;/code&gt; ในลิงค์ที่จะกดคลิกให้ชื่อตรงกับที่เราตั้งชื่อไว้ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turbo_frame&lt;/code&gt; เพราะทันทีที่คลิกลิงค์ &lt;strong&gt;Turbo&lt;/strong&gt; จะนำเนื้อหาที่ได้ไปแสดงยัง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data-turbo-frame&lt;/code&gt; ที่ระบุเอาไว้&lt;/li&gt;
+&lt;/ul&gt;
 
-## index.html
+&lt;h3 id=&quot;indexhtmlerb&quot;&gt;index.html.erb&lt;/h3&gt;
 
-```html
-&lt;main class=&quot;container section&quot;&gt;
-  &lt;div class=&quot;columns&quot;&gt;
-    &lt;div class=&quot;column is-one-third&quot;&gt;
-      &lt;aside class=&quot;menu&quot; data-controller=&quot;sidebar&quot;&gt;
-        &lt;ul class=&quot;menu-list&quot;&gt;
-          &lt;li&gt;&lt;a data-action=&quot;click-&gt;sidebar#load&quot; data-url=&quot;/about&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a data-action=&quot;click-&gt;sidebar#load&quot; data-url=&quot;/contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/aside&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;column&quot;&gt;
-      &lt;div class=&quot;card&quot; data-controller=&quot;content&quot; data-content-target=&quot;body&quot; data-url=&quot;/about&quot;&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/main&gt;
-```
+&lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;main&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container section&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;columns&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;column is-one-third&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;aside&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;menu&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;menu-list&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-turbo-frame=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/about&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;About&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-turbo-frame=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/contact&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Contact&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/aside&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;column&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;data_content&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;card&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;data: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;controller: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;content&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;content-target&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;body&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;src: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;about_path&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/main&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-## sidebar_controller.js
+&lt;ul&gt;
+  &lt;li&gt;ปรับแก้ view เล็กน้อย โดยการนำ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turbo_frame&lt;/code&gt; ไปครอบเนื้อหาไว้ดังตัวอย่างหน้า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;about.html.erb&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-มาถึง sidebar controller สิ่งที่ต้องทำคือการกำหนดเหตุการณ์เมื่อผู้ใช้งานทำการคลิกเมนู ในที่นี้จะเรียกใช้ `load` และสร้าง `CustomEvent` ซึ่งกำหนดชื่อตามที่เราต้องการ แต่ก็ควรจะสื่อความหมาย พร้อมกับแนบ url สำหรับเปิดไปด้วย จากนั้นก็จะเรียก `document.dispathEvent` เพื่อส่งเหตุการณ์ออกไป
+&lt;h3 id=&quot;abouthtmlerb&quot;&gt;about.html.erb&lt;/h3&gt;
 
-```javascript
-import { Controller } from &quot;stimulus&quot;
+&lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;content&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'pages/about'&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-export default class extends Controller {
+&lt;blockquote&gt;
+  &lt;p&gt;เอาตรงๆ โค้ดเพียงแค่นี้เราก็สามารถเปลี่ยนเนื้อหาตามลิงค์ที่เราคลิกได้แล้ว โดยไม่ต้องใช้ CustomEvent ใดๆ เลย&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;ถัดมาเราจะสร้าง controller อีกตัวหนึ่งไว้สำหรับจัดการเมนูและดึงเนื้อหาย่อยมาแสดงในหน้า &lt;strong&gt;About&lt;/strong&gt; โดยเราจะทำเป็นเมนูแบบ dropdown คือ Books, Blogs และ Activities ซึ่งแต่ละหน้าก็จะไปดึงหน้าย่อยที่แตกต่างกัน&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ปกติแล้ว &lt;strong&gt;Turbo&lt;/strong&gt; จะทำงานก็ต่อเมื่อเราใช้แท็ก &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt; เท่านั้น แต่ในตัวอย่างเราจะใช้แท็ก &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;select&lt;/code&gt; ดังนั้นจะต้องใช้ controller เข้ามาช่วยในการเรียกใช้งาน &lt;strong&gt;Turbo&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;_abouthtmlerb&quot;&gt;_about.html.erb&lt;/h3&gt;
+
+&lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;colorize&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card-content&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-colorize-target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;body&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;about&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-about-init-value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;books_path&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;loaded-&amp;gt;colorize#loaded&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;About&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;My name is Karn Tirasoontorn&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;I am computer engineer who love to code with &lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;has-text-primary-dark&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Ruby&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;select&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;select&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;change-&amp;gt;about#change&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;option&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;books_path&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Books&lt;span class=&quot;nt&quot;&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;option&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;blogs_path&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Blogs&lt;span class=&quot;nt&quot;&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;option&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;activities_path&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Activities&lt;span class=&quot;nt&quot;&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/select&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content my-4&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tag&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          Tag label
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;about&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;src: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;books_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;data: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;about-target&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;result&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+
+        &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;จากส่วนของ &lt;strong&gt;HTML&lt;/strong&gt; ข้างบนจะพบว่าเราจะใช้ controller ด้วยกัน 2 ตัวคือ&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;ColorizeConroller จะใช้สำหรับเปลี่ยนสีพื้นหลัง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;card&lt;/code&gt; โดยจะเปลี่ยนก็ต่อเมื่อ AboutController ซึ่งเป็น controller ลูกเมื่อโหลดเนื้อหาเสร็จแล้ว ผ่าน CustomEvent ชื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;loaded&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;AboutController จะคอยจัดโหลดเนื้อหา เมื่อมีการเลือกเมนู ทันทีที่เนื้อหาโหลดก็จะสร้าง CustomEvent ชื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;loaded&lt;/code&gt; แล้วส่งออกไป&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;about_controllerrb&quot;&gt;about_controller.rb&lt;/h3&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nx&quot;&gt;change&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;selected&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;selectedIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;selected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;data-url&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadContent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;loadContent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;turbo-frame[id='about']&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dispatchLoadedEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;dispatchLoadedEvent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dispatchEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;loaded&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;bubbles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;detail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;CustomEvent ที่สามารถส่งผ่านจากลูกไปถึงแม่ได้นั้นจะต้องกำหนด option &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bubbules&lt;/code&gt; เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt; ด้วยนะ&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;สำหรับ controller แม่สามารถรับรู้เหตุการณ์ที่ลูกผ่นออกได้ ด้วยการระบุชื่อเหตุการณ์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;loaded&lt;/code&gt; ไว้ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data-action&lt;/code&gt; ดังโค้ดด้านล่าง&lt;/p&gt;
+
+&lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;about&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;loaded-&amp;gt;colorize#loaded&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
   ...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ผลลัพท์ที่ได้ก็จะประมาณนี้&lt;/p&gt;
+
+&lt;div class=&quot;video&quot;&gt;
+  &lt;video controls=&quot;&quot; playsinline=&quot;&quot;&gt;
+    &lt;source src=&quot;/assets/videos/stimulus_turbo.mov&quot; type=&quot;video/mp4&quot; /&gt;
+  &lt;/video&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent&quot;&gt;CustomEvent&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://turbo.hotwire.dev/&quot;&gt;Turbo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stimulus.hotwire.dev/&quot;&gt;Stimulus&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="rails" /><category term="turbo" /><summary type="html">จากบทความเรื่อง Turbo 👉 ลิงค์ และตัวอย่างการใช้งาน CustomEvent 👉 ลิงค์ ทำให้เกิดความคิดว่าน่าจะลองนำ Turbo มาใช้ในการแสดงเนื้อหาก็น่าจะได้นะ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/stimulus-and-turbo/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/stimulus-and-turbo/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">[Stimulus] ใช้ CustomEvent สื่อสารกันระหว่าง Controllers</title><link href="https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers.html" rel="alternate" type="text/html" title="[Stimulus] ใช้ CustomEvent สื่อสารกันระหว่าง Controllers" /><published>2021-02-05T09:48:00+07:00</published><updated>2021-02-05T09:48:00+07:00</updated><id>https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers</id><content type="html" xml:base="https://karn18.github.io/dev/2021/02/05/use-customevent-to-communicate-between-stimulus-controllers.html">&lt;p&gt;บทความนี้จะสอนวิธีการง่ายๆ ของ Stimulus ในกรณีที่ต้องการให้ controller สื่อสารระหว่างกันผ่านการใช้ &lt;strong&gt;CustomEvent&lt;/strong&gt; จากโจทย์ที่ว่าเราต้องการหน้าเว็บที่ประกอบไปด้วยเมนู และเมื่อคลิกในแต่ละเมนูก็จะไปดึงเนื้อหาของแต่ละหน้ามาแสดง ทั้งนี้ทั้งนั้นเราจะทำเป็น SPA กล่าวคือเมื่อทำการคลิกเลือกแต่ละเมนู หน้าเว็บจะโหลดเฉพาะเนื้อหาที่เปลี่ยนแปลงเท่านั้น (Partial HTML)&lt;!--more--&gt;&lt;/p&gt;
 
-  load (event) {
-    const url = event.target.getAttribute(&quot;data-url&quot;)
-    document.dispatchEvent(new CustomEvent('sphere:load-content', { detail: { url } }))
-    event.preventDefault()
-  }
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/example.png&quot; alt=&quot;example&quot; width=&quot;600px&quot; /&gt;
+&lt;em&gt;ตัวอย่างหน้าเว็บ&lt;/em&gt;&lt;/p&gt;
 
-  list () {
-    return document.querySelectorAll(&quot;li &gt; a[data-url]&quot;)
-  }
-}
-```
+&lt;p&gt;ก่อนที่จะเข้าเรื่อง ขอแวะเกริ่นในเรื่องการแบ่ง controller กันสักนิด ถ้าดูจากหน้าเว็บตัวอย่างข้างต้น เราคงคิดว่าใช้ controller เพียงตัวเดียวจัดการทั้งในส่วน &lt;strong&gt;sidebar&lt;/strong&gt; และ &lt;strong&gt;content&lt;/strong&gt; น่าจะใช้เพียง controller ตัวเดียวก็น่าจะดีที่สุด&lt;/p&gt;
 
-และในส่วน content controller จะต้องทำการรับเหตุการณ์เมื่อมีการคลิกเมนูผ่าน `document.addEventListener` เมื่อมีเหตุการณ์วิ่งเข้ามาก็จะแกะเอา url ไปดึงเนื้อหามาแสดงบน `body`
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/single_controller.png&quot; alt=&quot;example&quot; width=&quot;600px&quot; /&gt;
+&lt;em&gt;ใช้ PageController ในการควบคุมหน้าเว็บ&lt;/em&gt;&lt;/p&gt;
 
-```javascript
-import { Controller } from 'stimulus'
+&lt;p&gt;&lt;strong&gt;!ถูกต้องแล้วหละครับ&lt;/strong&gt; ถ้าเรามองว่าหน้าเว็บของเราคงไม่มีฟีเจอร์อะไรเพิ่มเติม แต่ทันทีที่เราจะต้องมีคอมโพเนนต์อื่นๆ เพิ่มเข้ามาในหน้าเว็บการใช้ controller เพียงตัวเดียวอาจจะดูไม่เหมาะนัก ด้วยความที่โลจิกต่างๆ จะกองอยู่ที่เดียว ทำให้การกลับมาอ่านโค้ด หรือแก้ไขภายหลังเป็นเรื่องยากได้
+ดังนั้นสิ่งที่ผมทำคือการเลือกแบ่ง controller ออกเป็น 2 ตัวได้กัน คือ&lt;/p&gt;
 
-export default class extends Controller {
-  static targets = [ &quot;body&quot; ]
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/seperate_controller.png&quot; alt=&quot;example&quot; width=&quot;600px&quot; /&gt;
+&lt;em&gt;Sidebar และ Content Controller&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;SidebarController&lt;/li&gt;
+  &lt;li&gt;ContentController&lt;/li&gt;
+&lt;/ol&gt;
 
-  connect () {
-    document.addEventListener('sphere:load-content', this.loadContent.bind(this))
-    let defaultURL = this.bodyTarget.getAttribute(&quot;data-url&quot;)
-    this.load(defaultURL)
-  }
+&lt;hr /&gt;
+
+&lt;p&gt;ประเด็นถัดมาที่จะเกิดขึ้นเมื่อมีการแยก controller คือแต่ละ controller จะสื่อสารกันอย่างไร ยกตัวอย่างเช่นในกรณีที่ผู้ใช้งานคลิกเปลี่ยนเมนูที่ Sidebar แล้ว Content จะรับรู้ได้อย่างไร เพื่อเปลี่ยนเนื้อหาให้ถูกต้องกับเมนูที่ผู้ใช้เลือก มาถึงจุดนี้ก็ต้องใช้ &lt;strong&gt;CustomEvent&lt;/strong&gt; แล้วหละครับตามที่ได้เสนอไว้บนหัวเรื่อง&lt;/p&gt;
 
-  loadContent (event) {
-    let url = event.detail.url
-    this.load(url)
-  }
+&lt;p&gt;เริ่มจากการสร้าง HTML ที่แยกคอมโพเนนต์ได้เป็น 2 ส่วนด้วยกันคือ&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;คอมโพเนนต์ sidebar ที่ประกอบด้วยเมนู 2 เมนู และใช้ sidebar controller จัดการเหตุการณ์เมื่อมีการคลิก และส่งผ่าน url ขอเนื้อหาที่จะแสดง&lt;/li&gt;
+  &lt;li&gt;คอมโพเนนต์ content ที่ใช้ content controller ในการควบคุมจะทำหน้าที่ในการดึงเนื้อหาจากเมนูที่ผู้ใช้คลิกจากหลังบ้าน มาแสดงผลบนส่วนที่กำหนดไว้&lt;/li&gt;
+&lt;/ol&gt;
 
-  ...
-}
+&lt;h2 id=&quot;indexhtml&quot;&gt;index.html&lt;/h2&gt;
 
-```
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;main&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container section&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;columns&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;column is-one-third&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;aside&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;menu&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sidebar&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;menu-list&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;click-&amp;gt;sidebar#load&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/about&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;About&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;click-&amp;gt;sidebar#load&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/contact&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Contact&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/aside&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;column&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-content-target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;body&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/about&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/main&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-การใช้ **CustomEvent** ในการสื่อสารระหว่างคอมโพเนนต์จะมีข้อดีตรงที่เมื่อเรามีคอมโพเนนต์ใหม่เกิดขึ้นมา เราก็สามารถเพิ่มการรับรู้เหตุการณ์เข้าไปได้ทันที และแยกโค้ดให้แต่ละ controller ทำงานของมันอย่างใดอย่างหนึ่งก็ทำให้โค้ดของเรา clean ขึ้นด้วย 
+&lt;h2 id=&quot;sidebar_controllerjs&quot;&gt;sidebar_controller.js&lt;/h2&gt;
 
-สุดท้ายก่อนจะจบ สำหรับ Stimulus แล้วยังยังมีอีกวิธีหนึ่ง ที่ใช้สำหรับการสื่อสารระหว่าง controller นั้นก็คือการเรียก reference ของ controller ผ่านตัวผ่านตัวแปร `application` ดังแสดงในโค้ดด้านล่าง
+&lt;p&gt;มาถึง sidebar controller สิ่งที่ต้องทำคือการกำหนดเหตุการณ์เมื่อผู้ใช้งานทำการคลิกเมนู ในที่นี้จะเรียกใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;load&lt;/code&gt; และสร้าง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomEvent&lt;/code&gt; ซึ่งกำหนดชื่อตามที่เราต้องการ แต่ก็ควรจะสื่อความหมาย พร้อมกับแนบ url สำหรับเปิดไปด้วย จากนั้นก็จะเรียก &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;document.dispathEvent&lt;/code&gt; เพื่อส่งเหตุการณ์ออกไป&lt;/p&gt;
 
-```javascript
-export default class extends Controller {
-  ...
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
 
-  get listController () {
-    return this.application.getControllerForElementAndIdentifier(this.element, &quot;list&quot;)
-  }
-}
-```
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
 
-## References
-- [Create Custom Events](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events)
-- [Communication Between Controllers](https://github.com/hotwired/stimulus/issues/35)
-- [Inspired by this tweet from Matt Swanson](https://twitter.com/_swanson/status/1356620139102306305)</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><category term="javascript" /><category term="customevent" /><summary type="html">บทความนี้จะสอนวิธีการง่ายๆ ของ Stimulus ในกรณีที่ต้องการให้ controller สื่อสารระหว่างกันผ่านการใช้ CustomEvent จากโจทย์ที่ว่าเราต้องการหน้าเว็บที่ประกอบไปด้วยเมนู และเมื่อคลิกในแต่ละเมนูก็จะไปดึงเนื้อหาของแต่ละหน้ามาแสดง ทั้งนี้ทั้งนั้นเราจะทำเป็น SPA กล่าวคือเมื่อทำการคลิกเลือกแต่ละเมนู หน้าเว็บจะโหลดเฉพาะเนื้อหาที่เปลี่ยนแปลงเท่านั้น (Partial HTML)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ติดตั้ง gem และ node module จาก private repository</title><link href="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" rel="alternate" type="text/html" title="ติดตั้ง gem และ node module จาก private repository" /><published>2021-01-29T22:40:00+07:00</published><updated>2021-01-29T22:40:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html">คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private
+  &lt;span class=&quot;nx&quot;&gt;load&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;data-url&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dispatchEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;sphere:load-content&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;detail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preventDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ **Rails** จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ
+  &lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;li &amp;gt; a[data-url]&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-1. Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ [RubyGem](https://rubygems.org)
-2. Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ [NPM](https://www.npmjs.com/)&lt;!--more--&gt;
+&lt;p&gt;และในส่วน content controller จะต้องทำการรับเหตุการณ์เมื่อมีการคลิกเมนูผ่าน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;document.addEventListener&lt;/code&gt; เมื่อมีเหตุการณ์วิ่งเข้ามาก็จะแกะเอา url ไปดึงเนื้อหามาแสดงบน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;body&lt;/code&gt;&lt;/p&gt;
 
-&gt; โดยส่วนมากก็จะเป็น Open Source และเก็บเอาไว้ใน GitHub
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;
 
-ที่นี้ก็มาถึง lib ที่เป็นของเราเองที่พัฒนาขึ้นแบบส่วนตัว ภายใต้องค์กรหรือบริษัท ซึ่งจะถูกเก็บเอาไว้อยู่ใน git repository ต่างๆ ไม่ว่าจะเป็น GitHub, Gitlab, BitBucket โดยจะมีการกำหนดสิทธิ์ในการเข้าถึงได้แบบ private ทำให้เราไม่สามารถเข้าถึงได้ ถ้าไม่ได้ sign-in เข้าไปซะก่อน ดังนั้นเราจะต้องทำการสร้าง **access token** ขึ้นมา เพื่อใช้ในการติดตั้งโดยเฉพาะ และแน่นอนว่า git repostiory ที่กล่าวไปข้างต้นมี feature นี้อยู่ 
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;targets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 
-สำหรับในบทความนี้ผมก็ขอยกตัวอย่างเป็น **GitLab** แล้วกันเพราะทางองค์กรใช้ตัวนี้เป็นหลักในการทำงาน โดยก่อนอื่นเราจะต้องเข้าไปสร้าง **access token** ขึ้นมา ให้เราเข้าไปที่ profile ของตัวเอง จากนั้นสังเกตที่เมนูด้านซ้ายมือ และเข้าไปที่ Access Token
+  &lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;sphere:load-content&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadContent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;defaultURL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bodyTarget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;data-url&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;defaultURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-- ให้เรากำหนดชื่อที่ตัวเองชอบ และเข้าใจว่าจะใช้ทำอะไร
-- กำหนดวันหมดอายุ ถ้าขี้เกียจต้องมา revoke ก็ไม่ต้องใส่ค่า token ตัวนี้จะไม่มีวันหมดอายุ
-- เลือกสิทธิการเข้าถึงเป็นแบบ `read_repository` ก็ให้เข้าไปอ่านได้อย่างเดียวก็พอแล้ว
-- กดสร้าง **access token**
-- ❗️ตรงนี้สำคัญ❗️ ให้ copy token ที่ถูกสร้างขึ้นมาเก็บเอาไว้ให้ดี เพราะเราจะไม่ได้เห็นมันอีกแล้ว
+  &lt;span class=&quot;nx&quot;&gt;loadContent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;detail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-![Create Access Token](/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/create-access-token.png)
-*สร้าง Access Token*
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-## การติดตั้ง Gem
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-ให้เราใส่ gem ที่จะใช้งานเข้าไปใน `Gemfile` เพียงแต่สิ่งที่ต้องทำเพิ่มคือการระบุที่อยู่ที่เป็น private repository เข้าไปด้วย และที่สำคัญเราจะต้องเอา **access token** ที่ได้เมื่อกี้แนบไปพร้อมกับ account ที่ใช้ด้วย
+&lt;p&gt;การใช้ &lt;strong&gt;CustomEvent&lt;/strong&gt; ในการสื่อสารระหว่างคอมโพเนนต์จะมีข้อดีตรงที่เมื่อเรามีคอมโพเนนต์ใหม่เกิดขึ้นมา เราก็สามารถเพิ่มการรับรู้เหตุการณ์เข้าไปได้ทันที และแยกโค้ดให้แต่ละ controller ทำงานของมันอย่างใดอย่างหนึ่งก็ทำให้โค้ดของเรา clean ขึ้นด้วย&lt;/p&gt;
 
-**ยกตัวอย่าง** ให้ account ที่ใช้งานเป็น `karn` มี access token เป็น `JNb1ri7fWfAPbBwqaSD` และ git repo สามารถเข้าถึงได้ผ่าน url `https://gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git` เราก็จะประกอบร่างเป็นดังโค้ดด้านล่าง
+&lt;p&gt;สุดท้ายก่อนจะจบ สำหรับ Stimulus แล้วยังยังมีอีกวิธีหนึ่ง ที่ใช้สำหรับการสื่อสารระหว่าง controller นั้นก็คือการเรียก reference ของ controller ผ่านตัวผ่านตัวแปร &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;application&lt;/code&gt; ดังแสดงในโค้ดด้านล่าง&lt;/p&gt;
 
-### Gemfile
-```ruby
-gem &quot;latias-auditor&quot;, git: 'https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git'
-```
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listController&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getControllerForElementAndIdentifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events&quot;&gt;Create Custom Events&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/hotwired/stimulus/issues/35&quot;&gt;Communication Between Controllers&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://twitter.com/_swanson/status/1356620139102306305&quot;&gt;Inspired by this tweet from Matt Swanson&lt;/a&gt;
+&lt;em&gt;**&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="stimulus" /><category term="javascript" /><category term="customevent" /><summary type="html">บทความนี้จะสอนวิธีการง่ายๆ ของ Stimulus ในกรณีที่ต้องการให้ controller สื่อสารระหว่างกันผ่านการใช้ CustomEvent จากโจทย์ที่ว่าเราต้องการหน้าเว็บที่ประกอบไปด้วยเมนู และเมื่อคลิกในแต่ละเมนูก็จะไปดึงเนื้อหาของแต่ละหน้ามาแสดง ทั้งนี้ทั้งนั้นเราจะทำเป็น SPA กล่าวคือเมื่อทำการคลิกเลือกแต่ละเมนู หน้าเว็บจะโหลดเฉพาะเนื้อหาที่เปลี่ยนแปลงเท่านั้น (Partial HTML)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/use-customevent-to-communicate-between-stimulus-controllers/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ติดตั้ง gem และ node module จาก private repository</title><link href="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html" rel="alternate" type="text/html" title="ติดตั้ง gem และ node module จาก private repository" /><published>2021-01-29T22:40:00+07:00</published><updated>2021-01-29T22:40:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/29/installing-gem-and-node-module-from-private-git-reposity.html">&lt;p&gt;คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private&lt;/p&gt;
+
+&lt;p&gt;สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ &lt;strong&gt;Rails&lt;/strong&gt; จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ &lt;a href=&quot;https://rubygems.org&quot;&gt;RubyGem&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ &lt;a href=&quot;https://www.npmjs.com/&quot;&gt;NPM&lt;/a&gt;&lt;!--more--&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;โดยส่วนมากก็จะเป็น Open Source และเก็บเอาไว้ใน GitHub&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ที่นี้ก็มาถึง lib ที่เป็นของเราเองที่พัฒนาขึ้นแบบส่วนตัว ภายใต้องค์กรหรือบริษัท ซึ่งจะถูกเก็บเอาไว้อยู่ใน git repository ต่างๆ ไม่ว่าจะเป็น GitHub, Gitlab, BitBucket โดยจะมีการกำหนดสิทธิ์ในการเข้าถึงได้แบบ private ทำให้เราไม่สามารถเข้าถึงได้ ถ้าไม่ได้ sign-in เข้าไปซะก่อน ดังนั้นเราจะต้องทำการสร้าง &lt;strong&gt;access token&lt;/strong&gt; ขึ้นมา เพื่อใช้ในการติดตั้งโดยเฉพาะ และแน่นอนว่า git repostiory ที่กล่าวไปข้างต้นมี feature นี้อยู่&lt;/p&gt;
+
+&lt;p&gt;สำหรับในบทความนี้ผมก็ขอยกตัวอย่างเป็น &lt;strong&gt;GitLab&lt;/strong&gt; แล้วกันเพราะทางองค์กรใช้ตัวนี้เป็นหลักในการทำงาน โดยก่อนอื่นเราจะต้องเข้าไปสร้าง &lt;strong&gt;access token&lt;/strong&gt; ขึ้นมา ให้เราเข้าไปที่ profile ของตัวเอง จากนั้นสังเกตที่เมนูด้านซ้ายมือ และเข้าไปที่ Access Token&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ให้เรากำหนดชื่อที่ตัวเองชอบ และเข้าใจว่าจะใช้ทำอะไร&lt;/li&gt;
+  &lt;li&gt;กำหนดวันหมดอายุ ถ้าขี้เกียจต้องมา revoke ก็ไม่ต้องใส่ค่า token ตัวนี้จะไม่มีวันหมดอายุ&lt;/li&gt;
+  &lt;li&gt;เลือกสิทธิการเข้าถึงเป็นแบบ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read_repository&lt;/code&gt; ก็ให้เข้าไปอ่านได้อย่างเดียวก็พอแล้ว&lt;/li&gt;
+  &lt;li&gt;กดสร้าง &lt;strong&gt;access token&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;❗️ตรงนี้สำคัญ❗️ ให้ copy token ที่ถูกสร้างขึ้นมาเก็บเอาไว้ให้ดี เพราะเราจะไม่ได้เห็นมันอีกแล้ว&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/create-access-token.png&quot; alt=&quot;Create Access Token&quot; /&gt;
+&lt;em&gt;สร้าง Access Token&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;การติดตั้ง-gem&quot;&gt;การติดตั้ง Gem&lt;/h2&gt;
+
+&lt;p&gt;ให้เราใส่ gem ที่จะใช้งานเข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; เพียงแต่สิ่งที่ต้องทำเพิ่มคือการระบุที่อยู่ที่เป็น private repository เข้าไปด้วย และที่สำคัญเราจะต้องเอา &lt;strong&gt;access token&lt;/strong&gt; ที่ได้เมื่อกี้แนบไปพร้อมกับ account ที่ใช้ด้วย&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ยกตัวอย่าง&lt;/strong&gt; ให้ account ที่ใช้งานเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;karn&lt;/code&gt; มี access token เป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JNb1ri7fWfAPbBwqaSD&lt;/code&gt; และ git repo สามารถเข้าถึงได้ผ่าน url &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git&lt;/code&gt; เราก็จะประกอบร่างเป็นดังโค้ดด้านล่าง&lt;/p&gt;
+
+&lt;h3 id=&quot;gemfile&quot;&gt;Gemfile&lt;/h3&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;latias-auditor&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;git: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ติดตั้ง gem ผ่าน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;การติดตั้ง-node-module&quot;&gt;การติดตั้ง Node Module&lt;/h2&gt;
+
+&lt;p&gt;มาดูในฝั่ง Frontend กันบ้าง ถ้าเป็น Node ก็ต้องใส่เข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;package.json&lt;/code&gt; และเช่นกันรูปแบบการใช้งานก็คล้ายคลึงกับด้านบน เพียงแต่ปกติที่เราจะระบุเลข version ตามหลังชื่อ module ก็ให้ใส่เป็น url แทน ❗️ระวังนิดหนึงคือ protocal ที่ใช้จะต้องเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git+https&lt;/code&gt; หรือถ้าใครใช้ ssh ก็จะเป็น &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git+ssh&lt;/code&gt; อ่านเพิ่มเติมได้จากลิงค์ด้านล่างนะ&lt;/p&gt;
+
+&lt;h3 id=&quot;packagejson&quot;&gt;package.json&lt;/h3&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;YOUR-PROJECT&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;dependencies&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;latias-date-format&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;git+https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-date-format.git&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ไม่ต้องห่วงว่า account กับ access token ที่อยู่ในตัวอย่างจะเข้าถึงโค้ดได้จริงนะครับ แต่ถ้าเผอิญเกิดเข้าได้จริงก็แจ้งมาด้วยแล้วกันนะ&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;เพียงเท่านี้ก็เรียบร้อย เราสามารถที่จะติดตั้ง lib ของเราจาก private git repository ได้&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://bundler.io/man/gemfile.5.html&quot;&gt;Gemfile&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.npmjs.com/about-packages-and-modules&quot;&gt;NPM Packages and Modules&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="gem" /><category term="node" /><category term="module" /><summary type="html">คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ตรวจสอบข้อมูลก่อนบันทึก (Validations)</title><link href="https://karn18.github.io/dev/2021/01/27/rails-validations.html" rel="alternate" type="text/html" title="ตรวจสอบข้อมูลก่อนบันทึก (Validations)" /><published>2021-01-27T22:43:00+07:00</published><updated>2021-01-27T22:43:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/27/rails-validations</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/27/rails-validations.html">&lt;p&gt;โดยทั่วไปเวลาที่เราสร้าง &lt;strong&gt;Model&lt;/strong&gt; สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (&lt;strong&gt;Constraint&lt;/strong&gt;) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน &lt;strong&gt;ActiveRecord&lt;/strong&gt; จะมีการเขียน &lt;strong&gt;Validations&lt;/strong&gt; ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด&lt;!--more--&gt; และแน่นอนว่าเมื่อโลจิกของโปรแกรมเริ่มมีความซับซ้อนขึ้น เงื่อนไขในการตรวจสอบก็ย่อมจะซับซ้อนขึ้นตาม ซึ่งการใช้ built-in &lt;strong&gt;Validations&lt;/strong&gt; ไม่สามารถตอบโจทย์ได้ ทำให้เราจะต้องสร้าง &lt;strong&gt;Validator&lt;/strong&gt; ของเราขึ้นมาเอง ซึ่งก็ทำได้ไม่ยากมาดูกันเลย&lt;/p&gt;
+
+&lt;h2 id=&quot;โจทย์&quot;&gt;โจทย์&lt;/h2&gt;
+&lt;p&gt;สำหรับโจทย์วันนี้ที่เราจะแก้ไขก็มาจากที่ว่า โปรแกรมที่พัฒนาจะมีการบันทึกข้อมูลคนไข้เยี่ยมบ้าน ซึ่งในแต่ละปีงบประมาณจะอนุญาตให้สร้างคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันเกิดขึ้นไม่ได้โดยอ้างอิงจากวันที่สำรวจ ซึ่งหน้าตาของตาราง Patient นั้นก็เป็นดังตารางด้านล่าง (เอามาเฉพาะบางฟิลด์เท่านั้นนะ)&lt;/p&gt;
 
-ติดตั้ง gem ผ่าน `bundle install`
+&lt;h3 id=&quot;ตาราง-patient&quot;&gt;ตาราง Patient&lt;/h3&gt;
 
-## การติดตั้ง Node Module
-
-มาดูในฝั่ง Frontend กันบ้าง ถ้าเป็น Node ก็ต้องใส่เข้าไปใน `package.json` และเช่นกันรูปแบบการใช้งานก็คล้ายคลึงกับด้านบน เพียงแต่ปกติที่เราจะระบุเลข version ตามหลังชื่อ module ก็ให้ใส่เป็น url แทน ❗️ระวังนิดหนึงคือ protocal ที่ใช้จะต้องเป็น `git+https` หรือถ้าใครใช้ ssh ก็จะเป็น `git+ssh` อ่านเพิ่มเติมได้จากลิงค์ด้านล่างนะ
-
-### package.json
-```json
-{
-  &quot;name&quot;: &quot;YOUR-PROJECT&quot;,
-  &quot;dependencies&quot;: {
-    &quot;latias-date-format&quot;: &quot;git+https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-date-format.git&quot;,
-  }
-}
-```
-
-&gt; ไม่ต้องห่วงว่า account กับ access token ที่อยู่ในตัวอย่างจะเข้าถึงโค้ดได้จริงนะครับ แต่ถ้าเผอิญเกิดเข้าได้จริงก็แจ้งมาด้วยแล้วกันนะ
-
-เพียงเท่านี้ก็เรียบร้อย เราสามารถที่จะติดตั้ง lib ของเราจาก private git repository ได้
-
-## References
-- [Gemfile](https://bundler.io/man/gemfile.5.html)
-- [NPM Packages and Modules](https://docs.npmjs.com/about-packages-and-modules)</content><author><name>Karn</name></author><category term="dev" /><category term="gem" /><category term="node" /><category term="module" /><summary type="html">คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ Rails จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ RubyGem Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ NPM</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ตรวจสอบข้อมูลก่อนบันทึก (Validations)</title><link href="https://karn18.github.io/dev/2021/01/27/rails-validations.html" rel="alternate" type="text/html" title="ตรวจสอบข้อมูลก่อนบันทึก (Validations)" /><published>2021-01-27T22:43:00+07:00</published><updated>2021-01-27T22:43:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/27/rails-validations</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/27/rails-validations.html">โดยทั่วไปเวลาที่เราสร้าง **Model** สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (**Constraint**) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน **ActiveRecord** จะมีการเขียน **Validations** ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด&lt;!--more--&gt; และแน่นอนว่าเมื่อโลจิกของโปรแกรมเริ่มมีความซับซ้อนขึ้น เงื่อนไขในการตรวจสอบก็ย่อมจะซับซ้อนขึ้นตาม ซึ่งการใช้ built-in **Validations** ไม่สามารถตอบโจทย์ได้ ทำให้เราจะต้องสร้าง **Validator** ของเราขึ้นมาเอง ซึ่งก็ทำได้ไม่ยากมาดูกันเลย
-
-## โจทย์
-สำหรับโจทย์วันนี้ที่เราจะแก้ไขก็มาจากที่ว่า โปรแกรมที่พัฒนาจะมีการบันทึกข้อมูลคนไข้เยี่ยมบ้าน ซึ่งในแต่ละปีงบประมาณจะอนุญาตให้สร้างคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันเกิดขึ้นไม่ได้โดยอ้างอิงจากวันที่สำรวจ ซึ่งหน้าตาของตาราง Patient นั้นก็เป็นดังตารางด้านล่าง (เอามาเฉพาะบางฟิลด์เท่านั้นนะ)
-
-### ตาราง Patient
-
-id | pid | first_name | surveyed_date | created_at | updated_at
---- |--- | ---
-1| 183xxxxxxx515 | demo | 2020-08-19 | 2020-08-19 | 2020-08-19 11:05:57
-2| 183xxxxxxx515 | demo | 2021-05-02 | 2021-05-02 | 2021-05-02 14:27:12
-
-จากตารางจะพบว่าเราสามารถบันทึกข้อมูลคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันได้ก็ต่อเมื่อวันที่เยี่ยมบ้าน (surveyed_date) จะต้องอยู่คนละปีงบประมาณกัน
-แถวแรกจะเป็นปีงบประมาณ 2563 (1 ตุลาคม 2562 - 20 กันยายน 2563) และแถวที่สองเป็นปีงบประมาณ 2564 (1 ตุลาคม 2563 - 30 กันยายน 2564)
-
------
-
-ก่อนจะไปถึงวิธีแก้ไขโจทย์ของเรา ถ้าย้อนกลับไปเป็นโจทย์ที่ว่าเราสามารถบันทึกข้อมูลคนไข้ซ้ำกันไม่ได้เลย การตรวจสอบข้อมูลก็สามารถเขียนได้ดังนี้
-
-```ruby
-class Patient
-  validates :pid, uniqueness: true
-end
-```
-
-ที่นี้ก็มาสร้าง **Validator** ของเรากันเลย ก็สามารถทำได้ง่ายๆ โดยการสร้าง class ที่สืบทอดความสามารถต่อจาก class `ActiveModel::Validator` และก็ต้อง implement เมธอดที่ชื่อ `validate`
-
-### app/validators/patient_validator.rb
-
-```ruby
-class PatientValidator &lt; ActiveModel::Validator
-  def validate(record)
-    budget_year = current_budget_year
-    results = record.class.name.constantize.where(&quot;pid = :pid and extract(year from surveyed_date) = :budget_year&quot;, pid: record.pid, budget_year: budget_year)
-
-    record.errors.add :pid, :duplicated_pid_per_budget_year unless results.size.zero?
-  end
-end
-```
-
-ในกรณีที่เราเขียนเงื่อนไขตรวจสอบแล้วไม่ถูกต้อง เราจะทำการเพิ่ม error เข้าไปใน `record.errors` ซึ่งก็จะระบุฟิลด์ กับข้อความที่จะแสดง แต่ถ้าไม่มีอะไรผิดผ่านเราก็ปล่อยผ่านไปเลย ทันทีที่โมเดลเราทำการตรวจสอบด้วย `valid?` และพบว่ามี errors ปรากฏอยู่ข้อมูลก็จะไม่บันทึกลงในฐานข้อมูล
-
-สำหรับวิธีการเรียกใช้ **PatientValidator** ก็สามารถทำได้ดังนี้
-
-```ruby
-class Patient
-  # แบบแรก
-  validates_with PatientValidator
-
-  # แบบที่สอง
-  validates :once_in_budget_year
-
-  def once_in_budget_year
-    validates_with PatientValidator
-  end
-end
-```
-
-เพียงเท่านี้เราก็สามารถตอบโจทย์เราได้แล้ว แต่ถ้าเราลองพิจารณาเพิ่มไปอีกนิดจะพบว่าถ้าเราเพิ่มฟิลด์ **budget_year** เข้าไปในตารางก็น่าจะทำให้การตรวจสอบทำได้โดยไม่ต้องสร้าง **Validator** ใหม่ขึ้นมาได้ และโค้ดของเราก็จะเป็นประมาณนี้
-
-```ruby
-class Patient
-  validates :pid, uniqueness: { scope: :budget_year,
-    message: &quot;Should happen once per budget year&quot; }
-end
-```
-
-## References
-- [Validations](https://guides.rubyonrails.org/active_record_validations.html)</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="ruby" /><category term="validations" /><summary type="html">โดยทั่วไปเวลาที่เราสร้าง Model สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (Constraint) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน ActiveRecord จะมีการเขียน Validations ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ลองสร้าง Audit Log ในรูปแบบ Rails Plugin</title><link href="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html" rel="alternate" type="text/html" title="ลองสร้าง Audit Log ในรูปแบบ Rails Plugin" /><published>2021-01-16T18:50:00+07:00</published><updated>2021-01-16T18:50:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html">โดยมากแล้วโปรแกรมที่พัฒนาด้วย **Rails** จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ **Rails** จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก&lt;!--more--&gt;
-
-จึงได้ลองใช้ **Timber** 3rd Party Service ในการเก็บ log ดู ซึ่งเราสามารถเข้าไปดู log ได้แบบ real time วิธีการใช้งานก็ง่าย อีกทั้งการค้นหาสิ่งที่เราสนใจก็ทำได้ง่าย **แต่**ของฟรีและดีอย่างที่เราต้องการนั้นไม่มีอยู่จริง เพราะ **Timber** แบบฟรีนั้นให้เราเก็บ log ได้ขนาดจำกัด และ retention ในการดูข้อมูลย้อนหลังก็ทำได้เพียงแค่วันเดียวเท่านั้น
-
-&gt; อยากได้ของดี ก็ต้องเสียตังเอานะครับ
-
-กลายเป็นว่าจะทำอย่างไรดีให้เราสามารถดู log ได้ง่ายขึ้น และตอบโจทย์ของเรา รวมถึงสามารถนำไปใช้งานในโปรเจ็คอื่นๆ ได้ด้วย ก็นึกขึ้นมาได้ว่าเราควรจะทำเป็น **Rails Plugin** เอาไว้ดีกว่า (กว่าจะเข้าเรื่องสักที)
-
-Audit Log ที่พัฒนาขึ้นไว้ใช้งานนี้ก็จะเก็บข้อมูลด้วยคอนเซปต์ที่ว่า **ใคร ทำอะไร เมื่อไหร่** เริ่มต้นก็สร้าง plugin กันเลย ซึ่งเราสามารถศึกษาได้จาก[ที่นี่](https://guides.rubyonrails.org/plugins.html) โดยเจ้า plugin นี้สามารถเรียกใช้งานผ่าน global method ที่ชื่อ `with_audit` ดังตัวอย่างด้านล่าง
-
-```ruby
-with_audit(&quot;Bob&quot;, &quot;login&quot;, &quot;User is logged in to the system&quot;)
-with_audit(&quot;System&quot;, [&quot;sidekiq&quot;, &quot;email&quot;]) do
-  &quot;Sending alert email to administrator&quot;
-end
-```
-
-และนอกจากนี้การบันทึกข้อมูลลงในฐานข้อมูลจะมีด้วยกัน 2 โหมด คือ
-1. async ซึ่งจะเรียกใช้งานผ่าน Active Job หรือบันทึกข้อมูลผ่าน Background Process
-2. sync ซึ่งจะเรียกบันทึกข้อมูลทันที
-
-&gt; ใครสนใจพัฒนาต่อยอดก็สามารถ clone ได้จากด้านล่างนะครับ ส่วนถ้ามีฟีเจอร์ไรอัพเดตก็ PR กันเข้ามาได้ครับ 👇
-
-## References
-- [Rails Plugin](https://guides.rubyonrails.org/plugins.html)
-- [Rails Generator](https://guides.rubyonrails.org/generators.html)
-- [Latias Auditor](https://github.com/karn18/latias-auditor)</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="plugin" /><category term="ruby" /><category term="audit" /><category term="log" /><summary type="html">โดยมากแล้วโปรแกรมที่พัฒนาด้วย Rails จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ Rails จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เลือกหุ่นยนต์การศึกษาให้เหมาะกับเด็กๆ ได้อย่างไร</title><link href="https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids.html" rel="alternate" type="text/html" title="เลือกหุ่นยนต์การศึกษาให้เหมาะกับเด็กๆ ได้อย่างไร" /><published>2021-01-07T22:47:00+07:00</published><updated>2021-01-07T22:47:00+07:00</updated><id>https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids</id><content type="html" xml:base="https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids.html">ในยุคปัจจุบันการเรียนรู้ของเด็กนั้นแตกต่างๆ จากสมัยก่อนมากเลยทีเดียว การเรียนรู้และศึกษาเกี่ยวกับ **STEAM** (Science, Technology, Engineering, Art และ Mathermatics) ก็มีความทันสมัย และเข้าถึงได้ง่ายขึ้นผ่านการเรียนรู้จากหุ่นยนต์ (Robot) อีกทั้งยังช่วยสงเสริมความคิดสร้างสรรค์ การออกแบบ และแก้ไขปัญหาด้วย ในฐานะผู้ปกครองเราจะเลือกหุ่นยนต์ที่เหมาะสมเพื่อให้ลูกของเราได้เรียนรู้และศึกษาได้อย่างไร เมื่อในท้องตลาดนั้นมีหุ่นยนต์มากมาย และหลากหลายประเภทเหลือเกิน&lt;!--more--&gt; วันนี้เราจะมาลองทำความรู้จักกับประเภทของหุ่นยนต์การศึกษากันหน่อยซึ่งโดยหลักๆ แล้วจะแบ่งออกเป็น 4 ประเภทใหญ่ๆ ด้วยกันคือ
-
-&gt; การจำแนกประเภทหุ่นยนต์นี้อ้างอิงจากลักษณะของหุ่นยนต์ รูปแบบการสอน และวิธิการเขียนโค้ดเป็นหลัก
-
-1. **Physical Coded Robots** หุ่นยนต์ประเภทนี้จะเน้นที่การเขียนโค้ดโดยไม่ใช้หน้าจอ หรือจะเรียกอีกอย่างก็คือ Unplug Coding โดยรูปร่างของหุ่นยนต์จะออกไปในเชิงของเล่น น่ารักๆ เหมาะกับเด็กช่วงอายุ 4 - 9 ขวบ ลักษณะของการสอนก็จะให้เด็กๆ ได้เรียนรู้พื้นฐานการเขียนโค้ด ไม่ว่าจะเป็นการคำสั่ง การทำงานตามลำดับ การคิดแยกแยะปัญหาแบบง่ายผ่านกิจกรรมต่างๆ (Play-based learning) ตัวอย่างหุ่นยนต์ประเภทนี้ก็ได้แก่ Bee-bot, Cubetto หรือ Matatalab เป็นต้น
-
-![cubetto](/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cubetto.png){:width=&quot;400px&quot;}
-*Cubetto*
-  
-1. **Introductory Programmable Robots** หุ่นยนต์ประเภทนี้อัพเกรดขึ้นมาจากประเภทแรก เริ่มเน้นเรื่องคอนเซปต์การเขียนโค้ดมากขึ้นผ่านตัวโปรแกรม ซึ่งก็จะเริ่มใช้หน้าจอไม่ว่าจะผ่านทาง Controller, Tablet หรือ Computer แต่ยังคงความสนุกสนานผ่านการกิจกรรม หรือเกมส์ (Just for fun and learning to code) ลักษณะหุ่นยนต์ก็ยังคงคล้ายๆ กับประเภทแรก เช่น Botley หรือ Dash เป็นต้น
-
-    ![dash](/assets/images/posts/2021/choose-the-right-robot-for-your-kids/dash.jpg){:width=&quot;400px&quot;}
-    *Dash*
-
-2. **Computer Programmable Robots** แน่นอนว่าหุ่นยนต์ประเภทนี้ก็จะอัพเกรตขึ้นมาจากประเภทที่สอง โดยหุ่นยนต์เริ่มมีเซนเซอร์อื่นๆ เข้ามาผสมด้วย ทำให้หุ่นยนต์นั้นมีความสามารถมากขึ้น น้องๆ ก็จะได้เรียนรู้เทคโนโลยีและวิธีการเขียนโค้ดที่ซับซ้อนขึ้น เช่น การเขียนบังคับให้หุ่นยนต์เดิน หลบหลีกสิ่งกีดขวาง หรือเคลื่อนไหวเมื่อมีเสียงก็ได้ การเขียนโค้ดก็จะอยู่ในรูป block-based และ text-based ขึ้นอยู่กับระดับการเรียนการสอน สำหรับรูปแบบการเรียนก็จะมุ่งเน้นผ่านกิจกรรม การออกแบบความคิดสร้างสรรค์เป็นโปรเจ็ค รวมถึงการแข่งขันในระดับต่างๆ หุ่นยนต์ประเภทนี้ได้แก่ Edison หรือ Sphero Bolt เป็นต้น
-
-    ![edison](/assets/images/posts/2021/choose-the-right-robot-for-your-kids/edison.png){:width=&quot;300px&quot;}
-    *Edison*
-
-3. **Kit-based Robots** หุ่นยนต์ประเภทนี้เด็กๆ จะชอบกันมากเพราะตัวหุ่นยนต์จะแยกชิ้นส่วนมา และจะต้องประกอบร่างขึ้นมาให้สำเร็จ ซึ่งทำให้เด็กรู้สึกเหมือนได้สร้างหุ่นยนต์ขึ้นมาด้วยตัวเค้าเอง โดยหุ่นยนต์จะมีเซนเซอร์ หรือมอเตอร์ขับเคลื่อนมาด้วย ทำให้เมื่อการเขียนโค้ดสามารถไปควบคุมสั่งงานให้หุ่นยนต์มีการขยับ หรือเคลื่อนที่ตามที่ต้องการ การเขียนโค้ดก็จะผ่าน Tablet ซะเป็นส่วนใหญ่ หุ่นยนต์ประเภทนี้ก็ได้แก่ LEGO Mindstorms EV3 หรือ VEX เป็นต้น
-
-    ![mindstorm](/assets/images/posts/2021/choose-the-right-robot-for-your-kids/lego-mindstorm.jpg){:width=&quot;300px&quot;}
-    *LEGO Mindstorm EV3*
-
-ทั้งหมดนี้ก็เป็นประเภทของหุ่นยนต์การศึกษา ซึ่งแต่ละประเภทก็มีจุดเด่นกันคนละแบบขึ้นอยู่กับวัย และทักษะที่อยากจะส่งเสริมให้กับเด็กๆ
-
-## References
-- [Choose the right robot for your classroom](https://meetedison.com/how-to-choose-the-right-robot-for-your-classroom/)</content><author><name>Karn</name></author><category term="stem" /><category term="steam" /><category term="robot" /><summary type="html">ในยุคปัจจุบันการเรียนรู้ของเด็กนั้นแตกต่างๆ จากสมัยก่อนมากเลยทีเดียว การเรียนรู้และศึกษาเกี่ยวกับ STEAM (Science, Technology, Engineering, Art และ Mathermatics) ก็มีความทันสมัย และเข้าถึงได้ง่ายขึ้นผ่านการเรียนรู้จากหุ่นยนต์ (Robot) อีกทั้งยังช่วยสงเสริมความคิดสร้างสรรค์ การออกแบบ และแก้ไขปัญหาด้วย ในฐานะผู้ปกครองเราจะเลือกหุ่นยนต์ที่เหมาะสมเพื่อให้ลูกของเราได้เรียนรู้และศึกษาได้อย่างไร เมื่อในท้องตลาดนั้นมีหุ่นยนต์มากมาย และหลากหลายประเภทเหลือเกิน</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Stimulus Template</title><link href="https://karn18.github.io/dev/2021/01/07/stimulus-template.html" rel="alternate" type="text/html" title="Stimulus Template" /><published>2021-01-07T09:39:00+07:00</published><updated>2021-01-07T09:39:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/07/stimulus-template</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/07/stimulus-template.html">ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ **Stimulus** อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น **node module** และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ **Template** หรือ **Boilerplate** ไว้ใช้ดีกว่า&lt;!--more--&gt;
-
-## วิธีการใช้งาน
-
-- โคลน [repository](https://github.com/karn18/stimulus-template) ลงมาไว้ที่เครื่อง
-
-    ```bash
-    $ git clone https://github.com/karn18/stimulus-template
-    ```
-  
-- ติดตั้ง dependencies ต่างๆ
-
-    ```bash
-    $ yarn install
-    # npm install
-    ```
-
-- แก้ไขชื่อโปรเจคในไฟล์ package.json
-- แก้ไขโค้ดในส่วนของ controller ใน `src/index.js`
-- รัน `build` เพื่อ transpile โค้ดของเราผ่าน `rollup`
-
-    ```bash
-    $ yarn build
-    # npm build
-    ```
-
-- เขียน test ใน `test/index.test.js`
-- ทดสอบ controller ผ่าน `jest`
-
-    ```bash
-    $ yarn test
-    # npm test
-    ```
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;pid&lt;/th&gt;
+      &lt;th&gt;first_name&lt;/th&gt;
+      &lt;th&gt;surveyed_date&lt;/th&gt;
+      &lt;th&gt;created_at&lt;/th&gt;
+      &lt;th&gt;updated_at&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;183xxxxxxx515&lt;/td&gt;
+      &lt;td&gt;demo&lt;/td&gt;
+      &lt;td&gt;2020-08-19&lt;/td&gt;
+      &lt;td&gt;2020-08-19&lt;/td&gt;
+      &lt;td&gt;2020-08-19 11:05:57&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;183xxxxxxx515&lt;/td&gt;
+      &lt;td&gt;demo&lt;/td&gt;
+      &lt;td&gt;2021-05-02&lt;/td&gt;
+      &lt;td&gt;2021-05-02&lt;/td&gt;
+      &lt;td&gt;2021-05-02 14:27:12&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;จากตารางจะพบว่าเราสามารถบันทึกข้อมูลคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันได้ก็ต่อเมื่อวันที่เยี่ยมบ้าน (surveyed_date) จะต้องอยู่คนละปีงบประมาณกัน
+แถวแรกจะเป็นปีงบประมาณ 2563 (1 ตุลาคม 2562 - 20 กันยายน 2563) และแถวที่สองเป็นปีงบประมาณ 2564 (1 ตุลาคม 2563 - 30 กันยายน 2564)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;ก่อนจะไปถึงวิธีแก้ไขโจทย์ของเรา ถ้าย้อนกลับไปเป็นโจทย์ที่ว่าเราสามารถบันทึกข้อมูลคนไข้ซ้ำกันไม่ได้เลย การตรวจสอบข้อมูลก็สามารถเขียนได้ดังนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Patient&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uniqueness: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ที่นี้ก็มาสร้าง &lt;strong&gt;Validator&lt;/strong&gt; ของเรากันเลย ก็สามารถทำได้ง่ายๆ โดยการสร้าง class ที่สืบทอดความสามารถต่อจาก class &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ActiveModel::Validator&lt;/code&gt; และก็ต้อง implement เมธอดที่ชื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;validate&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;appvalidatorspatient_validatorrb&quot;&gt;app/validators/patient_validator.rb&lt;/h3&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PatientValidator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveModel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Validator&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;validate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;budget_year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_budget_year&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;results&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;constantize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;pid = :pid and extract(year from surveyed_date) = :budget_year&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;pid: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;budget_year: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;budget_year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;errors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:duplicated_pid_per_budget_year&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;results&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;zero?&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ในกรณีที่เราเขียนเงื่อนไขตรวจสอบแล้วไม่ถูกต้อง เราจะทำการเพิ่ม error เข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;record.errors&lt;/code&gt; ซึ่งก็จะระบุฟิลด์ กับข้อความที่จะแสดง แต่ถ้าไม่มีอะไรผิดผ่านเราก็ปล่อยผ่านไปเลย ทันทีที่โมเดลเราทำการตรวจสอบด้วย &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;valid?&lt;/code&gt; และพบว่ามี errors ปรากฏอยู่ข้อมูลก็จะไม่บันทึกลงในฐานข้อมูล&lt;/p&gt;
+
+&lt;p&gt;สำหรับวิธีการเรียกใช้ &lt;strong&gt;PatientValidator&lt;/strong&gt; ก็สามารถทำได้ดังนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Patient&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# แบบแรก&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates_with&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PatientValidator&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# แบบที่สอง&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:once_in_budget_year&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;once_in_budget_year&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;validates_with&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PatientValidator&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เพียงเท่านี้เราก็สามารถตอบโจทย์เราได้แล้ว แต่ถ้าเราลองพิจารณาเพิ่มไปอีกนิดจะพบว่าถ้าเราเพิ่มฟิลด์ &lt;strong&gt;budget_year&lt;/strong&gt; เข้าไปในตารางก็น่าจะทำให้การตรวจสอบทำได้โดยไม่ต้องสร้าง &lt;strong&gt;Validator&lt;/strong&gt; ใหม่ขึ้นมาได้ และโค้ดของเราก็จะเป็นประมาณนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Patient&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uniqueness: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;scope: :budget_year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;message: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Should happen once per budget year&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://guides.rubyonrails.org/active_record_validations.html&quot;&gt;Validations&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="ruby" /><category term="validations" /><summary type="html">โดยทั่วไปเวลาที่เราสร้าง Model สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (Constraint) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน ActiveRecord จะมีการเขียน Validations ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/rails-validations/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ลองสร้าง Audit Log ในรูปแบบ Rails Plugin</title><link href="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html" rel="alternate" type="text/html" title="ลองสร้าง Audit Log ในรูปแบบ Rails Plugin" /><published>2021-01-16T18:50:00+07:00</published><updated>2021-01-16T18:50:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/16/create-audit-log-using-rails-plugin.html">&lt;p&gt;โดยมากแล้วโปรแกรมที่พัฒนาด้วย &lt;strong&gt;Rails&lt;/strong&gt; จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ &lt;strong&gt;Rails&lt;/strong&gt; จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;จึงได้ลองใช้ &lt;strong&gt;Timber&lt;/strong&gt; 3rd Party Service ในการเก็บ log ดู ซึ่งเราสามารถเข้าไปดู log ได้แบบ real time วิธีการใช้งานก็ง่าย อีกทั้งการค้นหาสิ่งที่เราสนใจก็ทำได้ง่าย &lt;strong&gt;แต่&lt;/strong&gt;ของฟรีและดีอย่างที่เราต้องการนั้นไม่มีอยู่จริง เพราะ &lt;strong&gt;Timber&lt;/strong&gt; แบบฟรีนั้นให้เราเก็บ log ได้ขนาดจำกัด และ retention ในการดูข้อมูลย้อนหลังก็ทำได้เพียงแค่วันเดียวเท่านั้น&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;อยากได้ของดี ก็ต้องเสียตังเอานะครับ&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;กลายเป็นว่าจะทำอย่างไรดีให้เราสามารถดู log ได้ง่ายขึ้น และตอบโจทย์ของเรา รวมถึงสามารถนำไปใช้งานในโปรเจ็คอื่นๆ ได้ด้วย ก็นึกขึ้นมาได้ว่าเราควรจะทำเป็น &lt;strong&gt;Rails Plugin&lt;/strong&gt; เอาไว้ดีกว่า (กว่าจะเข้าเรื่องสักที)&lt;/p&gt;
+
+&lt;p&gt;Audit Log ที่พัฒนาขึ้นไว้ใช้งานนี้ก็จะเก็บข้อมูลด้วยคอนเซปต์ที่ว่า &lt;strong&gt;ใคร ทำอะไร เมื่อไหร่&lt;/strong&gt; เริ่มต้นก็สร้าง plugin กันเลย ซึ่งเราสามารถศึกษาได้จาก&lt;a href=&quot;https://guides.rubyonrails.org/plugins.html&quot;&gt;ที่นี่&lt;/a&gt; โดยเจ้า plugin นี้สามารถเรียกใช้งานผ่าน global method ที่ชื่อ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;with_audit&lt;/code&gt; ดังตัวอย่างด้านล่าง&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;with_audit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Bob&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;login&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;User is logged in to the system&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;with_audit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;System&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sidekiq&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;email&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;Sending alert email to administrator&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;และนอกจากนี้การบันทึกข้อมูลลงในฐานข้อมูลจะมีด้วยกัน 2 โหมด คือ&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;async ซึ่งจะเรียกใช้งานผ่าน Active Job หรือบันทึกข้อมูลผ่าน Background Process&lt;/li&gt;
+  &lt;li&gt;sync ซึ่งจะเรียกบันทึกข้อมูลทันที&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ใครสนใจพัฒนาต่อยอดก็สามารถ clone ได้จากด้านล่างนะครับ ส่วนถ้ามีฟีเจอร์ไรอัพเดตก็ PR กันเข้ามาได้ครับ 👇&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://guides.rubyonrails.org/plugins.html&quot;&gt;Rails Plugin&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://guides.rubyonrails.org/generators.html&quot;&gt;Rails Generator&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/latias-auditor&quot;&gt;Latias Auditor&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="rails" /><category term="plugin" /><category term="ruby" /><category term="audit" /><category term="log" /><summary type="html">โดยมากแล้วโปรแกรมที่พัฒนาด้วย Rails จะมี log เอาไว้เสมอ อย่างน้อยถ้าไม่ได้ log เพิ่มเข้าไปก็ต้องมี access log ที่บอกว่าผู้ใช้งานเข้าถึง route อะไรบ้าง ที่นี้เมื่อได้ log ข้อมูลลงไปมากขึ้นด้วยความที่ log ปกติของ Rails จัดเก็บอยู่ในรูปแบบของไฟล์ในเครื่อง เวลาที่จะตรวจสอบหรือค้นหาค่อนข้างจะยุ่งยาก</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/create-audit-log-using-rails-plugin/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เลือกหุ่นยนต์การศึกษาให้เหมาะกับเด็กๆ ได้อย่างไร</title><link href="https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids.html" rel="alternate" type="text/html" title="เลือกหุ่นยนต์การศึกษาให้เหมาะกับเด็กๆ ได้อย่างไร" /><published>2021-01-07T22:47:00+07:00</published><updated>2021-01-07T22:47:00+07:00</updated><id>https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids</id><content type="html" xml:base="https://karn18.github.io/stem/2021/01/07/choose-the-right-robot-for-your-kids.html">&lt;p&gt;ในยุคปัจจุบันการเรียนรู้ของเด็กนั้นแตกต่างๆ จากสมัยก่อนมากเลยทีเดียว การเรียนรู้และศึกษาเกี่ยวกับ &lt;strong&gt;STEAM&lt;/strong&gt; (Science, Technology, Engineering, Art และ Mathermatics) ก็มีความทันสมัย และเข้าถึงได้ง่ายขึ้นผ่านการเรียนรู้จากหุ่นยนต์ (Robot) อีกทั้งยังช่วยสงเสริมความคิดสร้างสรรค์ การออกแบบ และแก้ไขปัญหาด้วย ในฐานะผู้ปกครองเราจะเลือกหุ่นยนต์ที่เหมาะสมเพื่อให้ลูกของเราได้เรียนรู้และศึกษาได้อย่างไร เมื่อในท้องตลาดนั้นมีหุ่นยนต์มากมาย และหลากหลายประเภทเหลือเกิน&lt;!--more--&gt; วันนี้เราจะมาลองทำความรู้จักกับประเภทของหุ่นยนต์การศึกษากันหน่อยซึ่งโดยหลักๆ แล้วจะแบ่งออกเป็น 4 ประเภทใหญ่ๆ ด้วยกันคือ&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;การจำแนกประเภทหุ่นยนต์นี้อ้างอิงจากลักษณะของหุ่นยนต์ รูปแบบการสอน และวิธิการเขียนโค้ดเป็นหลัก&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Physical Coded Robots&lt;/strong&gt; หุ่นยนต์ประเภทนี้จะเน้นที่การเขียนโค้ดโดยไม่ใช้หน้าจอ หรือจะเรียกอีกอย่างก็คือ Unplug Coding โดยรูปร่างของหุ่นยนต์จะออกไปในเชิงของเล่น น่ารักๆ เหมาะกับเด็กช่วงอายุ 4 - 9 ขวบ ลักษณะของการสอนก็จะให้เด็กๆ ได้เรียนรู้พื้นฐานการเขียนโค้ด ไม่ว่าจะเป็นการคำสั่ง การทำงานตามลำดับ การคิดแยกแยะปัญหาแบบง่ายผ่านกิจกรรมต่างๆ (Play-based learning) ตัวอย่างหุ่นยนต์ประเภทนี้ก็ได้แก่ Bee-bot, Cubetto หรือ Matatalab เป็นต้น&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cubetto.png&quot; alt=&quot;cubetto&quot; width=&quot;400px&quot; /&gt;
+&lt;em&gt;Cubetto&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Introductory Programmable Robots&lt;/strong&gt; หุ่นยนต์ประเภทนี้อัพเกรดขึ้นมาจากประเภทแรก เริ่มเน้นเรื่องคอนเซปต์การเขียนโค้ดมากขึ้นผ่านตัวโปรแกรม ซึ่งก็จะเริ่มใช้หน้าจอไม่ว่าจะผ่านทาง Controller, Tablet หรือ Computer แต่ยังคงความสนุกสนานผ่านการกิจกรรม หรือเกมส์ (Just for fun and learning to code) ลักษณะหุ่นยนต์ก็ยังคงคล้ายๆ กับประเภทแรก เช่น Botley หรือ Dash เป็นต้น&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/choose-the-right-robot-for-your-kids/dash.jpg&quot; alt=&quot;dash&quot; width=&quot;400px&quot; /&gt;
+ &lt;em&gt;Dash&lt;/em&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Computer Programmable Robots&lt;/strong&gt; แน่นอนว่าหุ่นยนต์ประเภทนี้ก็จะอัพเกรตขึ้นมาจากประเภทที่สอง โดยหุ่นยนต์เริ่มมีเซนเซอร์อื่นๆ เข้ามาผสมด้วย ทำให้หุ่นยนต์นั้นมีความสามารถมากขึ้น น้องๆ ก็จะได้เรียนรู้เทคโนโลยีและวิธีการเขียนโค้ดที่ซับซ้อนขึ้น เช่น การเขียนบังคับให้หุ่นยนต์เดิน หลบหลีกสิ่งกีดขวาง หรือเคลื่อนไหวเมื่อมีเสียงก็ได้ การเขียนโค้ดก็จะอยู่ในรูป block-based และ text-based ขึ้นอยู่กับระดับการเรียนการสอน สำหรับรูปแบบการเรียนก็จะมุ่งเน้นผ่านกิจกรรม การออกแบบความคิดสร้างสรรค์เป็นโปรเจ็ค รวมถึงการแข่งขันในระดับต่างๆ หุ่นยนต์ประเภทนี้ได้แก่ Edison หรือ Sphero Bolt เป็นต้น&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/choose-the-right-robot-for-your-kids/edison.png&quot; alt=&quot;edison&quot; width=&quot;300px&quot; /&gt;
+ &lt;em&gt;Edison&lt;/em&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Kit-based Robots&lt;/strong&gt; หุ่นยนต์ประเภทนี้เด็กๆ จะชอบกันมากเพราะตัวหุ่นยนต์จะแยกชิ้นส่วนมา และจะต้องประกอบร่างขึ้นมาให้สำเร็จ ซึ่งทำให้เด็กรู้สึกเหมือนได้สร้างหุ่นยนต์ขึ้นมาด้วยตัวเค้าเอง โดยหุ่นยนต์จะมีเซนเซอร์ หรือมอเตอร์ขับเคลื่อนมาด้วย ทำให้เมื่อการเขียนโค้ดสามารถไปควบคุมสั่งงานให้หุ่นยนต์มีการขยับ หรือเคลื่อนที่ตามที่ต้องการ การเขียนโค้ดก็จะผ่าน Tablet ซะเป็นส่วนใหญ่ หุ่นยนต์ประเภทนี้ก็ได้แก่ LEGO Mindstorms EV3 หรือ VEX เป็นต้น&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/choose-the-right-robot-for-your-kids/lego-mindstorm.jpg&quot; alt=&quot;mindstorm&quot; width=&quot;300px&quot; /&gt;
+ &lt;em&gt;LEGO Mindstorm EV3&lt;/em&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;ทั้งหมดนี้ก็เป็นประเภทของหุ่นยนต์การศึกษา ซึ่งแต่ละประเภทก็มีจุดเด่นกันคนละแบบขึ้นอยู่กับวัย และทักษะที่อยากจะส่งเสริมให้กับเด็กๆ&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://meetedison.com/how-to-choose-the-right-robot-for-your-classroom/&quot;&gt;Choose the right robot for your classroom&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="stem" /><category term="steam" /><category term="robot" /><summary type="html">ในยุคปัจจุบันการเรียนรู้ของเด็กนั้นแตกต่างๆ จากสมัยก่อนมากเลยทีเดียว การเรียนรู้และศึกษาเกี่ยวกับ STEAM (Science, Technology, Engineering, Art และ Mathermatics) ก็มีความทันสมัย และเข้าถึงได้ง่ายขึ้นผ่านการเรียนรู้จากหุ่นยนต์ (Robot) อีกทั้งยังช่วยสงเสริมความคิดสร้างสรรค์ การออกแบบ และแก้ไขปัญหาด้วย ในฐานะผู้ปกครองเราจะเลือกหุ่นยนต์ที่เหมาะสมเพื่อให้ลูกของเราได้เรียนรู้และศึกษาได้อย่างไร เมื่อในท้องตลาดนั้นมีหุ่นยนต์มากมาย และหลากหลายประเภทเหลือเกิน</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/choose-the-right-robot-for-your-kids/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Stimulus Template</title><link href="https://karn18.github.io/dev/2021/01/07/stimulus-template.html" rel="alternate" type="text/html" title="Stimulus Template" /><published>2021-01-07T09:39:00+07:00</published><updated>2021-01-07T09:39:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/07/stimulus-template</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/07/stimulus-template.html">&lt;p&gt;ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ &lt;strong&gt;Stimulus&lt;/strong&gt; อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น &lt;strong&gt;node module&lt;/strong&gt; และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ &lt;strong&gt;Template&lt;/strong&gt; หรือ &lt;strong&gt;Boilerplate&lt;/strong&gt; ไว้ใช้ดีกว่า&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;วิธีการใช้งาน&quot;&gt;วิธีการใช้งาน&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;โคลน &lt;a href=&quot;https://github.com/karn18/stimulus-template&quot;&gt;repository&lt;/a&gt; ลงมาไว้ที่เครื่อง&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/karn18/stimulus-template
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ติดตั้ง dependencies ต่างๆ&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yarn &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# npm install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;แก้ไขชื่อโปรเจคในไฟล์ package.json&lt;/li&gt;
+  &lt;li&gt;แก้ไขโค้ดในส่วนของ controller ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/index.js&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;รัน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build&lt;/code&gt; เพื่อ transpile โค้ดของเราผ่าน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rollup&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yarn build
+  &lt;span class=&quot;c&quot;&gt;# npm build&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;เขียน test ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test/index.test.js&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ทดสอบ controller ผ่าน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jest&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yarn &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# npm test&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;!-- อันนี้เป็นเพียงขั้นแรกเท่านั้น ซึ่งพอนึกดูดีๆ แล้วเราสามารถนำ Stimulus Controller ที่เราจะแยกไปทำให้อยู่ในรูปของ gem น่าจะดีกว่า ไม่ว่าจะเป็นเรื่องของการติดตั้ง การเพิ่ม controller ตัวใหม่เข้าไปใน registry การจัดการกับ assets เอาเป็นว่าเดี่ยวจะมาอธิบายในบทความหน้าแล้วกัน  --&gt;
-เพียงเท่านี้เราก็สามารถจะพัฒนา **stimulus controller** ได้แล้ว
+&lt;p&gt;เพียงเท่านี้เราก็สามารถจะพัฒนา &lt;strong&gt;stimulus controller&lt;/strong&gt; ได้แล้ว&lt;/p&gt;
 
-## References
-- [Testing Stimulus](https://damonbauer.dev/posts/testing-stimulus-with-jest/)
-- [Stimulus Template](https://github.com/karn18/stimulus-template)</content><author><name>Karn</name></author><category term="dev" /><category term="stimulus" /><category term="template" /><summary type="html">ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ Stimulus อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น node module และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ Template หรือ Boilerplate ไว้ใช้ดีกว่า</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/stimulus-template/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/stimulus-template/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เติมแต่งสีสันให้กับข้อความใน Ruby</title><link href="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html" rel="alternate" type="text/html" title="เติมแต่งสีสันให้กับข้อความใน Ruby" /><published>2021-01-05T14:57:00+07:00</published><updated>2021-01-05T14:57:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html">เริ่มต้นปี 2564 กันด้วยบทความเบาๆ ก่อนแล้วกัน โดยวันนี้จะมาพูดถึงการเติมแต่งสีสันให้กับข้อความที่เราพ่นออกทาง terminal หรือ console ซึ่งการเพิ่มสีสันให้กับข้อความก็อาจจะทำให้เรามองเห็นได้ง่ายขึ้น หรือสนุกกับการอ่าน log ก็เป็นได้&lt;!--more--&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://damonbauer.dev/posts/testing-stimulus-with-jest/&quot;&gt;Testing Stimulus&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/stimulus-template&quot;&gt;Stimulus Template&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="stimulus" /><category term="template" /><summary type="html">ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ Stimulus อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น node module และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ Template หรือ Boilerplate ไว้ใช้ดีกว่า</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/stimulus-template/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/stimulus-template/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เติมแต่งสีสันให้กับข้อความใน Ruby</title><link href="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html" rel="alternate" type="text/html" title="เติมแต่งสีสันให้กับข้อความใน Ruby" /><published>2021-01-05T14:57:00+07:00</published><updated>2021-01-05T14:57:00+07:00</updated><id>https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby</id><content type="html" xml:base="https://karn18.github.io/dev/2021/01/05/colorizing-text-in-ruby.html">&lt;p&gt;เริ่มต้นปี 2564 กันด้วยบทความเบาๆ ก่อนแล้วกัน โดยวันนี้จะมาพูดถึงการเติมแต่งสีสันให้กับข้อความที่เราพ่นออกทาง terminal หรือ console ซึ่งการเพิ่มสีสันให้กับข้อความก็อาจจะทำให้เรามองเห็นได้ง่ายขึ้น หรือสนุกกับการอ่าน log ก็เป็นได้&lt;!--more--&gt;&lt;/p&gt;
 
-วิธีการที่จะเพิ่มสีสันให้กับข้อความก็ง่ายๆ เพียงใช้ Gem ซึ่งจะแนะนำด้วยกัน 2 ตัว คือ `Colorize gem` และ `Rainbow gem` โดยทั้งสองตัวมีความสามารถที่คล้ายคลึงกัน แต่ถ้าดูในเรื่องการอัพเดตก็คงต้องเลือก `Rainbow` เพราะ `Colorize` นั้นดูแล้วไม่ได้รับการอัพเตดมามากว่า 2 ปีแล้ว
+&lt;p&gt;วิธีการที่จะเพิ่มสีสันให้กับข้อความก็ง่ายๆ เพียงใช้ Gem ซึ่งจะแนะนำด้วยกัน 2 ตัว คือ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Colorize gem&lt;/code&gt; และ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rainbow gem&lt;/code&gt; โดยทั้งสองตัวมีความสามารถที่คล้ายคลึงกัน แต่ถ้าดูในเรื่องการอัพเดตก็คงต้องเลือก &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rainbow&lt;/code&gt; เพราะ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Colorize&lt;/code&gt; นั้นดูแล้วไม่ได้รับการอัพเตดมามากว่า 2 ปีแล้ว&lt;/p&gt;
 
-## Rainbow
+&lt;h2 id=&quot;rainbow&quot;&gt;Rainbow&lt;/h2&gt;
 
-สำหรับวิธีการใช้งาน Rainbow นั้นสามารถทำได้ 2 วิธี คือ
+&lt;p&gt;สำหรับวิธีการใช้งาน Rainbow นั้นสามารถทำได้ 2 วิธี คือ&lt;/p&gt;
 
-1. เรียกผ่าน Presentation Object
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;เรียกผ่าน Presentation Object&lt;/p&gt;
 
-    ```ruby
-    require &quot;rainbow&quot;
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rainbow&quot;&lt;/span&gt;
 
-    puts Rainbow(&quot;Hello World&quot;).green.underline
-    ```
+ &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rainbow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;green&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;underline&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ใช้ Refinement เพื่อเพิ่มความสามารถให้กับ String&lt;/p&gt;
 
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rainbow/refinement&quot;&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rainbow&lt;/span&gt;
 
-2. ใช้ Refinement เพื่อเพิ่มความสามารถให้กับ String
+ &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;blue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;underline&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
-    ```ruby
-    require &quot;rainbow/refinement&quot;
-    using Rainbow
+&lt;p&gt;จากโค้ดข้างต้นจะให้ผลลัพท์เหมือนกันดังแสดงในรูปด้านล่าง&lt;/p&gt;
 
-    puts &quot;Hello World&quot;.blue.underline
-    ```
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_1.png&quot; alt=&quot;rainbow_1&quot; width=&quot;500px&quot; /&gt;
+&lt;em&gt;Colorizing 1&lt;/em&gt;&lt;/p&gt;
 
-จากโค้ดข้างต้นจะให้ผลลัพท์เหมือนกันดังแสดงในรูปด้านล่าง
+&lt;p&gt;นอกจากสีที่เป็น ANSI แล้ว เรายังสามารถใช้สีที่เป็น RGB ได้ด้วย ไม่ว่าจะใช้เป็น Hex String หรือ Decimal&lt;/p&gt;
 
-![rainbow_1](/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_1.png){:width=&quot;500px&quot;}
-*Colorizing 1*
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rainbow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Blue Green Color&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;15b5b0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# .color(21, 181, 176) &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-นอกจากสีที่เป็น ANSI แล้ว เรายังสามารถใช้สีที่เป็น RGB ได้ด้วย ไม่ว่าจะใช้เป็น Hex String หรือ Decimal
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_2.png&quot; alt=&quot;rainbow_2&quot; width=&quot;500px&quot; /&gt;
+&lt;em&gt;Colorizing 2&lt;/em&gt;&lt;/p&gt;
 
-```ruby
-puts Rainbow(&quot;Blue Green Color&quot;).color(&quot;15b5b0&quot;) # .color(21, 181, 176) 
-```
+&lt;p&gt;เพิ่มความ advance ให้กับการแสดงผลอีกหน่อย โดยการแสดงข้อความแบบไล่สี&lt;/p&gt;
 
-![rainbow_2](/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_2.png){:width=&quot;500px&quot;}
-*Colorizing 2*
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'009292'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'f65156'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'88070b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ffce13'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Color from https://www.canva.com/colors/color-palettes/fluorescent-fruit/&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;What a Wonderful World&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chars&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rainbow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-เพิ่มความ advance ให้กับการแสดงผลอีกหน่อย โดยการแสดงข้อความแบบไล่สี
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_3.png&quot; alt=&quot;rainbow_2&quot; width=&quot;500px&quot; /&gt;
+&lt;em&gt;Colorizing 3&lt;/em&gt;&lt;/p&gt;
 
-```ruby
-colors = ['009292', 'f65156', '88070b', 'ffce13'] # Color from https://www.canva.com/colors/color-palettes/fluorescent-fruit/
-i = -1
-puts &quot;What a Wonderful World&quot;.chars.map { |char| i += 1; Rainbow(char).color(colors[i % colors.size]) }.join
-```
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/sickill/rainbow&quot;&gt;Rainbow gem&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fazibear/colorize&quot;&gt;Colorize gem&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="gem" /><summary type="html">เริ่มต้นปี 2564 กันด้วยบทความเบาๆ ก่อนแล้วกัน โดยวันนี้จะมาพูดถึงการเติมแต่งสีสันให้กับข้อความที่เราพ่นออกทาง terminal หรือ console ซึ่งการเพิ่มสีสันให้กับข้อความก็อาจจะทำให้เรามองเห็นได้ง่ายขึ้น หรือสนุกกับการอ่าน log ก็เป็นได้</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/colorizing-text-in-ruby/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/colorizing-text-in-ruby/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Happy New Year 2021</title><link href="https://karn18.github.io/dev/2020/12/31/happy-new-year-2021.html" rel="alternate" type="text/html" title="Happy New Year 2021" /><published>2020-12-31T22:10:00+07:00</published><updated>2020-12-31T22:10:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/31/happy-new-year-2021</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/31/happy-new-year-2021.html">&lt;p&gt;🎉🐮 Happy New Year 2021 🎉🐮 สวัสดีปีใหม่ 2564&lt;/p&gt;
 
-![rainbow_2](/assets/images/posts/2021/colorizing-text-in-ruby/rainbow_3.png){:width=&quot;500px&quot;}
-*Colorizing 3*
+&lt;p&gt;ปี 2020 เป็นปีที่ยากสำหรับทุกๆ คนไม่ว่าจะเป็นเรื่องเศรษฐกิจ หรือการต้องเผชิญกับ &lt;strong&gt;Pandemic&lt;/strong&gt; จาก &lt;strong&gt;Coronavirus (COVID19)&lt;/strong&gt; แต่ก็หวังหว่าในปีหน้า (2021) อะไรๆ คงจะดีขึ้น ก็ขออวยพรให้ทุกคนพบเจอแต่สิ่งที่ดี สุขภาพแข็งแรง ฝ่าฝันอุปสรรคต่างๆ ไปได้ด้วยดี&lt;/p&gt;
 
-## References
-- [Rainbow gem](https://github.com/sickill/rainbow)
-- [Colorize gem](https://github.com/fazibear/colorize)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="gem" /><summary type="html">เริ่มต้นปี 2564 กันด้วยบทความเบาๆ ก่อนแล้วกัน โดยวันนี้จะมาพูดถึงการเติมแต่งสีสันให้กับข้อความที่เราพ่นออกทาง terminal หรือ console ซึ่งการเพิ่มสีสันให้กับข้อความก็อาจจะทำให้เรามองเห็นได้ง่ายขึ้น หรือสนุกกับการอ่าน log ก็เป็นได้</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2021/colorizing-text-in-ruby/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2021/colorizing-text-in-ruby/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Happy New Year 2021</title><link href="https://karn18.github.io/dev/2020/12/31/happy-new-year-2021.html" rel="alternate" type="text/html" title="Happy New Year 2021" /><published>2020-12-31T22:10:00+07:00</published><updated>2020-12-31T22:10:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/31/happy-new-year-2021</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/31/happy-new-year-2021.html">🎉🐮 Happy New Year 2021 🎉🐮 สวัสดีปีใหม่ 2564 
+&lt;p&gt;จากปีที่ผ่านมาในเรื่องของบทความ 📝 ที่พยายามจะเขียนและนำเสนอให้เพื่อนๆ ได้อ่านทั้งหมด &lt;strong&gt;40 บทความ&lt;/strong&gt; ก็ถือเป็นจำนวนที่ผมพอใจระดับหนึ่ง เพราะไม่คิดว่าจะเขียนได้เยอะขนาดนี้ สำหรับในปีหน้าผมจะพยายามอัพเดตให้มากที่สุดเท่าที่จะทำได้ และจะเขียนให้กระชับ เข้าใจง่ายมากขึ้น ยังไงก็ฝากเพื่อนๆ ช่วยติดตามกันด้วยนะครับ&lt;/p&gt;
 
-ปี 2020 เป็นปีที่ยากสำหรับทุกๆ คนไม่ว่าจะเป็นเรื่องเศรษฐกิจ หรือการต้องเผชิญกับ **Pandemic** จาก **Coronavirus (COVID19)** แต่ก็หวังหว่าในปีหน้า (2021) อะไรๆ คงจะดีขึ้น ก็ขออวยพรให้ทุกคนพบเจอแต่สิ่งที่ดี สุขภาพแข็งแรง ฝ่าฝันอุปสรรคต่างๆ ไปได้ด้วยดี
+&lt;p&gt;สำหรับเรื่องอ่านหนังสือ 📖 ก็ยังรู้สึกว่ายังอ่านได้ไม่มากพอที่ตั้งใจไว้ อาจจะเพราะมัวเล่นเกมมากไปหน่อย เอาเป็นว่าก็จะพยายามอ่านให้มากขึ้น (&lt;strong&gt;Reading is a must-have skill for leader&lt;/strong&gt;)&lt;/p&gt;
 
-จากปีที่ผ่านมาในเรื่องของบทความ 📝 ที่พยายามจะเขียนและนำเสนอให้เพื่อนๆ ได้อ่านทั้งหมด **40 บทความ** ก็ถือเป็นจำนวนที่ผมพอใจระดับหนึ่ง เพราะไม่คิดว่าจะเขียนได้เยอะขนาดนี้ สำหรับในปีหน้าผมจะพยายามอัพเดตให้มากที่สุดเท่าที่จะทำได้ และจะเขียนให้กระชับ เข้าใจง่ายมากขึ้น ยังไงก็ฝากเพื่อนๆ ช่วยติดตามกันด้วยนะครับ
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.facebook.com/groups/318333299229590&quot;&gt;phuket.rb&lt;/a&gt;&lt;/strong&gt; เป็นอีกหนึ่ง community ที่พยายามสร้างขึ้นเพื่อแชร์ความรู้เกี่ยวกับ &lt;strong&gt;Ruby&lt;/strong&gt; ซึ่งสมาชิกตอนนี้ก็มีเพียงแค่ 15 คน ปีหน้าก็ตั้งใจจะขยายให้ใหญ่ขึ้นไปเรื่อยๆ&lt;/p&gt;
 
-สำหรับเรื่องอ่านหนังสือ 📖 ก็ยังรู้สึกว่ายังอ่านได้ไม่มากพอที่ตั้งใจไว้ อาจจะเพราะมัวเล่นเกมมากไปหน่อย เอาเป็นว่าก็จะพยายามอ่านให้มากขึ้น (**Reading is a must-have skill for leader**)
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.facebook.com/codesphere.pkt/?view_public_for=104502421538752&quot;&gt;Code Sphere&lt;/a&gt;&lt;/strong&gt; ได้ถูกสร้างขึ้นเพื่อที่จะทำเป็นสัญลักษณ์ แหล่งให้ความรู้สำหรับเด็กๆ ที่สนใจจะเรียนรู้เกี่ยวกับ &lt;strong&gt;coding&lt;/strong&gt; ซึ่งตอนนี้ก็ได้สอนเด็กกลุ่มแรกไปแล้ว ปีหน้าฟ้าใหม่จะต้องมีเด็กๆ ที่มาเรียนกับเราให้มากขึ้น และพยายามจะหาเนื้อหาที่น่าสนใจมาสอนเด็กเรือ่ยๆ&lt;/p&gt;
 
-**[phuket.rb](https://www.facebook.com/groups/318333299229590)** เป็นอีกหนึ่ง community ที่พยายามสร้างขึ้นเพื่อแชร์ความรู้เกี่ยวกับ **Ruby** ซึ่งสมาชิกตอนนี้ก็มีเพียงแค่ 15 คน ปีหน้าก็ตั้งใจจะขยายให้ใหญ่ขึ้นไปเรื่อยๆ
+&lt;p&gt;สวัสดีปีใหม่เพื่อนๆ ทุกคน&lt;/p&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="review" /><summary type="html">🎉🐮 Happy New Year 2021 🎉🐮 สวัสดีปีใหม่ 2564 ปี 2020 เป็นปีที่ยากสำหรับทุกๆ คนไม่ว่าจะเป็นเรื่องเศรษฐกิจ หรือการต้องเผชิญกับ Pandemic จาก Coronavirus (COVID19) แต่ก็หวังหว่าในปีหน้า (2021) อะไรๆ คงจะดีขึ้น ก็ขออวยพรให้ทุกคนพบเจอแต่สิ่งที่ดี สุขภาพแข็งแรง ฝ่าฝันอุปสรรคต่างๆ ไปได้ด้วยดี จากปีที่ผ่านมาในเรื่องของบทความ 📝 ที่พยายามจะเขียนและนำเสนอให้เพื่อนๆ ได้อ่านทั้งหมด 40 บทความ ก็ถือเป็นจำนวนที่ผมพอใจระดับหนึ่ง เพราะไม่คิดว่าจะเขียนได้เยอะขนาดนี้ สำหรับในปีหน้าผมจะพยายามอัพเดตให้มากที่สุดเท่าที่จะทำได้ และจะเขียนให้กระชับ เข้าใจง่ายมากขึ้น ยังไงก็ฝากเพื่อนๆ ช่วยติดตามกันด้วยนะครับ สำหรับเรื่องอ่านหนังสือ 📖 ก็ยังรู้สึกว่ายังอ่านได้ไม่มากพอที่ตั้งใจไว้ อาจจะเพราะมัวเล่นเกมมากไปหน่อย เอาเป็นว่าก็จะพยายามอ่านให้มากขึ้น (Reading is a must-have skill for leader) phuket.rb เป็นอีกหนึ่ง community ที่พยายามสร้างขึ้นเพื่อแชร์ความรู้เกี่ยวกับ Ruby ซึ่งสมาชิกตอนนี้ก็มีเพียงแค่ 15 คน ปีหน้าก็ตั้งใจจะขยายให้ใหญ่ขึ้นไปเรื่อยๆ Code Sphere ได้ถูกสร้างขึ้นเพื่อที่จะทำเป็นสัญลักษณ์ แหล่งให้ความรู้สำหรับเด็กๆ ที่สนใจจะเรียนรู้เกี่ยวกับ coding ซึ่งตอนนี้ก็ได้สอนเด็กกลุ่มแรกไปแล้ว ปีหน้าฟ้าใหม่จะต้องมีเด็กๆ ที่มาเรียนกับเราให้มากขึ้น และพยายามจะหาเนื้อหาที่น่าสนใจมาสอนเด็กเรือ่ยๆ สวัสดีปีใหม่เพื่อนๆ ทุกคน</summary></entry><entry><title type="html">ส่งผ่าน HTML ไปยังแอพด้วย Turbo</title><link href="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html" rel="alternate" type="text/html" title="ส่งผ่าน HTML ไปยังแอพด้วย Turbo" /><published>2020-12-28T11:14:00+07:00</published><updated>2020-12-28T11:14:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/28/html-over-with-turbo</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html">&lt;h2 id=&quot;turbo&quot;&gt;Turbo&lt;/h2&gt;
+&lt;p&gt;เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย&lt;!--more--&gt;&lt;/p&gt;
 
-**[Code Sphere](https://www.facebook.com/codesphere.pkt/?view_public_for=104502421538752)** ได้ถูกสร้างขึ้นเพื่อที่จะทำเป็นสัญลักษณ์ แหล่งให้ความรู้สำหรับเด็กๆ ที่สนใจจะเรียนรู้เกี่ยวกับ **coding** ซึ่งตอนนี้ก็ได้สอนเด็กกลุ่มแรกไปแล้ว ปีหน้าฟ้าใหม่จะต้องมีเด็กๆ ที่มาเรียนกับเราให้มากขึ้น และพยายามจะหาเนื้อหาที่น่าสนใจมาสอนเด็กเรือ่ยๆ
+&lt;p&gt;สามารถเข้าไปศึกษาวิธีการใช้ &lt;strong&gt;Turbo&lt;/strong&gt; ได้จาก&lt;a href=&quot;https://turbo.hotwire.dev&quot;&gt;ที่นี่&lt;/a&gt; หรือจะดูจากวิดีโอด้านล่างก็ได้นะครับ&lt;/p&gt;
 
-สวัสดีปีใหม่เพื่อนๆ ทุกคน</content><author><name>Karn</name></author><category term="dev" /><category term="review" /><summary type="html">🎉🐮 Happy New Year 2021 🎉🐮 สวัสดีปีใหม่ 2564 ปี 2020 เป็นปีที่ยากสำหรับทุกๆ คนไม่ว่าจะเป็นเรื่องเศรษฐกิจ หรือการต้องเผชิญกับ Pandemic จาก Coronavirus (COVID19) แต่ก็หวังหว่าในปีหน้า (2021) อะไรๆ คงจะดีขึ้น ก็ขออวยพรให้ทุกคนพบเจอแต่สิ่งที่ดี สุขภาพแข็งแรง ฝ่าฝันอุปสรรคต่างๆ ไปได้ด้วยดี จากปีที่ผ่านมาในเรื่องของบทความ 📝 ที่พยายามจะเขียนและนำเสนอให้เพื่อนๆ ได้อ่านทั้งหมด 40 บทความ ก็ถือเป็นจำนวนที่ผมพอใจระดับหนึ่ง เพราะไม่คิดว่าจะเขียนได้เยอะขนาดนี้ สำหรับในปีหน้าผมจะพยายามอัพเดตให้มากที่สุดเท่าที่จะทำได้ และจะเขียนให้กระชับ เข้าใจง่ายมากขึ้น ยังไงก็ฝากเพื่อนๆ ช่วยติดตามกันด้วยนะครับ สำหรับเรื่องอ่านหนังสือ 📖 ก็ยังรู้สึกว่ายังอ่านได้ไม่มากพอที่ตั้งใจไว้ อาจจะเพราะมัวเล่นเกมมากไปหน่อย เอาเป็นว่าก็จะพยายามอ่านให้มากขึ้น (Reading is a must-have skill for leader) phuket.rb เป็นอีกหนึ่ง community ที่พยายามสร้างขึ้นเพื่อแชร์ความรู้เกี่ยวกับ Ruby ซึ่งสมาชิกตอนนี้ก็มีเพียงแค่ 15 คน ปีหน้าก็ตั้งใจจะขยายให้ใหญ่ขึ้นไปเรื่อยๆ Code Sphere ได้ถูกสร้างขึ้นเพื่อที่จะทำเป็นสัญลักษณ์ แหล่งให้ความรู้สำหรับเด็กๆ ที่สนใจจะเรียนรู้เกี่ยวกับ coding ซึ่งตอนนี้ก็ได้สอนเด็กกลุ่มแรกไปแล้ว ปีหน้าฟ้าใหม่จะต้องมีเด็กๆ ที่มาเรียนกับเราให้มากขึ้น และพยายามจะหาเนื้อหาที่น่าสนใจมาสอนเด็กเรือ่ยๆ สวัสดีปีใหม่เพื่อนๆ ทุกคน</summary></entry><entry><title type="html">ส่งผ่าน HTML ไปยังแอพด้วย Turbo</title><link href="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html" rel="alternate" type="text/html" title="ส่งผ่าน HTML ไปยังแอพด้วย Turbo" /><published>2020-12-28T11:14:00+07:00</published><updated>2020-12-28T11:14:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/28/html-over-with-turbo</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/28/html-over-with-turbo.html">## Turbo
-เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย&lt;!--more--&gt;
-
-สามารถเข้าไปศึกษาวิธีการใช้ **Turbo** ได้จาก[ที่นี่](https://turbo.hotwire.dev) หรือจะดูจากวิดีโอด้านล่างก็ได้นะครับ
-
-{% raw %}
 &lt;div class=&quot;video&quot;&gt;
-  &lt;video controls playsinline&gt;
-    &lt;source src=&quot;https://s3.amazonaws.com/hotwire.dev/hotwire-screencast.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;video controls=&quot;&quot; playsinline=&quot;&quot;&gt;
+    &lt;source src=&quot;https://s3.amazonaws.com/hotwire.dev/hotwire-screencast.mp4&quot; type=&quot;video/mp4&quot; /&gt;
   &lt;/video&gt;
 &lt;/div&gt;
-{% endraw %}
 
----
-&gt; โดยส่วนตัวนั้นต้องบอกเลยว่าชอบเทคนิคอันนี้มาก เนื่องจากโดยส่วนตัวไม่ชอบการเขียน JavaScript และเลือกที่จะใช้ HTML มากกว่าการจัดการกับ JSON
+&lt;hr /&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;โดยส่วนตัวนั้นต้องบอกเลยว่าชอบเทคนิคอันนี้มาก เนื่องจากโดยส่วนตัวไม่ชอบการเขียน JavaScript และเลือกที่จะใช้ HTML มากกว่าการจัดการกับ JSON&lt;/p&gt;
+&lt;/blockquote&gt;
 
-ในบทความนี้จะมาลองพัฒนาแอพ Todo โดยใช้ความสามารถของ **Turbo** กัน มาดูโจทย์ของเรากันก่อนเลย
-- แอพจะมีโมเดล `Task` ในการเก็บบันทึกสิ่งที่จะทำ (`name:string`) และ flag สำหรับระบุว่างานนั้นๆ ทำเสร็จแล้วหรือยัง (`done:boolean`)
-- แอพจะมีเพียงหน้าเดียว แบบเดียวกับ SPA โดยแยกออกเป็น 2 ส่วนคือ
-  1. ฟอร์มสำหรับบันทึก `Task` ซึ่งจะใช้ร่วมกันไม่ว่าจะเป็นการสร้างข้อมูลใหม่ หรือแก้ไขของเดิม
-  2. ส่วนของการแสดงผล `Task` ทั้งหมดที่มีการสร้างขึ้นทั้งหมด (Task List)
-  3. Task หนึ่งๆ ที่แสดงผลจะมีปุ่มสำหรับคลิกเพื่อแก้ไข (Edit) ปุ่มสำหรับเช็คว่างานนั้นทำเสร็จแล้ว (Done) และปุ่มสำหรับลบ (Delete)
-- แอพสามารถ sync ข้อมูลอัตโนมัติ ไม่ว่าเราจะเปิดหน้าเว็บไว้กี่ tab ก็ตามผ่าน Websocket
-- ใช้ **Bulma** เพื่อเพิ่มความสวยงาม
+&lt;p&gt;ในบทความนี้จะมาลองพัฒนาแอพ Todo โดยใช้ความสามารถของ &lt;strong&gt;Turbo&lt;/strong&gt; กัน มาดูโจทย์ของเรากันก่อนเลย&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;แอพจะมีโมเดล &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ในการเก็บบันทึกสิ่งที่จะทำ (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;name:string&lt;/code&gt;) และ flag สำหรับระบุว่างานนั้นๆ ทำเสร็จแล้วหรือยัง (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;done:boolean&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;แอพจะมีเพียงหน้าเดียว แบบเดียวกับ SPA โดยแยกออกเป็น 2 ส่วนคือ
+    &lt;ol&gt;
+      &lt;li&gt;ฟอร์มสำหรับบันทึก &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ซึ่งจะใช้ร่วมกันไม่ว่าจะเป็นการสร้างข้อมูลใหม่ หรือแก้ไขของเดิม&lt;/li&gt;
+      &lt;li&gt;ส่วนของการแสดงผล &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ทั้งหมดที่มีการสร้างขึ้นทั้งหมด (Task List)&lt;/li&gt;
+      &lt;li&gt;Task หนึ่งๆ ที่แสดงผลจะมีปุ่มสำหรับคลิกเพื่อแก้ไข (Edit) ปุ่มสำหรับเช็คว่างานนั้นทำเสร็จแล้ว (Done) และปุ่มสำหรับลบ (Delete)&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;แอพสามารถ sync ข้อมูลอัตโนมัติ ไม่ว่าเราจะเปิดหน้าเว็บไว้กี่ tab ก็ตามผ่าน Websocket&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ใช้ &lt;strong&gt;Bulma&lt;/strong&gt; เพื่อเพิ่มความสวยงาม&lt;/p&gt;
 
-  ![compnents](/assets/images/posts/2020/html-over-with-turbo/components.png)
+    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2020/html-over-with-turbo/components.png&quot; alt=&quot;compnents&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-## มาลงมือกันเลย
-- สร้างแอพใหม่ขึ้นมากันก่อน
+&lt;h2 id=&quot;มาลงมือกันเลย&quot;&gt;มาลงมือกันเลย&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;สร้างแอพใหม่ขึ้นมากันก่อน&lt;/p&gt;
 
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails new awesome_todo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เพิ่ม gem &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotwire-rails&lt;/code&gt; เข้าไปยัง Gemfile&lt;/p&gt;
 
-  ```bash
-  $ rails new awesome_todo
-  ```
+    &lt;p&gt;❗️ ที่ใช้เลือกใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotwire-rails&lt;/code&gt; นั้นเพราะในแอพต้องการใช้ความสามารถของ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Stimulus&lt;/code&gt; ด้วยดังนั้นจึงเลือกใช้ gem ตัวนี้ แต่ถ้าต้องการใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo&lt;/code&gt; เพียงอย่างเดียว เราสามารถเลือกติดตั้ง &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turbo-rails&lt;/code&gt; แทนได้&lt;/p&gt;
 
-- เพิ่ม gem `hotwire-rails` เข้าไปยัง Gemfile
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# gem 'turbo-rails'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hotwire-rails'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ติดตั้ง gem และ dependency ของ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo&lt;/code&gt;&lt;/p&gt;
 
-    ❗️ ที่ใช้เลือกใช้ `hotwire-rails` นั้นเพราะในแอพต้องการใช้ความสามารถของ `Stimulus` ด้วยดังนั้นจึงเลือกใช้ gem ตัวนี้ แต่ถ้าต้องการใช้ `Turbo` เพียงอย่างเดียว เราสามารถเลือกติดตั้ง `turbo-rails` แทนได้
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# $ rails turbo:install&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails hotwire:install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
 
-  ```ruby
-  # gem 'turbo-rails'
-  gem 'hotwire-rails'
-  ```
+    &lt;p&gt;คำสั่งข้างต้นจะติดตั้งส่วนที่จำเป็นให้กับแอพของเรา ไม่ว่าจะเป็น config สำหรับ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Action Cable&lt;/code&gt;, include tag ใน layout และ JavaScript ที่ใช้งาน&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;คอมเมนต์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;require(&quot;turbolinks&quot;).start()&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/javascript/packs/application.js&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;ตรวจสอบค่าการเชื่อมต่อกับฐานข้อมูลที่จะใช้งาน&lt;/li&gt;
+  &lt;li&gt;ติดตั้ง &lt;strong&gt;Bulma CSS&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;สร้างโมเดล &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt;&lt;/p&gt;
 
-- ติดตั้ง gem และ dependency ของ `Turbo`
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails g scaffold Task name:string &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;:boolean
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เริ่มแก้ไขหน้า &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt; (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/app/views/tasks/index.html.erb&lt;/code&gt;) ให้มีคอมโพเนนต์ตามที่กำหนดไว้ คือ ส่วนแรกแสดงฟอร์มในการบันทึก และส่วนที่สองแสดงรายการสิ่งที่จะทำ โดยแต่ละส่วนจะถูกครอบด้วย &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo Frame&lt;/code&gt; :new_task และ :tasks ตามลำดับ&lt;/p&gt;
 
-  ```bash
-  $ bundle install
-  # $ rails turbo:install
-  $ rails hotwire:install
-  ```
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;main&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;section&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Todo&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
 
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:new_task&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;',&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
 
-    คำสั่งข้างต้นจะติดตั้งส่วนที่จำเป็นให้กับแอพของเรา ไม่ว่าจะเป็น config สำหรับ `Action Cable`, include tag ใน layout และ JavaScript ที่ใช้งาน
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;box mt-2 mb-2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:tasks&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tasks&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/main&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;แก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt;&lt;/p&gt;
 
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;index&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@tasks&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;all&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;แก้ไข form สำหรับการบันทึกและแก้ไขข้อมูลใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/views/tasks/_form.html.erb&lt;/code&gt;&lt;/p&gt;
 
-- คอมเมนต์ `require(&quot;turbolinks&quot;).start()` ใน `app/javascript/packs/application.js`
-- ตรวจสอบค่าการเชื่อมต่อกับฐานข้อมูลที่จะใช้งาน
-- ติดตั้ง **Bulma CSS**
-- สร้างโมเดล `Task`
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form_with&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;local:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task.errors.any&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;error_explanation&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pluralize&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;task.errors.count&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; prohibited this task from being saved:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
 
-  ```bash
-  $ rails g scaffold Task name:string done:boolean
-  ```
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task.errors.full_messages.each&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;field has-addons&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;control&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form.text_field&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;placeholder:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;สิ่งที่จะทำ&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;control&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form.submit&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;บันทึก&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;is-primary&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;แก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;create&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt; เพื่อใช้ในการบันทึกสิ่งที่จะทำใหม่&lt;/p&gt;
 
-- เริ่มแก้ไขหน้า `index` (`/app/views/tasks/index.html.erb`) ให้มีคอมโพเนนต์ตามที่กำหนดไว้ คือ ส่วนแรกแสดงฟอร์มในการบันทึก และส่วนที่สองแสดงรายการสิ่งที่จะทำ โดยแต่ละส่วนจะถูกครอบด้วย `Turbo Frame` :new_task และ :tasks ตามลำดับ
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เพิ่ม action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;done&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt; เพื่อใช้เปลี่ยน flag&lt;/p&gt;
 
-  ```html
-  &lt;main class=&quot;container&quot;&gt;
-    &lt;section class=&quot;section&quot;&gt;
-      &lt;h1 class=&quot;title&quot;&gt;Todo&lt;/h1&gt;
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;don&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;update!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;done: &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;แก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;destroy&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt; เพื่อใช้ในการลบรายการที่ทำออก&lt;/p&gt;
 
-      &lt;%= turbo_frame_tag :new_task do %&gt;
-        &lt;%= render 'form', task: @task %&gt;
-      &lt;% end %&gt;
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;destroy!&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;จะเห็นได้ว่าโค้ดในส่วนของการ render response ข้างต้นนั้นหายไปเลย นั้นเพราะว่าเราจะใช้ความสามารถของ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo Stream&lt;/code&gt; ในการส่ง HTML ไปยังหน้าเว็บผ่านทาง Websocket แทน ซึ่งเราจะเข้าไปแก้ไขที่ model &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/models/task.rb&lt;/code&gt;&lt;/p&gt;
 
-      &lt;div class=&quot;box mt-2 mb-2&quot;&gt;
-        &lt;%= turbo_frame_tag :tasks do %&gt;
-          &lt;%= render @tasks %&gt;
-        &lt;% end %&gt;
-      &lt;/div&gt;
-    &lt;/section&gt;
-  &lt;/main&gt;
-  ```
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;after_create_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_append_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/task'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;after_update_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_replace_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;target: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;downcase&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/task'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;after_destroy_commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcast_action_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;action: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;remove&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;target: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;downcase&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เพิ่ม &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Turbo Stream&lt;/code&gt; เข้าไปใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt;&lt;/p&gt;
 
-- แก้ไข action `index` ใน `app/controllers/tasks_controller.rb`
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Todo&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
 
-  ```ruby
-  def index
-    @tasks = Task.all
-    @task = Task.new
-  end
-  ```
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;turbo_stream_from&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:tasks&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ที่นี้ในส่วนของการแก้ไขรายการสิ่งที่จะทำอันเก่านั้น เราจะใช้ form เดิมที่อยู่ด้านบน ดังนั้นเราจะต้องแก้ไข action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;edit&lt;/code&gt; และ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/tasks_controller.rb&lt;/code&gt;&lt;/p&gt;
 
-- แก้ไข form สำหรับการบันทึกและแก้ไขข้อมูลใน `app/views/tasks/_form.html.erb`
-  
-  ```html
-  &lt;%= form_with(model: task, local: true) do |form| %&gt;
-    &lt;% if task.errors.any? %&gt;
-      &lt;div id=&quot;error_explanation&quot;&gt;
-        &lt;h2&gt;&lt;%= pluralize(task.errors.count, &quot;error&quot;) %&gt; prohibited this task from being saved:&lt;/h2&gt;
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;edit&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;turbo_stream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;turbo_stream: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;turbo_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:new_task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/turbo_form'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-        &lt;ul&gt;
-          &lt;% task.errors.full_messages.each do |message| %&gt;
-            &lt;li&gt;&lt;%= message %&gt;&lt;/li&gt;
-          &lt;% end %&gt;
-        &lt;/ul&gt;
-      &lt;/div&gt;
-    &lt;% end %&gt;
-    &lt;div class=&quot;field has-addons&quot;&gt;
-      &lt;p class=&quot;control&quot;&gt;
-        &lt;%= form.text_field :name, class: &quot;input&quot;, placeholder: &quot;สิ่งที่จะทำ&quot; %&gt;
-      &lt;/p&gt;
-      &lt;p class=&quot;control&quot;&gt;
-        &lt;%= form.submit &quot;บันทึก&quot;, class: &quot;button is-primary&quot; %&gt;
-      &lt;/p&gt;
-    &lt;/div&gt;
-  &lt;% end %&gt;
-  ```
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;update!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;turbo_stream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;turbo_stream: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;turbo_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:new_task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tasks/turbo_form'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เพิ่ม partial html &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_turbo_form.html.erb&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/views/tasks&lt;/code&gt;&lt;/p&gt;
 
-- แก้ไข action `create` ใน `app/controllers/tasks_controller.rb` เพื่อใช้ในการบันทึกสิ่งที่จะทำใหม่
+    &lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# app/views/tasks/_edit.html.erb
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;turbo_frame_tag&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:new_task&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'form'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;task: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;เมื่อทดลองใช้งาน form ในการบันทึกหรือแก้ไข จะพบว่าข้อความที่อยู่ใน input ไม่ได้ถูกรีเซทเมื่อมีการบันทึกเรียบร้อยแล้ว ซึ่งเราจะใช้ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Stimulus&lt;/code&gt; มาช่วยในการ reset ค่าที่อยู่ใน input สร้างไฟล์ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turbo_form_controller.js&lt;/code&gt; ใน &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/assets/javascripts/controllers&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ใส่ controller เข้าไปใน form&lt;/p&gt;
 
-  ```ruby
-  def create
-    @task = Task.create!(task_params)
-  end
-  ```
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form_with&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;local:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;controller:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;turbo_form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;',&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;action:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;turbo:submit-end-&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;turbo_form#reset&quot; }) do |form| %&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-- เพิ่ม action `done` ใน `app/controllers/tasks_controller.rb` เพื่อใช้เปลี่ยน flag
+&lt;p&gt;เพียงเท่านี้เราก็จะได้แอพ ​TODO ที่พร้อมใช้งานดังแสดงในวิดีโอด้านล่าง&lt;/p&gt;
 
-   ```ruby
-   def don
-    @task.update!(done: !@task.done)
-  end
-   ```
-
-- แก้ไข action `destroy` ใน `app/controllers/tasks_controller.rb` เพื่อใช้ในการลบรายการที่ทำออก
-
-  ```ruby
-  def destroy
-    @task.destroy!
-  end
-  ```
-
-- จะเห็นได้ว่าโค้ดในส่วนของการ render response ข้างต้นนั้นหายไปเลย นั้นเพราะว่าเราจะใช้ความสามารถของ `Turbo Stream` ในการส่ง HTML ไปยังหน้าเว็บผ่านทาง Websocket แทน ซึ่งเราจะเข้าไปแก้ไขที่ model `Task` ใน `app/models/task.rb`
-
-  ```ruby
-  class Task &lt; ApplicationRecord
-    after_create_commit -&gt; { broadcast_append_to :tasks, partial: 'tasks/task', locals: { task: self } }
-    after_update_commit -&gt; { broadcast_replace_to :tasks, target: &quot;#{self.class.name.downcase}_#{id}&quot;, partial: 'tasks/task', locals: { task: self } }
-    after_destroy_commit -&gt; { broadcast_action_to :tasks, action: &quot;remove&quot;, target: &quot;#{self.class.name.downcase}_#{id}&quot; }
-  end
-  ```
-
-- เพิ่ม `Turbo Stream` เข้าไปใน `index`
-
-  ```html
-  ...
-  &lt;h1 class=&quot;title&quot;&gt;Todo&lt;/h1&gt;
-
-  &lt;%= turbo_stream_from :tasks %&gt;
-  ```
-
-- ที่นี้ในส่วนของการแก้ไขรายการสิ่งที่จะทำอันเก่านั้น เราจะใช้ form เดิมที่อยู่ด้านบน ดังนั้นเราจะต้องแก้ไข action `edit` และ `update` ใน `app/controllers/tasks_controller.rb`
-
-  ```ruby
-  def edit
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace(:new_task, partial: 'tasks/turbo_form', locals: { task: @task }) }
-    end
-  end
-
-  def update
-    @task.update!(task_params)
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace(:new_task, partial: 'tasks/turbo_form', locals: { task: Task.new }) }
-    end
-  end
-  ```
-
-- เพิ่ม partial html `_turbo_form.html.erb` ใน `app/views/tasks` 
-
-  ```erb
-  # app/views/tasks/_edit.html.erb
-  &lt;%= turbo_frame_tag :new_task do %&gt;
-    &lt;%= render 'form', task: task %&gt;
-  &lt;% end %&gt;
-  ```
-
-- เมื่อทดลองใช้งาน form ในการบันทึกหรือแก้ไข จะพบว่าข้อความที่อยู่ใน input ไม่ได้ถูกรีเซทเมื่อมีการบันทึกเรียบร้อยแล้ว ซึ่งเราจะใช้ `Stimulus` มาช่วยในการ reset ค่าที่อยู่ใน input สร้างไฟล์ `turbo_form_controller.js` ใน `app/assets/javascripts/controllers`
-
-
-- ใส่ controller เข้าไปใน form
-
-  ```html
-  &lt;%= form_with(model: task, local: true, data: { controller: 'turbo_form', action: &quot;turbo:submit-end-&gt;turbo_form#reset&quot; }) do |form| %&gt;
-  ...
-  ```
-
-เพียงเท่านี้เราก็จะได้แอพ ​TODO ที่พร้อมใช้งานดังแสดงในวิดีโอด้านล่าง
-
-{% raw %}
 &lt;div class=&quot;video&quot;&gt;
-  &lt;video controls playsinline&gt;
-    &lt;source src=&quot;/assets/videos/awesome_todo.mov&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;video controls=&quot;&quot; playsinline=&quot;&quot;&gt;
+    &lt;source src=&quot;/assets/videos/awesome_todo.mov&quot; type=&quot;video/mp4&quot; /&gt;
   &lt;/video&gt;
 &lt;/div&gt;
-{% endraw %}
 
-## References
-- [Turbo](https://turbo.hotwire.dev/)
-- [Awesome Todo](https://github.com/karn18/awesome_todo)</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="rails" /><category term="turbo" /><summary type="html">Turbo เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/html-over-with-turbo/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/html-over-with-turbo/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Refactoring with Flocking Rules</title><link href="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html" rel="alternate" type="text/html" title="Refactoring with Flocking Rules" /><published>2020-12-18T12:23:00+07:00</published><updated>2020-12-18T12:23:00+07:00</updated><id>https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules</id><content type="html" xml:base="https://karn18.github.io/dev/2020/12/18/refactoring-with-flocking-rules.html">ได้อ่านหนังสือ [99 Bottles](https://sandimetz.com/99bottles) ของ **Sandi Metz** แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค **Flocking Rules** ก็เลยหยิบยกมาเล่าให้ฟัง
-
-ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง
-ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง
-
----
-
-&gt; เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม
-
-สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ
-1. ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง
-2. หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่
-3. เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก
-
-อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน
-
-```ruby
-case number 
-when 0..2
-...
-when 3
-  &quot;3 bottles of beer on the wall, &quot; \
-  &quot;3 bottles of beer.\n&quot; \
-  &quot;Take one down and pass it around, &quot; \
-  &quot;2 bottle of beer on the wall.\n&quot;
-when 4
-  &quot;4 bottles of beer on the wall, &quot; \
-  &quot;4 bottles of beer.\n&quot; \
-  &quot;Take one down and pass it around, &quot; \
-  &quot;3 bottle of beer on the wall.\n&quot;
-when 5
-  &quot;5 bottles of beer on the wall, &quot; \
-  &quot;5 bottles of beer.\n&quot; \
-  &quot;Take one down and pass it around, &quot; \
-  &quot;4 bottle of beer on the wall.\n&quot;
-end
-```
-
-ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้
-
-```ruby
-case number
-when 0..2
-...
-else 
-  &quot;#{number} bottles of beer on the wall, &quot; \
-  &quot;#{number} bottles of beer.\n&quot; \
-  &quot;Take one down and pass it around, &quot; \
-  &quot;#{number - 1} bottle of beer on the wall.\n&quot;
-end
-```
-
-จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor
-
-## References
-- [99 Bottles](https://sandimetz.com/99bottles)</content><author><name>Karn</name></author><category term="dev" /><category term="refactoring" /><category term="ruby" /><summary type="html">ได้อ่านหนังสือ 99 Bottles ของ Sandi Metz แล้วก็เจอวิธีการ refactor ด้วยใช้เทคนิค Flocking Rules ก็เลยหยิบยกมาเล่าให้ฟัง ก่อนอื่นมาดูนิยามกันก่อนโดยคำว่า Flocking มาจากพฤติกรรมของสัตว์ที่อยู่เป็นกลุ่ม อย่างเช่นนก แมลง หรือปลา เมื่อฝูงจะต้องการทำการเลี้ยว หรือเปลี่ยนทิศทาง จะมีผู้นำกลุ่มไม่กี่ตัวจะแยกตัวขึ้นนำ และค่อยๆ เปลี่ยนทิศทาง จากนั้นกลุ่มตามหลังก็จะสามารถตามไปได้ถูกต้อง ด้วยพฤติกรรมข้างต้น จึงถูกนำมาใช้ในการ refactor ด้วย โดยเราจะค่อยๆ แก้ไขโค้ดไปทีละนิด เพื่อให้มั่นใจว่าการเปลี่ยนแปลงที่เกิดขึ้นไม่ทำให้โค้ดของเราที่เหลือพังนั้นเอง เมื่อเราอยู่กันเปลี่ยนกลุ่ม การเปลี่ยนแปลงทีละนิด จะส่งผลกระทบต่อทั้งกลุ่ม สำหรับหลักการของ Flocking Rules ก็มีด้วยกัน 3 ข้อ ลองมองหาโค้ดที่เหมือนกัน หรือถ้าจะพูดให้ง่ายๆ ก็คือที่เราใช้วิธีการ copy/paste มานั้นเอง หาส่วนเล็กๆ ที่แตกต่างออกไปจากโค้ดส่วนใหญ่ เปลี่ยนแปลงแก้ไขโค้ด เพื่อเอาส่วนที่แตกต่างนั้นออก อ่านๆ ไปคงยังไม่เห็นภาพเท่าไหร่ ลองดูจากโค้ดด้านล่างแล้วกันและทำตามกฏไปด้วยกัน case number when 0..2 ... when 3 &quot;3 bottles of beer on the wall, &quot; \ &quot;3 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;2 bottle of beer on the wall.\n&quot; when 4 &quot;4 bottles of beer on the wall, &quot; \ &quot;4 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;3 bottle of beer on the wall.\n&quot; when 5 &quot;5 bottles of beer on the wall, &quot; \ &quot;5 bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;4 bottle of beer on the wall.\n&quot; end ลองไล่ดูตามกฏข้างต้น และพิจารณา จากนั้นเอาจะได้โค้ดที่ refactor แล้วเป็นดังนี้ case number when 0..2 ... else &quot;#{number} bottles of beer on the wall, &quot; \ &quot;#{number} bottles of beer.\n&quot; \ &quot;Take one down and pass it around, &quot; \ &quot;#{number - 1} bottle of beer on the wall.\n&quot; end จากนั้นเราก็ค่อยทำไปเรื่อยๆ จนกว่าโค้ดเราจะดูง่าย อ่านง่ายขึ้น อันนี้เป็นเพียงแค่เทคนิคหนึ่งเท่านั้น จะต้องมีการนำเทคนิคๆ อื่นมาใช้คู่กันไปด้วยนะ หวังว่าคงสนุกกับการ refactor References 99 Bottles</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/flocking-rules/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://turbo.hotwire.dev/&quot;&gt;Turbo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/karn18/awesome_todo&quot;&gt;Awesome Todo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Karn</name></author><category term="dev" /><category term="ruby" /><category term="rails" /><category term="turbo" /><summary type="html">Turbo เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://karn18.github.io/assets/images/posts/2020/html-over-with-turbo/cover.png" /><media:content medium="image" url="https://karn18.github.io/assets/images/posts/2020/html-over-with-turbo/cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
