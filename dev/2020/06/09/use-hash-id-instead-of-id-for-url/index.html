@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>เปลี่ยน id ให้เป็น hash id บน URL | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>เปลี่ยน id ให้เป็น hash id บน URL</h1>
+
+  <p>ปกติเมื่อเราใช้ <strong>rails generator</strong> ในการสร้าง <strong>CRUD</strong> ไม่ว่าจะเป็น <code class="highlighter-rouge">scaffold</code> หรือ <code class="highlighter-rouge">scaffold_controller</code> จะพบว่า <strong>resources</strong> ที่ได้จะมีลักษณะคล้ายกับรูปด้านล่าง</p>
+
+<!--more-->
+
+<p><img src="/images/posts/2020/use-hash-id-instead-of-id-for-url/book_resources.jpg" alt="Book Resources" width="420px" />
+<em>Book Resources</em></p>
+
+<p>กล่าวคือเวลาเข้าถึงหนังสือเล่มหนึ่งจะต้องเรียกผ่าน <code class="highlighter-rouge">/books/1</code> โดยที่เลข <strong>id</strong> ที่ถูกสร้างขึ้นก็จะเรียงกันไปเรื่อยๆ แบบนี้มันก็ง่ายในการสุ่มเข้าถึงหนังสือเล่มอื่นๆ วิธีการเช่นนี้อาจจะไม่เหมาะนักสำหรับนำไปใช้งานจริง ทีนี้เรามาลองเปลี่ยน <strong>id</strong> ให้เป็น <strong>hash id</strong> กันเพื่อให้การเข้าถึงข้อมูลปลอดภัยมากขึ้น</p>
+
+<p>ก่อนอื่นเริ่มโดยการติดตั้ง <strong>hashids</strong> ซึ่งเป็น <strong>gem</strong> สำหรับสร้าง <strong>hash</strong> จากตัวเลข</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'hashids'</span>
+</code></pre></div></div>
+
+<p>สร้าง <strong>Secret Class</strong> สำหรับจัดการแทนการเรียก <strong>hashids</strong> ตรงๆ</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'hashids'</span>
+
+<span class="k">module</span> <span class="nn">Hashable</span>
+  <span class="k">module</span> <span class="nn">ClassMethods</span>
+    <span class="k">def</span> <span class="nf">hashids</span>
+      <span class="vi">@hashids</span> <span class="o">||=</span> <span class="no">Hashids</span><span class="p">.</span><span class="nf">new</span> <span class="s2">"secret-book"</span><span class="p">,</span> <span class="mi">8</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+      <span class="n">hashids</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+      <span class="n">hashids</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">text</span><span class="p">).</span><span class="nf">first</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+    <span class="n">base</span><span class="p">.</span><span class="nf">extend</span><span class="p">(</span><span class="no">ClassMethods</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Secret</span>
+  <span class="kp">include</span> <span class="no">Hashable</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>ทำการ <strong>override</strong> เมธอด <code class="highlighter-rouge">to_param</code> เพื่อให้ส่งค่า <strong>hash id</strong> แทน <strong>id</strong> เมื่อมีการเรียกใช้งานเมธอด <code class="highlighter-rouge">url_for</code></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'secret'</span>
+
+<span class="k">class</span> <span class="nc">Book</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="k">def</span> <span class="nf">to_param</span>
+    <span class="no">Secret</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>ถอดรหัส <strong>hash id</strong> ให้กลายเป็น <strong>id</strong> ก่อนที่จะเรียก query ผ่าน ORM</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">set_book</span>
+  <span class="vi">@book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="no">Secret</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">]))</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>จะสังเกตุเห็นว่า ไม่ได้มีการแก้ไข resources ของ Book เลยแม้แต่น้อย</p>
+</blockquote>
+
+<p>ทดสอบการทำงานดูซะหน่อย</p>
+
+<p><img src="/images/posts/2020/use-hash-id-instead-of-id-for-url/book.png" alt="Book" />
+<em>ใช้ hash id แทน id</em></p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://hashids.org/">hashids</a></li>
+  <li><a href="https://devdocs.io/rails~6.0/activemodel/conversion#method-i-to_param">to_param</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

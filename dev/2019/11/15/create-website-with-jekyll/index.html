@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>เมื่อนักสร้างคอนเทนต์มือใหม่ อยากมีเว็บไซด์เป็นของตัวเอง | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>เมื่อนักสร้างคอนเทนต์มือใหม่ อยากมีเว็บไซด์เป็นของตัวเอง</h1>
+
+  <p>สำหรับนักสร้างคอนเทนต์ การมีเว็บไซด์เป็นของตัวเองเพื่อใช้ในการเผยแพร่บทความที่ได้เขียนขึ้นนั้นถือเป็นอีกช่องทางหนึ่ง ที่ช่วยเผยแพร่ความรู้ ประสบการณ์ และความคิดสร้างสรรค์ให้แก่ผู้อ่านในโลกอินเตอร์เน็ต นอกเหนือจากการเผยแพร่ผ่านเว็บไซด์อื่นๆ เช่น medium, blogger, reddit เป็นต้น ซึ่งในบทความนี้จะเป็นการแนะนำเครื่องมือที่ชื่อว่า <strong>Jekyll</strong> เพื่อใช้สำหรับสร้างเว็บไซด์ที่รองรับการทำบล็อก</p>
+
+<!--more-->
+
+<h2 id="ทำไมเลือกใช้-jekyll">ทำไมเลือกใช้ Jekyll</h2>
+<p>ก่อนที่จะลงลึกถึงการติดตั้ง และใช้งาน <strong>Jekyll</strong> มาดูกันก่อนว่า <strong>Jekyll</strong> นั้นเหมาะสมที่จะมาเป็นเครื่องมือสำหรับนักสร้างคอนเทนต์มืใหม่อย่างเราหรือไม่ โดยลองนึกถึงคุณลักษณะของเว็บไซด์ที่เราอยากได้ว่าเป็นอย่างไรบ้าง</p>
+
+<ul>
+  <li>พัฒนาได้รวดเร็ว (<strong>Fast</strong>)</li>
+  <li>ใช้งานได้ง่าย (<strong>Simple</strong>)</li>
+  <li>มีปลอดภัย (<strong>Secure</strong>)</li>
+</ul>
+
+<p>เมื่อเห็นคุณลักษณะข้างต้นก็จะพบว่าประเภทของเว็บไซด์ที่ตอบโจทย์ดังกล่าวก็จะเป็น Static Website หรือถ้าเรียกเป็นภาษาไทยก็คือ เว็บไซด์ที่ตอบสนองแบบทางเดียว กล่าวคือไม่มีการติดต่อกับฐานข้อมูล สำหรับเก็บข้อมูลใดๆ นั้นเอง
+ถ้าเราลองค้นหาเครื่องมือที่สร้าง Static Website ที่จะมาช่วยเหลือเราในการสร้างเว็บไซด์ ซึ่งจะพบว่ามีเครื่องมือที่ได้รับความนิยมอยู่ด้วยกันหลากหลาย</p>
+
+<ul>
+  <li><a href="https://www.gatsbyjs.org">Gatby</a></li>
+  <li><a href="https://hexo.io">Hexo</a></li>
+  <li><a href="https://gohugo.io">Hugo</a></li>
+  <li><a href="https://jekyllrb.com">Jekyll</a></li>
+  <li><a href="http://middlemanapp.com">Middleman</a></li>
+  <li><a href="https://spike.js.org">Spike</a></li>
+</ul>
+
+<p>แล้วที่นี้เราจะเลือกใช้เครื่องมือตัวไหนดี ซึ่งในมุมมองแต่ละคนก็จะมีหลักเกณฑ์ในการเลือกที่แตกต่างกัน</p>
+<ul>
+  <li>ความชอบในภาษาสำหรับเขียนโปรแกรมที่ใช้ในแต่ละเครื่องมือ</li>
+  <li>ความสามารถของแต่ละเครื่องมือ</li>
+  <li>รูปแบบ และลักษณะการพัฒนาหน้าเว็บไซด์</li>
+</ul>
+
+<blockquote>
+  <p>Everything should be made as simple as possible, but not simple.</p>
+
+  <p>~ Albert Einstein</p>
+</blockquote>
+
+<p>สำหรับบทความนี้ได้เลือกใช้ <strong>Jekyll</strong> เนื่องจากเป็นเครื่องมือที่พัฒนาขึ้นจากภาษา <strong>Ruby</strong> ซึ่งเป็นภาษาที่ผู้เขียนชื่นชอบและสนใจเป็นหลัก ประกอบกันความสามารถในการเขียนบทความที่ง่ายผ่านรูปแบบของการเขียนโดยใช้ Markdown และสุดท้ายคือในการส่วนของการตกแต่งรูปแบบเว็บไซด์ซึ่งสามารถทำได้อย่างง่ายได้</p>
+
+<hr />
+
+<h2 id="jekyll-คืออะไร">Jekyll คืออะไร</h2>
+<p>จะอธิบายให้ชัดเจนเกี่ยวกับ <strong>Jekyll</strong> ว่าคืออะไร ก็สามารถจะตอบได้ว่าเป็นเครื่องมือสำหรับพัฒนาเว็บไซด์แบบตอบสนองทางเดียว (Static Website) ที่รองรับการทำบล็อก เหมาะสมกับผู้ใช้งานทั่วไป หรือองค์กรต่างๆ โดยหน้าเว็บของเราจะถูกสร้างขึ้นโดยการแปลงเนื้อหาที่เขียนขึ้นจาก Markdown ไปเป็น HTML นั้นเอง</p>
+
+<h2 id="ใครบ้างที่ใช้-jekyll">ใครบ้างที่ใช้ Jekyll</h2>
+<p><img src="/images/posts/2019/create-website-with-jekyll/ruby-on-rails.png" alt="Ruby on Rails" width="500px" />
+<em>Ruby on Rails</em></p>
+
+<p><img src="/images/posts/2019/create-website-with-jekyll/html-reference.png" alt="HTML Reference" width="500px" />
+<em>HTML Reference</em></p>
+
+<p>สามารถดูเพิ่มเติมได้<a href="https://jekyllrb.com/showcase/">ที่นี่</a></p>
+
+<h2 id="ความต้องการพื้นฐาน">ความต้องการพื้นฐาน</h2>
+<p>เนื่องจาก <strong>Jekyll</strong> เป็นเครื่องมือที่ทำงานด้วยภาษา <strong>Ruby</strong> ดังนั้นเราต้องติดตั้งโปรแกรมพื้นฐานดังต่อไปนี้ก่อน</p>
+<ul>
+  <li>Ruby (v2.5 or later)</li>
+  <li>Gems (v3.0 or later)</li>
+</ul>
+
+<h2 id="เริ่มต้นกันเลย-quickstart">เริ่มต้นกันเลย (Quickstart)</h2>
+<ul>
+  <li>ติดตั้ง Jekyll และ Bunlder
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem <span class="nb">install </span>jekyll bunlder
+</code></pre></div>    </div>
+  </li>
+  <li>สร้างเว็บไซด์ใหม่ด้วย jekyll
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jekyll new mysite
+</code></pre></div>    </div>
+  </li>
+  <li>เข้าไปยังเว็บไซด์โฟลเดอร์
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>mysite
+</code></pre></div>    </div>
+  </li>
+  <li>รันเว็บไซด์ของเรา
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div>    </div>
+  </li>
+  <li>เข้าไปยังเว็บไซด์ของเราผ่านเว็บบราวเซอร์ที่ <strong>http://localhost:4000</strong></li>
+</ul>
+
+<p><img src="/images/posts/2019/create-website-with-jekyll/example-jekyll.png" alt="Jekyll" width="400px" />
+<em>Jekyll on localhost</em></p>
+
+<p>เพียงไม่กี่ขั้นตอนข้างต้น เราก็จะได้เว็บไซด์พร้อมใช้งาน ซึ่งประกอบด้วย</p>
+<ul>
+  <li>หน้าหลัก ซึ่งจะแสดงรายการบทความที่ได้ทำการเผยแพร่</li>
+  <li>หน้าแสดงบทความ</li>
+  <li>หน้าเกี่ยวกับเว็บไซด์</li>
+  <li>RSS Feed</li>
+  <li>ข้อมูลเกี่ยวกับโซเชียลของผู้พัฒนา</li>
+</ul>
+
+<hr />
+
+<h2 id="วิธีการติดตั้งเว็บไซด์บน-github-pages">วิธีการติดตั้งเว็บไซด์บน Github Pages</h2>
+<p>เมื่อได้เว็บไซด์ที่พร้อมจะนำเสนอสู่โลกอินเทอร์เนต สิ่งที่ขาดไม่ได้ถัดมาคือการนำเว็บไซด์ไปติดตั้งบนโฮสสาธารณะที่ผู้คนสามารถเข้ามาชมได้ แต่ถ้าการเช่าโฮส และการจดโดเมนเป็นเรื่องที่ยุ่งยากสำหรับมือใหม่ การเลือกใช้บริการโฮสเว็บไซด์สาธารณะก็ถือเป็นทางเลือกที่ประหยัด และสะดวกรวดเร็ว ใช่แล้วครับในบทความนี้เราได้เลือกใช้บริการของ <strong>Github</strong> ที่เรียกว่า <strong>Github Page</strong></p>
+
+<p><strong>Github Pages</strong> เป็นบริการโฮสเว็บไซด์ของ <strong>Github</strong> ผ่านการอัพโหลดเข้าไปยัง Repository ของ <strong>Github</strong> อีกทั้งยังมีโดเมนที่เป็นสาธารณะภายใต้โดเมนของ <strong>Github</strong> อีกด้วย โดยโดเมนที่ได้จะมีซับโดเมนตามชื่อบัญชีผู้ใช้ที่เราได้สมัครไว้กับทาง <strong>Github</strong> ยกตัวอย่างเช่น ถ้าเรามีชื่อบัญชีผู้ใช้เป็น <strong>karn18</strong> เราก็จะมีโดเมนเป็น <strong>karn18.github.io</strong></p>
+
+<ul>
+  <li>สร้าง repository ดังนี้ <strong>{username}.github.io</strong></li>
+  <li>เข้าไปยังเว็บไซด์โฟลเดอร์</li>
+  <li>กำหนดค่าของ git และ push code ขึ้นไปยัง Github ดังนี้</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+git add <span class="nb">.</span>
+git commit <span class="nt">-am</span> <span class="s2">"Init my static website"</span>
+git remote add origin https://github.com/<span class="o">{</span>username<span class="o">}</span>/<span class="o">{</span>username<span class="o">}</span><span class="nt">-github</span>.io.git
+git push
+</code></pre></div></div>
+
+<ul>
+  <li>เข้าไปยัง <strong>{username}.github.io</strong> ผ่านเว็บเบราเซอร์</li>
+</ul>
+
+<p>เพียงเท่านี้เราก็สามารถเริ่มเขียนบทความที่น่าสนใจ และเผยแผร่สู่โลกอินเทอร์เนตได้แล้ว</p>
+
+<p><em>!!!</em> หมายเหตุ: ให้แทน {username} ด้วยชื่อบัญชีผู้ใช้ที่สมัครไว้กับ Github</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://jekyllrb.com">https://jekyllrb.com</a></li>
+  <li><a href="https://naturaily.com/blog/why-jekyll-netlify-cms">https://naturaily.com/blog/why-jekyll-netlify-cms</a></li>
+  <li><a href="https://blog.webjeda.com/jekyll-guide/">https://blog.webjeda.com/jekyll-guide/</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

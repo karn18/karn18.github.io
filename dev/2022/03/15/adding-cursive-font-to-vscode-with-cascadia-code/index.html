@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>เพิ่มฟ้อนต์ตัวเขียนให้กับ VS Code ด้วย Cascadia Code | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>เพิ่มฟ้อนต์ตัวเขียนให้กับ VS Code ด้วย Cascadia Code</h1>
+
+  <p>โดยส่วนตัวแล้วชอบที่จะให้ editor ที่ใช้งานแสดงฟ้อนต์ตัวเขียนกับฟ้อนต์ตัวพิมพ์ร่วมกันตอนเขียนโค้ด ถ้าจะย้อนกลับไปก็เคยแต่ง <strong>VS Code</strong> โดยใช้ <strong>Custom CSS</strong> ให้ใช้ฟ้อนต์ Fira Code กับฟ้อนต์ Victor Mono แต่นั้นก็ยุ่งยากเวลาใช้งาน</p>
+
+<p>บทความนี้เราจะใช้ฟ้อนต์ <strong>Cascadia Code</strong> ซึ่งเป็นฟ้อนต์จาก Microsoft ที่ถูกพัฒนาขึ้นให้รองรับทั้งตัวพิมพ์ และตัวเขียนเลยทีเดียว ซึ่งจะทำให้เราสามารถแสดงฟ้อนต์ได้ดังตัวอย่างด้านล่าง</p>
+
+<p><img src="/images/posts/2022/adding-cursive-font-to-vscode-with-cascadia-code/example.png" alt="" width="500px" />
+<em>Example</em></p>
+
+<p>ก่อนอื่นก็ติดตั้ง <strong><a href="https://github.com/microsoft/cascadia-code">Casadia Code</a></strong> จากนั้นก็เปิด <code class="highlighter-rouge">settings.json</code> ของ <strong>VS Code</strong> และกำหนดค่าดังนี้</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="nl">"editor.fontFamily"</span><span class="p">:</span><span class="w"> </span><span class="s2">"'Cascadia Code', 'IBM Plex Sans Thai Looped'"</span><span class="err">,</span><span class="w">
+  </span><span class="nl">"editor.fontLigatures"</span><span class="p">:</span><span class="w"> </span><span class="s2">"'calt', 'ss01'"</span><span class="err">,</span><span class="w">
+  </span><span class="nl">"editor.tokenColorCustomizations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"textMateRules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"scope"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"comment"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"entity.name.type.class"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">class</span><span class="w"> </span><span class="err">names</span><span class="w">
+          </span><span class="s2">"keyword"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">import</span><span class="p">,</span><span class="w"> </span><span class="err">export</span><span class="p">,</span><span class="w"> </span><span class="err">return…</span><span class="w">
+          </span><span class="s2">"storage.modifier"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">static</span><span class="w"> </span><span class="err">keyword</span><span class="w">
+          </span><span class="s2">"storage.type"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">class</span><span class="w"> </span><span class="err">keyword</span><span class="w">
+          </span><span class="s2">"support.class.builtin"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"keyword.control"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"constant.language"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"entity.other.attribute-name"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"string.quoted.single"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"entity.name.method"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"entity.name.tag"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"fontStyle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"italic"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>ในที่สุดเราก็ได้ใช้ editor ที่ใช้ฟัอนต์ถูกใจเราสักที 🤘 ✍🏼 ❤️</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://karn18.medium.com/%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87-vs-code-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%83%E0%B8%8A%E0%B9%89-%E0%B8%A0%E0%B8%B2%E0%B8%84%E0%B8%9F%E0%B9%89%E0%B8%AD%E0%B8%99%E0%B8%95%E0%B9%8C-598af704033c">แต่ง VS Code ให้น่าใช้ (ภาคฟ้อนต์)</a></li>
+  <li><a href="https://www.ankursheel.com/blog/add-cursive-fonts-to-vs-code">How to add ligatures and cursive fonts to VS Code</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

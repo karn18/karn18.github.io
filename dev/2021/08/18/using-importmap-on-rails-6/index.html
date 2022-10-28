@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>การใช้งาน Importmap บน Rails 6 | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>การใช้งาน Importmap บน Rails 6</h1>
+
+  <p>สำหรับ importmap คงจะมีการติดตั้งเป็นค่า default ใน Rails เวอร์ชัน 7 แต่สำหรับใครที่อยากทดลองใช้ใน Rails 6 ก็จะมีขั้นตอนการติดตั้งดังนี้<!--more--></p>
+
+<ul>
+  <li>
+    <p>เริ่มต้นสร้างโปรเจ็คใหม่ โดยใส่พารามิเตอร์ <code class="highlighter-rouge">--skip--javascript</code> เข้าไปด้วย เพื่อให้ข้ามการติดตั้ง JavaScript และ Webpack เข้าไปในโปรเจ็ค</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rails new hot_espresso <span class="nt">--skip-javascript</span> <span class="nt">--skip-spring</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เพิ่ม gem <code class="highlighter-rouge">importmap-rails</code> และ <code class="highlighter-rouge">hotwire-rails</code> เข้าไปใน Gemfile</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Gemfile</span>
+<span class="n">gem</span> <span class="s1">'importmap-rails'</span>
+<span class="n">gem</span> <span class="s1">'hotwire-rails'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>ติดตั้ง Gem และรันคำสั่งติดตั้งต่างๆ</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./bin/bundle <span class="nb">install</span>
+<span class="nv">$ </span>./bin/rails importmap:install
+<span class="nv">$ </span>./bin/rails hotwire:install
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เมื่อรันคำสั่งเรียบร้อยแล้วก็จะได้ไฟล์  <code class="highlighter-rouge">config/initializers/importmap.rb</code> ขึ้นมา</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">importmap</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">pin</span> <span class="s2">"@hotwired/turbo-rails"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"turbo.js"</span>
+
+  <span class="n">pin</span> <span class="s2">"@hotwired/stimulus"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"stimulus.js"</span>
+  <span class="n">pin</span> <span class="s2">"@hotwired/stimulus-importmap-autoloader"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"stimulus-importmap-autoloader.js"</span>
+  <span class="n">pin_all_from</span> <span class="s2">"app/javascript/controllers"</span><span class="p">,</span> <span class="ss">under: </span><span class="s2">"controllers"</span>
+
+  <span class="n">pin</span> <span class="s2">"application"</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>สร้างหน้าเว็บขึ้นมาก่อน</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./bin/rails generate controller Page index
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เพิ่ม routes ใหม่เข้าไป</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/routes.rb</span>
+
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">get</span> <span class="s1">'pages/index'</span>
+  <span class="n">root</span> <span class="s1">'pages#index'</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="stimulus">Stimulus</h2>
+<ul>
+  <li>
+    <p>เริ่มต้นด้วย Stimulus โดยการสร้างไฟล์ <code class="highlighter-rouge">app/javascript/controllers/hello_controller.js</code> และเพิ่ม html เข้าไปใน <code class="highlighter-rouge">app/views/pages/index.html.erb</code></p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus</span><span class="dl">"</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+  <span class="nx">connect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello World!</span><span class="dl">"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Pages#index<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>Find me in app/views/pages/index.html.erb<span class="nt">&lt;/p&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">data-controller=</span><span class="s">"hello"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>รีสตาร์ท server และรันเว็บขึ้นมาตรวจสอบ</p>
+  </li>
+</ul>
+
+<p><img src="/images/posts/2021/using-importmap-on-rails-6/stimulus.png" alt="Stimulus" width="600px" />
+<em>Stimulus</em></p>
+
+<h2 id="vue">Vue</h2>
+<ul>
+  <li>มาต่อกันด้วย Vue โดยเริ่มสร้างโฟลเดอร์ <code class="highlighter-rouge">app/javascript/components</code> ไว้สำหรับเก็บคอมโพแนนท์ของ Vue</li>
+  <li>
+    <p>สร้างคอมโพแนนท์ <code class="highlighter-rouge">reverse</code> ขึ้นมา</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app/javascript/components/reverse_component.js</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Vue</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Hello Vue.js!</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">reverseMessage</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">''</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>ให้เราใส่ <code class="highlighter-rouge">pin "vue", to: 'https://cdn.skypack.dev/vue'</code> เข้าไปใน <code class="highlighter-rouge">config/initializers/importmap.rb</code> และ  <code class="highlighter-rouge">pin_all_from "app/javascript/components", under: "components"</code> เพื่อใช้สำหรับการลงทะเบียนคอมโพแนนทต์เข้าไปยัง importmap</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">importmap</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">pin</span> <span class="s2">"@hotwired/turbo-rails"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"turbo.js"</span>
+
+  <span class="n">pin</span> <span class="s2">"@hotwired/stimulus"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"stimulus.js"</span>
+  <span class="n">pin</span> <span class="s2">"@hotwired/stimulus-importmap-autoloader"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"stimulus-importmap-autoloader.js"</span>
+  <span class="n">pin_all_from</span> <span class="s2">"app/javascript/controllers"</span><span class="p">,</span> <span class="ss">under: </span><span class="s2">"controllers"</span>
+
+  <span class="n">pin</span> <span class="s2">"application"</span>
+
+  <span class="n">pin_all_from</span> <span class="s2">"app/javascript/components"</span><span class="p">,</span> <span class="ss">under: </span><span class="s2">"components"</span>
+  <span class="n">pin</span> <span class="s2">"vue"</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.esm.browser.js'</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>โหลดโค้ดเข้าไปใน <code class="highlighter-rouge">app/javascript/application.js</code></p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="dl">'</span><span class="s1">components/reverse_component</span><span class="dl">'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เพิ่ม html เข้าไปใน <code class="highlighter-rouge">app/views/pages/index.html</code></p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p&gt;&lt;/p&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">v-on:click=</span><span class="s">"reverseMessage"</span><span class="nt">&gt;</span>Reverse Message<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>รีสตาร์ท server และรันเว็บขึ้นมาตรวจสอบ</li>
+</ul>
+
+<p><img src="/images/posts/2021/using-importmap-on-rails-6/vue.png" alt="Vue" width="600px" />
+<em>Vue</em></p>
+
+<p>สำหรับตอนนี้เบราเซอร์ที่รองรับ importmap แบบ native ยังไม่ครบทุกตัว แต่คาดว่าในเร็วๆ นี้ก็คงจะรองรับกันครบทุกตัว
+ตัวอย่างโค้ดเข้าไปดูได้ที่ <a href="https://github.com/karn18/hot_espresso">Hot Espresso</a></p>
+
+<h2 id="references">References:</h2>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=PtxZvFnL2i0">https://www.youtube.com/watch?v=PtxZvFnL2i0</a></li>
+  <li><a href="https://world.hey.com/dhh/modern-web-apps-without-javascript-bundling-or-transpiling-a20f2755">https://world.hey.com/dhh/modern-web-apps-without-javascript-bundling-or-transpiling-a20f2755</a></li>
+  <li><a href="https://github.com/rails/importmap-rails">importmap-rails</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

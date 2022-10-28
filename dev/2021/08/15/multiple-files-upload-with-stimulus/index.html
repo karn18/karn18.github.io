@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>ต่อยอดการใช้ Stimulus จัดการ input เพื่ออัพโหลดหลายๆ ไฟล์พร้อมกัน | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>ต่อยอดการใช้ Stimulus จัดการ input เพื่ออัพโหลดหลายๆ ไฟล์พร้อมกัน</h1>
+
+  <p>ต้องขอบคุณบทความ <a href="https://mentalized.net/journal/2020/11/30/upload-multiple-files-with-rails/">Upload Multiple-files With Rails/</a> ของคุณ Jakob Skjerning ที่ทำให้เราสามารถเห็นรายชื่อไฟล์ที่เราเลือกที่จะใช้สำหรับอัพโหลดได้<!--more--></p>
+
+<p>สำหรับในบทความนี้ก็จะมาทำการต่อยอดสักเล็กน้อย เนื่องจาก</p>
+<ol>
+  <li>การที่กำหนด mulitple เป็น true เมื่อเลือกหลายๆ ไฟล์ปรากฏว่าไฟล์ที่เลือกมาแสดงจริงๆ มีแค่ไฟล์แรกไฟล์เดียวเท่านั้น</li>
+  <li>กรณีที่เราเลือกไฟล์ไปแล้ว เราจะไม่สามารถจะทำการยกเลิกไฟล์ที่เลือกไปแล้วได้</li>
+</ol>
+
+<p>ดังนั้นสิ่งที่เราจะเพิ่มง่ายก็คือ</p>
+<ol>
+  <li>แทนที่จะเลือกไฟล์แรกเพียงไฟล์เดียว ก็ให้แสดงทั้งหมดซะ</li>
+  <li>เพิ่มปุ่มสำหรับกดลบไฟล์ที่ได้ทำการเลือกไปแล้ว</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">addFile</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">originalInput</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span>
+    <span class="kd">const</span> <span class="nx">originalParent</span> <span class="o">=</span> <span class="nx">originalInput</span><span class="p">.</span><span class="nx">parentNode</span>
+    <span class="kd">const</span> <span class="nx">newInput</span> <span class="o">=</span> <span class="nx">originalInput</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">()</span>
+
+    <span class="c1">// [1]. จากโค้ดที่ทำการสร้าง label ชื่อไฟล์จาก originalInput.files[0] ก็เปลี่ยนมาใช้การวนลูปแทน</span>
+    <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">originalInput</span><span class="p">.</span><span class="nx">files</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">file</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">selectedFile</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">)</span>
+      <span class="nx">selectedFile</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">grid grid-cols-3 gap-4 py-4</span><span class="dl">"</span>
+    
+      <span class="kd">const</span> <span class="nx">divElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">)</span>
+      <span class="nx">divElement</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">col-span-2</span><span class="dl">"</span>
+      <span class="kd">const</span> <span class="nx">labelNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">label</span><span class="dl">"</span><span class="p">)</span>
+      <span class="nx">labelNode</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">))</span>
+      <span class="nx">divElement</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">labelNode</span><span class="p">)</span>
+      <span class="nx">selectedFile</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">divElement</span><span class="p">)</span>
+
+      <span class="c1">// [2]. เพิ่มปุ่มโดยใช้ &lt;a&gt; และเขียนโค้ดในการลบไฟล์ดังกล่าวทิ้ง</span>
+      <span class="kd">const</span> <span class="nx">deleteElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">)</span>
+      <span class="nx">deleteElement</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">class</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">font-bold text-red-800 cursor-pointer</span><span class="dl">"</span><span class="p">)</span>
+      <span class="nx">deleteElement</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">data-action</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">multi-upload#removeFile</span><span class="dl">"</span><span class="p">)</span>
+      <span class="nx">deleteElement</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">deleteIcon</span><span class="p">)</span>
+      <span class="nx">selectedFile</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">deleteElement</span><span class="p">)</span>
+
+      <span class="nx">originalInput</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">hidden</span><span class="dl">"</span>
+      <span class="nx">selectedFile</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">originalInput</span><span class="p">)</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">filesTarget</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">selectedFile</span><span class="p">)</span>
+    <span class="p">})</span>
+
+    <span class="c1">// Clear value</span>
+    <span class="nx">newInput</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">""</span>
+    <span class="nx">originalParent</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">newInput</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+<p>ผลลัพท์ที่ได้ก็จะประมาณนี้</p>
+
+<video controls="" playsinline="">
+  <source src="/videos/multi_files_uploader.mov" type="video/mp4" />
+</video>
+
+
+</main>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>PostgreSQL ตึงจัดกิน CPU ไปจนหมด | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>PostgreSQL ตึงจัดกิน CPU ไปจนหมด</h1>
+
+  <p>เปิดปีใหม่ก็ได้พบกับประสบกรณ์ตื่นเต้นทันที เมื่อได้รับแจ้งว่าเว็บ<a href="https://karn.work/projects/thip">ระบบสารสนเทศเปรียบเทียบวัดระดับคุณภาพโรงพยาบาล</a> เกิดอาการค้างไม่ตอบสนองผู้ใช้งาน หลังจากได้เข้าไปตรวจสอบเบื้องต้นก็พบว่า เห้ย! CPU ของเครื่อง Server กินไป 100% โดย <strong>PostgreSQL</strong></p>
+
+<p><img src="/images/posts/2022/high-cpu-usage-from-postgresql/htop.png" alt="" width="600px" />
+<em>htop ดูการใช้งาน CPU</em></p>
+
+<p>ด้วยความที่เราก็ไม่ได้เชี่ยวชาญ <strong>PostgreSQL</strong> สิ่งแรกที่ต้องตรวจสอบก่อนก็คือ Query ใดที่ทำให้ CPU ขึ้นถึง 100% ซึ่ง <strong>PostgreSQL</strong> มีโมดูลที่ใช้มอนิเตอร์และตรวจสอบ Query อยู่แล้วนั้นก็คือ <code class="highlighter-rouge">pg_stat_statements</code> แต่โดยปกติจะถูกปิดเอาไว้ตั้งแต่ต้น ดังนั้นเราจะต้องทำการเปิดโมดูลดังกล่าวก่อน<a href="https://dbaclass.com/article/monitor-sql-queries-in-postgres-using-pg_stat_statements/">ตามนี้</a></p>
+
+<p>จากนั้นก็ค้นหา Query ที่ใช้น่าจะเป็นปัญหาโดยใช้คำสั่ง</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="k">SELECT</span> 
+  <span class="p">(</span><span class="n">total_time</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="k">as</span> <span class="n">total</span><span class="p">,</span> 
+  <span class="p">(</span><span class="n">total_time</span><span class="o">/</span><span class="n">calls</span><span class="p">)</span> <span class="k">as</span> <span class="k">avg</span><span class="p">,</span> 
+  <span class="n">query</span> 
+<span class="k">FROM</span> <span class="n">pg_stat_statements</span> 
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">1</span> <span class="k">DESC</span> 
+<span class="k">LIMIT</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="err">$</span> <span class="k">SELECT</span>
+  <span class="n">max_exec_time</span><span class="p">,</span>
+  <span class="n">query</span>
+<span class="k">FROM</span> <span class="n">pg_stat_statements</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">max_exec_time</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>ถ้าจะย้อนกลับไปอีกนิดหนึ่งก่อนที่เราจะมอนิเตอร์ Query เราได้ทำการตรวจสอบขั้นตอนการใช้งานของโปรแกรมเราด้วยที่มีการเรียกใช้งาน Query ซึ่งก็พบว่าปัญหาเกิดขึ้นในหน้า Dashboard ซึ่งจะแสดงรายงานกราฟจำนวนมาก โดย Query ที่ถูกเรียกใช้ในหน้านี้จะมีจำนวนเท่ากับจำนวน KPI ที่ผู้ใช้งานเลือกคูณด้วย 2 เพราะแต่ละ KPI จะแสดงกราฟออกมา 2 ตัว สมมติว่าผู้ใช้งานต้องการแสดง KPI 10 ตัวนั้นหมายความว่าจะมีการเรียก Query ไปที่ <strong>PostgreSQL</strong> พร้อมๆ กัน 20 ตัวเลยทีเดียว</p>
+
+<p><img src="/images/posts/2022/high-cpu-usage-from-postgresql/dashboard.png" alt="" width="600px" />
+<em>Dashboard</em></p>
+
+<p>ดังนั้นเพื่อช่วยลดโหลดทำการทำงานของ <strong>PostgreSQL</strong> ที่ต้อง Query ข้อมูลจำนวนมากในเวลาเดียวกัน เราจึงได้ใช้ประโยชน์จากบทความ<a href="https://world.hey.com/karn/lazy-loading-0a6d43f5">Lazy Loading</a> เข้ามาช่วยในการ Query ข้อมูลเมื่อกราฟถูกเลื่อนขึ้นมาแสดงใน viewport</p>
+
+<p>ทั้งนี้ทั้งนั้นต้นเหตุของปัญหาจริงๆ ก็คือ Quey ที่กินทั้ง CPU และใช้เวลาในการดึงข้อมูลที่นาน ดังนั้น<strong>วิธีเดียว</strong>ที่จะแก้ปํญหาได้จริงๆ ก็คือจัดการกับ Query เจ้าปัญหานั้นเอง</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://www.postgresql.org/docs/current/pgstatstatements.html">pg_stat_statements</a></li>
+  <li><a href="https://world.hey.com/karn/lazy-loading-0a6d43f5">Lazy Loading</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

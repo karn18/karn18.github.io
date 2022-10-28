@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>ติดตั้ง gem และ node module จาก private repository | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>ติดตั้ง gem และ node module จาก private repository</h1>
+
+  <p>คงจะเป็นสิ่งที่หลีกเลี่ยงไม่ได้ที่เราพยายามจะลดเวลาในการพัฒนาโปรแกรมอันใหม่ขึ้นมา ซึ่งวิธีหนึ่งก็คือการเลือกใช้ library ต่างๆ ที่เป็นแบบ public หรือ lib ที่เราพัฒนาขึ้นมาเองและเก็บเอาไว้ใน git repository แบบ private<!--more--></p>
+
+<p>สำหรับ lib ที่เป็นแบบ private ส่วนมากจะก็เก็บอยู่บน hub ของแต่ละ framework ที่ใช้โดยการพัฒนาโปรแกรมโดยใช้ <strong>Rails</strong> จะมี lib ที่ต้องใช้ด้วยกัน 2 ฝั่งคือ</p>
+
+<ol>
+  <li>Backend เป็นภาษา Ruby จะใช้ gem เข้าไปหาได้ที่ <a href="https://rubygems.org">RubyGem</a></li>
+  <li>Frontend เป็นภาษา JavaScript จะใช้ node module เข้าไปหาได้ที่ <a href="https://www.npmjs.com/">NPM</a></li>
+</ol>
+
+<blockquote>
+  <p>โดยส่วนมากก็จะเป็น Open Source และเก็บเอาไว้ใน GitHub</p>
+</blockquote>
+
+<p>ที่นี้ก็มาถึง lib ที่เป็นของเราเองที่พัฒนาขึ้นแบบส่วนตัว ภายใต้องค์กรหรือบริษัท ซึ่งจะถูกเก็บเอาไว้อยู่ใน git repository ต่างๆ ไม่ว่าจะเป็น GitHub, Gitlab, BitBucket โดยจะมีการกำหนดสิทธิ์ในการเข้าถึงได้แบบ private ทำให้เราไม่สามารถเข้าถึงได้ ถ้าไม่ได้ sign-in เข้าไปซะก่อน ดังนั้นเราจะต้องทำการสร้าง <strong>access token</strong> ขึ้นมา เพื่อใช้ในการติดตั้งโดยเฉพาะ และแน่นอนว่า git repostiory ที่กล่าวไปข้างต้นมี feature นี้อยู่</p>
+
+<p>สำหรับในบทความนี้ผมก็ขอยกตัวอย่างเป็น <strong>GitLab</strong> แล้วกันเพราะทางองค์กรใช้ตัวนี้เป็นหลักในการทำงาน โดยก่อนอื่นเราจะต้องเข้าไปสร้าง <strong>access token</strong> ขึ้นมา ให้เราเข้าไปที่ profile ของตัวเอง จากนั้นสังเกตที่เมนูด้านซ้ายมือ และเข้าไปที่ Access Token</p>
+
+<ul>
+  <li>ให้เรากำหนดชื่อที่ตัวเองชอบ และเข้าใจว่าจะใช้ทำอะไร</li>
+  <li>กำหนดวันหมดอายุ ถ้าขี้เกียจต้องมา revoke ก็ไม่ต้องใส่ค่า token ตัวนี้จะไม่มีวันหมดอายุ</li>
+  <li>เลือกสิทธิการเข้าถึงเป็นแบบ <code class="highlighter-rouge">read_repository</code> ก็ให้เข้าไปอ่านได้อย่างเดียวก็พอแล้ว</li>
+  <li>กดสร้าง <strong>access token</strong></li>
+  <li>❗️ตรงนี้สำคัญ❗️ ให้ copy token ที่ถูกสร้างขึ้นมาเก็บเอาไว้ให้ดี เพราะเราจะไม่ได้เห็นมันอีกแล้ว</li>
+</ul>
+
+<p><img src="/images/posts/2021/installing-gem-and-node-module-from-private-git-reposity/create-access-token.png" alt="Create Access Token" />
+<em>สร้าง Access Token</em></p>
+
+<h2 id="การติดตั้ง-gem">การติดตั้ง Gem</h2>
+
+<p>ให้เราใส่ gem ที่จะใช้งานเข้าไปใน <code class="highlighter-rouge">Gemfile</code> เพียงแต่สิ่งที่ต้องทำเพิ่มคือการระบุที่อยู่ที่เป็น private repository เข้าไปด้วย และที่สำคัญเราจะต้องเอา <strong>access token</strong> ที่ได้เมื่อกี้แนบไปพร้อมกับ account ที่ใช้ด้วย</p>
+
+<p><strong>ยกตัวอย่าง</strong> ให้ account ที่ใช้งานเป็น <code class="highlighter-rouge">karn</code> มี access token เป็น <code class="highlighter-rouge">JNb1ri7fWfAPbBwqaSD</code> และ git repo สามารถเข้าถึงได้ผ่าน url <code class="highlighter-rouge">https://gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git</code> เราก็จะประกอบร่างเป็นดังโค้ดด้านล่าง</p>
+
+<h3 id="gemfile">Gemfile</h3>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s2">"latias-auditor"</span><span class="p">,</span> <span class="ss">git: </span><span class="s1">'https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-auditor.git'</span>
+</code></pre></div></div>
+
+<p>ติดตั้ง gem ผ่าน <code class="highlighter-rouge">bundle install</code></p>
+
+<h2 id="การติดตั้ง-node-module">การติดตั้ง Node Module</h2>
+
+<p>มาดูในฝั่ง Frontend กันบ้าง ถ้าเป็น Node ก็ต้องใส่เข้าไปใน <code class="highlighter-rouge">package.json</code> และเช่นกันรูปแบบการใช้งานก็คล้ายคลึงกับด้านบน เพียงแต่ปกติที่เราจะระบุเลข version ตามหลังชื่อ module ก็ให้ใส่เป็น url แทน ❗️ระวังนิดหนึงคือ protocal ที่ใช้จะต้องเป็น <code class="highlighter-rouge">git+https</code> หรือถ้าใครใช้ ssh ก็จะเป็น <code class="highlighter-rouge">git+ssh</code> อ่านเพิ่มเติมได้จากลิงค์ด้านล่างนะ</p>
+
+<h3 id="packagejson">package.json</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR-PROJECT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"latias-date-format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git+https://karn:JNb1ri7fWfAPbBwqaSD@gitlab.opensource-technology.com/All-OST/Add-on-Apps/latias-date-format.git"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <p>ไม่ต้องห่วงว่า account กับ access token ที่อยู่ในตัวอย่างจะเข้าถึงโค้ดได้จริงนะครับ แต่ถ้าเผอิญเกิดเข้าได้จริงก็แจ้งมาด้วยแล้วกันนะ</p>
+</blockquote>
+
+<p>เพียงเท่านี้ก็เรียบร้อย เราสามารถที่จะติดตั้ง lib ของเราจาก private git repository ได้</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://bundler.io/man/gemfile.5.html">Gemfile</a></li>
+  <li><a href="https://docs.npmjs.com/about-packages-and-modules">NPM Packages and Modules</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

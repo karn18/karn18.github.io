@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>ตรวจสอบข้อมูลก่อนบันทึก (Validations) | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>ตรวจสอบข้อมูลก่อนบันทึก (Validations)</h1>
+
+  <p>โดยทั่วไปเวลาที่เราสร้าง <strong>Model</strong> สำหรับการเก็บข้อมูลลงฐานข้อมูล จะมีเงื่อนไขบังคับในแต่ละฟิลด์อยู่ (<strong>Constraint</strong>) ไม่ว่าจะเป็นฟิลด์ต้องไม่เป็นค่าว่างหรือ null บ้างก็ฟิลด์จะต้องเป็นตัวอักษรขนาดไม่เกิน 50 ตัวอักษร หรือฟิลด์ต้องจำนวนนับทศนิยมได้ไม่เกิน 2 ตำแหน่ง เป็นต้น ที่นี้เมื่อเราใช้งาน <strong>ActiveRecord</strong> จะมีการเขียน <strong>Validations</strong> ไว้อีกรอบเพื่อให้มั่นใจว่าข้อมูลที่จะเราจะทำการบันทึกลงฐานข้อมูลนั้นถูกต้องตามเงื่อนไขที่ได้กำหนด<!--more--> และแน่นอนว่าเมื่อโลจิกของโปรแกรมเริ่มมีความซับซ้อนขึ้น เงื่อนไขในการตรวจสอบก็ย่อมจะซับซ้อนขึ้นตาม ซึ่งการใช้ built-in <strong>Validations</strong> ไม่สามารถตอบโจทย์ได้ ทำให้เราจะต้องสร้าง <strong>Validator</strong> ของเราขึ้นมาเอง ซึ่งก็ทำได้ไม่ยากมาดูกันเลย</p>
+
+<h2 id="โจทย์">โจทย์</h2>
+<p>สำหรับโจทย์วันนี้ที่เราจะแก้ไขก็มาจากที่ว่า โปรแกรมที่พัฒนาจะมีการบันทึกข้อมูลคนไข้เยี่ยมบ้าน ซึ่งในแต่ละปีงบประมาณจะอนุญาตให้สร้างคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันเกิดขึ้นไม่ได้โดยอ้างอิงจากวันที่สำรวจ ซึ่งหน้าตาของตาราง Patient นั้นก็เป็นดังตารางด้านล่าง (เอามาเฉพาะบางฟิลด์เท่านั้นนะ)</p>
+
+<h3 id="ตาราง-patient">ตาราง Patient</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>pid</th>
+      <th>first_name</th>
+      <th>surveyed_date</th>
+      <th>created_at</th>
+      <th>updated_at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>183xxxxxxx515</td>
+      <td>demo</td>
+      <td>2020-08-19</td>
+      <td>2020-08-19</td>
+      <td>2020-08-19 11:05:57</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>183xxxxxxx515</td>
+      <td>demo</td>
+      <td>2021-05-02</td>
+      <td>2021-05-02</td>
+      <td>2021-05-02 14:27:12</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>จากตารางจะพบว่าเราสามารถบันทึกข้อมูลคนไข้เยี่ยมบ้านที่มีเลขบัตรประชาชนซ้ำกันได้ก็ต่อเมื่อวันที่เยี่ยมบ้าน (surveyed_date) จะต้องอยู่คนละปีงบประมาณกัน
+แถวแรกจะเป็นปีงบประมาณ 2563 (1 ตุลาคม 2562 - 20 กันยายน 2563) และแถวที่สองเป็นปีงบประมาณ 2564 (1 ตุลาคม 2563 - 30 กันยายน 2564)</p>
+
+<hr />
+
+<p>ก่อนจะไปถึงวิธีแก้ไขโจทย์ของเรา ถ้าย้อนกลับไปเป็นโจทย์ที่ว่าเราสามารถบันทึกข้อมูลคนไข้ซ้ำกันไม่ได้เลย การตรวจสอบข้อมูลก็สามารถเขียนได้ดังนี้</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Patient</span>
+  <span class="n">validates</span> <span class="ss">:pid</span><span class="p">,</span> <span class="ss">uniqueness: </span><span class="kp">true</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>ที่นี้ก็มาสร้าง <strong>Validator</strong> ของเรากันเลย ก็สามารถทำได้ง่ายๆ โดยการสร้าง class ที่สืบทอดความสามารถต่อจาก class <code class="highlighter-rouge">ActiveModel::Validator</code> และก็ต้อง implement เมธอดที่ชื่อ <code class="highlighter-rouge">validate</code></p>
+
+<h3 id="appvalidatorspatient_validatorrb">app/validators/patient_validator.rb</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PatientValidator</span> <span class="o">&lt;</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Validator</span>
+  <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+    <span class="n">budget_year</span> <span class="o">=</span> <span class="n">current_budget_year</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">record</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">constantize</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s2">"pid = :pid and extract(year from surveyed_date) = :budget_year"</span><span class="p">,</span> <span class="ss">pid: </span><span class="n">record</span><span class="p">.</span><span class="nf">pid</span><span class="p">,</span> <span class="ss">budget_year: </span><span class="n">budget_year</span><span class="p">)</span>
+
+    <span class="n">record</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">add</span> <span class="ss">:pid</span><span class="p">,</span> <span class="ss">:duplicated_pid_per_budget_year</span> <span class="k">unless</span> <span class="n">results</span><span class="p">.</span><span class="nf">size</span><span class="p">.</span><span class="nf">zero?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>ในกรณีที่เราเขียนเงื่อนไขตรวจสอบแล้วไม่ถูกต้อง เราจะทำการเพิ่ม error เข้าไปใน <code class="highlighter-rouge">record.errors</code> ซึ่งก็จะระบุฟิลด์ กับข้อความที่จะแสดง แต่ถ้าไม่มีอะไรผิดผ่านเราก็ปล่อยผ่านไปเลย ทันทีที่โมเดลเราทำการตรวจสอบด้วย <code class="highlighter-rouge">valid?</code> และพบว่ามี errors ปรากฏอยู่ข้อมูลก็จะไม่บันทึกลงในฐานข้อมูล</p>
+
+<p>สำหรับวิธีการเรียกใช้ <strong>PatientValidator</strong> ก็สามารถทำได้ดังนี้</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Patient</span>
+  <span class="c1"># แบบแรก</span>
+  <span class="n">validates_with</span> <span class="no">PatientValidator</span>
+
+  <span class="c1"># แบบที่สอง</span>
+  <span class="n">validates</span> <span class="ss">:once_in_budget_year</span>
+
+  <span class="k">def</span> <span class="nf">once_in_budget_year</span>
+    <span class="n">validates_with</span> <span class="no">PatientValidator</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>เพียงเท่านี้เราก็สามารถตอบโจทย์เราได้แล้ว แต่ถ้าเราลองพิจารณาเพิ่มไปอีกนิดจะพบว่าถ้าเราเพิ่มฟิลด์ <strong>budget_year</strong> เข้าไปในตารางก็น่าจะทำให้การตรวจสอบทำได้โดยไม่ต้องสร้าง <strong>Validator</strong> ใหม่ขึ้นมาได้ และโค้ดของเราก็จะเป็นประมาณนี้</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Patient</span>
+  <span class="n">validates</span> <span class="ss">:pid</span><span class="p">,</span> <span class="ss">uniqueness: </span><span class="p">{</span> <span class="ss">scope: :budget_year</span><span class="p">,</span>
+    <span class="ss">message: </span><span class="s2">"Should happen once per budget year"</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://guides.rubyonrails.org/active_record_validations.html">Validations</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>Sprockets Rails กับฟ้อนต์ที่ไม่โหลด | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>Sprockets Rails กับฟ้อนต์ที่ไม่โหลด</h1>
+
+  <p>หลังจากที่โปรเจ็คหลายๆ ตัวได้อัพเวอร์ชันมาใช้ <strong>Rails 7</strong> อีกสิ่งหนึ่งที่ได้รับผลกระทบตามมาคือการจัดการ asset ต่างๆ ที่อยู่ภายใน ซึ่งใน <strong>Rails 7</strong> เปิดทางเลือกให้ผู้พัฒนาเลือกใช้เครื่องมือในการจัดการ <strong>JavaScript</strong> และ <strong>CSS</strong> ใดๆ ก็ได้ที่ถนัด</p>
+
+<p>สำหรับเราเอง เราเลือกใช้ <code class="highlighter-rouge">sprockets</code> มาแต่ไหนแต่ไร เพียงแต่ในเวอร์ชัน 7 เราได้ใช้ <code class="highlighter-rouge">sprockets-rails</code> มาเป็น wrapper อีกทีหนึ่ง ซึ่งส่งผลให้เกิดปัญหาฟ้อนต์ต่างๆ ที่ถูกอ้างอิงไว้ในไฟล์ <strong>CSS</strong> ไม่ถูกโหลดเมื่อในหน้าเว็บ</p>
+
+<p>ถ้าย้อนกลับไปที่การอ้างอิง asset ต่างๆ ใน <strong>CSS</strong> ตอนที่เรายังใช้ <code class="highlighter-rouge">sprockets</code> เพียวงอย่างเดียวจะมี helper ให้ใช้งานอยู่ไม่ว่าจะเป็น <code class="highlighter-rouge">asset-path|asset-url</code>, <code class="highlighter-rouge">image-path|image-url</code>, <code class="highlighter-rouge">font-path|font-url</code> โดยการอ้างอิงฟ้อนต์ที่เราใช้อยู่จะเป็นดังตัวอย่างด้านล่าง</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">@font-face</span> <span class="p">{</span>
+    <span class="o">...</span>
+    <span class="nt">src</span><span class="o">:</span> <span class="nt">font-url</span><span class="o">(</span><span class="s1">"IBMPlexSansThai-Regular.woff2"</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">"woff2"</span><span class="o">);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>จะเห็นได้ว่าเราเรียกใช้ helper <code class="highlighter-rouge">font-url</code> ในการอ้างอิง URL เมื่อถูก compile ด้วยคำสั่ง <code class="highlighter-rouge">rails assets:precompile</code> จะถูกแปลงเป็น</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">@font-face</span> <span class="p">{</span>
+    <span class="o">...</span>
+    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">"/assets/IBMPlexSansThai-Regular-8cb267db96213347f522e3bc8a04822009fd83e45718c40f933a5aeb33d22446.woff2"</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">"woff2"</span><span class="o">);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>แต่เมื่อเปลี่ยนมาใช้ <code class="highlighter-rouge">sprockets-rails</code> ปรากฏว่าเมื่อสั่ง compile จะได้ออกมาเหมือนเดิม ซึ่ง <code class="highlighter-rouge">font-url</code> ไม่ใช้ syntax ที่ <strong>CSS</strong> รู้จัก จึงทำให้ฟ้อนต์ไม่ถูกโหลดมาใช้งาน</p>
+
+<p>จากที่ได้เข้าไปดูใน<a href="https://github.com/rails/sprockets-rails/blob/master/lib/sprockets/rails/asset_url_processor.rb">โค้ด</a> ปรากฏว่าจริงๆ แล้วเราไม่จำเป็นต้องใช้ helper อีกต่อไป เพราะตัว processor ใหม่จะตรวจจับจาก <code class="highlighter-rouge">url()</code> ที่อยู่ใน <strong>CSS</strong> และจัดการใส่ URL ที่ถูกต้องเข้าไป</p>
+
+<p><img src="/images/posts/2022/sprockets-rails-กับฟ้อนต์ที่ไม่โหลด/asset_url_processor.png" alt="" width="600px" />
+<em>AssetUrlProcessor</em></p>
+
+<p>ดังนั้นต่อไปนี้ถ้าเราจะอ้างถึง asset ใดๆ ที่อยู่ใน <code class="highlighter-rouge">CSS</code> ก็ให้เรียกผ่าน <code class="highlighter-rouge">url()</code> ได้เลย ดังตัวอย่างด้านล่าง</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">@font-face</span> <span class="p">{</span>
+    <span class="o">...</span>
+    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">"IBMPlexSansThai-Regular.woff2"</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">"woff2"</span><span class="o">);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://github.com/rails/sprockets">Sprockets</a></li>
+  <li><a href="https://github.com/rails/sprockets-rails">Sprockets Rails</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

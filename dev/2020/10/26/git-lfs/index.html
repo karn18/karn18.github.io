@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่ | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>ใช้ Git LFS จัดการกับไฟล์ขนาดใหญ่</h1>
+
+  <p>ไม่ว่าจะเป็นความตั้งใจ หรือบังเอิญที่ต้องมีการใส่ไฟล์ประเภทภาพ เสียง หรือวิดีโอเข้าไปยัง <strong>git repository</strong> ถ้าไฟล์เหล่าไม่ได้มีจำนวนเยอะ มีการอัพเดตบ่อยๆ หรือมีขนาดใหญ่ ก็คงไม่ต้องซีเรียสอะไรมากปล่อยผ่านไปก็ได้ แต่ถ้าเกิดต้องมีการอัพเดตไฟล์อยู่บ่อยๆ ขนาดไฟล์ก็ใหญ่ขึ้นเรื่อยๆ อันนี้แหละเราจะต้องมาดูก่อนหน่อย เพราะมีผลกระทบที่เกิดขึ้นกับ <strong>git repository</strong> ของเราแน่ๆ ไม่ว่าจะเป็น <strong>git history</strong> ที่จะใหญ่ขึ้นตาม การ pull หรือ fetch ข้อมูลก็จะช้าขึ้นนั้นเอง<!--more--></p>
+
+<p>สำหรับวิธีการแก้ปัญหารการต้องอัพไฟล์ขนาดใหญ่เข้าไปใน <strong>git repository</strong> ของเราก็สามารถทำได้โดยใช้ <strong>Git LFS (Large File Storage)</strong> ซึ่งเป็น extension หนึ่งของ <strong>Git</strong> โดยหลักการทำงานของ <strong>Git LFS</strong> จะ <strong>hook event</strong> เมื่อมีการ <strong>push</strong> ไฟล์ไปยัง <strong>git repository</strong> และแทนที่ไฟล์จริงๆ ด้วย <strong>pointer</strong> ของไฟล์ ด้วยการอัพโหลดไปยัง <strong>Git LFS Store</strong></p>
+
+<h1 id="วิธีใช้งาน">วิธีใช้งาน</h1>
+<ul>
+  <li>ดาว์นโหลดตัวติดตั้งจาก<a href="https://git-lfs.github.com/">ที่นี่</a>
+    <ul>
+      <li>ถ้าเป็น <strong>Mac</strong> หรือ <strong>Linux</strong> ก็ติดตั้งผ่าน package manger</li>
+      <li>ส่วน <strong>Windows</strong> ก็ไม่ต้องทำอะไรเพิ่ม เพราะ <strong>Git LFS</strong> ติดตั้งมาพร้อมกับ <strong>Git</strong> ตั้งแต่แรกอยู่แล้ว</li>
+    </ul>
+  </li>
+  <li>ติดตั้ง <strong>Git LFS</strong> ให้กับ <strong>repository</strong> ซึ่งสามารถใช้ได้ทั้งกับ <strong>repository</strong> ใหม่ หรือของเดิมที่มีอยู่แล้ว</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git lfs <span class="nb">install</span>
+</code></pre></div></div>
+
+<ul>
+  <li>กำหนดประเภทไฟล์ที่ต้องการให้จัดการโดย <strong>Git LFS</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git lfs track <span class="s2">"*.jpg"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>จากนั้น <strong>Git LFS</strong> จะสร้างไฟล์ <code class="highlighter-rouge">.gitattributes</code> ขึ้นมา</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*.png filter=lfs diff=lfs merge=lfs -text
+</code></pre></div></div>
+
+<ul>
+  <li>ใช้งาน <strong>git repository</strong> ตามปกติ แต่อย่าลืมเพิ่ม <code class="highlighter-rouge">.gitattributes</code> เข้าไปด้วย</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add .gitattributes <span class="k">*</span>.jpg
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"track *.jpg files using Git LFS"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>เมื่อมีการ <strong>push</strong> ไฟล์ขึ้นไปยัง server <strong>Git LFS</strong> จะดักจับและตรวจสอบประเภทไฟล์ที่ตรงตามที่กำหนดไว้ และทำการอัพโหลดไฟล์ขึ้นไปยัง <strong>Git LFS Store</strong> แทน สังเกตได้จากรูปด้านล่าง</li>
+</ul>
+
+<p><img src="/images/posts/2020/git-lfs/cmd3.png" alt="cmd3" width="600px" /></p>
+
+<ul>
+  <li>ตรวจสอบไฟล์ที่จัดการโดย <strong>Git LFS</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git lfs ls-files
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://git-lfs.github.com/">Git LFS</a></li>
+  <li><a href="https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/git-lfs/">Handling Large Files with LFS</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

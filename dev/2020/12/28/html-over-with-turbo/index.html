@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>ส่งผ่าน HTML ไปยังแอพด้วย Turbo | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>ส่งผ่าน HTML ไปยังแอพด้วย Turbo</h1>
+
+  <h2 id="turbo">Turbo</h2>
+<p>เป็นอีกเทคนิค และเครื่องมือหนึ่งที่ถูกพัฒนาออกมาเพื่อเพิ่มความเร็วให้กับเว็บของเราในขณะที่ submit form โดยแบ่งความซับซ้อนในหน้าเว็บออกเป็นคอมโพเนนต์เช่นเดียวกับการเขียนแบบ SPA และนอกจากนี้ยังสามารถสตรีม partial page ผ่าน Websocket โดยที่เราไม่จำเป็นต้องเขียน JavaScript เลย<!--more--></p>
+
+<p>สามารถเข้าไปศึกษาวิธีการใช้ <strong>Turbo</strong> ได้จาก<a href="https://turbo.hotwire.dev">ที่นี่</a> หรือจะดูจากวิดีโอด้านล่างก็ได้นะครับ</p>
+
+<video controls="" playsinline="">
+  <source src="https://s3.amazonaws.com/hotwire.dev/hotwire-screencast.mp4" type="video/mp4" />
+</video>
+
+<hr />
+<blockquote>
+  <p>โดยส่วนตัวนั้นต้องบอกเลยว่าชอบเทคนิคอันนี้มาก เนื่องจากโดยส่วนตัวไม่ชอบการเขียน JavaScript และเลือกที่จะใช้ HTML มากกว่าการจัดการกับ JSON</p>
+</blockquote>
+
+<p>ในบทความนี้จะมาลองพัฒนาแอพ Todo โดยใช้ความสามารถของ <strong>Turbo</strong> กัน มาดูโจทย์ของเรากันก่อนเลย</p>
+<ul>
+  <li>แอพจะมีโมเดล <code class="highlighter-rouge">Task</code> ในการเก็บบันทึกสิ่งที่จะทำ (<code class="highlighter-rouge">name:string</code>) และ flag สำหรับระบุว่างานนั้นๆ ทำเสร็จแล้วหรือยัง (<code class="highlighter-rouge">done:boolean</code>)</li>
+  <li>แอพจะมีเพียงหน้าเดียว แบบเดียวกับ SPA โดยแยกออกเป็น 2 ส่วนคือ
+    <ol>
+      <li>ฟอร์มสำหรับบันทึก <code class="highlighter-rouge">Task</code> ซึ่งจะใช้ร่วมกันไม่ว่าจะเป็นการสร้างข้อมูลใหม่ หรือแก้ไขของเดิม</li>
+      <li>ส่วนของการแสดงผล <code class="highlighter-rouge">Task</code> ทั้งหมดที่มีการสร้างขึ้นทั้งหมด (Task List)</li>
+      <li>Task หนึ่งๆ ที่แสดงผลจะมีปุ่มสำหรับคลิกเพื่อแก้ไข (Edit) ปุ่มสำหรับเช็คว่างานนั้นทำเสร็จแล้ว (Done) และปุ่มสำหรับลบ (Delete)</li>
+    </ol>
+  </li>
+  <li>แอพสามารถ sync ข้อมูลอัตโนมัติ ไม่ว่าเราจะเปิดหน้าเว็บไว้กี่ tab ก็ตามผ่าน Websocket</li>
+  <li>
+    <p>ใช้ <strong>Bulma</strong> เพื่อเพิ่มความสวยงาม</p>
+
+    <p><img src="/images/posts/2020/html-over-with-turbo/components.png" alt="compnents" /></p>
+  </li>
+</ul>
+
+<h2 id="มาลงมือกันเลย">มาลงมือกันเลย</h2>
+<ul>
+  <li>
+    <p>สร้างแอพใหม่ขึ้นมากันก่อน</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rails new awesome_todo
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เพิ่ม gem <code class="highlighter-rouge">hotwire-rails</code> เข้าไปยัง Gemfile</p>
+
+    <p>❗️ ที่ใช้เลือกใช้ <code class="highlighter-rouge">hotwire-rails</code> นั้นเพราะในแอพต้องการใช้ความสามารถของ <code class="highlighter-rouge">Stimulus</code> ด้วยดังนั้นจึงเลือกใช้ gem ตัวนี้ แต่ถ้าต้องการใช้ <code class="highlighter-rouge">Turbo</code> เพียงอย่างเดียว เราสามารถเลือกติดตั้ง <code class="highlighter-rouge">turbo-rails</code> แทนได้</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># gem 'turbo-rails'</span>
+<span class="n">gem</span> <span class="s1">'hotwire-rails'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>ติดตั้ง gem และ dependency ของ <code class="highlighter-rouge">Turbo</code></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle <span class="nb">install</span>
+<span class="c"># $ rails turbo:install</span>
+<span class="nv">$ </span>rails hotwire:install
+</code></pre></div>    </div>
+
+    <p>คำสั่งข้างต้นจะติดตั้งส่วนที่จำเป็นให้กับแอพของเรา ไม่ว่าจะเป็น config สำหรับ <code class="highlighter-rouge">Action Cable</code>, include tag ใน layout และ JavaScript ที่ใช้งาน</p>
+  </li>
+  <li>คอมเมนต์ <code class="highlighter-rouge">require("turbolinks").start()</code> ใน <code class="highlighter-rouge">app/javascript/packs/application.js</code></li>
+  <li>ตรวจสอบค่าการเชื่อมต่อกับฐานข้อมูลที่จะใช้งาน</li>
+  <li>ติดตั้ง <strong>Bulma CSS</strong></li>
+  <li>
+    <p>สร้างโมเดล <code class="highlighter-rouge">Task</code></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rails g scaffold Task name:string <span class="k">done</span>:boolean
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เริ่มแก้ไขหน้า <code class="highlighter-rouge">index</code> (<code class="highlighter-rouge">/app/views/tasks/index.html.erb</code>) ให้มีคอมโพเนนต์ตามที่กำหนดไว้ คือ ส่วนแรกแสดงฟอร์มในการบันทึก และส่วนที่สองแสดงรายการสิ่งที่จะทำ โดยแต่ละส่วนจะถูกครอบด้วย <code class="highlighter-rouge">Turbo Frame</code> :new_task และ :tasks ตามลำดับ</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">"section"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"title"</span><span class="nt">&gt;</span>Todo<span class="nt">&lt;/h1&gt;</span>
+
+    <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">turbo_frame_tag</span> <span class="na">:new_task</span> <span class="na">do</span> <span class="err">%</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">render</span> <span class="err">'</span><span class="na">form</span><span class="err">',</span> <span class="na">task:</span> <span class="err">@</span><span class="na">task</span> <span class="err">%</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;</span><span class="err">%</span> <span class="na">end</span> <span class="err">%</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box mt-2 mb-2"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">turbo_frame_tag</span> <span class="na">:tasks</span> <span class="na">do</span> <span class="err">%</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">render</span> <span class="err">@</span><span class="na">tasks</span> <span class="err">%</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;</span><span class="err">%</span> <span class="na">end</span> <span class="err">%</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/section&gt;</span>
+<span class="nt">&lt;/main&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>แก้ไข action <code class="highlighter-rouge">index</code> ใน <code class="highlighter-rouge">app/controllers/tasks_controller.rb</code></p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">index</span>
+  <span class="vi">@tasks</span> <span class="o">=</span> <span class="no">Task</span><span class="p">.</span><span class="nf">all</span>
+  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="p">.</span><span class="nf">new</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>แก้ไข form สำหรับการบันทึกและแก้ไขข้อมูลใน <code class="highlighter-rouge">app/views/tasks/_form.html.erb</code></p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="err">%=</span> <span class="na">form_with</span><span class="err">(</span><span class="na">model:</span> <span class="na">task</span><span class="err">,</span> <span class="na">local:</span> <span class="na">true</span><span class="err">)</span> <span class="na">do</span> <span class="err">|</span><span class="na">form</span><span class="err">|</span> <span class="err">%</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;</span><span class="err">%</span> <span class="na">if</span> <span class="na">task.errors.any</span><span class="err">?</span> <span class="err">%</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"error_explanation"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h2&gt;&lt;</span><span class="err">%=</span> <span class="na">pluralize</span><span class="err">(</span><span class="na">task.errors.count</span><span class="err">,</span> <span class="err">"</span><span class="na">error</span><span class="err">")</span> <span class="err">%</span><span class="nt">&gt;</span> prohibited this task from being saved:<span class="nt">&lt;/h2&gt;</span>
+
+      <span class="nt">&lt;ul&gt;</span>
+        <span class="nt">&lt;</span><span class="err">%</span> <span class="na">task.errors.full_messages.each</span> <span class="na">do</span> <span class="err">|</span><span class="na">message</span><span class="err">|</span> <span class="err">%</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;li&gt;&lt;</span><span class="err">%=</span> <span class="na">message</span> <span class="err">%</span><span class="nt">&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;</span><span class="err">%</span> <span class="na">end</span> <span class="err">%</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;</span><span class="err">%</span> <span class="na">end</span> <span class="err">%</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"field has-addons"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"control"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">form.text_field</span> <span class="na">:name</span><span class="err">,</span> <span class="na">class:</span> <span class="err">"</span><span class="na">input</span><span class="err">",</span> <span class="na">placeholder:</span> <span class="err">"</span><span class="na">สิ่งที่จะทำ</span><span class="err">"</span> <span class="err">%</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"control"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">form.submit</span> <span class="err">"</span><span class="na">บันทึก</span><span class="err">",</span> <span class="na">class:</span> <span class="err">"</span><span class="na">button</span> <span class="na">is-primary</span><span class="err">"</span> <span class="err">%</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;</span><span class="err">%</span> <span class="na">end</span> <span class="err">%</span><span class="nt">&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>แก้ไข action <code class="highlighter-rouge">create</code> ใน <code class="highlighter-rouge">app/controllers/tasks_controller.rb</code> เพื่อใช้ในการบันทึกสิ่งที่จะทำใหม่</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
+  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="n">task_params</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เพิ่ม action <code class="highlighter-rouge">done</code> ใน <code class="highlighter-rouge">app/controllers/tasks_controller.rb</code> เพื่อใช้เปลี่ยน flag</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">don</span>
+  <span class="vi">@task</span><span class="p">.</span><span class="nf">update!</span><span class="p">(</span><span class="ss">done: </span><span class="o">!</span><span class="vi">@task</span><span class="p">.</span><span class="nf">done</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>แก้ไข action <code class="highlighter-rouge">destroy</code> ใน <code class="highlighter-rouge">app/controllers/tasks_controller.rb</code> เพื่อใช้ในการลบรายการที่ทำออก</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">destroy</span>
+  <span class="vi">@task</span><span class="p">.</span><span class="nf">destroy!</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>จะเห็นได้ว่าโค้ดในส่วนของการ render response ข้างต้นนั้นหายไปเลย นั้นเพราะว่าเราจะใช้ความสามารถของ <code class="highlighter-rouge">Turbo Stream</code> ในการส่ง HTML ไปยังหน้าเว็บผ่านทาง Websocket แทน ซึ่งเราจะเข้าไปแก้ไขที่ model <code class="highlighter-rouge">Task</code> ใน <code class="highlighter-rouge">app/models/task.rb</code></p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Task</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">after_create_commit</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">broadcast_append_to</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">partial: </span><span class="s1">'tasks/task'</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">task: </span><span class="nb">self</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="n">after_update_commit</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">broadcast_replace_to</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">target: </span><span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">downcase</span><span class="si">}</span><span class="s2">_</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="ss">partial: </span><span class="s1">'tasks/task'</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">task: </span><span class="nb">self</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="n">after_destroy_commit</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">broadcast_action_to</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">action: </span><span class="s2">"remove"</span><span class="p">,</span> <span class="ss">target: </span><span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">downcase</span><span class="si">}</span><span class="s2">_</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เพิ่ม <code class="highlighter-rouge">Turbo Stream</code> เข้าไปใน <code class="highlighter-rouge">index</code></p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+<span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"title"</span><span class="nt">&gt;</span>Todo<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;</span><span class="err">%=</span> <span class="na">turbo_stream_from</span> <span class="na">:tasks</span> <span class="err">%</span><span class="nt">&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>ที่นี้ในส่วนของการแก้ไขรายการสิ่งที่จะทำอันเก่านั้น เราจะใช้ form เดิมที่อยู่ด้านบน ดังนั้นเราจะต้องแก้ไข action <code class="highlighter-rouge">edit</code> และ <code class="highlighter-rouge">update</code> ใน <code class="highlighter-rouge">app/controllers/tasks_controller.rb</code></p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">edit</span>
+  <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+    <span class="nb">format</span><span class="p">.</span><span class="nf">turbo_stream</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">turbo_stream: </span><span class="n">turbo_stream</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="ss">:new_task</span><span class="p">,</span> <span class="ss">partial: </span><span class="s1">'tasks/turbo_form'</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">task: </span><span class="vi">@task</span> <span class="p">})</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">update</span>
+  <span class="vi">@task</span><span class="p">.</span><span class="nf">update!</span><span class="p">(</span><span class="n">task_params</span><span class="p">)</span>
+  <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+    <span class="nb">format</span><span class="p">.</span><span class="nf">turbo_stream</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">turbo_stream: </span><span class="n">turbo_stream</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="ss">:new_task</span><span class="p">,</span> <span class="ss">partial: </span><span class="s1">'tasks/turbo_form'</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">task: </span><span class="no">Task</span><span class="p">.</span><span class="nf">new</span> <span class="p">})</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เพิ่ม partial html <code class="highlighter-rouge">_turbo_form.html.erb</code> ใน <code class="highlighter-rouge">app/views/tasks</code></p>
+
+    <div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code># app/views/tasks/_edit.html.erb
+<span class="cp">&lt;%=</span> <span class="n">turbo_frame_tag</span> <span class="ss">:new_task</span> <span class="k">do</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">'form'</span><span class="p">,</span> <span class="ss">task: </span><span class="n">task</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เมื่อทดลองใช้งาน form ในการบันทึกหรือแก้ไข จะพบว่าข้อความที่อยู่ใน input ไม่ได้ถูกรีเซทเมื่อมีการบันทึกเรียบร้อยแล้ว ซึ่งเราจะใช้ <code class="highlighter-rouge">Stimulus</code> มาช่วยในการ reset ค่าที่อยู่ใน input สร้างไฟล์ <code class="highlighter-rouge">turbo_form_controller.js</code> ใน <code class="highlighter-rouge">app/assets/javascripts/controllers</code></p>
+  </li>
+  <li>
+    <p>ใส่ controller เข้าไปใน form</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="err">%=</span> <span class="na">form_with</span><span class="err">(</span><span class="na">model:</span> <span class="na">task</span><span class="err">,</span> <span class="na">local:</span> <span class="na">true</span><span class="err">,</span> <span class="na">data:</span> <span class="err">{</span> <span class="na">controller:</span> <span class="err">'</span><span class="na">turbo_form</span><span class="err">',</span> <span class="na">action:</span> <span class="err">"</span><span class="na">turbo:submit-end-</span><span class="nt">&gt;</span>turbo_form#reset" }) do |form| %&gt;
+...
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>เพียงเท่านี้เราก็จะได้แอพ ​TODO ที่พร้อมใช้งานดังแสดงในวิดีโอด้านล่าง</p>
+
+<video controls="" playsinline="">
+  <source src="/videos/awesome_todo.mov" type="video/mp4" />
+</video>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://turbo.hotwire.dev/">Turbo</a></li>
+  <li><a href="https://github.com/karn18/awesome_todo">Awesome Todo</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

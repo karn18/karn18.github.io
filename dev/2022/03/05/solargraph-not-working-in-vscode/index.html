@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>Solargraph not working in VSCode | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>Solargraph not working in VSCode</h1>
+
+  <p><strong>Solargraph</strong> เป็นอีกหนึ่ง intellisense ในฝั่งของ <strong>Ruby</strong> ที่จะทำให้เราสามารถใช้งาน Autocomplete พร้อมกับแสดง Documentation ได้บน <strong>VSCode</strong> ที่เราใช้งานพร้อมๆ กัน</p>
+
+<p><img src="/images/posts/2022/solargraph-not-working-in-vscode/solargraph-extension.png" alt="" width="400px" />
+<em>Solargraph Extension in VSCode</em></p>
+
+<p><img src="/images/posts/2022/solargraph-not-working-in-vscode/string-split.png" alt="" width="600px" />
+<em>String#split</em></p>
+
+<p>ทั้งๆ ที่เราติดตั้ง gem <code class="highlighter-rouge">solargraph</code> ไว้บนเครื่องแล้ว และติดตั้ง Ruby Solargraph Extension ไว้แล้ว แต่เมื่อเปิด <strong>VSCode</strong> ทีไร ก็จะมี Error ที่แจ้งว่าเรายังไม่พบ gem <code class="highlighter-rouge">solargraph</code> อยู่นั้นแหละ ทำให้ไม่สามารถใช้ Autocomplete ได้</p>
+
+<p><img src="/images/posts/2022/solargraph-not-working-in-vscode/solargraph-not-found.png" alt="" width="500px" />
+<em>Solargraph Gem Not Found</em></p>
+
+<p>ซึ่งวิธีแก้ไขก็คือให้เข้าไปแก้ไข <strong>path</strong> ของ solargraph.commandPath ใน Settings ให้ตรงกับ <strong>path</strong> ที่เรียกจากคำสั่ง <code class="highlighter-rouge">which solargraph</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ which solargraph
+/Users/karn/.rbenv/shims/solargraph
+</code></pre></div></div>
+
+<p><img src="/images/posts/2022/solargraph-not-working-in-vscode/solargraph.commandPath.png" alt="" width="600px" />
+<em>Solargraph#Command Path</em></p>
+
+<h1 id="references">References</h1>
+<ul>
+  <li><a href="https://solargraph.org">Solargraph</a></li>
+  <li><a href="https://stackoverflow.com/questions/55869119/solargraph-not-working-in-visual-studio-code">https://stackoverflow.com/questions/55869119/solargraph-not-working-in-visual-studio-code</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

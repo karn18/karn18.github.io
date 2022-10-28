@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>เรียนรู้เกี่ยวกับ Ruby Blocks | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>เรียนรู้เกี่ยวกับ Ruby Blocks</h1>
+
+  <p>หากเริ่มเขียน <strong>Ruby</strong> มาได้สักระยะหนึ่ง จะพบว่ามี <strong>syntax</strong> ที่เห็นอยู่บ่อยๆ เลยก็คือ <code class="highlighter-rouge">{}</code> หรือคำสั่ง <code class="highlighter-rouge">do/end</code> โดยมีโค้ดอยู่ภายในดังตัวอย่างด้านล่าง ซึ่งจะเรียกว่า <strong>Block</strong><!--more--></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example 1</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"Number is </span><span class="si">#{</span><span class="n">num</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
+
+<span class="c1"># Example 2</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">"Number is </span><span class="si">#{</span><span class="n">num</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<blockquote>
+  <table>
+    <tbody>
+      <tr>
+        <td>พารามิเตอร์ที่รับเข้ามาจะอยู่ภายในเครื่องหมาย</td>
+        <td>ในกรณีที่มีหลายพารามิเตอร์ก็จะใช้ , คั่น</td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<p>จะพูดให้ง่ายๆ <strong>Block</strong> ก็คือ <strong>Anonymous Function</strong> ที่ถูกนิยามขึ้นโดยไม่มีฟังก์ชัน และถูกเรียกใช้งานในทันที ซึ่งจะใช้ <code class="highlighter-rouge">{}</code> หรือ <code class="highlighter-rouge">do/end</code> ก็ได้ แต่ส่วนใหญ่เราจะใช้ <code class="highlighter-rouge">{}</code> ในกรณีที่โค้ดเรามีเพียงบรรทัดเดียว และจะใช้ <code class="highlighter-rouge">do/end</code> เมื่อโค้ดมีหลายบรรทัด ทั้งนี้ก็เพื่อความสวยงาม และอ่านได้ง่าย</p>
+
+<h2 id="references">References:</h2>
+<ul>
+  <li><a href="http://marcuscode.com/lang/ruby/variables-and-variable-scope">http://marcuscode.com/lang/ruby/variables-and-variable-scope</a></li>
+  <li><a href="https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/">https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

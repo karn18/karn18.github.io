@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>Ruby&#39;s Main Object | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>Ruby's Main Object</h1>
+
+  <p><strong>Ruby</strong> ถูกออกแบบขึ้นมาภายใต้หลักการของ <strong>Object</strong> นั้นทำให้ทุกสิ่งทุกอย่างที่อยู่ภายใต้การทำงาน <strong>Ruby</strong> ล้วนเป็น <strong>Object</strong> ทั้งหมด โดย <strong>Object</strong> ที่เป็น <strong>Top Level</strong> จะเรียกว่า <strong>Main Object</strong> ซึ่งเมธอดที่ถูกนิยามภายใต้ <strong>Main Object</strong> สามารถที่จะถูกเรียกจากที่ไหนก็ได้ ยกตัวอย่างเช่นการที่เราเรียกใช้เมธอด <code class="highlighter-rouge">puts</code>, <code class="highlighter-rouge">respond_to?</code> หรือ <code class="highlighter-rouge">is_a?</code> ได้ทุกๆ ที่<!--more--></p>
+
+<p>จริงๆ แล้ว <strong>Main Object</strong> จะถูกสร้างเป็น instance หนึงขึ้นมาเมื่อโปรแกรมรันหรือเปิด <strong>IRB</strong></p>
+
+<p><img src="/images/posts/2020/ruby-s-main-object/main_object.png" alt="main object" width="300px" />
+<em>Main Object ใน IRB</em></p>
+
+<p>เราสามารถนิยามเมธอดที่สามารถเรียกใช้งานได้จากทุกๆ ที่ได้ง่ายๆ เพียงแค่นิยามเมธอดไว้ด้านนอกคลาส หรือโมดูลเท่านั้น <strong>Ruby</strong> จะก็จะผูกเมธอดนั้นๆ เข้ากับ <strong>Main Object</strong> ให้เราโดยอัตโนมัติ</p>
+
+<p>ลองนิยามเมธอด <code class="highlighter-rouge">show_message</code> มาทดสอบกัน</p>
+
+<p><img src="/images/posts/2020/ruby-s-main-object/irb_define_method.png" alt="main object" width="600px" />
+<em>show_message in irb</em></p>
+
+<blockquote>
+  <p>สิ่งหนึ่งที่มีความแตกต่างกันระหว่างการนิยามเมธอดใน <strong>IRB</strong> กับในไฟล์ <strong>Ruby</strong> ก็คือ <strong>IRB</strong> จะผูกเมธอดที่นิยามในขอบเขตที่เป็น <strong>public</strong> แต่ในไฟล์จะถูกผูกในขอบเขตที่เป็น <strong>private</strong> อันนี้ต้องไปลองเล่นดูได้นะครับ จะได้เห็นความแตกต่าง</p>
+</blockquote>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what">https://engineering.appfolio.com/appfolio-engineering/2018/8/9/rubys-main-object-does-what</a></li>
+  <li><a href="https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/">https://codequizzes.wordpress.com/2014/04/23/rubys-main-object-top-level-context/</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

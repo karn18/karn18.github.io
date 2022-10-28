@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>เพิ่ม Staging Environment ให้กับ Rails | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>เพิ่ม Staging Environment ให้กับ Rails</h1>
+
+  <p>เมื่อเราสร้าง <strong>Rails Application</strong> ผ่านคำสั่ง <code class="highlighter-rouge">rails</code> ปกติแล้วจะมาพร้อมกับ <strong>config</strong> ของสภาพแวดล้อม 3 รูปแบบเป็นค่ามาตรฐาน</p>
+<ol>
+  <li>Development</li>
+  <li>Test</li>
+  <li>Production
+ซึ่งแต่ละสภาพแวดล้อมก็จะมีค่า <strong>config</strong> ต่างๆ ที่ถูกกำหนดมาให้แยกจากกัน ในโฟลเดอร์ <code class="highlighter-rouge">configs/environments/${ENV}.rb</code>
+<!--more--></li>
+</ol>
+
+<p>เพียงแค่ 3 สภาพแวดล้อมโดยปกติก็เพียงพอต่อการใช้งานแล้ว <strong>แต่ๆ</strong>ในบางครั้งเราก็อยากรันโปรแกรมในสภาพแวดล้อมที่เหมือนจริง แต่ไม่ใช่เครื่องเซิฟเวอร์ที่ปล่อยให้คนใช้งานจริง แต่จะเป็นเครื่องเซิฟเวอร์ที่อาจจะมีคุณลักษณะใกล้เคียงของจริง ที่เรียกว่า <strong>Staging Server</strong></p>
+
+<p>ซึ่งถ้าเป็นลักษณะเหตุการณ์แบบนี้ ถ้าวิธีการง่ายๆ เราก็คงเลือกใช้วิธีการแก้ไข <strong>config</strong> จากในสภาพแวดล้อม <strong>production</strong> ให้ทำการเชื่อมต่อฐานข้อมูล การต่อกับ <strong>sidekiq</strong> การต่อกับ <strong>redis</strong> ที่อยู่ในเครื่อง <strong>Stagging</strong> แทน สำหรับวิธีการนี้ดูเหมือนจะง่ายๆ แต่พอเราเริ่มมีการอัพเดตโค้ดผ่านการใช้ <strong>git</strong> หรือการใช้ automation อาจจะมีปัญหาเรื่องของ <strong>config</strong> ได้</p>
+
+<p>ดังนั้นวิธีการที่น่าจะเหมาะสมที่สุดก็คงจะเป็นการเพิ่มสภาพแวดล้อมใหม่สำหรับ <strong>Staging</strong> ซึ่งสามารถทำได้ดังนี้</p>
+
+<ul>
+  <li>สร้างไฟล์ <code class="highlighter-rouge">config/environments/staging.rb</code> ซึ่งแนะนำให้เราก๊อบปี้ไฟล์ <code class="highlighter-rouge">config/environments/production.rb</code> มาเลยจะดีกว่า</li>
+  <li>สร้างฐานข้อมูลใหม่สำหรับ <strong>Staging</strong> และกำหนดค่าการต่อฐานข้อมูลใน <code class="highlighter-rouge">config/database.rb</code> โดยการเพิ่ม <strong>config</strong> ของ <code class="highlighter-rouge">staging</code> เข้าไป</li>
+</ul>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">staging</span><span class="pi">:</span>
+  <span class="na">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="na">database</span><span class="pi">:</span> <span class="s1">'</span><span class="s">example_staging'</span>
+  <span class="na">host</span><span class="pi">:</span> <span class="s">localhost</span>
+  <span class="na">port</span><span class="pi">:</span> <span class="m">5434</span>
+  <span class="na">username</span><span class="pi">:</span> <span class="s">postgres</span>
+  <span class="na">password</span><span class="pi">:</span> <span class="s">postgres</span>
+</code></pre></div></div>
+
+<ul>
+  <li>จากนั้นในขั้นตอนการรันโปรแกรม จะต้องกำหนด <strong>RAILS_ENV</strong> ให้มีค่าเป็น <code class="highlighter-rouge">staging</code> 
+เพียงเท่านี้เราก็สามารถจะรันโปรแกรมในสภาพแวดล้อม <strong>Staging</strong> ได้</li>
+</ul>
+
+<h2 id="references">References:</h2>
+<ul>
+  <li><a href="https://nts.strzibny.name/creating-staging-environments-in-rails/">https://nts.strzibny.name/creating-staging-environments-in-rails</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

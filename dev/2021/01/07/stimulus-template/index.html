@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>Stimulus Template | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>Stimulus Template</h1>
+
+  <p>ด้วยความตั้งใจที่ว่าจะต้องแยกโค้ดจากโปรเจ็คออกมาเป็นโมดูลเท่าที่จะทำได้ ไม่ว่าจะเป็นในฝั่งของ Ruby หรือ JavaScript แต่ก็ไม่รู้ว่าจะเริ่มจากตรงไหนดี ก็เลยได้รีวิวโค้ดบางส่วนไป และก็พบว่าโปรเจ็คเราใช้ <strong>Stimulus</strong> อยู่ไม่น้อย เอาเป็นว่าเริ่มจากในฝั่ง JavaScript กันก่อนแล้วกัน ซึ่งคงต้องทำเป็น <strong>node module</strong> และเพื่อให้ง่ายต่อการพัฒนาในอนาคตก็เลยทำ <strong>Template</strong> หรือ <strong>Boilerplate</strong> ไว้ใช้ดีกว่า<!--more--></p>
+
+<h2 id="วิธีการใช้งาน">วิธีการใช้งาน</h2>
+
+<ul>
+  <li>
+    <p>โคลน <a href="https://github.com/karn18/stimulus-template">repository</a> ลงมาไว้ที่เครื่อง</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>git clone https://github.com/karn18/stimulus-template
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>ติดตั้ง dependencies ต่างๆ</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>yarn <span class="nb">install</span>
+  <span class="c"># npm install</span>
+</code></pre></div>    </div>
+  </li>
+  <li>แก้ไขชื่อโปรเจคในไฟล์ package.json</li>
+  <li>แก้ไขโค้ดในส่วนของ controller ใน <code class="highlighter-rouge">src/index.js</code></li>
+  <li>
+    <p>รัน <code class="highlighter-rouge">build</code> เพื่อ transpile โค้ดของเราผ่าน <code class="highlighter-rouge">rollup</code></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>yarn build
+  <span class="c"># npm build</span>
+</code></pre></div>    </div>
+  </li>
+  <li>เขียน test ใน <code class="highlighter-rouge">test/index.test.js</code></li>
+  <li>
+    <p>ทดสอบ controller ผ่าน <code class="highlighter-rouge">jest</code></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>yarn <span class="nb">test</span>
+  <span class="c"># npm test</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<!-- อันนี้เป็นเพียงขั้นแรกเท่านั้น ซึ่งพอนึกดูดีๆ แล้วเราสามารถนำ Stimulus Controller ที่เราจะแยกไปทำให้อยู่ในรูปของ gem น่าจะดีกว่า ไม่ว่าจะเป็นเรื่องของการติดตั้ง การเพิ่ม controller ตัวใหม่เข้าไปใน registry การจัดการกับ assets เอาเป็นว่าเดี่ยวจะมาอธิบายในบทความหน้าแล้วกัน  -->
+<p>เพียงเท่านี้เราก็สามารถจะพัฒนา <strong>stimulus controller</strong> ได้แล้ว</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://damonbauer.dev/posts/testing-stimulus-with-jest/">Testing Stimulus</a></li>
+  <li><a href="https://github.com/karn18/stimulus-template">Stimulus Template</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

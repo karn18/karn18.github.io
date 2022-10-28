@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>Our Spicy Stimulus Controllers | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>Our Spicy Stimulus Controllers</h1>
+
+  <p>เรามาลองรีวิว <strong>Stimulus Controllers</strong> ที่เราได้พัฒนาขึ้นมาใช้กันในโปรเจ็คต่างๆ ดูว่ามีอะไรกันบ้าง และเพิ่มความเผ็ดร้อนให้กับโค้ดของเราได้อย่างไร</p>
+
+<blockquote>
+  <p>เอาจริงเคยได้ยินมาว่า ตัวอย่างโค้ดก็เหมือนกับเครื่องปรุง (Ingredient) ที่สามารถหาได้ทั่วไปตามอินเทอร์เน็ต เพียงการมาเพิ่มความเผ็ดร้อน (Spicy) ก็ขึ้นอยู่ในการจะพลิกแพลงนำไปใช้งาน</p>
+</blockquote>
+
+<h2 id="spinner">Spinner</h2>
+
+<p>เป็น controller ที่ใช้แสดงสถานะว่ากำลังทำงานอยู่ เมื่อฟอร์มถูก <code class="highlighter-rouge">submit</code> โดยจะใส่ svg ที่เป็น spinner เข้าไปใน <code class="highlighter-rouge">button</code> แต่ในกรณีที่ใช้เป็น <code class="highlighter-rouge">input</code> ก็จะใส่ข้อความ  <code class="highlighter-rouge">Waiting...</code> เข้าไปแทน</p>
+
+<p><img src="/images/posts/2022/our-spicy-stimulus-controllers/spinner.png" alt="" width="400px" />
+<em>Spinner</em></p>
+
+<h2 id="toast">Toast</h2>
+
+<p>เป็น controller ที่ใช้แสดงข้อความแจ้งในลักษณะที่เป็น Toast โดยจะมีเวลาในการแสดงอยู่ ถ้าหมดเวลาก็จะปิดไปเองโดยอัตโนมัติ</p>
+
+<p><img src="/images/posts/2022/our-spicy-stimulus-controllers/toast.png" alt="" width="400px" />
+<em>Toast</em></p>
+
+<h2 id="sidebar">Sidebar</h2>
+
+<p>เป็น controller ที่ใช้จัดการกับเมนูเมื่อหน้าจอที่ใช้งานมีขนาดเล็ก โดยจะแสดงเมนู burger ขึ้นมาแทน และใช้การสไลด์ออกมาเมื่อคลิก เพื่อเพิ่มพื้นที่ในการแสดงผลหลักเมื่ออยู่บนหน้าจอขนาดเล็กนั้นเอง</p>
+
+<p><img src="/images/posts/2022/our-spicy-stimulus-controllers/sidebar.png" alt="" width="600px" />
+<em>Sidebar</em></p>
+
+<h2 id="infinite-scroll">Infinite Scroll</h2>
+
+<p>เป็น controller ที่ใช้ในการดึงข้อมูลแต่ละหน้ามาแสดง เพียงแต่แทนที่จะแสดงเป็น <strong>pagination</strong> เราได้นำเสนอผ่าน <strong>infinite scroll</strong> แทน</p>
+
+<p><img src="/images/posts/2022/our-spicy-stimulus-controllers/infinite-scroll.png" alt="" width="300px" />
+<em>Infinite Scroll</em></p>
+
+<h2 id="treeview">Treeview</h2>
+
+<p>เป็น controller ในการจัดการข้อมูลให้แสดงอยู่ในรูป Treeview เนื่องจากข้อมูลสามารถแบ่งได้หลายกลุ่ม และแต่ละกลุ่มก็จะมีข้อมูลย่อยๆ อีกภายใน</p>
+
+<p><img src="/images/posts/2022/our-spicy-stimulus-controllers/treeview.png" alt="" width="500px" />
+<em>Treeview</em></p>
+
+<h2 id="date-picker">Date Picker</h2>
+
+<p>เป็น controller ที่ใช้สำหรับแสดงตัวเลือกวัน เดือน ปีโดยจะเรียกใช้งานผ่าน <code class="highlighter-rouge">vanillajs-date-picker</code> อีกทีหนึ่ง</p>
+
+<p><img src="/images/posts/2022/our-spicy-stimulus-controllers/date-picker.png" alt="" width="300px" />
+<em>Date Picker</em></p>
+
+<h2 id="map">Map</h2>
+
+<p>เป็น controller ที่ใช้สำหรับแสดงผลแผนที่โดยเรียกใช้งานผ่าน <code class="highlighter-rouge">leaflet</code> และจัดการพล๊อตกราฟแบบ <strong>Choropleth</strong> เพื่อแสดงความเข้มข้นของข้อมูล</p>
+
+<p><img src="/images/posts/2022/our-spicy-stimulus-controllers/map.png" alt="" width="500px" />
+<em>Map</em></p>
+
+<p>จากที่เห็นข้างต้น เป็น controller เพียงส่วนหนี่งที่เราพัฒนาขึ้นมา และสามารถนำไป <strong>reuse</strong> ใช้กับโปรเจ็คอื่นๆ ได้ ทั้งนี้โค้ดส่วนใหญ่สามารถหาดูได้จากอินเทอร์เน็ต เพียงแต่เราอาจจะมาเพิ่มลูกเล่นบ้างอย่างเข้าไปให้เหมาะกับงานของเรา</p>
+
+</main>
+
+    </main>
+  </body>
+</html>

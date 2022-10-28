@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>เพิ่ม Component Importmap Autoloader เมื่อใช้งานร่วมกับ ​React หรือ Vue | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>เพิ่ม Component Importmap Autoloader เมื่อใช้งานร่วมกับ ​React หรือ Vue</h1>
+
+  <p>ต่อเนื่องจาก <a href="/karn.work/dev/2021/08/18/using-importmap-on-rails-6/">Using importmap on Rails 6</a> จะเห็นได้ว่าตัวอย่างโค้ดมีการใช้งาน Stimulus ซึ่งคอนโทรลเลอร์ที่ได้นิยามไว้ในโฟลเดอร์ <code class="highlighter-rouge">app/javascript/controllers</code> จะถูกนำเข้าไปรวมกับ <code class="highlighter-rouge">application.js</code> แบบอัตโนมัติทุกตัวผ่านโมดูล <code class="highlighter-rouge">stimulus-importmap-autoloader</code><!--more--></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus-importmap-autoloader</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<p>ส่วนคอมโพแนนท์ของ React หรือ Vue เราจะต้องใส่เพิ่มเข้าไปทีละคอมโพแนนท์ในไฟล์ <code class="highlighter-rouge">application.js</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="dl">'</span><span class="s1">components/reverse_component</span><span class="dl">'</span>
+<span class="k">import</span> <span class="dl">'</span><span class="s1">components/clock</span><span class="dl">'</span>
+</code></pre></div></div>
+
+<p>แบบคงไม่สะดวกแน่ ถ้าเราต้องมาเพิ่มคอมโพแนนท์ใหม่เข้าไปทุกๆ ครั้งเมื่อสร้างคอมโพแนนท์ใหม่ แน่นอนว่าเราจะต้องมี Autoloader สำหรับคอมโพแนนท์เหมือนกับ ​Stimulus ที่โหลดคอนโทรลเลอร์เข้าไปให้อัตโนมัติ ซึ่งเราก็ไปศึกษาโค้ด autoloader ของ Stimulus และนำมาปรับใช้กับคอนโพแนนท์แทน ดังนี้</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app/javascript/helpers/component-importmap-autloader.js</span>
+<span class="kd">const</span> <span class="nx">importmap</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">script[type=importmap]</span><span class="dl">"</span><span class="p">).</span><span class="nx">text</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">componentsPaths</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">importmap</span><span class="p">.</span><span class="nx">imports</span><span class="p">).</span><span class="nx">filter</span><span class="p">((</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="dl">"</span><span class="s2">components/</span><span class="dl">"</span><span class="p">))</span>
+
+<span class="nx">componentsPaths</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">"</span><span class="s2">components/</span><span class="dl">"</span><span class="p">,</span> <span class="dl">""</span><span class="p">)</span>
+  <span class="k">import</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">module</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">module</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Failed to autoload components: </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">error</span><span class="p">))</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>หลักการเบื้องต้นของโค้ด คือ</p>
+<ol>
+  <li>ไปค้นหาคอมโพแนนท์ทั้งหมดที่อยู่ใน script ซึ่งมี type เป็น importmap ซึ่งตรงนี้เกิดขึ้นจากโค้ดที่มีการเรียกใช้ <code class="highlighter-rouge">pin_all_from</code></li>
+  <li>โหลดคอมโพแนนท์ทั้งหมดเข้าไปโดยผ่านการใช้งาน dynamic import</li>
+</ol>
+
+<p>ด้วยวิธีการดังกล่าวสามารถทำให้เรานำเข้าคอมโพแนนท์ที่อยู่ภายใต้โฟลเดอร์ <code class="highlighter-rouge">app/javascript/components</code> ซึ่งไม่ว่าจะเป็น React หรือ Vue ก็จะถูกโหลดเข้าไปได้หมดเลย</p>
+
+<h1 id="references">References</h1>
+<ul>
+  <li><a href="https://github.com/hotwired/stimulus-rails/blob/main/app/assets/javascripts/stimulus-importmap-autoloader.js">Stimulus Importmap Autoloader</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports">Dynamic Import</a></li>
+  <li><a href="https://github.com/karn18/hot_espresso">โค้ดตัวอย่าง</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

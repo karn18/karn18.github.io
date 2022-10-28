@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>เติมแต่งสีสันให้กับข้อความใน Ruby | KT</title>
+
+<meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/karn.work/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>เติมแต่งสีสันให้กับข้อความใน Ruby</h1>
+
+  <p>เริ่มต้นปี 2564 กันด้วยบทความเบาๆ ก่อนแล้วกัน โดยวันนี้จะมาพูดถึงการเติมแต่งสีสันให้กับข้อความที่เราพ่นออกทาง terminal หรือ console ซึ่งการเพิ่มสีสันให้กับข้อความก็อาจจะทำให้เรามองเห็นได้ง่ายขึ้น หรือสนุกกับการอ่าน log ก็เป็นได้<!--more--></p>
+
+<p>วิธีการที่จะเพิ่มสีสันให้กับข้อความก็ง่ายๆ เพียงใช้ Gem ซึ่งจะแนะนำด้วยกัน 2 ตัว คือ <code class="highlighter-rouge">Colorize gem</code> และ <code class="highlighter-rouge">Rainbow gem</code> โดยทั้งสองตัวมีความสามารถที่คล้ายคลึงกัน แต่ถ้าดูในเรื่องการอัพเดตก็คงต้องเลือก <code class="highlighter-rouge">Rainbow</code> เพราะ <code class="highlighter-rouge">Colorize</code> นั้นดูแล้วไม่ได้รับการอัพเตดมามากว่า 2 ปีแล้ว</p>
+
+<h2 id="rainbow">Rainbow</h2>
+
+<p>สำหรับวิธีการใช้งาน Rainbow นั้นสามารถทำได้ 2 วิธี คือ</p>
+
+<ol>
+  <li>
+    <p>เรียกผ่าน Presentation Object</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">require</span> <span class="s2">"rainbow"</span>
+
+ <span class="nb">puts</span> <span class="no">Rainbow</span><span class="p">(</span><span class="s2">"Hello World"</span><span class="p">).</span><span class="nf">green</span><span class="p">.</span><span class="nf">underline</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>ใช้ Refinement เพื่อเพิ่มความสามารถให้กับ String</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">require</span> <span class="s2">"rainbow/refinement"</span>
+ <span class="n">using</span> <span class="no">Rainbow</span>
+
+ <span class="nb">puts</span> <span class="s2">"Hello World"</span><span class="p">.</span><span class="nf">blue</span><span class="p">.</span><span class="nf">underline</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>จากโค้ดข้างต้นจะให้ผลลัพท์เหมือนกันดังแสดงในรูปด้านล่าง</p>
+
+<p><img src="/images/posts/2021/colorizing-text-in-ruby/rainbow_1.png" alt="rainbow_1" width="500px" />
+<em>Colorizing 1</em></p>
+
+<p>นอกจากสีที่เป็น ANSI แล้ว เรายังสามารถใช้สีที่เป็น RGB ได้ด้วย ไม่ว่าจะใช้เป็น Hex String หรือ Decimal</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">puts</span> <span class="no">Rainbow</span><span class="p">(</span><span class="s2">"Blue Green Color"</span><span class="p">).</span><span class="nf">color</span><span class="p">(</span><span class="s2">"15b5b0"</span><span class="p">)</span> <span class="c1"># .color(21, 181, 176) </span>
+</code></pre></div></div>
+
+<p><img src="/images/posts/2021/colorizing-text-in-ruby/rainbow_2.png" alt="rainbow_2" width="500px" />
+<em>Colorizing 2</em></p>
+
+<p>เพิ่มความ advance ให้กับการแสดงผลอีกหน่อย โดยการแสดงข้อความแบบไล่สี</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'009292'</span><span class="p">,</span> <span class="s1">'f65156'</span><span class="p">,</span> <span class="s1">'88070b'</span><span class="p">,</span> <span class="s1">'ffce13'</span><span class="p">]</span> <span class="c1"># Color from https://www.canva.com/colors/color-palettes/fluorescent-fruit/</span>
+<span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="nb">puts</span> <span class="s2">"What a Wonderful World"</span><span class="p">.</span><span class="nf">chars</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">char</span><span class="o">|</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="no">Rainbow</span><span class="p">(</span><span class="n">char</span><span class="p">).</span><span class="nf">color</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">colors</span><span class="p">.</span><span class="nf">size</span><span class="p">])</span> <span class="p">}.</span><span class="nf">join</span>
+</code></pre></div></div>
+
+<p><img src="/images/posts/2021/colorizing-text-in-ruby/rainbow_3.png" alt="rainbow_2" width="500px" />
+<em>Colorizing 3</em></p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://github.com/sickill/rainbow">Rainbow gem</a></li>
+  <li><a href="https://github.com/fazibear/colorize">Colorize gem</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>
