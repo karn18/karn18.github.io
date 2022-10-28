@@ -9,19 +9,19 @@
 
 <meta name="description" content="Write an awesome description for your new site here. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
 
-<link rel="stylesheet" href="/karn.work/_bridgetown/static/index.KTVN5CND.css" />
+<link rel="stylesheet" href="/_bridgetown/static/index.MFT3TNYN.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 <script type="module">
   import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
 </script>
-<script src="/karn.work/_bridgetown/static/index.OWF3DFHJ.js" defer></script>
+<script src="/_bridgetown/static/index.TU2OTUPV.js" defer></script>
 
 
   </head>
   <body class="post ">
     <nav>
   <ul>
-    <li><a href="/karn.work/">Home</a></li>
+    <li><a href="/">Home</a></li>
     
     
   </ul>
@@ -33,7 +33,7 @@
 
   <p>แม้ว่า <strong>Rails</strong> จะอัพเดตเป็นเวอร์ชัน 7 แล้วแต่ <strong>Sprocket</strong> ก็ถือเป็นอีกหนึ่งไลบราลีที่ยังคงผูกอยู่กับ <strong>Rails</strong> เพื่อใช้ในการจัดการคอมไฟล์ และดูแลจัดการ assets ต่างๆ ด้วย ยิ่งในระดับโปรดักชันแล้ว <strong>Sprocket</strong> จะช่วยทำ fingering ไฟล์ assets ต่างๆ เพื่อใช้สำหรับ caching อีกด้วย<!--more--></p>
 
-<p>และจากบทความเรื่อง<a href="/karn.work/dev/2021/08/18/using-importmap-on-rails-6/">Rails+Rollup+Dynamic Import</a> เราก็มีการพูดถึงการใช้ <strong>Dynamic Import</strong> ซึ่งก็พยายามแก้ไข <strong>Rollup</strong> ให้สร้าง fingerprint ด้วยการเข้ารหัสผ่านอัลกอริทึม SHA256 เพื่อนำไปใช้งานใน <strong>Rails</strong> แทนที่ <strong>Webpack</strong> ให้ได้</p>
+<p>และจากบทความเรื่อง<a href="/dev/2021/08/18/using-importmap-on-rails-6/">Rails+Rollup+Dynamic Import</a> เราก็มีการพูดถึงการใช้ <strong>Dynamic Import</strong> ซึ่งก็พยายามแก้ไข <strong>Rollup</strong> ให้สร้าง fingerprint ด้วยการเข้ารหัสผ่านอัลกอริทึม SHA256 เพื่อนำไปใช้งานใน <strong>Rails</strong> แทนที่ <strong>Webpack</strong> ให้ได้</p>
 
 <p>แต่นั้นก็ดูเป็นแค่วิธีการแก้ไขเฉพาะหน้าเท่านั้น เพราะดูเหมือนว่า JS Bundling แต่ละตัวก็เลือกอัลกอริทึมที่แตกต่างกัน และมีแนวทางพัฒนาที่แตกต่างกัน ทำให้การแก้ไขดังกล่าวอาจจะไม่ถูกยอมรับ และไม่ถูก PR เข้ากับรีโปของโค้ดหลักก็ได้ เพราะด้วยความที่มีคนเจอปัญหาเช่นเดียวกัน เลยทำให้เกิด <a href="https://github.com/rails/sprockets/pull/714">PR</a> ที่จะตรวจสอบไฟล์ assets ถ้าหากไฟล์ใดมีการเข้ารหัสถูกต้องตามอัลกอรีทึมที่ถูกต้องแล้ว เช่น MD5, SHA1, SHA256 เป็นต้น ก็จะไม่จำเป็นต้อง fingering ซ้ำเข้าไปในชื่อไฟล์</p>
 
