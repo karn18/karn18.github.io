@@ -15,8 +15,8 @@
 <meta property="og:locale" content="th" />
 <meta name="description" content="เมื่ออัพเดต Ruby เวอร์ชัน 3.1.x ไม่สำเร็จ จะเป็นเพราะเหตุใดมาลองติดตามกันดู" />
 <meta property="og:description" content="เมื่ออัพเดต Ruby เวอร์ชัน 3.1.x ไม่สำเร็จ จะเป็นเพราะเหตุใดมาลองติดตามกันดู" />
-<link rel="canonical" href="https://karn18.github.io/dev/2022/06/11/can-not-install-ruby-3-1-2-with-rbenv-on-mac/" />
-<meta property="og:url" content="https://karn18.github.io/dev/2022/06/11/can-not-install-ruby-3-1-2-with-rbenv-on-mac/" />
+<link rel="canonical" href="http://localhost:4000/dev/2022/06/11/can-not-install-ruby-3-1-2-with-rbenv-on-mac/" />
+<meta property="og:url" content="http://localhost:4000/dev/2022/06/11/can-not-install-ruby-3-1-2-with-rbenv-on-mac/" />
 <meta property="og:site_name" content="KT" />
 <meta property="og:image" content="https://surfup.karn.work/covers/835ddb9c80/f8e237b5bd.png" />
 <meta property="og:image:height" content="630" />
@@ -35,7 +35,35 @@
 </script>
 <script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
 <script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+<script type="module">let lastmod = 0
+function startReloadConnection() {
+  const evtSource = new EventSource("/_bridgetown/live_reload")
+  evtSource.onmessage = event => {
+    if (event.data == "reloaded!") {
+      location.reload()
+    } else {
+      const newmod = Number(event.data)
+      if (lastmod > 0 && newmod > 0 && lastmod < newmod) {
+        location.reload()
+      } else {
+        lastmod = newmod
+      }
+    }
+  }
+  evtSource.onerror = event => {
+    if (evtSource.readyState === 2) {
+      // reconnect with new object
+      evtSource.close()
+      console.warn("Live reload: attempting to reconnect in 3 seconds...")
 
+      setTimeout(() => startReloadConnection(), 3000)
+    }
+  }
+}
+setTimeout(() => {
+  startReloadConnection()
+}, 500)
+</script>
 
   </head>
   <body class="post ">

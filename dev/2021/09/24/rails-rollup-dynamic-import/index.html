@@ -15,16 +15,16 @@
 <meta property="og:locale" content="th" />
 <meta name="description" content="เมื่อต้องทำงานร่วมกันระหว่าง Rails, Rollup และ Dynamic Import" />
 <meta property="og:description" content="เมื่อต้องทำงานร่วมกันระหว่าง Rails, Rollup และ Dynamic Import" />
-<link rel="canonical" href="https://karn18.github.io/dev/2021/09/24/rails-rollup-dynamic-import/" />
-<meta property="og:url" content="https://karn18.github.io/dev/2021/09/24/rails-rollup-dynamic-import/" />
+<link rel="canonical" href="http://localhost:4000/dev/2021/09/24/rails-rollup-dynamic-import/" />
+<meta property="og:url" content="http://localhost:4000/dev/2021/09/24/rails-rollup-dynamic-import/" />
 <meta property="og:site_name" content="KT" />
-<meta property="og:image" content="https://karn18.github.io/images/posts/2021/rails-rollup-dynamic-import/cover.png" />
+<meta property="og:image" content="http://localhost:4000/images/posts/2021/rails-rollup-dynamic-import/cover.png" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-09-24T13:50:00+07:00" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://karn18.github.io/images/posts/2021/rails-rollup-dynamic-import/cover.png" />
+<meta property="twitter:image" content="http://localhost:4000/images/posts/2021/rails-rollup-dynamic-import/cover.png" />
 <meta property="twitter:title" content="Rails+Rollup+Dynamic Import" />
 <!-- End Bridgetown SEO tag -->
 
@@ -35,7 +35,35 @@
 </script>
 <script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
 <script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+<script type="module">let lastmod = 0
+function startReloadConnection() {
+  const evtSource = new EventSource("/_bridgetown/live_reload")
+  evtSource.onmessage = event => {
+    if (event.data == "reloaded!") {
+      location.reload()
+    } else {
+      const newmod = Number(event.data)
+      if (lastmod > 0 && newmod > 0 && lastmod < newmod) {
+        location.reload()
+      } else {
+        lastmod = newmod
+      }
+    }
+  }
+  evtSource.onerror = event => {
+    if (evtSource.readyState === 2) {
+      // reconnect with new object
+      evtSource.close()
+      console.warn("Live reload: attempting to reconnect in 3 seconds...")
 
+      setTimeout(() => startReloadConnection(), 3000)
+    }
+  }
+}
+setTimeout(() => {
+  startReloadConnection()
+}, 500)
+</script>
 
   </head>
   <body class="post ">
