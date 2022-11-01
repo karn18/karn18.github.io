@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>ลาก่อน wkhtmltopdf และยินดีต้อนรับ Puppeteer | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>ลาก่อน wkhtmltopdf และยินดีต้อนรับ Puppeteer | KT</title>
+<meta property="og:title" content="ลาก่อน wkhtmltopdf และยินดีต้อนรับ Puppeteer" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="wkhtmltopdf เป็นหนึ่งในเครื่องมือที่ใช้ออกรายงาน PDF ซึ่งเราเองก็ได้ใช้มาเป็นเวลานาน แต่ด้วยปัญหาการใช้ต่างๆ รวมถึงการที่ตัวเครื่องมือเองไม่ค่อยได้รับการอัพเดต ทำให้ต้องมองหาเครื่องมือตัวอื่นมาทดแทนและก็ได้พบกับ Puppeteer ซึ่งเป็นฮีโร่มาช่วยเราไว้" />
+<meta property="og:description" content="wkhtmltopdf เป็นหนึ่งในเครื่องมือที่ใช้ออกรายงาน PDF ซึ่งเราเองก็ได้ใช้มาเป็นเวลานาน แต่ด้วยปัญหาการใช้ต่างๆ รวมถึงการที่ตัวเครื่องมือเองไม่ค่อยได้รับการอัพเดต ทำให้ต้องมองหาเครื่องมือตัวอื่นมาทดแทนและก็ได้พบกับ Puppeteer ซึ่งเป็นฮีโร่มาช่วยเราไว้" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="/images/posts/2022/bye-bye-wkhtmltopdf-welcome-puppeteer/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-05T18:15:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/posts/2022/bye-bye-wkhtmltopdf-welcome-puppeteer/cover.png" />
+<meta property="twitter:title" content="ลาก่อน wkhtmltopdf และยินดีต้อนรับ Puppeteer" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>ลาก่อน wkhtmltopdf และยินดีต้อนรับ Puppeteer</h1>
+
+  <p>บทความนี้จะเล่าถึงเส้นทางการเปลี่ยนเครื่องมือที่ใช้ในการออกรายงาน PDF ซึ่งก่อนหน้านี้เราได้ใช้ <strong>wkhtmltopdf</strong> อยู่หลายโปรเจ็คด้วยกัน ซึ่งปัญหาที่ทำให้ตัดสินใจต้องหาเครื่องมือมาทดแทนเกิดจากขยัก 2 ขยักด้วยกัน</p>
+
+<ol>
+  <li>
+    <p>การใช้งาน gem <code class="highlighter-rouge">wicked_pdf</code> ซึ่งเป็น wrapper ในการเรียกใช้งาน <strong>wkthtmltopdf</strong> กับ <strong>Rails</strong> ที่ไม่ได้ใช้ gem <code class="highlighter-rouge">sprockets</code> จะมีปัญหาในการใช้งาน helper tag (<code class="highlighter-rouge">javascript_include_tag</code>) สำหรับนำเข้า <strong>CSS</strong> เข้ามาใน <strong>HTML</strong> ทำให้ต้องเขียน helper tag ใหม่ขึ้นมาจัดการ</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># /app/helpers/wicked_pdf_helper.rb</span>
+ <span class="k">module</span> <span class="nn">WickedPdfHelper</span>
+   <span class="k">def</span> <span class="nf">wicked_pdf_stylesheet_include_tag</span><span class="p">(</span><span class="o">*</span><span class="n">sources</span><span class="p">)</span>
+     <span class="n">stylesheet_contents</span> <span class="o">=</span> <span class="n">sources</span><span class="p">.</span><span class="nf">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">source</span><span class="o">|</span>
+       <span class="s2">"&lt;style type='text/css'&gt;</span><span class="si">#{</span><span class="n">read_stylesheet</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/style&gt;"</span>
+     <span class="k">end</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+     <span class="n">stylesheet_contents</span><span class="p">.</span><span class="nf">html_safe</span>
+   <span class="k">end</span>
+
+   <span class="k">def</span> <span class="nf">pdf_stylesheet_include_tag</span><span class="p">(</span><span class="o">*</span><span class="n">sources</span><span class="p">)</span>
+     <span class="n">sources</span><span class="p">.</span><span class="nf">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">source</span><span class="o">|</span>
+       <span class="n">read_stylesheet</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+     <span class="k">end</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+   <span class="k">end</span>
+
+   <span class="k">def</span> <span class="nf">read_stylesheet</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+     <span class="k">if</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">env</span> <span class="o">==</span> <span class="s2">"development"</span>
+       <span class="n">origin</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="nf">protocol</span> <span class="o">+</span> <span class="n">request</span><span class="p">.</span><span class="nf">host_with_port</span>
+       <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="n">origin</span><span class="si">}</span><span class="s2">/assets/</span><span class="si">#{</span><span class="n">source</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+       <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+     <span class="k">else</span> 
+       <span class="c1"># Read assets from local file</span>
+       <span class="no">IO</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="p">,</span> <span class="s1">'public'</span><span class="p">,</span> <span class="n">asset_path</span><span class="p">(</span><span class="n">source</span><span class="p">)).</span><span class="nf">to_s</span><span class="p">)</span>
+     <span class="k">end</span>
+   <span class="k">end</span>
+ <span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>เมื่อทำการแก้ไขปัญหานำเข้า <strong>CSS</strong> ไปแล้วก็ต้องมาเจอกับปัญหาอีกขยัก ซึ่งเป็นความไม่ยืดหยุ่นในการใช้งาน ไม่ว่าจะเป็น <strong>CSS</strong> ที่ไม่สามารถใช้ <strong>Flex</strong> ได้ การแสดงผลฟ้อนต์ที่ต้องติดตั้งในเครื่อง และไม่สามารถใช้ผ่าน <strong>HTTP</strong> ได้</p>
+
+    <p>เมื่อได้ค้นหาและทดลองเปลี่ยนมาใช้ <strong>Puppeteer</strong> ผ่าน gem <code class="highlighter-rouge">groover</code> ก็ให้ประสบการณ์การใช้งานที่ไม่ได้แตกต่างกับการใช้ <strong>wkhtmltopdf</strong> แถมยังทำให้การพัฒนา <strong>CSS</strong> สำหรับ PDF ทำได้ง่ายขึ้น และแสดงผลได้ตรงมากขึ้น</p>
+
+    <p>สำหรับวิธีการเรียกใช้ก็ปรับเปลี่ยนแค่เล็กน้อย ดังแสดงในโค้ดด้านล่าง</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">## Groover &amp; Peppeteer</span>
+ <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+   <span class="nb">format</span><span class="p">.</span><span class="nf">pdf</span> <span class="k">do</span>
+     <span class="n">render</span> <span class="ss">pdf: </span><span class="s2">"price_tag.pdf"</span><span class="p">,</span> <span class="ss">template: </span><span class="s2">"tag_buckets/price_tag"</span><span class="p">,</span> <span class="ss">layout: </span><span class="s2">"pdf"</span>
+   <span class="k">end</span>
+ <span class="k">end</span>
+
+ <span class="c1">## Wicked PDF &amp; wkhtmltopdf</span>
+ <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+   <span class="nb">format</span><span class="p">.</span><span class="nf">pdf</span> <span class="k">do</span>
+     <span class="n">html</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">({</span>
+       <span class="ss">template: </span><span class="s1">'tag_buckets/price_tag'</span><span class="p">,</span>
+       <span class="ss">layout: </span><span class="s1">'pdf'</span>
+     <span class="p">})</span>
+     <span class="n">send_data</span><span class="p">(</span><span class="no">Grover</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">html</span><span class="p">).</span><span class="nf">to_pdf</span><span class="p">,</span> <span class="ss">disposition: </span><span class="s1">'inline'</span><span class="p">,</span> <span class="ss">filename: </span><span class="s2">"price_tag.pdf"</span><span class="p">,</span> <span class="ss">type: </span><span class="s1">'application/pdf'</span><span class="p">)</span>
+   <span class="k">end</span>
+ <span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="references">References:</h2>
+<ul>
+  <li><a href="https://wkhtmltopdf.org/">wkhtmltopdf</a></li>
+  <li><a href="https://github.com/mileszs/wicked_pdf">Wicked PDF</a></li>
+  <li><a href="https://github.com/Studiosity/grover">Groover</a></li>
+  <li><a href="https://github.com/puppeteer/puppeteer">Peppeteer</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>ป้ายไฟแสดงชื่อด้วย micro:bit | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>ป้ายไฟแสดงชื่อด้วย micro:bit | KT</title>
+<meta property="og:title" content="ป้ายไฟแสดงชื่อด้วย micro:bit" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="/images/posts/2020/moving-display/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-25T15:29:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/posts/2020/moving-display/cover.png" />
+<meta property="twitter:title" content="ป้ายไฟแสดงชื่อด้วย micro:bit" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>ป้ายไฟแสดงชื่อด้วย micro:bit</h1>
+
+  <p><strong>micro:bit</strong> สามารถนำมาทำเป็นป้ายไฟได้ด้วยนะ ซึ่งการเขียนโค้ดแสดงป้ายไฟนี้
+น้องๆ จะได้เรียนรู้การแสดงผลตัวอักษรผ่านบล็อก <strong>show leds</strong> การหน่วงเวลาการแสดงผลโดยใช้บล็อก <strong>pause</strong> และการทำงานของโปรแกรมต่อเนื่องตามลำดับจากบล็อกสู่บล็อก 🌈<!--more--></p>
+
+<h2 id="เริ่มต้นกันเลย">เริ่มต้นกันเลย</h2>
+
+<ul>
+  <li>เปิดโปรแกรม <strong>Microsoft MakeCode</strong> ขึ้นมาและสร้างโปรเจคใหม่ว่า <strong>ป้ายไฟ</strong></li>
+</ul>
+
+<p><img src="/images/posts/2020/moving-display/new_project.png" alt="new project" />
+<em>สร้างโปรเจค ป้ายไฟ</em></p>
+
+<ul>
+  <li>สำหรับป้ายไฟปกติแล้วจะแสดงข้อความวนไปเรื่อยๆ ดังนั้นเราจะใช้บล็อก <strong>forever</strong> เพื่อให้โปรแกรมสามารถทำงานวนไปเรื่อยๆ ไม่มีที่สิ้นสุดได้</li>
+</ul>
+
+<p><img src="/images/posts/2020/moving-display/makecode1.png" alt="makecode1" />
+<em>บล็อก leds ต่อเข้ากับบล็อก forever</em></p>
+
+<ul>
+  <li>ป้ายไฟในวันนี้จะแสดงชื่อของเราเอง ซึ่งป้ายไฟของผมก็จะเป็น <code class="highlighter-rouge">KARN</code></li>
+  <li>เริ่มลากบล็อก <strong>show leds</strong> มาต่อกับบล็อก <strong>forever</strong> จากนั้นปรับ leds ให้แสดงตัวอักษร โดยแต่ละบล็อกแสดง 1 ตัวอักษรเท่านั้น</li>
+</ul>
+
+<p><img src="/images/posts/2020/moving-display/makecode2.png" alt="makecode2" width="200px" />
+<em>ปรับบล็อก show leds ให้แสดงตัวอักษร K</em></p>
+
+<ul>
+  <li>ต่อตัวอักษรให้เป็นคำตามที่ต้องการ และตรวจสอบผลลัพท์บนบอร์ด <strong>micro:bit</strong> จำลอง</li>
+</ul>
+
+<p><img src="/images/posts/2020/moving-display/simulator1.gif" alt="simulator1" />
+<em>ป้ายไฟแสดงข้อความ KARN</em></p>
+
+<ul>
+  <li>จะสังเกตเห็นว่าตอนนี้ตัวอักษรจะวิ่งค่อนข้างเร็ว จนทำให้ตาเรามองมันทันว่าป้ายไฟของเราพยายามจะแสดงคำว่าอะไร</li>
+  <li>เพื่อหน่วงเวลาในการแสดงผลตัวอักษรแต่ละตัวให้ช้าขึ้น ให้เราลากบล็อก <strong>pause</strong> ระหว่างตัวอักษร</li>
+</ul>
+
+<p><img src="/images/posts/2020/moving-display/makecode3.png" alt="simulator1" />
+<em>บล็อก pause</em></p>
+
+<ul>
+  <li>ทดลองปรับเวลาในการหน่วงบนบล็อก <strong>pause</strong> และสังเกตความแตกต่าง</li>
+</ul>
+
+<p><img src="/images/posts/2020/moving-display/makecode4.png" alt="simulator1" width="200px" />
+<em>บล็อกคำสั่งที่สมบูรณ์</em></p>
+
+<p><img src="/images/posts/2020/moving-display/simulator2.gif" alt="simulator1" />
+<em>ป้ายไฟที่ปรับความเร็วในการแสดงผลแล้ว</em></p>
+
+<blockquote>
+  <p>💡 นอกจากการใช้บล็อก <strong>show leds</strong> มาใช้แสดงตัวอักษร เรายังสามารถใช้บล็อก <strong>show string</strong> มาใช้แทนได้ด้วยนะ ลองไปทดลองเล่นกันดู</p>
+</blockquote>
+
+<ul>
+  <li>เมื่อปรับเปลี่ยนความเร็วในการแสดงผลเป็นที่พอใจแล้ว ที่นี่เรามาโหลดโปรแกรมเข้าไปยัง <strong>micro:bit</strong> ดู</li>
+</ul>
+
+<p><img src="/images/posts/2020/moving-display/microbit.gif" alt="microbit" />
+<em>รันโค้ดป้ายไฟบน micro:bit</em></p>
+
+
+</main>
+
+    </main>
+  </body>
+</html>

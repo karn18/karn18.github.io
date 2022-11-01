@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>Micro:bit v2 | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>Micro:bit v2 | KT</title>
+<meta property="og:title" content="Micro:bit v2" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="/images/posts/2020/micro-bit-v2/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-13T13:32:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/posts/2020/micro-bit-v2/cover.png" />
+<meta property="twitter:title" content="Micro:bit v2" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>Micro:bit v2</h1>
+
+  <p>เรียกได้ว่าเปิดตัวกันแบบร้อนๆ ในวันนี้ (13/10/2020) ที่ทาง <strong>micro:bit Education Foundcation</strong> ได้ประกาศเปิดตัว <strong>micro:bit</strong> เวอร์ชัน 2 แล้วมีอะไรบ้างที่เปลี่ยนไปและเพิ่มเข้ามาในตัว <strong>micro:bit</strong> กันบ้าง เรามาดูกันครับ</p>
+
+<ul>
+  <li>โปรเซสเซอร์ตัวใหม่ nRF52833 ARM Cortex M4 ซึ่งแรงกว่าเดิม พร้อมโหมดประหยัดไฟ</li>
+  <li>แมมโมรี่ขนาด 152kB และแรม 128kB</li>
+  <li>มีลำโพง และไมโครโฟนในตัว ทำให้เราสามารถที่จะตรวจจับเสียง และร้องเพลงได้โดยไม่ต้องต่ออุปกรณ์นอกใดๆ</li>
+  <li>เพิ่มตัว Touch Sensor บนตัวโลโก้ทำให้รับรู้ได้ทันทีเมื่อมีการสัมผัส</li>
+  <li>Notched Edge Connector ที่เพิ่มส่วนเว้าให้กับขอบแผ่นวงจร เพื่อให้ปากคีบจระเข้ทำการหนีบได้ง่ายขึ้น</li>
+  <li>เปลี่ยนมาใช้ Bluetooth มาตรฐานเวอร์ชัน 5.0<!--more--></li>
+</ul>
+
+<p><img src="/images/posts/2020/micro-bit-v2/comparison-front.png" alt="Front" />
+<em>เปรียบเทียบด้านหน้าระหว่าง v1.5 กับ v2</em></p>
+
+<p><img src="/images/posts/2020/micro-bit-v2/comparison-front.png" alt="Back" />
+<em>เปรียบเทียบด้านหลังระหว่าง v1.5 กับ v2</em></p>
+
+<p>แน่นอนว่าเมื่อตัวบอร์ดมีการเพิ่มฟังก์ชันลำโพง ไมโครโฟน และ Touch Sensor ที่โลโก้เข้ามา ในส่วนของ <strong>Microsoft MakeCode</strong> ก็ต้องมีการเพิ่มบล็อกใหม่เข้าไปรองรับการทำงานเช่นกัน ขอยกตัวอย่างบางส่วนแล้วกันเช่น</p>
+
+<h2 id="on-loudquit-sound">On loud/quit Sound</h2>
+
+<p><img src="/images/posts/2020/micro-bit-v2/loudsound.png" alt="Logo Pressed" width="200px" />
+<em>เมื่อมีเสียงดังหรือเงียบ</em></p>
+
+<h2 id="on-logo-pressed">On Logo Pressed</h2>
+
+<p><img src="/images/posts/2020/micro-bit-v2/onLogoPressed.png" alt="Logo Pressed" width="200px" />
+<em>เมื่อสัมผัสที่โลโก้</em></p>
+
+<h2 id="sound-level">Sound Level</h2>
+
+<p><img src="/images/posts/2020/micro-bit-v2/soundLevel.png" alt="Sound Level" width="200px" />
+<em>ค่าระดับเสียงที่อ่านได้จากบอร์ด</em></p>
+
+<h2 id="enabledisable-speaker">Enable/disable Speaker</h2>
+
+<p><img src="/images/posts/2020/micro-bit-v2/speakerEnabled.png" alt="Enable/disable Speaker" width="300px" />
+<em>เปิด/ปิดลำโพง</em></p>
+
+<p>มีการเพิ่มฟังก์ชันเข้ามาพอสมควรเลย ชักอยากจะได้มาเล่นซะตอนนี้เลยทีเดียว แต่กว่าจะวางจำหน่ายก็ประมาณเดือน <strong>พฤศจิกายน 2020</strong> ซึ่งราคาที่วางจำหน่ายจะยังคงเท่าเดิม สำหรับราคาในไทยนั้นจะเป็นเท่าไหรก็รอดูอีกทีนะครับ</p>
+
+<p>ไม่เป็นไรรอหน่อยแล้วใจ ถ้าผมหาซื้อเจ้า v2 มาได้เมื่อไหร่จะรีบนำมารีวิว และผลิดสื่อการสอนใหม่ๆ มาสอนน้องนะครับ</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://microbit.org/news/">https://microbit.org/news/</a></li>
+  <li><a href="https://tech.microbit.org/latest-revision/#overview">Details of micro:bit v2</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

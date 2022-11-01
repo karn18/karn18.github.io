@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>ปรับแต่งโค้ดไฮไลท์ใน Jekyll | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>ปรับแต่งโค้ดไฮไลท์ใน Jekyll | KT</title>
+<meta property="og:title" content="ปรับแต่งโค้ดไฮไลท์ใน Jekyll" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="/images/posts/2019/syntax-hightlight-in-jekyll/cover.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-11T12:06:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/posts/2019/syntax-hightlight-in-jekyll/cover.png" />
+<meta property="twitter:title" content="ปรับแต่งโค้ดไฮไลท์ใน Jekyll" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>ปรับแต่งโค้ดไฮไลท์ใน Jekyll</h1>
+
+  <p>สำหรับการเขียนบทความที่มีการใส่โค้ดลงไปด้วยนั้น ทำให้ผู้อ่านได้เห็นตัวอย่างเข้าใจเนื้อหาเกี่ยวกับการเขียนโปรแกรมได้ดียิ่งขึ้น หรือแม้กระทั่งเป็นตัวอย่างเพื่อนำไปพัฒนาต่อยอดได้ ซึ่ง <strong>Jekyll</strong> ก็รองรับการแสดงผลโค้ดไฮไลท์เอาไว้ด้วย <!--more--></p>
+
+<p><strong><a href="http://rouge.jneen.net">Rough</a></strong> คือไลบราลีในภาษา <strong>Ruby</strong> ที่ถูกนำมาใช้ใน <strong>Jekyll</strong> ซึ่งรองรับภาษาโปรแกรมมากถึง 176 ภาษา โดยใน <strong>Rough</strong> ถูกตั้งเป็นค่ามาตรฐานการใช้งานใน <strong>Jekyll</strong> ตั้งแต่เวอร์ชัน 3 เป็นต่อมา</p>
+
+<h2 id="หลักการทำงาน">หลักการทำงาน</h2>
+<p><strong>Rough</strong> จะแปลงโค้ดที่อยู่ใน Markdown ออกมาเป็น HTML ต่างๆ ขึ้นอยู่กับ <strong>Token</strong> หรือจะอธิายให้เข้าใจง่ายๆ ก็คือองค์ประกอบแต่ละส่วนของโค้ดที่แตกต่างๆ กันออกไป เช่น Keyword, Variable, Whitespace หรือ Error เป็นต้น ซึ่งสามารถดูรายการ Token ได้จาก <a href="https://github.com/rouge-ruby/rouge/wiki/List-of-tokens">ที่นี่</a></p>
+
+<p>Token แต่ละตัวเมื่อถูกแปลงออกมาแล้วจะมี stylesheet ตามรายการ Token Shortname โดยเราจะต้องนำ stylesheet ของ Token ทั้งหมดมาใส่ไว้ใน <code class="highlighter-rouge">main.scss</code> เพื่อให้ <strong>Jekyll</strong> ทำการแสดงผลไฮไลท์ตามที่ต้องการ</p>
+
+<h2 id="stylesheet-ที่รองรับ">Stylesheet ที่รองรับ</h2>
+<p><strong>Rough</strong> มี stylesheet หลากหลายรูปแบบมาให้ด้วยเมื่อทำการติดตั้ง โดยเราสามารถตรวจสอบรายการ stylesheet ที่มีโดยใช้คำสั่ง</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rougify <span class="nb">help </span>style
+</code></pre></div></div>
+
+<p>ผลลัพท์ที่ได้จะปรากฏดังแสดงด้านล่าง ซึ่งจะพบว่า <strong>Rough</strong> ได้เตรียม stylesheet ไว้ให้ใช้งานมากถึง 23 แบบ</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+available themes:
+  base16, base16.dark, base16.light, base16.monokai, base16.monokai.dark, base16.monokai.light, base16.solarized,
+  base16.solarized.dark, base16.solarized.light, bw, colorful, github, gruvbox, gruvbox.dark, gruvbox.light,
+  igorpro, magritte, molokai, monokai, monokai.sublime, pastie, thankful_eyes, tulip
+</code></pre></div></div>
+<p>เราสามารถใช้คำสั่งสำหรับส่งออก stylesheet ที่จะใช้ โดยคำสั่ง</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rougify style base16.monokai.dark <span class="o">&gt;</span> styles.css
+</code></pre></div></div>
+
+<p>สำหรับขั้นตอนสุดท้ายก็คือการปรับแต่งเพิ่มเติมตามที่ชอบไม่ว่าจะเป็นฟ้อนต์ ขนาดตัวอักษร หรือสี แต่ถ้าไม่ต้องการปรับแต่งอะไรเพิ่มก็สามารถใช้ stylesheet ที่ export ออกมาได้เลย ดังที่ได้กล่าวข้างต้นแล้วว่าให้นำเข้า stylesheet ใส่เข้าไปใน <code class="highlighter-rouge">main.scss</code> ของโปรเจค จากนั้นดูผลลัพท์การแสดงผลในเว็บบราวเซอร์</p>
+
+<p><img src="/images/posts/2019/syntax-hightlight-in-jekyll/before-add-stylesheet.png" alt="Before" width="600px" />
+<em>ก่อนเพิ่ม stylesheet</em></p>
+
+<p><img src="/images/posts/2019/syntax-hightlight-in-jekyll/after-add-stylesheet.png" alt="Before" width="600px" />
+<em>หลังเพิ่ม stylesheet</em></p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://github.com/rouge-ruby/rouge">Rough</a></li>
+  <li><a href="https://jekyllrb.com/docs/liquid/tags/#code-snippet-highlighting">Code Highlighting in Jekyll</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>มีอะไรใหม่ใน Stimulus 2.0 | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>มีอะไรใหม่ใน Stimulus 2.0 | KT</title>
+<meta property="og:title" content="มีอะไรใหม่ใน Stimulus 2.0" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-15T23:08:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/posts/2020/what-s-new-in-stimulus-2-0/cover.png" />
+<meta property="twitter:title" content="มีอะไรใหม่ใน Stimulus 2.0" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>มีอะไรใหม่ใน Stimulus 2.0</h1>
+
+  <p>หลังจากที่ <strong>Stimulus</strong> ได้ปล่อยเวอร์ชัน 2 ออกมา เรามาดูกันดีกว่าว่ามีอะไรใหม่ๆ เพิ่มมาบ้าง</p>
+<ol>
+  <li>
+    <p>เพิ่ม <strong>API</strong> ขึ้นมา 2 ตัวคือ <strong>values</strong> และ <strong>CSS classes</strong> ซึ่งก็เอามาใช้แทนที่ <strong>data map</strong> ในเวอร์ชัน 1 ซึ่งรูปแบบเดิมที่ใช้อยู่ก็ยังสามารถใช้ได้ แต่ <strong>document</strong> จะถูกเอาออกจากหน้าเว็บ ทางที่ดีก็ควรเปลี่ยนรูปแบบใหม่จะดีกว่า ถ้าโปรเจ็คได้อัพเดตเป็นเวอร์ชัน 2 แล้ว<!--more--></p>
+
+    <ul>
+      <li><strong>Value</strong></li>
+    </ul>
+
+    <p><img src="/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_01.png" alt="01" />
+ <em>Controller V1</em></p>
+
+    <p><img src="/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_02.png" alt="02" />
+ <em>Controller V2</em></p>
+
+    <p><img src="/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_03.png" alt="03" />
+ <em>HTML V1</em></p>
+
+    <p><img src="/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_04.png" alt="04" />
+ <em>HTML V2</em></p>
+
+    <p>จะเห็นว่าใน <strong>Controller</strong> ของเวอร์ชัน 2 จะมีการใช้ <code class="highlighter-rouge">static values</code> เพื่อผูกกับ data attributes ทำให้เราสามารถเรียกใช้ค่า หรือกำหนดค่าผ่านชื่อตัวแปรได้ ซึ่งก็สะดวกสบายกว่าเวอร์ชัน 1
+ ส่วนในฝั่ง <strong>HTML</strong> ก็แตกต่างกันเล็กน้อย โดยการเพิ่ม <code class="highlighter-rouge">-value</code> ตามหลัง data attributes</p>
+
+    <ul>
+      <li><strong>Class</strong></li>
+    </ul>
+
+    <p>บ่อยครั้งที่เราจะใช้ JavaScript ในการควบคุม CSS เพื่อให้แสดงผลที่สอดคล้องกับการใช้งาน เช่น เมื่อมีการกดปุ่มโหลดข้อมูลก็จะแสดงไอคอน Loading บ้าง การแสดงภาพเคลื่อนไหวบ้าง</p>
+
+    <p><img src="/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_05.png" alt="05" />
+ <em>Controller V2</em></p>
+
+    <p><img src="/images/posts/2020/what-s-new-in-stimulus-2-0/stimulus2_06.png" alt="06" />
+ <em>HTML V2</em></p>
+
+    <p>ตัวอย่างข้างต้นจะเป็นการใช้ <strong>CSS</strong> ในการอนิเมชัน เพื่อหงายการ์ดเมื่อใช้เม้าส์คลิกที่การ์ด สิ่งที่เพิ่มเข้าไปใน <strong>Contrller</strong> เป็นการใช้ static <code class="highlighter-rouge">classes</code> ในการผูก data attributes กับตัวแปร จากนั้นก็เพิ่ม data attribute ใน <strong>HTML</strong> โดยใช้รูปแบบ <code class="highlighter-rouge">data-[identifier]-[name]-class="className"</code></p>
+  </li>
+  <li>
+    <p>รองรับ <strong>DOM event listener options</strong> เมื่อมีการเรียกใช้งาน <strong>action</strong> ซึ่งก็ไปตามดูได้ใน<a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">มาตรฐาน</a></p>
+  </li>
+  <li>
+    <p>เปลี่ยน syntax ในการผูกความสัมพันธ์ระหว่าง <strong>identifier</strong> กับ <strong>target</strong> จากเดิมที่เป็น <code class="highlighter-rouge">data-target="[identifier].[name]"</code> เป็น <code class="highlighter-rouge">data-[identifier]-target="[name]"</code></p>
+  </li>
+</ol>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://discourse.stimulusjs.org/t/announcing-stimulus-2-0/1482">Announcing Stimulus 2.0</a></li>
+  <li><a href="https://stimulusjs.org/">StimulusJS</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

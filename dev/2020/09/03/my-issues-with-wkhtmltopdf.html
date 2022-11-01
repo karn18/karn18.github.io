@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>My Issues with WKHTMLTOPDF | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>My Issues with WKHTMLTOPDF | KT</title>
+<meta property="og:title" content="My Issues with WKHTMLTOPDF" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="/images/posts/2020/my-issues-with-wkhtmltopdf/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-03T16:38:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/posts/2020/my-issues-with-wkhtmltopdf/cover.png" />
+<meta property="twitter:title" content="My Issues with WKHTMLTOPDF" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>My Issues with WKHTMLTOPDF</h1>
+
+  <p>ไม่ว่าจะทำโปรเจ็คไหนก็ต้องพบกับปัญหาอยู่เสมอ ขึ้นอยู่ว่าจะเล็กหรือใหญ่ขนาดไหนแตกต่างกันไป สำหรับปัญหาที่จะถูกยกมาเล่าสู่กันฟังในวันบทความนี้ จะเป็นเรื่องเกี่ยวกับการสร้างเอกสารรายงานออกมาในรูป <strong>PDF</strong> ซึ่งผมก็จะใช้เครื่องมือที่ชื่อว่า <strong>WKHTMLTOPDF</strong><!--more--></p>
+
+<p>สำหรับเครื่องมือตัวนี้ เมื่ออ่านจากชื่อก็พอจะเดาออกว่าเป็นเป็นการแปลงไฟล์ <strong>HTML</strong> ให้ออกมาอยู่ในรูป <strong>PDF</strong> โดยปกติผมจะใช้เครื่องมือตัวนี้กับ <strong><a href="https://github.com/mileszs/wicked_pdf">wicked_pdf</a></strong> แต่ก็ยังสามารถใช้ร่วมกับ <strong><a href="https://github.com/pdfkitpdfkit">PDFKit</a></strong> ได้ด้วยเช่นกัน</p>
+
+<blockquote>
+  <p><a href="https://karn18.github.io/dev/2022/03/05/bye-bye-wkhtmltopdf-welcome-puppeteer.html">ลาก่อน WKHTMLTOPDF, เปลี่ยนมาใช้ Puppeteer กัน</a></p>
+</blockquote>
+
+<h2 id="ฟ้อนต์ไทย">ฟ้อนต์ไทย</h2>
+
+<p>รายงานส่วนใหญ่ที่ผมต้องออกทั้งหมดในตอนนี้เป็นรายงานที่เป็นภาษาไทยทั้งหมด และแน่นอนว่า <strong>WKHTMLTOPDF</strong> ไม่ได้สนใจหรอกว่าผมจะใช้งานฟ้อนต์อะไร เพียงในกรณีที่กำหนดฟ้อนต์ใน <strong>CSS</strong> ให้ถูกต้อง เราก็จะได้รายงานที่แสดงข้อความเป็นภาษาต่างดาวบ้าง หรือเป็นกล่องสี่เหลี่ยมบ้าง ดังแสดงในรูปด้านล่าง</p>
+
+<p><img src="/images/posts/2020/my-issues-with-wkhtmltopdf/error1.png" alt="ต่างดาว" width="600px" />
+<em>ภาษาต่างดาว</em></p>
+
+<p><img src="/images/posts/2020/my-issues-with-wkhtmltopdf/error2.png" alt="กล่องสี่เหลี่ยม" width="600px" />
+<em>กล่องสี่เหลี่ยม</em></p>
+
+<p>ที่รายงานของเราแสดงข้อความเป็นภาษาต่างดาวนั้นเกิดจากการที่เราไม่ได้กำหนดให้ <strong>HTML</strong> ของเรารองรับตัวอักษร <strong>UTF-8</strong> ดังนั้นเราจะต้องใส่ <code class="highlighter-rouge">&lt;meta charset="utf-8" /&gt;</code> เข้าไปใน <strong>header tag</strong></p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">'utf-8'</span> <span class="nt">/&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">wicked_pdf_stylesheet_link_tag</span> <span class="s1">'pdf'</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+</code></pre></div></div>
+
+<p>และถ้าจะให้ <strong>PDF</strong> สามารถแสดงฟ้อนต์ไทยที่ถูกต้องเราสามารถทำได้ 2 แบบด้วยกันคือ</p>
+
+<ul>
+  <li><strong>link tag</strong> โดยปกติเราจะใส่ไว้ใน <strong>layout</strong> หลักที่ใช้แสดงรายงาน <strong>PDF</strong></li>
+</ul>
+
+<h3 id="appviewslayoutspdfpdferb">/app/views/layouts/pdf.pdf.erb</h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://fonts.googleapis.com/css2?family=Taviraj:wght@400;700&amp;display=swap"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>@import</strong> ซึ่งเราจะนำไปใส่ไว้ในส่วนบนสุดของ <strong>SCSS</strong> ที่จะถูกโหลดในการจัดการรายงาน</li>
+</ul>
+
+<h3 id="appassetsstylesheetspdfscss">/app/assets/stylesheets/pdf.scss</h3>
+
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@import</span> <span class="sx">url('https://fonts.googleapis.com/css2?family=Taviraj:wght@400;700&amp;display=swap')</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>จะสังเกตเห็นได้ว่าผมเลือกใช้งานฟ้อนต์ <strong>Taviraj</strong> ในการแสดงผล ที่นี่เรามาลองรันโปรแกรมเพื่อดูผลลัพท์กันว่าจะแสดงฟ้อนต์ตามที่ต้องการหรือไม่</p>
+
+<p><img src="/images/posts/2020/my-issues-with-wkhtmltopdf/success.png" alt="รายงานสมบูรณ์" width="600px" />
+<em>แสดงฟ้อนต์ได้ถูกต้อง</em></p>
+
+<blockquote>
+  <p>รายงานของเราแสดงผลฟ้อนต์ภาษาไทยออกมาได้ถูกต้อง ไม่เป็นภาษาต่างดาว หรือกล่องสี่เหลี่ยมอีกต่อ</p>
+</blockquote>
+
+<h2 id="references">References:</h2>
+<ul>
+  <li><a href="https://github.com/mileszs/wicked_pdf">Wicked PDF</a></li>
+  <li><a href="https://wkhtmltopdf.org">WKHTMLTOPDF</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

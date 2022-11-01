@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>Memoization in Ruby | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>Memoization in Ruby | KT</title>
+<meta property="og:title" content="Memoization in Ruby" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="/images/posts/2020/memoization-in-ruby/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-15T22:22:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/posts/2020/memoization-in-ruby/cover.png" />
+<meta property="twitter:title" content="Memoization in Ruby" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>Memoization in Ruby</h1>
+
+  <p>อีกหนึ่งเทคนิคที่มักพบเห็น และนำมาใช้กันในภาษา <strong>Ruby</strong> ก็คือ <strong>Memoization</strong> แต่ถ้าดูจากชื่อก็น่าจะงงๆ กันบ้างว่าเป็นมันคืออะไร แต่เชื่อผมเถอะว่าในโค้ดของคุณไม่มากก็น้อย ต้องเคยมีการใช้เทคนิคดังกล่าวแน่ๆ เพียงแค่คุณไม่รู้จักชื่อเท่านั้น ซึ่งเทคนิค <strong>Memoization</strong> จะช่วยเพิ่มความเร็วในการทำงานให้กับโปรแกรมของคุณไม่น้อยเลยทีเดียว<!--more--></p>
+
+<h2 id="memoization-คืออะไร">Memoization คืออะไร</h2>
+
+<blockquote>
+  <p>Memoization is the process of storing a computed value to avoid duplicated work by future calls.</p>
+</blockquote>
+
+<p>ถ้าแบ่งเป็นขั้นตอนจะมีด้วยกัน 3 ขั้นด้วยกันคือ</p>
+<ul>
+  <li>โค้ดถูกเรียกใช้งาน เพื่อประมวลผลอะไรบางอย่าง</li>
+  <li>แทนที่จะส่งค่าคืนกลับไปเมื่อถูกเรียกเพียงอย่างเดียว จะเก็บค่าที่ได้จากการประมวลผลเอาไว้ในตัวแปร</li>
+  <li>เมื่อมีการเรียกใช้งานโค้ดดังกล่าวอีกครั้ง ก็จะดึงค่าที่เก็บเอาไว้ส่งคืนกลับไป โดยไม่ต้องประมวลผลใหม่</li>
+</ul>
+
+<p>ถ้าอ่านคำอธิบายข้างต้นแล้วยังงง มาดูรายละเอียดพร้อมกับโค้ดตัวอย่างกันเลยดีกว่า น่าจะทำให้เข้าได้ดียิ่งขึ้น</p>
+<ul>
+  <li>ก่อนอื่นลงสังเกต โค้ดด้านล่าง จะเห็นว่ามีการเรียกใช้ <code class="highlighter-rouge">user_score</code> ซึ่งจะทำการดึงข้อมูลคะแนนของผู้ใช้งานจากฐานข้อมูล</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">user_score</span>
+  <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Sam'</span><span class="p">).</span><span class="nf">try</span><span class="p">(</span><span class="ss">:score</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ul>
+  <li>เมื่อ <code class="highlighter-rouge">user_score</code> ถูกเรียกใช้ ไม่ว่าจะกี่ครั้งสิ่งที่เกิดขึ้นคือจะต้องไปดึงข้อมูลจากฐานข้อมูลทุกรอบ ซึ่งก็เป็นกระบวนการที่เสียเวลา ให้เปลืองทรัพยากร</li>
+  <li>จุดที่ <strong>Memoization</strong> ถูกนำมาใช้ก็คือตรงนี้เองแหละครับ แทนที่เราจะต้องดึงข้อมูลจากฐานข้อมูลทุกรอบ เราก็จะเก็บข้อมูลที่เคยดึงเก็บเอาไว้ในตัวแปรหนึ่งตัว ซึ่งนั้นก็คือ <code class="highlighter-rouge">@user_score</code> ดังแสดงในโค้ดด้านล่าง</li>
+</ul>
+
+<blockquote>
+  <p>Memoization มักจะใช้เครื่องหมาย <code class="highlighter-rouge">||=</code></p>
+</blockquote>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">user_score</span>
+  <span class="vi">@user_score</span> <span class="o">||=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Sam'</span><span class="p">).</span><span class="nf">try</span><span class="p">(</span><span class="ss">:score</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>พูดง่ายๆ Memoization ก็เป็นการ Caching ข้อมูลนั้นเอง</p>
+</blockquote>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Memoization">https://en.wikipedia.org/wiki/Memoization</a></li>
+  <li><a href="http://gavinmiller.io/2013/basics-of-ruby-memoization">http://gavinmiller.io/2013/basics-of-ruby-memoization</a></li>
+  <li><a href="https://rubyinrails.com/2014/11/03/memoization-ruby/">https://rubyinrails.com/2014/11/03/memoization-ruby</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

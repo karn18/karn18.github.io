@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>แต่งฟ้อนต์ใน VSCODE แบบใช้งานจริง | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>แต่งฟ้อนต์ใน VSCODE แบบใช้งานจริง | KT</title>
+<meta property="og:title" content="แต่งฟ้อนต์ใน VSCODE แบบใช้งานจริง" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="/images/posts/2020/customize-font-in-vscode/cover.png" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-08-27T17:59:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/posts/2020/customize-font-in-vscode/cover.png" />
+<meta property="twitter:title" content="แต่งฟ้อนต์ใน VSCODE แบบใช้งานจริง" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>แต่งฟ้อนต์ใน VSCODE แบบใช้งานจริง</h1>
+
+  <p>ถ้าจะย้อนกลับไปที่บทความ <a href="https://medium.com/@karn18/%E0%B8%A1%E0%B8%B2%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87-vs-code-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%83%E0%B8%8A%E0%B9%89-%E0%B8%A0%E0%B8%B2%E0%B8%84%E0%B8%9F%E0%B9%89%E0%B8%AD%E0%B8%99%E0%B8%95%E0%B9%8C-598af704033c">แต่ง VSCode ให้น่าใช้ (ภาคฟ้อนต์)</a> การที่เราผสมผสานฟ้อนต์เข้าไปใน <strong>VSCODE</strong> ก็ดูเป็นอะไรที่น่าตื่นเต้น และดูว้าว แต่เวลาที่ใช้งานจริงกลับยังรู้สึกน่าหงุดหงิดในบางครั้งเวลาที่ <strong>VSCODE</strong> มีการอัพเดตใหม่ เราก็จะต้องมาคอย <strong>enable extension</strong> ใหม่ทุกครั้งไป ดังนั้นในบทความนี้จะแสดง <strong>Settings</strong> ของฟ้อนต์ที่ใช้งานจริงในการพัฒนาโปรแกรมบน <strong>VSCODE</strong> มาให้ดูกัน<!--more--></p>
+
+<blockquote>
+  <p>อยากเพิ่มฟ้อนต์ลายมือให้กับ VS Code แบบง่ายๆ เข้าไปดูได้ที่<strong><a href="/dev/2022/03/15/adding-cursive-font-to-vscode-with-cascadia-code">เพิ่มฟ้อนต์ตัวเขียนให้กับ VS Code ด้วย Cascadia Code</a></strong></p>
+</blockquote>
+
+<p>สำหรับฟ้อนต์ที่ใช้งานหลักๆ ใน <strong>VSCODE</strong> ก็จะมีด้วยกัน 3 ตัว โดยจะสลับไปมาแล้วแต่อารมณ์ในช่วงนั้นๆ ซึ่งประกอบไปด้วย</p>
+<ul>
+  <li><a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a></li>
+  <li><a href="https://github.com/microsoft/cascadia-code">Cascadia</a></li>
+  <li><a href="https://github.com/tonsky/FiraCode">Fira Code</a></li>
+</ul>
+
+<p>และที่ขาดไม่ได้ก็คงจะเป็นฟ้อนต์ไทย ซึ่งก็เอาไว้ใช้สำหรับเขียนคอมเมนต์ โน๊ตต่างๆ หรือเขียนบล็อกนี่เอง โดยผมจะใช้ฟ้อนต์<a href="https://fonts.google.com/specimen/Bai+Jamjuree">ใบจามจุรี</a></p>
+
+<p>เมื่อติดตั้งฟ้อนต์ต่างๆ เรียบร้อยทีนี้ก็เข้าไป <strong>config</strong> ใน <strong>VSCODE</strong> ดังแสดงในภาพด้านล่าง</p>
+
+<p><img src="/images/posts/2020/customize-font-in-vscode/config1.png" alt="config" width="600px" /></p>
+
+<p>จะเห็นได้ว่าเราจะกำหนดฟ้อนต์หลักที่จะใช้งานไว้เป็นตัวแรก และกำหนดฟ้อนต์ไทยไว้เป็นตัวถัดมา ที่ทำแบบนี้ก็เพราะเวลาที่ <strong>VSCODE</strong> แสดงผลเลือกใช้งานฟ้อนต์ตามลำดับที่เรากำหนด และเมื่อได้ฟ้อนต์ที่เลือกใช้ไม่รองรับอักษรขระที่แสดงผล ก็จะ <strong>fallback</strong> ไปเลือกฟ้อนต์ตัวถัดๆ ไป จึงทำให้ <strong>VSCODE</strong> ของเราสามารถที่จะแสดงตัวอักษรภาษาอังกฤษด้วยฟ้อนต์ <strong>Cascadia</strong> และแสดงตัวอักษรไทยด้วยฟ้อนต์ <strong>Bai Jamjuree</strong> ได้</p>
+
+<p><img src="/images/posts/2020/customize-font-in-vscode/example.png" alt="example" width="600px" /></p>
+
+<p>🎉 สำหรับผู้ที่ใช้งาน <strong>Mac</strong> หรือ <strong>Linux</strong> และมีการใช้งาน <strong>oh-my-zsh</strong> และ <strong><a href="https://github.com/romkatv/powerlevel10k">powerlevel10k</a></strong> ก็จะประสบปัญหาการแสดงผล <strong>Powerline Font</strong> ใน <strong>terminal</strong> ของ <strong>VSCODE</strong> ซึ่งเราจะเห็นรูปไอคอนต่างๆ เป็นสี่เหลี่ยมไปหมดเลย</p>
+
+<p><img src="/images/posts/2020/customize-font-in-vscode/missing_powerline.png" alt="missing_powerline" width="600px" /></p>
+
+<p>เราสามารถแก้ไขได้ง่ายๆ คือการเพิ่มฟ้อนต์ <code class="highlighter-rouge">MesloLGS NF</code> เข้าไปหลังฟ้อนต์หลักที่ใช้งาน</p>
+
+<p><img src="/images/posts/2020/customize-font-in-vscode/config2.png" alt="missing_powerline" width="600px" /></p>
+
+<p>ทันทีที่ใส่ฟ้อนต์เพิ่มเข้าไปไอคอนที่เป็นเหลี่ยมอยู่ ก็แสดงเป็นไอคอนต่างๆ ที่สวยงาม</p>
+
+<p><img src="/images/posts/2020/customize-font-in-vscode/fix_powerline.png" alt="missing_powerline" width="600px" /></p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://github.com/JetBrains/JetBrainsMono">https://github.com/JetBrains/JetBrainsMono</a></li>
+  <li><a href="https://github.com/microsoft/cascadia-code">https://github.com/microsoft/cascadia-code</a></li>
+  <li><a href="https://github.com/tonsky/FiraCode">https://github.com/tonsky/FiraCode</a></li>
+  <li><a href="https://fonts.google.com/specimen/Bai+Jamjuree">https://fonts.google.com/specimen/Bai+Jamjuree</a></li>
+  <li><a href="https://ohmyz.sh">https://ohmyz.sh</a></li>
+  <li><a href="https://github.com/romkatv/powerlevel10k">https://github.com/romkatv/powerlevel10k</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

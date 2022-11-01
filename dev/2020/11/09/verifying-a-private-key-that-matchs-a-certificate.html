@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>รู้ได้ยังไงว่า Private Key เข้าคู่หรือไม่เข้าคู่กับ Certificate | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>รู้ได้ยังไงว่า Private Key เข้าคู่หรือไม่เข้าคู่กับ Certificate | KT</title>
+<meta property="og:title" content="รู้ได้ยังไงว่า Private Key เข้าคู่หรือไม่เข้าคู่กับ Certificate" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:site_name" content="KT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-09T11:26:00+07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="รู้ได้ยังไงว่า Private Key เข้าคู่หรือไม่เข้าคู่กับ Certificate" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>รู้ได้ยังไงว่า Private Key เข้าคู่หรือไม่เข้าคู่กับ Certificate</h1>
+
+  <p>เมื่ออยากกำหนดให้เว็บไซด์ที่เรารันบน <strong>Nginx</strong> สามารถใช้งาน <strong>HTTPS</strong> วิธีที่ง่ายที่เราคุ้นชินก็คงใช้ <strong>Certbot</strong> ในการสร้างไฟล์ SSL certificate และ config ค่าต่างๆ ให้เรียบร้อยไปเลย
+ ซึ่งก็จะประกอบด้วยไฟล์ private key และ certificate แต่เกิดเราต้องสร้างไฟล์ private key และ certicate ขึ้นมาเองหละ เราจะมั่นใจได้ยังไงว่า เราสร้างไฟล์ขึ้นมาได้ถูกต้องพร้อมนำไปใช้งาน<!--more--></p>
+
+<ul>
+  <li>ปัญหาที่ผมเจอคือ ผมได้รับไฟล์ private.key มาพร้อมกับ domain.crt และ intermediate.crt มาเพื่อมาจัดการ <strong>HTTPS</strong> ของเว็บไซด์อันหนึ่ง</li>
+  <li>อันดับแรกก็คือการสร้างไฟล์ ​SSL certificate สำหรับโดเมนนี้ขึ้นมา โดยการรวมไฟล์ domain.crt และ intermediate.crt เข้าด้วยกัน จากนั้นก็นำไปติดตั้งใน <strong>Nginx</strong> 👉 <a href="https://www.ssldragon.com/blog/how-to-install-an-ssl-certificate-on-nginx/">Here</a></li>
+  <li>ก่อนที่จะ reload config ก็ต้องตรวจสอบกันเล็กน้อยว่า config ถูกต้องหรือไม่</li>
+</ul>
+
+<p><img src="/images/posts/2020/verifying-a-private-key-that-matchs-a-certificate/nginx-validate.png" alt="key_mismatch" /></p>
+
+<ul>
+  <li>ชัดเจนเลยว่ามันมีปัญหา และคงรันไม่ผ่านแน่ๆ ทั้งนี้เราก็สามารถตรวจสอบเองได้ง่ายๆ ด้วยคำสั่งนี้</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>openssl rsa <span class="nt">-noout</span> <span class="nt">-modulus</span> <span class="nt">-in</span> private.key |md5sum
+<span class="nv">$ </span><span class="nb">sudo </span>openssl x509 <span class="nt">-noout</span> <span class="nt">-modulus</span> <span class="nt">-in</span> certificate.crt |md5sum
+</code></pre></div></div>
+
+<ul>
+  <li>โดยผลลัพท์ของ MD5 ที่ออกมาจากทั้งสองคำสั่งจะได้ค่าเดียวกัน นั้นแสดงว่าไฟล์ทั้งเข้าคู่กัน และสามารถนำไปใช้งานได้ แต่ถ้าเกิดผลลัพธ์ออกมาไม่เท่ากัน นั้นแสดงว่าเราอาจจะสร้างไฟล์ certificate ผิด</li>
+</ul>
+
+<blockquote>
+  <p>การตรวจสอบค่าอาจจะใช้ algorithm อื่นแทน MD5 ก็ได้ ไม่ว่าจะเป็น SHA1 หรือ SHA256</p>
+</blockquote>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://comodosslstore.com/ssltools/cert-key-matcher.php">Cert Key Matcher</a></li>
+  <li><a href="https://www.looklinux.com/check-if-certificate-private-key-and-csr-match/">Check if certificate private key and csr match</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

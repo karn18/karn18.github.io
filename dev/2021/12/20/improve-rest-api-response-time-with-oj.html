@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>ลดเวลาตอบสนองของ REST API ด้วย Oj | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>ลดเวลาตอบสนองของ REST API ด้วย Oj | KT</title>
+<meta property="og:title" content="ลดเวลาตอบสนองของ REST API ด้วย Oj" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="ไม่น่าเชื่อว่าการเปลี่ยนมาใช้ Oj จะส่งผลให้เวลาตอบสอนงของ REST API นั้นดีขึ้นได้ โดยการปรับแต่งไม่กี่ขั้นตอน" />
+<meta property="og:description" content="ไม่น่าเชื่อว่าการเปลี่ยนมาใช้ Oj จะส่งผลให้เวลาตอบสอนงของ REST API นั้นดีขึ้นได้ โดยการปรับแต่งไม่กี่ขั้นตอน" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="/images/posts/2021/improve-rest-api-response-time-with-oj/cover.png" />
+<meta property="og:image:height" content="800" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-20T10:21:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/posts/2021/improve-rest-api-response-time-with-oj/cover.png" />
+<meta property="twitter:title" content="ลดเวลาตอบสนองของ REST API ด้วย Oj" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>ลดเวลาตอบสนองของ REST API ด้วย Oj</h1>
+
+  <p>เอาง่ายๆ เลยว่า ถ้าใครกำลังมองหาวิธีการลดเวลาตอบสนอง (Response Time) เมื่อมีการเรียกใช้ REST API บน <strong>Rails</strong> ลองมาใช้ gem ที่ชื่อว่า <code class="highlighter-rouge">oj</code> ในการสร้างหรือแปลง JSON แล้วกัน<!--more--></p>
+
+<h2 id="วิธีติดตั้ง">วิธีติดตั้ง</h2>
+<ul>
+  <li>เพิ่ม <code class="highlighter-rouge">gem "oj"</code> เข้าไปในไฟล์ Gemfile</li>
+  <li>รันคำสั่งติดตั้ง <code class="highlighter-rouge">bundle install</code></li>
+  <li>ใส่คำสั่ง <code class="highlighter-rouge">Oj.optimize_rails()</code> เข้าไปในไฟล์ <code class="highlighter-rouge">config/application.rb</code> เพื่อเปลี่ยนให้ <strong>Rails</strong> เรียกใช้ gem <code class="highlighter-rouge">oj</code> แทน <code class="highlighter-rouge">json</code></li>
+</ul>
+
+<hr />
+
+<p>ย้อนกลับไปที่โปรเจ็ค<a href="https://karn.work/projects/ehhc">ระบบสารสนเทศเพื่อส่งต่อผู้ป่วย สำหรับหน่วยบริการในระบบหลักประกันสุขภาพถ้วนหน้า เขตพื้นที่กทม. (EHHC)</a> เราได้พัฒนาเป็น REST API ไว้ให้แอพพลิเคชันหน้าบ้านเรียกใช้งาน ในตัวโปรเจ็คจะใช้ gem <code class="highlighter-rouge">json</code> ซึ่งเป็น <strong>stdlib</strong> ที่มากับ <strong>Ruby</strong> ในการจัดการ JSON ไม่ว่าจะสร้างหรือแปลงข้อมูลให้อยู่ในรูป JSON และดูเหมือนว่าเวลาตอบสนองที่ได้ออกมาค่อนข้างจะช้าไปหน่อย ประกอบกับเราต้องเตรียม REST API ไว้ให้ 3rd party ที่จะเข้ามาเรียกใช้เพิ่มอีก ด้วยโหลดที่จะเพิ่มขึ้นเราคงต้องหาวิธีเพิ่มประสิทธิภาพการทำงานของ server การเปลี่ยนตัวจัดการ JSON จึงเป็นจุดแรกที่น่าจะช่วยลดเวลาตอบสนองได้ดีที่สุด</p>
+
+<p>แต่จากที่ได้อ่านหลายบทความ เช่น <a href="https://www.mayerdan.com/ruby/2020/11/15/benchmarking-JSON-parser">1</a>, <a href="https://www.ohler.com/dev/oj_misc/performance_strict.html">2</a> ก็พบว่า <code class="highlighter-rouge">oj</code> น่าจะเป็นตัวเลือกที่ดีสำหรับเรา ดังนั้นเราจึงได้สร้าง API อย่างง่ายขึ้นมาทดสอบโดยให้มีการดึงข้อมูลคนจำนวน 1000 คน ซึ่งแต่ละคนจะมีข้อมูลชื่อ นามสกุล และเลขประชาชนจำลอง</p>
+
+<p><img src="/images/posts/2021/improve-rest-api-response-time-with-oj/migration_file.png" alt="" width="400px" />
+<em>Migration</em></p>
+
+<p><img src="/images/posts/2021/improve-rest-api-response-time-with-oj/dummy_data.png" alt="" />
+<em>Create dummy data</em></p>
+
+<p>จากนั้นเราวัดประสิทธิภาพของ server ด้วย <strong>Apache Benchmark (AB)</strong> ซึ่งเราแบ่งการทดสอบเป็น 2 ชุด โดยแต่ละชุดเรากำหนดค่าคงที่ในของจำนวน request การดึงข้อมูลเท่ากับ 100 requests แต่มี concurrent ที่แตกต่างกันคือ 10 และ 5</p>
+
+<h3 id="concurrent-เท่ากับ-10">Concurrent เท่ากับ 10</h3>
+
+<p><img src="/images/posts/2021/improve-rest-api-response-time-with-oj/oj_n100_c10.png" alt="" />
+<em>Using oj N=100, C=10</em></p>
+
+<p><img src="/images/posts/2021/improve-rest-api-response-time-with-oj/json_n100_c10.png" alt="" />
+<em>Using json N=100, C=10</em></p>
+
+<h3 id="concurrent-เท่ากับ-5">Concurrent เท่ากับ 5</h3>
+
+<p><img src="/images/posts/2021/improve-rest-api-response-time-with-oj/oj_n100_c5.png" alt="" />
+<em>Using oj N=100, C=5</em></p>
+
+<p><img src="/images/posts/2021/improve-rest-api-response-time-with-oj/json_n100_c5.png" alt="" />
+<em>Using json N=100, C=5</em></p>
+
+<p>เครื่องที่ใช้สำหรับทำเป็น Server คือ Macbook Pro (2019), CPU 2.6 GHz 6-Core Intel Core i7, RAM 32GB โดยผลลัพท์ที่ได้จะให้ผลแตกต่างกันขึ้นอยู่กับสเปคของ Server แต่จากผลลัพท์ที่ได้ก็พอจะสรุปได้ว่าการใช้งาน <code class="highlighter-rouge">oj</code> แทน <code class="highlighter-rouge">json</code> นั้นให้ผลที่ดีกว่าทั้งเรื่องของ RPM, เวลา และภาพรวมทั้งหมด</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://github.com/ohler55/oj">oj</a></li>
+  <li><a href="https://github.com/rails/jbuilder">jbuilder</a></li>
+  <li><a href="https://www.mayerdan.com/ruby/2020/11/15/benchmarking-JSON-parser">Benchmarking JSON Parser</a></li>
+  <li><a href="https://www.ohler.com/dev/oj_misc/performance_strict.html">Oj Strict Mode Performance</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

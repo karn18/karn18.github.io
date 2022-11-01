@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>Interactive Fun Cards | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>Interactive Fun Cards | KT</title>
+<meta property="og:title" content="Interactive Fun Cards" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="/images/posts/2020/interactive-fun-cards/cover.jpg" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-11T11:42:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/posts/2020/interactive-fun-cards/cover.jpg" />
+<meta property="twitter:title" content="Interactive Fun Cards" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>Interactive Fun Cards</h1>
+
+  <p>⚡ ปัจจุบันนี้ถ้าจะพัฒนาเว็บให้ดึงดูดผู้ใช้งาน คงหลีกเลี่ยงไม่ได้ที่จะทำให้เว็บดูสวยๆ และต้องมี interactive กับผู้ใช้ด้วยการแสดงอนิเมชันต่างๆ แน่นอนว่าในบทความนี้จะแสดงตัวอย่างการใช้ <strong>StimuluJS</strong> 🌈 มาช่วยจัดการเว็บกันหน่อย<!--more--> เรามาดูกันว่าโจทย์สำหรับบทความนี้จะเป็นอะไร</p>
+
+<h2 id="โจทย์">โจทย์</h2>
+
+<p>สุ่มตัวเลขตามจำนวนการ์ดที่กำหนดไว้ 🎲 โดยในเบื้องต้นจะให้คว่ำการ์ดเอาไว้ก่อน จนกว่าจะมีการคลิกจึงจะเปิดหน้าการ์ดขึ้นมาเพื่อแสดงตัวเลข โจทย์ในวันนี้ช่างง่ายดายจริงๆ มาลองพัฒนากันดู</p>
+
+<h2 id="แนวทางการพัฒนา">แนวทางการพัฒนา</h2>
+
+<ul>
+  <li>โดยหลักๆ แล้ววันนี้เราจะใช้ stimulus controller 2 ตัวมาใช้ในการควบคุมด้วยกัน
+    <ul>
+      <li>
+        <p>GameController โดยเมื่อถูกสร้างขึ้นมาจะมีการสุ่มตัวเลข ตามจำนวนการ์ดที่ได้รับมาจากหลังบ้าน (Backend) และเก็บเอาไว้ ทันทีที่การ์ดแต่ละใบถูกสั่งให้เปิดก็จะแสดงตัวเลข</p>
+      </li>
+      <li>
+        <p>CardController ใช้สำหรับควบคุมการเปิด/ปิดการ์ดแต่ละใบ โดยเมื่อการ์ดถูกเปิดแล้วจะมีระยะเวลาจำกัด 2 วินาที และจะปิดการ์ดทันที</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="ผลลัพธ์">ผลลัพธ์</h2>
+
+<p><img src="/images/posts/2020/interactive-fun-cards/fun_game.gif" alt="fun game" /></p>
+
+<h2 id="เรียนรู้อะไรบ้าง">เรียนรู้อะไรบ้าง</h2>
+
+<ul>
+  <li>เราสามารถใช้ <strong>controller</strong> หลายๆ ตัวร่วมกันได้</li>
+  <li>ถ้าเราออกแบบดีๆ เราก็สามารถนำ <strong>controller</strong> ไป reuse ใช้ได้กับ component อื่นๆ ได้ จากตัวอย่างก็จะเห็นว่าการ์ดแต่ละใบก็จะใช้ <strong>Card Controller</strong> แยกออกจากกัน</li>
+</ul>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span> <span class="na">data-controller=</span><span class="s">"card"</span> <span class="na">data-card-openned=</span><span class="s">"false"</span> <span class="na">data-target=</span><span class="s">"game.card card.element"</span> <span class="na">data-game-index=</span><span class="s">"</span><span class="cp">&lt;%=</span> <span class="n">index</span> <span class="cp">%&gt;</span><span class="s">"</span>
+  <span class="na">data-action=</span><span class="s">"click-&gt;game#showCard click-&gt;card#flip"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card__inner"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card__front"</span><span class="nt">&gt;</span>
+        <span class="cp">&lt;%=</span> <span class="n">image_tag</span> <span class="s1">'back.png'</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"image"</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card__back"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+   <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>ถ้าอยากดูรายละเอียดเพิ่มเติมดูได้จาก repo ที่แชร์ไว้ด้านล่างนะครับ 👇</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://github.com/karn18/fun_games">Fun Games</a></li>
+  <li><a href="https://codepen.io/james_gillen/pen/NGwqML">CSS for fliping card</a></li>
+</ul>
+
+</main>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+<title>Zeitwerk กับการตั้งชื่อคลาสที่ไม่ตรงกับเงื่อนไข | KT</title>
+
+<meta name="description" content="My personal blog. Interesting in Ruby, Rails and more." />
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>Zeitwerk กับการตั้งชื่อคลาสที่ไม่ตรงกับเงื่อนไข | KT</title>
+<meta property="og:title" content="Zeitwerk กับการตั้งชื่อคลาสที่ไม่ตรงกับเงื่อนไข" />
+<meta name="author" content="Karn" />
+<meta property="og:locale" content="th" />
+<meta name="description" content="เคยเจอกันมั้ยเมื่อเราตั้งชื่อคลาส ไม่ตรงกับชื่อไฟล์ พอจะรันคำสั่ง Rails แล้ว Zeitwerk ก็จะฟ้อง NameError ขึ้นมา ลองมาดูวิธีแก้กันนะครับ" />
+<meta property="og:description" content="เคยเจอกันมั้ยเมื่อเราตั้งชื่อคลาส ไม่ตรงกับชื่อไฟล์ พอจะรันคำสั่ง Rails แล้ว Zeitwerk ก็จะฟ้อง NameError ขึ้นมา ลองมาดูวิธีแก้กันนะครับ" />
+<meta property="og:site_name" content="KT" />
+<meta property="og:image" content="/images/posts/2022/zeitwerk-%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%84%E0%B8%A5%E0%B8%B2%E0%B8%AA%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%95%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%87%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%82/cover.png" />
+<meta property="og:image:height" content="800" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-02T16:09:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/posts/2022/zeitwerk-%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%84%E0%B8%A5%E0%B8%B2%E0%B8%AA%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%95%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%87%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%82/cover.png" />
+<meta property="twitter:title" content="Zeitwerk กับการตั้งชื่อคลาสที่ไม่ตรงกับเงื่อนไข" />
+<!-- End Bridgetown SEO tag -->
+
+<link rel="stylesheet" href="/_bridgetown/static/index.NGPCTLGW.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+</script>
+<script defer data-domain="karn18.github.io" src="https://analytics.karn.work/js/plausible.js"></script>
+<script src="/_bridgetown/static/index.QYWZG4PN.js" defer></script>
+
+
+  </head>
+  <body class="post ">
+    <nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    
+    
+  </ul>
+</nav>
+
+    <main>
+      <main data-controller="lightbox">
+  <h1>Zeitwerk กับการตั้งชื่อคลาสที่ไม่ตรงกับเงื่อนไข</h1>
+
+  <p><strong>Rails</strong> ใช้ <code class="highlighter-rouge">Zeitwerk</code> ในการโหลดคลาสและโมดูลแบบอัตโนมัติ (<strong>Autoloading</strong>) โดยที่เราไม่ต้องเรียกผ่าน <code class="highlighter-rouge">require</code> เพียงแต่ต้องทำการเงื่อนไขที่ถูกต้อง เราสามารถไปศึกษารายละเอียดได้จาก<a href="https://github.com/fxn/zeitwerk">ที่นี่</a></p>
+
+<p>แต่เอาเป็นว่าหลักๆ คือชื่อไฟล์ที่ตั้งนั้นจะต้องสอดคล้องกับคลาสหรือโมดูลที่นิยามอยู่ในไฟล์ ยกตัวอย่างชื่อไฟล์กับนิยาม</p>
+<ul>
+  <li><strong>my_gem.rb</strong> -&gt; <code class="highlighter-rouge">MyGem</code></li>
+  <li><strong>my_gem/foo.rb</strong> -&gt; <code class="highlighter-rouge">MyGem::Foo</code></li>
+  <li><strong>my_gem/foo/bar.rb</strong> -&gt; <code class="highlighter-rouge">MyGem::Foo:Bar</code></li>
+</ul>
+
+<p>แน่นอนว่ามันก็จะมีรายละเอียดยิบย่อยอีกพอสมควร</p>
+
+<p>ประเด็นที่เป็นปัญหาของผมก็เกิดขึ้นจากการที่พยายามจะเพิ่มความสามารถให้กับ <strong>Ruby Core Class</strong> อย่างเช่น <code class="highlighter-rouge">String</code>, <code class="highlighter-rouge">Date</code> ซึ่งได้มีการสร้างโฟลเดอร์ <strong>core_ext</strong> ไว้ใน <code class="highlighter-rouge">app/lib</code> ของโปรเจ็ค โดยผมต้องการจะเพิ่มความสามารถให้กับ <code class="highlighter-rouge">DateTime</code> เพื่อสามารถดึงวันที่สอดคล้องกับปีงบประมาณประจำปี</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/lib/core_ext/date_time/budget_year.rb</span>
+<span class="k">class</span> <span class="nc">DateTime</span>
+  <span class="k">def</span> <span class="nf">start_budget_year</span><span class="p">;</span> <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">end_budget_year</span><span class="p">;</span> <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>จะเห็นได้ว่าถ้าเราจะเพิ่มความสามารถให้กับคลาสหรือโมดูลใด เราต้องตั้งชื่อคลาสหรือโมดูลให้ตรง แต่จะเห็นว่าชื่อไฟล์ที่ตั้งก็ไม่ตรงกับนิยามข้างใน อีกทั้งโฟลเดอร์ <strong>app/lib</strong> อยู่ภายใต้การตรวจสอบของ <strong>Zeitwerk</strong> เมื่อรันโปรแกรมขึ้นมาจะมี <code class="highlighter-rouge">Zeitwerk::NameError</code> ออกมาทันที ดังนั้นวิธีแก้ไขที่ทำได้ก็คือปรับให้โฟลเดอร์ <strong>app/lib/core_ext</strong> เข้าไปอยู่ในการตรวจสอบของ <strong>Zeitwerk</strong> โดยการสร้างไฟล์ <strong>config/initializers/zeitwerk.rb</strong> ขึ้นมาและกำหนดให้โหลดโค้ดแบบ manual แทน</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/initializers/zeitwerk.rb</span>
+<span class="no">Rails</span><span class="p">.</span><span class="nf">autoloaders</span><span class="p">.</span><span class="nf">main</span><span class="p">.</span><span class="nf">ignore</span><span class="p">(</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">'app/lib/core_ext'</span><span class="p">))</span>
+<span class="no">Dir</span><span class="p">.</span><span class="nf">glob</span><span class="p">(</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">'app/lib/core_ext'</span><span class="p">,</span> <span class="s1">'*.rb'</span><span class="p">)).</span><span class="nf">sort</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">path</span><span class="o">|</span> <span class="nb">require</span> <span class="n">path</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>เพียงเท่านี้เราก็สามารถโหลดส่วนเพิ่มเติมเข้าไปในโปรเจ็คได้ โดยที่ไม่ผิดกับเงื่อนไขของ <strong>Zeitwerk</strong> แหละ</p>
+
+</main>
+
+    </main>
+  </body>
+</html>
